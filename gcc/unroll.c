@@ -715,9 +715,18 @@ unroll_loop (loop_end, insn_count, loop_start, end_insert_before,
       else if (GET_CODE (insn) == JUMP_INSN)
 	{
 	  if (JUMP_LABEL (insn))
-	    set_label_in_map (map,
-			      CODE_LABEL_NUMBER (JUMP_LABEL (insn)),
-			      JUMP_LABEL (insn));
+	    {
+	      if (insn != last_loop_insn && JUMP_LABEL (insn) == start_label)
+		{
+		  if (loop_dump_stream)
+		    fprintf (loop_dump_stream,
+			     "Unrolling failure: found branch to loop start\n");
+		  return;
+		}
+	      set_label_in_map (map,
+				CODE_LABEL_NUMBER (JUMP_LABEL (insn)),
+				JUMP_LABEL (insn));
+	    }
 	  else if (GET_CODE (PATTERN (insn)) == ADDR_VEC
 		   || GET_CODE (PATTERN (insn)) == ADDR_DIFF_VEC)
 	    {
@@ -2440,6 +2449,13 @@ iteration_info (iteration_var, initial_value, increment, loop_start, loop_end)
       /* Grab initial value, only useful if it is a constant.  */
       bl = reg_biv_class[REGNO (iteration_var)];
       *initial_value = bl->initial_value;
+      if (!bl->biv->always_executed || bl->biv->maybe_multiple)
+	{
+	  if (loop_dump_stream)
+	    fprintf (loop_dump_stream,
+		     "Loop iterations: Basic induction var not set once in each iteration.\n");
+	  return;
+	}
 
       *increment = biv_total_increment (bl, loop_start, loop_end);
     }
@@ -2450,6 +2466,14 @@ iteration_info (iteration_var, initial_value, increment, loop_start, loop_end)
 
       if (REGNO (v->src_reg) >= max_reg_before_loop)
 	abort ();
+
+      if (!v->always_executed || v->maybe_multiple)
+	{
+	  if (loop_dump_stream)
+	    fprintf (loop_dump_stream,
+		     "Loop iterations: General induction var not set once in each iteration.\n");
+	  return;
+	}
 
       bl = reg_biv_class[REGNO (v->src_reg)];
 
@@ -3504,6 +3528,11 @@ loop_find_equiv_value (loop_start, reg)
 		ret = XEXP (note, 0);
 	      else
 		ret = SET_SRC (set);
+
+	      /* We cannot do this if it changes between the
+		 assignment and loop start though.  */
+	      if (modified_between_p (ret, insn, loop_start))
+		ret = reg;
 	    }
 	  break;
 	}

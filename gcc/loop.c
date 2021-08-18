@@ -8550,7 +8550,8 @@ maybe_eliminate_biv_1 (x, insn, bl, eliminate_p, where)
 	{
 	  /* First try to replace with any giv that has constant positive
 	     mult_val and constant add_val.  We might be able to support
-	     negative mult_val, but it seems complex to do it in general.  */
+	     negative mult_val, but it seems complex to do it in general.
+	     ??? Turn this off due to possible overflow.  */
 
 	  for (v = bl->giv; v; v = v->next_iv)
 	    if (CONSTANT_P (v->mult_val) && INTVAL (v->mult_val) > 0
@@ -8560,7 +8561,8 @@ maybe_eliminate_biv_1 (x, insn, bl, eliminate_p, where)
 		    || (GET_CODE (v->add_val) == REG
 			&& REGNO_POINTER_FLAG (REGNO (v->add_val))))
 		&& ! v->ignore && ! v->maybe_dead && v->always_computable
-		&& v->mode == mode)
+		&& v->mode == mode
+		&& 0)
 	      {
 		if (! biv_elimination_giv_has_0_offset (bl->biv, v, insn))
 		  continue;
@@ -8932,7 +8934,7 @@ get_condition (jump, earliest)
 	 relevant.  */
       if (rtx_equal_p (SET_DEST (set), op0))
 	{
-	  enum machine_mode inner_mode = GET_MODE (SET_SRC (set));
+	  enum machine_mode inner_mode = GET_MODE (SET_DEST (set));
 
 	  /* ??? We may not combine comparisons done in a CCmode with
 	     comparisons not done in a CCmode.  This is to aid targets
