@@ -357,6 +357,7 @@ __divsf3 (float a1, float a2)
   return (fl1.f);
 }
 
+#ifndef QDOS
 /* convert int to double */
 double
 __floatsidf (register long a1)
@@ -396,6 +397,7 @@ __floatsidf (register long a1)
 
   return (dl.d);
 }
+#endif /* QDOS */
 
 double
 __floatdidf (register long long a1)
@@ -674,6 +676,7 @@ __fixunsdfdi (double a1)
 }
 
 /* addtwo doubles */
+#ifndef QDOS
 double
 __adddf3 (double a1, double a2)
 {
@@ -780,6 +783,7 @@ __subdf3 (double a1, double a2)
 	return (fl2.d);
     return __adddf3 (a1, fl2.d);
 }
+#endif /* QDOS */
 
 /* multiply two doubles */
 double
@@ -836,6 +840,7 @@ test_done:
 }
 
 /* divide two doubles */
+#ifndef QDOS
 double
 __divdf3 (double a1, double a2)
 {
@@ -907,6 +912,7 @@ __divdf3 (double a1, double a2)
 test_done:
     return (fl1.d);
 }
+#endif /* QDOS */
 
 int
 __gtdf2 (double a1, double a2)

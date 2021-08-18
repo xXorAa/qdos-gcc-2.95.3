@@ -91,7 +91,7 @@ case $os in
 	-dec* | -mips* | -sequent* | -encore* | -pc532* | -sgi* | -sony* | \
 	-att* | -7300* | -3300* | -delta* | -motorola* | -sun[234]* | \
 	-unicom* | -ibm* | -next | -hp | -isi* | -apollo | -altos* | \
-	-convergent* | -ncr* | -news | -32* | -3600* | -3100* | -hitachi* |\
+	-convergent* | -ncr* | -news | -qdos| -32* | -3600* | -3100* | -hitachi* |\
 	-c[123]* | -convex* | -sun | -crds | -omron* | -dg | -ultra | -tti* | \
 	-harris | -dolphin | -highlevel | -gould | -cbm | -ns | -masscomp | \
 	-apple)
@@ -298,6 +298,10 @@ case $basic_machine in
 	aux)
 		basic_machine=m68k-apple
 		os=-aux
+		;;
+	*qdos*|*QDOS*)
+		basic_machine=m68k-qdos
+		os=-qdos
 		;;
 	balance)
 		basic_machine=ns32k-sequent
@@ -928,7 +932,7 @@ case $os in
 	      | -*vms* | -sco* | -esix* | -isc* | -aix* | -sunos | -sunos[34]*\
 	      | -hpux* | -unos* | -osf* | -luna* | -dgux* | -solaris* | -sym* \
 	      | -amigaos* | -amigados* | -msdos* | -newsos* | -unicos* | -aof* \
-	      | -aos* \
+	      | -aos* | -qdos \
 	      | -nindy* | -vxsim* | -vxworks* | -ebmon* | -hms* | -mvs* \
 	      | -clix* | -riscos* | -uniplus* | -iris* | -rtu* | -xenix* \
 	      | -hiux* | -386bsd* | -netbsd* | -openbsd* | -freebsd* | -riscix* \
@@ -943,7 +947,7 @@ case $os in
 	# EGCS LOCAL
 	-sim | -es1800* | -hms* | -xray | -os68k* | -none* | -v88r* \
 	      | -windows* | -osx | -abug |  -netware* | -os9* | -beos* \
-	      | -macos* | -mpw* | -magic* | -mon960* | -lnews* )
+	      | -macos* | -mpw* | -magic* | -mon960* | -lnews* | -lqdos* )
 		;;
 	-mac*)
 		os=`echo $os | sed -e 's|mac|macos|'`

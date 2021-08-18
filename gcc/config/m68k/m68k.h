@@ -1603,7 +1603,10 @@ __transfer_from_trampoline ()					\
 #define STORE_FLAG_VALUE -1
 
 /* When a prototype says `char' or `short', really pass an `int'.  */
+/* .. in QDOS compatibility with c68 says otherwise */
+#ifndef QDOS
 #define PROMOTE_PROTOTYPES
+#endif
 
 /* Specify the machine mode that pointers have.
    After generation of rtl, the compiler makes no further distinction
@@ -1828,7 +1831,7 @@ __transfer_from_trampoline ()					\
 /* This is how to output a command to make the user-level label named NAME
    defined for reference from other files.  */
 
-#define GLOBAL_ASM_OP ".globl"
+#define GLOBAL_ASM_OP ".extern"
 #define ASM_GLOBALIZE_LABEL(FILE,NAME)	\
   do { fprintf (FILE, "%s ", GLOBAL_ASM_OP);		\
        assemble_name (FILE, NAME);			\

@@ -1,0 +1,53 @@
+
+
+*CHANGE* libgcc.a will now be built by default, disable it in 
+gcc/config/m68k/t-qdos if it causes too many complications. To 
+build the libs copy the qdos/qdos-{ar,ranlib} scripts somewhere 
+into you path. You will also need a working as68 and slb in 
+/usr/local/qdos-gcc/bin - ask for patches.
+The lib may still need qdos-ranlib after it is built, install it
+by hand into /usr/local/qdos-gcc/lib.
+I had to use -O0 to build the libs with gcc-2.95.1, otherwise
+the compiler segfaulted.
+
+The 'ld' script is a wrapper to workaround the problem that c68-ld
+doesn't accept space(s) between -o and its arg.
+
+Make/Install
+============
+
+use of a build-dir recommended:
+  mkdir ../build-qdos-gcc
+  cd ../build-qdos-gcc
+  ../gcc-source-dir/configure --target=qdos
+  make
+  make install
+
+This will install 'qdos-gcc' in /usr/local/bin/
+
+Next you will need 'as' (as68) and 'ld' built from c68 sources in 
+/usr/local/qdos-gcc/bin,
+QDOS/c68 includes in /usr/local/qdos-gcc/include and /usr/local/qdos-gcc/include/sys,
+c68 libs in /usr/local/qdos-gcc/lib
+A few of the QDOS/c68 libs/includes/Makefiles may have wrongly spelled names 
+(mostly case, sometimes '_/') which can cause rather mysterious build
+failures.
+
+Tools
+=====
+
+see qdos dir
+
+c68 <-> gcc
+===========
+
+some known problems are described in qdos/c68.interoperability
+
+Special Flags
+=============
+
+any option that can trigger 68020 or fpu insn generation will cause output in
+GWass format, 'as' will be called with '-gwass' option.
+
+-mc68lib use c68 calling convetnions for math library
+

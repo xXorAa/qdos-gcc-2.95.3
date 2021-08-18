@@ -1,0 +1,23 @@
+#!/bin/sh
+# shell script to mangle c68-ld arguments
+
+
+args=$@
+
+ac_prev=""
+out_args=""
+
+for args
+do
+ if test -n "$ac_prev" ; then
+   ac_prev=""
+   out_args="$out_args -o$args"
+   continue
+ fi
+ case $args in
+   -o) ac_prev="-o";;
+   *) out_args="$out_args $args";;
+esac
+done
+
+/usr/local/qdos-gcc/bin/ld-c68 $out_args

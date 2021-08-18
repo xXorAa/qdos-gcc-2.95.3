@@ -1,0 +1,31 @@
+#!/bin/sh                                                                       
+
+flags=$1
+libname=$2
+
+shift
+shift
+
+PATH=/usr/local/qdos-gcc/bin:$PATH
+
+case $flags in
+   -*) ;;
+   *) flags="-$flags" ;;
+esac
+
+case $flags in
+   -rc|-rcv|-r|-c)
+      slb $flags -ek $libname $@
+      # qdos-ranlib $libname  # slows down too much
+     ;;
+   -x|-xv)
+    ( for f in $@ ; do echo $f ; done ) |  slb $flags -m- $libname
+    ;;
+   *)
+     echo 'Sorry, only -rc or -x '
+     exit 127
+     ;;
+esac
+
+exit 0
+

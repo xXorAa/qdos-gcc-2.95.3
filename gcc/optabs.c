@@ -4645,6 +4645,41 @@ init_optabs ()
     = gen_rtx_SYMBOL_REF (Pmode, UMODDI3_LIBCALL);
 #endif
 
+
+#ifdef DIVDD3_LIBCALL
+  flodiv_optab->handlers[(int) DFmode].libfunc
+    = gen_rtx_SYMBOL_REF (Pmode, DIVDD3_LIBCALL);
+#endif
+#ifdef DIVDF3_LIBCALL
+  flodiv_optab->handlers[(int) SFmode].libfunc
+    = gen_rtx_SYMBOL_REF (Pmode, DIVDF3_LIBCALL);
+#endif
+#ifdef MULDD3_LIBCALL
+  smul_optab->handlers[(int) DFmode].libfunc
+    = gen_rtx_SYMBOL_REF (Pmode, MULDD3_LIBCALL);  
+#endif
+#ifdef MULDF3_LIBCALL
+  smul_optab->handlers[(int) SFmode].libfunc
+    = gen_rtx_SYMBOL_REF (Pmode, MULDF3_LIBCALL);  
+#endif
+#ifdef ADDD3_LIBCALL
+  add_optab->handlers[(int) DFmode].libfunc
+    = gen_rtx_SYMBOL_REF (Pmode, ADDD3_LIBCALL);
+#endif
+#ifdef ADDF3_LIBCALL
+  add_optab->handlers[(int) SFmode].libfunc
+    = gen_rtx_SYMBOL_REF (Pmode, ADDF3_LIBCALL);
+#endif
+#ifdef SUBDD3_LIBCALL
+  sub_optab->handlers[(int) DFmode].libfunc
+    = gen_rtx_SYMBOL_REF (Pmode, SUBDD3_LIBCALL);
+#endif
+#ifdef SUBDF3_LIBCALL
+  sub_optab->handlers[(int) SFmode].libfunc
+    = gen_rtx_SYMBOL_REF (Pmode, SUBDF3_LIBCALL);
+#endif
+
+
   /* Use cabs for DC complex abs, since systems generally have cabs.
      Don't define any libcall for SCmode, so that cabs will be used.  */
   abs_optab->handlers[(int) DCmode].libfunc
@@ -4657,13 +4692,20 @@ init_optabs ()
   ffs_optab->handlers[(int) mode_for_size (INT_TYPE_SIZE, MODE_INT, 0)] .libfunc
     = gen_rtx_SYMBOL_REF (Pmode, "ffs");
 
-  extendsfdf2_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__extendsfdf2");
+#ifndef EXTENDSFDF2_LIBCALL
+#define EXTENDSFDF2_LIBCALL "__extendsfdf2"
+#endif
+#ifndef TRUNCDFSF2_LIBCALL
+#define TRUNCDFSF2_LIBCALL "__truncdfsf2"
+#endif
+
+  extendsfdf2_libfunc = gen_rtx_SYMBOL_REF (Pmode, EXTENDSFDF2_LIBCALL);
   extendsfxf2_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__extendsfxf2");
   extendsftf2_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__extendsftf2");
   extenddfxf2_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__extenddfxf2");
   extenddftf2_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__extenddftf2");
 
-  truncdfsf2_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__truncdfsf2");
+  truncdfsf2_libfunc = gen_rtx_SYMBOL_REF (Pmode, TRUNCDFSF2_LIBCALL);
   truncxfsf2_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__truncxfsf2");
   trunctfsf2_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__trunctfsf2");
   truncxfdf2_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__truncxfdf2");
@@ -4725,11 +4767,24 @@ init_optabs ()
   lttf2_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__lttf2");
   letf2_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__letf2");
 
-  floatsisf_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__floatsisf");
+#ifndef FLOATSISF_LIBCALL
+#define FLOATSISF_LIBCALL "__floatsisf"
+#endif
+#ifndef FLOATSIDF_LIBCALL
+#define FLOATSIDF_LIBCALL "__floatsidf"
+#endif
+#ifndef FIXDFSI_LIBCALL
+#define FIXDFSI_LIBCALL "__fixdfsi"
+#endif
+#ifndef FIXSFSI_LIBCALL
+#define FIXSFSI_LIBCALL "__fixsfsi"
+#endif
+
+  floatsisf_libfunc = gen_rtx_SYMBOL_REF (Pmode, FLOATSISF_LIBCALL);
   floatdisf_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__floatdisf");
   floattisf_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__floattisf");
 
-  floatsidf_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__floatsidf");
+  floatsidf_libfunc = gen_rtx_SYMBOL_REF (Pmode, FLOATSIDF_LIBCALL);
   floatdidf_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__floatdidf");
   floattidf_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__floattidf");
 
@@ -4741,11 +4796,11 @@ init_optabs ()
   floatditf_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__floatditf");
   floattitf_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__floattitf");
 
-  fixsfsi_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__fixsfsi");
+  fixsfsi_libfunc = gen_rtx_SYMBOL_REF (Pmode, FIXSFSI_LIBCALL);
   fixsfdi_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__fixsfdi");
   fixsfti_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__fixsfti");
 
-  fixdfsi_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__fixdfsi");
+  fixdfsi_libfunc = gen_rtx_SYMBOL_REF (Pmode, FIXDFSI_LIBCALL);
   fixdfdi_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__fixdfdi");
   fixdfti_libfunc = gen_rtx_SYMBOL_REF (Pmode, "__fixdfti");
 

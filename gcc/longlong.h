@@ -517,7 +517,7 @@ UDItype __umulsidi3 (USItype, USItype);
 #if !defined(__mcf5200__)
 /* %/ inserts REGISTER_PREFIX, %# inserts IMMEDIATE_PREFIX.  */
 #define umul_ppmm(xh, xl, a, b) \
-  __asm__ ("| Inlined umul_ppmm
+  __asm__ (";| Inlined umul_ppmm
 	move%.l	%2,%/d0
 	move%.l	%3,%/d1
 	move%.l	%/d0,%/d2
@@ -534,7 +534,7 @@ UDItype __umulsidi3 (USItype, USItype);
 	swap	%/d0
 	add%.l	%/d0,%/d2
 	add%.l	%/d3,%/d2
-	jcc	1f
+	bcc	1f
 	add%.l	%#65536,%/d1
 1:	swap	%/d2
 	moveq	%#0,%/d0
