@@ -1673,6 +1673,7 @@ void
 canon_white (string)
      char *string;
 {
+  char *temp;
   int len = strlen (string);
   int x;
 
@@ -1683,7 +1684,11 @@ canon_white (string)
     {
       if (!cr_or_whitespace (string[x]))
         {
-          strcpy (string, string + x);
+          /* The destination may _not_ overlap ! -- strcpy (string, string + x); */
+          temp = malloc(len * sizeof(char) + 1);
+          strcpy(temp, string+x);
+          strcpy(string, temp);
+          free(temp);
           break;
         }
     }
