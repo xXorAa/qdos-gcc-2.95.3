@@ -778,7 +778,7 @@ fi
 
 # Some systems (e.g., one of the i386-aix systems the gas testers are
 # using) don't handle "\$" correctly, so don't use it here.
-tooldir='$(exec_prefix)'/${target_alias}
+tooldir='$(exec_prefix)'/${target_alias}-gcc
 
 if [ "${host_alias}" != "${target_alias}" ] ; then
     if [ "${program_prefixoption}" = "" ] ; then
