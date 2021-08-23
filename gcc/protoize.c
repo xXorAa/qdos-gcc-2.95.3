@@ -125,6 +125,7 @@ typedef const PTR const_pointer_type;
 #if defined(POSIX)
 
 #include <signal.h>
+#include <alloca.h>
 
 #else /* !defined(POSIX) */
 
