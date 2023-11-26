@@ -504,6 +504,8 @@ shallow_copy_rtx (orig)
   copy->volatil = orig->volatil;
   copy->unchanging = orig->unchanging;
   copy->integrated = orig->integrated;
+  copy->frame_related = orig->frame_related;
+  copy->frame_related = orig->frame_related;
 
   for (i = 0; i < GET_RTX_LENGTH (code); i++)
     copy->fld[i] = orig->fld[i];

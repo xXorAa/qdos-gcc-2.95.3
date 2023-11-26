@@ -390,7 +390,7 @@ static void
 fde_merge (fde_vector *v1, const fde_vector *v2)
 {
   size_t i1, i2;
-  fde * fde2;
+  fde * fde2 = NULL;
 
   i2 = v2->count;
   if (i2 > 0)
@@ -398,6 +398,17 @@ fde_merge (fde_vector *v1, const fde_vector *v2)
       i1 = v1->count;
       do {
         i2--;
+        if (fde2 != NULL && fde_compare (v2->array[i2], fde2) == 0)
+	  {
+	    /* Some linkers (e.g. 2.10.91.0.2 or 2.11.92.0.8) resolve
+	       section relative relocations against removed linkonce
+	       section to corresponding location in the output linkonce
+	       section. Always use the earliest fde in that case.  */
+	    fde2 = v2->array[i2];
+	    v1->array[i1+i2+1] = fde2;
+	    v1->array[i1+i2] = fde2;
+	    continue;
+	  }
         fde2 = v2->array[i2];
         while (i1 > 0 && fde_compare (v1->array[i1-1], fde2) > 0)
           {

@@ -4804,7 +4804,9 @@ store_field (target, bitsize, bitpos, mode, exp, value_mode,
 	      tree count;
 	      enum machine_mode tmode;
 
-	      if (unsignedp)
+	      if (unsignedp
+		  && (GET_MODE (temp) != VOIDmode
+		      || GET_CODE (temp) != CONST_DOUBLE))
 		return expand_and (temp, GEN_INT (width_mask), NULL_RTX);
 	      tmode = GET_MODE (temp);
 	      if (tmode == VOIDmode)
@@ -5618,7 +5620,7 @@ expand_expr (exp, target, tmode, modifier)
   enum expand_modifier ro_modifier;
 
   /* Handle ERROR_MARK before anybody tries to access its type. */
-  if (TREE_CODE (exp) == ERROR_MARK)
+  if (TREE_CODE (exp) == ERROR_MARK || TREE_CODE (type) == ERROR_MARK)
     {
       op0 = CONST0_RTX (tmode);
       if (op0 != 0)
@@ -7915,6 +7917,17 @@ expand_expr (exp, target, tmode, modifier)
 	    else
 	      {
 		DECL_RTL (slot) = target;
+
+		/* If target is unchanging, but slot is not, we could end up
+		   initializing the unchanging target through non-unchanging
+		   references.  */
+		if (RTX_UNCHANGING_P (target) && ! TREE_READONLY (slot)
+		    && (GET_CODE (target) == REG
+			|| (GET_CODE (target) == MEM
+			    && GET_CODE (XEXP (target, 0)) == ADDRESSOF
+			    && GET_CODE (XEXP (XEXP (target, 0), 0)) == REG)))
+		  RTX_UNCHANGING_P (target) = 0;
+
 		/* If we must have an addressable slot, then make sure that
 		   the RTL that we just stored in slot is OK.  */
 		if (TREE_ADDRESSABLE (slot))
@@ -11635,7 +11648,7 @@ do_store_flag (exp, target, mode, only_cheap)
       op0 = expand_expr (inner, subtarget, VOIDmode, 0);
 
       if (bitnum != 0)
-	op0 = expand_shift (RSHIFT_EXPR, GET_MODE (op0), op0,
+	op0 = expand_shift (RSHIFT_EXPR, operand_mode, op0,
 			    size_int (bitnum), subtarget, ops_unsignedp);
 
       if (GET_MODE (op0) != mode)

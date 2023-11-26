@@ -2765,7 +2765,7 @@ eliminate_regs (x, mem_mode, insn)
 	}
       else if (reg_renumber[regno] < 0 && reg_equiv_constant
 	       && reg_equiv_constant[regno]
-	       && ! CONSTANT_P (reg_equiv_constant[regno]))
+	       && ! function_invariant_p (reg_equiv_constant[regno]))
 	return eliminate_regs (copy_rtx (reg_equiv_constant[regno]),
 			       mem_mode, insn);
       return x;

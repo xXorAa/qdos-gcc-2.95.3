@@ -1900,9 +1900,11 @@ merge_blocks_nomove (a, b)
     {
       rtx prev;
 
-      prev = prev_nonnote_insn (a_end);
-      if (!prev) 
-	prev = a->head;
+      for (prev = PREV_INSN (a_end); ; prev = PREV_INSN (prev))
+	if (GET_CODE (prev) != NOTE
+	    || NOTE_LINE_NUMBER (prev) == NOTE_INSN_BASIC_BLOCK
+	    || prev == a->head)
+	  break;
 
 #ifdef HAVE_cc0
       /* If this was a conditional jump, we need to also delete
