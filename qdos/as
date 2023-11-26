@@ -1,0 +1,87 @@
+#!/bin/bash 
+
+
+as68="/usr/local/qdos-gcc/bin/as68"
+cmdline="$*"
+opt=""
+src=""
+obj=""
+def=""
+flag="0"
+
+
+
+for i in $cmdline ; do
+	case "$1" in
+		-D*)
+			def="$def $1"
+			;;
+		-o)
+			shift 1
+			obj=" -o $1"
+			;;
+		-gwass)
+		        echo 1>&2 "GWass not yet supported"  
+		        ;;
+		-*)
+			opt="$opt$1 "
+			;;
+		*)
+			if [ "$1" != "" ] ; then 
+				if [ "$src" == "" ] ; then
+					src="$1"
+				else
+					echo 1>&2 "$0: extraneous $1 filename !"
+					exit 1
+				fi
+			fi
+			;;
+	esac
+	shift 1
+done
+
+
+if [ "$src" != "" ] ; then
+	head -1 $src | grep '#' >/dev/null
+	if [ "$?" == "0" ] ; then
+		flag="1"
+	fi
+fi
+
+
+if [ $flag == 1 ] ; then
+	parts=`echo $src | sed -e 'y/\// /'`
+	if [ "${parts:0:1}" == " " ] ; then
+		base="/"
+	else
+		base="./"
+	fi
+	for i in $parts ; do
+		if [ -d "$base$i" ] ; then
+			base="$base$i/"
+		else
+			break
+		fi
+	done
+	if [ "$base" != "./" ] ; then
+		cpp_opt="-P -I $base"
+	else
+		cpp_opt="-P"
+	fi
+	mv -f $src $src.bak.$$
+	tail +2 $src.bak.$$ | cpp $cpp_opt$def -o $src -
+	if (( "$?" == "0" )) ; then
+		$as68 $opt$src$obj
+	fi
+	result=$?
+	if [ "$result" != "0" ] ; then
+		cp -f $src $src.i
+		echo "Faulty pre-processed source saved as: $src.i"
+	fi
+	mv -f $src.bak.$$ $src
+else
+	$as68 $opt$src$obj
+	result="$?"
+fi
+
+exit $result

@@ -1,0 +1,194 @@
+Documented c68 - gcc incompabilities:
+
+Struct alignment, element size:
+================
+          struct foo1
+          {
+            char x;
+            char :0;
+            char y;
+          };  /* gcc: sizeof == 4 */
+              /* c68: sizeof == 8 */
+          struct foo2
+          {
+            char x;
+            int :0;
+            char y;
+          };   /* gcc: sizeof == 4 */
+               /* c68: sizeof == 8 */
+
+          struct foo3 {
+            char x;
+            int :6;
+            char y;
+          };   /* gcc: sizeof == 4 */
+               /* c68: sizeof == 8 */
+
+          struct foo4
+	  {
+            char x;
+            int :9;
+            char y;
+	  };   /* gcc: sizeof == 6 */
+               /* c68: sizeof == 8 */
+
+
+          struct foo5
+	  {
+	    char a:4;
+	    char b:4;
+	  };   /* gcc: sizeof == 2 */
+               /* c68: sizeof == 4 */
+
+          struct foo6
+	  {
+	    int a:4;
+	    int b:4;
+	  };   /* gcc: sizeof == 2 */
+               /* c68: sizeof == 4 */
+
+          struct foo7
+	  {
+	    int a:6;
+	    int b:6;
+	  };   /* gcc: sizeof == 2 */
+               /* c68: sizeof == 4 */
+
+Struct return: completely incompatible in all details, example:
+=============
+
+typedef struct {char a; char b;} l1;
+typedef struct {short a; short b;} l2;
+typedef struct {int a; int b;} l3;
+typedef struct {double a; double b;} l4;
+
+l1 f1(l1 x) /* c68: return addr is hidden 1st arg, returns addr of struct */
+{           /* gcc: return word in D0 */
+  printf("%p\n",&x);
+  return x;   
+}
+l2 f2(l2 x) 
+{           /* gcc: return long in D0 */
+  printf("%p\n",&x);
+  return x;
+}
+l3 f3(l3 x)
+{           /* gcc: return in D0/D1 */
+  printf("%p\n",&x);
+  return x;
+}
+l4 f4(l4 x)
+{           /* gcc: pass return addr in A1, returns struct addr in D0 */
+  printf("%p\n",&x);
+  return x;
+}
+
+  l1 x1;
+  l2 x2;
+  l3 x3;
+  l4 x4;
+
+main()
+{
+  x1=f1(x1);
+  x2=f2(x2);
+  x3=f3(x3);
+  x4=f4(x4);
+}
+
+;; gcc generates this code:
+
+	.sect	.text
+	.sect	.rom
+	.sect	.data
+	.sect	.bss
+
+	.sect	.text
+LC0:
+	.data1	0x25,0x70,0xa,0x0
+	.align 2
+	.extern _f1
+_f1:
+	link a6,#0
+	pea 8(a6)
+	pea LC0
+	bsr _printf
+	move.w 8(a6),d0
+	unlk a6
+	rts
+	.align 2
+	.extern _f2
+_f2:
+	link a6,#0
+	pea 8(a6)
+	pea LC0
+	bsr _printf
+	move.l 8(a6),d0
+	unlk a6
+	rts
+	.align 2
+	.extern _f3
+_f3:
+	link a6,#0
+	pea 8(a6)
+	pea LC0
+	bsr _printf
+	move.l 8(a6),d0
+	move.l 12(a6),d1
+	unlk a6
+	rts
+	.align 2
+	.extern _f4
+_f4:
+	link a6,#0
+	move.l d3,-(sp)
+	move.l a1,d3
+	pea 8(a6)
+	pea LC0
+	bsr _printf
+	move.l d3,a0
+	move.l 8(a6),(a0)+
+	move.l 12(a6),(a0)+
+	move.l 16(a6),(a0)+
+	move.l 20(a6),(a0)
+	move.l d3,d0
+	move.l -4(a6),d3
+	unlk a6
+	rts
+	.align 2
+	.extern _main
+_main:
+	link a6,#0
+	bsr ___main
+	move.w _x1,-(sp)
+	bsr _f1
+	move.w d0,_x1
+	move.l _x2,-(sp)
+	bsr _f2
+	move.l d0,_x2
+	move.l _x3+4,-(sp)
+	move.l _x3,-(sp)
+	bsr _f3
+	move.l d0,_x3
+	move.l d1,_x3+4
+	move.l _x4+12,-(sp)
+	move.l _x4+8,-(sp)
+	lea _x4+4,a1
+	move.l (a1),-(sp)
+	move.l -(a1),-(sp)
+	bsr _f4
+	unlk a6
+	rts
+	.sect	.bss
+	.extern	_x1
+_x1:
+	.space	2
+	.extern	_x2
+_x2:
+	.space	4
+	.extern	_x3
+_x3:
+	.space	8
+	.extern	_x4
+_x4:
+	.space	16

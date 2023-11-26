@@ -32,10 +32,21 @@ Boston, MA 02111-1307, USA.  */
 
 #include "tconfig.h"
 
+
+/* In a cross-compilation situation, default to inhibiting compilation
+   of routines that use libc.  */
+
+#if defined(CROSS_COMPILE) && !defined(inhibit_libc)
+#define inhibit_libc
+#endif
+
+
 /* We disable this when inhibit_libc, so that gcc can still be built without
    needing header files first.  */
 /* ??? This is not a good solution, since prototypes may be required in
    some cases for correct code.  See also frame.c.  */
+
+
 #ifndef inhibit_libc
 /* fixproto guarantees these system headers exist. */
 #include <stdlib.h>
@@ -57,12 +68,6 @@ Boston, MA 02111-1307, USA.  */
 #define WEAK_ALIAS
 #endif
 
-/* In a cross-compilation situation, default to inhibiting compilation
-   of routines that use libc.  */
-
-#if defined(CROSS_COMPILE) && !defined(inhibit_libc)
-#define inhibit_libc
-#endif
 
 /* Permit the tm.h file to select the endianness to use just for this
    file.  This is used when the endianness is determined when the
@@ -2618,7 +2623,7 @@ mprotect (char *addr, int len, int prot)
 #endif /* WINNT && ! __CYGWIN__ && ! _UWIN */
 
 #ifdef TRANSFER_FROM_TRAMPOLINE 
-TRANSFER_FROM_TRAMPOLINE 
+TRANSFER_FROM_TRAMPOLINE
 #endif
 
 #if defined (NeXT) && defined (__MACH__)

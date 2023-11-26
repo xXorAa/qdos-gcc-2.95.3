@@ -126,6 +126,27 @@ override_options ()
     m68k_align_funcs = def_align;
 }
 
+
+#ifdef AS68
+void output_movem_mask(stream, mask, dir)
+     FILE *stream;
+     unsigned long mask;
+     int dir;
+{
+  int first,regno;	
+
+  /*printf("MASK: %x\n",mask);*/
+  for (regno = 0, first = 1; regno < 16; regno++)
+    if (mask & (1 << regno))          
+      {      
+	fprintf (stream, "%s%s",(first ?"":"/"),reg_names[dir ? regno : 15-regno]);                
+	first = 0;
+      }
+}
+#define MOVEM_IN_MASK(STREAM,MASK) output_movem_mask(STREAM,MASK,1)
+#define MOVEM_OUT_MASK(STREAM,MASK) output_movem_mask(STREAM,MASK,0)
+#endif
+
 /* This function generates the assembly code for function entry.
    STREAM is a stdio stream to output the code to.
    SIZE is an int: how many units of temporary storage to allocate.
@@ -170,8 +191,13 @@ output_function_prologue (stream, size)
       else if (fsize < 0x8000)
 	{
 #ifdef MOTOROLA
+#ifndef AS68
 	  asm_fprintf (stream, "\tlink.w %s,%0I%d\n",
 		       reg_names[FRAME_POINTER_REGNUM], -fsize);
+#else
+	  asm_fprintf (stream, "\tlink %s,%0I%d\n",
+		       reg_names[FRAME_POINTER_REGNUM], -fsize);
+#endif
 #else
 	  asm_fprintf (stream, "\tlink %s,%0I%d\n",
 		       reg_names[FRAME_POINTER_REGNUM], -fsize);
@@ -191,8 +217,13 @@ output_function_prologue (stream, size)
 	{
       /* Adding negative number is faster on the 68040.  */
 #ifdef MOTOROLA
+#ifndef AS68
 	  asm_fprintf (stream, "\tlink.w %s,%0I0\n\tadd.l %0I%d,%Rsp\n",
 		       reg_names[FRAME_POINTER_REGNUM], -fsize);
+#else
+	  asm_fprintf (stream, "\tlink %s,%0I0\n\tadd.l %0I%d,%Rsp\n",
+		       reg_names[FRAME_POINTER_REGNUM], -fsize);
+#endif
 #else
 	  asm_fprintf (stream, "\tlink %s,%0I0\n\taddl %0I%d,%Rsp\n",
 		       reg_names[FRAME_POINTER_REGNUM], -fsize);
@@ -263,7 +294,11 @@ output_function_prologue (stream, size)
 	  else
 	    {
 #ifdef MOTOROLA
+#ifdef AS68
+	      asm_fprintf (stream, "\tlea %d(%Rsp),%Rsp\n", - (fsize + 4));
+#else
 	      asm_fprintf (stream, "\tlea (%d,%Rsp),%Rsp\n", - (fsize + 4));
+#endif
 #else
 	      asm_fprintf (stream, "\tlea %Rsp@(%d),%Rsp\n", - (fsize + 4));
 #endif
@@ -430,8 +465,15 @@ output_function_prologue (stream, size)
 		newmask |= (1 << (15-i));
 
 #ifdef MOTOROLA
+#ifdef AS68
+	  asm_fprintf (stream, "\tlea %d(%Rsp),%Rsp\n", -num_saved_regs*4);
+	  asm_fprintf (stream, "\tmovem.l ");
+	  MOVEM_OUT_MASK (stream, newmask);
+	  asm_fprintf(stream,",(%Rsp)\n");
+#else
 	  asm_fprintf (stream, "\tlea (%d,%Rsp),%Rsp\n", -num_saved_regs*4);
 	  asm_fprintf (stream, "\tmovm.l %0I0x%x,(%Rsp)\n", newmask);
+#endif
 #else
 	  asm_fprintf (stream, "\tlea %Rsp@(%d),%Rsp\n", -num_saved_regs*4);
 	  asm_fprintf (stream, "\tmoveml %0I0x%x,%Rsp@\n", newmask);
@@ -440,7 +482,13 @@ output_function_prologue (stream, size)
       else
 	{
 #ifdef MOTOROLA
+#ifndef AS68
 	  asm_fprintf (stream, "\tmovm.l %0I0x%x,-(%Rsp)\n", mask);
+#else
+	  asm_fprintf (stream, "\tmovem.l ");
+	  MOVEM_OUT_MASK(stream, mask);
+	  asm_fprintf (stream, ",-(%Rsp)\n");
+#endif /* AS68 */
 #else
 	  asm_fprintf (stream, "\tmoveml %0I0x%x,%Rsp@-\n", mask);
 #endif
@@ -647,10 +695,18 @@ output_function_epilogue (stream, size)
       if (big)
 	{
 #ifdef MOTOROLA
+#ifndef AS68
 	  asm_fprintf (stream, "\tmovm.l -%d(%s,%Ra1.l),%0I0x%x\n",
 		       offset + fsize,
 		       reg_names[FRAME_POINTER_REGNUM],
 		       mask);
+#else
+	  asm_fprintf (stream, "\tmovem.l -%d(%s,%Ra1.l),",
+		       offset + fsize,
+		       reg_names[FRAME_POINTER_REGNUM]);
+	  MOVEM_IN_MASK(stream, mask);
+	  fprintf(stream,"\n");
+#endif /* AS68 */
 #else
 	  asm_fprintf (stream, "\tmoveml %s@(-%d,%Ra1:l),%0I0x%x\n",
 		       reg_names[FRAME_POINTER_REGNUM],
@@ -660,7 +716,13 @@ output_function_epilogue (stream, size)
       else if (restore_from_sp)
 	{
 #ifdef MOTOROLA
+#ifndef AS68
 	  asm_fprintf (stream, "\tmovm.l (%Rsp)+,%0I0x%x\n", mask);
+#else
+	  asm_fprintf (stream, "\tmovem.l (%Rsp)+,");
+	  MOVEM_IN_MASK(stream, mask);
+	  fprintf(stream,"\n");
+#endif /* AS68 */
 #else
 	  asm_fprintf (stream, "\tmoveml %Rsp@+,%0I0x%x\n", mask);
 #endif
@@ -668,10 +730,18 @@ output_function_epilogue (stream, size)
       else
 	{
 #ifdef MOTOROLA
+#ifndef AS68
 	  asm_fprintf (stream, "\tmovm.l -%d(%s),%0I0x%x\n",
 		       offset + fsize,
 		       reg_names[FRAME_POINTER_REGNUM],
 		       mask);
+#else
+	  asm_fprintf (stream, "\tmovem.l -%d(%s),",
+		       offset + fsize,
+		       reg_names[FRAME_POINTER_REGNUM]);
+	  MOVEM_IN_MASK(stream, mask);
+	  fprintf(stream,"\n");
+#endif
 #else
 	  asm_fprintf (stream, "\tmoveml %s@(-%d),%0I0x%x\n",
 		       reg_names[FRAME_POINTER_REGNUM],
@@ -812,7 +882,11 @@ output_function_epilogue (stream, size)
 	  else
 	    {
 #ifdef MOTOROLA
+#ifndef AS68
 	      asm_fprintf (stream, "\tlea (%d,%Rsp),%Rsp\n", fsize + 4);
+#else
+	      asm_fprintf (stream, "\tlea %d(%Rsp),%Rsp\n", fsize + 4);
+#endif
 #else
 	      asm_fprintf (stream, "\tlea %Rsp@(%d),%Rsp\n", fsize + 4);
 #endif
@@ -2117,12 +2191,12 @@ output_addsi3 (operands)
       if (GET_CODE (operands[2]) == CONST_INT
 	  && INTVAL (operands[2]) + 0x8000 >= (unsigned) 0x10000)
         return "move%.l %2,%0\n\tadd%.l %1,%0";
-#ifdef SGS
+#if defined(SGS) || defined(AS68)
       if (GET_CODE (operands[2]) == REG)
 	return "lea 0(%1,%2.l),%0";
       else
 	return "lea %c2(%1),%0";
-#else /* not SGS */
+#else /* not SGS or AS68 */
 #ifdef MOTOROLA
       if (GET_CODE (operands[2]) == REG)
 	return "lea (%1,%2.l),%0";
@@ -2134,7 +2208,7 @@ output_addsi3 (operands)
       else
 	return "lea %1@(%c2),%0";
 #endif /* not MOTOROLA */
-#endif /* not SGS */
+#endif /* not SGS or AS68 */
     }
   if (GET_CODE (operands[2]) == CONST_INT)
     {
@@ -2175,7 +2249,11 @@ output_addsi3 (operands)
 	    return "add%.w %2,%0";
 	  else
 #ifdef MOTOROLA  
+#ifdef AS68
+	    return "lea %c2(%0),%0";
+#else
 	    return "lea (%c2,%0),%0";
+#endif
 #else
 	    return "lea %0@(%c2),%0";
 #endif
@@ -2816,7 +2894,9 @@ print_operand (file, op, letter)
 	       && INTVAL (XEXP (op, 0)) >= -0x8000))
 	{
 #ifdef MOTOROLA
+#ifndef AS68
 	  fprintf (file, ".l");
+#endif
 #else
 	  fprintf (file, ":l");
 #endif
@@ -3158,7 +3238,7 @@ print_operand_address (file, addr)
 	    && INTVAL (addr) >= -0x8000)
 	  {
 #ifdef MOTOROLA
-#ifdef SGS
+#if defined(SGS) || defined(AS68)
 	    /* Many SGS assemblers croak on size specifiers for constants. */
 	    fprintf (file, "%d", INTVAL (addr));
 #else
@@ -3337,7 +3417,7 @@ output_iorsi3 (operands)
       /* Do not delete a following tstl %0 insn; that would be incorrect.  */
       CC_STATUS_INIT;
       if (INTVAL (operands[2]) == 0xffff)
-	return "mov%.w %2,%0";
+	return "move%.w %2,%0";
       return "or%.w %2,%0";
     }
   if (GET_CODE (operands[2]) == CONST_INT

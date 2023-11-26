@@ -4289,6 +4289,13 @@ for machine in $build $host $target; do
 		extra_headers=math-68881.h
 		float_format=m68k
 		;;
+	*qdos*|*QDOS*)
+	        tm_file=m68k/qdos.h
+		tmake_file=m68k/t-qdos
+		extra_objs=qdos.o
+		xm_file="m68k/xm-qdos.h"
+		float_format=m68k
+		;;
 	m68k-next-nextstep2*)
 		tm_file=m68k/next21.h
 		xm_file="m68k/xm-next.h ${xm_file}"
