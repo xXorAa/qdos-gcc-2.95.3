@@ -490,7 +490,6 @@ EXTRA_GCC_FLAGS = \
 	'NM=$(NM)' \
 	'RANLIB=$(RANLIB)' \
 	'WINDRES=$$(WINDRES_FOR_TARGET)' \
-	"GCC_FOR_TARGET=$(GCC_FOR_TARGET)" \
 	"`echo 'LANGUAGES=$(LANGUAGES)' | sed -e s/.*=$$/XFOO=/`" \
 	"`echo 'STMP_FIXPROTO=$(STMP_FIXPROTO)' | sed -e s/.*=$$/XFOO=/`" \
 	"`echo 'LIMITS_H_TEST=$(LIMITS_H_TEST)' | sed -e s/.*=$$/XFOO=/`" \
