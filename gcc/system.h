@@ -335,7 +335,7 @@ extern char *getwd ();
 #endif
 
 #ifdef NEED_DECLARATION_SBRK
-extern char *sbrk ();
+extern void *sbrk ();
 #endif
 
 #ifdef NEED_DECLARATION_STRSTR
