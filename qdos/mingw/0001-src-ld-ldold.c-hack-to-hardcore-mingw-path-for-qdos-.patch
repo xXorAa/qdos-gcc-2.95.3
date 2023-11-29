@@ -20,7 +20,7 @@ index 8e06311..89065aa 100644
        paths[num_paths++] = strdup(ldd);
      }
 -    paths[num_paths++] = "/usr/local/share/qdos/lib";
-+    paths[num_paths++] = "/qdos/gcc/lib";
++    paths[num_paths++] = "/qdos-gcc/lib";
      for (int i = 0; i < num_paths; i++) {
        remove_trailing_slash(paths[i]);
      }
