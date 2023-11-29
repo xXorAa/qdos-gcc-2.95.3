@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     }
 
     if (valid_flags1.find(flags)) {
-        std::string cmdline = "/qdos/bin/slb.exe -ek " + library;
+        std::string cmdline = "/qdos-gcc/bin/slb.exe -ek " + library;
 
         for (int i = 3; i < argc ; i++) {
             cmdline.append(" ");
