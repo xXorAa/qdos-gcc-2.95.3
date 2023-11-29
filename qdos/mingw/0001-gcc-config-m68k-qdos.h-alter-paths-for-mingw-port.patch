@@ -1,0 +1,36 @@
+From 74936d44332ce6453dfa389209b52e5ce06bd8e5 Mon Sep 17 00:00:00 2001
+From: Graeme Gregory <graeme@xora.org.uk>
+Date: Wed, 29 Nov 2023 18:50:06 +0000
+Subject: [PATCH] gcc/config/m68k/qdos.h : alter paths for mingw port
+
+Signed-off-by: Graeme Gregory <graeme@xora.org.uk>
+---
+ gcc/config/m68k/qdos.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gcc/config/m68k/qdos.h b/gcc/config/m68k/qdos.h
+index 6739ece..0533193 100644
+--- a/gcc/config/m68k/qdos.h
++++ b/gcc/config/m68k/qdos.h
+@@ -166,15 +166,15 @@ Boston, MA 02111-1307, USA.  */
+ /* Define __HAVE_68881__ in preprocessor, unless -msoft-float is specified.
+    This will control the use of inline 68881 insns in certain macros.  */
+ 
+-#define CPP_SPEC "%{!msoft-float:-D__HAVE_68881__}  %{.S:-P} %{.asm:-P} -I/usr/local/qdos-gcc/include -I/usr/local/qdos-gcc/include/sys"
++#define CPP_SPEC "%{!msoft-float:-D__HAVE_68881__}  %{.S:-P} %{.asm:-P} -I/qdos-gcc/include -I/qdos-gcc/include/sys"
+ /* ignore -g or -p flags */
+ #define CC1_SPEC " %{g:} %{p:}"
+ 
+ /* no -g or -p option  */
+ 
+-#define LINK_SPEC " -L/usr/local/qdos-gcc/lib "
++#define LINK_SPEC " -L/qdos-gcc/lib "
+ #define LIB_SPEC " -lc "
+-#define LINKER_NAME "/usr/local/qdos-gcc/bin/ld "
++#define LINKER_NAME "/qdos-gcc/bin/ld "
+ #define STARTFILE_SPEC ""   /* suppress crt0.o (c68 ld does it itself) */
+ #define LIBGCC_SPEC "-lgcc" /* (don't) suppress -lgcc */
+ 
+-- 
+2.43.0
+
