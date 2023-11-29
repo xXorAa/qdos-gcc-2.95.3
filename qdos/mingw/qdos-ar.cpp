@@ -42,7 +42,7 @@ int main(int argc, char **argv)
 
         system(cmdline.c_str());
     } else if (valid_flags2.find(flags)) {
-        std::string cmdline = "/qdos/bin/slb.exe " + flags + " " + library;
+        std::string cmdline = "/qdos-gcc/bin/slb.exe " + flags + " " + library;
 
         for (int i = 3; i < argc ; i++) {
             cmdline.append(" ");

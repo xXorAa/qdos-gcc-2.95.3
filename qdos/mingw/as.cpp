@@ -43,7 +43,7 @@ int main(int argc, char **argv)
         std::exit(1);
     }
 
-    std::string cmdline = "/qdos/bin/as68.exe " + input + " -o " + output;
+    std::string cmdline = "/qdos-gcc/bin/as68.exe " + input + " -o " + output;
 
     std::cout << "Running: " << cmdline << std::endl;
 
