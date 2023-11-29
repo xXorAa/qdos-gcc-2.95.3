@@ -1023,7 +1023,7 @@ libgcc1-asm.a: libgcc2.ready config.status $(srcdir)/config/$(LIB1ASMSRC)
 	  $(GCC_FOR_TARGET) $(LIBGCC2_CFLAGS) $(INCLUDES) -c -DL$${name} libgcc1.S; \
 	  if [ $$? -eq 0 ] ; then true; else exit 1; fi; \
 	  mv libgcc1$(objext) $${name}$(objext); \
-	  $(AR_FOR_TARGET) $(AR_FLAGS_FOR_TARGET) tmplibgcc1.a $${name}$(objext); \
+	  $(AR_FOR_TARGET)$(build_exeext) $(AR_FLAGS_FOR_TARGET) tmplibgcc1.a $${name}$(objext); \
 	  rm -f $${name}$(objext); \
 	done
 	-rm -f libgcc1.S
