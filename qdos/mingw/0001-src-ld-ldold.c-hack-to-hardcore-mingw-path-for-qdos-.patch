@@ -1,0 +1,29 @@
+From bd8a5750ba9d620ca944f988f99aafe616bb514f Mon Sep 17 00:00:00 2001
+From: Graeme Gregory <graeme@xora.org.uk>
+Date: Wed, 29 Nov 2023 17:45:11 +0000
+Subject: [PATCH] src/ld/ldold.c : hack to hardcore mingw path for qdos-gcc
+
+When using ld.exe as part of qdos-gcc distribution for windows then use
+the default path for that!
+
+Signed-off-by: Graeme Gregory <graeme@xora.org.uk>
+---
+ src/ld/ldold.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/ld/ldold.c b/src/ld/ldold.c
+index 8e06311..89065aa 100644
+--- a/src/ld/ldold.c
++++ b/src/ld/ldold.c
+@@ -1664,7 +1664,7 @@ void command_line(int *xac, char ***xav, char **paths, char *lib_arr) {
+     if (ldd != NULL) {
+       paths[num_paths++] = strdup(ldd);
+     }
+-    paths[num_paths++] = "/usr/local/share/qdos/lib";
++    paths[num_paths++] = "/qdos/gcc/lib";
+     for (int i = 0; i < num_paths; i++) {
+       remove_trailing_slash(paths[i]);
+     }
+-- 
+2.43.0
+
