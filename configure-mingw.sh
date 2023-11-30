@@ -13,5 +13,5 @@ pushd qdos/mingw
 make
 popd
 
-CFLAGS="-Wno-implicit-int" ./configure --prefix=/qdos-gcc/ --host=i686-mingw32 --target=qdos --exec-prefix=/
+./configure --prefix=/qdos-gcc/ --host=i686-mingw32 --target=qdos
 
