@@ -16,7 +16,7 @@ const std::string valid_flags2 = "-x -xv";
 
 int main(int argc, char **argv)
 {
-    std::cout << "XorA's as to qdos-ar converter\n";
+    //std::cout << "XorA's ar to slb converter\n";
 
     if (argc < 4) {
         std::cerr << "Error invalid arguments!" << std::endl;
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
             cmdline.append(argv[i]);
         }
 
-        std::cout << "Running: " << cmdline << std::endl;
+        //std::cout << "Running: " << cmdline << std::endl;
 
         system(cmdline.c_str());
     } else if (valid_flags2.find(flags)) {
@@ -49,7 +49,7 @@ int main(int argc, char **argv)
             cmdline.append(argv[i]);
         }
 
-        std::cout << "Running: " << cmdline << std::endl;
+        //std::cout << "Running: " << cmdline << std::endl;
 
         system(cmdline.c_str());
     }

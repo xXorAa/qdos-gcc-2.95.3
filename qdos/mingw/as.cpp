@@ -14,7 +14,7 @@ const char *const opts="o:D:";
 
 int main(int argc, char **argv)
 {
-    std::cout << "XorA's as to as68 converter\n";
+    //std::cout << "XorA's as to as68 converter\n";
 
     std::string output;
     std::string input;
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 
     std::string cmdline = "/qdos-gcc/bin/as68.exe " + input + " -o " + output;
 
-    std::cout << "Running: " << cmdline << std::endl;
+    //std::cout << "Running: " << cmdline << std::endl;
 
     system(cmdline.c_str()); 
 }
