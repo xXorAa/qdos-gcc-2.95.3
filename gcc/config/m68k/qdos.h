@@ -166,22 +166,40 @@ Boston, MA 02111-1307, USA.  */
 /* Define __HAVE_68881__ in preprocessor, unless -msoft-float is specified.
    This will control the use of inline 68881 insns in certain macros.  */
 
+#ifdef _WIN32
+#define CPP_SPEC "%{!msoft-float:-D__HAVE_68881__}  %{.S:-P} %{.asm:-P} -I/qdos-gcc/include -I/qdos-gcc/include/sys"
+#else
 #define CPP_SPEC "%{!msoft-float:-D__HAVE_68881__}  %{.S:-P} %{.asm:-P} -I/usr/local/qdos-gcc/include -I/usr/local/qdos-gcc/include/sys"
+#endif
+
 /* ignore -g or -p flags */
 #define CC1_SPEC " %{g:} %{p:}"
 
 /* no -g or -p option  */
 
+#ifdef _WIN32
+#define LINK_SPEC " -L/qdos-gcc/lib "
+#else
 #define LINK_SPEC " -L/usr/local/qdos-gcc/lib "
+#endif
+
 #define LIB_SPEC " -lc "
+
+#ifdef _WIN32
+#define LINKER_NAME "/qdos-gcc/bin/ld "
+#else
 #define LINKER_NAME "/usr/local/qdos-gcc/bin/ld "
+#endif
+
 #define STARTFILE_SPEC ""   /* suppress crt0.o (c68 ld does it itself) */
 #define LIBGCC_SPEC "-lgcc" /* (don't) suppress -lgcc */
 
 /* define gwass flag for anything that won't assemble with as68 */
 #define ASM_SPEC "%{m68020:-gwass}%{m68030:-gwass} %{m68040:-gwass} %{m68881:-gwass} %{m68060:-gwass} %{m68020-40:-gwass} %{m68020-60:-gwass} %{m68020-60:-gwass} %{m68040-60:-gwass}"
 
-/*#define TOOLDIR_BASE_PREFIX  "/usr/local/qdos-gcc"*/
+#ifdef _WIN32
+#define TOOLDIR_BASE_PREFIX  "/qdos-gcc/"
+#endif
 /*#define TOOL_INCLUDE_DIR  "/usr/local/qdos-gcc/include"*/
 /*#define LINK_COMMAND_SPEC "/usr/local/qdos-gcc/bin/ld "*/
 
