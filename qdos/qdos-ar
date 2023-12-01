@@ -1,4 +1,4 @@
-#!/bin/sh                                                                       
+#!/bin/sh
 
 flags=$1
 libname=$2

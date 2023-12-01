@@ -425,7 +425,7 @@ open_files ()
       fnotice (stderr, "Could not open data file %s.\n", da_file_name);
       fnotice (stderr, "Assuming that all execution counts are zero.\n");
     }
-    
+
   bbg_file = fopen (bbg_file_name, "r");
   if (bbg_file == NULL)
     {
@@ -579,7 +579,7 @@ create_program_flow_graph (bptr)
 	  bb_graph[arcptr->target].pred_count--;
 	}
 }
-  
+
 static void
 solve_program_flow_graph (bptr)
      struct bb_info_list *bptr;
@@ -695,7 +695,7 @@ solve_program_flow_graph (bptr)
 	    }
 	}
     }
-	      
+
   /* If the graph has been correctly solved, every block will have a
      succ and pred count of zero.  */
   for (i = 0; i < num_blocks; i++)
@@ -760,7 +760,7 @@ read_files ()
 
   bb_data = (char *) xmalloc ((unsigned) buf.st_size);
   fread (bb_data, sizeof (char), buf.st_size, bb_file);
-  
+
   fclose (bb_file);
   if (da_file)
     fclose (da_file);
@@ -879,7 +879,7 @@ calculate_branch_probs (current_graph, block_num, branch_probs, last_line_num)
 
       if (arcptr->fall_through)
 	continue;
-		      
+
       a_ptr = (struct arcdata *) xmalloc (sizeof (struct arcdata));
       if (total == 0)
 	a_ptr->prob = -1;
@@ -1027,10 +1027,10 @@ output_data ()
 	{
 	  branch_probs = (struct arcdata **) xmalloc (sizeof (struct arcdata *)
 						      * s_ptr->maxlineno);
-	  bzero ((char *) branch_probs, 
+	  bzero ((char *) branch_probs,
 		 sizeof (struct arcdata *) * s_ptr->maxlineno);
 	}
-      
+
       /* There will be a zero at the beginning of the bb info, before the
 	 first list of line numbers, so must initialize block_num to 0.  */
       block_num = 0;
@@ -1054,7 +1054,7 @@ output_data ()
 		  this_file = 0;
 		else
 		  this_file = 1;
-	      
+
 		/* Scan past the file name.  */
 		do {
 		  count++;
@@ -1127,7 +1127,7 @@ output_data ()
 			     function_name);
 		    abort ();
 		  }
-		  
+
 		if (output_branch_probs && this_file)
 		  calculate_branch_probs (current_graph, block_num,
 					  branch_probs, last_line_num);
@@ -1234,7 +1234,7 @@ output_data ()
 	  /* Now the statistics are ready.  Read in the source file one line
 	     at a time, and output that line to the gcov file preceded by
 	     its execution count if non zero.  */
-      
+
 	  source_file = fopen (source_file_name, "r");
 	  if (source_file == NULL)
 	    {
@@ -1254,7 +1254,7 @@ output_data ()
 	  if (output_long_names && strcmp (cptr, input_file_name))
 	    {
 	      gcov_file_name = xmalloc (count + 7 + strlen (input_file_name));
-	      
+
 	      cptr = rindex (input_file_name, '/');
 	      if (cptr)
 		strcpy (gcov_file_name, cptr + 1);

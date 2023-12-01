@@ -34,7 +34,7 @@ output_move_double (operands)
   rtx lsw_sreg = NULL;
   rtx msw_dreg = NULL;
 
-  if (GET_CODE (operands[0]) == REG) 
+  if (GET_CODE (operands[0]) == REG)
     {
       lsw_operands[0] = gen_rtx (REG, SImode, REGNO (operands[0]) + 1);
       msw_dreg = operands[0];
@@ -44,37 +44,37 @@ output_move_double (operands)
   else
     abort ();
 
-  if (GET_CODE (operands[1]) == REG) 
+  if (GET_CODE (operands[1]) == REG)
     {
       lsw_operands[1] = gen_rtx (REG, SImode, REGNO (operands[1]) + 1);
       lsw_sreg = lsw_operands[1];
     }
-  else if (GET_CODE (operands[1]) == MEM && offsettable_memref_p (operands[1])) 
+  else if (GET_CODE (operands[1]) == MEM && offsettable_memref_p (operands[1]))
     {
       lsw_operands[1] = adj_offsettable_operand (operands[1], 4);
       lsw_sreg = operands[1];
-      for ( ; ; ) 
+      for ( ; ; )
 	{
 	  if (REG_P (lsw_sreg))
 	    break;
-	  if (CONSTANT_ADDRESS_P (lsw_sreg)) 
+	  if (CONSTANT_ADDRESS_P (lsw_sreg))
 	    {
 	      lsw_sreg = NULL;
 	      break;
 	    }
-	  if (GET_CODE (lsw_sreg) == MEM) 
+	  if (GET_CODE (lsw_sreg) == MEM)
 	    {
 	      lsw_sreg = XEXP (lsw_sreg, 0);
 	      continue;
 	    }
 	  if (GET_CODE (lsw_sreg) == PLUS)
 	    {
-	      if (CONSTANT_ADDRESS_P (XEXP (lsw_sreg, 1))) 
+	      if (CONSTANT_ADDRESS_P (XEXP (lsw_sreg, 1)))
 		{
 		  lsw_sreg = XEXP (lsw_sreg, 0);
 		  continue;
 		}
-	      else if (CONSTANT_ADDRESS_P (XEXP (lsw_sreg, 0))) 
+	      else if (CONSTANT_ADDRESS_P (XEXP (lsw_sreg, 0)))
 		{
 		  lsw_sreg = XEXP (lsw_sreg, 1);
 		  continue;
@@ -96,12 +96,12 @@ output_move_double (operands)
   else
     abort ();
 
-  if (!msw_dreg || !lsw_sreg || REGNO (msw_dreg) != REGNO (lsw_sreg)) 
+  if (!msw_dreg || !lsw_sreg || REGNO (msw_dreg) != REGNO (lsw_sreg))
     {
       output_asm_insn ("movw %1, %0", operands);
       output_asm_insn ("movw %1, %0", lsw_operands);
     }
-  else 
+  else
     {
       output_asm_insn ("movw %1, %0", lsw_operands);
       output_asm_insn ("movw %1, %0", operands);
@@ -124,7 +124,7 @@ output_push_double (operands)
       operands[0] = GEN_INT (CONST_DOUBLE_LOW (operands[0]));
     }
   else if (GET_CODE (operands[0]) == CONST_INT)
-    { 
+    {
       lsw_operands[0] = operands[0];
       operands[0] = const0_rtx;
     }

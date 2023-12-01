@@ -41,7 +41,7 @@ CC_PPC_GCC = gC -Dpowerc=1 -Dpascal= -DANSI_PROTOTYPES -DMPW
 
 # Nothing for the default CFLAGS.
 
-CFLAGS = 
+CFLAGS =
 
 # Tool to use for making libraries/archives.
 

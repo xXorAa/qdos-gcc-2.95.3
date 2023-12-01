@@ -1,11 +1,11 @@
 /*
  *      svr3z.ifile - for collectless G++ on i386 System V.
  *	Leaves memory unconfigured at address 0.
- *	
+ *
  *      Install this file as $prefix/gcc-lib/TARGET/VERSION/gccz.ifile
  *
  *	BLOCK to an offset that leaves room for many headers ( the value
- *	here allows for a file header, an outheader, and up to 11 section 
+ *	here allows for a file header, an outheader, and up to 11 section
  *	headers on most systems.
  *	BIND to an address that excludes page 0 from being mapped. The value
  *	used for BLOCK should be or'd into this value. Here I'm setting BLOCK
@@ -34,13 +34,13 @@ SECTIONS
 		(ADDR(.stabstr) + (SIZEOF(.stabstr)) % 0x1000)):
 	{
 			.data : {
-				__CTOR_LIST__ = . ; 
+				__CTOR_LIST__ = . ;
 				. += 4 ;	/* leading NULL */
-				*(.ctor) 
+				*(.ctor)
 				. += 4 ;	/* trailing NULL */
 				__DTOR_LIST__ = . ;
 				. += 4 ;	/* leading NULL */
-				*(.dtor) 
+				*(.dtor)
 				. += 4 ; 	/* trailing NULL */
 			 }
 			.bss : { }

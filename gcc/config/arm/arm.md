@@ -95,11 +95,11 @@
 ; store4	store 4 words
 ;
 (define_attr "type"
-	"normal,mult,block,float,fdivx,fdivd,fdivs,fmul,ffmul,farith,ffarith,float_em,f_load,f_store,f_mem_r,r_mem_f,f_2_r,r_2_f,call,load,store1,store2,store3,store4" 
+	"normal,mult,block,float,fdivx,fdivd,fdivs,fmul,ffmul,farith,ffarith,float_em,f_load,f_store,f_mem_r,r_mem_f,f_2_r,r_2_f,call,load,store1,store2,store3,store4"
 	(const_string "normal"))
 
 ; Load scheduling, set from the arm_ld_sched variable
-; initialised by arm_override_options() 
+; initialised by arm_override_options()
 (define_attr "ldsched" "no,yes" (const (symbol_ref "arm_ld_sched")))
 
 ; condition codes: this one is used by final_prescan_insn to speed up
@@ -201,7 +201,7 @@
 (define_function_unit "write_buf" 1 2
   (and (eq_attr "model_wbuf" "yes")
        (eq_attr "type" "store1,r_mem_f")) 5 3)
-(define_function_unit "write_buf" 1 2 
+(define_function_unit "write_buf" 1 2
   (and (eq_attr "model_wbuf" "yes")
        (eq_attr "type" "store2")) 7 4)
 (define_function_unit "write_buf" 1 2
@@ -582,7 +582,7 @@
 
 (define_insn "*adddf_esfdf_esfdf"
   [(set (match_operand:DF 0 "s_register_operand" "=f")
-	(plus:DF (float_extend:DF 
+	(plus:DF (float_extend:DF
 		  (match_operand:SF 1 "s_register_operand" "f"))
 		 (float_extend:DF
 		  (match_operand:SF 2 "s_register_operand" "f"))))]
@@ -1184,7 +1184,7 @@
 			  (match_operand 2 "const_int_operand" "n"))
 			 (const_int 0)))]
   "INTVAL (operands[2]) >= 0 && INTVAL (operands[2]) < 32
-   && INTVAL (operands[1]) > 0 
+   && INTVAL (operands[1]) > 0
    && INTVAL (operands[1]) + (INTVAL (operands[2]) & 1) <= 8
    && INTVAL (operands[1]) + INTVAL (operands[2]) <= 32"
   "*
@@ -1203,7 +1203,7 @@
 		(match_operand:SI 3 "const_int_operand" "n"))
 	       (const_int 0)))]
   "INTVAL (operands[3]) >= 0 && INTVAL (operands[3]) < 32
-   && INTVAL (operands[2]) > 0 
+   && INTVAL (operands[2]) > 0
    && INTVAL (operands[2]) + (INTVAL (operands[3]) & 1) <= 8
    && INTVAL (operands[2]) + INTVAL (operands[3]) <= 32"
   "*
@@ -1236,9 +1236,9 @@
   int width = INTVAL (operands[1]);
   HOST_WIDE_INT mask = (((HOST_WIDE_INT)1) << width) - 1;
   rtx target, subtarget;
-  
+
   target = operands[0];
-  /* Avoid using a subreg as a subtarget, and avoid writing a paradoxical 
+  /* Avoid using a subreg as a subtarget, and avoid writing a paradoxical
      subreg as the final target.  */
   if (GET_CODE (target) == SUBREG)
     {
@@ -1248,8 +1248,8 @@
         target = SUBREG_REG (target);
     }
   else
-    subtarget = target;    
-    
+    subtarget = target;
+
   if (GET_CODE (operands[3]) == CONST_INT)
     {
       /* Since we are inserting a known constant, we may be able to
@@ -1337,7 +1337,7 @@
 
 	  if (start_bit != 0)
 	    op0 = gen_rtx_ASHIFT (SImode, op0, operands[2]);
-	    
+
 	  emit_insn (gen_andsi_notsi_si (op2, operands[0], op0));
 	}
 
@@ -1369,7 +1369,7 @@
   ""
   "bic%?\\t%Q0, %Q1, %Q2\;bic%?\\t%R0, %R1, %R2"
 [(set_attr "length" "8")])
-  
+
 (define_insn "*anddi_notzesidi_di"
   [(set (match_operand:DI 0 "s_register_operand" "=&r,&r")
 	(and:DI (not:DI (zero_extend:DI
@@ -1380,7 +1380,7 @@
    bic%?\\t%Q0, %Q1, %2
    bic%?\\t%Q0, %Q1, %2\;mov%?\\t%R0, %R1"
 [(set_attr "length" "4,8")])
-  
+
 (define_insn "*anddi_notsesidi_di"
   [(set (match_operand:DI 0 "s_register_operand" "=&r,&r")
 	(and:DI (not:DI (sign_extend:DI
@@ -1389,7 +1389,7 @@
   ""
   "bic%?\\t%Q0, %Q1, %2\;bic%?\\t%R0, %R1, %2, asr #31"
 [(set_attr "length" "8")])
-  
+
 (define_insn "andsi_notsi_si"
   [(set (match_operand:SI 0 "s_register_operand" "=r")
 	(and:SI (not:SI (match_operand:SI 2 "s_register_operand" "r"))
@@ -1494,7 +1494,7 @@
 		      operands[1], 0);
   DONE;
 ")
-  
+
 (define_insn "*iorsi3_compare0"
   [(set (reg:CC_NOOV 24)
 	(compare:CC_NOOV (ior:SI (match_operand:SI 1 "s_register_operand" "%r")
@@ -1571,7 +1571,7 @@
   "teq%?\\t%0, %1"
 [(set_attr "conds" "set")])
 
-;; by splitting (IOR (AND (NOT A) (NOT B)) C) as D = AND (IOR A B) (NOT C), 
+;; by splitting (IOR (AND (NOT A) (NOT B)) C) as D = AND (IOR A B) (NOT C),
 ;; (NOT D) we can sometimes merge the final NOT into one of the following
 ;; insns
 
@@ -2185,7 +2185,7 @@
   if (! s_register_operand (operands[1], HImode))
     operands[1] = copy_to_mode_reg (HImode, operands[1]);
   operands[1] = gen_lowpart (SImode, operands[1]);
-  operands[2] = gen_reg_rtx (SImode); 
+  operands[2] = gen_reg_rtx (SImode);
 }")
 
 (define_insn "*zero_extendhisi_insn"
@@ -2765,7 +2765,7 @@
   operands[1] = change_address (operands[1], QImode, NULL_RTX);
   operands[3] = gen_lowpart (QImode, operands[0]);
   operands[0] = gen_lowpart (SImode, operands[0]);
-  operands[2] = gen_reg_rtx (SImode); 
+  operands[2] = gen_reg_rtx (SImode);
 }
 ")
 
@@ -2883,8 +2883,8 @@
 	  /* If the constant is already valid, leave it alone.  */
 	  if (! const_ok_for_arm (val))
 	    {
-	      /* If setting all the top bits will make the constant 
-		 loadable in a single instruction, then set them.  
+	      /* If setting all the top bits will make the constant
+		 loadable in a single instruction, then set them.
 		 Otherwise, sign extend the number.  */
 
 	      if (const_ok_for_arm (~ (val | ~0xffff)))
@@ -3445,7 +3445,7 @@
     = arm_gen_store_multiple (REGNO (operands[1]), INTVAL (operands[2]),
 			      force_reg (SImode, XEXP (operands[0], 0)),
 			      TRUE, FALSE, RTX_UNCHANGING_P (operands[0]),
-			      MEM_IN_STRUCT_P(operands[0]), 
+			      MEM_IN_STRUCT_P(operands[0]),
 	                      MEM_SCALAR_P (operands[0]));
 ")
 
@@ -4059,7 +4059,7 @@
   enum rtx_code code = GET_CODE (operands[1]);
   rtx ccreg;
 
-  /* When compiling for SOFT_FLOAT, ensure both arms are in registers. 
+  /* When compiling for SOFT_FLOAT, ensure both arms are in registers.
      Otherwise, ensure it is a valid FP add operand */
   if ((! TARGET_HARD_FLOAT)
       || (! fpu_add_operand (operands[3], SFmode)))
@@ -4107,7 +4107,7 @@
 (define_insn "*movsfcc_hard_insn"
   [(set (match_operand:SF 0 "s_register_operand" "=f,f,f,f,f,f,f,f")
 	(if_then_else:SF
-	 (match_operator 3 "comparison_operator" 
+	 (match_operator 3 "comparison_operator"
 	  [(match_operand 4 "cc_register" "") (const_int 0)])
 	 (match_operand:SF 1 "fpu_add_operand" "0,0,fG,H,fG,fG,H,H")
 	 (match_operand:SF 2 "fpu_add_operand" "fG,H,0,0,fG,H,fG,H")))]
@@ -4533,7 +4533,7 @@
 (define_insn "*reload_mulsi_compare0"
   [(set (reg:CC_NOOV 24)
 	(compare:CC_NOOV (plus:SI
-			  (plus:SI 
+			  (plus:SI
 			   (match_operator:SI 5 "shift_operator"
 			    [(match_operand:SI 3 "" "r")
 			     (match_operand:SI 4 "" "rM")])
@@ -4555,7 +4555,7 @@
 (define_insn "*reload_mulsi_compare0_scratch"
   [(set (reg:CC_NOOV 24)
 	(compare:CC_NOOV (plus:SI
-			  (plus:SI 
+			  (plus:SI
 			   (match_operator:SI 5 "shift_operator"
 			    [(match_operand:SI 3 "" "r")
 			     (match_operand:SI 4 "" "rM")])
@@ -4711,7 +4711,7 @@
 
 (define_insn "*cond_arith"
   [(set (match_operand:SI 0 "s_register_operand" "=r,r")
-        (match_operator:SI 5 "shiftable_operator" 
+        (match_operator:SI 5 "shiftable_operator"
 	 [(match_operator:SI 4 "comparison_operator"
            [(match_operand:SI 2 "s_register_operand" "r,r")
 	    (match_operand:SI 3 "arm_rhs_operand" "rI,rI")])
@@ -5020,7 +5020,7 @@
   if (operands[3] == const0_rtx
       && GET_CODE (operands[7]) != AND
       && GET_CODE (operands[5]) == REG
-      && GET_CODE (operands[1]) == REG 
+      && GET_CODE (operands[1]) == REG
       && REGNO (operands[1]) == REGNO (operands[4])
       && REGNO (operands[4]) != REGNO (operands[0]))
     {
@@ -5076,7 +5076,7 @@
   if (operands[5] == const0_rtx
       && GET_CODE (operands[7]) != AND
       && GET_CODE (operands[3]) == REG
-      && GET_CODE (operands[1]) == REG 
+      && GET_CODE (operands[1]) == REG
       && REGNO (operands[1]) == REGNO (operands[2])
       && REGNO (operands[2]) != REGNO (operands[0]))
     {
@@ -5148,7 +5148,7 @@
 
 (define_insn "*ifcompare_not_move"
   [(set (match_operand:SI 0 "s_register_operand" "=r,r")
-	(if_then_else:SI 
+	(if_then_else:SI
 	 (match_operator 5 "comparison_operator"
 	  [(match_operand:SI 3 "s_register_operand" "r,r")
 	   (match_operand:SI 4 "arm_add_operand" "rIL,rIL")])
@@ -5802,7 +5802,7 @@
 ; We must watch to see that the source/destination register isn't also the
 ; same as the base address register, and that if the index is a register,
 ; that it is not the same as the base address register.  In such cases the
-; instruction that we would generate would have UNPREDICTABLE behaviour so 
+; instruction that we would generate would have UNPREDICTABLE behaviour so
 ; we cannot use it.
 
 (define_peephole
@@ -5966,7 +5966,7 @@
 ;; Sometimes the return might have been targeted by the final prescan:
 ;; if so then emit a proper return insn as well.
 ;; Unfortunately, if the frame pointer is required, we don't know if the
-;; current function has any implicit stack pointer adjustments that will 
+;; current function has any implicit stack pointer adjustments that will
 ;; be restored by the return: we can't therefore do a tail call.
 ;; Another unfortunate that we can't handle is if current_function_args_size
 ;; is non-zero: in this case elimination of the argument pointer assumed
@@ -6117,7 +6117,7 @@
    (clobber (reg:CC 24))]
   "reload_completed"
   [(set (match_dup 6) (match_dup 7))
-   (set (match_dup 0) 
+   (set (match_dup 0)
 	(if_then_else:SI (match_op_dup 1 [(match_dup 6) (const_int 0)])
 			 (match_dup 4)
 			 (match_dup 5)))]
@@ -6132,7 +6132,7 @@
 ")
 
 ;; The next two patterns occur when an AND operation is followed by a
-;; scc insn sequence 
+;; scc insn sequence
 
 (define_insn "*sign_extract_onebit"
   [(set (match_operand:SI 0 "s_register_operand" "=r")

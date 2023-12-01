@@ -105,7 +105,7 @@ Boston, MA 02111-1307, USA.  */
 #undef ASM_OUTPUT_DOUBLE
 #undef ASM_OUTPUT_SKIP
 #undef ASM_FORMAT_PRIVATE_NAME
-#endif  
+#endif
 
 #undef ASM_OUTPUT_ALIGN
 
@@ -114,9 +114,9 @@ Boston, MA 02111-1307, USA.  */
 
 /* A bitfield declared as `int' forces `int' alignment for the struct.  */
 #define PCC_BITFIELD_TYPE_MATTERS 1
-  
+
 /* NEWS makes d2, d3, fp2 and fp3 unsaved registers, unlike the Sun system.  */
-  
+
 #define CALL_USED_REGISTERS \
  {1, 1, 1, 1, 0, 0, 0, 0, \
   1, 1, 0, 0, 0, 0, 0, 1, \
@@ -265,7 +265,7 @@ Boston, MA 02111-1307, USA.  */
 
 #define ASM_OUTPUT_REG_POP(FILE,REGNO)  \
   fprintf (FILE, "\tmove.l (sp)+,%s\n", reg_names[REGNO])
-  
+
 #define ASM_OUTPUT_DOUBLE(FILE,VALUE)  \
 do { char dstr[30];					\
      REAL_VALUE_TO_DECIMAL ((VALUE), "%.20e", dstr);	\

@@ -106,7 +106,7 @@ extern enum cmodel sparc_cmodel;
 /* Values of TARGET_CPU_DEFAULT, set via -D in the Makefile,
    and specified by the user via --with-cpu=foo.
    This specifies the cpu implementation, not the architecture size.  */
-/* Note that TARGET_CPU_v9 is assumed to start the list of 64-bit 
+/* Note that TARGET_CPU_v9 is assumed to start the list of 64-bit
    capable cpu's.  */
 #define TARGET_CPU_sparc	0
 #define TARGET_CPU_v7		0	/* alias for previous */
@@ -538,14 +538,14 @@ extern int target_flags;
 #define TARGET_FPU_SET (target_flags & MASK_FPU_SET)
 
 /* Use the UltraSPARC Visual Instruction Set extensions.  */
-#define MASK_VIS 0x1000000          
+#define MASK_VIS 0x1000000
 #define TARGET_VIS (target_flags & MASK_VIS)
 
 /* Compile for Solaris V8+.  32 bit Solaris preserves the high bits of
    the current out and global registers.  Linux saves the high bits on
    context switches but not signals.  */
-#define MASK_V8PLUS 0x2000000                 
-#define TARGET_V8PLUS (target_flags & MASK_V8PLUS)                            
+#define MASK_V8PLUS 0x2000000
+#define TARGET_V8PLUS (target_flags & MASK_V8PLUS)
 
 /* TARGET_HARD_MUL: Use hardware multiply instructions but not %y.
    TARGET_HARD_MUL32: Use hardware multiply instructions with rd %y
@@ -559,7 +559,7 @@ extern int target_flags;
 
 #define TARGET_HARD_MUL					\
   (TARGET_V8 || TARGET_SPARCLITE || TARGET_SPARCLET	\
-   || TARGET_DEPRECATED_V8_INSNS || TARGET_V8PLUS)                        
+   || TARGET_DEPRECATED_V8_INSNS || TARGET_V8PLUS)
 
 
 /* Macro to define tables used to set the flags.
@@ -646,7 +646,7 @@ extern enum processor_type sparc_cpu;
    initializer with a subgrouping for each command option.
 
    Each subgrouping contains a string constant, that defines the
-   fixed part of the option name, and the address of a variable. 
+   fixed part of the option name, and the address of a variable.
    The variable, type `char *', is set to the variable part of the
    given option if the fixed part matches.  The actual option name
    is made by appending `-m' to the specified name.
@@ -1305,8 +1305,8 @@ extern enum reg_class sparc_regno_reg_class[];
 
 #define REGNO_REG_CLASS(REGNO) sparc_regno_reg_class[(REGNO)]
 
-/* This is the order in which to allocate registers normally.  
-   
+/* This is the order in which to allocate registers normally.
+
    We put %f0/%f1 last among the float registers, so as to make it more
    likely that a pseudo-register which dies in the float return register
    will get allocated to the float return register, thus saving a move
@@ -1500,7 +1500,7 @@ extern char leaf_reg_remap[];
      ? GENERAL_REGS						\
      : NO_REGS)
 
-/* On SPARC it is not possible to directly move data between 
+/* On SPARC it is not possible to directly move data between
    GENERAL_REGS and FP_REGS.  */
 #define SECONDARY_MEMORY_NEEDED(CLASS1, CLASS2, MODE) \
   (FP_REG_CLASS_P (CLASS1) != FP_REG_CLASS_P (CLASS2))
@@ -2215,7 +2215,7 @@ extern struct rtx_def *sparc_builtin_saveregs ();
     : ((! TARGET_ARCH64 && (C) == 'U')			\
        ? (register_ok_for_ldd (OP))			\
        : 0))
- 
+
 #else
 
 /* Nonzero if X is a hard reg that can be used as an index.  */
@@ -2375,7 +2375,7 @@ extern struct rtx_def *legitimize_pic_address ();
    macro is used in only one place: `find_reloads_address' in reload.c.
 
    For Sparc 32, we wish to handle addresses by splitting them into
-   HIGH+LO_SUM pairs, retaining the LO_SUM in the memory reference. 
+   HIGH+LO_SUM pairs, retaining the LO_SUM in the memory reference.
    This cuts the number of extra insns by one.
 
    Do nothing when generating PIC code and the address is a
@@ -3298,7 +3298,7 @@ extern char *sparc_v8plus_shift ();
 
 #ifdef __STDC__
 /* Function used for V8+ code generation.  Returns 1 if the high
-   32 bits of REG are 0 before INSN.  */   
+   32 bits of REG are 0 before INSN.  */
 extern int sparc_check_64 (struct rtx_def *, struct rtx_def *);
 extern int sparc_return_peephole_ok (struct rtx_def *, struct rtx_def *);
 extern int compute_frame_size (int, int);

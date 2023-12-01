@@ -4,15 +4,15 @@
 ## This file is a shell script fragment that supplies the information
 ## necessary to tailor a template configure script into the configure
 ## script appropriate for this directory.  For more information, check
-## any existing configure script.  
+## any existing configure script.
 
 ## Be warned, there are two types of configure.in files.  There are those
 ## used by Autoconf, which are macros which are expanded into a configure
 ## script by autoconf.  The other sort, of which this is one, is executed
-## by Cygnus configure.  
+## by Cygnus configure.
 
 ## For more information on these two systems, check out the documentation
-## for 'Autoconf' (autoconf.texi) and 'Configure' (configure.texi).  
+## for 'Autoconf' (autoconf.texi) and 'Configure' (configure.texi).
 
 #   Copyright (C) 1992, 93, 94, 95, 96, 97, 1998, 1999 Free Software Foundation, Inc.
 #
@@ -36,7 +36,7 @@
 ### or a host dependent tool.  Then put it into the appropriate list
 ### (library or tools, host or target), doing a dependency sort.  For
 ### example, gdb requires that byacc (or bison) be built first, so it is in
-### the ${host_tools} list after byacc and bison.  
+### the ${host_tools} list after byacc and bison.
 
 
 # these libraries are used by various programs built for the host environment
@@ -86,7 +86,7 @@ target_tools="target-examples target-groff target-gperf"
 ## ${configdirs} list for either cross-compilations or for native-
 ## compilations.  For example, it doesn't make that much sense to
 ## cross-compile Emacs, nor is it terribly useful to compile target-libiberty in
-## a native environment.  
+## a native environment.
 
 # directories to be built in the native environment only
 #
@@ -364,7 +364,7 @@ gasdir=gas
 use_gnu_ld=
 use_gnu_as=
 
-# some tools are so dependent upon X11 that if we're not building with X, 
+# some tools are so dependent upon X11 that if we're not building with X,
 # it's not even worth trying to configure, much less build, that tool.
 
 case ${with_x} in
@@ -391,11 +391,11 @@ if [ x"${host}" = x"${target}" ] ; then
 	skipdirs="${skipdirs} ${cross_only}"
 	is_cross_compiler=no
 else
-	# similarly, don't build the targets in the 'native only' 
+	# similarly, don't build the targets in the 'native only'
 	# list when building a cross compiler
 	skipdirs="${skipdirs} ${native_only}"
 	is_cross_compiler=yes
-fi	
+fi
 
 # We always want to use the same name for this directory, so that dejagnu
 # can reliably find it.
@@ -512,7 +512,7 @@ case "${host}" in
 	  configdirs="$configdirs dosrel" ;;
 esac
 
-# Remove more programs from consideration, based on the host or 
+# Remove more programs from consideration, based on the host or
 # target this usually means that a port of the program doesn't
 # exist yet.
 
@@ -645,7 +645,7 @@ case "${target}" in
       *) noconfigdirs="$noconfigdirs gdb tcl tk expect itcl tix db snavigator gnuserv"
          ;;
     esac
-    ;;    
+    ;;
   *-*-cygwin32*)
     target_configdirs="$target_configdirs target-winsup"
     noconfigdirs="$noconfigdirs target-gperf target-libgloss"
@@ -658,7 +658,7 @@ case "${target}" in
       *) noconfigdirs="$noconfigdirs gdb tcl tk expect itcl tix libgui db snavigator gnuserv"
          ;;
     esac
-    ;;    
+    ;;
   i[3456]86-*-pe)
     noconfigdirs="$noconfigdirs target-libg++ target-libstdc++ target-libio target-librx target-libgloss"
     ;;
@@ -801,12 +801,12 @@ case "${target}" in
   *-*-lynxos*)
     # Newlib makes problems for libg++ in crosses.
     noconfigdirs="$noconfigdirs target-newlib target-libgloss"
-    ;; 
+    ;;
   *-*-macos* | \
   *-*-mpw*)
     # Macs want a resource compiler.
     configdirs="$configdirs grez"
-    ;;    
+    ;;
 esac
 
 # If we aren't building newlib, then don't build libgloss, since libgloss
@@ -930,11 +930,11 @@ fi
 # This is done by determining whether or not the appropriate directory
 # is available, and by checking whether or not specific configurations
 # have requested that this magic not happen.
-# 
-# The command line options always override the explicit settings in 
+#
+# The command line options always override the explicit settings in
 # configure.in, and the settings in configure.in override this magic.
 #
-# If the default for a toolchain is to use GNU as and ld, and you don't 
+# If the default for a toolchain is to use GNU as and ld, and you don't
 # want to do that, then you should use the --without-gnu-as and
 # --without-gnu-ld options for the configure script.
 

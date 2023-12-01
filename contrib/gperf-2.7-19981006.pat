@@ -7,7 +7,7 @@ Tue Oct  6 16:18:10 1998  Kaveh R. Ghazi  <ghazi@caip.rutgers.edu>
 	* options.cc: Add support for fill_default.
 
 	* options.h: Likewise.
-	
+
 	* options.icc: Likewise.
 
 	* version.cc: Update to indicate forked version.
@@ -31,13 +31,13 @@ diff -rup orig/gperf-2.7/src/options.cc gperf-2.7/src/options.cc
 @@ -40,6 +40,9 @@ static const int DEFAULT_JUMP_VALUE = 5;
  /* Default name for generated lookup function. */
  static const char *const DEFAULT_NAME = "in_word_set";
- 
+
 +/* Default filler for keyword table. */
 +static const char *const DEFAULT_FILL = "";
 +
  /* Default name for the key component. */
  static const char *const DEFAULT_KEY = "name";
- 
+
 @@ -66,6 +69,7 @@ int Options::argument_count;
  int Options::iterations;
  char **Options::argument_vector;
@@ -80,7 +80,7 @@ diff -rup orig/gperf-2.7/src/options.cc gperf-2.7/src/options.cc
    { "jump", required_argument, 0, 'j' },
    { "no-strlen", no_argument, 0, 'n' },
 @@ -403,7 +410,7 @@ Options::operator() (int argc, char *arg
- 
+
    while ((option_char =
              getopt_long (argument_count, argument_vector,
 -                         "adcCDe:Ef:gGhH:i:Ij:k:K:lL:nN:oprs:S:tTvW:Z:7",
@@ -125,7 +125,7 @@ diff -rup orig/gperf-2.7/src/options.icc gperf-2.7/src/options.icc
 @@ -110,6 +110,14 @@ Options::get_function_name (void)
    return function_name;
  }
- 
+
 +/* Returns the fill default. */
 +INLINE const char *
 +Options::get_fill_default (void)
@@ -143,6 +143,6 @@ diff -rup orig/gperf-2.7/src/version.cc gperf-2.7/src/version.cc
 @@ -19,4 +19,4 @@ You should have received a copy of the G
  along with GNU GPERF; see the file COPYING.  If not, write to the Free
  Software Foundation, 59 Temple Place - Suite 330, Boston, MA 02111, USA.  */
- 
+
 -const char *version_string = "2.7";
 +const char *version_string = "2.7.1 (19981006 egcs)";

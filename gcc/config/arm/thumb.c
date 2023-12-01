@@ -92,7 +92,7 @@ thumb_trivial_epilogue ()
   return 0;
 
 #if 0
-  if (get_frame_size () 
+  if (get_frame_size ()
       || current_function_outgoing_args_size
       || current_function_pretend_args_size)
     return 0;
@@ -115,42 +115,42 @@ thumb_trivial_epilogue ()
    relative load instruction must be less than 1k infront of the instruction.
    This means that we often have to dump a constant inside a function, and
    generate code to branch around it.
- 
+
    It is important to minimize this, since the branches will slow things
    down and make things bigger.
- 
+
    Worst case code looks like:
- 
+
 	ldr	rn, L1
 	b	L2
 	align
 	L1:   .long value
 	L2:
 	..
- 
+
 	ldr	rn, L3
 	b	L4
 	align
 	L3:   .long value
 	L4:
 	..
- 
+
    We fix this by performing a scan before scheduling, which notices which
    instructions need to have their operands fetched from the constant table
    and builds the table.
- 
- 
+
+
    The algorithm is:
- 
+
    scan, find an instruction which needs a pcrel move.  Look forward, find the
    last barrier which is within MAX_COUNT bytes of the requirement.
    If there isn't one, make one.  Process all the instructions between
    the find and the barrier.
- 
+
    In the above example, we can tell that L3 is within 1k of L1, so
    the first move can be shrunk from the 2 insn+constant sequence into
    just 1 insn, and the constant moved to L3 to make:
- 
+
 	ldr	rn, L1
 	..
 	ldr	rn, L3
@@ -159,11 +159,11 @@ thumb_trivial_epilogue ()
 	L1:	.long value
 	L3:	.long value
 	L4:
- 
+
    Then the second move becomes the target for the shortening process.
- 
+
  */
- 
+
 typedef struct
 {
   rtx value;			/* Value in table */
@@ -181,7 +181,7 @@ static int pool_size;
 static rtx pool_vector_label;
 
 /* Add a constant to the pool and return its label.  */
- 
+
 static HOST_WIDE_INT
 add_constant (x, mode)
      rtx x;
@@ -196,7 +196,7 @@ add_constant (x, mode)
     x = get_pool_constant (XEXP (x, 0));
 
   /* First see if we've already got it */
- 
+
   for (i = 0; i < pool_size; i++)
     {
       if (x->code == pool_vector[i].value->code
@@ -211,15 +211,15 @@ add_constant (x, mode)
             return pool_vector[i].next_offset - GET_MODE_SIZE (mode);
         }
     }
- 
+
   /* Need a new one */
- 
+
   pool_vector[pool_size].next_offset = GET_MODE_SIZE (mode);
   offset = 0;
   if (pool_size == 0)
     pool_vector_label = gen_label_rtx ();
   else
-    pool_vector[pool_size].next_offset 
+    pool_vector[pool_size].next_offset
       += (offset = pool_vector[pool_size - 1].next_offset);
 
   pool_vector[pool_size].value = x;
@@ -227,10 +227,10 @@ add_constant (x, mode)
   pool_size++;
   return offset;
 }
- 
+
 /* Output the literal table */
-                    
-static void         
+
+static void
 dump_table (scan)
      rtx scan;
 {
@@ -286,7 +286,7 @@ fixit (src, mode)
 /* Find the last barrier less than MAX_COUNT bytes from FROM, or create one. */
 
 #define MAX_COUNT_SI 1000
- 
+
 static rtx
 find_barrier (from)
      rtx from;
@@ -318,18 +318,18 @@ find_barrier (from)
   /* We didn't find a barrier in time to
      dump our stuff, so we'll make one */
   label = gen_label_rtx ();
-  
+
   if (from)
     from = PREV_INSN (from);
   else
     from = get_last_insn ();
-  
+
   /* Walk back to be just before any jump */
   while (GET_CODE (from) == JUMP_INSN
 	 || GET_CODE (from) == NOTE
 	 || GET_CODE (from) == CODE_LABEL)
     from = PREV_INSN (from);
-  
+
   from = emit_jump_insn_after (gen_jump (label), from);
   JUMP_LABEL (from) = label;
   found_barrier = emit_barrier_after (from);
@@ -338,7 +338,7 @@ find_barrier (from)
 }
 
 /* Non zero if the insn is a move instruction which needs to be fixed. */
- 
+
 static int
 broken_move (insn)
      rtx insn;
@@ -371,7 +371,7 @@ replace_symbols_in_block (tree block, rtx orig, rtx new)
   for (; block; block = BLOCK_CHAIN (block))
     {
       tree sym;
-      
+
       if (! TREE_USED (block))
 	continue;
 
@@ -387,7 +387,7 @@ replace_symbols_in_block (tree block, rtx orig, rtx new)
 
 	  DECL_RTL (sym) = new;
 	}
-      
+
       replace_symbols_in_block (BLOCK_SUBBLOCKS (block), orig, new);
     }
 }
@@ -436,7 +436,7 @@ thumb_reorg (first)
 		  offset = add_constant (src, mode);
 		  newsrc = gen_rtx (MEM, mode,
 				    plus_constant (gen_rtx (LABEL_REF,
-							    VOIDmode, 
+							    VOIDmode,
 							    pool_vector_label),
 						   offset));
 
@@ -459,7 +459,7 @@ thumb_reorg (first)
 		     debugging information emitted could refer to symbols which
 		     are not emited by output_constant_pool() because
 		     mark_constant_pool() never sees them as being used.  */
-		  
+
 		  if (optimize > 0			          /* These are the tests used in output_constant_pool() */
 		      && flag_expensive_optimizations             /*  to decide if the constant pool will be marked.  */
 		      && write_symbols == DBX_DEBUG               /* Only necessary if debugging info is being emitted.  */
@@ -469,7 +469,7 @@ thumb_reorg (first)
 		      replace_symbols_in_block (DECL_INITIAL (current_function_decl), src, newsrc);
 		    }
 #endif
-		  
+
 		  /* Kill old insn */
 		  delete_insn (scan);
 		  scan = newinsn;
@@ -513,7 +513,7 @@ thumb_expand_movstrqi (operands)
   if (len >= 2)
     {
       rtx reg = gen_reg_rtx (HImode);
-      emit_insn (gen_movhi (reg, gen_rtx (MEM, HImode, 
+      emit_insn (gen_movhi (reg, gen_rtx (MEM, HImode,
 					  plus_constant (in, offset))));
       emit_insn (gen_movhi (gen_rtx (MEM, HImode, plus_constant (out, offset)),
 			    reg));
@@ -621,7 +621,7 @@ thumb_exit (f, reg_containing_return_addr)
   /* Compute the registers we need to pop.  */
   regs_to_pop = 0;
   pops_needed = 0;
-  
+
   if (reg_containing_return_addr == -1)
     {
       regs_to_pop |= 1 << LINK_REGISTER;
@@ -657,7 +657,7 @@ thumb_exit (f, reg_containing_return_addr)
 
   /* Find out how many of the (return) argument registers we can corrupt. */
   regs_available_for_popping = 0;
-  
+
 #ifdef RTX_CODE
   /* If we can deduce the registers used from the function's return value.
      This is more reliable that examining regs_ever_live[] because that
@@ -692,7 +692,7 @@ thumb_exit (f, reg_containing_return_addr)
 			| (1 << ARG_3_REGISTER);
   else if (size <= 8) regs_available_for_popping =
 			(1 << ARG_3_REGISTER);
-  
+
   /* Match registers to be popped with registers into which we pop them.  */
   for (available = regs_available_for_popping,
        required  = regs_to_pop;
@@ -704,7 +704,7 @@ thumb_exit (f, reg_containing_return_addr)
   /* If we have any popping registers left over, remove them.  */
   if (available > 0)
     regs_available_for_popping &= ~ available;
-  
+
   /* Otherwise if we need another popping register we can use
      the fourth argument register.  */
   else if (pops_needed)
@@ -723,16 +723,16 @@ thumb_exit (f, reg_containing_return_addr)
 	  /* Register a4 is being used to hold part of the return value,
 	     but we have dire need of a free, low register.  */
 	  restore_a4 = TRUE;
-	  
+
 	  asm_fprintf (f, "\tmov\t%s, %s\n",
 		       reg_names [IP_REGISTER], reg_names [ARG_4_REGISTER]);
 	}
-      
+
       if (reg_containing_return_addr != ARG_4_REGISTER)
 	{
 	  /* The fourth argument register is available.  */
 	  regs_available_for_popping |= 1 << ARG_4_REGISTER;
-	  
+
 	  -- pops_needed;
 	}
     }
@@ -745,7 +745,7 @@ thumb_exit (f, reg_containing_return_addr)
     {
       /* The return address was popped into the lowest numbered register.  */
       regs_to_pop &= ~ (1 << LINK_REGISTER);
-      
+
       reg_containing_return_addr =
 	number_of_first_bit_set (regs_available_for_popping);
 
@@ -758,7 +758,7 @@ thumb_exit (f, reg_containing_return_addr)
   if (regs_available_for_popping)
     {
       int frame_pointer;
-      
+
       /* Work out which register currently contains the frame pointer.  */
       frame_pointer = number_of_first_bit_set (regs_available_for_popping);
 
@@ -768,18 +768,18 @@ thumb_exit (f, reg_containing_return_addr)
       /* (Temporarily) remove it from the mask of popped registers.  */
       regs_available_for_popping &= ~ (1 << frame_pointer);
       regs_to_pop &= ~ (1 << FRAME_POINTER);
-      
+
       if (regs_available_for_popping)
 	{
 	  int stack_pointer;
-	  
+
 	  /* We popped the stack pointer as well, find the register that
 	     contains it.*/
 	  stack_pointer = number_of_first_bit_set (regs_available_for_popping);
 
 	  /* Move it into the stack register.  */
 	  asm_fprintf (f, "\tmov\tsp, %s\n", reg_names [stack_pointer]);
-	  
+
 	  /* At this point we have popped all necessary registers, so
 	     do not worry about restoring regs_available_for_popping
 	     to its correct value:
@@ -796,7 +796,7 @@ thumb_exit (f, reg_containing_return_addr)
 	  regs_available_for_popping |= (1 << frame_pointer);
 	}
     }
-  
+
   /* If we still have registers left on the stack, but we no longer have
      any registers into which we can pop them, then we must move the return
      address into the link register and make available the register that
@@ -804,11 +804,11 @@ thumb_exit (f, reg_containing_return_addr)
   if (regs_available_for_popping == 0 && pops_needed > 0)
     {
       regs_available_for_popping |= 1 << reg_containing_return_addr;
-      
+
       asm_fprintf (f, "\tmov\t%s, %s\n",
 		   reg_names [LINK_REGISTER],
 		   reg_names [reg_containing_return_addr]);
-      
+
       reg_containing_return_addr = LINK_REGISTER;
     }
 
@@ -818,7 +818,7 @@ thumb_exit (f, reg_containing_return_addr)
     {
       int  popped_into;
       int  move_to;
-      
+
       thumb_pushpop (f, regs_available_for_popping, FALSE);
 
       /* We have popped either FP or SP.
@@ -833,13 +833,13 @@ thumb_exit (f, reg_containing_return_addr)
 
       -- pops_needed;
     }
-  
+
   /* If we still have not popped everything then we must have only
      had one register available to us and we are now popping the SP.  */
   if (pops_needed > 0)
     {
       int  popped_into;
-      
+
       thumb_pushpop (f, regs_available_for_popping, FALSE);
 
       popped_into = number_of_first_bit_set (regs_available_for_popping);
@@ -861,11 +861,11 @@ thumb_exit (f, reg_containing_return_addr)
 		       reg_names [LINK_REGISTER], reg_names [ARG_4_REGISTER]);
 	  reg_containing_return_addr = LINK_REGISTER;
 	}
-    
+
       asm_fprintf (f, "\tmov\t%s, %s\n",
 		   reg_names [ARG_4_REGISTER], reg_names [IP_REGISTER]);
     }
-  
+
   /* Return to caller.  */
   asm_fprintf (f, "\tbx\t%s\n", reg_names [reg_containing_return_addr]);
 }
@@ -884,44 +884,44 @@ thumb_pushpop (f, mask, push)
     {
       /* Special case.  Do not generate a POP PC statement here, do it in
 	 thumb_exit() */
-      
+
       thumb_exit (f, -1);
       return;
     }
-      
+
   asm_fprintf (f, "\t%s\t{", push ? "push" : "pop");
 
   /* Look at the low registers first.  */
-  
+
   for (regno = 0; regno < 8; regno ++, lo_mask >>= 1)
     {
       if (lo_mask & 1)
 	{
 	  asm_fprintf (f, reg_names[regno]);
-	  
+
 	  if ((lo_mask & ~1) != 0)
 	    asm_fprintf (f, ", ");
 	}
     }
-  
+
   if (push && (mask & (1 << 14)))
     {
       /* Catch pushing the LR.  */
 
       if (mask & 0xFF)
 	asm_fprintf (f, ", ");
-      
+
       asm_fprintf (f, reg_names[14]);
     }
   else if (!push && (mask & (1 << 15)))
     {
       /* Catch popping the PC.  */
-      
+
       if (TARGET_THUMB_INTERWORK || TARGET_BACKTRACE)
 	{
 	  /* The PC is never poped directly, instead
 	     it is popped into r3 and then BX is used. */
-	  
+
 	  asm_fprintf (f, "}\n");
 
 	  thumb_exit (f, -1);
@@ -932,11 +932,11 @@ thumb_pushpop (f, mask, push)
 	{
 	  if (mask & 0xFF)
 	    asm_fprintf (f, ", ");
-	  
+
 	  asm_fprintf (f, reg_names[15]);
 	}
     }
-       
+
   asm_fprintf (f, "}\n");
 }
 
@@ -946,7 +946,7 @@ int
 far_jump_used_p (void)
 {
   rtx insn;
-  
+
   for (insn = get_insns (); insn; insn = NEXT_INSN (insn))
     {
       if (GET_CODE (insn) == JUMP_INSN
@@ -978,7 +978,7 @@ output_return ()
     {
       if (leaf_function_p () && ! far_jump_used_p())
 	{
-	  thumb_exit (asm_out_file, 14);	      
+	  thumb_exit (asm_out_file, 14);
 	}
       else if (   TARGET_THUMB_INTERWORK
 	       || TARGET_BACKTRACE
@@ -992,7 +992,7 @@ output_return ()
   else
     {
       asm_fprintf (asm_out_file,  "\tpop\t{");
-      
+
       for (regno = 0; live_regs_mask; regno ++, live_regs_mask >>= 1)
 	if (live_regs_mask & 1)
 	  {
@@ -1011,7 +1011,7 @@ output_return ()
       else
 	asm_fprintf (asm_out_file, ", pc}\n");
     }
-  
+
   return "";
 }
 
@@ -1034,7 +1034,7 @@ thumb_function_prologue (f, frame_size)
       if (GET_CODE (XEXP (DECL_RTL (current_function_decl), 0)) != SYMBOL_REF)
 	abort();
       name = XSTR  (XEXP (DECL_RTL (current_function_decl), 0), 0);
-      
+
       /* Generate code sequence to switch us into Thumb mode.  */
       /* The .code 32 directive has already been emitted by
 	 ASM_DECLARE_FUNCITON_NAME */
@@ -1047,15 +1047,15 @@ thumb_function_prologue (f, frame_size)
 	 is called from a Thumb encoded function elsewhere in the
 	 same file.  Hence the definition of STUB_NAME here must
 	 agree with the definition in gas/config/tc-arm.c  */
-      
+
 #define STUB_NAME ".real_start_of"
-      
+
       asm_fprintf (f, "\t.code\t16\n");
       asm_fprintf (f, "\t.globl %s%U%s\n", STUB_NAME, name);
       asm_fprintf (f, "\t.thumb_func\n");
       asm_fprintf (f, "%s%U%s:\n", STUB_NAME, name);
     }
-    
+
   if (current_function_anonymous_args && current_function_pretend_args_size)
     store_arg_regs = 1;
 
@@ -1070,7 +1070,7 @@ thumb_function_prologue (f, frame_size)
 	  asm_fprintf (f, "}\n");
 	}
       else
-	asm_fprintf (f, "\tsub\t%Rsp, %Rsp, #%d\n", 
+	asm_fprintf (f, "\tsub\t%Rsp, %Rsp, #%d\n",
 		     current_function_pretend_args_size);
     }
 
@@ -1086,11 +1086,11 @@ thumb_function_prologue (f, frame_size)
       char * name;
       int    offset;
       int    work_register = 0;
-      
-      
+
+
       /* We have been asked to create a stack backtrace structure.
          The code looks like this:
-	 
+
 	 0   .align 2
 	 0   func:
          0     sub   SP, #16         Reserve space for 4 registers.
@@ -1124,26 +1124,26 @@ thumb_function_prologue (f, frame_size)
 	    if ((1 << work_register) & live_regs_mask)
 	      break;
 	}
-      
+
       name = reg_names[ work_register ];
-      
+
       asm_fprintf (f, "\tsub\tsp, sp, #16\t@ Create stack backtrace structure\n");
-      
+
       if (live_regs_mask)
 	thumb_pushpop (f, live_regs_mask, 1);
-      
+
       for (offset = 0, work_register = 1 << 15; work_register; work_register >>= 1)
 	if (work_register & live_regs_mask)
 	  offset += 4;
-      
+
       asm_fprintf (f, "\tadd\t%s, sp, #%d\n",
 		   name, offset + 16 + current_function_pretend_args_size);
-      
+
       asm_fprintf (f, "\tstr\t%s, [sp, #%d]\n", name, offset + 4);
 
       /* Make sure that the instruction fetching the PC is in the right place
 	 to calculate "start of backtrace creation code + 12".  */
-      
+
       if (live_regs_mask)
 	{
 	  asm_fprintf (f, "\tmov\t%s, pc\n", name);
@@ -1158,7 +1158,7 @@ thumb_function_prologue (f, frame_size)
 	  asm_fprintf (f, "\tmov\t%s, pc\n", name);
 	  asm_fprintf (f, "\tstr\t%s, [sp, #%d]\n", name, offset + 12);
 	}
-      
+
       asm_fprintf (f, "\tmov\t%s, lr\n", name);
       asm_fprintf (f, "\tstr\t%s, [sp, #%d]\n", name, offset + 8);
       asm_fprintf (f, "\tadd\t%s, sp, #%d\n", name, offset + 12);
@@ -1360,14 +1360,14 @@ thumb_unexpanded_epilogue ()
 	mov	r6, r8
 	push	{r6, r7}
      as part of the prolog.  We have to undo that pushing here.  */
-  
+
   if (high_regs_pushed)
     {
       int mask = live_regs_mask;
       int next_hi_reg;
       int size;
       int mode;
-       
+
 #ifdef RTX_CODE
       /* If we can deduce the registers used from the function's return value.
 	 This is more reliable that examining regs_ever_live[] because that
@@ -1396,7 +1396,7 @@ thumb_unexpanded_epilogue ()
 
 	  fatal ("No low registers available for popping high registers");
 	}
-      
+
       for (next_hi_reg = 8; next_hi_reg < 13; next_hi_reg++)
 	if (regs_ever_live[next_hi_reg] && ! call_used_regs[next_hi_reg])
 	  break;
@@ -1422,10 +1422,10 @@ thumb_unexpanded_epilogue ()
 	    {
 	      if (mask & (1 << regno))
 		{
-		  asm_fprintf (asm_out_file, "\tmov\t%s, %s\n", 
+		  asm_fprintf (asm_out_file, "\tmov\t%s, %s\n",
 			       reg_names[next_hi_reg], reg_names[regno]);
 		  for (next_hi_reg++; next_hi_reg < 13; next_hi_reg++)
-		    if (regs_ever_live[next_hi_reg] && 
+		    if (regs_ever_live[next_hi_reg] &&
 			! call_used_regs[next_hi_reg])
 		      break;
 		}
@@ -1434,16 +1434,16 @@ thumb_unexpanded_epilogue ()
     }
 
   had_to_push_lr = (live_regs_mask || ! leaf_function || far_jump_used_p());
-  
+
   if (TARGET_BACKTRACE && ((live_regs_mask & 0xFF) == 0) && regs_ever_live[ ARG_4_REGISTER ] != 0)
     {
       /* The stack backtrace structure creation code had to
 	 push R7 in order to get a work register, so we pop
 	 it now.   */
-      
+
       live_regs_mask |= (1 << WORK_REGISTER);
     }
-  
+
   if (current_function_pretend_args_size == 0 || TARGET_BACKTRACE)
     {
       if (had_to_push_lr
@@ -1453,15 +1453,15 @@ thumb_unexpanded_epilogue ()
       /* Either no argument registers were pushed or a backtrace
 	 structure was created which includes an adjusted stack
 	 pointer, so just pop everything.  */
-      
+
       if (live_regs_mask)
 	thumb_pushpop (asm_out_file, live_regs_mask, FALSE);
-      
+
       /* We have either just popped the return address into the
 	 PC or it is was kept in LR for the entire function or
 	 it is still on the stack because we do not want to
 	 return by doing a pop {pc}.  */
-      
+
       if ((live_regs_mask & (1 << PROGRAM_COUNTER)) == 0)
 	thumb_exit (asm_out_file,
 		    (had_to_push_lr
@@ -1472,7 +1472,7 @@ thumb_unexpanded_epilogue ()
     {
       /* Pop everything but the return address.  */
       live_regs_mask &= ~ (1 << PROGRAM_COUNTER);
-      
+
       if (live_regs_mask)
 	thumb_pushpop (asm_out_file, live_regs_mask, FALSE);
 
@@ -1481,13 +1481,13 @@ thumb_unexpanded_epilogue ()
 	  /* Get the return address into a temporary register.  */
 	  thumb_pushpop (asm_out_file, 1 << ARG_4_REGISTER, 0);
 	}
-      
+
       /* Remove the argument registers that were pushed onto the stack.  */
       asm_fprintf (asm_out_file, "\tadd\t%s, %s, #%d\n",
 		   reg_names [STACK_POINTER],
 		   reg_names [STACK_POINTER],
 		   current_function_pretend_args_size);
-      
+
       thumb_exit (asm_out_file, had_to_push_lr ? ARG_4_REGISTER : LINK_REGISTER);
     }
 
@@ -1507,17 +1507,17 @@ thumb_load_double_from_address (operands)
   rtx offset;
   rtx arg1;
   rtx arg2;
-  
+
   if (GET_CODE (operands[0]) != REG)
     fatal ("thumb_load_double_from_address: destination is not a register");
-  
+
   if (GET_CODE (operands[1]) != MEM)
     fatal ("thumb_load_double_from_address: source is not a computed memory address");
 
   /* Get the memory address.  */
-  
+
   addr = XEXP (operands[1], 0);
-      
+
   /* Work out how the memory address is computed.  */
 
   switch (GET_CODE (addr))
@@ -1536,53 +1536,53 @@ thumb_load_double_from_address (operands)
 	  output_asm_insn ("ldr\t%H0, %2\t\t%@ created by thumb_load_double_from_address", operands);
 	}
       break;
-      
+
     case CONST:
       /* Compute <address> + 4 for the high order load.  */
-	  
+
       operands[2] = gen_rtx (MEM, SImode, plus_constant (XEXP (operands[1], 0), 4));
-	  
+
       output_asm_insn ("ldr\t%0, %1\t\t%@ created by thumb_load_double_from_address", operands);
       output_asm_insn ("ldr\t%H0, %2\t\t%@ created by thumb_load_double_from_address", operands);
       break;
-	  
+
     case PLUS:
       arg1   = XEXP (addr, 0);
       arg2   = XEXP (addr, 1);
-	    
+
       if (CONSTANT_P (arg1))
 	base = arg2, offset = arg1;
       else
 	base = arg1, offset = arg2;
-  
+
       if (GET_CODE (base) != REG)
 	fatal ("thumb_load_double_from_address: base is not a register");
 
       /* Catch the case of <address> = <reg> + <reg> */
-  
+
       if (GET_CODE (offset) == REG)
 	{
 	  int reg_offset = REGNO (offset);
 	  int reg_base   = REGNO (base);
 	  int reg_dest   = REGNO (operands[0]);
-	  
+
 	  /* Add the base and offset registers together into the higher destination register.  */
-	  
+
 	  fprintf (asm_out_file, "\tadd\t%s, %s, %s\t\t%s created by thumb_load_double_from_address",
 		   reg_names[ reg_dest + 1 ],
 		   reg_names[ reg_base     ],
 		   reg_names[ reg_offset   ],
 		   ASM_COMMENT_START);
-	  
+
 	  /* Load the lower destination register from the address in the higher destination register.  */
-	  
+
 	  fprintf (asm_out_file, "\tldr\t%s, [%s, #0]\t\t%s created by thumb_load_double_from_address",
 		   reg_names[ reg_dest ],
 		   reg_names[ reg_dest + 1],
 		   ASM_COMMENT_START);
-	  
+
 	  /* Load the higher destination register from its own address plus 4.  */
-	  
+
 	  fprintf (asm_out_file, "\tldr\t%s, [%s, #4]\t\t%s created by thumb_load_double_from_address",
 		   reg_names[ reg_dest + 1 ],
 		   reg_names[ reg_dest + 1 ],
@@ -1591,13 +1591,13 @@ thumb_load_double_from_address (operands)
       else
 	{
 	  /* Compute <address> + 4 for the high order load.  */
-	  
+
 	  operands[2] = gen_rtx (MEM, SImode, plus_constant (XEXP (operands[1], 0), 4));
-	  
+
 	  /* If the computed address is held in the low order register
 	     then load the high order register first, otherwise always
 	     load the low order register first.  */
-      
+
 	  if (REGNO (operands[0]) == REGNO (base))
 	    {
 	      output_asm_insn ("ldr\t%H0, %2\t\t%@ created by thumb_load_double_from_address", operands);
@@ -1614,17 +1614,17 @@ thumb_load_double_from_address (operands)
     case LABEL_REF:
       /* With no registers to worry about we can just load the value directly.  */
       operands[2] = gen_rtx (MEM, SImode, plus_constant (XEXP (operands[1], 0), 4));
-	  
+
       output_asm_insn ("ldr\t%H0, %2\t\t%@ created by thumb_load_double_from_address", operands);
       output_asm_insn ("ldr\t%0, %1\t\t%@ created by thumb_load_double_from_address", operands);
       break;
-      
+
     default:
       debug_rtx (operands[1]);
       fatal ("thumb_load_double_from_address: Unhandled address calculation");
       break;
     }
-  
+
   return "";
 }
 
@@ -1678,7 +1678,7 @@ output_move_mem_multiple (n, operands)
   return "";
 }
 
-  
+
 int
 thumb_epilogue_size ()
 {
@@ -1687,7 +1687,7 @@ thumb_epilogue_size ()
 
 static char *conds[] =
 {
-  "eq", "ne", "cs", "cc", "mi", "pl", "vs", "vc", 
+  "eq", "ne", "cs", "cc", "mi", "pl", "vs", "vc",
   "hi", "ls", "ge", "lt", "gt", "le"
 };
 
@@ -1734,7 +1734,7 @@ thumb_print_operand (f, x, code)
 	case '_':
 	  fputs (user_label_prefix, f);
 	  return;
-	  
+
 	case 'D':
 	  if (x)
 	    fputs (thumb_condition_code (x, 1), f);
@@ -1746,7 +1746,7 @@ thumb_print_operand (f, x, code)
 	  return;
 
 	  /* An explanation of the 'Q', 'R' and 'H' register operands:
-	     
+
 	     In a pair of registers containing a DI or DF value the 'Q'
 	     operand returns the register number of the register containing
 	     the least signficant part of the value.  The 'R' operand returns
@@ -1777,7 +1777,7 @@ thumb_print_operand (f, x, code)
 	    abort ();
 	  fputs (reg_names[REGNO (x) + (WORDS_BIG_ENDIAN ? 1 : 0)], f);
 	  return;
-	  
+
 	case 'R':
 	  if (REGNO (x) > 15)
 	    abort ();
@@ -1835,10 +1835,10 @@ aof_data_section ()
 /* The AOF thumb assembler is religiously strict about declarations of
    imported and exported symbols, so that it is impossible to declare a
    function as imported near the begining of the file, and then to export
-   it later on.  It is, however, possible to delay the decision until all 
+   it later on.  It is, however, possible to delay the decision until all
    the functions in the file have been compiled.  To get around this, we
    maintain a list of the imports and exports, and delete from it any that
-   are subsequently defined.  At the end of compilation we spit the 
+   are subsequently defined.  At the end of compilation we spit the
    remainder of the list out before the END directive.  */
 
 struct import
@@ -1912,7 +1912,7 @@ thumb_return_in_memory (type)
   else if (int_size_in_bytes (type) > 4)
     {
       /* All structures/unions bigger than one word are returned in memory. */
-      
+
       return 1;
     }
   else if (TREE_CODE (type) == RECORD_TYPE)
@@ -1940,7 +1940,7 @@ thumb_return_in_memory (type)
 	{
 	  if (TREE_CODE (field) != FIELD_DECL)
 	    continue;
-	  
+
 	  if (! DECL_BIT_FIELD_TYPE (field))
 	    return 1;
 	}
@@ -1953,18 +1953,18 @@ thumb_return_in_memory (type)
 
       /* Unions can be returned in registers if every element is
 	 integral, or can be returned in an integer register.  */
-      
+
       for (field = TYPE_FIELDS (type);
 	   field;
 	   field = TREE_CHAIN (field))
 	{
 	  if (TREE_CODE (field) != FIELD_DECL)
 	    continue;
-	  
+
 	  if (RETURN_IN_MEMORY (TREE_TYPE (field)))
 	    return 1;
 	}
-      
+
       return 0;
     }
   /* XXX Not sure what should be done for other aggregates, so put them in
@@ -1978,7 +1978,7 @@ thumb_override_options ()
   if (structure_size_string != NULL)
     {
       int size = strtol (structure_size_string, NULL, 0);
-      
+
       if (size == 8 || size == 32)
 	arm_structure_size_boundary = size;
       else

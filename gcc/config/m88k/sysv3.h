@@ -110,7 +110,7 @@ do {									\
 #define DTOR_LIST_END						  	\
   asm (FINI_SECTION_ASM_OP);						\
   func_ptr __DTOR_END__[4] = { (func_ptr) 0, (func_ptr) 0,		\
-			       (func_ptr) 0, (func_ptr) 0 }  
+			       (func_ptr) 0, (func_ptr) 0 }
 
 /* A C statement (sans semicolon) to output an element in the table of
    global destructors.  The table is constructed in the .fini section
@@ -140,9 +140,9 @@ do {									\
     for (i = 0; __DTOR_LIST__[i] != 0; i++)	\
       if (((int *)__DTOR_LIST__)[i] != -1)	\
 	__DTOR_LIST__[i] ();			\
-  } while (0)					
+  } while (0)
 
-#undef INITIALIZE_TRAMPOLINE 
+#undef INITIALIZE_TRAMPOLINE
 #define INITIALIZE_TRAMPOLINE(TRAMP, FNADDR, CXT)			\
 {									\
   emit_move_insn (gen_rtx (MEM, SImode, plus_constant (TRAMP, 40)), FNADDR); \

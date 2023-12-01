@@ -472,7 +472,7 @@ filesys_read_compressed (pathname, filesize, finfo)
     {
       int offset, size;
       char *chunk;
-    
+
       offset = size = 0;
       chunk = (char *)xmalloc (FILESYS_PIPE_BUFFER_SIZE);
 

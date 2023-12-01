@@ -108,9 +108,9 @@ AO UrbanSoft packages, markets and supports
 industry standard free software products,
 including the Linux operating system and
 TeX document compiler.
-The company also provides programming services 
+The company also provides programming services
 based on TeX, Tk, Python, HTML, Java, Perl and
-Intranet. 
+Intranet.
 
 Rates approximately 15 USD per hour.
 
@@ -351,7 +351,7 @@ Manchester, NH  USA
 Specializing in GNU tools such as guile, CVS, gnats, bash, gawk, fileutils...
 
 Services:
- 
+
  o 800 phone support.
 
  o Modification and development.
@@ -409,7 +409,7 @@ Experience: supporting GNU since project inception, original port of
 GNU Emacs to Sun Solaris, original author of GNU Emacs online tutorial.
 Expertise in C, Emacs Lisp, Perl, Expect, Oracle, Informix, SunOS, Solaris,
 NIS, NFS, system-monitoring via paging. Unix System and Database
-administration or development. Coordinator of the GNU mascots: GNU Chess, 
+administration or development. Coordinator of the GNU mascots: GNU Chess,
 GNU Shogi, GNU Go.
 
 Updated: 1998-07-23
@@ -649,7 +649,7 @@ Kevin Harris <gordie@cyberramp.net>
 Dallas, Texas USA
 
 Entire GNU suite - porting, compilation, installation and maintenance
-Platforms: Any unix variant (AIX, *BSD, Digital Unix, HP/UX, GNU/Linux, 
+Platforms: Any unix variant (AIX, *BSD, Digital Unix, HP/UX, GNU/Linux,
 Solaris, SunOS, et al)
 
 Method: Call-in via modem to your site, telnet, or on-site.
@@ -709,23 +709,23 @@ Griffiss Business & Technology Park
 775 Daedalian Drive
 Rome, NY 13441-4909
 (315) 334-4900
- 
-CONTACTS: 
-       Dennis Fitzgerald	<dfitzgerald@rome.kaman.com> 
+
+CONTACTS:
+       Dennis Fitzgerald	<dfitzgerald@rome.kaman.com>
        Tom Robbins		<trobbins@rome.kaman.com>
- 
+
 Kaman Sciences has performed a GNU port for a custom RISC processor.
 We have experience in the definition and description of the machine
 register transfer language to the GNU tool-set.  This includes rewriting
 and modification of the necessary description and source files of gcc, gas,
 and gld and other binutils.  Kaman also has services for installation and
 setup of GNU tools, (GAWK, GCC, EMACS, etc.) on Sun workstations.
-  
+
 Work is on a "service contract" basis and development is charged either
 hourly or as a fixed price contract.
- 
+
 Consulting rates: $70 to $175 per hour.
- 
+
 Updated:  1997-05-07
 
 Joseph R. Kiniry		<kiniry@cs.caltech.edu>
@@ -883,7 +883,7 @@ Phone:     04-824-2265 (within Israel)
        +972-4-824-2265 (outside of Israel)
 
 Fax:       04-826-1219 (within Israel)
-       +972-4-826-1219 (outside of Israel)    
+       +972-4-826-1219 (outside of Israel)
 
 WWW: http://www.netvision.net.il/php/reuven
 
@@ -1220,20 +1220,20 @@ Stanislav Shalunov
 Email: shalunov@mccme.ru
 Phones: on request
 
-Installing, configuring, helping learn any free software.  
-Handholding, trouble shooting.  Making custom changes to free 
+Installing, configuring, helping learn any free software.
+Handholding, trouble shooting.  Making custom changes to free
 software written in C.  Teaching, lecturing, consulting.
 
-Want to have a free OS with free software serving your needs but do 
-not want to spend time yourself or not very skilled with the 
-computers?  Cannot decide which free software suits your needs 
+Want to have a free OS with free software serving your needs but do
+not want to spend time yourself or not very skilled with the
+computers?  Cannot decide which free software suits your needs
 better?  Drop me a line.
 
 Well, essentially, anything else on special request.  :-)
 
-Rate: $30/hour if you are in Moscow and I am there when you request 
-job done, $50 if the job may be done remotely (like configuring user 
-level program), $60/hour + travel expenses otherwise.  (Negotiable, 
+Rate: $30/hour if you are in Moscow and I am there when you request
+job done, $50 if the job may be done remotely (like configuring user
+level program), $60/hour + travel expenses otherwise.  (Negotiable,
 significant discounts may apply.)
 
 Entered 1997-07-17
@@ -1316,7 +1316,7 @@ Time Zone:      +01:00
 Rate:           130-170 DM/Hour.  2.7846 DM = 1 Pound = US $1.6332
 Commercial Independent Freelance Consultancy:
                 Any Unix (inc FreeBSD, Linux etc), C, X-Windows, FSF Tools,
-                Internet, Systems engineering, hardware interfacing, 
+                Internet, Systems engineering, hardware interfacing,
                 real time, comms & scientific industrial, even Cyrillic &
                 Chinese interfaces etc.  No Emacs. No Cobol.
 Free Sources:   FSF, FreeBSD & NetBSD CVS & current (daily!) & releases,

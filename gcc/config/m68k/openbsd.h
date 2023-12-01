@@ -86,8 +86,8 @@ Boston, MA 02111-1307, USA.  */
 #define DWARF2_UNWIND_INFO 0
 
 
-/* TODO: ASM_OUTPUT_MI_THUNK is busted. I need to figure out 
-   what bra func@PLTPC means under linux, and find the corresponding 
+/* TODO: ASM_OUTPUT_MI_THUNK is busted. I need to figure out
+   what bra func@PLTPC means under linux, and find the corresponding
    construction for our gas/pic setup.  */
 #if 0
 /* Taken from linux.h. Processor dependent optimized code to handle C++

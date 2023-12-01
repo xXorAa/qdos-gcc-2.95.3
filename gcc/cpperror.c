@@ -132,9 +132,9 @@ cpp_message VPROTO ((cpp_reader *pfile, int is_error, const char *msgid, ...))
   const char *msgid;
 #endif
   va_list ap;
-  
+
   VA_START (ap, msgid);
-  
+
 #ifndef ANSI_PROTOTYPES
   pfile = va_arg (ap, cpp_reader *);
   is_error = va_arg (ap, int);
@@ -153,15 +153,15 @@ cpp_message VPROTO ((cpp_reader *pfile, int is_error, const char *msgid, ...))
 
 void
 cpp_fatal VPROTO ((cpp_reader *pfile, const char *msgid, ...))
-{  
+{
 #ifndef ANSI_PROTOTYPES
   cpp_reader *pfile;
   const char *msgid;
 #endif
   va_list ap;
-  
+
   VA_START (ap, msgid);
-  
+
 #ifndef ANSI_PROTOTYPES
   pfile = va_arg (ap, cpp_reader *);
   msgid = va_arg (ap, const char *);
@@ -189,14 +189,14 @@ cpp_pfatal_with_name (pfile, name)
 
 void
 cpp_notice VPROTO ((const char *msgid, ...))
-{  
+{
 #ifndef ANSI_PROTOTYPES
   const char *msgid;
 #endif
   va_list ap;
-  
+
   VA_START (ap, msgid);
-  
+
 #ifndef ANSI_PROTOTYPES
   msgid = va_arg (ap, const char *);
 #endif

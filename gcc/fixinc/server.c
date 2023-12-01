@@ -140,7 +140,7 @@ load_data (fp)
         {
           size_t off = (size_t) (pz_scan - pz_text);
           void *p;
-	  
+
           text_size += 4096;
           p = realloc ((void *) pz_text, text_size);
           if (p == (void *) NULL)
@@ -172,7 +172,7 @@ load_data (fp)
 /*
  *  close_server
  *
- *  Make certain the server process is dead, close the 
+ *  Make certain the server process is dead, close the
  *  pipes to it and from it, finally NULL out the file pointers
  */
 void
@@ -218,7 +218,7 @@ static void
 server_setup ()
 {
   static int atexit_done = 0;
-  
+
   if (atexit_done++ == 0)
     atexit (&close_server);
 
@@ -267,7 +267,7 @@ run_shell (pz_cmd)
   if (server_id <= 0)
     {
       char *pz = (char *) malloc (1);
-      
+
       if (pz != (char *) NULL)
         *pz = '\0';
       return pz;
@@ -285,7 +285,7 @@ run_shell (pz_cmd)
   if (server_id == NULLPROCESS)
     {
       char *pz = (char *) malloc (1);
-      
+
       if (pz != (char *) NULL)
         *pz = '\0';
       return pz;
@@ -295,7 +295,7 @@ run_shell (pz_cmd)
      sigpipe or sigalrm (timeout), we will return the nil string.  */
   {
     char *pz = load_data (server_pair.pf_read);
-    
+
     if (pz == (char *) NULL)
       {
         fprintf (stderr, "CLOSING SHELL SERVER - command failure:\n\t%s\n",

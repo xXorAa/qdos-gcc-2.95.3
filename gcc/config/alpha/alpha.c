@@ -1,5 +1,5 @@
 /* Subroutines used for code generation on the DEC Alpha.
-   Copyright (C) 1992, 93-98, 1999 Free Software Foundation, Inc. 
+   Copyright (C) 1992, 93-98, 1999 Free Software Foundation, Inc.
    Contributed by Richard Kenner (kenner@vlsi1.ultra.nyu.edu)
 
 This file is part of GNU CC.
@@ -48,7 +48,7 @@ extern int rtx_equal_function_value_matters;
 /* Specify which cpu to schedule for. */
 
 enum processor_type alpha_cpu;
-static const char * const alpha_cpu_name[] = 
+static const char * const alpha_cpu_name[] =
 {
   "ev4", "ev5", "ev6"
 };
@@ -272,7 +272,7 @@ override_options ()
 	     && ISDIGIT ((unsigned char)alpha_mlat_string[1])
 	     && alpha_mlat_string[2] == '\0')
       {
-	static int const cache_latency[][4] = 
+	static int const cache_latency[][4] =
 	{
 	  { 3, 30, -1 },	/* ev4 -- Bcache is a guess */
 	  { 2, 12, 38 },	/* ev5 -- Bcache from PC164 LMbench numbers */
@@ -899,7 +899,7 @@ normal_memory_operand (op, mode)
 }
 
 /* Accept a register, but not a subreg of any kind.  This allows us to
-   avoid pathological cases in reload wrt data movement common in 
+   avoid pathological cases in reload wrt data movement common in
    int->fp conversion.  */
 
 int
@@ -966,7 +966,7 @@ get_aligned_mem (ref, paligned_mem, pbitnum)
   *pbitnum = GEN_INT ((offset & 3) * 8);
 }
 
-/* Similar, but just get the address.  Handle the two reload cases.  
+/* Similar, but just get the address.  Handle the two reload cases.
    Add EXTRA_OFFSET to the address we return.  */
 
 rtx
@@ -1067,7 +1067,7 @@ alpha_set_memflags (insn, ref)
   volatile_p = MEM_VOLATILE_P (ref);
   unchanging_p = RTX_UNCHANGING_P (ref);
 
-  /* This is only called from alpha.md, after having had something 
+  /* This is only called from alpha.md, after having had something
      generated from one of the insn patterns.  So if everything is
      zero, the pattern is already up-to-date.  */
   if (! in_struct_p && ! volatile_p && ! unchanging_p)
@@ -1153,7 +1153,7 @@ alpha_emit_set_const_1 (target, mode, c, n)
 	{
 	  /* We used to use copy_to_suggested_reg (GEN_INT (c), target, mode)
 	     but that meant that we can't handle INT_MIN on 32-bit machines
-	     (like NT/Alpha), because we recurse indefinitely through 
+	     (like NT/Alpha), because we recurse indefinitely through
 	     emit_move_insn to gen_movdi.  So instead, since we know exactly
 	     what we want, create it explicitly.  */
 
@@ -1258,7 +1258,7 @@ alpha_emit_set_const_1 (target, mode, c, n)
       /* Now try high-order 1 bits.  We get that with a sign-extension.
 	 But one bit isn't enough here.  Be careful to avoid shifting outside
 	 the mode and to avoid shifting outside the host wide int size. */
-      
+
       if ((bits = (MIN (HOST_BITS_PER_WIDE_INT, GET_MODE_SIZE (mode) * 8)
 		   - floor_log2 (~ c) - 2)) > 0)
 	for (; bits > 0; bits--)
@@ -1401,7 +1401,7 @@ alpha_emit_conditional_branch (code)
       else
 	{
 	  /* ??? We mark the the branch mode to be CCmode to prevent the
-	     compare and branch from being combined, since the compare 
+	     compare and branch from being combined, since the compare
 	     insn follows IEEE rules that the branch does not.  */
 	  branch_mode = CCmode;
 	}
@@ -1567,14 +1567,14 @@ alpha_expand_unaligned_load (tgt, mem, size, ofs, sign)
 
   emit_move_insn (meml,
 		  change_address (mem, DImode,
-				  gen_rtx_AND (DImode, 
+				  gen_rtx_AND (DImode,
 					       plus_constant (XEXP (mem, 0),
 							      ofs),
 					       GEN_INT (-8))));
 
   emit_move_insn (memh,
 		  change_address (mem, DImode,
-				  gen_rtx_AND (DImode, 
+				  gen_rtx_AND (DImode,
 					       plus_constant (XEXP (mem, 0),
 							      ofs + size - 1),
 					       GEN_INT (-8))));
@@ -1590,7 +1590,7 @@ alpha_expand_unaligned_load (tgt, mem, size, ofs, sign)
 	 addr for the target, because addr is marked as a pointer and combine
 	 knows that pointers are always sign-extended 32 bit values.  */
       addr = expand_binop (DImode, ior_optab, extl, exth, tgt, 1, OPTAB_WIDEN);
-      addr = expand_binop (DImode, ashr_optab, addr, GEN_INT (48), 
+      addr = expand_binop (DImode, ashr_optab, addr, GEN_INT (48),
 			   addr, 1, OPTAB_WIDEN);
     }
   else
@@ -1634,18 +1634,18 @@ alpha_expand_unaligned_store (dst, src, size, ofs)
      HOST_WIDE_INT size, ofs;
 {
   rtx dstl, dsth, addr, insl, insh, meml, memh;
-  
+
   dstl = gen_reg_rtx (DImode);
   dsth = gen_reg_rtx (DImode);
   insl = gen_reg_rtx (DImode);
   insh = gen_reg_rtx (DImode);
 
   meml = change_address (dst, DImode,
-			 gen_rtx_AND (DImode, 
+			 gen_rtx_AND (DImode,
 				      plus_constant (XEXP (dst, 0), ofs),
 				      GEN_INT (-8)));
   memh = change_address (dst, DImode,
-			 gen_rtx_AND (DImode, 
+			 gen_rtx_AND (DImode,
 				      plus_constant (XEXP (dst, 0),
 						     ofs+size-1),
 				      GEN_INT (-8)));
@@ -1700,7 +1700,7 @@ alpha_expand_unaligned_store (dst, src, size, ofs)
       dsth = expand_binop (DImode, ior_optab, insh, dsth, dsth, 0, OPTAB_WIDEN);
       dstl = expand_binop (DImode, ior_optab, insl, dstl, dstl, 0, OPTAB_WIDEN);
     }
-  
+
   /* Must store high before low for degenerate case of aligned.  */
   emit_move_insn (memh, dsth);
   emit_move_insn (meml, dstl);
@@ -1739,7 +1739,7 @@ alpha_expand_unaligned_load_words (out_regs, smem, words, ofs)
   if (ofs != 0)
     smem = change_address (smem, GET_MODE (smem),
 			   plus_constant (XEXP (smem, 0), ofs));
-  
+
   /* Load up all of the source data.  */
   for (i = 0; i < words; ++i)
     {
@@ -1758,11 +1758,11 @@ alpha_expand_unaligned_load_words (out_regs, smem, words, ofs)
 					       im8)));
 
   /* Extract the half-word fragments.  Unfortunately DEC decided to make
-     extxh with offset zero a noop instead of zeroing the register, so 
+     extxh with offset zero a noop instead of zeroing the register, so
      we must take care of that edge condition ourselves with cmov.  */
 
   sreg = copy_addr_to_reg (XEXP (smem, 0));
-  areg = expand_binop (DImode, and_optab, sreg, GEN_INT (7), NULL, 
+  areg = expand_binop (DImode, and_optab, sreg, GEN_INT (7), NULL,
 		       1, OPTAB_WIDEN);
   for (i = 0; i < words; ++i)
     {
@@ -1811,11 +1811,11 @@ alpha_expand_unaligned_store_words (data_regs, dmem, words, ofs)
       ins_tmps[i] = gen_reg_rtx(DImode);
   st_tmp_1 = gen_reg_rtx(DImode);
   st_tmp_2 = gen_reg_rtx(DImode);
-  
+
   if (ofs != 0)
     dmem = change_address (dmem, GET_MODE (dmem),
 			   plus_constant (XEXP (dmem, 0), ofs));
-  
+
 
   st_addr_2 = change_address (dmem, DImode,
 			      gen_rtx_AND (DImode,
@@ -1823,7 +1823,7 @@ alpha_expand_unaligned_store_words (data_regs, dmem, words, ofs)
 							  words*8 - 1),
 				       im8));
   st_addr_1 = change_address (dmem, DImode,
-			      gen_rtx_AND (DImode, 
+			      gen_rtx_AND (DImode,
 					   XEXP (dmem, 0),
 					   im8));
 
@@ -1897,7 +1897,7 @@ alpha_expand_block_move (operands)
   rtx data_regs[2*MAX_MOVE_WORDS+16];
   rtx tmp;
   int i, words, ofs, nregs = 0;
-  
+
   if (bytes <= 0)
     return 1;
   if (bytes > MAX_MOVE_WORDS*8)
@@ -1928,7 +1928,7 @@ alpha_expand_block_move (operands)
 	    src_align = 2;
 	}
     }
-	
+
   tmp = XEXP (orig_dst, 0);
   if (GET_CODE (tmp) == REG)
     {
@@ -2203,7 +2203,7 @@ alpha_expand_block_move (operands)
 	alpha_expand_unaligned_store (orig_dst, data_regs[i], 8, ofs);
       else
         alpha_expand_unaligned_store_words (data_regs+i, orig_dst, words, ofs);
-     
+
       i += words;
       ofs += words * 8;
     }
@@ -2263,7 +2263,7 @@ alpha_expand_block_clear (operands)
   rtx orig_dst	= operands[0];
   rtx tmp;
   HOST_WIDE_INT i, words, ofs = 0;
-  
+
   if (bytes <= 0)
     return 1;
   if (bytes > MAX_MOVE_WORDS*8)
@@ -2534,7 +2534,7 @@ alpha_adjust_cost (insn, link, dep_insn, cost)
       break;
 
     case PROCESSOR_EV6:
-      /* There is additional latency to move the result of (most) FP 
+      /* There is additional latency to move the result of (most) FP
          operations anywhere but the FP register file.  */
 
       if ((insn_type == TYPE_FST || insn_type == TYPE_FTOI)
@@ -2661,7 +2661,7 @@ print_operand (file, x, code)
 	{
 	case ALPHA_FPRM_NORM:
 	  break;
-	case ALPHA_FPRM_MINF: 
+	case ALPHA_FPRM_MINF:
 	  fputc ('m', file);
 	  break;
 	case ALPHA_FPRM_CHOP:
@@ -3019,7 +3019,7 @@ print_operand_address (file, addr)
    code.  CXT is an RTX for the static chain value for the function.
 
    The three offset parameters are for the individual template's
-   layout.  A JMPOFS < 0 indicates that the trampoline does not 
+   layout.  A JMPOFS < 0 indicates that the trampoline does not
    contain instructions at all.
 
    We assume here that a function will be called many more times than
@@ -3149,9 +3149,9 @@ alpha_builtin_saveregs (arglist)
 			   dest, ptr_mode,
 			   GEN_INT (GET_MODE_SIZE (ptr_mode)),
 			   TYPE_MODE (sizetype),
-			   GEN_INT (MEMORY_USE_RW), 
+			   GEN_INT (MEMORY_USE_RW),
 			   TYPE_MODE (integer_type_node));
-  
+
       /* Store the argsize as the __va_offset member.  */
       dest = change_address (block, TYPE_MODE (integer_type_node),
 			     plus_constant (XEXP (block, 0),
@@ -3351,7 +3351,7 @@ alpha_does_function_need_gp ()
     return 1;
 #endif
 
-  /* If we need a GP (we have a LDSYM insn or a CALL_INSN), load it first. 
+  /* If we need a GP (we have a LDSYM insn or a CALL_INSN), load it first.
      Even if we are a static function, we still need to do this in case
      our address is taken and passed to something like qsort.  */
 
@@ -3450,7 +3450,7 @@ alpha_expand_prologue ()
 
   frame_size = get_frame_size ();
   if (TARGET_OPEN_VMS)
-    frame_size = ALPHA_ROUND (sa_size 
+    frame_size = ALPHA_ROUND (sa_size
 			      + (vms_is_stack_procedure ? 8 : 0)
 			      + frame_size
 			      + current_function_pretend_args_size);
@@ -3472,7 +3472,7 @@ alpha_expand_prologue ()
      4096 bytes (we can probably get away without the latter test) and
      every 8192 bytes in between.  If the frame size is > 32768, we
      do this in a loop.  Otherwise, we generate the explicit probe
-     instructions. 
+     instructions.
 
      Note that we are only allowed to adjust sp once in the prologue.  */
 
@@ -3530,7 +3530,7 @@ alpha_expand_prologue ()
 	  /* For NT stack unwind (done by 'reverse execution'), it's
 	     not OK to take the result of a loop, even though the value
 	     is already in ptr, so we reload it via a single operation
-	     and subtract it to sp. 
+	     and subtract it to sp.
 
 	     Yes, that's correct -- we have to reload the whole constant
 	     into a temporary via ldah+lda then subtract from sp.  To
@@ -3572,13 +3572,13 @@ alpha_expand_prologue ()
 
       if (low + sa_size <= 0x8000)
 	bias = reg_offset - low, reg_offset = low;
-      else 
+      else
 	bias = reg_offset, reg_offset = 0;
 
       sa_reg = gen_rtx_REG (DImode, 24);
       FRP (emit_insn (gen_adddi3 (sa_reg, stack_pointer_rtx, GEN_INT (bias))));
     }
-    
+
   /* Save regs in stack order.  Beginning with VMS PV.  */
   if (TARGET_OPEN_VMS && vms_is_stack_procedure)
     {
@@ -3637,7 +3637,7 @@ alpha_expand_prologue ()
       /* If we have to allocate space for outgoing args, do it now.  */
       if (current_function_outgoing_args_size != 0)
 	{
-	  FRP (emit_move_insn (stack_pointer_rtx, 
+	  FRP (emit_move_insn (stack_pointer_rtx,
 	        plus_constant (hard_frame_pointer_rtx,
 	         - ALPHA_ROUND (current_function_outgoing_args_size))));
 	}
@@ -3665,7 +3665,7 @@ alpha_expand_prologue ()
      (clobber:BLK (scratch)), but this doesn't work for fp insns.  So we
      have to prevent all such scheduling with a blockage.
 
-     Linux, on the other hand, never bothered to implement OSF/1's 
+     Linux, on the other hand, never bothered to implement OSF/1's
      exception handling, and so doesn't care about such things.  Anyone
      planning to use dwarf2 frame-unwind info can also omit the blockage.  */
 
@@ -3696,7 +3696,7 @@ alpha_start_function (file, fnname, decl)
 
   frame_size = get_frame_size ();
   if (TARGET_OPEN_VMS)
-    frame_size = ALPHA_ROUND (sa_size 
+    frame_size = ALPHA_ROUND (sa_size
 			      + (vms_is_stack_procedure ? 8 : 0)
 			      + frame_size
 			      + current_function_pretend_args_size);
@@ -3818,7 +3818,7 @@ alpha_start_function (file, fnname, decl)
     }
 
   /* Emit GP related things.  It is rather unfortunate about the alignment
-     issues surrounding a CODE_LABEL that forces us to do the label in 
+     issues surrounding a CODE_LABEL that forces us to do the label in
      plain text.  */
   if (!TARGET_OPEN_VMS && !TARGET_WINDOWS_NT)
     {
@@ -3840,7 +3840,7 @@ alpha_start_function (file, fnname, decl)
   fputs ("\t.ascii \"", file);
   assemble_name (file, fnname);
   fputs ("\\0\"\n", file);
-      
+
   link_section ();
   fprintf (file, "\t.align 3\n");
   fputs ("\t.name ", file);
@@ -3871,7 +3871,7 @@ output_end_prologue (file)
 
 /* Write function epilogue.  */
 
-/* ??? At some point we will want to support full unwind, and so will 
+/* ??? At some point we will want to support full unwind, and so will
    need to mark the epilogue as well.  At the moment, we just confuse
    dwarf2out.  */
 #undef FRP
@@ -3898,7 +3898,7 @@ alpha_expand_epilogue ()
 
   frame_size = get_frame_size ();
   if (TARGET_OPEN_VMS)
-    frame_size = ALPHA_ROUND (sa_size 
+    frame_size = ALPHA_ROUND (sa_size
 			      + (vms_is_stack_procedure ? 8 : 0)
 			      + frame_size
 			      + current_function_pretend_args_size);
@@ -3937,7 +3937,7 @@ alpha_expand_epilogue ()
 
 	  if (low + sa_size <= 0x8000)
 	    bias = reg_offset - low, reg_offset = low;
-	  else 
+	  else
 	    bias = reg_offset, reg_offset = 0;
 
 	  sa_reg = gen_rtx_REG (DImode, 22);
@@ -3945,7 +3945,7 @@ alpha_expand_epilogue ()
 
 	  FRP (emit_move_insn (sa_reg, sa_reg_exp));
 	}
-	  
+
       /* Restore registers in order, excepting a true frame pointer. */
 
       if (! alpha_eh_epilogue_sp_ofs)
@@ -4049,7 +4049,7 @@ alpha_expand_epilogue ()
       FRP (emit_move_insn (stack_pointer_rtx,
 		           gen_rtx_PLUS (DImode, sp_adj1, sp_adj2)));
     }
-  else 
+  else
     {
       if (TARGET_OPEN_VMS && !vms_is_stack_procedure)
         {
@@ -4080,7 +4080,7 @@ alpha_end_function (file, fnname, decl)
     }
   inside_function = FALSE;
 
-  /* Show that we know this function if it is called again. 
+  /* Show that we know this function if it is called again.
 
      Don't do this for global functions in object files destined for a
      shared library because the function may be overridden by the application
@@ -4296,7 +4296,7 @@ summarize_insn (x, sum, set)
     case NEG:  case NOT:  case SIGN_EXTEND:  case ZERO_EXTEND:
     case TRUNCATE:  case FLOAT_EXTEND:  case FLOAT_TRUNCATE:  case FLOAT:
     case FIX:  case UNSIGNED_FLOAT:  case UNSIGNED_FIX:  case ABS:
-    case SQRT:  case FFS: 
+    case SQRT:  case FFS:
       summarize_insn (XEXP (x, 0), sum, 0);
       break;
 
@@ -4370,7 +4370,7 @@ alpha_handle_trap_shadows (insns)
   shadow.used.fp = 0;
   shadow.used.mem = 0;
   shadow.defd = shadow.used;
-  
+
   for (i = insns; i ; i = NEXT_INSN (i))
     {
       if (GET_CODE (i) == NOTE)
@@ -4613,9 +4613,9 @@ alphaev5_insn_pipe (insn)
     }
 }
 
-/* IN_USE is a mask of the slots currently filled within the insn group. 
+/* IN_USE is a mask of the slots currently filled within the insn group.
    The mask bits come from alphaev4_pipe above.  If EV4_IBX is set, then
-   the insn in EV4_IB0 can be swapped by the hardware into EV4_IB1. 
+   the insn in EV4_IB0 can be swapped by the hardware into EV4_IB1.
 
    LEN is, of course, the length of the group in bytes.  */
 
@@ -4685,7 +4685,7 @@ alphaev4_next_group (insn, pin_use, plen)
 	  abort();
 	}
       len += 4;
-      
+
       /* Haifa doesn't do well scheduling branches.  */
       if (GET_CODE (insn) == JUMP_INSN)
 	goto next_and_done;
@@ -4713,9 +4713,9 @@ alphaev4_next_group (insn, pin_use, plen)
   return insn;
 }
 
-/* IN_USE is a mask of the slots currently filled within the insn group. 
+/* IN_USE is a mask of the slots currently filled within the insn group.
    The mask bits come from alphaev5_pipe above.  If EV5_E01 is set, then
-   the insn in EV5_E0 can be swapped by the hardware into EV5_E1. 
+   the insn in EV5_E0 can be swapped by the hardware into EV5_E1.
 
    LEN is, of course, the length of the group in bytes.  */
 
@@ -4754,9 +4754,9 @@ alphaev5_next_group (insn, pin_use, plen)
 	    len = get_attr_length (insn);
 	  goto next_and_done;
 
-	/* ??? Most of the places below, we would like to abort, as 
-	   it would indicate an error either in Haifa, or in the 
-	   scheduling description.  Unfortunately, Haifa never 
+	/* ??? Most of the places below, we would like to abort, as
+	   it would indicate an error either in Haifa, or in the
+	   scheduling description.  Unfortunately, Haifa never
 	   schedules the last instruction of the BB, so we don't
 	   have an accurate TI bit to go off.  */
 	case EV5_E01:
@@ -4816,7 +4816,7 @@ alphaev5_next_group (insn, pin_use, plen)
 	  abort();
 	}
       len += 4;
-      
+
       /* Haifa doesn't do well scheduling branches.  */
       /* ??? If this is predicted not-taken, slotting continues, except
 	 that no more IBR, FBR, or JSR insns may be slotted.  */
@@ -5017,7 +5017,7 @@ alpha_align_insns (insns, max_align, next_group, next_nop, gp_in_use)
 	  else
 	    where = i;
 
-	  do 
+	  do
 	    emit_insn_before ((*next_nop)(&prev_in_use), where);
 	  while (--nop_count);
 	  ofs = 0;
@@ -5256,7 +5256,7 @@ alpha_write_linkage (stream)
 	continue;
 
       fprintf (stream, "$%s..lk:\n", lptr->name);
-      if (lptr->kind == KIND_LOCAL)   
+      if (lptr->kind == KIND_LOCAL)
 	{
 	  /*  Local and used, build linkage pair.  */
 	  fprintf (stream, "\t.quad %s..en\n", lptr->name);

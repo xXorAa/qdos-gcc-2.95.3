@@ -251,7 +251,7 @@ In interactive use, a prefix argument directs this command
 to read a file name from the minibuffer.
 
 The search path for Info files is in the variable `Info-directory-list'.
-The top-level Info directory is made by combining all the files named `dir' 
+The top-level Info directory is made by combining all the files named `dir'
 in all the directories in that path."
   (interactive (if current-prefix-arg
 		   (list (read-file-name "Info file name: " nil nil t))))
@@ -509,7 +509,7 @@ In standalone mode, \\<Info-mode-map>\\[Info-exit] exits Emacs itself."
 	  (or (cdr dirs) (setq Info-dir-contents-directory
 			       (file-name-as-directory (car dirs))))
 	  (setq dirs (cdr dirs))))
-      
+
       (or buffers
 	  (error "Can't find the Info directory node"))
       ;; Distinguish the dir file that comes with Emacs from all the
@@ -749,7 +749,7 @@ In standalone mode, \\<Info-mode-map>\\[Info-exit] exits Emacs itself."
 		  (forward-line 1)
 		  (if (re-search-backward "Node: *\\([^,\n]*\\) *[,\n\t]"
 					  beg t)
-		      (setq compl 
+		      (setq compl
 			    (cons (list (buffer-substring (match-beginning 1)
 							  (match-end 1)))
 				  compl))))))))
@@ -840,7 +840,7 @@ In standalone mode, \\<Info-mode-map>\\[Info-exit] exits Emacs itself."
 				 Info-history)))))
 
 ;; Extract the value of the node-pointer named NAME.
-;; If there is none, use ERRORNAME in the error message; 
+;; If there is none, use ERRORNAME in the error message;
 ;; if ERRORNAME is nil, just return nil.
 (defun Info-extract-pointer (name &optional errorname)
   (save-excursion
@@ -1099,7 +1099,7 @@ Completion is allowed, and the menu item point is on is the default."
   ;; there is a problem here in that if several menu items have the same
   ;; name you can only go to the node of the first with this command.
   (Info-goto-node (Info-extract-menu-item menu-item)))
-  
+
 (defun Info-extract-menu-item (menu-item)
   (setq menu-item (regexp-quote menu-item))
   (save-excursion
@@ -1147,7 +1147,7 @@ N is the digit argument used to invoke this command."
     ;; Go to the last node in the menu of Top.
     (Info-goto-node (Info-extract-menu-counting nil))
     ;; If the last node in the menu is not last in pointer structure,
-    ;; move forward until we can't go any farther. 
+    ;; move forward until we can't go any farther.
     (while (Info-forward-node t t) nil)
     ;; Then keep moving down to last subnode, unless we reach an index.
     (while (and (not (string-match "\\<index\\>" Info-current-node))
@@ -1667,13 +1667,13 @@ If no reference to follow, moves to the next node, or up if none."
 				    (Info-complete-menu-item
 				     "" (lambda (e) t) t)
 				  (error nil))))
-	       entries current 
+	       entries current
 	       (number 0))
 	  (while (and items (< number 9))
 	    (setq current (car items)
 		  items (cdr items)
 		  number (1+ number))
-	    (setq entries (cons `[,current 
+	    (setq entries (cons `[,current
 				  (Info-menu ,current)
 				  :keys ,(format "%d" number)]
 				entries)))
@@ -1684,7 +1684,7 @@ If no reference to follow, moves to the next node, or up if none."
 	  (easy-menu-change '("Info") "Menu item" (nreverse entries)))
 	;; Update reference menu.  Code stolen from `Info-follow-reference'.
 	(let ((items nil)
-	      str i entries current 
+	      str i entries current
 	      (number 0))
 	  (save-excursion
 	    (goto-char (point-min))
@@ -1703,7 +1703,7 @@ If no reference to follow, moves to the next node, or up if none."
 	    (setq current (car items)
 		  items (cdr items)
 		  number (1+ number))
-	    (setq entries (cons `[,current 
+	    (setq entries (cons `[,current
 				  (Info-follow-reference ,current)
 				  t]
 				entries)))
@@ -1752,7 +1752,7 @@ Moving within a node:
 already visible, try to go to the next menu entry, or up if there is none.
 \\[Info-scroll-down]  Normally, scroll backward.  If the beginning of the buffer is
 already visible, try to go to the previous menu entry, or up if there is none.
-\\[beginning-of-buffer]	Go to beginning of node.  
+\\[beginning-of-buffer]	Go to beginning of node.
 
 Advanced commands:
 \\[Info-exit]	Quit Info: reselect previously selected buffer.
@@ -2025,7 +2025,7 @@ The alist key is the character the title is underlined with (?*, ?= or ?-)."
        (kill-buffer Info-tag-table-buffer)))
 
 (add-hook 'kill-buffer-hook 'Info-kill-buffer)
-  
+
 
 (provide 'info)
 

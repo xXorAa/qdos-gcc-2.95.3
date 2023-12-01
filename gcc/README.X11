@@ -1,7 +1,7 @@
 [This file contains two alternative recipes for compiling X11 with GCC.
 The first alternative puts libgcc.a into the shared X library; the second
 does not.  Neither alternative works on all kinds of systems.
-It may be that when using GCC 2.4, both alternatives work okay on 
+It may be that when using GCC 2.4, both alternatives work okay on
 relatively recent Sparc systems.  The first alternative is likely
 not to work on a Sun 3 without hardware floating point.]
 
@@ -13,7 +13,7 @@ parts of libgcc.a in the shared library for X, in case functions in
 that library need it.  Thus the default behavior is now to build
 everything, including the libraries, with gcc.
 
-If you build the shared library this way, it may not work with 
+If you build the shared library this way, it may not work with
 executables made with older versions of GCC (2.3.3 and earlier).
 If that happens, relink those executables with the latest GCC.
 IF YOU THINK YOU MIGHT COMPILE X FOR SOLARIS 2, then you really don't
@@ -47,7 +47,7 @@ mit/config/sun.cf -- When compiling with GCC 2, use -O2 optimization.
 mit/config/sunLib.rules -- When compiling with GCC 2, use -fpic for
 position independent code generation.
 
-mit/rgb/Imakefile -- No longer need to compile some modules with 
+mit/rgb/Imakefile -- No longer need to compile some modules with
 cc on the Sparc since GCC 2 produces proper -fpcc-struct-return code.
 
 mit/server/os/Imakefile -- Likewise.
@@ -66,7 +66,7 @@ mit/lib/X/Imakefile -- Make libgcc.a a required lib for libX11.so
 --- 32,48 ----
   ComplexProgramTarget(twm)
   InstallNonExecFile(system.twmrc,$(TWMDIR))
-  
+
 + #if HasGcc && GccVersion > 1 && defined (SunArchitecture)
   gram.h gram.c: gram.y
   	yacc $(YFLAGS) gram.y
@@ -78,9 +78,9 @@ mit/lib/X/Imakefile -- Make libgcc.a a required lib for libX11.so
   	$(MV) y.tab.c gram.c
   	$(MV) y.tab.h gram.h
 + #endif
-  
+
   clean::
-  	$(RM) y.tab.h y.tab.c lex.yy.c gram.h gram.c lex.c deftwmrc.c 
+  	$(RM) y.tab.h y.tab.c lex.yy.c gram.h gram.c lex.c deftwmrc.c
 *** mit/config/Imake.tmpl	Mon May 17 22:02:57 1993
 --- new/config/Imake.tmpl	Mon May 17 22:15:06 1993
 ***************
@@ -92,7 +92,7 @@ mit/lib/X/Imakefile -- Make libgcc.a a required lib for libX11.so
 + #if GccVersion > 1
 + #define CcCmd gcc -fpcc-struct-return
 + #else
-  #define CcCmd gcc -fstrength-reduce -fpcc-struct-return 
+  #define CcCmd gcc -fstrength-reduce -fpcc-struct-return
 + #endif
   #else
   #define CcCmd cc
@@ -101,31 +101,31 @@ mit/lib/X/Imakefile -- Make libgcc.a a required lib for libX11.so
 --- new/config/site.def	Mon May 17 22:22:28 1993
 ***************
 *** 25,31 ****
-  
+
   #ifdef BeforeVendorCF
-  
+
 ! /* #define HasGcc YES */
-  
+
   #endif /* BeforeVendorCF */
-  
+
 --- 25,33 ----
-  
+
   #ifdef BeforeVendorCF
-  
+
 ! #define HasGcc YES
 ! /* GccVersion > 1 implies building shared libraries with gcc */
 ! #define GccVersion 2
-  
+
   #endif /* BeforeVendorCF */
-  
+
 *** mit/config/sun.cf	Mon May 17 22:03:02 1993
 --- new/config/sun.cf	Mon May 17 22:24:55 1993
 ***************
 *** 41,49 ****
 --- 41,55 ----
-  
+
   #if HasGcc
-  
+
 + #if GccVersion > 1
 + #define OptimizedCDebugFlags -O2
 + #else
@@ -134,8 +134,8 @@ mit/lib/X/Imakefile -- Make libgcc.a a required lib for libX11.so
   #define ExtraLoadFlags -B/usr/bin/
   #define AllocateLocalDefines /**/
 + #endif
-+ 
-  
++
+
   .c.o:
   	$(CC) -c $(CFLAGS) $*.c
 *** mit/config/sunLib.rules	Mon May 17 22:02:46 1993
@@ -152,7 +152,7 @@ mit/lib/X/Imakefile -- Make libgcc.a a required lib for libX11.so
   #define PositionIndependentCFlags -pic
 + #endif
   #endif
-  
+
   /*
 *** mit/lib/X/Imakefile	Mon May 17 22:05:03 1993
 --- new/lib/X/Imakefile	Mon May 17 22:32:26 1993
@@ -161,7 +161,7 @@ mit/lib/X/Imakefile -- Make libgcc.a a required lib for libX11.so
 --- 9,31 ----
   #define MotifBC NO
   #endif
-  
+
 + #if defined(SunArchitecture)
 + #if SystemV4
 + #if HasGcc
@@ -178,7 +178,7 @@ mit/lib/X/Imakefile -- Make libgcc.a a required lib for libX11.so
 + #endif
 + #endif
 + #endif
-+ 
++
   #ifndef BuildXimp
   #define BuildXimp NO
   #endif
@@ -208,12 +208,12 @@ mit/lib/X/Imakefile -- Make libgcc.a a required lib for libX11.so
 --- 43,53 ----
   LinkFile(sunGX.o,sunGX.o.dist)
   #endif
-  
+
 + #if HasGcc && GccVersion > 1
 + SpecialObjectRule(sunCG2C.o,sunCG2C.c,-fvolatile)
 + SpecialObjectRule(sunCG2M.o,sunCG2M.c,-fvolatile)
 + #endif
-+ 
++
   sunInitExtMono.o: $(ICONFIGFILES)
   ObjectFromSpecialSource(sunInitExtMono,../mi/miinitext,-UPEXEXT)
   ObjectFromSpecialSource(sunInitMono,sunInit,-DMONO_ONLY)
@@ -242,7 +242,7 @@ mit/lib/X/Imakefile -- Make libgcc.a a required lib for libX11.so
 
 How to compile X11R5 (patch level 11) with GCC version 2:
 
-The patches include support for building the shared libraries with GCC 2 on 
+The patches include support for building the shared libraries with GCC 2 on
 the Sparc and 68k machines.
 
 NOTE: Such shared libraries built with GCC version 2.3 DID NOT WORK
@@ -267,9 +267,9 @@ mit/config/Imake.tmpl -- Do not set -fstrength-reduce if we have GCC 2.  If
 -fstrength-reduce (or any other -f option) is a major win, then it will
 most likely be turned on by -O2 optimization.
 
-mit/config/sunLib.rules -- If HasGcc2 and Gcc2BuildLibs are defined, then 
-use gcc -fpic to generate PIC code.  Make sure that gcc does not use gas (the 
-GNU assembler) when compiling PIC code; gas does not assemble it correctly.  
+mit/config/sunLib.rules -- If HasGcc2 and Gcc2BuildLibs are defined, then
+use gcc -fpic to generate PIC code.  Make sure that gcc does not use gas (the
+GNU assembler) when compiling PIC code; gas does not assemble it correctly.
 If you have gas installed where gcc uses it by default, you might have to add
 -B/bin/ to the PositionIndependentCFlags.
 
@@ -277,7 +277,7 @@ mit/config/site.def -- Define HasGcc2 to be YES.
 
 mit/config/sun.cf -- When compiling with GCC 2, use -O2 optimization.
 
-mit/rgb/Imakefile -- No longer need to compile some modules with 
+mit/rgb/Imakefile -- No longer need to compile some modules with
 cc on the Sparc since GCC 2 produces proper -fpcc-struct-return code.
 
 mit/server/os/Imakefile -- Likewise.
@@ -296,7 +296,7 @@ mit/clients/twm/Imakefile -- fix bad decls of malloc, realloc in gram.c.
 + #define CcCmd gcc -fpcc-struct-return
 + #else
   #if HasGcc
-  #define CcCmd gcc -fstrength-reduce -fpcc-struct-return 
+  #define CcCmd gcc -fstrength-reduce -fpcc-struct-return
   #else
   #define CcCmd cc
 + #endif
@@ -317,54 +317,54 @@ mit/clients/twm/Imakefile -- fix bad decls of malloc, realloc in gram.c.
   #define PositionIndependentCFlags -pic
   #endif
 + #endif
-  
+
   /*
    * InstallSharedLibrary - generate rules to install the shared library.
 *** mit/config/site.def.ORIG	Tue Dec 31 11:13:49 1991
 --- mit/config/site.def	Tue Dec 31 12:02:59 1991
 ***************
 *** 25,31 ****
-  
+
   #ifdef BeforeVendorCF
-  
+
 ! /* #define HasGcc YES */
-  
+
   #endif /* BeforeVendorCF */
-  
+
 --- 25,33 ----
-  
+
   #ifdef BeforeVendorCF
-  
-! #define HasGcc YES 
+
+! #define HasGcc YES
 ! #define HasGcc2 YES
 ! /* #define Gcc2BuildLibs YES */
-  
+
   #endif /* BeforeVendorCF */
-  
+
 *** mit/config/sun.cf.ORIG	Tue Dec 31 11:13:57 1991
 --- mit/config/sun.cf	Tue May  5 12:29:50 1992
 ***************
 *** 34,42 ****
 --- 41,61 ----
-  
+
   #if HasGcc
-  
-+ #if defined(HasGcc2) 
-+ #define OptimizedCDebugFlags -O2 
+
++ #if defined(HasGcc2)
++ #define OptimizedCDebugFlags -O2
 + /* Leave Alone XXX */
-+ #else 
++ #else
 + #define OptimizedCDebugFlags -O
   #define SharedLibraryCcCmd cc
   #define ExtraLoadFlags -B/usr/bin/
   #define AllocateLocalDefines /**/
 + #endif
-+ 
++
 + #if !defined(Gcc2BuildLibs)
 + #define SharedLibraryCcCmd cc
 + #define ExtraLoadFlags -B/usr/bin/
 + #define AllocateLocalDefines /**/
 + #endif
-  
+
   .c.o:
   	$(CC) -c $(CFLAGS) $*.c
 *** mit/rgb/Imakefile.ORIG	Wed Jan 15 16:43:18 1992
@@ -417,7 +417,7 @@ mit/clients/twm/Imakefile -- fix bad decls of malloc, realloc in gram.c.
 + SpecialObjectRule(sunCG2C.o,sunCG2C.c,-fvolatile)
 + SpecialObjectRule(sunCG2M.o,sunCG2M.c,-fvolatile)
 + #endif
-+ 
++
   sunInitExtMono.o: $(ICONFIGFILES)
   ObjectFromSpecialSource(sunInitExtMono,../mi/miinitext,-UPEXEXT)
   ObjectFromSpecialSource(sunInitMono,sunInit,-DMONO_ONLY)
@@ -429,7 +429,7 @@ mit/clients/twm/Imakefile -- fix bad decls of malloc, realloc in gram.c.
 --- 32,48 ----
   ComplexProgramTarget(twm)
   InstallNonExecFile(system.twmrc,$(TWMDIR))
-  
+
 + #if HasGcc2 && defined (SunArchitecture)
   gram.h gram.c: gram.y
         yacc $(YFLAGS) gram.y
@@ -441,7 +441,7 @@ mit/clients/twm/Imakefile -- fix bad decls of malloc, realloc in gram.c.
         $(MV) y.tab.c gram.c
         $(MV) y.tab.h gram.h
 + #endif
-  
+
   clean::
-        $(RM) y.tab.h y.tab.c lex.yy.c gram.h gram.c lex.c deftwmrc.c 
+        $(RM) y.tab.h y.tab.c lex.yy.c gram.h gram.c lex.c deftwmrc.c
 

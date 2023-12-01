@@ -74,7 +74,7 @@ Mon Jul 13 17:18:47 1998  Nick Clifton  <nickc@cygnus.com>
 
 	* gcc.c (main): Add support for parsing --help, and passing it on
 	to the sub-processes invoked by gcc.
-	(display_help): New function: display command line switches.	
+	(display_help): New function: display command line switches.
 
 	* tm.texi (TARGET_SWITCHES and TARGET_OPTIONS): Document
 	'description' field added to structure.
@@ -185,7 +185,7 @@ Sat Jul 11 16:19:48 1998  Mark Mitchell  <mark@markmitchell.com>
 	(do_arg): Improve comment.  Handle 'n' repeat code.
 	(remember_type): Check forgetting_types.
 	(demangle_args): Deal with 'n' repeat codes.  Tidy.
-	
+
 Sat Jul 11 02:59:08 1998  Richard Earnshaw  <rearnsha@arm.com>
 
 	* arm.md (extendhisi2_mem, movhi, movhi_bytes): Propagate the volatile
@@ -301,7 +301,7 @@ Wed Jul  8 15:08:29 1998  Jim Wilson  <wilson@cygnus.com>
 	* invoke.texi: Add description of options -Wlong-long,
 	-Wno-long-long.
 	* gcc.1: The same as above.
-	
+
 Wed Jul  8 02:43:34 1998  Jeffrey A Law  (law@cygnus.com)
 
 	* rtlanal.c (reg_overlap_mentioned_p): Handle STRICT_LOW_PART.  If
@@ -510,7 +510,7 @@ Mon Jul  6 21:07:14 1998  Kaveh R. Ghazi  <ghazi@caip.rutgers.edu>
 	whether we have the %p format specifier or not.
 
 	* acconfig.h: Delete stub for HOST_PTR_PRINTF, add HAVE_PRINTF_PTR.
-	
+
 	* machmode.h (HOST_PTR_PRINTF): When determining the definition,
 	check HAVE_PRINTF_PTR to see whether "%p" is okay.
 
@@ -559,7 +559,7 @@ Sun Jul  5 23:58:19 1998  Jeffrey A Law  (law@cygnus.com)
 	* i386/freebsd-elf.h (ASM_OUTPUT_MAX_SKIP_ALIGN): Protect with
 	HAVE_GAS_MAX_SKIP_P2ALIGN.
 	* i386/linux.h: Likewise.
-	
+
 Fri Jul  3 02:33:35 1998  David S. Miller  <davem@pierdol.cobaltmicro.com>
 
 	* sparc.c (sparc_operand, move_operand,	arith_operand,
@@ -608,7 +608,7 @@ Thu Jul  2 14:34:48 1998  David Edelsohn  <edelsohn@mhpcc.edu>
 	* rs6000.md (call_indirect): Store doubleword in 64-bit mode.
 	Convert to gen_rtx_FOO.
 	* rs6000.c: Convert to gen_rtx_FOO.
-	
+
 Thu Jul  2 14:16:11 1998  Michael Meissner  <meissner@cygnus.com>
 
 	* varray.{c,h}: New files to provide virtual array support.
@@ -1079,7 +1079,7 @@ Fri Jun 26 16:03:15 1998  Michael Meissner  <meissner@cygnus.com>
 	description to reorder the ready list, and update how many more
 	instructions can be issued this cycle.
 	* tm.texi (MD_SCHED_{INIT,REORDER,VARIABLE_ISSUE}): Document.
-	
+
 Fri Jun 26 11:54:11 1998  David S. Miller  <davem@pierdol.cobaltmicro.com>
 
 	* config/sparc/sparc.h (REGNO_OK_FOR_{INDEX,BASE,FP,CCFP}_P):
@@ -1104,7 +1104,7 @@ Fri Jun 26 06:58:54 1998  Richard Earnshaw  (rearnsha@arm.com)
 	arm_adjust_code.
 	(bad_signed_byte_operand): Add prototype.
 	* arm.c (arm_override_options): Make I unsigned.
-	(const_ok_for_arm): Add casts to the constants.	
+	(const_ok_for_arm): Add casts to the constants.
 	(load_multiple_operation): Don't redeclare elt in sub-block.
 	(arm_gen_movstrqi): Delete external declaration of optimize.
 	(gen_compare_reg): Declare parameter fp.
@@ -1134,7 +1134,7 @@ Fri Jun 26 09:31:24 1998  Kaveh R. Ghazi  <ghazi@caip.rutgers.edu>
 	(alpha_end_function): Mark parameter `decl' with ATTRIBUTE_UNUSED.
 	(check_float_value): Likewise for parameter `overflow'.
 	(alpha_need_linkage): Likewise for parameters `name' and `is_local'.
-	
+
 	* alpha.h (ASM_IDENTIFY_GCC, ASM_IDENTIFY_LANGUAGE): Define as
 	taking an argument.
 	(ASM_OUTPUT_SHORT): Cast argument to `int' in call to fprintf.
@@ -1215,7 +1215,7 @@ Thu Jun 25 15:08:16 1998  Mark Mitchell  <mark@markmitchell.com>
 	in an unpredictable state.  Propagate alias sets.
 	* reload1.c (reload): Clear MEM_ALIAS_SET for new MEMs about which
 	we have no alias information.
-	
+
 Thu Jun 25 16:59:18 1998  Andrew MacLeod  <amacleod@cygnus.com>
 
 	* except.h (CATCH_ALL_TYPE): Definition moved to eh-common.h.
@@ -1408,7 +1408,7 @@ Mon Jun 22 23:57:31 1998  David S. Miller  <davem@pierdol.cobaltmicro.com>
 	splits and peepholes): Change remaining generic gen_rtx calls to
 	specific genrtl ones.
 	* config/sparc/sparc.c: Likewise.
-	
+
 Mon Jun 22 22:21:46 1998  Richard Henderson  <rth@cygnus.com>
 
 	* gcc.c (handle_braces): Recognize | between options as an or.
@@ -1485,7 +1485,7 @@ Mon Jun 22 08:18:46 1998  Kaveh R. Ghazi  <ghazi@caip.rutgers.edu>
 	* varasm.c Include sdbout.h.
 	(assemble_static_space): Move sometimes-unused variable `rounded'
 	into the scope in which it is used.
-	
+
 	* mips.c (gpr_mode): Don't say `static' twice.
 
 	* cpplib.c (cpp_handle_option): Don't pass unneeded NULL to cpp_fatal.
@@ -1493,7 +1493,7 @@ Mon Jun 22 08:18:46 1998  Kaveh R. Ghazi  <ghazi@caip.rutgers.edu>
 	* objc/objc-act.c (init_selector): Hide prototype and definition.
 
 	* optabs.c (gen_cond_trap): Remove unused variable `icode'.
-	
+
 	* regmove.c (copy_src_to_dest): Likewise for `i'.
 
 	* mips-tfile.c (add_local_symbol): Cast width format specifier to int.
@@ -1512,7 +1512,7 @@ Mon Jun 22 08:18:46 1998  Kaveh R. Ghazi  <ghazi@caip.rutgers.edu>
 	(xfree): Likewise.
 
 	* mips-tdump.c (print_symbol): Likewise.
-	
+
 Sun Jun 21 17:05:34 1998  Dave Love  <d.love@dl.ac.uk>
 
 	* Makefile.in (install-info): Use install-info program if
@@ -2486,7 +2486,7 @@ Sun Jun  7 14:02:58 1998  Richard Henderson  <rth@cygnus.com>
 	* tree.h: Declare it.
 	* c-lang.c: Implement it.
 	* objc/objc-act.c: Likewise.
-	
+
 Sun Jun  7 12:27:30 1998  David Edelsohn  <edelsohn@mhpcc.edu>
 
 	* rs6000.md (restore_stack_block): Generate MEM and specify mode.

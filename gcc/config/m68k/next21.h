@@ -24,7 +24,7 @@ Boston, MA 02111-1307, USA.  */
 #include "nextstep21.h"
 
 /* for #include <mach.h> in libgcc2.c */
-#define NeXTStep21	
+#define NeXTStep21
 
 #undef	ASM_OUTPUT_DOUBLE
 #define ASM_OUTPUT_DOUBLE(FILE,VALUE)					\

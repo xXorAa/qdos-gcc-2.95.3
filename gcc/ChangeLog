@@ -460,11 +460,11 @@ Fri May 26 10:30:02 2000  Richard Earnshaw (rearnsha@arm.com)
 Wed May 24 00:25:45 2000  Alexandre Oliva  <oliva@lsd.ic.unicamp.br>
 
 	2000-05-22  Richard Henderson  <rth@cygnus.com>
-	* function.c (thread_prologue_and_epilogue_insns): Make sure 
+	* function.c (thread_prologue_and_epilogue_insns): Make sure
 	existing line number notes appear after the prologue.
 
 2000-05-16  Franz Sirl  <Franz.Sirl-kernel@lauterbach.com>
- 
+
 	* sysv4.h (CPP_OS_LINUX_SPEC): Define __unix and __linux according
 	to given options.
 
@@ -530,7 +530,7 @@ Wed Mar 22 13:11:54 2000  Gabriel Paubert  <paubert@iram.es>
 	* rs6000.md: Correct instructions length attributes and
 	constraints on unsigned compare instructions.
 	(*ne0): Disable for PowerPC64.
-	
+
 Tue Mar  7 21:41:17 2000  Jeffrey A Law  (law@cygnus.com)
 
 	* cccp.c (handle_directive): Initialize backslash_newlines_p.
@@ -555,7 +555,7 @@ Tue Mar  7 21:41:17 2000  Jeffrey A Law  (law@cygnus.com)
 
 	2000-01-18  Clinton Popetz  <cpopetz@cygnus.com>
 	* loop.c (check_dbra_loop): When checking a loop for
-	reversability, check the source of any stores to ensure they 
+	reversability, check the source of any stores to ensure they
 	don't depend on an initial value.
 
 	Sat Jan  8 12:12:46 2000  Nick Clifton  <nickc@cygnus.com>
@@ -763,10 +763,10 @@ Sun Oct 10 20:58:27 1999  David Edelsohn  <edelsohn@gnu.org>
 	Thu Oct  7 00:36:17 1999  Diego Novillo  <dnovillo@cygnus.com>
 	* config/rs6000/rs6000.c (secondary_reload_class): For TARGET_ELF
 	make sure that HIGH instructions are copied into BASE_REGS.
-	
+
 Thu Sep 30 05:40:34 1999  Richard Earnshaw <rearnsha@arm.com>
 
-	* c-lang.c (finish_file case ndef ASM_OUTPUT_{CON,DE}STRUCTOR): 
+	* c-lang.c (finish_file case ndef ASM_OUTPUT_{CON,DE}STRUCTOR):
 	Correctly build argument list to constructor and destructor functions.
 
 Wed Sep 22 17:55:31 1999  David Edelsohn  <edelsohn@gnu.org>
@@ -790,7 +790,7 @@ Wed Sep 15 21:20:38 1999  Mark Mitchell  <mark@codesourcery.com>
 	* c-typeck.c (qualify_type): Merge qualifiers from both types.
 
 Wed Sep 15 10:07:27 1999  Scott Bambrough <scottb@netwinder.org>
- 
+
 	* config/arm/linux-elf.h: define NO_IMPLICIT_EXTERN_C
 
 Tue Sep  7 16:50:59 1999  David Edelsohn  <edelsohn@gnu.org>
@@ -1041,7 +1041,7 @@ Sat Jul 17 23:58:24 1999  David Edelsohn  <edelsohn@gnu.org>
 	(insvdi): Reverse start and size in instruction template.
 
 1999-07-17  Alexandre Oliva  <oliva@dcc.unicamp.br>
-        
+
 	* gcc.texi: Update e-mail addresses and URLs to gcc.gnu.org.
 	Removed paragraph about compression of files and size limitation,
 	duplicated in the FAQ.  Use gcc-patches for posting patches.
@@ -1128,7 +1128,7 @@ Thu Jul  8 10:28:25 1999  Craig Burley  <craig@jcb-sc.com>
 
 Wed Jul  7 02:00:04 1999  Franz Sirl  <Franz.Sirl-kernel@lauterbach.com>
 
-	* reload1.c (gen_reload): When synthesizing a 3 operand add 
+	* reload1.c (gen_reload): When synthesizing a 3 operand add
 	sequence, improve test for when to reload OP1 into the reload
 	register instead of OP0.
 
@@ -1345,7 +1345,7 @@ Mon Jun 21 05:33:15 1999  Mumit Khan  <khan@xraylith.wisc.edu>
 
 	* c-pragma.c (push_alignment): Don't ignore alignments greater than
 	4 bytes.
-	(insert_pack_attributes): Take into account member natural 
+	(insert_pack_attributes): Take into account member natural
 	alignment.
 
 	* i386/winnt.c (exports_head): New static variable.
@@ -1531,7 +1531,7 @@ Wed Jun  9 23:01:17 1999  Michael Hayes  <m.hayes@elec.canterbury.ac.nz>
 Wed Jun  9 22:42:49 1999  Michael Hayes  <m.hayes@elec.canterbury.ac.nz>
 
 	* config/c4x/c4x.h (TARGET_EXPOSE_LDP, LEGITIMIZE_RELOAD_ADDRESS):
-	Define new macros. 
+	Define new macros.
 	* config/c4x/c4x.c (c4x_emit_move_sequence, src_operand): Use
 	TARGET_EXPOSE_LDP.
 	(c4x_legitimize_reload_address): New function.
@@ -1723,7 +1723,7 @@ Wed Jun  2 00:52:34 1999  David O'Brien <obrien@FreeBSD.org>
 	* i386/freebsd.h: Remove FREEBSD_NATIVE support.
 	* config/t-freebsd: Moved from config/i386/ so it can used for all
 	FreeBSD targets.
-	
+
 Mon May 31 02:22:55 1999  Philippe De Muyter  <phdm@macqel.be>
 
 	* m68k/x-mot3300 (XCFLAGS): Fixed to match stb.o, not f/stb.o.
@@ -1766,14 +1766,14 @@ Mon May 31 09:36:11 1999  Cort Dougan  <cort@cs.nmt.edu>
 
 Sat May 29 19:08:10 1999  Philip Blundell  <philb@gnu.org>
 
-	* config/arm/aout.h (ASM_OUTPUT_ALIGN): Only define if not already 
+	* config/arm/aout.h (ASM_OUTPUT_ALIGN): Only define if not already
 	defined.
 	* config/arm/elf.h (ASM_OUTPUT_ALIGN): Define.
 	(MAX_OFILE_ALIGNMENT): Likewise.
 
 Mon May 31 00:45:14 1999  Jeffrey A Law  (law@cygnus.com)
 
-	* jump.c (jump_optimize_1): Only set CAN_REACH_END if 
+	* jump.c (jump_optimize_1): Only set CAN_REACH_END if
 	calculate_can_reach_end returns nonzero.
 
 	* Makefile.in (CFLAGS): Remove warning flags.
@@ -1789,7 +1789,7 @@ Mon May 31 00:45:14 1999  Jeffrey A Law  (law@cygnus.com)
 
 Sun May 30 14:43:37 1999  Robert Lipe  <robertlipe@usa.net>
 
-	* fixincl.c: Replace local include scheme with #includes of 
+	* fixincl.c: Replace local include scheme with #includes of
 	gansidecl.h and system.h.
 	* procopen.c:  Likewise.
 	* server.c:  Likewise.
@@ -1841,7 +1841,7 @@ Thu May 27 03:07:13 1999  Philip Blundell  <pb@nexus.co.uk>
 	(OUTPUT_INT_ADDR_CONST): Mark symbols as position independent if
 	appropriate.
 	* config/arm/arm.md (consttable_4, consttable_8, consttable_end):
-	Keep track of when we are building the constant table.	
+	Keep track of when we are building the constant table.
 
 Thu May 27 02:52:55 1999  Jeffrey A Law  (law@cygnus.com)
 
@@ -1868,7 +1868,7 @@ Wed May 26 14:18:05 1999  Richard Henderson  <rth@cygnus.com>
 	(CPP_CPU_EV6_SPEC): Use FIX, not CIX.
 	(SECONDARY_MEMORY_NEEDED): Likewise.
 	(REGISTER_MOVE_COST): Likewise.
-	* alpha.c (override_options): Add FIX support.  Always use 
+	* alpha.c (override_options): Add FIX support.  Always use
 	ALPHA_TP_PROG for ev6.
 	* alpha.md (sqrt and mov[sd]i patterns): Use FIX, not CIX.
 	* alpha/elf.h (ASM_FILE_START): Look at FIX too.
@@ -1933,12 +1933,12 @@ Sat May 22 01:27:49 1999  Mark Mitchell  <mark@codesourcery.com>
 Thu May 20 10:00:42 1999   Stephen L Moshier  <moshier@world.std.com>
 
          * Makefile.in (GCC_FOR_TARGET): Add -I$(build_tooldir)/include.
-			 
+
 Thu May 20 09:58:57 1999  Jan Hubicka <hubicka@freesoft.cz>
 
 	* function.c (assign_stack_local): Align stack slot propertly.
 	(assign_outer_stack_local): Likewise.
- 
+
 Thu May 20 10:38:43 1999  Mark Mitchell  <mark@codesourcery.com>
 
 	* expr.h (lang_expand_constant): Declare.
@@ -2071,7 +2071,7 @@ Sat Oct 31 05:08:34 CET 1998 Jan Hubicka  (hubicka@freesoft.cz)
 
 	* reg-stack.c: Do not emit pop insns after cc0 setter.
 	(emit_pop_insn): Do not emit insn in case WHEN is NULL.
-	(compare_for_stack_reg): Update REG_DEAD note and 
+	(compare_for_stack_reg): Update REG_DEAD note and
 	do not emit push insn.
 
 	* i386.c: (output_float_compare): Handle new REG_DEAD notes.

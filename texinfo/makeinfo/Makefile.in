@@ -101,7 +101,7 @@ makeinfo_SOURCES = makeinfo.c makeinfo.h multi.c
 EXTRA_DIST = README
 mkinstalldirs = $(SHELL) $(top_srcdir)/../mkinstalldirs
 CONFIG_HEADER = ../config.h
-CONFIG_CLEAN_FILES = 
+CONFIG_CLEAN_FILES =
 noinst_PROGRAMS =  makeinfo$(EXEEXT)
 PROGRAMS =  $(noinst_PROGRAMS)
 
@@ -113,7 +113,7 @@ LIBS = @LIBS@
 makeinfo_OBJECTS =  makeinfo.o multi.o
 makeinfo_LDADD = $(LDADD)
 makeinfo_DEPENDENCIES =  ../lib/libtxi.a
-makeinfo_LDFLAGS = 
+makeinfo_LDFLAGS =
 CFLAGS = @CFLAGS@
 COMPILE = $(CC) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
 LINK = $(CC) $(CFLAGS) $(LDFLAGS) -o $@
@@ -216,16 +216,16 @@ dvi:
 check: all
 	$(MAKE)
 installcheck:
-install-exec: 
+install-exec:
 	@$(NORMAL_INSTALL)
 
-install-data: 
+install-data:
 	@$(NORMAL_INSTALL)
 
 install: install-exec install-data all
 	@:
 
-uninstall: 
+uninstall:
 
 install-strip:
 	$(MAKE) INSTALL_PROGRAM='$(INSTALL_PROGRAM) -s' INSTALL_SCRIPT='$(INSTALL_PROGRAM)' install

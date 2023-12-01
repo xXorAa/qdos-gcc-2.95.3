@@ -2261,7 +2261,7 @@ inc (int *a)
 (If you are writing a header file to be included in ANSI C programs, write
 @code{__inline__} instead of @code{inline}.  @xref{Alternate Keywords}.)
 You can also make all ``simple enough'' functions inline with the option
-@samp{-finline-functions}. 
+@samp{-finline-functions}.
 
 Note that certain usages in a function definition can make it unsuitable
 for inline substitution.  Among these usages are: use of varargs, use of
@@ -3148,7 +3148,7 @@ Predefined Macros,cpp.info,The C Preprocessor}).
                         method denoted by a @samp{->*} or @samp{.*} expression.
 * C++ Signatures::	You can specify abstract types to get subtype
 			 polymorphism independent from inheritance.
-                        
+
 @end menu
 
 @node Naming Results

@@ -23,8 +23,8 @@ Boston, MA 02111-1307, USA. */
 
 #define YES_UNDERSCORES
 
-#define DBX_DEBUGGING_INFO 
-#define SDB_DEBUGGING_INFO 
+#define DBX_DEBUGGING_INFO
+#define SDB_DEBUGGING_INFO
 #define PREFERRED_DEBUGGING_TYPE DBX_DEBUG
 
 #include "i386/gas.h"
@@ -269,15 +269,15 @@ do {									\
    differently depending on something about the variable or
    function named by the symbol (such as what section it is in).
 
-   On i386 running Windows NT, modify the assembler name with a suffix 
+   On i386 running Windows NT, modify the assembler name with a suffix
    consisting of an atsign (@) followed by string of digits that represents
-   the number of bytes of arguments passed to the function, if it has the 
+   the number of bytes of arguments passed to the function, if it has the
    attribute STDCALL.
 
-   In addition, we must mark dll symbols specially. Definitions of 
-   dllexport'd objects install some info in the .drectve section.  
+   In addition, we must mark dll symbols specially. Definitions of
+   dllexport'd objects install some info in the .drectve section.
    References to dllimport'd objects are fetched indirectly via
-   _imp__.  If both are declared, dllexport overrides.  This is also 
+   _imp__.  If both are declared, dllexport overrides.  This is also
    needed to implement one-only vtables: they go into their own
    section and we need to set DECL_SECTION_NAME so we do that here.
    Note that we can be called twice on the same decl.  */
@@ -313,7 +313,7 @@ do {									\
   else									\
     (VAR) = _name;							\
 } while (0)
-      
+
 
 /* Output a reference to a label.  */
 #undef ASM_OUTPUT_LABELREF
@@ -356,7 +356,7 @@ do {							\
 #undef TARGET_DEFAULT
 
 #define TARGET_DEFAULT \
-   (MASK_80387 | MASK_IEEE_FP | MASK_FLOAT_RETURNS | MASK_STACK_PROBE) 
+   (MASK_80387 | MASK_IEEE_FP | MASK_FLOAT_RETURNS | MASK_STACK_PROBE)
 
 /* This is how to output an assembler line
    that says to advance the location counter

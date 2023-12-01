@@ -481,7 +481,7 @@
 {
   if (GET_CODE (operands[0]) == MEM && GET_CODE (operands[1]) == MEM)
     operands[1] = copy_to_reg (operands[1]);
-  
+
   if (GET_CODE (operands[1]) == MEM)
     {
       rtx insn =
@@ -590,7 +590,7 @@
   return output_move_double (operands);
 }
 ")
-  
+
 (define_insn "movdf"
   [(set (match_operand:DF 0 "general_operand" "=r,&r,m,?f,?rm")
 	(match_operand:DF 1 "general_operand" "r,m,r,rfm,f"))]
@@ -801,11 +801,11 @@
   [(set (match_operand:SI 0 "register_operand" "=r")
 	(plus:SI (match_operand:SI 1 "nonmemory_operand" "%r")
 		 (match_operand:SI 2 "big_immediate_operand" "g")))]
-  "GET_CODE (operands[2]) == CONST_INT 
+  "GET_CODE (operands[2]) == CONST_INT
    && (unsigned) (INTVAL (operands[2]) + 0x8000000) < 0x10000000"
   "*
 {
-  return 
+  return
     output_add_large_offset (operands[0], operands[1], INTVAL (operands[2]));
 }")
 
@@ -972,11 +972,11 @@
 {
   unsigned int amount = INTVAL (operands[2]);
 
-  if (amount == 0) 
+  if (amount == 0)
     return \"add_nt %0,%1,$0\";
   else
     output_asm_insn (\"sra %0,%1,$1\", operands);
-  
+
   for (amount -= 1; amount > 0; amount -= 1)
     output_asm_insn (\"sra %0,%0,$1\", operands);
 
@@ -992,11 +992,11 @@
 {
   unsigned int amount = INTVAL (operands[2]);
 
-  if (amount == 0) 
+  if (amount == 0)
     return \"add_nt %0,%1,$0\";
   else
     output_asm_insn (\"srl %0,%1,$1\", operands);
-  
+
   for (amount -= 1; amount > 0; amount -= 1)
     output_asm_insn (\"srl %0,%0,$1\", operands);
 

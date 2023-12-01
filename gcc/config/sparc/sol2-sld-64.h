@@ -101,7 +101,7 @@
 %{!ansi: \
  %{traditional:/usr/lib/sparcv9/values-Xt.o%s} \
  %{!traditional:/usr/lib/sparcv9/values-Xa.o%s}}"
- 
+
 #ifdef SPARC_BI_ARCH
 
 #if DEFAULT_ARCH32_P
@@ -187,7 +187,7 @@
   { "link_arch64",       LINK_ARCH64_SPEC },              \
   { "link_arch_default", LINK_ARCH_DEFAULT_SPEC },	  \
   { "link_arch",	 LINK_ARCH_SPEC },
-    
+
 /* This should be the same as in svr4.h, except with -R added.  */
 #define LINK_ARCH32_SPEC \
   "%{G:-G} \
@@ -290,10 +290,10 @@
        %{pg:-Y P,/usr/lib/libp/sparcv9:/usr/lib/sparcv9} \
        %{!p:%{!pg:-Y P,/usr/lib/sparcv9}}}} \
    %{Qy:} %{!Qn:-Qy}"
-   
+
 #undef MD_STARTFILE_PREFIX
 #define MD_STARTFILE_PREFIX "/usr/lib/sparcv9/"
- 
+
 #endif /* ! SPARC_BI_ARCH */
 
 /*

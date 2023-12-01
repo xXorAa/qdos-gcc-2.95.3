@@ -257,7 +257,7 @@ arc_init_reg_tables ()
 	    arc_mode_class[i] = 1 << (int) T_MODE;
 	  else if (GET_MODE_SIZE (i) == 32)
 	    arc_mode_class[i] = 1 << (int) O_MODE;
-	  else 
+	  else
 	    arc_mode_class[i] = 0;
 	  break;
 	case MODE_FLOAT:
@@ -270,7 +270,7 @@ arc_init_reg_tables ()
 	    arc_mode_class[i] = 1 << (int) TF_MODE;
 	  else if (GET_MODE_SIZE (i) == 32)
 	    arc_mode_class[i] = 1 << (int) OF_MODE;
-	  else 
+	  else
 	    arc_mode_class[i] = 0;
 	  break;
 	case MODE_CC:
@@ -862,32 +862,32 @@ arc_address_cost (addr)
         |                       |       |                       |
  SP+16->+-----------------------+FP+48->+-----------------------+
         | 4 word save area for  |       |  reg parm save area,  |
-        | return addr, prev %fp |       |  only created for     |    
-  SP+0->+-----------------------+       |  variable argument    |    
-                                        |  functions            |    
-                                 FP+16->+-----------------------+    
-                                        | 4 word save area for  |    
-                                        | return addr, prev %fp |    
-                                  FP+0->+-----------------------+    
-                                        |                       |    
-                                        |  local variables      |    
-                                        |                       |    
-                                        +-----------------------+    
-                                        |                       |    
-                                        |  register save area   |    
-                                        |                       |    
-                                        +-----------------------+    
-                                        |                       |    
-                                        |  alloca allocations   |    
-                                        |                       |    
-                                        +-----------------------+    
-                                        |                       |    
-                                        |  arguments on stack   |    
-                                        |                       |    
+        | return addr, prev %fp |       |  only created for     |
+  SP+0->+-----------------------+       |  variable argument    |
+                                        |  functions            |
+                                 FP+16->+-----------------------+
+                                        | 4 word save area for  |
+                                        | return addr, prev %fp |
+                                  FP+0->+-----------------------+
+                                        |                       |
+                                        |  local variables      |
+                                        |                       |
+                                        +-----------------------+
+                                        |                       |
+                                        |  register save area   |
+                                        |                       |
+                                        +-----------------------+
+                                        |                       |
+                                        |  alloca allocations   |
+                                        |                       |
+                                        +-----------------------+
+                                        |                       |
+                                        |  arguments on stack   |
+                                        |                       |
                                  SP+16->+-----------------------+
-   low                                  | 4 word save area for  |    
-   memory                               | return addr, prev %fp |    
-                                  SP+0->+-----------------------+    
+   low                                  | 4 word save area for  |
+   memory                               | return addr, prev %fp |
+                                  SP+0->+-----------------------+
 
 Notes:
 1) The "reg parm save area" does not exist for non variable argument fns.
@@ -1503,7 +1503,7 @@ output_shift (operands)
 			     ASM_COMMENT_START);
 	      output_asm_insn (shift_one, operands);
 	    }
-	  else 
+	  else
 	    {
 	      asm_fprintf (asm_out_file, "1:\t%s begin shift loop\n",
 			   ASM_COMMENT_START);
@@ -1892,7 +1892,7 @@ arc_final_prescan_insn (insn, opvec, noperands)
 
   /* If we start with a return insn, we only succeed if we find another one. */
   int seeking_return = 0;
-  
+
   /* START_INSN will hold the insn from where we start looking.  This is the
      first insn after the following code_label if REVERSE is true.  */
   rtx start_insn = insn;
@@ -2047,8 +2047,8 @@ arc_final_prescan_insn (insn, opvec, noperands)
 
 	    case BARRIER:
 	      /* Succeed if the following insn is the target label.
-		 Otherwise fail.  
-		 If return insns are used then the last insn in a function 
+		 Otherwise fail.
+		 If return insns are used then the last insn in a function
 		 will be a barrier. */
 	      next_must_be_target_label_p = TRUE;
 	      break;

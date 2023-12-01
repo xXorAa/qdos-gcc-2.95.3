@@ -127,7 +127,7 @@ Boston, MA 02111-1307, USA.  */
 
 /* Override parts of m68k.h to fit the CRuDS assembler.  */
 
-#undef TARGET_VERSION 
+#undef TARGET_VERSION
 #define TARGET_VERSION fprintf (stderr, " (68k, CRDS/UNOS)");
 
 /* Specify extra dir to search for include files.  */
@@ -150,7 +150,7 @@ Boston, MA 02111-1307, USA.  */
 /* Output to assembler file text saying following lines
    no longer contain unusual constructs.  */
 
-#undef ASM_APP_OFF 
+#undef ASM_APP_OFF
 #define ASM_APP_OFF ";#NO_APP\n"
 
 /* The prefix for immediate operands.  */
@@ -170,7 +170,7 @@ do { long l[2];						\
 /*unos has no .skip :-( */
 #undef ASM_OUTPUT_SKIP
 #define ASM_OUTPUT_SKIP(FILE,SIZE)	 	\
-    fprintf (FILE, "\t. = . + %u\n", (SIZE));	
+    fprintf (FILE, "\t. = . + %u\n", (SIZE));
 
 /* This says how to output an assembler line
    to define a local common symbol.  */

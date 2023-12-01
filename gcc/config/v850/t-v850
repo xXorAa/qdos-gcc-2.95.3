@@ -31,7 +31,7 @@ LIB1ASMFUNCS	= _mulsi3 \
 		  _save_varargs \
 		  _save_interrupt \
 		  _save_all_interrupt
-	
+
 
 # These are really part of libgcc1, but this will cause them to be
 # built correctly, so...

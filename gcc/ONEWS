@@ -23,7 +23,7 @@ also includes some major changes to the setjmp/longjmp based EH mechanism to
 make it less pessimistic.  And finally, major infrastructure improvements
 to the dwarf2 EH mechanism have been made to make our EH support extensible.
 
-We have fixed the infamous security problems with temporary files. 
+We have fixed the infamous security problems with temporary files.
 
 The "regmove" optimization pass has been nearly completely rewritten.  It now
 uses much more information about the target to determine profitability of
@@ -93,7 +93,7 @@ Target specific NEWS
          Unixware 7, a System V Release 5 target is now supported.
          SCO OpenServer targets can support GAS.  See gcc/INSTALL for details.
 
-    RS6000/PowerPC: Includes AIX4.3 support as well as PowerPC64 support.  
+    RS6000/PowerPC: Includes AIX4.3 support as well as PowerPC64 support.
                     Haifa instruction scheduling is enabled by default now.
 
     MIPS: Multiply/Multiply-Add support has been largely rewritten to generate
@@ -193,7 +193,7 @@ Changes in Objective-C:
 
     The Objective-C Runtime Library can be built as a DLL on Windows 95
     and Windows NT systems.
-    
+
     The Objective-C Runtime Library implements +load.
 
 The following new targets are supported (see also list under each
@@ -227,7 +227,7 @@ Additional supported processors and systems for MIPS targets:
     N32 and N64 ABI.
     IRIX 6.2.
     SNI SINIX.
-    
+
 New features for Intel x86 family:
 
     Add scheduling parameters for Pentium and Pentium Pro.
@@ -693,7 +693,7 @@ There have been two major enhancements to the Objective-C compiler:
 
 2) Selectors have been redefined to be pointers to structs like:
    { void *sel_id, char *sel_types }, where the sel_id is the unique
-   identifier, the selector itself is no longer unique.  
+   identifier, the selector itself is no longer unique.
 
    Programmers should use the new function sel_eq to test selector
    equivalence.
@@ -744,7 +744,7 @@ machine-specific files.
 - GCC can now convert division by integer constants into the equivalent
   multiplication and shift operations when that is faster than the
   division.
-	
+
 - Two new warning options, -Wbad-function-cast and
   -Wmissing-declarations have been added.
 
@@ -849,7 +849,7 @@ can now use assertions to distinguish among all supported targets.
 * Nested functions in C may now be inline.  Just declare them inline
 in the usual way.
 
-* Packed structure members are now supported fully; it should be possible 
+* Packed structure members are now supported fully; it should be possible
 to access them on any supported target, no matter how little alignment
 they have.
 
@@ -883,7 +883,7 @@ or like this (works in older versions too):
 
     const intfn computation;
 
-* The new option -iwithprefixbefore specifies a directory to add to 
+* The new option -iwithprefixbefore specifies a directory to add to
 the search path for include files in the same position where -I would
 put it, but uses the specified prefix just like -iwithprefix.
 
@@ -977,7 +977,7 @@ header files (on all but a handful of old target machines).
 Therefore, the bug that size_t failed to be unsigned is fixed.
 
 * Building and installation are now completely separate.
-All new files are constructed during the build process; 
+All new files are constructed during the build process;
 installation just copies them.
 
 * New targets supported: Clipper, Hitachi SH, Hitachi 8300, and Sparc
@@ -986,7 +986,7 @@ Lite.
 * A totally new and much better Objective C run time system is included.
 
 * Objective C supports many new features.  Alas, I can't describe them
-since I don't use that language; however, they are the same ones 
+since I don't use that language; however, they are the same ones
 supported in recent versions of the NeXT operating system.
 
 * The builtin functions __builtin_apply_args, __builtin_apply and
@@ -1059,7 +1059,7 @@ Newly documented compiler options:
 
 -Woverloaded-virtual
 	Warn when a derived class function declaration may be an error
-	in defining a C++ virtual function. 
+	in defining a C++ virtual function.
 
 -Wtemplate-debugging
 	When using templates in a C++ program, warn if debugging is

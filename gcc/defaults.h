@@ -134,7 +134,7 @@ do { fprintf (FILE, "\t%s\t", ASM_LONG);				\
 #endif
 
 /* If the target supports weak symbols, define TARGET_ATTRIBUTE_WEAK to
-   provide a weak attribute.  Else define it to nothing. 
+   provide a weak attribute.  Else define it to nothing.
 
    This would normally belong in gansidecl.h, but SUPPORTS_WEAK is
    not available at that time.

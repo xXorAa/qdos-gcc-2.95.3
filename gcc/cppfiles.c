@@ -217,7 +217,7 @@ include_hash (pfile, fname, add)
 
   if (!add)
     return 0;
-  
+
   l = (struct include_hash *) xmalloc (sizeof (struct include_hash));
   l->next = NULL;
   l->next_this_file = NULL;
@@ -228,7 +228,7 @@ include_hash (pfile, fname, add)
     m->next = l;
   else
     pfile->all_include_files[hash % ALL_INCLUDE_HASHSIZE] = l;
-  
+
   return l;
 }
 
@@ -315,7 +315,7 @@ find_include_file (pfile, fname, search_start, ihash, before)
   struct include_hash *ih, *jh;
   int f, len;
   char *name;
-  
+
   ih = include_hash (pfile, fname, 1);
   jh = redundant_include_p (pfile, ih,
 			    fname[0] == '/' ? ABSOLUTE_PATH : search_start);
@@ -352,8 +352,8 @@ find_include_file (pfile, fname, search_start, ihash, before)
   *ihash = ih;
   ih->nshort = xstrdup (fname);
   ih->control_macro = NULL;
-  
-  /* If the pathname is absolute, just open it. */ 
+
+  /* If the pathname is absolute, just open it. */
   if (fname[0] == '/')
     {
       ih->foundhere = ABSOLUTE_PATH;
@@ -392,7 +392,7 @@ find_include_file (pfile, fname, search_start, ihash, before)
 	  return f;
         }
     }
-  
+
     if (jh)
       {
 	jh->next_this_file = NULL;
@@ -520,7 +520,7 @@ read_name_map (pfile, dirname)
 	      ptr->map_to[dirlen] = '/';
 	      strcpy (ptr->map_to + dirlen + 1, to);
 	      free (to);
-	    }	      
+	    }
 
 	  ptr->map_next = map_list_ptr->map_list_map;
 	  map_list_ptr->map_list_map = ptr;
@@ -531,12 +531,12 @@ read_name_map (pfile, dirname)
 	}
       fclose (f);
     }
-  
+
   map_list_ptr->map_list_next = CPP_OPTIONS (pfile)->map_list;
   CPP_OPTIONS (pfile)->map_list = map_list_ptr;
 
   return map_list_ptr->map_list_map;
-}  
+}
 
 /* Remap NAME based on the file_name_map (if any) for LOC. */
 
@@ -556,9 +556,9 @@ remap_filename (pfile, name, loc)
 
   if (loc->name_map == (struct file_name_map *)-1)
     return name;
-  
+
   from = name + strlen (loc->name) + 1;
-  
+
   for (map = loc->name_map; map; map = map->map_next)
     if (!strcmp (map->map_from, from))
       return map->map_to;
@@ -589,7 +589,7 @@ remap_filename (pfile, name, loc)
       dir = newdir;
       from = p + 1;
     }
-  
+
   for (map = read_name_map (pfile, dir); map; map = map->map_next)
     if (! strcmp (map->map_from, name))
       return map->map_to;
@@ -720,7 +720,7 @@ actual_directory (pfile, fname)
   char *last_slash, *dir;
   size_t dlen;
   struct file_name_list *x;
-  
+
   dir = xstrdup (fname);
   last_slash = rindex (dir, '/');
   if (last_slash)
@@ -802,7 +802,7 @@ find_position (start, limit, linep, colp)
    breaks, backslash-newline set off by whitespace, newline at EOF -
    has been optimized at the expense of the others.  The performance
    penalty for DOS style line breaks (\r\n) is about 15%.
-   
+
    Warnings lose particularly heavily since we have to determine the
    line number, which involves scanning from the beginning of the file
    or from the last warning.  The penalty for the absence of a newline
@@ -1184,7 +1184,7 @@ deps_output (pfile, string, spacer)
       bcopy (" \\\n  ", &pfile->deps_buffer[pfile->deps_size], 5);
       pfile->deps_size += 5;
     }
-  
+
   if (spacer == ' ' && pfile->deps_column > 0)
     pfile->deps_buffer[pfile->deps_size++] = ' ';
   bcopy (string, &pfile->deps_buffer[pfile->deps_size], size);
@@ -1221,7 +1221,7 @@ simplify_pathname (path)
     /* Convert all backslashes to slashes. */
     for (from = path; *from; from++)
 	if (*from == '\\') *from = '/';
-    
+
     /* Skip over leading drive letter if present. */
     if (ISALPHA (path[0]) && path[1] == ':')
 	from = to = &path[2];
@@ -1230,7 +1230,7 @@ simplify_pathname (path)
 #else
     from = to = path;
 #endif
-    
+
     /* Remove redundant initial /s.  */
     if (*from == '/')
     {
@@ -1248,7 +1248,7 @@ simplify_pathname (path)
 	}
     }
     base = to;
-    
+
     for (;;)
     {
 	while (*from == '/')
@@ -1310,9 +1310,9 @@ simplify_pathname (path)
 		    goto done;
 		}
 	    }
-	
+
     }
-    
+
  done:
     /* Trim trailing slash */
     if (to[0] == '/' && (!absolute || to > path+1))
@@ -1322,7 +1322,7 @@ simplify_pathname (path)
        will always work. */
     if (to == path)
       *to++ = '.';
-    
+
     *to = '\0';
 
     return;
@@ -1404,11 +1404,11 @@ hack_vms_include_specification (fullname)
   /* We are trying to do a number of things here.  First of all, we are
      trying to hammer the filenames into a standard format, such that later
      processing can handle them.
-     
+
      If the file name contains something like [dir.], then it recognizes this
      as a root, and strips the ".]".  Later processing will add whatever is
      needed to get things working properly.
-     
+
      If no device is specified, then the first directory name is taken to be
      a device name (or a rooted logical).  */
 
@@ -1469,7 +1469,7 @@ hack_vms_include_specification (fullname)
          If there is no device specification either, we make the first dir a
          device and try that.  If we do not do this, then we will be essentially
          searching the users default directory (as if they did a #include "asdf.h").
-        
+
          Then all we need to do is to push a '[' into the output string. Later
          processing will fill this in, and close the bracket.  */
 

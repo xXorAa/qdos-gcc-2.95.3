@@ -416,7 +416,7 @@ static int addr_inc;
    'J' for the negative of a constant
    'Q' for printing addresses in B mode syntax
    'd' for the second register in a pair
-   't' for the third register in a triple 
+   't' for the third register in a triple
    'b' for the bit number (using 1750 test bit convention)
    'B' for the bit number of the 1's complement (for bit clear)
    'w' for int - 16
@@ -707,7 +707,7 @@ int
 one_bit_set_p (x)
      int x;
 {
-  x &= 0xffff; 
+  x &= 0xffff;
   return x && (x & (x - 1)) == 0;
 }
 

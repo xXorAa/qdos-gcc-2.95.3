@@ -1,9 +1,9 @@
 @tex
 %% Cygnus revisions to texinfo.tex, TeX macros to handle texinfo files
 %   Copyright (C) 1991 Free Software Foundation, Inc.
-%% Maintained at Cygnus Support as: 
+%% Maintained at Cygnus Support as:
 %%$Id: texiplus.tex,v 1.1.1.1 1998/03/23 04:42:12 law Exp $
-  
+
 %This texi+.tex file is free software; you can redistribute it and/or
 %modify it under the terms of the GNU General Public License as
 %published by the Free Software Foundation; either version 1, or (at
@@ -11,7 +11,7 @@
 {\let\fsfvn=\texinfoversion
 \xdef\texinfoversion{\fsfvn\ (Cygnus)}}
 \message{Loading Cygnus texinfo revisions [\texinfoversion]:}
-  
+
 % Print the version number if in a .fmt file.
 \everyjob{\message{[Cygnus Texinfo \texinfoversion]}}
 
@@ -24,14 +24,14 @@
 \outerhsize=7in
 \outervsize=9in
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		
+
 \newif\ifdraft\drafttrue % Extra markings; turn off with @finalout
 
-% There are only two small changes to standard \title from texinfo 
+% There are only two small changes to standard \title from texinfo
 % (1) to include DRAFT marking on title page unless @finalout
 % (2) to include a title-sized \tt font
 % However, since \title is local to \titlepage, we have to redefine
-% *that* whole damned thing.  
+% *that* whole damned thing.
 %%%%%%%%%%This is sensitive to conflict w/FSF changes!****************
 \def\titlepage{\begingroup \parindent=0pt \textfonts
    \let\subtitlerm=\tenrm
@@ -70,7 +70,7 @@
    \def\author{\parsearg\authorzzz}%
    \def\authorzzz##1{\ifseenauthor\else\vskip 0pt plus 1filll\seenauthortrue\fi
       {\authorfont \leftline{##1}}}%
-   %  
+   %
    % Most title ``pages'' are actually two pages long, with space
    % at the top of the second.  We don't want the ragged left on the second.
    \let\oldpage = \page
@@ -155,7 +155,7 @@
 %Font overrides; we use PostScript when possible.
 \font\textrm=pncr scaled \magstephalf
 \font\texttt=pcrr
-\font\textbf=pncb scaled \magstephalf 
+\font\textbf=pncb scaled \magstephalf
 \font\textit=pncri scaled \magstephalf
 \font\textsl=pcrro
 \font\textsf=slcrst at 9.5pt
@@ -183,7 +183,7 @@
 % \chapfonts mod from FSF vn is to include baselineskip, for the few
 % cases where a title chapter overflows its line.
 \def\chapfonts{\baselineskip=19pt%
-  \let\tenrm=\chaprm \let\tenit=\chapit \let\tensl=\chapsl 
+  \let\tenrm=\chaprm \let\tenit=\chapit \let\tensl=\chapsl
   \let\tenbf=\chapbf \let\tentt=\chaptt \let\smallcaps=\chapsc
   \let\tensf=\chapsf \let\teni=\chapi \let\tensy=\chapsy
   \resetmathfonts}
@@ -210,8 +210,8 @@
 \font\truesecrm=pncr at 12pt
 
 % Fonts for short table of contents
-\font\shortcontrm=pncr at 12pt 
-\font\shortcontbf=pncb at 12pt 
+\font\shortcontrm=pncr at 12pt
+\font\shortcontbf=pncb at 12pt
 \font\shortcontsl=pncri at 12pt
 
 % \smartitalic{ARG} outputs arg in italics, followed by an italic correction
@@ -235,7 +235,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % @altref, if called explicitly (inside @iftex), switches the @ref
 % printed output so it lacks the square brackets used by default.
-% While we're at it, we use double quotes instead of square brackets 
+% While we're at it, we use double quotes instead of square brackets
 % (or no decorator at all, depending on state of @altref toggle).
 % Unfortunately this requires reproducing the entire damn xrefX
 % definition. WARNING: may need to track texinfo.tex changes to xrefX...

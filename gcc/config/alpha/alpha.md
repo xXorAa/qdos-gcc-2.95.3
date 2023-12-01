@@ -30,7 +30,7 @@
 ;;	4	cvtlq
 ;;	5	cvtql
 ;;	6	nt_lda
-;;	
+;;
 ;; UNSPEC_VOLATILE:
 ;;
 ;;	0	imb
@@ -220,14 +220,14 @@
   (and (eq_attr "cpu" "ev5")
        (eq_attr "type" "fadd,fcmov,fmul,fcpys,fbr,fdiv"))
   4 1)
-  
+
 (define_function_unit "ev5_fm" 1 0
   (and (eq_attr "cpu" "ev5")
        (eq_attr "type" "fmul"))
   4 1)
 
 ; Add and cmov as you would expect; fbr never produces a result;
-; fdiv issues through fa to the divider, 
+; fdiv issues through fa to the divider,
 (define_function_unit "ev5_fa" 1 0
   (and (eq_attr "cpu" "ev5")
        (eq_attr "type" "fadd,fcmov,fbr,fdiv"))
@@ -252,7 +252,7 @@
 ;; EV6 has two symmetric pairs ("clusters") of two asymetric integer units
 ;; ("upper" and "lower"), yielding pipe names U0, U1, L0, L1.
 
-;; Conditional moves decompose into two independant primitives, each 
+;; Conditional moves decompose into two independant primitives, each
 ;; taking one cycle.  Since ev6 is out-of-order, we can't see anything
 ;; but two cycles.
 (define_function_unit "ev6_ebox" 4 0
@@ -337,7 +337,7 @@
 
 ;; For the FPU we are very similar to EV5, except there's no insn that
 ;; can issue to fm & fa, so we get to leave that out.
-  
+
 (define_function_unit "ev6_fm" 1 0
   (and (eq_attr "cpu" "ev6")
        (eq_attr "type" "fmul"))
@@ -671,7 +671,7 @@
   [(set (match_dup 0) (plus:DI (match_dup 1) (match_dup 2)))
    (set (match_dup 0) (plus:DI (match_dup 0) (match_dup 3)))]
   "")
-					   
+
 (define_insn ""
   [(set (match_operand:SI 0 "some_operand" "=&r")
 	(plus:SI (plus:SI (mult:SI (match_operand:SI 1 "some_operand" "rJ")
@@ -1110,13 +1110,13 @@
   "! TARGET_BWX"
   "and %1,0xff,%0"
   [(set_attr "type" "ilog")])
-  
+
 (define_expand "zero_extendqidi2"
   [(set (match_operand:DI 0 "register_operand" "")
 	(zero_extend:DI (match_operand:QI 1 "register_operand" "")))]
   ""
   "")
-  
+
 (define_insn ""
   [(set (match_operand:SI 0 "register_operand" "=r,r")
 	(zero_extend:SI (match_operand:HI 1 "nonimmediate_operand" "r,m")))]
@@ -1219,7 +1219,7 @@
   "eqv %r1,%2,%0"
   [(set_attr "type" "ilog")])
 
-;; Handle the FFS insn iff we support CIX. 
+;; Handle the FFS insn iff we support CIX.
 ;;
 ;; These didn't make it into EV6 pass 2 as planned.  Instead they
 ;; cropped cttz/ctlz/ctpop from the old CIX and renamed it FIX for
@@ -1249,7 +1249,7 @@
 	(unspec [(match_operand:DI 1 "register_operand" "r")] 1))]
   "TARGET_CIX"
   "cttz %1,%0"
-  ; EV6 calls all mvi and cttz/ctlz/popc class imisc, so just 
+  ; EV6 calls all mvi and cttz/ctlz/popc class imisc, so just
   ; reuse the existing type name.
   [(set_attr "type" "mvi")])
 
@@ -1295,7 +1295,7 @@
 ;;    return \"s%P2addl %r1,0,%0\";
 ;; }"
 ;;  [(set_attr "type" "iadd")])
-			  
+
 (define_insn "lshrdi3"
   [(set (match_operand:DI 0 "register_operand" "=r")
 	(lshiftrt:DI (match_operand:DI 1 "reg_or_0_operand" "rJ")
@@ -1328,7 +1328,7 @@
 				   force_reg (QImode, operands[1])));
       DONE;
     }
- 
+
  /* If we have an unaligned MEM, extend to DImode (which we do
      specially) and then copy to the result.  */
   if (unaligned_memory_operand (operands[1], HImode))
@@ -1577,7 +1577,7 @@
   [(set_attr "type" "shift")])
 
 ;; Combine has some strange notion of preserving existing undefined behaviour
-;; in shifts larger than a word size.  So capture these patterns that it 
+;; in shifts larger than a word size.  So capture these patterns that it
 ;; should have turned into zero_extracts.
 
 (define_insn ""
@@ -1667,11 +1667,11 @@
 ;;		   (match_dup 4)))]
 ;;  "
 ;;{
-;;  operands[6] = plus_constant (operands[3], 
+;;  operands[6] = plus_constant (operands[3],
 ;;			       INTVAL (operands[2]) / BITS_PER_UNIT);
 ;;  operands[7] = GEN_INT (- INTVAL (operands[2]) / BITS_PER_UNIT);
 ;;}")
-  
+
 (define_insn ""
   [(set (match_operand:DI 0 "register_operand" "=r")
 	(ashift:DI (zero_extend:DI (match_operand:QI 1 "register_operand" "r"))
@@ -2625,7 +2625,7 @@
   [(set_attr "type" "icmov")])
 
 (define_expand "umaxdi3"
-  [(set (match_dup 3) 
+  [(set (match_dup 3)
 	(leu:DI (match_operand:DI 1 "reg_or_0_operand" "")
 		(match_operand:DI 2 "reg_or_8bit_operand" "")))
    (set (match_operand:DI 0 "register_operand" "")
@@ -2839,7 +2839,7 @@
 
 (define_insn ""
   [(set (match_operand:DF 0 "register_operand" "=f,f")
-	(if_then_else:DF 
+	(if_then_else:DF
 	 (match_operator 3 "signed_comparison_operator"
 			 [(match_operand:DF 4 "reg_or_fp0_operand" "fG,fG")
 			  (match_operand:DF 2 "fp0_operand" "G,G")])
@@ -2853,7 +2853,7 @@
 
 (define_insn ""
   [(set (match_operand:SF 0 "register_operand" "=f,f")
-	(if_then_else:SF 
+	(if_then_else:SF
 	 (match_operator 3 "signed_comparison_operator"
 			 [(match_operand:DF 4 "reg_or_fp0_operand" "fG,fG")
 			  (match_operand:DF 2 "fp0_operand" "G,G")])
@@ -2867,7 +2867,7 @@
 
 (define_insn ""
   [(set (match_operand:DF 0 "register_operand" "=f,f")
-	(if_then_else:DF 
+	(if_then_else:DF
 	 (match_operator 3 "signed_comparison_operator"
 			 [(match_operand:DF 4 "reg_or_fp0_operand" "fG,fG")
 			  (match_operand:DF 2 "fp0_operand" "G,G")])
@@ -2881,9 +2881,9 @@
 
 (define_insn ""
   [(set (match_operand:DF 0 "register_operand" "=f,f")
-	(if_then_else:DF 
+	(if_then_else:DF
 	 (match_operator 3 "signed_comparison_operator"
-			 [(float_extend:DF 
+			 [(float_extend:DF
 			   (match_operand:SF 4 "reg_or_fp0_operand" "fG,fG"))
 			  (match_operand:DF 2 "fp0_operand" "G,G")])
 	 (match_operand:DF 1 "reg_or_fp0_operand" "fG,0")
@@ -2896,7 +2896,7 @@
 
 (define_insn ""
   [(set (match_operand:SF 0 "register_operand" "=f,f")
-	(if_then_else:SF 
+	(if_then_else:SF
 	 (match_operator 3 "signed_comparison_operator"
 			 [(float_extend:DF
 			   (match_operand:SF 4 "reg_or_fp0_operand" "fG,fG"))
@@ -2911,7 +2911,7 @@
 
 (define_insn ""
   [(set (match_operand:DF 0 "register_operand" "=f,f")
-	(if_then_else:DF 
+	(if_then_else:DF
 	 (match_operator 3 "signed_comparison_operator"
 			 [(float_extend:DF
 			   (match_operand:SF 4 "reg_or_fp0_operand" "fG,fG"))
@@ -3380,7 +3380,7 @@
        && ! (extended_count (operands[2], DImode, unsignedp) >= 1
 	     && extended_count (operands[3], DImode, unsignedp) >= 1)))
     FAIL;
- 
+
   if (GET_CODE (operands[3]) == CONST_INT)
     tem = gen_rtx_PLUS (SImode, operands[2],
 			GEN_INT (- INTVAL (operands[3])));
@@ -3456,7 +3456,7 @@
 			GEN_INT (- INTVAL (operands[3])));
   else
     tem = gen_rtx_MINUS (SImode, operands[2], operands[3]);
-  
+
   operands[5] = gen_rtx_SIGN_EXTEND (DImode, tem);
   operands[6] = gen_rtx_fmt_ee (GET_CODE (operands[1]), VOIDmode,
 				operands[4], const0_rtx);
@@ -3716,7 +3716,7 @@
    jsr $26,%0\;ldgp $29,0($26)"
   [(set_attr "type" "jsr")
    (set_attr "length" "12,*,16")])
-      
+
 (define_insn ""
   [(call (mem:DI (match_operand:DI 0 "call_operand" "r,R,i"))
 	 (match_operand 1 "" ""))
@@ -3728,7 +3728,7 @@
    jsr $26,%0"
   [(set_attr "type" "jsr")
    (set_attr "length" "*,*,12")])
-      
+
 (define_insn ""
   [(call (mem:DI (match_operand:DI 0 "call_operand" "r,i"))
 	 (match_operand 1 "" ""))
@@ -4342,7 +4342,7 @@
 	    }
 	  else
 	    abort();
-	  
+
           tem = alpha_emit_set_long_const (operands[0], i0, i1);
           if (rtx_equal_p (tem, operands[0]))
 	    DONE;
@@ -4401,10 +4401,10 @@
 	(zero_extract:DI (subreg:DI (match_dup 3) 0)
 			 (const_int 8)
 			 (match_operand:DI 2 "const_int_operand" "")))]
-	 
+
   ""
   "")
-  
+
 (define_expand "aligned_loadhi"
   [(set (match_operand:SI 3 "register_operand" "")
 	(match_operand:SI 1 "memory_operand" ""))
@@ -4412,10 +4412,10 @@
 	(zero_extract:DI (subreg:DI (match_dup 3) 0)
 			 (const_int 16)
 			 (match_operand:DI 2 "const_int_operand" "")))]
-	 
+
   ""
   "")
-  
+
 ;; Similar for unaligned loads, where we use the sequence from the
 ;; Alpha Architecture manual.
 ;;
@@ -4449,7 +4449,7 @@
   "")
 
 ;; Storing an aligned byte or word requires two temporaries.  Operand 0 is the
-;; aligned SImode MEM.  Operand 1 is the register containing the 
+;; aligned SImode MEM.  Operand 1 is the register containing the
 ;; byte or word to store.  Operand 2 is the number of bits within the word that
 ;; the value should be placed.  Operands 3 and 4 are SImode temporaries.
 
@@ -4601,7 +4601,7 @@
     }
 
   else if (GET_CODE (operands[0]) == MEM
-	   || (GET_CODE (operands[0]) == SUBREG 
+	   || (GET_CODE (operands[0]) == SUBREG
 	       && GET_CODE (SUBREG_REG (operands[0])) == MEM)
 	   || (reload_in_progress && GET_CODE (operands[0]) == REG
 	       && REGNO (operands[0]) >= FIRST_PSEUDO_REGISTER)
@@ -4719,7 +4719,7 @@
     }
 
   else if (GET_CODE (operands[0]) == MEM
-	   || (GET_CODE (operands[0]) == SUBREG 
+	   || (GET_CODE (operands[0]) == SUBREG
 	       && GET_CODE (SUBREG_REG (operands[0])) == MEM)
 	   || (reload_in_progress && GET_CODE (operands[0]) == REG
 	       && REGNO (operands[0]) >= FIRST_PSEUDO_REGISTER)
@@ -4812,7 +4812,7 @@
 
   if (aligned_memory_operand (operands[1], HImode))
     {
-      seq = gen_reload_inhi_help (operands[0], operands[1], 
+      seq = gen_reload_inhi_help (operands[0], operands[1],
 				  gen_rtx_REG (SImode, REGNO (operands[2])));
     }
   else
@@ -4956,7 +4956,7 @@
 				 operands[2]));
   DONE;
 }")
-  
+
 (define_split
   [(set (match_operand:HI 0 "register_operand" "r")
         (match_operand:HI 1 "memory_operand" "m"))
@@ -4971,7 +4971,7 @@
 				 operands[2]));
   DONE;
 }")
-  
+
 (define_split
   [(set (match_operand:QI 0 "memory_operand" "m")
         (match_operand:QI 1 "register_operand" "r"))
@@ -5141,7 +5141,7 @@
 ;; bytes, we need do nothing.
 ;;
 ;; If it is more than 4096 bytes, we need to probe the stack
-;; periodically. 
+;; periodically.
 (define_expand "allocate_stack"
   [(set (reg:DI 30)
 	(plus:DI (reg:DI 30)

@@ -15,12 +15,12 @@ CROSS_LIBGCC1 = libgcc1.null
 m88kdgux.ld: $(srcdir)/config/m88k/dgux.ld
 	rm -f m88kdgux.ld; cp $(srcdir)/config/m88k/dgux.ld ./m88kdgux.ld
 
-# A bcs crtbegin.o is needed since bcs does not  
-# increment the stack pointer in the init section as elf does 
+# A bcs crtbegin.o is needed since bcs does not
+# increment the stack pointer in the init section as elf does
 bcscrtbegin.o:     crtstuff.c $(GCC_PASSES) $(CONFIG_H) gbl-ctors.h
 	$(GCC_FOR_TARGET) $(GCC_CFLAGS) $(INCLUDES) -DCRT_BEGIN -DBCS \
 	-finhibit-size-directive -fno-inline-functions \
-	-g0 -c $(srcdir)/crtstuff.c -o bcscrtbegin.o 
+	-g0 -c $(srcdir)/crtstuff.c -o bcscrtbegin.o
 
 # Build libgcc.a, crtbegin.o, and crtend.o as bcs objects
 GCC_FOR_TARGET = PATH=/usr/sde/m88kbcs/usr/bin/:/usr/bin TARGET_BINARY_INTERFACE=m88kbcs ./xgcc -B./ -msvr3 -D_M88KBCS_TARGET -mno-ocs-debug-info

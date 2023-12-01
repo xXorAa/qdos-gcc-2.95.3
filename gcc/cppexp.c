@@ -23,7 +23,7 @@ Boston, MA 02111-1307, USA.
 Written by Per Bothner 1994.  */
 
 /* Parse a C expression from text in a string  */
-   
+
 #include "config.h"
 #include "system.h"
 #include "cpplib.h"
@@ -188,7 +188,7 @@ parse_number (pfile, start, end)
 	  /* Don't look for any more digits after the suffixes.  */
 	  break;
 	}
-      
+
       if (largest_digit < digit)
 	largest_digit = digit;
       nd = n * base + digit;
@@ -211,7 +211,7 @@ parse_number (pfile, start, end)
       cpp_error (pfile, "too many `u' suffixes in integer constant");
       goto error;
     }
-  
+
   if (base <= largest_digit)
     cpp_pedwarn (pfile, "integer constant contains digits beyond the radix");
 
@@ -291,7 +291,7 @@ parse_charconst (pfile, start, end)
 	      && (unsigned int) c >= (unsigned int)(1 << width))
 	    cpp_pedwarn (pfile, "escape sequence out of range for character");
 	}
-	  
+
       /* Merge character into result; ignore excess chars.  */
       if (++num_chars <= max_chars)
 	{
@@ -324,7 +324,7 @@ parse_charconst (pfile, start, end)
 
   /* If char type is signed, sign-extend the constant.  */
   num_bits = num_chars * width;
-      
+
   if (cpp_lookup (pfile, (U_CHAR *)"__CHAR_UNSIGNED__",
 		  sizeof ("__CHAR_UNSIGNED__")-1, -1)
       || ((result >> (num_bits - 1)) & 1) == 0)
@@ -415,7 +415,7 @@ cpp_lex (pfile, skip_evaluation)
       cpp_pop_buffer (pfile);
       goto retry;
     case CPP_HSPACE:
-    case CPP_COMMENT: 
+    case CPP_COMMENT:
       goto retry;
     case CPP_NUMBER:
       return parse_number (pfile, tok_start, tok_end);
@@ -486,7 +486,7 @@ cpp_lex (pfile, skip_evaluation)
 	  if (toktab->token == ERROR)
 	    cpp_error (pfile, "`%s' not allowed in operand of `#if'",
 		       tok_start);
-	  op.op = toktab->token; 
+	  op.op = toktab->token;
 	  return op;
 	}
       /* fall through */
@@ -544,7 +544,7 @@ cpp_parse_escape (pfile, string_ptr, result_mask)
     case 0:
       (*string_ptr)--;
       return 0;
-      
+
     case '0':
     case '1':
     case '2':
@@ -1014,7 +1014,7 @@ cpp_parse_expr (pfile)
 	  return top->value;
 	}
       top++;
-      
+
       /* Check for and handle stack overflow.  */
       if (top == limit)
 	{
@@ -1032,7 +1032,7 @@ cpp_parse_expr (pfile)
 	  top = (struct operation *) ((char *) new_stack + old_size);
 	  limit = (struct operation *) ((char *) new_stack + new_size);
 	}
-      
+
       top->flags = flags;
       top->rprio = rprio;
       top->op = op.op;

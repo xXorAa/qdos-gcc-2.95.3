@@ -45,7 +45,7 @@ static char *apropos_search_string = (char *)NULL;
 static int index_search_p = 0;
 
 /* Variable containing the string to search for when index_search_p is
-   non-zero. */ 
+   non-zero. */
 static char *index_search_string = (char *)NULL;
 
 /* Non-zero means print version info only. */
@@ -226,7 +226,7 @@ main (argc, argv)
   /* If the user specified --version, then show the version and exit. */
   if (print_version_p)
     {
-      printf ("%s (GNU %s %s) %s\n", program_name, PACKAGE, VERSION, 
+      printf ("%s (GNU %s %s) %s\n", program_name, PACKAGE, VERSION,
               version_string ());
       printf (_("Copyright (C) %s Free Software Foundation, Inc.\n\
 There is NO warranty.  You may redistribute this software\n\
@@ -242,7 +242,7 @@ For more information about these matters, see the files named COPYING.\n"),
       info_short_help ();
       exit (0);
     }
-  
+
   /* If the user hasn't specified a path for Info files, default it.
      Lowest priority is our messy hardwired list in filesys.h.
      Then comes the user's INFODIR from the Makefile.
@@ -364,7 +364,7 @@ For more information about these matters, see the files named COPYING.\n"),
           status = 2;
         }
 
-      close_dribble_file (); 
+      close_dribble_file ();
       exit (status);
     }
 

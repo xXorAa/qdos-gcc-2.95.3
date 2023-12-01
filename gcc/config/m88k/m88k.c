@@ -1,6 +1,6 @@
 /* Subroutines for insn-output.c for Motorola 88000.
    Copyright (C) 1988, 92, 93, 94, 95, 16, 1997, 1999 Free Software
-   Foundation, Inc. 
+   Foundation, Inc.
    Contributed by Michael Tiemann (tiemann@mcc.com)
    Currently maintained by (gcc@dg-rtp.dg.com)
 
@@ -451,7 +451,7 @@ legitimize_address (pic, orig, reg, scratch)
 #define MOVSTR_HI_LIMIT_88100   38
 #define MOVSTR_SI_LIMIT_88100   MOVSTR_SI
 #define MOVSTR_DI_LIMIT_88100   MOVSTR_SI
-  
+
 #define MOVSTR_QI_LIMIT_88000   16
 #define MOVSTR_HI_LIMIT_88000   38
 #define MOVSTR_SI_LIMIT_88000   72
@@ -471,10 +471,10 @@ static int all_from_align[] = {0, MOVSTR_QI, MOVSTR_ODD_HI, 0, MOVSTR_ODD_SI,
 			       0, 0, 0, MOVSTR_ODD_DI};
 
 static int best_from_align[3][9] =
-  {0, MOVSTR_QI_LIMIT_88100, MOVSTR_HI_LIMIT_88100, 0, MOVSTR_SI_LIMIT_88100, 
+  {0, MOVSTR_QI_LIMIT_88100, MOVSTR_HI_LIMIT_88100, 0, MOVSTR_SI_LIMIT_88100,
    0, 0, 0, MOVSTR_DI_LIMIT_88100,
-   0, MOVSTR_QI_LIMIT_88110, MOVSTR_HI_LIMIT_88110, 0, MOVSTR_SI_LIMIT_88110, 
-   0, 0, 0, MOVSTR_DI_LIMIT_88110,  
+   0, MOVSTR_QI_LIMIT_88110, MOVSTR_HI_LIMIT_88110, 0, MOVSTR_SI_LIMIT_88110,
+   0, 0, 0, MOVSTR_DI_LIMIT_88110,
    0, MOVSTR_QI_LIMIT_88000, MOVSTR_HI_LIMIT_88000, 0, MOVSTR_SI_LIMIT_88000,
    0, 0, 0, MOVSTR_DI_LIMIT_88000};
 
@@ -878,7 +878,7 @@ output_call (operands, addr)
 	     If we loose, we must use the non-delay form.  This is unlikely
 	     to ever happen.  If it becomes a problem, claim that a call
 	     has two delay slots and only the second can be filled with
-	     a jump.  
+	     a jump.
 
 	     The 88110 can lose when a jsr.n r1 is issued and a page fault
 	     occurs accessing the delay slot.  So don't use jsr.n form when
@@ -1619,7 +1619,7 @@ output_ascii (file, opcode, max, p, size)
 	  fprintf (file, "\"\n\t%s\t \"", opcode);
 	  num = 0;
 	}
-	  
+
       if (c == '\"' || c == '\\')
 	{
 	escape:
@@ -2898,7 +2898,7 @@ print_operand (file, x, code)
     case '!': /* Reverse the following condition. */
       sequencep++;
       reversep = 1;
-      return; 
+      return;
     case 'R': /* reverse the condition of the next print_operand
 		 if operand is a label_ref.  */
       sequencep++;
@@ -3116,7 +3116,7 @@ print_operand_address (file, addr)
     }
 }
 
-/* Return true if X is an address which needs a temporary register when 
+/* Return true if X is an address which needs a temporary register when
    reloaded while generating PIC code.  */
 
 int

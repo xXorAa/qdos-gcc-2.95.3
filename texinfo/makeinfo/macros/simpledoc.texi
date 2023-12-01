@@ -65,15 +65,15 @@ TeXinfo
 @node_define {iunnumberedsubsubsec}
 
 @c Manual starter:
-@c 
+@c
 @c Pass arguments of TITLE, AUTHOR, and a short DESCRIPTION.
 @c Immediately following, insert the Top node's menu.
-@c 
+@c
 @c Typical usage:
-@c 
+@c
 @c @document{Makeinfo, Brian J. Fox, This file documents the use of the
 @c @code{makeinfo} program\, versions 1.58 and later.}
-@c 
+@c
 @c @menu
 @c * What is @makeinfo{}?::
 @c @end menu

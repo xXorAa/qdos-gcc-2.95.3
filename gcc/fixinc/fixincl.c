@@ -361,7 +361,7 @@ initialize()
 }
 
 /* * * * * * * * * * * * *
- 
+
    wait_for_pid  -  Keep calling `wait(2)' until it returns
    the process id we are looking for.  Not every system has
    `waitpid(2)'.  We also ensure that the children exit with success. */
@@ -416,7 +416,7 @@ wait_for_pid(child, file_name_ct)
 
 
 /* * * * * * * * * * * * *
- 
+
    load_file loads all the contents of a file into malloc-ed memory.
    Its argument is the name of the file to read in; the returned
    result is the NUL terminated contents of the file.  The file
@@ -430,7 +430,7 @@ load_file (pz_file_name)
 
   {
     struct stat stbf;
-    
+
     if (stat (pz_file_name, &stbf) != 0)
       {
         fprintf (stderr, "error %d (%s) stat-ing %s\n",
@@ -497,7 +497,7 @@ load_file (pz_file_name)
 
 
 /* * * * * * * * * * * * *
- 
+
    run_compiles   run all the regexp compiles for all the fixes once.
  */
 void
@@ -657,7 +657,7 @@ run_compiles ()
 
 
 /* * * * * * * * * * * * *
- 
+
    create_file  Create the output modified file.
    Input:    the name of the file to create
    Returns:  a file pointer to the new, open file  */
@@ -766,7 +766,7 @@ fi";
 
 
 /* * * * * * * * * * * * *
- 
+
   egrep_test   make sure an egrep expression is found in the file text.
   Input:  a pointer to the descriptor of the test to run and
           the pointer to the contents of the file under suspicion
@@ -831,7 +831,7 @@ quoted_file_exists (pz_src_path, pz_file_path, pz_file)
 /* * * * * * * * * * * * *
  *
    extract_quoted_files
-  
+
    The syntax, `#include "file.h"' specifies that the compiler is to
    search the local directory of the current file before the include
    list.  Consequently, if we have modified a header and stored it in
@@ -839,7 +839,7 @@ quoted_file_exists (pz_src_path, pz_file_path, pz_file)
    file in that fashion must also be copied into this new directory.
    This routine finds those flavors of #include and for each one found
    emits a triple of:
-  
+
     1.  source directory of the original file
     2.  the relative path file name of the #includ-ed file
     3.  the full destination path for this file
@@ -1149,7 +1149,7 @@ process (pz_data, pz_file_name)
             if (pz_cmp != pz_data)
               {
                 char c = *pz_cmp;
-                
+
                 *pz_cmp = NUL;
                 fputs (pz_data, out_fp);
                 *pz_cmp = c;

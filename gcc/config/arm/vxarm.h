@@ -1,9 +1,9 @@
 /* Definitions of target machine for GNU compiler,
-   for ARM with targetting the VXWorks run time environment. 
+   for ARM with targetting the VXWorks run time environment.
    Copyright (C) 1999 Free Software Foundation, Inc.
 
    Contributed by: Mike Stump <mrs@wrs.com>
-   
+
 This file is part of GNU CC.
 
 GNU CC is free software; you can redistribute it and/or modify

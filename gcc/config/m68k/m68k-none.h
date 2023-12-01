@@ -92,7 +92,7 @@ Unrecognized value in TARGET_CPU_DEFAULT.
 #undef CPP_PREDEFINES
 #define CPP_PREDEFINES "-Dmc68000"
 
-/* Define one of __HAVE_68881__, __HAVE_FPA__, __HAVE_SKY__, or nothing 
+/* Define one of __HAVE_68881__, __HAVE_FPA__, __HAVE_SKY__, or nothing
    (soft float), appropriately.  */
 #undef CPP_FPU_SPEC
 #if TARGET_DEFAULT & MASK_68881
@@ -122,7 +122,7 @@ Unrecognized value in TARGET_CPU_DEFAULT.
    -m68060: define mc68060
    -m68020-40: define mc68020 mc68030 mc68040
    -m68020-60: define mc68020 mc68030 mc68040 mc68060
-   -m68302: define mc68302 
+   -m68302: define mc68302
    -m68332: define mc68332 mcpu32
    -mcpu32: define mcpu32
    -m5200: define mcf5200
@@ -146,7 +146,7 @@ Unrecognized value in TARGET_CPU_DEFAULT.
 %{m68851}%{mno-68851}%{m68881}%{mno-68881}%{msoft-float:-mno-68881 }%{m68000}%{m68302}%{mc68000}%{m68010}%{m68020}%{mc68020}%{m68030}%{m68040}%{m68020-40:-mc68040 }%{m68020-60:-mc68040 }%{m68060}%{mcpu32}%{m68332}%{m5200}%{!mc68000:%{!m68000:%{!m68302:%{!m68010:%{!mc68020:%{!m68020:%{!m68030:%{!m68040:%{!m68020-40:%{!m68020-60:%{!m68060:%{!mcpu32:%{!m68332:%{!m5200:%(asm_cpu_default) }}}}}}}}}}}}}} \
 "
 
-/* cc1/cc1plus always receives all the -m flags. If the specs strings above 
+/* cc1/cc1plus always receives all the -m flags. If the specs strings above
    are consistent with the TARGET_OPTIONS flags in m68k.h, there should be no
    need for any further cc1/cc1plus specs.  */
 

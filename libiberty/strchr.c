@@ -11,7 +11,7 @@ SYNOPSIS
 DESCRIPTION
 	Returns a pointer to the first occurance of character C in
 	string S, or a NULL pointer if no occurance is found.
-	
+
 BUGS
 	Behavior when character is the null character is implementation
 	dependent.

@@ -60,7 +60,7 @@ Boston, MA 02111-1307, USA.  */
 #undef  ASM_SPEC
 #define ASM_SPEC "%{v} %{mrelax:-relax}"
 #endif
-     
+
 
 #undef ASM_FINAL_SPEC
 
@@ -78,7 +78,7 @@ Boston, MA 02111-1307, USA.  */
 #undef ENDFILE_SPEC
 #define ENDFILE_SPEC "-lgloss crtfini.o%s"
 
-     
+
 #undef LIB_SPEC
 
 /* Run-time compilation parameters selecting different hardware subsets.  */
@@ -141,7 +141,7 @@ extern int target_flags;
    initializer with a subgrouping for each command option.
 
    Each subgrouping contains a string constant, that defines the
-   fixed part of the option name, and the address of a variable. 
+   fixed part of the option name, and the address of a variable.
    The variable, type `char *', is set to the variable part of the
    given option if the fixed part matches.  The actual option name
    is made by appending `-m' to the specified name.
@@ -310,7 +310,7 @@ do {				\
 #define UNITS_PER_WORD 4
 
 /* Define this macro if it is advisable to hold scalars in registers
-   in a wider mode than that declared by the program.  In such cases, 
+   in a wider mode than that declared by the program.  In such cases,
    the value is constrained to be within the bounds of the declared
    type, but kept valid in the wider mode.  The signedness of the
    extension may differ from that of the type.  */
@@ -412,7 +412,7 @@ if (GET_MODE_CLASS (MODE) == MODE_INT		\
    All registers that the compiler knows about must be given numbers,
    even those that are not normally considered general registers.  */
 #define FIRST_PSEUDO_REGISTER 18
-	
+
 /* 1 for registers that have pervasive standard uses
    and are not available for the register allocator.
 
@@ -428,7 +428,7 @@ if (GET_MODE_CLASS (MODE) == MODE_INT		\
    16    - arg pointer
    17    - carry flag
 
-   
+
    By default, the extension registers are not available.  */
 
 #define FIXED_REGISTERS \
@@ -742,7 +742,7 @@ M32R_STACK_ALIGN (current_function_outgoing_args_size)
 #define CARRY_REGNUM 17
 #define M32R_MAX_INT_REGS 16
 
-     
+
 #define GPR_P(REGNO) ((unsigned) (REGNO) < M32R_MAX_INT_REGS)
 
 /* Eliminating the frame and arg pointers.  */
@@ -958,7 +958,7 @@ M32R_STACK_ALIGN (current_function_outgoing_args_size)
 	  + ROUND_ADVANCE_ARG ((MODE), (TYPE))))
 
 /* If defined, a C expression that gives the alignment boundary, in bits,
-   of an argument with the specified mode and type.  If it is not defined, 
+   of an argument with the specified mode and type.  If it is not defined,
    PARM_BOUNDARY is used for all arguments.  */
 #if 0
 /* We assume PARM_BOUNDARY == UNITS_PER_WORD here.  */
@@ -1661,7 +1661,7 @@ do {							\
   char * real_name;					\
   STRIP_NAME_ENCODING (real_name, (NAME));		\
   asm_fprintf (FILE, "%U%s", real_name);		\
-} while (0)           
+} while (0)
 
 /* If -Os, don't force line number labels to begin at the beginning of
    the word; we still want the assembler to try to put things in parallel,

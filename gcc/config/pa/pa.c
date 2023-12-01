@@ -882,7 +882,7 @@ hppa_legitimize_address (x, oldx, mode)
 	reg2 = force_reg (Pmode, force_operand (reg2, 0));
 
       /* Figure out what the base and index are.  */
-	 
+
       if (GET_CODE (reg1) == REG
 	  && REGNO_POINTER_FLAG (REGNO (reg1)))
 	{
@@ -971,13 +971,13 @@ hppa_legitimize_address (x, oldx, mode)
 
       /* Add the result to our base register and return.  */
       return force_reg (Pmode, gen_rtx_PLUS (Pmode, base, reg1));
-      
+
     }
 
   /* Uh-oh.  We might have an address for x[n-100000].  This needs
      special handling to avoid creating an indexed memory address
      with x-100000 as the base.
-    
+
      If the constant part is small enough, then it's still safe because
      there is a guard page at the beginning and end of the data segment.
 
@@ -1006,7 +1006,7 @@ hppa_legitimize_address (x, oldx, mode)
 		      (const (plus (symbol_ref) (const_int))))
 
 	     Where const_int is small.  In that case the const
-	     expression is a valid pointer for indexing. 
+	     expression is a valid pointer for indexing.
 
 	     If const_int is big, but can be divided evenly by shadd_const
 	     and added to (reg).  This allows more scaled indexed addresses.  */
@@ -1164,7 +1164,7 @@ emit_move_sequence (operands, mode, scratch_reg)
     operand1 = gen_rtx_MEM (GET_MODE (operand1), tem);
 
   /* Handle secondary reloads for loads/stores of FP registers from
-     REG+D addresses where D does not fit in 5 bits, including 
+     REG+D addresses where D does not fit in 5 bits, including
      (subreg (mem (addr))) cases.  */
   if (fp_reg_operand (operand0, mode)
       && ((GET_CODE (operand1) == MEM
@@ -1265,7 +1265,7 @@ emit_move_sequence (operands, mode, scratch_reg)
       if (GET_CODE (operand1) == MEM
 	  && !memory_address_p (SImode, XEXP (operand1, 0)))
 	{
-	  emit_move_insn (scratch_reg, XEXP (XEXP (operand1, 0), 1));	
+	  emit_move_insn (scratch_reg, XEXP (XEXP (operand1, 0), 1));
 	  emit_move_insn (scratch_reg, gen_rtx_fmt_ee (GET_CODE (XEXP (operand1,
 								        0)),
 						       SImode,
@@ -1374,7 +1374,7 @@ emit_move_sequence (operands, mode, scratch_reg)
 		  /* Force the function label into memory.  */
 		  temp = force_const_mem (mode, operand1);
 		}
-		
+
 
 	      /* Get the address of the memory location.  PIC-ify it if
 		 necessary.  */
@@ -1442,7 +1442,7 @@ emit_move_sequence (operands, mode, scratch_reg)
 		temp = gen_reg_rtx (mode);
 
 	      /* Loading a SYMBOL_REF into a register makes that register
-		 safe to be used as the base in an indexed address. 
+		 safe to be used as the base in an indexed address.
 
 		 Don't mark hard registers though.  That loses.  */
 	      if (GET_CODE (operand0) == REG
@@ -1814,7 +1814,7 @@ output_move_double (operands)
 	      output_asm_insn ("sh%O3addl %2,%1,%R0", xoperands);
 	      return "ldw 0(%R0),%0\n\tldw 4(%R0),%R0";
 	    }
-	   
+
 	}
     }
 
@@ -1860,10 +1860,10 @@ output_move_double (operands)
 	can create such insns.
 
 	mem in this case will be either register indirect or register
-	indirect plus a valid offset. 
+	indirect plus a valid offset.
 
 	register -> register move where REGNO(dst) == REGNO(src + 1)
-	someone (Tim/Tege?) claimed this can happen for parameter loads. 
+	someone (Tim/Tege?) claimed this can happen for parameter loads.
 
      Handle mem -> register case first.  */
   if (optype0 == REGOP
@@ -1980,7 +1980,7 @@ find_addr_reg (addr)
    OPERANDS[2] is a register for temporary storage.
    OPERANDS[4] is the size as a CONST_INT
    OPERANDS[3] is a register for temporary storage.
-   OPERANDS[5] is the alignment safe to use, as a CONST_INT. 
+   OPERANDS[5] is the alignment safe to use, as a CONST_INT.
    OPERANDS[6] is another temporary register.   */
 
 char *
@@ -2305,7 +2305,7 @@ remove_useless_addtr_insns (insns, check_notes)
 	      fcmp_count++;
 	      continue;
 	    }
-	    
+
 	  tmp = PATTERN (insn);
 	  /* If this is an fbranch instruction, bump the fbranch counter.  */
 	  if (GET_CODE (tmp) == SET
@@ -2728,7 +2728,7 @@ hppa_expand_prologue()
 	    saves = i;
             break;
 	  }
-  
+
       for (i = 66; i >= 48; i -= 2)
 	if (regs_ever_live[i] || regs_ever_live[i + 1])
 	  {
@@ -2751,7 +2751,7 @@ hppa_expand_prologue()
 	outline_insn_count += 2;
       else
 	outline_insn_count += 1;
-	
+
       /* If there's a lot of insns in the prologue, then do it as
 	 an out-of-line sequence.  */
       if (inline_insn_count > outline_insn_count)
@@ -2776,7 +2776,7 @@ hppa_expand_prologue()
 
 	  /* Note that we're using an out-of-line prologue.  */
 	  out_of_line_prologue_epilogue = 1;
-	  return;     
+	  return;
 	}
     }
 
@@ -2990,7 +2990,7 @@ hppa_expand_prologue()
      PIC register is valid at function exit.
 
      This may (depending on the exact characteristics of the function)
-     even be more efficient. 
+     even be more efficient.
 
      Avoid this if the callee saved register wasn't used (these are
      leaf functions).  */
@@ -3057,7 +3057,7 @@ hppa_expand_epilogue ()
 	    saves = i;
             break;
 	  }
-	  
+
       for (i = 66; i >= 48; i -= 2)
 	if (regs_ever_live[i] || regs_ever_live[i + 1])
 	  {
@@ -3176,18 +3176,18 @@ hppa_expand_epilogue ()
       /* This used to try and be clever by not depending on the value in
 	 %r30 and instead use the value held in %r1 (so that the 2nd insn
 	 which sets %r30 could be put in the delay slot of the return insn).
-	
+
 	 That won't work since if the stack is exactly 8k set_reg_plus_d
 	 doesn't set %r1, just %r30.  */
       load_reg (2, - 20, STACK_POINTER_REGNUM);
     }
 
-  /* Reset stack pointer (and possibly frame pointer).  The stack 
+  /* Reset stack pointer (and possibly frame pointer).  The stack
      pointer is initially set to fp + 64 to avoid a race condition.  */
   else if (frame_pointer_needed)
     {
       set_reg_plus_d (STACK_POINTER_REGNUM, FRAME_POINTER_REGNUM, 64);
-      emit_insn (gen_pre_ldwm (frame_pointer_rtx, 
+      emit_insn (gen_pre_ldwm (frame_pointer_rtx,
 			       stack_pointer_rtx,
 			       GEN_INT (-64)));
     }
@@ -3613,7 +3613,7 @@ pa_adjust_insn_length (insn, length)
       else
 	return 0;
     }
-  /* Jumps inside switch tables which have unfilled delay slots 
+  /* Jumps inside switch tables which have unfilled delay slots
      also need adjustment.  */
   else if (GET_CODE (insn) == JUMP_INSN
 	   && simplejump_p (insn)
@@ -4376,7 +4376,7 @@ secondary_reload_class (class, mode, in)
         is_symbolic = 0;
         break;
     }
-  
+
   if (!flag_pic
       && is_symbolic
       && read_only_operand (in))
@@ -4637,7 +4637,7 @@ output_cbranch (operands, nullify, length, negated, insn)
 	/* Now restore the value of %r1 in the delay slot.  We're not
 	   optimizing so we know nothing else can be in the delay slot.  */
 	return "ldw -16(%%r30),%%r1";
-	
+
       default:
 	abort();
     }
@@ -5756,7 +5756,7 @@ basereg_operand (op, mode)
 
   /* Once reload has started everything is considered valid.  Reload should
      only create indexed addresses using the stack/frame pointer, and any
-     others were checked for validity when created by the combine pass. 
+     others were checked for validity when created by the combine pass.
 
      Also allow any register when TARGET_NO_SPACE_REGS is in effect since
      we don't have to worry about the braindamaged implicit space register
@@ -5781,7 +5781,7 @@ basereg_operand (op, mode)
       || REGNO (op) < FIRST_PSEUDO_REGISTER
       || ! register_operand (op, mode))
     return 0;
-    
+
   return REGNO_POINTER_FLAG (REGNO (op));
 }
 
@@ -5925,7 +5925,7 @@ output_parallel_addb (operands, length)
    It is also used to avoid filling the delay slot of a jump which
    immediately follows a call since the jump can usually be eliminated
    completely by modifying RP in the delay slot of the call.  */
-   
+
 int
 following_call (insn)
      rtx insn;
@@ -5997,7 +5997,7 @@ restore_unscaled_index_insn_codes (insns)
 
    This is extremely gross.  Long term, I'd like to be able to look at
    REG_POINTER_FLAG to handle these kinds of problems.  */
- 
+
 static void
 record_unscaled_index_insn_codes (insns)
      rtx insns;
@@ -6025,7 +6025,7 @@ record_unscaled_index_insn_codes (insns)
 
       if (GET_CODE (SET_DEST (set)) == MEM)
 	mem = SET_DEST (set);
-	
+
       /* If neither operand is a mem, then there's nothing to do.  */
       if (mem == NULL_RTX)
 	continue;
@@ -6061,10 +6061,10 @@ record_unscaled_index_insn_codes (insns)
    Reorg and the final jump pass can then optimize these branches and
    fill their delay slots.  We end up with smaller, more efficient code.
 
-   The jump instructions within the table are special; we must be able 
+   The jump instructions within the table are special; we must be able
    to identify them during assembly output (if the jumps don't get filled
    we need to emit a nop rather than nullifying the delay slot)).  We
-   identify jumps in switch tables by marking the SET with DImode. 
+   identify jumps in switch tables by marking the SET with DImode.
 
    We also surround the jump table itself with BEGIN_BRTAB and END_BRTAB
    insns.  This serves two purposes, first it prevents jump.c from
@@ -6364,7 +6364,7 @@ pa_combine_instructions (insns)
 		      || (GET_CODE (floater) == INSN
 			  && (GET_CODE (PATTERN (floater)) == USE
 			      || GET_CODE (PATTERN (floater)) == CLOBBER)))
-			
+
 		    continue;
 
 		  /* Anything except a regular INSN will stop our search.  */
@@ -6518,7 +6518,7 @@ int
 insn_sets_and_refs_are_delayed (insn)
      rtx insn;
 {
-  return ((GET_CODE (insn) == INSN 
+  return ((GET_CODE (insn) == INSN
 	   && GET_CODE (PATTERN (insn)) != SEQUENCE
 	   && GET_CODE (PATTERN (insn)) != USE
 	   && GET_CODE (PATTERN (insn)) != CLOBBER

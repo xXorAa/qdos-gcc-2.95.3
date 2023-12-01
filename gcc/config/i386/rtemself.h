@@ -137,16 +137,16 @@ Boston, MA 02111-1307, USA.  */
 
 #undef SIZE_TYPE
 #define SIZE_TYPE "unsigned int"
- 
+
 #undef PTRDIFF_TYPE
 #define PTRDIFF_TYPE "int"
-  
+
 #undef WCHAR_TYPE
 #define WCHAR_TYPE "long int"
-   
+
 #undef WCHAR_TYPE_SIZE
 #define WCHAR_TYPE_SIZE BITS_PER_WORD
-    
+
 #undef CPP_PREDEFINES
 #define CPP_PREDEFINES  "-Di386 -Drtems -D__rtems__ \
    -Asystem(rtems) -Acpu(i386) -Amachine(i386)"
@@ -166,4 +166,4 @@ Boston, MA 02111-1307, USA.  */
 #define STARTFILE_SPEC  "crt0.o%s"
 
 #undef ENDFILE_SPEC
-     
+

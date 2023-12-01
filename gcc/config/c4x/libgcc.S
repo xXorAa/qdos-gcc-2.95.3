@@ -4,7 +4,7 @@
  Contributed by Michael Hayes (m.hayes@elec.canterbury.ac.nz)
             and Herman Ten Brugge (Haj.Ten.Brugge@net.HCC.nl).
 
-	
+
 This file is part of GNU CC.
 
 GNU CC is free software; you can redistribute it and/or modify it
@@ -36,7 +36,7 @@ Boston, MA 02111-1307, USA.  */
    This exception does not however invalidate any other reasons why
    the executable file might be covered by the GNU General Public License.  */
 
-	
+
 ; These routines are called using the standard TI register argument
 ; passing model.
 ; The following registers do not have to be saved:
@@ -47,7 +47,7 @@ Boston, MA 02111-1307, USA.  */
 ; This routine performs a reciprocal of the divisor using the method
 ; described in the C30/C40 user manuals.  It then multiplies that
 ; result by the dividend.
-; 
+;
 ; Let r be the reciprocal of the divisor v and let the ith estimate
 ; of r be denoted by r[i].  An iterative approach can be used to
 ; improve the estimate of r, given an initial estimate r[0], where
@@ -58,7 +58,7 @@ Boston, MA 02111-1307, USA.  */
 ;
 ; e[i] = (r - r[i]) / r = (1 / v - r[i]) * v = (1 - v * r[i])
 ;
-; Note that 
+; Note that
 ;
 ; e[i + 1]  = (1 - v * r[i + 1]) = 1 - 2 * v * r[i] + v^2 + (r[i])^2
 ;           = (1 - v * r[i])^2 = (e[i])^2
@@ -199,7 +199,7 @@ ___divqi3:
 	pushf	r1		; Get as integer
 	pop	ar0
 	lsh	-24, ar0	; Get exponent
-	
+
 	float	r2, r1		; Normalize divisor
 	pushf	r1		; Get as integer
 	pop	ir0
@@ -253,7 +253,7 @@ divq32:
 #endif
 ;
 ;
-; ar2 dividend, r2 divisor, r0 quotient, 
+; ar2 dividend, r2 divisor, r0 quotient,
 ; clobbers r1, r3, ar0, ar1, ir0, ir1, rc, rs, re
 #ifdef L_udivqi3
 	.text
@@ -383,7 +383,7 @@ ___umodqi3:
 
 umodqi3n:
 	pop     ir1		; return address
-        cmpi    ar2, r2		; divisor > dividend ? 
+        cmpi    ar2, r2		; divisor > dividend ?
 	bhi     uzero		;    if so, return dividend
 	ldi     r2, ar1		; load divisor
 ;
@@ -411,11 +411,11 @@ umodqi3n:
 	lsh     -24, ar0	; dividend exponent
 	subi    rc, ar0		; difference
         lsh     ar0, ar1	; shift divisor up
-; 
+;
 ; Do COUNT+1 subtract & shifts.
 ;
 	rpts    ar0
-		subc    ar1, ar2  
+		subc    ar1, ar2
 ;
 ;  Remainder is in upper 31-COUNT bits.
 ;
@@ -430,12 +430,12 @@ umodqi3n:
 ; SUBC can be used, the top bit must be cleared (otherwise SUBC can
 ; possibly shift a significant 1 out the top of the dividend).  This
 ; is accomplished by first doing a normal subtraction, then proceeding
-; with SUBCs. 
+; with SUBCs.
 ;
 umod_32:
 ;
 ; If the top bit of the divisor is set too, the remainder is simply
-; the difference between the dividend and divisor.  Otherwise, shift 
+; the difference between the dividend and divisor.  Otherwise, shift
 ; the divisor up to line up the MSBs.
 ;
 	tstb    ar1, ar1	; check divisor
@@ -450,15 +450,15 @@ umod_32:
 ; Then, shift divisor right rather than shifting dividend left.  This leaves
 ; a 0 in the top bit of the dividend.
 ;
-	subi3   ar1, ar2, r1	; subtract 
+	subi3   ar1, ar2, r1	; subtract
 	ldihs   r1, ar2		; if positive, replace dividend
 	subi    1, rc		; first iteration is done
 	lsh     -1, ar1		; shift divisor down
-; 
+;
 ; Do EXP subtract & shifts.
 ;
-	rpts    rc  
-		subc    ar1, ar2   
+	rpts    rc
+		subc    ar1, ar2
 ;
 ;  Quotient is in EXP+1 LSBs; shift remainder (in MSBs) down.
 ;
@@ -470,7 +470,7 @@ umod_32:
 ;  Return (dividend - divisor).
 ;
 uone:	bud	ir1
-	subi3   r2, ar2, r0  
+	subi3   r2, ar2, r0
 	nop
 	nop
 ;
@@ -497,36 +497,36 @@ ___modqi3:
 	ldi	*-ar0(2), r2
 	.endif
 
-; 
+;
 ; Determine sign of result.  Get absolute value of operands.
-; 
+;
 	ldi     ar2, ar0	; sign of result same as dividend
 	absi    ar2, r0		; make dividend positive
 	bvd     mod_32		; if still negative, escape
 	absi    r2, r1		; make divisor positive
-	ldi     r1, ar1		; save in ar1       
-        cmpi    r0, ar1		; divisor > dividend ? 
+	ldi     r1, ar1		; save in ar1
+        cmpi    r0, ar1		; divisor > dividend ?
 
         pop     ir1            ; return address
 	bhid    return 		;   if so, return dividend
-; 
+;
 ; Normalize operands.  Use difference in exponents as shift count
 ; for divisor, and as repeat count for SUBC.
 ;
         float   r1, r1		; normalize divisor
-        pushf   r1		; push as float 
+        pushf   r1		; push as float
 	pop     rc		; pop as int
         bzd     return		; if (float)divisor was zero, return
 
         float   r0, r1		; normalize dividend
         pushf   r1		; push as float
-        pop     r1		; pop as int 
+        pop     r1		; pop as int
 
 	lsh     -24, rc		; get divisor exponent
 	lsh     -24, r1		; get dividend exponent
 	subi    rc, r1		; get difference in exponents
 	lsh     r1, ar1		; align divisor with dividend
-; 
+;
 ; Do COUNT+1 subtract & shifts.
 ;
 	rpts    r1
@@ -535,7 +535,7 @@ ___modqi3:
 ;  Remainder is in upper bits of R0
 ;
 	addi    1, r1		; shift count is -(r1+1)
-	negi    r1, r1 
+	negi    r1, r1
 	lsh     r1, r0		; shift right
 ;
 ;  Check sign and negate result if necessary.
@@ -594,7 +594,7 @@ ___unsfltcompare: .float 2147483648.0
 ;
 ; Let z = (f << 16) + e where f < (1 << 16).
 ;
-; Since we are only interested in a 32-bit result, we can ignore the 
+; Since we are only interested in a 32-bit result, we can ignore the
 ; (b * d) << 32 term, and thus
 ;
 ;	f = b * c + a * d,  e = a * c
@@ -606,7 +606,7 @@ ___unsfltcompare: .float 2147483648.0
 ;
 ; ar2 multiplier, r2 multiplicand, r0 product
 ; clobbers r1, r2, r3
-#ifdef L_mulqi3	
+#ifdef L_mulqi3
 	.text
 	.global	___mulqi3
 ___mulqi3:
@@ -624,9 +624,9 @@ ___mulqi3:
 	ldi	ar2, r0		;
 	and	0ffffh, r0	; a
 	lsh	-16, ar2	; b
-	ldi	r2, r3		; 
+	ldi	r2, r3		;
 	and	0ffffh, r3	; c
-	mpyi	r3, ar2		; c * b		
+	mpyi	r3, ar2		; c * b
 	lsh	-16, r2		; d
 	mpyi	r0, r2		; a * d
 	addi	ar2, r2		; c * b + a * d
@@ -636,7 +636,7 @@ ___mulqi3:
 	addi	r2, r0		; a * c + (c * b + a * d) << 16
 ; branch occurs here
 
-#endif	
+#endif
 
 ;
 ; Integer 64 by 64 multiply
@@ -976,7 +976,7 @@ div2:
 	bge	div3
 	negi	r0
 	negb	r1
-div3:	
+div3:
 	rets
 #endif
 
@@ -1015,7 +1015,7 @@ mod2:
 	bge	mod3
 	negi	r0
 	negb	r1
-mod3:	
+mod3:
 	rets
 #endif
 
@@ -1412,18 +1412,18 @@ ___divhf3:
 	pop	ar1
         rcpf    r3, r0
 	mpyf3	r0, r3, r1
-	subrf	2.0, r1		
-	mpyf	r1, r0	
+	subrf	2.0, r1
+	mpyf	r1, r0
 	mpyf3	r0, r3, r1
 	bud	ar1
-	subrf	2.0, r1	
+	subrf	2.0, r1
 	mpyf	r1, r0
 	mpyf	r2, r0
 #else
 	pop	ar1
 	pushf	r3
 	pop	r0
-	not	r0	
+	not	r0
 	push	r0
 	popf	r0
 	ldf	-1.0, r1
@@ -1463,7 +1463,7 @@ ___divhf3:
 	norm 	r4, r4
 	mpyf	r0, r4
 	addf	r4, r1
-	
+
 	subrf	2.0, r1		; r1 = 2.0 - r[3] * v
 
 	mpyf	r1, r0, r3	; r3 = r[3] * (2.0 - r[3] * v) = r[5]

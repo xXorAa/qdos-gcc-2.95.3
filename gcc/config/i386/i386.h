@@ -93,7 +93,7 @@ extern int target_flags;
 #define MASK_NO_WIDE_MULTIPLY	000002000000	/* Disable 32x32->64 multiplies */
 #define MASK_NO_MOVE		000004000000	/* Don't generate mem->mem */
 #define MASK_NO_PSEUDO		000010000000	/* Move op's args -> pseudos */
-#define MASK_DEBUG_ARG		000020000000	/* Debug function_arg */   
+#define MASK_DEBUG_ARG		000020000000	/* Debug function_arg */
 #define MASK_SCHEDULE_PROLOGUE  000040000000    /* Emit prologue as rtl */
 #define MASK_STACK_PROBE	000100000000	/* Enable stack probing */
 
@@ -102,7 +102,7 @@ extern int target_flags;
 
 /* Compile using ret insn that pops args.
    This will not work unless you use prototypes at least
-   for all functions that can take varying numbers of args.  */  
+   for all functions that can take varying numbers of args.  */
 #define TARGET_RTD (target_flags & MASK_RTD)
 
 /* Align doubles to a two word boundary.  This breaks compatibility with
@@ -303,7 +303,7 @@ extern int ix86_arch;
 #define CPP_586_SPEC "%{!ansi:-Di586 -Dpentium} \
 	-D__i586 -D__i586__ -D__pentium -D__pentium__"
 #define CPP_K6_SPEC "%{!ansi:-Di586 -Dk6} \
-	-D__i586 -D__i586__ -D__k6 -D__k6__" 
+	-D__i586 -D__i586__ -D__k6 -D__k6__"
 #define CPP_686_SPEC "%{!ansi:-Di686 -Dpentiumpro} \
 	-D__i686 -D__i686__ -D__pentiumpro -D__pentiumpro__"
 
@@ -676,7 +676,7 @@ extern int ix86_arch;
    This is ordinarily the length in words of a value of mode MODE
    but can be less for certain modes in special long registers.
 
-   Actually there are no two word move instructions for consecutive 
+   Actually there are no two word move instructions for consecutive
    registers.  And only registers 0-3 may have mov byte instructions
    applied to them.
    */
@@ -736,7 +736,7 @@ extern int ix86_arch;
    Zero means the frame pointer need not be set up (and parms
    may be accessed via the stack pointer) in functions that seem suitable.
    This is computed in `reload', in reload1.c.  */
-#define FRAME_POINTER_REQUIRED (TARGET_OMIT_LEAF_FRAME_POINTER && !leaf_function_p ()) 	
+#define FRAME_POINTER_REQUIRED (TARGET_OMIT_LEAF_FRAME_POINTER && !leaf_function_p ())
 
 /* Base register for access to arguments of the function.  */
 #define ARG_POINTER_REGNUM 16
@@ -870,7 +870,7 @@ enum reg_class
 
 #define FP_REG_P(X) (REG_P (X) && FP_REGNO_P (REGNO (X)))
 #define FP_REGNO_P(n) ((n) >= FIRST_STACK_REG && (n) <= LAST_STACK_REG)
-  
+
 #define STACK_REG_P(xop) (REG_P (xop) &&		       	\
 			  REGNO (xop) >= FIRST_STACK_REG &&	\
 			  REGNO (xop) <= LAST_STACK_REG)
@@ -1188,7 +1188,7 @@ typedef struct i386_args {
 
    profile_block_flag == 2, -ax option used.
 
-      Generate code to allow several different profiling modes at run time. 
+      Generate code to allow several different profiling modes at run time.
       Available modes are:
              Produce a trace of all basic blocks.
              Count frequency of jump instructions executed.
@@ -1213,7 +1213,7 @@ typedef struct i386_args {
 	of the function.
 
 	The name of the block is a local symbol made with this statement:
-	
+
 	    ASM_GENERATE_INTERNAL_LABEL (BUFFER, "LPBX", 0);
 
 	Of course, since you are writing the definition of
@@ -1341,12 +1341,12 @@ while (0)
 
 	`__bb' consists of two words. In the first word the number
 	of the basic block has to be stored. In the second word
-	the address of a block allocated in the object module 
+	the address of a block allocated in the object module
 	has to be stored.
 
 	The basic block number is given by BLOCKNO.
 
-	The address of the block is given by the label created with 
+	The address of the block is given by the label created with
 
 	    ASM_GENERATE_INTERNAL_LABEL (BUFFER, "LPBX", 0);
 
@@ -1370,7 +1370,7 @@ while (0)
 	either in this macro or in the macros MACHINE_STATE_SAVE
 	and MACHINE_STATE_RESTORE. The last two macros will be
 	used in the function `__bb_trace_func', so you must make
-	sure that the function prologue does not change any 
+	sure that the function prologue does not change any
 	register prior to saving it with MACHINE_STATE_SAVE.
 
    else if profile_block_flag != 0
@@ -1378,7 +1378,7 @@ while (0)
 	Output code to increment the counter directly.
 	Basic blocks are numbered separately from zero within each
 	compiled object module. The count associated with block number
-	BLOCKNO is at index BLOCKNO in an array of words; the name of 
+	BLOCKNO is at index BLOCKNO in an array of words; the name of
 	this array is a local symbol made with this statement:
 
 	    ASM_GENERATE_INTERNAL_LABEL (BUFFER, "LPBX", 2);
@@ -1386,7 +1386,7 @@ while (0)
 	Of course, since you are writing the definition of
 	`ASM_GENERATE_INTERNAL_LABEL' as well as that of this macro, you
 	can take a short cut in the definition of this macro and use the
-	name that you know will result. 
+	name that you know will result.
 
 	If described in a virtual assembler language the code to be
 	output looks like:
@@ -1470,7 +1470,7 @@ while (0)
 	either in this macro or in the macros MACHINE_STATE_SAVE_RET
 	and MACHINE_STATE_RESTORE_RET. The last two macros will be
 	used in the function `__bb_trace_ret', so you must make
-	sure that the function prologue does not change any 
+	sure that the function prologue does not change any
 	register prior to saving it with MACHINE_STATE_SAVE_RET.
 
    else if profiling_block_flag != 0:
@@ -1509,7 +1509,7 @@ while (0)
 
    On the i386 the initialization code at the begin of
    function `__bb_trace_func' contains a `sub' instruction
-   therefore we handle save and restore of the flag register 
+   therefore we handle save and restore of the flag register
    in the BLOCK_PROFILER macro. */
 
 #define MACHINE_STATE_SAVE(ID) \
@@ -1528,7 +1528,7 @@ while (0)
    the stack pointer does not matter.  The value is tested only in
    functions that have frame pointers.
    No definition is equivalent to always zero.  */
-/* Note on the 386 it might be more efficient not to define this since 
+/* Note on the 386 it might be more efficient not to define this since
    we have to restore it ourselves from the frame pointer, in order to
    use pop */
 
@@ -1794,7 +1794,7 @@ do {						\
 #define REWRITE_ADDRESS(x) rewrite_address(x)
 
 /* Nonzero if the constant value X is a legitimate general operand
-   when generating PIC code.  It is given that flag_pic is on and 
+   when generating PIC code.  It is given that flag_pic is on and
    that X satisfies CONSTANT_P or is a CONST_DOUBLE.  */
 
 #define LEGITIMATE_PIC_OPERAND_P(X) \
@@ -1979,7 +1979,7 @@ while (0)
    precise value of the constant, which is available for examination
    in X, and the rtx code of the expression in which it is contained,
    found in OUTER_CODE.
-  
+
    CODE is the expression code--redundant, since it can be obtained
    with `GET_CODE (X)'.  */
 
@@ -2537,7 +2537,7 @@ do { long l;						\
 
 /* This is how to output an element of a case-vector that is relative.
    We don't use these on the 386 yet, because the ATT assembler can't do
-   forward reference the differences.  
+   forward reference the differences.
  */
 
 #define ASM_OUTPUT_ADDR_DIFF_ELT(FILE, BODY, VALUE, REL) \

@@ -34,7 +34,7 @@ make_sstring_space (str, count)
 
   if (new_size <= cur_size)
     return;
-  
+
   if (str->base == NULL)
     str->base = xmalloc (new_size);
   else
@@ -55,7 +55,7 @@ sstring_append (dst, src)
   s = src->base;
   while (--count >= 0) *d++ = *s++;
   dst->ptr = d;
-  *d = 0;  
+  *d = 0;
 }
 
 int

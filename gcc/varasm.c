@@ -67,7 +67,7 @@ Boston, MA 02111-1307, USA.  */
 #define CHKR_PREFIX "chkr_prefix_"
 #else /* !NO_DOT_IN_LABEL */
 #define CHKR_PREFIX "chkr."
-#endif 
+#endif
 #else /* !NO_DOLLAR_IN_LABEL */
 #define CHKR_PREFIX "chkr$"
 #endif
@@ -394,7 +394,7 @@ eh_frame_section ()
       fprintf (asm_out_file, "%s\n", EH_FRAME_SECTION_ASM_OP);
       in_section = in_eh_frame;
     }
-} 
+}
 #endif
 
 /* Switch to the section for function DECL.
@@ -574,7 +574,7 @@ decode_reg_name (asmspec)
 
       /* Get rid of confusing prefixes.  */
       asmspec = strip_reg_name (asmspec);
-	
+
       /* Allow a decimal number as a "register name".  */
       for (i = strlen (asmspec) - 1; i >= 0; i--)
 	if (! (asmspec[i] >= '0' && asmspec[i] <= '9'))
@@ -744,7 +744,7 @@ make_decl_rtl (decl, asmspec, top_level)
 	  if (flag_prefix_function_name && TREE_CODE (decl) == FUNCTION_DECL)
 	    {
 	      char *new_name;
-	      new_name = (char *) alloca (strlen (name) + CHKR_PREFIX_SIZE 
+	      new_name = (char *) alloca (strlen (name) + CHKR_PREFIX_SIZE
 	      				  + 1);
 	      strcpy (new_name, CHKR_PREFIX);
 	      strcpy (new_name + CHKR_PREFIX_SIZE, name);
@@ -755,7 +755,7 @@ make_decl_rtl (decl, asmspec, top_level)
 	  DECL_RTL (decl) = gen_rtx_MEM (DECL_MODE (decl),
 					 gen_rtx_SYMBOL_REF (Pmode, name));
 	  MEM_ALIAS_SET (DECL_RTL (decl)) = get_alias_set (decl);
-	    
+
 	  /* If this variable is to be treated as volatile, show its
 	     tree node has side effects.  If it has side effects, either
 	     because of this test or from TREE_THIS_VOLATILE also
@@ -1344,13 +1344,13 @@ assemble_variable (decl, top_level, at_end, dont_output_data)
       rounded += (BIGGEST_ALIGNMENT / BITS_PER_UNIT) - 1;
       rounded = (rounded / (BIGGEST_ALIGNMENT / BITS_PER_UNIT)
 		 * (BIGGEST_ALIGNMENT / BITS_PER_UNIT));
-      
+
 #if !defined(ASM_OUTPUT_ALIGNED_COMMON) && !defined(ASM_OUTPUT_ALIGNED_BSS)
       if ( (DECL_ALIGN (decl) / BITS_PER_UNIT) > rounded)
-         warning_with_decl 
+         warning_with_decl
            (decl, "requested alignment for %s is greater than implemented alignment of %d.",rounded);
 #endif
-       
+
 #ifdef DBX_DEBUGGING_INFO
       /* File-scope global variables are output here.  */
       if (write_symbols == DBX_DEBUG && top_level)
@@ -1453,7 +1453,7 @@ assemble_variable (decl, top_level, at_end, dont_output_data)
   if (TREE_PUBLIC (decl) && DECL_NAME (decl))
     {
 #ifdef ASM_WEAKEN_LABEL
-      if (DECL_WEAK (decl)) 
+      if (DECL_WEAK (decl))
 	{
 	  ASM_WEAKEN_LABEL (asm_out_file, name);
 	   /* Remove this variable from the pending weak list so that
@@ -1553,7 +1553,7 @@ assemble_variable (decl, top_level, at_end, dont_output_data)
  finish:
 #ifdef XCOFF_DEBUGGING_INFO
   /* Unfortunately, the IBM assembler cannot handle stabx before the actual
-     declaration.  When something like ".stabx  "aa:S-2",aa,133,0" is emitted 
+     declaration.  When something like ".stabx  "aa:S-2",aa,133,0" is emitted
      and `aa' hasn't been output yet, the assembler generates a stab entry with
      a value of zero, in addition to creating an unnecessary external entry
      for `aa'.  Hence, we must postpone dbxout_symbol to here at the end.  */
@@ -1685,7 +1685,7 @@ assemble_name (file, name)
   tree id;
 
   STRIP_NAME_ENCODING (real_name, name);
-  if (flag_prefix_function_name 
+  if (flag_prefix_function_name
       && ! bcmp (real_name, CHKR_PREFIX, CHKR_PREFIX_SIZE))
     real_name = real_name + CHKR_PREFIX_SIZE;
 
@@ -2368,7 +2368,7 @@ const_hash (exp)
     case CONVERT_EXPR:
     case NON_LVALUE_EXPR:
       return const_hash (TREE_OPERAND (exp, 0)) * 7 + 2;
-      
+
     default:
       abort ();
     }
@@ -2491,7 +2491,7 @@ compare_constant_1 (exp, p)
 	  p += sizeof length;
 
 	  /* For record constructors, insist that the types match.
-	     For arrays, just verify both constructors are for arrays. 
+	     For arrays, just verify both constructors are for arrays.
 	     Then insist that either both or none have any TREE_PURPOSE
 	     values.  */
 	  if (TREE_CODE (TREE_TYPE (exp)) == RECORD_TYPE)
@@ -2698,7 +2698,7 @@ record_constant_1 (exp)
 	  obstack_grow (&permanent_obstack, (char *) &length, sizeof length);
 
 	  /* For record constructors, insist that the types match.
-	     For arrays, just verify both constructors are for arrays. 
+	     For arrays, just verify both constructors are for arrays.
 	     Then insist that either both or none have any TREE_PURPOSE
 	     values.  */
 	  if (TREE_CODE (TREE_TYPE (exp)) == RECORD_TYPE)
@@ -2947,21 +2947,21 @@ output_constant_def (exp)
      the label number already assigned.  */
 
   hash = const_hash (exp) % MAX_HASH_TABLE;
-      
+
   for (desc = const_hash_table[hash]; desc; desc = desc->next)
     if (compare_constant (exp, desc))
       {
 	found = desc->label;
 	break;
       }
-      
+
   if (found == 0)
     {
       /* No constant equal to EXP is known to have been output.
 	 Make a constant descriptor to enter EXP in the hash table.
 	 Assign the label number and record it in the descriptor for
 	 future calls to this function to find.  */
-	  
+
       /* Create a string containing the label name, in LABEL.  */
       ASM_GENERATE_INTERNAL_LABEL (label, "LC", const_labelno);
 
@@ -2976,7 +2976,7 @@ output_constant_def (exp)
       /* Create a string containing the label name, in LABEL.  */
       ASM_GENERATE_INTERNAL_LABEL (label, "LC", const_labelno);
     }
-  
+
   /* We have a symbol name; construct the SYMBOL_REF and the MEM.  */
 
   push_obstacks_nochange ();
@@ -2984,7 +2984,7 @@ output_constant_def (exp)
     end_temporary_allocation ();
 
   def = gen_rtx_SYMBOL_REF (Pmode, desc->label);
-      
+
   TREE_CST_RTL (exp)
     = gen_rtx_MEM (TYPE_MODE (TREE_TYPE (exp)), def);
   RTX_UNCHANGING_P (TREE_CST_RTL (exp)) = 1;
@@ -3302,7 +3302,7 @@ decode_rtx_const (mode, x, value)
 	   for the sake of addresses of library routines.
 	   For a LABEL_REF, compare labels.  */
 	value->un.addr.base = XEXP (value->un.addr.base, 0);
-	
+
       default:
 	break;
       }
@@ -3485,8 +3485,8 @@ force_const_mem (mode, x)
 	  rtl_in_saveable_obstack ();
 
 	  if (GET_CODE (x) == CONST)
-	    x = gen_rtx_CONST (GET_MODE (x), 
-			       gen_rtx_PLUS (GET_MODE (x), 
+	    x = gen_rtx_CONST (GET_MODE (x),
+			       gen_rtx_PLUS (GET_MODE (x),
 					     XEXP (XEXP (x, 0), 0),
 					     XEXP (XEXP (x, 0), 1)));
 	  else
@@ -3728,7 +3728,7 @@ mark_constant_pool ()
   /* It's possible that the only reference to a symbol is in a symbol
      that's in the constant pool.  This happens in Fortran under some
      situations.  (When the constant contains the address of another
-     constant, and only the first is used directly in an insn.) 
+     constant, and only the first is used directly in an insn.)
      This is potentially suboptimal if there's ever a possibility of
      backwards (in pool order) 2'd level references.  However, it's
      not clear that 2'd level references can happen. */
@@ -3744,7 +3744,7 @@ mark_constant_pool ()
       label = XSTR (pool->constant, 0);
 
       /* Be sure the symbol's value is marked. */
-      for (sym = const_rtx_sym_hash_table[SYMHASH (label)]; sym; 
+      for (sym = const_rtx_sym_hash_table[SYMHASH (label)]; sym;
            sym = sym->next)
 	  if (sym->label == label)
 	    sym->pool->mark = 1;
@@ -3916,7 +3916,7 @@ output_constant (exp, size)
   /* Eliminate the NON_LVALUE_EXPR_EXPR that makes a cast not be an lvalue.
      That way we get the constant (we hope) inside it.  Also, strip off any
      NOP_EXPR that converts between two record, union, array, or set types.  */
-  while ((TREE_CODE (exp) == NOP_EXPR 
+  while ((TREE_CODE (exp) == NOP_EXPR
 	  && (TREE_TYPE (exp) == TREE_TYPE (TREE_OPERAND (exp, 0))
 	      || AGGREGATE_TYPE_P (TREE_TYPE (exp))))
 	 || TREE_CODE (exp) == NON_LVALUE_EXPR)
@@ -4311,7 +4311,7 @@ output_constructor (exp, size)
 #ifdef HANDLE_PRAGMA_WEAK
 /* Add function NAME to the weak symbols list.  VALUE is a weak alias
    associatd with NAME.  */
-   
+
 int
 add_weak (name, value)
      char *name;

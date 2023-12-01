@@ -46,12 +46,12 @@
          2. [37]Snapshots, how, when, why
          3. [38]Friend Templates
          4. [39]Where to find libg++
-         5. [40]Why do I need autoconf, bison, xgettext, automake, etc 
+         5. [40]Why do I need autoconf, bison, xgettext, automake, etc
          6. [41]Problems debugging GCC code
-         7. [42]Conflicts when using cvs update 
+         7. [42]Conflicts when using cvs update
          8. [43]Using GCC with GNAT/Ada
          9. [44]Using GCC with GNU Pascal
-        10. [45]Using CVS to download snapshots 
+        10. [45]Using CVS to download snapshots
         11. [46]Why can't I build a shared library?
         12. [47]Dealing with spam on the lists
         13. [48]How to work around too long C++ symbol names?

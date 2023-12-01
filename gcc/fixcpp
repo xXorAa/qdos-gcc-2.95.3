@@ -41,7 +41,7 @@
 #       redistribute this source code provided that all
 #       recipients are given similar rights, and that the above
 #       copyright notice and this notice are preserved in all
-#       copies. 
+#       copies.
 
 TMPF=/tmp/fixcpp.$$
 NEWDIR=
@@ -86,7 +86,7 @@ do
 		else
 			infile=$i
 		fi
-	fi	
+	fi
 	sed -e 's;^#\([ 	]*e[nl][^ 	]*[ 	][ 	]*\)\([^/ 	][^\*].*\);#\1/* \2 */;' -e 's;^#\([ 	]*e[nl][^ 	]*[ 	][ 	]*\)\([^/ 	]\)$;#\1/* \2 */;' $infile >${NEWDIR}/$i
 	if [ "${CHECK}" = "yes" -o ${PATCHF} ]; then
 		if cmp -s $infile ${NEWDIR}/$i ; then

@@ -22,7 +22,7 @@ the Free Software Foundation, 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.  */
 
 /* You're not seeing double!  To transition to dwarf debugging, both are
-   supported.  The option -msvr4 specifies elf.  With these combinations, 
+   supported.  The option -msvr4 specifies elf.  With these combinations,
    -g means dwarf.  */
 /* DWARF_DEBUGGING_INFO defined in svr4.h.  */
 #define SDB_DEBUGGING_INFO
@@ -133,7 +133,7 @@ Boston, MA 02111-1307, USA.  */
   { "asm_cpu",          ASM_CPU_SPEC },                 \
   { "startfile_default", STARTFILE_DEFAULT_SPEC },  \
   { "startfile_crtbegin", STARTFILE_CRTBEGIN_SPEC }
-   
+
 /* Keep this left justified, no white space is allowed between
    the arguments to the -Wc option */
 #define ASM_CPU_SPEC "\
@@ -215,7 +215,7 @@ Boston, MA 02111-1307, USA.  */
 #undef DTORS_SECTION_ASM_OP
 
 #if defined (CRT_BEGIN) || defined (CRT_END) || defined (L__main)
-/* routines to invoke global constructors and destructors are always COFF 
+/* routines to invoke global constructors and destructors are always COFF
    to enable linking mixed COFF and ELF objects */
 #define FINI_SECTION_ASM_OP ("section  .fini,\"x\"")
 #ifndef BCS
@@ -276,7 +276,7 @@ func_ptr __DTOR_END__[1] = { (func_ptr) (-1) }
     for (i=1;(int)(__CTOR_LIST__[i]) != -1; i++)	\
       if (((int *)__CTOR_LIST__)[i] != 0)		\
 	__CTOR_LIST__[i] ();				\
-  } while (0)					
+  } while (0)
 
 /* Walk the list looking for the terminating -1 that marks the end.
    Go backward and ignore any NULL entries.  */
@@ -287,7 +287,7 @@ func_ptr __DTOR_END__[1] = { (func_ptr) (-1) }
     for (i-=1;(int)(__DTOR_LIST__[i]) != -1; i--)	\
       if (((int *)__DTOR_LIST__)[i] != 0)		\
 	__DTOR_LIST__[i] ();				\
-  } while (0)					
+  } while (0)
 
 /* The maximum alignment which the object file format can support.
    page alignment would seem to be enough */

@@ -56,7 +56,7 @@ Mon Aug 17 02:19:30 1998  David Edelsohn  <edelsohn@mhpcc.edu>
  	backslash before newline.
 
 Mon Aug 17 00:12:42 1998  Paul Eggert  <eggert@twinsun.com>
-  	
+
 	* reorg.c (check_annul_list_true_false): Fix typo in Jul 17 change.
 
 Sun Aug  2 01:10:15 1998  Paul Eggert  <eggert@twinsun.com>
@@ -392,7 +392,7 @@ Sun Aug  2 01:10:15 1998  Paul Eggert  <eggert@twinsun.com>
 
 Mon Jul 27 18:28:58 1998  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 
-	* reload.c (find_reloads): If no_input_reloads, abort if 
+	* reload.c (find_reloads): If no_input_reloads, abort if
 	reloads were made for addresses.
 	* m68k.md (sxx): Operand 0 cannot be memory.
 
@@ -430,7 +430,7 @@ Fri Jul  3 07:17:19 1998  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 	eliminated by reload.
 
 Thu Jul  2 18:43:53 1998  James Carlson  <carlson@ironbridgenetworks.com>
- 
+
 	* floatlib.c (HIDDEND_LL, MANTD_LL, PACKD_LL): New macros.
 	(__addsf3): Fixed cases returning wrong type and causing unintended
 	conversions and data corruption.
@@ -601,7 +601,7 @@ Sat Jun 13 14:16:34 1998  Andreas Schwab  <schwab@issan.informatik.uni-dortmund.
 
 Sat Jun 13 12:53:22 1998  Richard Earnshaw (rearnsha@arm.com)
 
-	* unroll.c (verify_addresses): Use validate_replace_rtx to undo 
+	* unroll.c (verify_addresses): Use validate_replace_rtx to undo
 	changes; abort if undo fails.
 
 Sat Jun 13 11:46:38 1998  Anders Blomdell <anders.blomdell@control.lth.se>
@@ -794,11 +794,11 @@ Sun May 24 08:59:27 1998  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 
 Sat May 23 22:31:17 1998  Michael P. Hayes  <michaelh@ongaonga.chch.cri.nz>
 
-	* emit_rtl.c (double_mode): New variable.  
+	* emit_rtl.c (double_mode): New variable.
 	(init_emit_once): Set and use it.
 	* real.c (ereal_atof, real_value_truncate): Handle double_mode not
 	being DFmode for C4x.
-	
+
 Sat May 23 22:19:55 1998  Mike Stump  <mrs@wrs.com>
 
 	* expr.c (expand_builtin_setjmp): Handle BUILTIN_SETJMP_FRAME_VALUE.
@@ -924,7 +924,7 @@ Tue Apr 28 17:30:05 1998  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 	* final.c (alter_subreg): Make new SUBREG if reload replacement
 	scheduled inside it.
 
-	* dwarf2out.c (add_bound_info, case SAVE_EXPR): Pass 
+	* dwarf2out.c (add_bound_info, case SAVE_EXPR): Pass
 	SAVE_EXPR_RTL address through fix_lexical_addr.
 
 Mon Apr 27 18:57:18 1998  Jim Wilson  <wilson@cygnus.com>
@@ -1034,7 +1034,7 @@ Sun Apr 12 20:40:44 1998  Richard Henderson  <rth@dot.cygnus.com>
 	* configure.in (alpha*-*-linux-gnu*): Add alpha/t-crtbe.
 	Add crt{begin,end}.o in extra_parts and delete crt{begin,end}S.o.o
 	* alpha/t-crtbe, alpha/crt{begin,end}.asm: New files.
-	
+
 	* alpha.h (PRINT_OPERAND_PUNCT_VALID_P): Accept '(' for s/sv/svi.
 	* alpha.c (print_operand): Handle it.
 	* alpha.md (fix_trunc[ds]fdi2): Use it.  Add earlyclobber pattern
@@ -1175,15 +1175,15 @@ Wed Mar 25 16:09:01 1998  Michael Meissner  <meissner@cygnus.com>
 	(rs6000_replace_regno): Add default case in enumeration switch.
 	(output_epilog): Remove unused variable `i'.
 	(rs6000_longcall_ref): Remove unused variables `len', `p', `reg[12]'.
- 
+
 	* rs6000.h (ADDITIONAL_REGISTER_NAMES): Add missing braces around
 	initializer.
 	(get_issue_rate, non_logical_cint_operand): Add prototype.
 	(rs6000_output_load_toc_table): Likewise.
- 
+
 	* rs6000.md (udivmodsi4): Add explicit braces to avoid ambiguous
 	`else'.
- 
+
 Wed Mar 25 02:39:01 1998  Paul Eggert  <eggert@twinsun.com>
 
 	* configure.in (i[34567]86-*-solaris2*, powerpcle-*-solaris2*,
@@ -1487,7 +1487,7 @@ Sat Feb 28 16:58:08 1998  Tristan Gingold  <gingold@rossini.enst.fr>
 	* stmt.c (expand_decl): If -fcheck-memory-usage, put vars in memory.
 	* expr.c (get_memory_usage_from_modifier): Convert
 	EXPAND_{CONST_ADDRESS, INITIALIZER} to MEMORY_USE_DONT.
-  
+
 Sat Feb 28 08:13:43 1998  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 
 	* i860/fx2800.h (DATA_ALIGNMENT): Use POINTER_TYPE_P.
@@ -1591,7 +1591,7 @@ Fri Feb 20 08:27:46 1998  Paul Eggert  <eggert@twinsun.com>
 
 	* sparc/sol2-sld.h: New file.
 	* configure.in (sparc-*-solaris2*): Use it when using system linker.
-	* toplev.c (main): Don't default to DWARF2_DEBUG with -ggdb 
+	* toplev.c (main): Don't default to DWARF2_DEBUG with -ggdb
 	if LINKER_DOES_NOT_WORK_WITH_DWARF2 is defined.
 
 Fri Feb 20 08:21:49 1998  H.J. Lu  (hjl@gnu.org)
@@ -1636,7 +1636,7 @@ Wed Feb 18 07:08:05 1998  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 	non-reloaded operand to RELOAD_FOR_OPERAND_ADDRESS.
 
 	* emit-rtl.c (hard-reg-set.h): Include.
-	(get_lowpart_common): Don't make new REG for hard reg in a 
+	(get_lowpart_common): Don't make new REG for hard reg in a
 	class that cannot change size.
 	* Makefile.in (emit-rtl.o): Depend on hard-reg-set.h.
 
@@ -1714,7 +1714,7 @@ Thu Feb 12 10:08:14 1998  John Hassey  <hassey@dg-rtp.dg.com>
 	* configure.in (i[3456]86-dg-dgux*): Don't need fixincludes.
 
 Thu Feb 12 07:27:39 1998  Mumit Khan <khan@xraylith.wisc.edu>
-	
+
 	* i386/cygwin32.h (NO_IMPLICIT_EXTERN_C): Define.
 	about system headers.
 	(LIB_SPEC): Add -ladvapi32 -lshell32.
@@ -1803,7 +1803,7 @@ Fri Feb  6 16:37:29 1998  Kaveh R. Ghazi  <ghazi@caip.rutgers.edu>
 
 	* objc/Make-lang.in (objc.stage1): Depend on stage1-start.
 	(objc.stage2, objc.stage3, objc.stage4): Likewise for the
-	respective stageN-start targets. 
+	respective stageN-start targets.
 	(objc/sendmsg.o): Depend on objc/runtime-info.h.
 
 Fri Feb  6 16:27:09 1998  Bernd Schmidt  <crux@Pool.Informatik.RWTH-Aachen.DE>
@@ -1845,7 +1845,7 @@ Fri Feb  6 11:01:13 1998  Josh Littlefield  <josh@american.com>
 	* i386/sol2-c1.asm (_mcount): Make a weak instead of global symbol.
 	* i386/sol2dbg.h (ASM_SPEC): Support Solaris bundled assembler's -V
 	argument; pass -s argument to assembler.
-	
+
 Fri Feb  6 09:13:21 1998  Jim Wilson  (wilson@cygnus.com)
 
 	* function.c (assign_parms): New variable named_arg, with value
@@ -2005,7 +2005,7 @@ Tue Feb  3 17:18:19 1998  Richard Earnshaw  <rearnsha@arm.com>
 
 	* arm.c (find_barrier): Fix one-too-many bug if fail to find barrier.
 
-	* arm.c (arm_reload_in_hi): Handle cases where the MEM is too 
+	* arm.c (arm_reload_in_hi): Handle cases where the MEM is too
 	complex for a simple offset.
 
 Tue Feb  3 16:14:21 1998  Robert Hoehne  <robert.hoehne@gmx.net>
@@ -2045,7 +2045,7 @@ Tue Feb  3 06:58:46 1998  Mark Mitchell  <mmitchell@usa.net>
 	* integrate.h (get_label_from_map): New function.
 	(set_label_from_map): New macro.
 	* unroll.c (unroll_loop, copy_loop_body): Use them.
-	
+
 Mon Feb  2 16:33:01 1998  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 
 	* i386.md (mov{si,hi,sf,df,xf}cc{,_1}): Remove cases with branches.
@@ -2096,7 +2096,7 @@ Wed Jan 14 20:10:51 1998  Paul Eggert  <eggert@twinsun.com>
 	(change_newlines): \" does not end a string.
 	(make_definition): Do not treat backslash-newline specially, as it
 	has already been removed before we get here.
-	
+
 	* profile.c (output_func_start_profiler): Don't fflush output
 	if -quiet.
 	* toplev.c (rest_of_compilation): Likewise.

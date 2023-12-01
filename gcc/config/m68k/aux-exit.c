@@ -61,7 +61,7 @@ int atexit(void (*fn)(void))
 {
   if (current_block->used >= FNS_PER_BLOCK)
     {
-      struct atexit_fn_block *new_block = 
+      struct atexit_fn_block *new_block =
 	(struct atexit_fn_block *)malloc(sizeof(struct atexit_fn_block));
       if (new_block == NULL)
 	return -1;

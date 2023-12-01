@@ -218,7 +218,7 @@ Boston, MA 02111-1307, USA.  */
    These definitions work for machines where an SF value is
    returned in the same register as an int.  */
 
-#ifndef FLOAT_VALUE_TYPE  
+#ifndef FLOAT_VALUE_TYPE
 #define FLOAT_VALUE_TYPE int
 #endif
 

@@ -41,7 +41,7 @@ Boston, MA 02111-1307, USA.  */
 
 #if 0
 /* Users are not supposed to use _POSIX_SOURCE to say the
-   system is a POSIX system.  That is not what _POSIX_SOURCE means! -- rms  */ 
+   system is a POSIX system.  That is not what _POSIX_SOURCE means! -- rms  */
 /* If the user asked for POSIX via _POSIX_SOURCE, turn on POSIX code.  */
 #if defined(_POSIX_SOURCE) && !defined(POSIX)
 #define POSIX
@@ -237,7 +237,7 @@ static const int hash_mask = (HASH_TABLE_SIZE - 1);
 #define LOCAL_INCLUDE_DIR "/usr/local/include"
 #endif
 
-struct default_include { const char *fname; 
+struct default_include { const char *fname;
 			 const char *component;
 			 int x1, x2; } include_defaults[]
 #ifdef INCLUDE_DEFAULTS
@@ -1625,7 +1625,7 @@ save_def_or_dec (l, is_syscalls)
        which contained this particular def or dec item.  Note that this call
        may cause a new file_info record to be created if this is the first time
        that we have ever known about this particular file.
-  
+
        Note that we started out by forcing all of the base source file names
        (i.e. the names of the aux_info files with the .X stripped off) into the
        filenames hash table, and we simultaneously setup file_info records for
@@ -1634,7 +1634,7 @@ save_def_or_dec (l, is_syscalls)
        act as file_info records for the "original" (i.e. un-included) files
        which were submitted to gcc for compilation (when the -aux-info
        option was used).  */
-  
+
     def_dec_p->file = find_file (abspath (invocation_filename, filename), is_syscalls);
   }
 
@@ -1748,7 +1748,7 @@ save_def_or_dec (l, is_syscalls)
 
         cip->formals_list
 	  = dupnstr (left_paren_p + 1, (size_t) (p - (left_paren_p+1)));
-      
+
         /* Add the new chain item at the head of the current list.  */
 
         cip->chain_next = def_dec_p->f_list_chain;
@@ -2208,7 +2208,7 @@ start_over: ;
     struct stat stat_buf;
 
     /* Get some status information about this aux_info file.  */
-  
+
     if (my_stat (aux_info_filename, &stat_buf) == -1)
       {
 	int errno_val = errno;
@@ -2218,17 +2218,17 @@ start_over: ;
         errors++;
         return;
       }
-  
+
     /* Check on whether or not this aux_info file is zero length.  If it is,
        then just ignore it and return.  */
-  
+
     if ((aux_info_size = stat_buf.st_size) == 0)
       return;
-  
+
     /* Get the date/time of last modification for this aux_info file and
        remember it.  We will have to check that any source files that it
        contains information about are at least this old or older.  */
-  
+
     aux_info_mtime = stat_buf.st_mtime;
 
     if (!is_syscalls)
@@ -2258,7 +2258,7 @@ start_over: ;
     int aux_info_file;
 
     /* Open the aux_info file.  */
-  
+
     if ((aux_info_file = my_open (aux_info_filename, O_RDONLY, 0444 )) == -1)
       {
 	int errno_val = errno;
@@ -2267,15 +2267,15 @@ start_over: ;
 		xstrerror (errno_val));
         return;
       }
-  
+
     /* Allocate space to hold the aux_info file in memory.  */
-  
+
     aux_info_base = xmalloc (aux_info_size + 1);
     aux_info_limit = aux_info_base + aux_info_size;
     *aux_info_limit = '\0';
-  
+
     /* Read the aux_info file into memory.  */
-  
+
     if (safe_read (aux_info_file, aux_info_base, aux_info_size) !=
 	(int) aux_info_size)
       {
@@ -2287,9 +2287,9 @@ start_over: ;
         close (aux_info_file);
         return;
       }
-  
+
     /* Close the aux info file.  */
-  
+
     if (close (aux_info_file))
       {
 	int errno_val = errno;
@@ -2367,7 +2367,7 @@ start_over: ;
     if (!is_syscalls)
       {
         current_aux_info_lineno = 2;
-    
+
         for (aux_info_p = aux_info_second_line; *aux_info_p; )
           {
             if (referenced_file_is_newer (aux_info_p, aux_info_mtime))
@@ -2385,9 +2385,9 @@ start_over: ;
 		must_create = 1;
                 goto start_over;
               }
-    
+
             /* Skip over the rest of this line to start of next line.  */
-    
+
             while (*aux_info_p != '\n')
               aux_info_p++;
             aux_info_p++;
@@ -2397,13 +2397,13 @@ start_over: ;
 
     /* Now do the real pass on the aux_info lines.  Save their information in
        the in-core data base.  */
-  
+
     current_aux_info_lineno = 2;
-  
+
     for (aux_info_p = aux_info_second_line; *aux_info_p;)
       {
         char *unexpanded_line = unexpand_if_needed (aux_info_p);
-  
+
         if (unexpanded_line)
           {
             save_def_or_dec (unexpanded_line, is_syscalls);
@@ -2411,9 +2411,9 @@ start_over: ;
           }
         else
           save_def_or_dec (aux_info_p, is_syscalls);
-  
+
         /* Skip over the rest of this line and get to start of next line.  */
-  
+
         while (*aux_info_p != '\n')
           aux_info_p++;
         aux_info_p++;
@@ -3160,7 +3160,7 @@ edit_fn_declaration (def_dec_p, clean_text_p)
                 break;			/* exit from loop */
             }
         }
-    
+
       /* We have now found the first perfect match for the function name in
          our backward search.  This may or may not be the actual function
          name at the start of the actual function declaration (i.e. we could
@@ -3172,7 +3172,7 @@ edit_fn_declaration (def_dec_p, clean_text_p)
          again accordingly.  Note that there is no guarantee, that even if
          we do see the open paren, that we are in the right place.
          Programmers do the strangest things sometimes!  */
-    
+
       end_of_fn_name = clean_text_p + strlen (def_dec_p->hash_entry->symbol);
       start_formals = forward_to_next_token_char (end_of_fn_name);
     }
@@ -3214,12 +3214,12 @@ edit_fn_declaration (def_dec_p, clean_text_p)
 
       /* end_formals now points to the closing right paren of the formals
          list whose left paren is pointed to by start_formals.  */
-    
+
       /* Now, if we are protoizing, we insert the new ANSI-style formals list
          attached to the associated definition of this function.  If however
          we are unprotoizing, then we simply delete any formals list which
          may be present.  */
-    
+
       output_up_to (start_formals);
 #ifndef UNPROTOIZE
       if (this_f_list_chain_item)
@@ -3257,7 +3257,7 @@ edit_fn_declaration (def_dec_p, clean_text_p)
               }
 #endif /* !defined (UNPROTOIZE) */
             break;
-  
+
           }
       }
 
@@ -3555,7 +3555,7 @@ add_local_decl (def_dec_p, clean_text_p)
     {
       if (!quiet_flag)
         notice ("\n%s: %d: warning: can't add declaration of `%s' into macro call\n",
-          def_dec_p->file->hash_entry->symbol, def_dec_p->line, 
+          def_dec_p->file->hash_entry->symbol, def_dec_p->line,
           def_dec_p->hash_entry->symbol);
       return;
     }
@@ -3583,16 +3583,16 @@ add_local_decl (def_dec_p, clean_text_p)
        we just found.  */
 
     output_up_to (ep);
-  
+
     /* Now we go ahead and insert the new declaration at this point.
 
        If the definition of the given function is in the same file that we
        are currently editing, and if its full ANSI declaration normally
        would start with the keyword `extern', suppress the `extern'.  */
-  
+
     {
       const char *decl = def_dec_p->definition->ansi_decl;
-  
+
       if ((*decl == 'e') && (def_dec_p->file == def_dec_p->definition->file))
         decl += 7;
       output_string (decl);
@@ -3669,19 +3669,19 @@ add_global_decls (file_p, clean_text_p)
 
   {
     int some_decls_added = 0;
-  
+
     for (dd_p = file_p->defs_decs; dd_p; dd_p = dd_p->next_in_file)
       if (dd_p->is_implicit && dd_p->definition && !dd_p->definition->written)
         {
           const char *decl = dd_p->definition->ansi_decl;
-  
+
           /* If the function for which we are inserting a declaration is
              actually defined later in the same file, then suppress the
              leading `extern' keyword (if there is one).  */
-  
+
           if (*decl == 'e' && (dd_p->file == dd_p->definition->file))
             decl += 7;
-  
+
           output_string ("\n");
           output_string (decl);
           some_decls_added = 1;
@@ -3734,13 +3734,13 @@ edit_fn_definition (def_dec_p, clean_text_p)
      function with a variable number of arguments, and if the way it does
      that is different from that way we would like it (i.e. varargs vs.
      stdarg) then issue a warning and leave the header unconverted.  */
-     
+
   if (other_variable_style_function (def_dec_p->ansi_decl))
     {
       if (!quiet_flag)
         notice ("%s: %d: warning: definition of %s not converted\n",
 		shortpath (NULL, def_dec_p->file->hash_entry->symbol),
-		identify_lineno (end_formals), 
+		identify_lineno (end_formals),
 		other_var_style);
       output_up_to (end_formals);
       return;
@@ -4108,7 +4108,7 @@ scan_for_missed_items (file_p)
 
    Note that the trick of making a copy of the original sans comments &
    preprocessing directives make the editing a whole lot easier.  */
-   
+
 static void
 edit_file (hp)
      const hash_table_entry *hp;
@@ -4246,7 +4246,7 @@ edit_file (hp)
     char *const clean_filename = (char *) alloca (strlen (convert_filename) + 6 + 1);
 
     /* Open (and create) the clean file.  */
-  
+
     strcpy (clean_filename, convert_filename);
     strcat (clean_filename, ".clean");
     if ((clean_file = creat (clean_filename, 0666)) == -1)
@@ -4257,11 +4257,11 @@ edit_file (hp)
 		xstrerror (errno_val));
         return;
       }
-  
+
     /* Write the clean file.  */
-  
+
     safe_write (clean_file, new_clean_text_base, clean_size, clean_filename);
-  
+
     close (clean_file);
   }
 #endif /* 0 */
@@ -4288,13 +4288,13 @@ edit_file (hp)
     for (; def_dec_p; def_dec_p = def_dec_p->next_in_file)
       {
         const char *clean_text_p = seek_to_line (def_dec_p->line);
-  
+
         /* clean_text_p now points to the first character of the line which
            contains the `terminator' for the declaration or definition that
            we are about to process.  */
-  
+
 #ifndef UNPROTOIZE
-  
+
         if (global_flag && def_dec_p->is_func_def && first_definition_in_file)
           {
             add_global_decls (def_dec_p->file, clean_text_p);
@@ -4344,7 +4344,7 @@ edit_file (hp)
     {
       char *new_filename
 	= (char *) xmalloc (strlen (convert_filename) + strlen (save_suffix) + 2);
-  
+
       strcpy (new_filename, convert_filename);
       strcat (new_filename, save_suffix);
       if (my_link (convert_filename, new_filename) == -1)
@@ -4383,7 +4383,7 @@ edit_file (hp)
     int output_file;
 
     /* Open (and create) the output file.  */
-  
+
     if ((output_file = creat (convert_filename, 0666)) == -1)
       {
 	int errno_val = errno;
@@ -4392,15 +4392,15 @@ edit_file (hp)
 		xstrerror (errno_val));
         return;
       }
-  
+
     /* Write the output file.  */
-  
+
     {
       unsigned int out_size = (repl_write_ptr + 1) - repl_text_base;
-  
+
       safe_write (output_file, repl_text_base, out_size, convert_filename);
     }
-  
+
     close (output_file);
   }
 
@@ -4477,7 +4477,7 @@ do_processing ()
       *(syscalls_absolute_filename + syscalls_len) = '\0';
     }
   strcat (syscalls_absolute_filename, syscalls_filename);
-  
+
   /* Call process_aux_info_file in such a way that it does not try to
      delete the SYSCALLS aux_info file.  */
 
@@ -4597,7 +4597,7 @@ main (argc, argv)
 	case 'x':
 	  exclude_list = string_list_cons (optarg, exclude_list);
 	  break;
-	    
+
 	case 'v':
 	case 'V':
 	  version_flag = 1;
@@ -4645,7 +4645,7 @@ main (argc, argv)
 	  usage ();
 	}
     }
- 
+
   /* Set up compile_params based on -p and -c options.  */
   munge_compile_params (params);
 

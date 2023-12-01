@@ -82,7 +82,7 @@ extern char *branch_or_jump ();
    is still the most significant bit, which is leftmost. Therefore leaving
    this little-endian. Adjust short before assembler output when needed:
    e.g. in QImode, a GCC bit n is a 1750 bit (15-n). */
-#define BITS_BIG_ENDIAN 0 
+#define BITS_BIG_ENDIAN 0
 
 /* Define this if most significant byte of a word is the lowest numbered.  */
 /* For 1750 we can decide arbitrarily
@@ -253,7 +253,7 @@ extern char *branch_or_jump ();
 #define ARG_POINTER_REGNUM 14
 
 /* Define this if successive args to a function occupy decreasing addresses
-   on the stack. 
+   on the stack.
    #define ARGS_GROW_DOWNWARD
 */
 
@@ -261,12 +261,12 @@ extern char *branch_or_jump ();
 #define STATIC_CHAIN_REGNUM 13
 
 /* Place in which caller passes the structure value address.
-   0 means push the value on the stack like an argument. 
+   0 means push the value on the stack like an argument.
    #define STRUCT_VALUE 0
 */
 
 /* Register in which address to store a structure value
-   arrives in the function.  
+   arrives in the function.
    #define STRUCT_VALUE_INCOMING 0
 */
 
@@ -326,7 +326,7 @@ enum reg_class { NO_REGS, R2, R0_1, INDEX_REGS, BASE_REGS, ALL_REGS, LIM_REG_CLA
 /* Define which registers fit in which classes.
    This is an initializer for a vector of HARD_REG_SET
    of length N_REG_CLASSES.
-   1750 "index" (remember, in the *GCC* sense!) regs are R12 through R15. 
+   1750 "index" (remember, in the *GCC* sense!) regs are R12 through R15.
    The only 1750 register not usable as BASE_REG is R0. */
 
 #define REG_CLASS_CONTENTS  {0, 0x0004, 0x0003, 0xf000, 0xfffe, 0xffff}
@@ -344,7 +344,7 @@ enum reg_class { NO_REGS, R2, R0_1, INDEX_REGS, BASE_REGS, ALL_REGS, LIM_REG_CLA
 #define INDEX_REG_CLASS INDEX_REGS
 
 /* Get reg_class from a letter such as appears in the machine description.
-   For the 1750, we have 'z' for R0_1, 't' for R2, 'b' for gcc Base regs 
+   For the 1750, we have 'z' for R0_1, 't' for R2, 'b' for gcc Base regs
    and 'x' for gcc Index regs. */
 
 #define REG_CLASS_FROM_LETTER(C) ((C) == 't' ? R2 : \
@@ -358,7 +358,7 @@ enum reg_class { NO_REGS, R2, R0_1, INDEX_REGS, BASE_REGS, ALL_REGS, LIM_REG_CLA
    C is the letter, and VALUE is a constant value.
    Return 1 if VALUE is in the range specified by C.
 
-   For the 1750A, 
+   For the 1750A,
    `I' is used for ISP mode instructions,
    `J' is used for ISN mode instructions,
    `K' is used for the STC instruction's constant range,
@@ -414,7 +414,7 @@ enum reg_class { NO_REGS, R2, R0_1, INDEX_REGS, BASE_REGS, ALL_REGS, LIM_REG_CLA
 
 /* Define this if the nominal address of the stack frame
    is at the high-address end of the local variables;
-   goes at a more negative offset in the frame. 
+   goes at a more negative offset in the frame.
    #define FRAME_GROWS_DOWNWARD
 */
 
@@ -440,11 +440,11 @@ enum reg_class { NO_REGS, R2, R0_1, INDEX_REGS, BASE_REGS, ALL_REGS, LIM_REG_CLA
    been allocated for arguments even when their values are passed in
    registers.
    Size, in bytes, of the area reserved for arguments passed in
-   registers for the function represented by FNDECL. 
+   registers for the function represented by FNDECL.
    #define REG_PARM_STACK_SPACE(FNDECL) 14 */
 
 /* Define this if it is the responsibility of the caller to allocate
-   the area reserved for arguments passed in registers. 
+   the area reserved for arguments passed in registers.
    #define OUTGOING_REG_PARM_STACK_SPACE */
 
 /* Offset of first parameter from the argument pointer register value.
@@ -487,13 +487,13 @@ enum reg_class { NO_REGS, R2, R0_1, INDEX_REGS, BASE_REGS, ALL_REGS, LIM_REG_CLA
 
 #define FUNCTION_VALUE_REGNO_P(N)  ((N) == 0)
 
-/* 1 if the tree TYPE should be returned in memory instead of in regs. 
+/* 1 if the tree TYPE should be returned in memory instead of in regs.
    #define RETURN_IN_MEMORY(TYPE) \
    (int_size_in_bytes(TYPE) > 12)
 */
 
 /* Define this if PCC uses the nonreentrant convention for returning
-   structure and union values. 
+   structure and union values.
    #define PCC_STATIC_STRUCT_RETURN  */
 
 /* 1 if N is a possible register number for function argument passing. */
@@ -660,7 +660,7 @@ enum reg_class { NO_REGS, R2, R0_1, INDEX_REGS, BASE_REGS, ALL_REGS, LIM_REG_CLA
    This is for when we don't use a frame pointer.
    ADDR should be a variable name.
 
-   #define FIX_FRAME_POINTER_ADDRESS(ADDR,DEPTH)  
+   #define FIX_FRAME_POINTER_ADDRESS(ADDR,DEPTH)
 */
 
 /* Store in the variable DEPTH the initial difference between the
@@ -718,7 +718,7 @@ enum reg_class { NO_REGS, R2, R0_1, INDEX_REGS, BASE_REGS, ALL_REGS, LIM_REG_CLA
    They give nonzero only if REGNO is a hard reg of the suitable class
    or a pseudo reg currently allocated to a suitable hard reg.
    Since they use reg_renumber, they are safe only once reg_renumber
-   has been allocated, which happens in local-alloc.c. 
+   has been allocated, which happens in local-alloc.c.
    1750 note: The words BASE and INDEX are used in their GCC senses:
    The "Index Registers", R12 through R15, are used in the 1750
    instructions LB,STB,AB,SBB,MB,DB,LBX,STBX,...
@@ -878,7 +878,7 @@ enum reg_class { NO_REGS, R2, R0_1, INDEX_REGS, BASE_REGS, ALL_REGS, LIM_REG_CLA
 
 #define STORE_FLAG_VALUE 1
 
-/* When a prototype says `char' or `short', really pass an `int'. 
+/* When a prototype says `char' or `short', really pass an `int'.
    1750: for now, `char' is 16 bits wide anyway.
    #define PROMOTE_PROTOTYPES */
 
@@ -927,7 +927,7 @@ enum reg_class { NO_REGS, R2, R0_1, INDEX_REGS, BASE_REGS, ALL_REGS, LIM_REG_CLA
 #define NOTICE_UPDATE_CC(EXP, INSN) notice_update_cc(EXP)
 
 /**********************************************/
-/* Produce debugging info in the DWARF format 
+/* Produce debugging info in the DWARF format
    #define DWARF_DEBUGGING_INFO
 */
 
@@ -951,8 +951,8 @@ enum reg_class { NO_REGS, R2, R0_1, INDEX_REGS, BASE_REGS, ALL_REGS, LIM_REG_CLA
    fprintf(FILE,"\tnolist\n\tinclude \"ms1750.inc\"\n\tlist\n\n");	\
    fprintf(FILE,"\tglobal\t__main\n\n");  }
 
-/* Output at end of assembler file.  
-   For 1750, we copy the data labels accrued in datalbl[] from the Constants 
+/* Output at end of assembler file.
+   For 1750, we copy the data labels accrued in datalbl[] from the Constants
    section (Konst) to the Writable-Data section (Static).     */
 
 #define ASM_FILE_END(FILE)	\
@@ -1023,7 +1023,7 @@ enum reg_class { NO_REGS, R2, R0_1, INDEX_REGS, BASE_REGS, ALL_REGS, LIM_REG_CLA
 	}							\
     }
 
-		
+
 /* Function that switches to the read-only data section (optional) */
 #define READONLY_DATA_SECTION	const_section
 
@@ -1140,7 +1140,7 @@ enum reg_class { NO_REGS, R2, R0_1, INDEX_REGS, BASE_REGS, ALL_REGS, LIM_REG_CLA
 	  sprintf (LABEL, "%s%d", PREFIX, NUM)
 
 /* Output at the end of a jump table.
-   1750: To be uncommented when we can put jump tables in Konst.  
+   1750: To be uncommented when we can put jump tables in Konst.
    #define ASM_OUTPUT_CASE_END(FILE,NUM,INSN)      \
 	fprintf (FILE, "\tnormal\t; case_end\n")
  */

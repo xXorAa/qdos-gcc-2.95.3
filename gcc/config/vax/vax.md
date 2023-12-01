@@ -869,7 +869,7 @@
 		  (sign_extend:DI
 		   (match_operand:SI 2 "nonimmediate_operand" "g")))
 	 (match_operand:DI 3 "immediate_operand" "F")))]
-  "GET_CODE (operands[3]) == CONST_DOUBLE 
+  "GET_CODE (operands[3]) == CONST_DOUBLE
     && CONST_DOUBLE_HIGH (operands[3]) == (CONST_DOUBLE_LOW (operands[3]) >> 31)"
   "*
 {
@@ -1178,7 +1178,7 @@
 
 ;; Arithmetic right shift on the vax works by negating the shift count,
 ;; then emitting a right shift with the shift count negated.  This means
-;; that all actual shift counts in the RTL will be positive.  This 
+;; that all actual shift counts in the RTL will be positive.  This
 ;; prevents converting shifts to ZERO_EXTRACTs with negative positions,
 ;; which isn't valid.
 (define_expand "ashrsi3"
@@ -2008,7 +2008,7 @@
   ""
   "casel %0,$0,%1")
 
-;;- load or push effective address 
+;;- load or push effective address
 ;; These come after the move and add/sub patterns
 ;; because we don't want pushl $1 turned into pushad 1.
 ;; or addl3 r1,r2,r3 turned into movab 0(r1)[r2],r3.
@@ -2091,7 +2091,7 @@
 ;; These used to be peepholes, but it is more straightforward to do them
 ;; as single insns.  However, we must force the output to be a register
 ;; if it is not an offsettable address so that we know that we can assign
-;; to it twice. 
+;; to it twice.
 
 ;; If we had a good way of evaluating the relative costs, these could be
 ;; machine-independent.

@@ -1,6 +1,6 @@
 ;;; texinfmt.el --- format Texinfo files into Info files.
 
-;; Copyright (C) 1985, 1986, 1988, 1990, 1991, 1992, 1993, 
+;; Copyright (C) 1985, 1986, 1988, 1990, 1991, 1992, 1993,
 ;;               1994, 1995, 1996, 1997 Free Software Foundation, Inc.
 
 ;; Maintainer: Robert J. Chassell <bug-texinfo@prep.ai.mit.edu>
@@ -33,9 +33,9 @@
   "Show the version of texinfmt.el in the minibuffer.
 If optional argument HERE is non-nil, insert info at point."
   (interactive "P")
-  (let ((version-string 
+  (let ((version-string
          (format "Version of \`texinfmt.el\': %s" texinfmt-version)))
-    (if here 
+    (if here
         (insert version-string)
       (if (interactive-p)
           (message "%s" version-string)
@@ -155,8 +155,8 @@ converted to Info is stored in a temporary buffer."
         (header-text "")
         (header-beginning 1)
         (header-end 1))
-    
-;;; Copy lines between beginning and end of header lines, 
+
+;;; Copy lines between beginning and end of header lines,
 ;;;    if any, or else copy the `@setfilename' line, if any.
     (save-excursion
         (save-restriction
@@ -165,13 +165,13 @@ converted to Info is stored in a temporary buffer."
           (let ((search-end (save-excursion (forward-line 100) (point))))
             (if (or
                  ;; Either copy header text.
-                 (and 
-                  (prog1 
+                 (and
+                  (prog1
                       (search-forward tex-start-of-header search-end t)
                     (forward-line 1)
                     ;; Mark beginning of header.
                     (setq header-beginning (point)))
-                  (prog1 
+                  (prog1
                       (search-forward tex-end-of-header nil t)
                     (beginning-of-line)
                     ;; Mark end of header
@@ -184,8 +184,8 @@ converted to Info is stored in a temporary buffer."
                   (setq header-beginning (point))
                   (forward-line 1)
                   (setq header-end (point))))
-                
-                ;; Copy header  
+
+                ;; Copy header
                 (setq header-text
                       (buffer-substring
                        (min header-beginning region-beginning)
@@ -204,7 +204,7 @@ converted to Info is stored in a temporary buffer."
     ;; Make sure region ends in a newline.
     (or (= (preceding-char) ?\n)
         (insert "\n"))
-    
+
     (goto-char (point-min))
     (texinfo-mode)
     (message "Converting region to Info format...")
@@ -214,7 +214,7 @@ converted to Info is stored in a temporary buffer."
 
     ;; Insert @include files so `texinfo-raise-lower-sections' can
     ;; work on them without losing track of multiple
-    ;; @raise/@lowersections commands. 
+    ;; @raise/@lowersections commands.
     (while (re-search-forward "^@include" nil t)
       (setq texinfo-command-end (point))
       (let ((filename (concat input-directory
@@ -230,7 +230,7 @@ converted to Info is stored in a temporary buffer."
             (goto-char (point-min))
             ;; Remove `@setfilename' line from included file, if any,
             ;; so @setfilename command not duplicated.
-            (if (re-search-forward 
+            (if (re-search-forward
                  "^@setfilename" (save-excursion (forward-line 100) (point)) t)
                 (progn
                   (beginning-of-line)
@@ -261,7 +261,7 @@ converted to Info is stored in a temporary buffer."
 
     ;; Insert Info region title text.
     (goto-char (point-min))
-    (if (search-forward 
+    (if (search-forward
          "@setfilename" (save-excursion (forward-line 100) (point)) t)
         (progn
           (setq texinfo-command-end (point))
@@ -270,7 +270,7 @@ converted to Info is stored in a temporary buffer."
           (let ((arg (texinfo-parse-arg-discard)))
             (insert " "
               texinfo-region-buffer-name
-              " buffer for:  `") 
+              " buffer for:  `")
             (insert (file-name-nondirectory (expand-file-name arg)))
             (insert "',        -*-Text-*-\n")))
       ;; Else no `@setfilename' line
@@ -294,7 +294,7 @@ converted to Info is stored in a temporary buffer."
     (goto-char (point-min))
     (texinfo-format-scan)
     (goto-char (point-min))
-    
+
     (message "Done.")))
 
 ;;;###autoload
@@ -364,10 +364,10 @@ Info-split to do these manually."
     (erase-buffer)
     (insert-buffer-substring input-buffer)
     (message "Converting %s to Info format..." (buffer-name input-buffer))
-    
+
     ;; Insert @include files so `texinfo-raise-lower-sections' can
     ;; work on them without losing track of multiple
-    ;; @raise/@lowersections commands. 
+    ;; @raise/@lowersections commands.
     (goto-char (point-min))
     (while (re-search-forward "^@include" nil t)
       (setq texinfo-command-end (point))
@@ -384,7 +384,7 @@ Info-split to do these manually."
             (goto-char (point-min))
             ;; Remove `@setfilename' line from included file, if any,
             ;; so @setfilename command not duplicated.
-            (if (re-search-forward 
+            (if (re-search-forward
                  "^@setfilename"
                  (save-excursion (forward-line 100) (point)) t)
                 (progn
@@ -536,28 +536,28 @@ Info-split to do these manually."
 
 (defun texinfo-append-refill ()
   "Append @refill at end of each paragraph that should be filled.
-Do not append @refill to paragraphs within @example and similar environments.  
+Do not append @refill to paragraphs within @example and similar environments.
 Do not append @refill to paragraphs containing @w{TEXT} or @*."
 
   ;; It is necessary to append @refill before other processing because
   ;; the other processing removes information that tells Texinfo
   ;; whether the text should or should not be filled.
-  
+
   (while (< (point) (point-max))
     (let ((refill-blank-lines "^[ \t\n]*$")
           (case-fold-search nil))       ; Don't confuse @TeX and @tex....
       (beginning-of-line)
       ;; 1. Skip over blank lines;
-      ;;    skip over lines beginning with @-commands, 
+      ;;    skip over lines beginning with @-commands,
       ;;    but do not skip over lines
       ;;      that are no-refill environments such as @example or
       ;;      that begin with within-paragraph @-commands such as @code.
       (while (and (looking-at (concat "^@\\|^\\\\\\|" refill-blank-lines))
-                  (not (looking-at 
+                  (not (looking-at
                         (concat
-                         "\\(" 
+                         "\\("
                          texinfo-no-refill-regexp
-                         "\\|" 
+                         "\\|"
                          texinfo-part-of-para-regexp
                          "\\)")))
                   (< (point) (point-max)))
@@ -573,14 +573,14 @@ Do not append @refill to paragraphs containing @w{TEXT} or @*."
         ;;    with @<newline> followed by a newline.
         (if  (or
               (>= (point) (point-max))
-              (re-search-forward 
-               "@w{\\|@\\*\\|@\n\n" 
+              (re-search-forward
+               "@w{\\|@\\*\\|@\n\n"
                (save-excursion
                  (forward-paragraph)
                  (forward-line 1)
                  (point)) t))
             ;; Go to end of paragraph and do nothing.
-            (forward-paragraph) 
+            (forward-paragraph)
           ;; 4. Else go to end of paragraph and insert @refill
           (forward-paragraph)
           (forward-line -1)
@@ -601,8 +601,8 @@ Do not append @refill to paragraphs containing @w{TEXT} or @*."
 ;;; Handle `@raisesections' and `@lowersections' commands
 
 ;; These commands change the hierarchical level of chapter structuring
-;; commands. 
-;;    
+;; commands.
+;;
 ;; @raisesections changes @subsection to @section,
 ;;                        @section    to @chapter,
 ;;                        etc.
@@ -617,7 +617,7 @@ Do not append @refill to paragraphs containing @w{TEXT} or @*."
 ;;
 ;; Repeated @raisesections/@lowersections continue to raise or lower
 ;; the heading level.
-;; 
+;;
 ;; An @lowersections command cancels an @raisesections command, and
 ;; vice versa.
 ;;
@@ -628,7 +628,7 @@ Do not append @refill to paragraphs containing @w{TEXT} or @*."
 ;; @section produce chapter headings).
 
 (defun texinfo-raise-lower-sections ()
-  "Raise or lower the hierarchical level of chapters, sections, etc. 
+  "Raise or lower the hierarchical level of chapters, sections, etc.
 
 This function acts according to `@raisesections' and `@lowersections'
 commands in the Texinfo file.
@@ -662,13 +662,13 @@ level a step at a time.
 An attempt to raise above `chapters' reproduces chapter commands; an
 attempt to lower below subsubsections reproduces subsubsection
 commands."
-  
+
   ;; `texinfo-section-types-regexp' is defined in `texnfo-upd.el';
   ;; it is a regexp matching chapter, section, other headings
   ;; (but not the top node).
 
   (let (type (level 0))
-    (while 
+    (while
         (re-search-forward
          (concat
           "\\(\\(^@\\(raise\\|lower\\)sections\\)\\|\\("
@@ -677,23 +677,23 @@ commands."
          nil t)
       (beginning-of-line)
       (save-excursion (setq type (read (current-buffer))))
-      (cond 
-       
+      (cond
+
        ;; 1. Increment level
        ((eq type '@raisesections)
         (setq level (1+ level))
         (delete-region
          (point) (save-excursion (forward-line 1) (point))))
-       
+
        ;; 2. Decrement level
        ((eq type '@lowersections)
         (setq level (1- level))
         (delete-region
          (point) (save-excursion (forward-line 1) (point))))
-       
+
        ;; Now handle structuring commands
        ((cond
-         
+
          ;; 3. Raise level when positive
          ((> level 0)
           (let ((count level)
@@ -704,10 +704,10 @@ commands."
               (setq count (1- count)))
             (kill-word 1)
             (insert (symbol-name new-level))))
-         
+
          ;; 4. Do nothing except move point when level is zero
          ((= level 0) (forward-line 1))
-         
+
          ;; 5. Lower level when positive
          ((< level 0)
           (let ((count level)
@@ -727,17 +727,17 @@ commands."
     (@majorheading . @majorheading)
     (@chapheading . @chapheading)
     (@appendix . @appendix)
-    
+
     (@section . @chapter)
     (@unnumberedsec . @unnumbered)
     (@heading . @chapheading)
     (@appendixsec . @appendix)
-    
+
     (@subsection . @section)
     (@unnumberedsubsec . @unnumberedsec)
     (@subheading . @heading)
     (@appendixsubsec . @appendixsec)
-    
+
     (@subsubsection . @subsection)
     (@unnumberedsubsubsec . @unnumberedsubsec)
     (@subsubheading . @subheading)
@@ -749,23 +749,23 @@ The keys specify types of section; the values correspond to the next
 higher types.")
 
 (defvar texinfo-lowersections-alist
-  '((@chapter . @section)  
+  '((@chapter . @section)
     (@unnumbered . @unnumberedsec)
     (@centerchap . @unnumberedsec)
     (@majorheading . @heading)
     (@chapheading . @heading)
     (@appendix . @appendixsec)
-    
+
     (@section . @subsection)
     (@unnumberedsec . @unnumberedsubsec)
     (@heading . @subheading)
     (@appendixsec . @appendixsubsec)
-    
+
     (@subsection . @subsubsection)
     (@unnumberedsubsec . @unnumberedsubsubsec)
     (@subheading . @subsubheading)
     (@appendixsubsec . @appendixsubsubsec)
-    
+
     (@subsubsection . @subsubsection) ; Cannot go lower.
     (@unnumberedsubsubsec . @unnumberedsubsubsec)
     (@subsubheading . @subsubheading)
@@ -789,15 +789,15 @@ lower types.")
     ;; These are the single-character accent commands: @^ @` @' @" @= @~
     ;; In Info, they are simply quoted and the @ deleted.
     ;; Other single-character commands:
-    ;; @* forces a line break, 
+    ;; @* forces a line break,
     ;; @- is a discretionary hyphenation point; does nothing in Info.
     ;; @<space>, @<tab>, @<newline> each produce a single space,
     ;;    unless followed by a newline.
-    ;;   
+    ;;
     ;; Old version 2.34 expression: (looking-at "[@{}^'` *\"?!]")
     (if (looking-at "[@{}^'`\"=~ \t\n*?!-]")
         ;; @*, causes a line break.
-        (cond 
+        (cond
          ;; @*, a line break
          ((= (following-char) ?*)
           ;; remove command
@@ -805,7 +805,7 @@ lower types.")
           ;; insert return if not at end of line;
           ;; else line is already broken.
           (if (not (= (following-char) ?\n))
-              (insert ?\n)))      
+              (insert ?\n)))
          ;; @-, deleted
          ((= (following-char) ?-)
           (delete-region (1- (point)) (1+ (point))))
@@ -816,7 +816,7 @@ lower types.")
           ;; insert single space if not at end of line;
           ;; else line is already broken.
           (if (not (= (following-char) ?\n))
-              (insert ? )))      
+              (insert ? )))
          ((= (following-char) ?\t)
           (delete-region (1- (point)) (1+ (point)))
           ;; insert single space if not at end of line;
@@ -845,7 +845,7 @@ lower types.")
       ;; Handle let aliasing
       (setq texinfo-command-name
 	    (let (trial
-		  (cmdname 
+		  (cmdname
 		   (buffer-substring
 		    (1+ texinfo-command-start) texinfo-command-end)))
 	      (while (setq trial (assoc cmdname texinfo-alias-list))
@@ -859,13 +859,13 @@ lower types.")
         (if enclosure-type
             (progn
               (insert
-               (car (car (cdr enclosure-type))) 
+               (car (car (cdr enclosure-type)))
                (texinfo-parse-arg-discard)
                (car (cdr (car (cdr enclosure-type)))))
               (goto-char texinfo-command-start))
           (let ((cmd (get texinfo-command-name 'texinfo-format)))
             (if cmd (funcall cmd) (texinfo-unsupported)))))))
-  
+
   (cond (texinfo-stack
          (goto-char (nth 2 (car texinfo-stack)))
          (error "Unterminated @%s" (car (car texinfo-stack))))))
@@ -888,7 +888,7 @@ lower types.")
 
 (defun texinfo-parse-line-arg ()
   "Return argument of @-command as string.
-Argument is separated from command either by a space or by a brace.  
+Argument is separated from command either by a space or by a brace.
 If a space, return rest of line, with beginning and ending white
 space removed.  If a brace, return string between braces.
 Leave point after argument."
@@ -992,13 +992,13 @@ Leave point after argument."
         args)
     (search-forward "{")
     (save-excursion
-      (texinfo-format-expand-region 
+      (texinfo-format-expand-region
        (point)
        (save-excursion (up-list 1) (1- (point)))))
     ;; The following does not handle cross references of the form:
     ;; `@xref{bullet, , @code{@@bullet}@{@}}.' because the
     ;; re-search-forward finds the first right brace after the second
-    ;; comma. 
+    ;; comma.
     (while (/= (preceding-char) ?\})
       (skip-chars-forward " \t\n")
       (setq beg (point))
@@ -1065,7 +1065,7 @@ Leave point after argument."
 
 ;; Only `texinfo-format-buffer' handles @setfilename with this
 ;; definition; `texinfo-format-region' handles @setfilename, if any,
-;; specially. 
+;; specially.
 (put 'setfilename 'texinfo-format 'texinfo-format-setfilename)
 (defun texinfo-format-setfilename ()
   (let ((arg (texinfo-parse-arg-discard)))
@@ -1129,12 +1129,12 @@ Leave point after argument."
 ;; The @detailmenu should be removed eventually.
 
 ;; According to Karl Berry, 31 August 1996:
-;; 
+;;
 ;; You don't like, I don't like it.  I agree, it would be better just to
 ;; fix the bug [in `makeinfo'].  ..  At this point, since inserting those
 ;; two commands in the Elisp fn is trivial, I don't especially want to
 ;; expend more effort...
-;; 
+;;
 ;; I added a couple sentences of documentation to the manual (putting the
 ;; blame on makeinfo where it belongs :-().
 
@@ -1316,16 +1316,16 @@ If used within a line, follow `@br' with braces."
 ;; This command is followed immediately by a left brace, then by the text of
 ;; the footnote, and then by a terminating right brace.  The
 ;; template for a footnote is:
-;; 
+;;
 ;;      @footnote{TEXT}
 ;;
 ;; Info has two footnote styles:
-;; 
+;;
 ;;    * In the End of node style, all the footnotes for a single node
 ;;      are placed at the end of that node.  The footnotes are
 ;;      separated from the rest of the node by a line of dashes with
 ;;      the word `Footnotes' within it.
-;; 
+;;
 ;;    * In the Separate node style, all the footnotes for a single node
 ;;      are placed in an automatically constructed node of their own.
 
@@ -1333,10 +1333,10 @@ If used within a line, follow `@br' with braces."
 ;;    @footnotestyle separate
 ;; or
 ;;    @footnotestyle end
-;; 
+;;
 ;; The default is  separate
 
-(defvar texinfo-footnote-style "separate" 
+(defvar texinfo-footnote-style "separate"
   "Footnote style, either separate or end.")
 
 (put 'footnotestyle 'texinfo-format 'texinfo-footnotestyle)
@@ -1389,7 +1389,7 @@ The node is constructed automatically."
         (forward-line -1))
 
     ;; two cases: for the first footnote, we must insert a node header;
-    ;; for the second and subsequent footnotes, we need only insert 
+    ;; for the second and subsequent footnotes, we need only insert
     ;; the text of the  footnote.
 
     (if (save-excursion
@@ -1486,7 +1486,7 @@ Used by @refill indenting command to avoid indenting within lists, etc.")
 (put 'enumerate 'texinfo-format 'texinfo-enumerate)
 (defun texinfo-enumerate ()
   (texinfo-push-stack
-   'enumerate 
+   'enumerate
    (progn (skip-chars-forward " \t")
           (if (eolp)
               1
@@ -1586,7 +1586,7 @@ Used by @refill indenting command to avoid indenting within lists, etc.")
            (setcar (cdr (car texinfo-stack))
                    (make-symbol
                     (char-to-string
-                     (1+ 
+                     (1+
                       (string-to-char enumerating-symbol))))))
           (t
           (error
@@ -1620,8 +1620,8 @@ Used by @refill indenting command to avoid indenting within lists, etc.")
 
 (put 'table 'texinfo-format 'texinfo-table)
 (defun texinfo-table ()
-  (texinfo-push-stack 
-   'table 
+  (texinfo-push-stack
+   'table
    (progn (skip-chars-forward " \t")
           (if (eolp)
               "@asis"
@@ -1735,14 +1735,14 @@ Used by @refill indenting command to avoid indenting within lists, etc.")
 ;;
 ;; Long lines of text are filled within columns.
 ;;
-;; Using the Emacs Lisp formatter, texinfmt.el, 
+;; Using the Emacs Lisp formatter, texinfmt.el,
 ;; the whitespace between columns can be increased by setting
 ;; `texinfo-extra-inter-column-width' to a value greater than 0.  By default,
 ;; there is at least one blank space between columns.
 ;;
 ;; The Emacs Lisp formatter, texinfmt.el, ignores the following four
 ;; commands that are defined in texinfo.tex for printed output.
-;; 
+;;
 ;;     @multitableparskip,
 ;;     @multitableparindent,
 ;;     @multitablecolmargin,
@@ -1750,40 +1750,40 @@ Used by @refill indenting command to avoid indenting within lists, etc.")
 
 ;; How @multitable works.
 ;; =====================
-;; 
+;;
 ;; `texinfo-multitable' reads the @multitable line and determines from it
-;; how wide each column should be.  
-;; 
+;; how wide each column should be.
+;;
 ;; Also, it pushes this information, along with an identifying symbol,
 ;; onto the `texinfo-stack'.  At the @end multitable command, the stack
 ;; is checked for its matching @multitable command, and then popped, or
 ;; else an error is signaled.  Also, this command pushes the location of
 ;; the start of the table onto the stack.
-;; 
+;;
 ;; `texinfo-end-multitable' checks the `texinfo-stack' that the @end
 ;; multitable truly is ending a corresponding beginning, and if it is,
 ;; pops the stack.
-;; 
-;; `texinfo-multitable-widths' is called by `texinfo-multitable'.  
+;;
+;; `texinfo-multitable-widths' is called by `texinfo-multitable'.
 ;; The function returns a list of the widths of each column in a
 ;; multi-column table, based on the information supplied by the arguments
 ;; to the @multitable command (by arguments, I mean the text on the rest
 ;; of the @multitable line, not the remainder of the multi-column table
 ;; environment).
-;; 
+;;
 ;; `texinfo-multitable-item' formats a row within a multicolumn table.
 ;; This command is executed when texinfmt sees @item inside @multitable.
 ;; Cells in row are separated by `@tab's.  Widths of cells are specified
 ;; by the arguments in the @multitable line.  Cells are filled.  All cells
 ;; are made to be the same height by padding their bottoms, as needed,
 ;; with blanks.
-;; 
-;; `texinfo-multitable-extract-row' is called by `texinfo-multitable-item'.  
+;;
+;; `texinfo-multitable-extract-row' is called by `texinfo-multitable-item'.
 ;; This function returns the text in a multitable row, as a string.
 ;; The start of a row is marked by an @item and the end of row is the
 ;; beginning of next @item or beginning of the @end multitable line.
 ;; Cells within a row are separated by @tab.
-;; 
+;;
 ;; Note that @tab, the cell separators, are not treated as independent
 ;; Texinfo commands.
 
@@ -1827,7 +1827,7 @@ of the current width of the text (i.e., of the fill-column).
 
 Long lines of text are filled within columns.
 
-Using the Emacs Lisp formatter, texinfmt.el, 
+Using the Emacs Lisp formatter, texinfmt.el,
 the whitespace between columns can be increased by setting
 `texinfo-extra-inter-column-width' to a value greater than 0.  By default,
 there is at least one blank space between columns.
@@ -1869,7 +1869,7 @@ commands that are defined in texinfo.tex for printed output.
     ;;  @multitable {Column 1 template} {Column 2} {Column 3 example}
     ;; Place point before first argument
     (skip-chars-forward " \t")
-    (cond 
+    (cond
      ;; Check for common misspelling
      ((looking-at "@columnfraction ")
       (error "In @multitable, @columnfractions misspelled"))
@@ -2118,7 +2118,7 @@ This command is executed when texinfmt sees @item inside @multitable."
 
 
 ;;; @timestamp{}
-;; Produce `Day Month Year Hour:Min' style of output.  
+;; Produce `Day Month Year Hour:Min' style of output.
 ;; eg `1 Jan 1900 13:52'
 
 (put 'timestamp 'texinfo-format 'texinfo-format-timestamp)
@@ -2148,11 +2148,11 @@ This command is executed when texinfmt sees @item inside @multitable."
 ;; command for Info, but not for TeX.  A command defined using
 ;; `@definfoenclose' marks text by enclosing it in strings that precede
 ;; and follow the text.
-;; 
+;;
 ;; Presumably, if you define a command with `@definfoenclose` for Info,
 ;; you will also define the same command in the TeX definitions file,
 ;; `texinfo.tex' in a manner appropriate for typesetting.
-;; 
+;;
 ;; Write a `@definfoenclose' command on a line and follow it with three
 ;; arguments separated by commas (commas are used as separators in an
 ;; `@node' line in the same way).  The first argument to
@@ -2169,7 +2169,7 @@ This command is executed when texinfmt sees @item inside @multitable."
 ;; If you do a @definfoenclose{} on the name of a pre-defined macro (such
 ;; as @emph{}, @strong{}, @tt{}, or @i{}) the enclosure definition will
 ;; override the built-in definition.
-;; 
+;;
 ;; An enclosure command defined this way takes one argument in braces.
 ;;
 ;; For example, you can write:
@@ -2183,7 +2183,7 @@ This command is executed when texinfmt sees @item inside @multitable."
 ;; before and `\\' after the argument to `@phoo'.  You can then write
 ;; `@phoo{bar}' wherever you want `//bar\\' highlighted in Info.
 ;;
-;; Also, for TeX formatting, you could write 
+;; Also, for TeX formatting, you could write
 ;;
 ;;     @iftex
 ;;     @global@let@phoo=@i
@@ -2266,7 +2266,7 @@ If used within a line, follow `@bullet' with braces."
 
 ;;; @kbd
 
-;; Inside of @example ... @end example and similar environments, 
+;; Inside of @example ... @end example and similar environments,
 ;; @kbd does nothing; but outside of such environments, it places
 ;; single quotation markes around its argument.
 
@@ -2299,7 +2299,7 @@ If used within a line, follow `@bullet' with braces."
   "Place single quote marks around arg, except in @example and similar."
   ;; Search forward for @end example closer than an @example.
   ;; Can stop search at nearest @node or texinfo-section-types-regexp
-  (let* ((stop 
+  (let* ((stop
           (save-excursion
             (re-search-forward
              (concat "^@node\\|\\(" texinfo-section-types-regexp "\\)")
@@ -2365,7 +2365,7 @@ If used within a line, follow `@bullet' with braces."
     (insert "\n     ")))
 
 
-;;; @cartouche 
+;;; @cartouche
 
 ;; The @cartouche command is a noop in Info; in a printed manual,
 ;; it makes a box with rounded corners.
@@ -2424,10 +2424,10 @@ If used within a line, follow `@bullet' with braces."
       (make-string
        (- fill-column
           (save-excursion
-            (end-of-line) 
+            (end-of-line)
             (skip-chars-backward " \t")
             (delete-region (point) (progn (end-of-line) (point)))
-            (current-column)))  
+            (current-column)))
        ? )))))
 
 
@@ -2474,7 +2474,7 @@ If used within a line, follow `@minus' with braces."
 ;;; Refilling and indenting:  @refill, @paragraphindent, @noindent
 
 ;;; Indent only those paragraphs that are refilled as a result of an
-;;; @refill command.  
+;;; @refill command.
 
 ;;    * If the value is `asis', do not change the existing indentation at
 ;;      the starts of paragraphs.
@@ -2505,26 +2505,26 @@ Default is to leave the number of spaces as is."
   "Refill paragraph. Also, indent first line as set by @paragraphindent.
 Default is to leave paragraph indentation as is."
   (texinfo-discard-command)
-  (forward-paragraph -1)     
+  (forward-paragraph -1)
   (if (looking-at "[ \t\n]*$") (forward-line 1))
   ;; Do not indent if an entry in a list, table, or deffn,
   ;; or if paragraph is preceded by @noindent.
   ;; Otherwise, indent
-  (cond 
+  (cond
    ;; delete a @noindent line and do not indent paragraph
    ((save-excursion (forward-line -1)
-                    (looking-at "^@noindent")) 
+                    (looking-at "^@noindent"))
     (forward-line -1)
     (delete-region (point) (progn (forward-line 1) (point))))
    ;; do nothing if "asis"
    ((equal texinfo-paragraph-indent "asis"))
    ;; do no indenting in list, etc.
-   ((> texinfo-stack-depth 0))   
+   ((> texinfo-stack-depth 0))
    ;; otherwise delete existing whitespace and indent
-   (t 
+   (t
     (delete-region (point) (progn (skip-chars-forward " \t") (point)))
     (insert (make-string texinfo-paragraph-indent ? ))))
-  (forward-paragraph 1) 
+  (forward-paragraph 1)
   (forward-line -1)
   (end-of-line)
   ;; Do not fill a section title line with asterisks, hyphens, etc. that
@@ -2534,7 +2534,7 @@ Default is to leave paragraph indentation as is."
          (paragraph-separate
           (concat paragraph-separate "\\|[-=.]+\\|\\*\\*+"))
          (previous-paragraph-start paragraph-start)
-         (paragraph-start 
+         (paragraph-start
           (concat paragraph-start "\\|[-=.]+\\|\\*\\*+")))
     (unwind-protect
         (fill-paragraph nil)
@@ -2542,8 +2542,8 @@ Default is to leave paragraph indentation as is."
       (setq paragraph-start previous-paragraph-start))))
 
 (put 'noindent 'texinfo-format 'texinfo-noindent)
-(defun texinfo-noindent ()  
-  (save-excursion 
+(defun texinfo-noindent ()
+  (save-excursion
     (forward-paragraph 1)
     (if (search-backward "@refill"
                             (save-excursion (forward-line -1) (point)) t)
@@ -2627,7 +2627,7 @@ Default is to leave paragraph indentation as is."
 
     (fset index-formatting-command
           (list 'lambda 'nil
-                (list 'texinfo-index 
+                (list 'texinfo-index
                       (list 'quote index-alist-name))))))
 
 
@@ -2780,7 +2780,7 @@ Default is to leave paragraph indentation as is."
 
 ;; See the `texinfo-accent-commands' variable
 ;; in the section for `texinfo-append-refill'.
-;; Also, see the defun for `texinfo-format-scan' 
+;; Also, see the defun for `texinfo-format-scan'
 ;; for single-character accent commands.
 
 ;; Command           Info output         Name
@@ -2825,7 +2825,7 @@ Default is to leave paragraph indentation as is."
 
 ;; Note: The  defun texinfo-format-scan
 ;; looks at "[@{}^'`\",=~ *?!-]"
-;; In the case of @*, a line break is inserted; 
+;; In the case of @*, a line break is inserted;
 ;; in the other cases, the characters are simply quoted and the @ is deleted.
 ;; Thus, `texinfo-format-scan' handles the following
 ;; single-character accent commands: @^ @` @' @" @, @- @= @~
@@ -2835,19 +2835,19 @@ Default is to leave paragraph indentation as is."
 ;; (defun texinfo-format-circumflex-accent ()
 ;;   (texinfo-discard-command)
 ;;   (insert "^"))
-;; 
+;;
 ;; @`              ==>    `         grave accent
 ;; (put '\` 'texinfo-format 'texinfo-format-grave-accent)
 ;; (defun texinfo-format-grave-accent ()
 ;;   (texinfo-discard-command)
 ;;   (insert "\`"))
-;; 
+;;
 ;; @'              ==>    '         acute accent
 ;; (put '\' 'texinfo-format 'texinfo-format-acute-accent)
 ;; (defun texinfo-format-acute-accent ()
 ;;   (texinfo-discard-command)
 ;;   (insert "'"))
-;; 
+;;
 ;; @"              ==>    "         umlaut accent
 ;; (put '\" 'texinfo-format 'texinfo-format-umlaut-accent)
 ;; (defun texinfo-format-umlaut-accent ()
@@ -2859,7 +2859,7 @@ Default is to leave paragraph indentation as is."
 ;; (defun texinfo-format-overbar-accent ()
 ;;   (texinfo-discard-command)
 ;;   (insert "="))
-;; 
+;;
 ;; @~              ==>    ~         tilde accent
 ;; (put '~ 'texinfo-format 'texinfo-format-tilde-accent)
 ;; (defun texinfo-format-tilde-accent ()
@@ -3019,7 +3019,7 @@ Default is to leave paragraph indentation as is."
 ;;     In Info, `Category: name ARGS'
 ;;     In index: name:  node. line#.
 ;;
-;; @defvr category name 
+;; @defvr category name
 ;;     In Info, `Category: name'
 ;;     In index: name:  node. line#.
 ;;
@@ -3040,30 +3040,30 @@ Default is to leave paragraph indentation as is."
 ;; Generalized typed-function-like or typed-variable-like entity:
 ;; @deftypefn category data-type name args...
 ;;     In Info, `Category:  data-type name args...'
-;; @deftypevr category data-type name 
+;; @deftypevr category data-type name
 ;;     In Info, `Category:  data-type name'
 ;;     In index: name:  node. line#.
 ;;
 ;; Specialized typed-function-like or typed-variable-like entity:
 ;; @deftypefun data-type name args...
 ;;     In Info, `Function:  data-type name ARGS'
-;;     In index: name:  node. line#.   
+;;     In index: name:  node. line#.
 ;;
-;; @deftypevar data-type name 
+;; @deftypevar data-type name
 ;;     In Info, `Variable:  data-type name'
 ;;     In index: name:  node. line#.   but include args after name!?
 ;;
-;; Generalized object oriented entity: 
+;; Generalized object oriented entity:
 ;; @defop category class name args...
 ;;     In Info, `Category on class: name ARG'
 ;;     In index: name on class: node. line#.
 ;;
-;; @defcv category class name         
+;; @defcv category class name
 ;;     In Info, `Category of class: name'
 ;;     In index: name of class: node. line#.
 ;;
 ;; Specialized object oriented entity:
-;; @defmethod class name args... 
+;; @defmethod class name args...
 ;;     In Info, `Method on class: name ARGS'
 ;;     In index: name on class: node. line#.
 ;;
@@ -3182,7 +3182,7 @@ Default is to leave paragraph indentation as is."
   ;; Generalized typed-function-like or typed-variable-like entity:
   ;; @deftypefn category data-type name args...
   ;;     In Info, `Category:  data-type name args...'
-  ;; @deftypevr category data-type name 
+  ;; @deftypevr category data-type name
   ;;     In Info, `Category:  data-type name'
   ;; Note: args in lower case, unless modified in command line.
   (let ((category (car parsed-args))
@@ -3205,7 +3205,7 @@ Default is to leave paragraph indentation as is."
   ;; Specialized typed-function-like or typed-variable-like entity:
   ;; @deftypefun data-type name args...
   ;;     In Info, `Function:  data-type name ARGS'
-  ;; @deftypevar data-type name 
+  ;; @deftypevar data-type name
   ;;     In Info, `Variable:  data-type name'
   ;; Note: args in lower case, unless modified in command line.
   ;; Use cdr of texinfo-defun-type to determine category:
@@ -3222,7 +3222,7 @@ Default is to leave paragraph indentation as is."
 (put 'defop 'texinfo-deffn-formatting-property 'texinfo-format-defop)
 (put 'defopx 'texinfo-deffn-formatting-property 'texinfo-format-defop)
 (defun texinfo-format-defop (parsed-args)
-  ;; Generalized object oriented entity: 
+  ;; Generalized object oriented entity:
   ;; @defop category class name args...
   ;;     In Info, `Category on class: name ARG'
   ;; Note: args in upper case; use of `on'
@@ -3239,8 +3239,8 @@ Default is to leave paragraph indentation as is."
 (put 'defcv 'texinfo-deffn-formatting-property 'texinfo-format-defcv)
 (put 'defcvx 'texinfo-deffn-formatting-property 'texinfo-format-defcv)
 (defun texinfo-format-defcv (parsed-args)
-  ;; Generalized object oriented entity: 
-  ;; @defcv category class name         
+  ;; Generalized object oriented entity:
+  ;; @defcv category class name
   ;;     In Info, `Category of class: name'
   ;; Note: args in upper case; use of `of'
   (let ((category (car parsed-args))
@@ -3257,7 +3257,7 @@ Default is to leave paragraph indentation as is."
 (put 'defmethodx 'texinfo-deffn-formatting-property 'texinfo-format-defmethod)
 (defun texinfo-format-defmethod (parsed-args)
   ;; Specialized object oriented entity:
-  ;; @defmethod class name args... 
+  ;; @defmethod class name args...
   ;;     In Info, `Method on class: name ARGS'
   ;; Note: args in upper case; use of `on'
   ;; Use cdr of texinfo-defun-type to determine category:
@@ -3295,27 +3295,27 @@ Default is to leave paragraph indentation as is."
 ;; line number.  Depending on the which command is used, the entry is
 ;; formatted differently:
 ;;
-;; @defun, 
-;; @defmac, 
-;; @defspec, 
-;; @defvar, 
-;; @defopt          all use their 1st argument as the entry-proper 
+;; @defun,
+;; @defmac,
+;; @defspec,
+;; @defvar,
+;; @defopt          all use their 1st argument as the entry-proper
 ;;
-;; @deffn, 
-;; @defvr, 
-;; @deftp 
+;; @deffn,
+;; @defvr,
+;; @deftp
 ;; @deftypefun
 ;; @deftypevar      all use their 2nd argument as the entry-proper
 ;;
-;; @deftypefn, 
-;; @deftypevr       both use their 3rd argument as the entry-proper  
+;; @deftypefn,
+;; @deftypevr       both use their 3rd argument as the entry-proper
 ;;
-;; @defmethod       uses its 2nd and 1st arguments as an entry-proper 
+;; @defmethod       uses its 2nd and 1st arguments as an entry-proper
 ;;                    formatted: NAME on CLASS
 
-;; @defop           uses its 3rd and 2nd arguments as an entry-proper 
+;; @defop           uses its 3rd and 2nd arguments as an entry-proper
 ;;                    formatted: NAME on CLASS
-;;        
+;;
 ;; @defivar         uses its 2nd and 1st arguments as an entry-proper
 ;;                    formatted: NAME of CLASS
 ;;
@@ -3337,7 +3337,7 @@ Default is to leave paragraph indentation as is."
   ;; `index-list' will be texinfo-findex or the like
   (let ((index-list (get texinfo-command-name 'texinfo-defun-index)))
     (set index-list
-         (cons 
+         (cons
           ;; Three elements: entry-proper, node-name, line-number
           (list
            (car parsed-args)
@@ -3358,12 +3358,12 @@ Default is to leave paragraph indentation as is."
 (put 'deftypefunx 'texinfo-defun-indexing-property 'texinfo-index-deffn)
 (put 'deftypevar 'texinfo-defun-indexing-property 'texinfo-index-deffn)
 (put 'deftypevarx 'texinfo-defun-indexing-property 'texinfo-index-deffn)
-(defun texinfo-index-deffn (parsed-args) 
+(defun texinfo-index-deffn (parsed-args)
  ;; use 2nd parsed-arg  as entry-proper
   ;; `index-list' will be texinfo-findex or the like
   (let ((index-list (get texinfo-command-name 'texinfo-defun-index)))
     (set index-list
-         (cons 
+         (cons
           ;; Three elements: entry-proper, node-name, line-number
           (list
            (car (cdr parsed-args))
@@ -3383,7 +3383,7 @@ Default is to leave paragraph indentation as is."
   ;; `index-list' will be texinfo-findex or the like
   (let ((index-list (get texinfo-command-name 'texinfo-defun-index)))
     (set index-list
-         (cons 
+         (cons
           ;; Three elements: entry-proper, node-name, line-number
           (list
            (car (cdr (cdr parsed-args)))
@@ -3401,10 +3401,10 @@ Default is to leave paragraph indentation as is."
   ;; `index-list' will be texinfo-findex or the like
   (let ((index-list (get texinfo-command-name 'texinfo-defun-index)))
     (set index-list
-         (cons 
+         (cons
           ;; Three elements: entry-proper, node-name, line-number
           (list
-           (format "%s on %s"            
+           (format "%s on %s"
                    (car (cdr parsed-args))
                    (car parsed-args))
            texinfo-last-node
@@ -3421,10 +3421,10 @@ Default is to leave paragraph indentation as is."
   ;; `index-list' will be texinfo-findex or the like
   (let ((index-list (get texinfo-command-name 'texinfo-defun-index)))
     (set index-list
-         (cons 
+         (cons
           ;; Three elements: entry-proper, node-name, line-number
           (list
-           (format "%s on %s"            
+           (format "%s on %s"
                    (car (cdr (cdr parsed-args)))
                    (car (cdr parsed-args)))
            texinfo-last-node
@@ -3441,10 +3441,10 @@ Default is to leave paragraph indentation as is."
   ;; `index-list' will be texinfo-findex or the like
   (let ((index-list (get texinfo-command-name 'texinfo-defun-index)))
     (set index-list
-         (cons 
+         (cons
           ;; Three elements: entry-proper, node-name, line-number
           (list
-           (format "%s of %s"            
+           (format "%s of %s"
                    (car (cdr parsed-args))
                    (car parsed-args))
            texinfo-last-node
@@ -3461,10 +3461,10 @@ Default is to leave paragraph indentation as is."
   ;; `index-list' will be texinfo-findex or the like
   (let ((index-list (get texinfo-command-name 'texinfo-defun-index)))
     (set index-list
-         (cons 
+         (cons
           ;; Three elements: entry-proper, node-name, line-number
           (list
-           (format "%s of %s"            
+           (format "%s of %s"
                    (car (cdr (cdr parsed-args)))
                    (car (cdr parsed-args)))
            texinfo-last-node
@@ -3652,10 +3652,10 @@ Default is to leave paragraph indentation as is."
 ;; @set FLAG, then the text is not formatted; it is ignored.  @ifclear
 ;; is the opposite of @ifset.
 
-;; If a flag is set to a string with @set FLAG, 
+;; If a flag is set to a string with @set FLAG,
 ;; replace  @value{FLAG} with the string.
-;; If a flag with a value is cleared, 
-;; @value{FLAG} is invalid, 
+;; If a flag with a value is cleared,
+;; @value{FLAG} is invalid,
 ;; as if there had never been any @set FLAG previously.
 
 (put 'clear 'texinfo-format 'texinfo-clear)
@@ -3691,7 +3691,7 @@ The command  `@value{foo}'  expands to the value."
                 'flag-set)
             (get (car (read-from-string arg)) 'texinfo-set-value))
            (insert (get (car (read-from-string arg)) 'texinfo-set-value)))
-          ((eq (get (car (read-from-string arg)) 'texinfo-whether-setp) 
+          ((eq (get (car (read-from-string arg)) 'texinfo-whether-setp)
                'flag-cleared)
            (insert (format "{No value for \"%s\"}"  arg)))
           ((eq (get (car (read-from-string arg)) 'texinfo-whether-setp) nil)
@@ -3715,7 +3715,7 @@ The command  `@value{foo}'  expands to the value."
                               (point))))
      ((eq (get (car (read-from-string arg)) 'texinfo-whether-setp)
           nil)
-      ;; In this case flag is neither set nor cleared.  
+      ;; In this case flag is neither set nor cleared.
       ;; Act as if set, i.e. do nothing.
       ()))))
 
@@ -3737,7 +3737,7 @@ The command  `@value{foo}'  expands to the value."
       ())
      ((eq (get (car (read-from-string arg)) 'texinfo-whether-setp)
           nil)
-      ;; In this case flag is neither set nor cleared.  
+      ;; In this case flag is neither set nor cleared.
       ;; Act as if clear, i.e. do nothing.
       ()))))
 

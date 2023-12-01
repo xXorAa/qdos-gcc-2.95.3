@@ -28,7 +28,7 @@ Boston, MA 02111-1307, USA.  */
 
 /* The native RISCiX assembler does not support stabs of any kind; because
    the native assembler is not used by the compiler, Acorn didn't feel it was
-   necessary to put them in!  
+   necessary to put them in!
    However, this file assumes that we have an assembler that does have stabs,
    so we put them back in.  */
 

@@ -75,7 +75,7 @@ Boston, MA 02111-1307, USA.  */
    declaration for functions that we want to have weak references.
 
    Neither way is particularly good.  */
-   
+
 /* References to __register_frame_info and __deregister_frame_info should
    be weak in this file if at all possible.  */
 extern void __register_frame_info (void *, struct object *)
@@ -88,7 +88,7 @@ extern void *__deregister_frame_info (void *)
 
 /* Provide default definitions for the pseudo-ops used to switch to the
    .ctors and .dtors sections.
- 
+
    Note that we want to give these sections the SHF_WRITE attribute
    because these sections will actually contain data (i.e. tables of
    addresses of functions in the current root executable or shared library
@@ -136,7 +136,7 @@ typedef void (*func_ptr) (void);
 #ifdef OBJECT_FORMAT_ELF
 
 /* Run all the global destructors on exit from the program.  */
- 
+
 /* Some systems place the number of pointers in the first word of the
    table.  On SVR4 however, that word is -1.  In all cases, the table is
    null-terminated.  On SVR4, we start from the beginning of the list and
@@ -243,8 +243,8 @@ __do_global_ctors (void)
 asm (INIT_SECTION_ASM_OP);	/* cc1 doesn't know that we are switching! */
 
 /* On some svr4 systems, the initial .init section preamble code provided in
-   crti.o may do something, such as bump the stack, which we have to 
-   undo before we reach the function prologue code for __do_global_ctors 
+   crti.o may do something, such as bump the stack, which we have to
+   undo before we reach the function prologue code for __do_global_ctors
    (directly below).  For such systems, define the macro INIT_SECTION_PREAMBLE
    to expand into the code needed to undo the actions of the crti.o file.  */
 
@@ -384,7 +384,7 @@ init_dummy (void)
    __environ and atexit (). We have to make sure they are in the .dynsym
    section. We accomplish it by making a dummy call here. This
    code is never reached.  */
- 
+
 #if defined(__linux__) && defined(__PIC__) && defined(__i386__)
   {
     extern void *___brk_addr;

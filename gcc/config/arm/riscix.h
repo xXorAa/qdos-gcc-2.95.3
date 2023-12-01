@@ -38,7 +38,7 @@ Boston, MA 02111-1307, USA.  */
   %{p:-lc_p}\
   %{pg:-lc_p}"
 #endif
-  
+
 /* The RISC iX assembler never deletes any symbols from the object module;
    and, by default, ld doesn't either.  -X causes local symbols starting
    with 'L' to be deleted, which is what we want.  */
@@ -83,7 +83,7 @@ Boston, MA 02111-1307, USA.  */
   {"bsd",	   0x80000000, "Do symbol renaming for BSD"},		\
   {"xopen",	   0x80000000, "Do symbol renaming for X/OPEN"},	\
   {"no-symrename", 0x80000000, "Don't do symbol renaming"},
-    
+
 
 /* Run-time Target Specification.  */
 #define TARGET_VERSION  \
@@ -97,7 +97,7 @@ Boston, MA 02111-1307, USA.  */
 
 /* Define this if the target system supports the function atexit from the
    ANSI C standard.  If this is not defined, and INIT_SECTION_ASM_OP is not
-   defined, a default exit function will be provided to support C++.  
+   defined, a default exit function will be provided to support C++.
    The man page only describes on_exit, but atexit is also there.  */
 #define HAVE_ATEXIT 1
 

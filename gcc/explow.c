@@ -115,7 +115,7 @@ plus_constant_wide (x, c)
 	 Look for constant term in the sum and combine
 	 with C.  For an integer constant term, we make a combined
 	 integer.  For a constant term that is not an explicit integer,
-	 we cannot really combine, but group them together anyway.  
+	 we cannot really combine, but group them together anyway.
 
 	 Restart or use a recursive call in case the remaining operand is
 	 something that we handle specially, such as a SYMBOL_REF.
@@ -144,7 +144,7 @@ plus_constant_wide (x, c)
 	  c = 0;
 	}
       break;
-      
+
     default:
       break;
     }
@@ -354,7 +354,7 @@ convert_memory_address (to_mode, x)
       return temp;
 
     case CONST:
-      return gen_rtx_CONST (to_mode, 
+      return gen_rtx_CONST (to_mode,
 			    convert_memory_address (to_mode, XEXP (x, 0)));
 
     case PLUS:
@@ -367,11 +367,11 @@ convert_memory_address (to_mode, x)
 	  || (GET_CODE (x) == PLUS && GET_CODE (XEXP (x, 1)) == CONST_INT
 	      && (INTVAL (XEXP (x, 1)) + 20000 < 40000
 		  || CONSTANT_P (XEXP (x, 0)))))
-	return gen_rtx_fmt_ee (GET_CODE (x), to_mode, 
+	return gen_rtx_fmt_ee (GET_CODE (x), to_mode,
 			       convert_memory_address (to_mode, XEXP (x, 0)),
 			       convert_memory_address (to_mode, XEXP (x, 1)));
       break;
-      
+
     default:
       break;
     }
@@ -628,12 +628,12 @@ copy_to_reg (x)
      rtx x;
 {
   register rtx temp = gen_reg_rtx (GET_MODE (x));
- 
+
   /* If not an operand, must be an address with PLUS and MULT so
-     do the computation.  */ 
+     do the computation.  */
   if (! general_operand (x, VOIDmode))
     x = force_operand (x, temp);
-  
+
   if (x != temp)
     emit_move_insn (temp, x);
 
@@ -659,9 +659,9 @@ copy_to_mode_reg (mode, x)
      rtx x;
 {
   register rtx temp = gen_reg_rtx (mode);
-  
+
   /* If not an operand, must be an address with PLUS and MULT so
-     do the computation.  */ 
+     do the computation.  */
   if (! general_operand (x, VOIDmode))
     x = force_operand (x, temp);
 
@@ -781,7 +781,7 @@ promote_mode (type, mode, punsignedp, for_call)
       unsignedp = POINTERS_EXTEND_UNSIGNED;
       break;
 #endif
-      
+
     default:
       break;
     }
@@ -960,9 +960,9 @@ emit_stack_save (save_level, psave, after)
 }
 
 /* Restore the stack pointer for the purpose in SAVE_LEVEL.  SA is the save
-   area made by emit_stack_save.  If it is zero, we have nothing to do. 
+   area made by emit_stack_save.  If it is zero, we have nothing to do.
 
-   Put any emitted insns after insn AFTER, if nonzero, otherwise at 
+   Put any emitted insns after insn AFTER, if nonzero, otherwise at
    current position.  */
 
 void
@@ -1046,7 +1046,7 @@ optimize_save_area_alloca (insns)
 
 	      /* If we do not see the note in a pattern matching
 		 these precise characteristics, we did something
-		 entirely wrong in allocate_dynamic_stack_space. 
+		 entirely wrong in allocate_dynamic_stack_space.
 
 		 Note, one way this could happen is if SETJMP_VIA_SAVE_AREA
 		 was defined on a machine where stacks grow towards higher
@@ -1132,7 +1132,7 @@ allocate_dynamic_stack_space (size, target, known_align)
 
   /* We will need to ensure that the address we return is aligned to
      BIGGEST_ALIGNMENT.  If STACK_DYNAMIC_OFFSET is defined, we don't
-     always know its final value at this point in the compilation (it 
+     always know its final value at this point in the compilation (it
      might depend on the size of the outgoing parameter lists, for
      example), so we must align the value to be returned in that case.
      (Note that STACK_DYNAMIC_OFFSET will have a default non-zero value if
@@ -1313,7 +1313,7 @@ allocate_dynamic_stack_space (size, target, known_align)
 			    GEN_INT (BIGGEST_ALIGNMENT / BITS_PER_UNIT),
 			    NULL_RTX, 1);
     }
-  
+
   /* Some systems require a particular insn to refer to the stack
      to make the pages exist.  */
 #ifdef HAVE_probe
@@ -1344,7 +1344,7 @@ emit_stack_probe (address)
     emit_move_insn (memref, const0_rtx);
 }
 
-/* Probe a range of stack addresses from FIRST to FIRST+SIZE, inclusive. 
+/* Probe a range of stack addresses from FIRST to FIRST+SIZE, inclusive.
    FIRST is a constant and size is a Pmode RTX.  These are offsets from the
    current stack pointer.  STACK_GROWS_DOWNWARD says whether to add or
    subtract from the stack.  If SIZE is constant, this is done
@@ -1495,7 +1495,7 @@ hard_function_value (valtype, func)
         abort ();
 
       PUT_MODE (val, tmpmode);
-    }      
+    }
   return val;
 }
 

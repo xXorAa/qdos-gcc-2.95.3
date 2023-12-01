@@ -76,7 +76,7 @@ ip		.req	r12
 sp		.req	r13
 lr		.req	r14
 pc		.req	r15
-	
+
 	.text
 	.globl	SYM (__udivsi3)
 	TYPE 	(__udivsi3)
@@ -92,7 +92,7 @@ SYM (__udivsi3):
 Loop1:
 	@ Unless the divisor is very big, shift it up in multiples of
 	@ four bits, since this is the amount of unwinding in the main
-	@ division loop.  Continue shifting until the divisor is 
+	@ division loop.  Continue shifting until the divisor is
 	@ larger than the dividend.
 	cmp	divisor, #0x10000000
 	cmpcc	divisor, dividend
@@ -154,7 +154,7 @@ ip		.req	r12
 sp		.req	r13
 lr		.req	r14
 pc		.req	r15
-	
+
 	.text
 	.globl	SYM (__umodsi3)
 	TYPE	(__umodsi3)
@@ -169,7 +169,7 @@ SYM (__umodsi3):
 Loop1:
 	@ Unless the divisor is very big, shift it up in multiples of
 	@ four bits, since this is the amount of unwinding in the main
-	@ division loop.  Continue shifting until the divisor is 
+	@ division loop.  Continue shifting until the divisor is
 	@ larger than the dividend.
 	cmp	divisor, #0x10000000
 	cmpcc	divisor, dividend
@@ -187,7 +187,7 @@ Lbignum:
 	bcc	Lbignum
 
 Loop3:
-	@ Test for possible subtractions.  On the final pass, this may 
+	@ Test for possible subtractions.  On the final pass, this may
 	@ subtract too much from the dividend, so keep track of which
 	@ subtractions are done, we can fix them up afterwards...
 	mov	overdone, #0
@@ -244,7 +244,7 @@ ip		.req	r12
 sp		.req	r13
 lr		.req	r14
 pc		.req	r15
-	
+
 	.text
 	.globl	SYM (__divsi3)
 	TYPE	(__divsi3)
@@ -265,7 +265,7 @@ SYM (__divsi3):
 Loop1:
 	@ Unless the divisor is very big, shift it up in multiples of
 	@ four bits, since this is the amount of unwinding in the main
-	@ division loop.  Continue shifting until the divisor is 
+	@ division loop.  Continue shifting until the divisor is
 	@ larger than the dividend.
 	cmp	divisor, #0x10000000
 	cmpcc	divisor, dividend
@@ -329,7 +329,7 @@ ip		.req	r12
 sp		.req	r13
 lr		.req	r14
 pc		.req	r15
-	
+
 	.text
 	.globl	SYM (__modsi3)
 	TYPE	(__modsi3)
@@ -351,7 +351,7 @@ SYM (__modsi3):
 Loop1:
 	@ Unless the divisor is very big, shift it up in multiples of
 	@ four bits, since this is the amount of unwinding in the main
-	@ division loop.  Continue shifting until the divisor is 
+	@ division loop.  Continue shifting until the divisor is
 	@ larger than the dividend.
 	cmp	divisor, #0x10000000
 	cmpcc	divisor, dividend
@@ -369,7 +369,7 @@ Lbignum:
 	bcc	Lbignum
 
 Loop3:
-	@ Test for possible subtractions.  On the final pass, this may 
+	@ Test for possible subtractions.  On the final pass, this may
 	@ subtract too much from the dividend, so keep track of which
 	@ subtractions are done, we can fix them up afterwards...
 	mov	overdone, #0
@@ -429,14 +429,14 @@ SYM (__div0):
 	RET	pc, lr
 
 	SIZE	(__div0)
-	
+
 #endif /* L_divmodsi_tools */
 
 #ifdef L_dvmd_lnx
 @ GNU/Linux division-by zero handler.  Used in place of L_dvmd_tls
 
 #include <asm/unistd.h>
-	
+
 #define SIGFPE	8			@ cant use <asm/signal.h> as it
 					@ contains too much C rubbish
 	.globl	SYM (__div0)
@@ -452,21 +452,21 @@ SYM (__div0):
 	ldmfd	sp!, {r1, pc}RETCOND
 
 	SIZE 	(__div0)
-	
+
 #endif /* L_dvmd_lnx */
 
-/* These next two sections are here despite the fact that they contain Thumb 
+/* These next two sections are here despite the fact that they contain Thumb
    assembler because their presence allows interworked code to be linked even
    when the GCC library is this one.  */
-		
+
 #ifdef L_call_via_rX
 
-/* These labels & instructions are used by the Arm/Thumb interworking code. 
-   The address of function to be called is loaded into a register and then 
-   one of these labels is called via a BL instruction.  This puts the 
-   return address into the link register with the bottom bit set, and the 
+/* These labels & instructions are used by the Arm/Thumb interworking code.
+   The address of function to be called is loaded into a register and then
+   one of these labels is called via a BL instruction.  This puts the
+   return address into the link register with the bottom bit set, and the
    code here switches to the correct mode before executing the function.  */
-	
+
 	.text
 	.align 0
 	.code 16
@@ -502,27 +502,27 @@ SYM (_call_via_\register):
 #ifdef L_interwork_call_via_rX
 
 /* These labels & instructions are used by the Arm/Thumb interworking code,
-   when the target address is in an unknown instruction set.  The address 
+   when the target address is in an unknown instruction set.  The address
    of function to be called is loaded into a register and then one of these
-   labels is called via a BL instruction.  This puts the return address 
-   into the link register with the bottom bit set, and the code here 
+   labels is called via a BL instruction.  This puts the return address
+   into the link register with the bottom bit set, and the code here
    switches to the correct mode before executing the function.  Unfortunately
    the target code cannot be relied upon to return via a BX instruction, so
    instead we have to store the resturn address on the stack and allow the
    called function to return here instead.  Upon return we recover the real
    return address and use a BX to get back to Thumb mode.  */
-	
+
 	.text
 	.align 0
 
 	.code   32
 	.globl _arm_return
-_arm_return:		
+_arm_return:
 	ldmia 	r13!, {r12}
 	bx 	r12
 	.code   16
 
-.macro interwork register					
+.macro interwork register
 	.code   16
 	.globl	SYM (_interwork_call_via_\register)
 	TYPE	(_interwork_call_via_\register)
@@ -530,7 +530,7 @@ _arm_return:
 SYM (_interwork_call_via_\register):
 	bx 	pc
 	nop
-	
+
 	.code   32
 	.globl .Lchange_\register
 .Lchange_\register:
@@ -541,7 +541,7 @@ SYM (_interwork_call_via_\register):
 
 	SIZE	(_interwork_call_via_\register)
 .endm
-	
+
 	interwork r0
 	interwork r1
 	interwork r2
@@ -556,7 +556,7 @@ SYM (_interwork_call_via_\register):
 	interwork fp
 	interwork ip
 	interwork sp
-	
+
 	/* The lr case has to be handled a little differently...*/
 	.code 16
 	.globl	SYM (_interwork_call_via_lr)
@@ -565,7 +565,7 @@ SYM (_interwork_call_via_\register):
 SYM (_interwork_call_via_lr):
 	bx 	pc
 	nop
-	
+
 	.code 32
 	.globl .Lchange_lr
 .Lchange_lr:
@@ -574,7 +574,7 @@ SYM (_interwork_call_via_lr):
 	mov	ip, lr
 	adreq	lr, _arm_return
 	bx	ip
-	
+
 	SIZE	(_interwork_call_via_lr)
-	
+
 #endif /* L_interwork_call_via_rX */

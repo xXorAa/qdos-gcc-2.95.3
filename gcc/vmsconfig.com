@@ -117,11 +117,11 @@ $purge version.opt
 $!
 $!
 $! create linker options files that lists all of the components for all
-$! possible compilers.  We do this by editing the file Makefile.in, and 
+$! possible compilers.  We do this by editing the file Makefile.in, and
 $! generating the relevant files from it.
 $!
 $!
-$! Make a copy of the makefile if the sources are on a disk that is NFS 
+$! Make a copy of the makefile if the sources are on a disk that is NFS
 $!    mounted on a unix machine.
 $if f$search("Makefile.in").eqs."" .and. f$search("$M$akefile.in").nes."" -
 	then copy $M$akefile.in Makefile.in

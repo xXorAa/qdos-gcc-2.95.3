@@ -178,7 +178,7 @@ DECLARE_INFO_COMMAND (info_index_search,
 }
 
 /* Look up SEARCH_STRING in the index for this file.  If SEARCH_STRING
-   is NULL, prompt user for input.  */ 
+   is NULL, prompt user for input.  */
 void
 do_info_index_search (window, count, search_string)
      WINDOW *window;

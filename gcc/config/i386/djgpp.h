@@ -38,7 +38,7 @@ Boston, MA 02111-1307, USA.  */
 #define SET_ASM_OP "\t.set"
 #endif
 
-/* Search for as.exe and ld.exe in DJGPP's binary directory. */ 
+/* Search for as.exe and ld.exe in DJGPP's binary directory. */
 #define MD_EXEC_PREFIX "$DJDIR/bin/"
 
 /* Correctly handle absolute filename detection in cp/xref.c */
@@ -57,7 +57,7 @@ Boston, MA 02111-1307, USA.  */
    before library search directories are known by the linker.
    This avoids problems when specs file is not available. An alternate way,
    suggested by Robert Hoehne, is to use SUBTARGET_EXTRA_SPECS instead.
-*/ 
+*/
 
 #undef LINK_COMMAND_SPEC
 #define LINK_COMMAND_SPEC \
@@ -79,7 +79,7 @@ Boston, MA 02111-1307, USA.  */
 #undef STARTFILE_SPEC
 #define STARTFILE_SPEC "%{pg:gcrt0.o%s}%{!pg:crt0.o%s}"
 
-/* Make sure that gcc will not look for .h files in /usr/local/include 
+/* Make sure that gcc will not look for .h files in /usr/local/include
    unless user explicitly requests it.  */
 #undef LOCAL_INCLUDE_DIR
 

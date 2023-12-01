@@ -161,7 +161,7 @@ extern int target_flags;
    and of the structure as a whole.  */
 #define PCC_BITFIELD_TYPE_MATTERS 1
 
-/* Make strings word-aligned so strcpy from constants will be faster. 
+/* Make strings word-aligned so strcpy from constants will be faster.
    Pyramid documentation says the best alignment is to align
    on the size of a cache line, which is 32 bytes.
    Newer pyrs have single insns that do strcmp() and strcpy(), so this

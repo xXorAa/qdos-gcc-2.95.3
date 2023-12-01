@@ -115,7 +115,7 @@ unsigned_comparisons_p (x)
 	      return 1;
 	}
     }
-	    
+
   return 0;
 }
 
@@ -744,7 +744,7 @@ print_operand (file, x, code)
 		'lo'	if the high order part is all ones
 		'lz'	if the high order part is all zeros
 		'uo'	if the low order part is all ones
-		'uz'	if the low order part is all zeros 
+		'uz'	if the low order part is all zeros
        */
       if (GET_CODE (x) != CONST_INT)
 	output_operand_lossage ("invalid %%z value");
@@ -836,7 +836,7 @@ print_operand (file, x, code)
 	abort ();
       if (GET_CODE (x) == SYMBOL_REF)
 	fprintf (file, "%d", get_pool_offset (x) + 12);
-      else 
+      else
 	/* Must be (const (plus (symbol_ref) (const_int))) */
 	fprintf (file, "%d",
 		 (get_pool_offset (XEXP (XEXP (x, 0), 0)) + 12
@@ -1210,7 +1210,7 @@ output_epilog (file, size)
       if (this_size > 0)
 	nargs += (this_size + UNITS_PER_WORD - 1) / UNITS_PER_WORD;
     }
-  
+
   /* If the last insn was a BARRIER, we don't have to write anything except
      the trace table.  */
   if (GET_CODE (insn) == NOTE)
@@ -1652,7 +1652,7 @@ output_fpop (code, op0, op1, op2, insn)
   else if (code != USE && code != CLOBBER
 	   && (GET_CODE (op0) != REG || ! FP_REGNO_P (REGNO (op0))))
     size += 64;
-    
+
   if (! TARGET_FULL_FP_BLOCKS)
     {
       /* If we are not to pad the blocks, just compute its actual length.  */
@@ -1669,7 +1669,7 @@ output_fpop (code, op0, op1, op2, insn)
       /* If in the middle of a word, round.  */
       if (size % UNITS_PER_WORD)
 	size += 2;
-	
+
       /* Handle any immediates.  */
       if (code != USE && code != CLOBBER && op0 && GET_CODE (op0) != REG)
         size += 4;
@@ -1678,7 +1678,7 @@ output_fpop (code, op0, op1, op2, insn)
       if (op2 && GET_CODE (op2) != REG)
         size += 4;
 
-      if (code != USE && code != CLOBBER && 
+      if (code != USE && code != CLOBBER &&
 	  op0 && GET_CODE (op0) == CONST_DOUBLE && GET_MODE (op0) == DFmode)
         size += 4;
       if (op1 && GET_CODE (op1) == CONST_DOUBLE && GET_MODE (op1) == DFmode)
@@ -1818,7 +1818,7 @@ output_fpops (file)
 
       fprintf (file, "\t.byte %d\n", fpop->noperands);
       fprintf (file, "\t.short 0x8001\n");
-      
+
       if ((fpop->ops[0] == 0
 	   || GET_CODE (fpop->ops[0]) != REG || REGNO(fpop->ops[0]) != 17)
 	  && (fpop->ops[1] == 0 || GET_CODE (fpop->ops[1]) != REG
@@ -1967,7 +1967,7 @@ output_fpops (file)
 	    default:
 	      abort ();
 	    }
-	
+
       if (size_so_far != fpop->size)
         {
           if (TARGET_FULL_FP_BLOCKS)

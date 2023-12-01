@@ -93,7 +93,7 @@ This file records noteworthy changes.
     @infoinclude
     @iappendix @iappendixsection @iappendixsec @iappendixsubsec
       @iappendixsubsubsec
-    @ichapter @isection @isubsection @isubsubsection 
+    @ichapter @isection @isubsection @isubsubsection
     @iunnumbered @iunnumberedsec @iunnumberedsubsec @iunnumberedsubsubsec
     @setchapterstyle
     @titlespec
@@ -128,7 +128,7 @@ This file records noteworthy changes.
 * makeinfo -E does macro expansion (and nothing else).
 
 3.1 (23 May 1993)
-Just bug fixes, see ChangeLog for full details. 
+Just bug fixes, see ChangeLog for full details.
 
 texinfo-3.0: first release of Texinfo version 2, with many new commands.
 

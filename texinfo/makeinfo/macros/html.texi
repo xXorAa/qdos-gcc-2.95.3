@@ -65,7 +65,7 @@
 
 @c
 @c Redefine the TeXinfo commands which have direct HTML counterparts.
-@c 
+@c
 
 @macro html-define-0arg{command, html-insertion}
 @macro \command\
@@ -108,9 +108,9 @@
 @html-define-line{heading,<h1>\\line\\</h1>}
 @html-define-0arg{bye, </html>}
 
-@c 
+@c
 @c Define into nothing the macros which do nothing in html.
-@c 
+@c
 @html-define-line{group,}
 
 @c
@@ -180,15 +180,15 @@
 @inode_define {iunnumberedsubsubsec, h4}
 
 @c Manual starter:
-@c 
+@c
 @c Pass arguments of TITLE, AUTHOR, and a short DESCRIPTION.
 @c Immediately following, insert the Top node's menu.
-@c 
+@c
 @c Typical usage:
-@c 
+@c
 @c @document{Makeinfo, Brian J. Fox, This file documents the use of the
 @c @code{makeinfo} program\, versions 1.61 and later.}
-@c 
+@c
 @c @menu
 @c * What is @makeinfo{}?::
 @c @end menu

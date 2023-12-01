@@ -1,12 +1,12 @@
 Index: gcc/ChangeLog
 from  Alexandre Oliva  <oliva@lsd.ic.unicamp.br>
-	
+
 	* config/i386/sol2gas.h: I had installed the wrong version of Sept
 	22's patch in the release branch.  Fixed.
 	* configure.in: Likewise.
 	* configure: Rebuilt.
 	Reported by Jason Beardsley <jbeardsley@origin.ea.com>
-	
+
 Index: gcc/configure.in
 ===================================================================
 RCS file: /cvs/gcc/egcs/gcc/configure.in,v
@@ -38,7 +38,7 @@ diff -u -r1.1.2.1 sol2gas.h
 @@ -4,8 +4,6 @@
     Copyright (C) 1999 Free Software Foundation, Inc.
  */
- 
+
 -#ifndef GAS_DOES_NOT_SUPPORT_MINUS_S
 -#define GAS_DOES_NOT_SUPPORT_MINUS_S 1
 +#ifndef GAS_REJECTS_MINUS_S

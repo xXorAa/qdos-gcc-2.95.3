@@ -99,11 +99,11 @@ typedef union {long itype; tree ttype; enum tree_code code;
 	char *filename; int lineno; int ends_in_label; } YYSTYPE;
 #line 204 "c-parse.y"
 
-/* Number of statements (loosely speaking) and compound statements 
+/* Number of statements (loosely speaking) and compound statements
    seen so far.  */
 static int stmt_count;
 static int compstmt_count;
-  
+
 /* Input file and line number of the end of the body of last simple_if;
    used by the stmt-rule immediately after simple_if returns.  */
 static char *if_stmt_file;
@@ -1746,7 +1746,7 @@ case 11:
 { if (pedantic)
 		    error ("ANSI C forbids data definition with no type or storage class");
 		  else if (!flag_traditional)
-		    warning ("data definition has no type or storage class"); 
+		    warning ("data definition has no type or storage class");
 
 		  current_declspecs = TREE_VALUE (declspec_stack);
 		  prefix_attributes = TREE_PURPOSE (declspec_stack);
@@ -1793,7 +1793,7 @@ case 20:
     break;}
 case 21:
 #line 313 "c-parse.y"
-{ finish_function (0); 
+{ finish_function (0);
 		  current_declspecs = TREE_VALUE (declspec_stack);
 		  prefix_attributes = TREE_PURPOSE (declspec_stack);
 		  declspec_stack = TREE_CHAIN (declspec_stack);
@@ -1819,7 +1819,7 @@ case 24:
     break;}
 case 25:
 #line 331 "c-parse.y"
-{ finish_function (0); 
+{ finish_function (0);
 		  current_declspecs = TREE_VALUE (declspec_stack);
 		  prefix_attributes = TREE_PURPOSE (declspec_stack);
 		  declspec_stack = TREE_CHAIN (declspec_stack);
@@ -1845,7 +1845,7 @@ case 28:
     break;}
 case 29:
 #line 349 "c-parse.y"
-{ finish_function (0); 
+{ finish_function (0);
 		  current_declspecs = TREE_VALUE (declspec_stack);
 		  prefix_attributes = TREE_PURPOSE (declspec_stack);
 		  declspec_stack = TREE_CHAIN (declspec_stack);
@@ -2336,7 +2336,7 @@ case 109:
     break;}
 case 110:
 #line 791 "c-parse.y"
-{ current_declspecs = TREE_VALUE (declspec_stack);	
+{ current_declspecs = TREE_VALUE (declspec_stack);
 		  prefix_attributes = TREE_PURPOSE (declspec_stack);
 		  declspec_stack = TREE_CHAIN (declspec_stack);
 		  resume_momentary (yyvsp[-2].itype); ;
@@ -2551,7 +2551,7 @@ case 166:
 #line 1013 "c-parse.y"
 { tree d = start_decl (yyvsp[-2].ttype, current_declspecs, 0,
 				       yyvsp[0].ttype, prefix_attributes);
-		  finish_decl (d, NULL_TREE, yyvsp[-1].ttype); 
+		  finish_decl (d, NULL_TREE, yyvsp[-1].ttype);
                 ;
     break;}
 case 167:
@@ -3138,7 +3138,7 @@ case 319:
 case 322:
 #line 1637 "c-parse.y"
 { emit_line_note (yyvsp[-5].filename, yyvsp[-4].lineno);
-		  c_expand_start_cond (truthvalue_conversion (yyvsp[-1].ttype), 0, 
+		  c_expand_start_cond (truthvalue_conversion (yyvsp[-1].ttype), 0,
 				       compstmt_count);
 		  yyval.itype = stmt_count;
 		  if_stmt_file = yyvsp[-5].filename;
@@ -3297,7 +3297,7 @@ case 345:
     break;}
 case 346:
 #line 1785 "c-parse.y"
-{ 
+{
 		  /* Start the loop.  Doing this after parsing
 		     all the expressions ensures we will end the loop.  */
 		  expand_start_loop_continue_elsewhere (1);
@@ -3431,7 +3431,7 @@ case 362:
 #line 1902 "c-parse.y"
 {
 	    /* The value returned by this action is  */
-	    /*      1 if everything is OK */ 
+	    /*      1 if everything is OK */
 	    /*      0 in case of error or already bound iterator */
 
 	    yyval.itype = 0;
@@ -3663,7 +3663,7 @@ case 392:
 { yyval.ttype = build_tree_list (build_tree_list (current_declspecs,
 							 yyvsp[-1].ttype),
 					build_tree_list (prefix_attributes,
-							 yyvsp[0].ttype)); 
+							 yyvsp[0].ttype));
 		  current_declspecs = TREE_VALUE (declspec_stack);
 		  prefix_attributes = TREE_PURPOSE (declspec_stack);
 		  declspec_stack = TREE_CHAIN (declspec_stack);

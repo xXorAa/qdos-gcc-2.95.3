@@ -52,7 +52,7 @@ fi
 : ${move=true}; export move
 : ${forcemail=false}; export forcemail
 while true; do
-    case "$1" in 
+    case "$1" in
       -o) filesuffix=.sent; move=false; : ${mailto=nobody}; shift;;
       -t) move=false; shift;;
       -p) prepend_logs=${prepend_logs+"$prepend_logs "}"$2"; shift 2;;

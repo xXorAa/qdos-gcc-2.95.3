@@ -1467,7 +1467,7 @@ sched_analyze_2 (x, insn)
       sched_analyze_2 (XEXP (x, 0), insn);
       sched_analyze_1 (x, insn);
       return;
-      
+
     default:
       break;
     }
@@ -2165,13 +2165,13 @@ create_reg_dead_note (reg, insn)
      rtx reg, insn;
 {
   rtx link;
-		
+
   /* The number of registers killed after scheduling must be the same as the
      number of registers killed before scheduling.  The number of REG_DEAD
      notes may not be conserved, i.e. two SImode hard register REG_DEAD notes
      might become one DImode hard register REG_DEAD note, but the number of
      registers killed will be conserved.
-     
+
      We carefully remove REG_DEAD notes from the dead_notes list, so that
      there will be none left at the end.  If we run out early, then there
      is a bug somewhere in flow, combine and/or sched.  */
@@ -2204,7 +2204,7 @@ create_reg_dead_note (reg, insn)
 	     multiple hard regs.  */
 	  if (link == NULL_RTX)
 	    abort ();
-  
+
 	  link = XEXP (link, 1);
 	  reg_note_regs += (REGNO (XEXP (link, 0)) >= FIRST_PSEUDO_REGISTER ? 1
 			    : HARD_REGNO_NREGS (REGNO (XEXP (link, 0)),
@@ -2298,7 +2298,7 @@ attach_deaths (x, insn, set_p)
 	   because we may have to execute this code several times, e.g.
 	   once for a clobber (which doesn't add a note) and later
 	   for a use (which does add a note).
-	   
+
 	   Always make the register live.  We must do this even if it was
 	   live before, because this may be an insn which sets and uses
 	   the same register, in which case the register has already been
@@ -3269,7 +3269,7 @@ schedule_block (b, file)
 			|| GET_CODE (XVECEXP (PATTERN (insn), 0, j)) == CLOBBER)
 		      sched_note_set (XVECEXP (PATTERN (insn), 0, j), 1);
 		}
-	      
+
 	      /* This code keeps life analysis information up to date.  */
 	      if (GET_CODE (insn) == CALL_INSN)
 		{
@@ -3707,16 +3707,16 @@ update_n_sets (x, inc)
   while (GET_CODE (dest) == STRICT_LOW_PART || GET_CODE (dest) == SUBREG
 	 || GET_CODE (dest) == ZERO_EXTRACT || GET_CODE (dest) == SIGN_EXTRACT)
     dest = SUBREG_REG (dest);
-	  
+
   if (GET_CODE (dest) == REG)
     {
       int regno = REGNO (dest);
-      
+
       if (regno < FIRST_PSEUDO_REGISTER)
 	{
 	  register int i;
 	  int endregno = regno + HARD_REGNO_NREGS (regno, GET_MODE (dest));
-	  
+
 	  for (i = regno; i < endregno; i++)
 	    REG_N_SETS (i) += inc;
 	}
@@ -3797,7 +3797,7 @@ update_flow_info (notes, first, last, orig_insn)
 		 register that was not needed by this instantiation of the
 		 pattern, so we can safely ignore it.  */
 	      if (insn == first)
-		{			
+		{
 		  if (REG_NOTE_KIND (note) != REG_UNUSED)
 		    abort ();
 
@@ -4156,7 +4156,7 @@ update_flow_info (notes, first, last, orig_insn)
 	     set.  This case is OK, because deleting a no-op can not affect
 	     REG_DEAD notes on other insns.  If this is not the case, then
 	     abort.  */
-	  
+
 	  regno = REGNO (orig_dest);
 	  for (i = HARD_REGNO_NREGS (regno, GET_MODE (orig_dest)) - 1;
 	       i >= 0; i--)
@@ -4294,7 +4294,7 @@ schedule_insns (dump_file)
 	 This must be computed and saved now, because after a basic block's
 	 predecessor has been scheduled, it is impossible to accurately
 	 determine the correct line number for the first insn of the block.  */
-	 
+
       for (b = 0; b < n_basic_blocks; b++)
 	for (line = BLOCK_HEAD (b); line; line = PREV_INSN (line))
 	  if (GET_CODE (line) == NOTE && NOTE_LINE_NUMBER (line) > 0)

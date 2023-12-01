@@ -19,7 +19,7 @@ along with GNU CC; see the file COPYING.  If not, write to
 the Free Software Foundation, 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.  */
 
-/* 
+/*
  * This configuration file is for gcc with gas-2.x and gnu ld 2.x
  * with aix ps/2 1.3.x.
  */

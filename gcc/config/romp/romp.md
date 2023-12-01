@@ -59,7 +59,7 @@
 
 ;; Whether insn can be placed in a delay slot.
 
-(define_attr "in_delay_slot" "yes,no" 
+(define_attr "in_delay_slot" "yes,no"
   (cond [(eq_attr "length" "8,10,38")			(const_string "no")
 	 (eq_attr "type" "branch,ibranch,return,call,multi")
 	 (const_string "no")]
@@ -106,7 +106,7 @@
 ;; could make use of it.  This is because it would confuse next_cc0_user
 ;; to do so.  Other fp insns can't get a delay slow because they set their
 ;; result and use their input after the delay slot insn is executed.  This
-;; isn't what reorg.c expects.  
+;; isn't what reorg.c expects.
 
 ;; Define load & store delays.  These were obtained by measurements done by
 ;; jfc@athena.mit.edu.
@@ -277,7 +277,7 @@
 (define_insn ""
   [(set (match_operand:QI 0 "register_operand" "=b")
 	(match_operand:QI 1 "symbolic_memory_operand" "m"))]
-  "" 
+  ""
   "loadc %0,%1"
   [(set_attr "type" "load")])
 
@@ -390,7 +390,7 @@
   "
 { rtx op0 = operands[0];
   rtx op1 = operands[1];
- 
+
   if (CONSTANT_P (op1))
     {
       rtx insns;
@@ -495,7 +495,7 @@
 (define_split
   [(set (match_operand:DI 0 "symbolic_memory_operand" "")
 	(match_operand:DI 1 "register_operand" ""))
-   (clobber (match_operand:SI 2 "register_operand" ""))] 
+   (clobber (match_operand:SI 2 "register_operand" ""))]
   "GET_CODE (operands[0]) == REG
    && REGNO (operands[0]) < FIRST_PSEUDO_REGISTER"
   [(set (match_dup 2) (match_dup 3))
@@ -683,7 +683,7 @@
   "
 { rtx op0 = operands[0];
   rtx op1 = operands[1];
-  
+
   if (op0 == op1)
     {
       emit_insn (gen_rtx (SET, VOIDmode, op0, op1));
@@ -1156,7 +1156,7 @@
 	      (clobber (match_scratch:SI 4 ""))])]
   ""
   "")
-	
+
 (define_insn ""
   [(set (zero_extract:SI (match_operand:SI 0 "register_operand" "+r")
 			 (const_int 8)
@@ -1258,7 +1258,7 @@
 {
   if (GET_CODE (operands [2]) == CONST_INT)
     {
-      emit_insn (gen_addsi3 (operands[0], operands[1], 
+      emit_insn (gen_addsi3 (operands[0], operands[1],
 			     GEN_INT (- INTVAL (operands[2]))));
       DONE;
     }
@@ -2018,7 +2018,7 @@
 
       if (result != target)
 	emit_move_insn (result, target);
-  
+
       emit_move_insn (operand_subword (operands[0], 1, 1, DFmode),
 		      operand_subword_force (operands[1], 1, DFmode));
 
@@ -2099,7 +2099,7 @@
    (clobber (match_operand:SI 5 "reg_15_operand" "=&t"))]
   "check_precision (GET_MODE (operands[1]), operands[2], operands[3])"
   "*
-{ return output_fpop (GET_CODE (operands[1]), operands[0], 
+{ return output_fpop (GET_CODE (operands[1]), operands[0],
 		      operands[2], operands[3], insn);
 }"
   [(set_attr "type" "fp")])
@@ -2114,7 +2114,7 @@
    (clobber (match_operand:SI 6 "reg_15_operand" "=&t"))]
   "check_precision (GET_MODE (operands[1]), operands[2], operands[4])"
   "*
-{ return output_fpop (GET_CODE (operands[1]), operands[0], 
+{ return output_fpop (GET_CODE (operands[1]), operands[0],
 		      operands[2], operands[4], insn);
 }"
   [(set_attr "type" "fp")])
@@ -2129,7 +2129,7 @@
    (clobber (match_operand:SI 6 "reg_15_operand" "=&t"))]
   "check_precision (GET_MODE (operands[1]), operands[3], operands[4])"
   "*
-{ return output_fpop (GET_CODE (operands[1]), operands[0], 
+{ return output_fpop (GET_CODE (operands[1]), operands[0],
 		      operands[3], operands[4], insn);
 }"
   [(set_attr "type" "fp")])
@@ -2145,7 +2145,7 @@
    (clobber (match_operand:SI 7 "reg_15_operand" "=&t"))]
   "check_precision (GET_MODE (operands[1]), operands[3], operands[5])"
   "*
-{ return output_fpop (GET_CODE (operands[1]), operands[0], 
+{ return output_fpop (GET_CODE (operands[1]), operands[0],
 		      operands[3], operands[5], insn);
 }"
   [(set_attr "type" "fp")])
@@ -2160,7 +2160,7 @@
    (clobber (match_operand:SI 6 "reg_15_operand" "=&t"))]
   "check_precision (GET_MODE (operands[2]), operands[3], operands[4])"
   "*
-{ return output_fpop (GET_CODE (operands[2]), operands[0], 
+{ return output_fpop (GET_CODE (operands[2]), operands[0],
 		      operands[3], operands[4], insn);
 }"
   [(set_attr "type" "fp")])
@@ -2175,7 +2175,7 @@
    (clobber (match_operand:SI 6 "reg_15_operand" "=&t"))]
   "check_precision (GET_MODE (operands[2]), operands[3], operands[4])"
   "*
-{ return output_fpop (GET_CODE (operands[2]), operands[0], 
+{ return output_fpop (GET_CODE (operands[2]), operands[0],
 		      operands[3], operands[4], insn);
 }"
   [(set_attr "type" "fp")])
@@ -2191,7 +2191,7 @@
    (clobber (match_operand:SI 7 "reg_15_operand" "=&t"))]
   "check_precision (GET_MODE (operands[2]), operands[3], operands[4])"
   "*
-{ return output_fpop (GET_CODE (operands[2]), operands[0], 
+{ return output_fpop (GET_CODE (operands[2]), operands[0],
 		      operands[3], operands[5], insn);
 }"
   [(set_attr "type" "fp")])
@@ -2207,7 +2207,7 @@
    (clobber (match_operand:SI 7 "reg_15_operand" "=&t"))]
   "check_precision (GET_MODE (operands[2]), operands[3], operands[4])"
   "*
-{ return output_fpop (GET_CODE (operands[2]), operands[0], 
+{ return output_fpop (GET_CODE (operands[2]), operands[0],
 		      operands[3], operands[5], insn);
 }"
   [(set_attr "type" "fp")])
@@ -2223,7 +2223,7 @@
    (clobber (match_operand:SI 7 "reg_15_operand" "=&t"))]
   "check_precision (GET_MODE (operands[2]), operands[4], operands[5])"
   "*
-{ return output_fpop (GET_CODE (operands[2]), operands[0], 
+{ return output_fpop (GET_CODE (operands[2]), operands[0],
 		      operands[4], operands[5], insn);
 }"
   [(set_attr "type" "fp")])
@@ -2239,7 +2239,7 @@
    (clobber (match_operand:SI 7 "reg_15_operand" "=&t"))]
   "check_precision (GET_MODE (operands[2]), operands[4], operands[5])"
   "*
-{ return output_fpop (GET_CODE (operands[2]), operands[0], 
+{ return output_fpop (GET_CODE (operands[2]), operands[0],
 		      operands[4], operands[5], insn);
 }"
   [(set_attr "type" "fp")])
@@ -2256,7 +2256,7 @@
    (clobber (match_operand:SI 8 "reg_15_operand" "=&t"))]
   "check_precision (GET_MODE (operands[2]), operands[4], operands[6])"
   "*
-{ return output_fpop (GET_CODE (operands[2]), operands[0], 
+{ return output_fpop (GET_CODE (operands[2]), operands[0],
 		      operands[4], operands[6], insn);
 }"
   [(set_attr "type" "fp")])
@@ -2273,7 +2273,7 @@
    (clobber (match_operand:SI 8 "reg_15_operand" "=&t"))]
   "check_precision (GET_MODE (operands[2]), operands[4], operands[6])"
   "*
-{ return output_fpop (GET_CODE (operands[2]), operands[0], 
+{ return output_fpop (GET_CODE (operands[2]), operands[0],
 		      operands[4], operands[6], insn);
 }"
   [(set_attr "type" "fp")])

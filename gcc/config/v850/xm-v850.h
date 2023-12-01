@@ -1,4 +1,4 @@
-/* Configuration for NEC V850. 
+/* Configuration for NEC V850.
    Copyright (C) 1996 Free Software Foundation, Inc.
    Contributed by Cygnus Support.
 

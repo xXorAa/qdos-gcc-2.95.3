@@ -1151,10 +1151,10 @@ constraints with multiple alternatives, sometimes one alternative
 requires @samp{&} while others do not.  See, for example, the
 @samp{movdf} insn of the 68000.
 
-An input operand can be tied to an earlyclobber operand if its only 
+An input operand can be tied to an earlyclobber operand if its only
 use as an input occurs before the early result is written.  Adding
 alternatives of this form often allows GCC to produce better code
-when only some of the inputs can be affected by the earlyclobber. 
+when only some of the inputs can be affected by the earlyclobber.
 See, for example, the @samp{mulsi3} insn of the ARM.
 
 @samp{&} does not obviate the need to write @samp{=}.
@@ -2548,9 +2548,9 @@ for the target.
 The pattern takes three arguments.  The first is the exception context
 pointer.  This will have already been copied to the function return
 register appropriate for a pointer; normally this can be ignored.  The
-second argument is an offset to be added to the stack pointer.  It will 
+second argument is an offset to be added to the stack pointer.  It will
 have been copied to some arbitrary call-clobbered hard reg so that it
-will survive until after reload to when the normal epilogue is generated. 
+will survive until after reload to when the normal epilogue is generated.
 The final argument is the address of the exception handler to which
 the function should return.  This will normally need to copied by the
 pattern to some special register.
@@ -2591,7 +2591,7 @@ sibling call (aka tail call) sites.
 
 The @code{sibcall_epilogue} pattern must not clobber any arguments used for
 parameter passing or any stack slots for arguments passed to the current
-function.  
+function.
 @end table
 
 @node Pattern Ordering

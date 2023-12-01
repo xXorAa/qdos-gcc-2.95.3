@@ -527,10 +527,10 @@ dtors_section ()							\
 }
 
 /* Switch into a generic section.
- 
+
    We make the section read-only and executable for a function decl,
    read-only for a const data decl, and writable for a non-const data decl.
- 
+
    If the section has already been defined, we must not
    emit the attributes here. The SVR4 assembler does not
    recognize section redefinitions.

@@ -1,5 +1,5 @@
 # Do not build libgcc1.
-LIBGCC1 = 
+LIBGCC1 =
 CROSS_LIBGCC1 =
 
 EXTRA_PARTS = crti.o crtn.o
@@ -30,6 +30,6 @@ crtn.s: $(srcdir)/config/rs6000/nt-cn.asm
 
 crti.o: crti.s
 	$(GCC_FOR_TARGET) $(LIBGCC2_CFLAGS) -c -o crti.o crti.s
-	
+
 crtn.o: crtn.s
 	$(GCC_FOR_TARGET) $(LIBGCC2_CFLAGS) -c -o crtn.o crtn.s

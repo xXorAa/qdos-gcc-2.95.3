@@ -136,7 +136,7 @@ chain_open (stdin_fd, pp_args, p_child)
   printf ("START:  %s\n", pz_cmd);
   {
     int idx = 0;
-    
+
     while (pp_args[++idx] != (char *) NULL)
       printf ("  ARG %2d:  %s\n", idx, pp_args[idx]);
   }

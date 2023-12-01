@@ -588,7 +588,7 @@ DECLARE_INFO_COMMAND (ea_yank_pop, _("Yank back a previous kill"))
     register int i, counter;
 
     counter = input_line_end - input_line_point;
-    
+
     for (i = input_line_point - len; counter; i++, counter--)
       input_line[i] = input_line[i + len];
 
@@ -891,7 +891,7 @@ info_read_completing_internal (window, prompt, completions, force)
 
   return (line);
 }
-  
+
 /* Read a line in the echo area with completion over COMPLETIONS. */
 char *
 info_read_completing_in_echo_area (window, prompt, completions)

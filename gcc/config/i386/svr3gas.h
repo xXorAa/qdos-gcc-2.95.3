@@ -188,7 +188,7 @@ const_section ()							\
     }									\
 }
 
-/* The ctors and dtors sections are not normally put into use 
+/* The ctors and dtors sections are not normally put into use
    by EXTRA_SECTIONS and EXTRA_SECTION_FUNCTIONS as defined in svr3.h,
    but it can't hurt to define these macros for whatever systems use them.  */
 #define CTORS_SECTION_FUNCTION						\

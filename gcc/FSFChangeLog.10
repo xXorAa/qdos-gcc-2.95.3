@@ -3144,7 +3144,7 @@ Wed Dec 27 11:38:20 1995  Michael Meissner  <meissner@tiktok.cygnus.com>
 	mode calls so they are closer to define_expands that call them.
 	Set attribute type to be jmpreg, rather than integer, so optimizer
 	knows branch processing unit is used; make SI*SI->DI multiplier use
-	register classes instead of hardwired registers. 
+	register classes instead of hardwired registers.
 	Add appropriate clobbers of CR0/CR1 as mandated by PowerOpen spec.
 	(PowerPC SI*SI->DI multipliers): Add appropriate define_splits.
 

@@ -261,11 +261,11 @@ validate_change (object, loc, new, in_group)
       else
 	changes_allocated *= 2;
 
-      changes = 
-	(change_t*) xrealloc (changes, 
-			      sizeof (change_t) * changes_allocated); 
+      changes =
+	(change_t*) xrealloc (changes,
+			      sizeof (change_t) * changes_allocated);
     }
-  
+
   changes[num_changes].object = object;
   changes[num_changes].loc = loc;
   changes[num_changes].old = old;
@@ -366,7 +366,7 @@ apply_change_group ()
 		 {
 		   int j;
 
-		   newpat = gen_rtx_PARALLEL (VOIDmode, 
+		   newpat = gen_rtx_PARALLEL (VOIDmode,
 					      gen_rtvec (XVECLEN (pat, 0) - 1));
 		   for (j = 0; j < XVECLEN (newpat, 0); j++)
 		     XVECEXP (newpat, 0, j) = XVECEXP (pat, 0, j);
@@ -503,7 +503,7 @@ validate_replace_rtx_1 (loc, from, to, object)
 	  return;
 	}
       break;
-      
+
     case ZERO_EXTEND:
     case SIGN_EXTEND:
       /* In these cases, the operation to be performed depends on the mode
@@ -526,7 +526,7 @@ validate_replace_rtx_1 (loc, from, to, object)
 	  return;
 	}
       break;
-	
+
     case SUBREG:
       /* If we have a SUBREG of a register that we are replacing and we are
 	 replacing it with a MEM, make a new MEM and try replacing the
@@ -617,11 +617,11 @@ validate_replace_rtx_1 (loc, from, to, object)
 	}
 
       break;
-      
+
     default:
       break;
     }
-      
+
   /* For commutative or comparison operations we've already performed
      replacements.  Don't try to perform them again.  */
   if (GET_RTX_CLASS (code) != '<' && GET_RTX_CLASS (code) != 'c')
@@ -776,7 +776,7 @@ find_single_use_1 (dest, loc)
     case MEM:
     case SUBREG:
       return find_single_use_1 (dest, &XEXP (x, 0));
-      
+
     default:
       break;
     }
@@ -1251,7 +1251,7 @@ memory_address_p (mode, addr)
 {
   if (GET_CODE (addr) == ADDRESSOF)
     return 1;
-  
+
   GO_IF_LEGITIMATE_ADDRESS (mode, addr, win);
   return 0;
 
@@ -1501,7 +1501,7 @@ decode_asm_operands (body, operands, operand_locs, constraints, modes)
 	{
 	  if (GET_CODE (XVECEXP (body, 0, i)) == CLOBBER)
 	    break;		/* Past last SET */
-	  
+
 	  if (operands)
 	    operands[i] = SET_DEST (XVECEXP (body, 0, i));
 	  if (operand_locs)
@@ -1553,7 +1553,7 @@ decode_asm_operands (body, operands, operand_locs, constraints, modes)
   return template;
 }
 
-/* Check if an asm_operand matches it's constraints. 
+/* Check if an asm_operand matches it's constraints.
    Return > 0 if ok, = 0 if bad, < 0 if inconclusive.  */
 
 int
@@ -1961,7 +1961,7 @@ adj_offsettable_operand (op, offset)
 {
   register enum rtx_code code = GET_CODE (op);
 
-  if (code == MEM) 
+  if (code == MEM)
     {
       register rtx y = XEXP (op, 0);
       register rtx new;
@@ -2145,7 +2145,7 @@ preprocess_constraints ()
 		  break;
 		case '&':
 		  op_alt[j].earlyclobber = 1;
-		  break;		  
+		  break;
 
 		case '0': case '1': case '2': case '3': case '4':
 		case '5': case '6': case '7': case '8': case '9':
@@ -2188,7 +2188,7 @@ preprocess_constraints ()
 	}
     }
 }
- 
+
 #ifdef REGISTER_CONSTRAINTS
 
 /* Check the operands of an insn against the insn's operand constraints
@@ -2607,7 +2607,7 @@ reg_fits_class_p (operand, class, offset, mode)
 #endif /* REGISTER_CONSTRAINTS */
 
 /* Do the splitting of insns in the block B. Only try to actually split if
-   DO_SPLIT is true; otherwise, just remove nops. */ 
+   DO_SPLIT is true; otherwise, just remove nops. */
 
 void
 split_block_insns (b, do_split)

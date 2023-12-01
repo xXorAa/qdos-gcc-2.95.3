@@ -31,7 +31,7 @@ Boston, MA 02111-1307, USA.  */
    constant.  These cases are specified by a * or @ at the beginning of the
    template string in the machine description.  They are identified for the
    sake of other parts of the compiler by a zero element in `insn_template'.
-  
+
    3. An array of functions `insn_gen_function' which, indexed
    by insn code number, gives the function to generate a body
    for that pattern, given operands as arguments.
@@ -52,7 +52,7 @@ Boston, MA 02111-1307, USA.  */
    indexed first by insn code number and second by operand number,
    containing the constraint for that operand.
 
-   This array is generated only if register constraints appear in 
+   This array is generated only if register constraints appear in
    match_operand rtx's.
 
    8. An array of arrays of chars which indicate which operands of
@@ -404,7 +404,7 @@ output_epilogue ()
 		predicates = p;
 	      }
 	  }
-    
+
     printf ("\nint (*const insn_operand_predicate[][MAX_RECOG_OPERANDS])() =\n  {\n");
     for (d = insn_data; d; d = d->next)
       {
@@ -547,7 +547,7 @@ scan_operands (part, this_address_p, this_strict_low)
     case STRICT_LOW_PART:
       scan_operands (XEXP (part, 0), 0, 1);
       return;
-      
+
     default:
       break;
     }

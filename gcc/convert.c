@@ -364,7 +364,7 @@ convert_to_integer (type, expr)
 	  /* It is sometimes worthwhile to push the narrowing down through
 	     the conditional and never loses.  */
 	  return fold (build (COND_EXPR, type, TREE_OPERAND (expr, 0),
-			      convert (type, TREE_OPERAND (expr, 1)), 
+			      convert (type, TREE_OPERAND (expr, 1)),
 			      convert (type, TREE_OPERAND (expr, 2))));
 
 	default:
@@ -394,7 +394,7 @@ convert_to_complex (type, expr)
      tree type, expr;
 {
   tree subtype = TREE_TYPE (type);
-  
+
   switch (TREE_CODE (TREE_TYPE (expr)))
     {
     case REAL_TYPE:

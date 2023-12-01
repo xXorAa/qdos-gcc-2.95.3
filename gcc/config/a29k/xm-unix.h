@@ -1,4 +1,4 @@
-/* Configuration for GNU C-compiler for AMD Am29000 processor. 
+/* Configuration for GNU C-compiler for AMD Am29000 processor.
    Copyright (C) 1987, 1988, 1993 Free Software Foundation, Inc.
 
 This file is part of GNU CC.

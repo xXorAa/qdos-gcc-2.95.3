@@ -68,7 +68,7 @@ for windows/multi thread */
   && strcmp (STR, "Tbss"))
 
 
-#if 0	
+#if 0
 /* don't do this until we can sort out the default path issues. MK */
 #undef STANDARD_EXEC_PREFIX
 #define STANDARD_EXEC_PREFIX ""

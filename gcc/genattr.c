@@ -299,7 +299,7 @@ from the machine description file `md'.  */\n\n");
 
   printf ("#define HAVE_ATTR_alternative\n");
   printf ("#define get_attr_alternative(insn) which_alternative\n");
-     
+
   /* Read the machine description.  */
 
   while (1)
@@ -428,7 +428,7 @@ from the machine description file `md'.  */\n\n");
 		   &all_ready_cost, &all_issue_delay, &all_blockage);
     }
 
-  /* Output flag masks for use by reorg.  
+  /* Output flag masks for use by reorg.
 
      Flags are used to hold branch direction and prediction information
      for use by eligible_for_...  */

@@ -1,4 +1,4 @@
-/* Configuration for Matsushita MN10300. 
+/* Configuration for Matsushita MN10300.
    Copyright (C) 1996 Free Software Foundation, Inc.
    Contributed by Cygnus Support.
 

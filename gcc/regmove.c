@@ -131,7 +131,7 @@ try_auto_increment (insn, inc_insn, inc_insn_set, reg, increment, pre)
 	    {
 	      if (inc_insn_set)
 		validate_change
-		  (inc_insn, 
+		  (inc_insn,
 		   &SET_SRC (inc_insn_set),
 		   XEXP (SET_SRC (inc_insn_set), 0), 1);
 	      validate_change (insn, &XEXP (use, 0),
@@ -169,7 +169,7 @@ discover_flags_reg ()
   tmp = gen_rtx_REG (word_mode, 10000);
   tmp = gen_add3_insn (tmp, tmp, GEN_INT (2));
 
-  /* If we get something that isn't a simple set, or a 
+  /* If we get something that isn't a simple set, or a
      [(set ..) (clobber ..)], this whole function will go wrong.  */
   if (GET_CODE (tmp) == SET)
     return NULL_RTX;
@@ -202,7 +202,7 @@ discover_flags_reg ()
 /* It is a tedious task identifying when the flags register is live and
    when it is safe to optimize.  Since we process the instruction stream
    multiple times, locate and record these live zones by marking the
-   mode of the instructions -- 
+   mode of the instructions --
 
    QImode is used on the instruction at which the flags becomes live.
 
@@ -230,7 +230,7 @@ mark_flags_life_zones (flags)
   else if (flags != cc0_rtx)
     flags = pc_rtx;
 #endif
-    
+
   /* Simple cases first: if no flags, clear all modes.  If confusing,
      mark the entire function as being in a flags shadow.  */
   if (flags == NULL_RTX || flags == pc_rtx)
@@ -366,7 +366,7 @@ replacement_quality(reg)
 
    Search forward to see if SRC dies before either it or DEST is modified,
    but don't scan past the end of a basic block.  If so, we can replace SRC
-   with DEST and let SRC die in INSN. 
+   with DEST and let SRC die in INSN.
 
    This will reduce the number of registers live in that range and may enable
    DEST to be tied to SRC, thus often saving one register in addition to a
@@ -1242,7 +1242,7 @@ regmove_optimize (f, nregs, regmove_dump_file)
 	      dst_class = reg_preferred_class (REGNO (dst));
 	      if (! regclass_compatible_p (src_class, dst_class))
 		continue;
-	  
+
 	      if (fixup_match_1 (insn, set, src, src_subreg, dst, pass,
 				 op_no, match_no,
 				 regmove_dump_file))
@@ -2153,7 +2153,7 @@ regmove_profitable_p ()
 	  int icode = (int) tstoptab->handlers[(int) mode].insn_code;
 	  rtx reg0, reg1, reg2, pat;
 	  int i;
-    
+
 	  if (GET_MODE_BITSIZE (mode) < 32 || icode == CODE_FOR_nothing)
 	    continue;
 	  for (i = 0; i < FIRST_PSEUDO_REGISTER; i++)

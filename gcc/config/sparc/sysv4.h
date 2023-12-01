@@ -34,7 +34,7 @@ Boston, MA 02111-1307, USA.  */
 #include "svr4.h"
 
 /* ??? Put back the SIZE_TYPE/PTRDIFF_TYPE definitions set by sparc.h.
-   Why, exactly, is svr4.h messing with this?  Seems like the chip 
+   Why, exactly, is svr4.h messing with this?  Seems like the chip
    would know best.  */
 
 #undef SIZE_TYPE
@@ -163,7 +163,7 @@ do { ASM_OUTPUT_ALIGN ((FILE), Pmode == SImode ? 2 : 3);		\
 #define FINI_SECTION_ASM_OP	".section\t\".fini\""
 
 /* Define the pseudo-ops used to switch to the .ctors and .dtors sections.
- 
+
    Note that we want to give these sections the SHF_WRITE attribute
    because these sections will actually contain data (i.e. tables of
    addresses of functions in the current root executable or shared library
@@ -176,7 +176,7 @@ do { ASM_OUTPUT_ALIGN ((FILE), Pmode == SImode ? 2 : 3);		\
    use the `-z text' option when building a shared library, you will get
    errors unless the .ctors and .dtors sections are marked as writable
    via the SHF_WRITE attribute.)  */
- 
+
 #undef CTORS_SECTION_ASM_OP
 #define CTORS_SECTION_ASM_OP    ".section\t\".ctors\",#alloc,#write"
 #undef DTORS_SECTION_ASM_OP

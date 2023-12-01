@@ -675,7 +675,7 @@ expand_goto (label)
 	  addr = copy_rtx (handler_slot);
 	  temp = copy_to_reg (replace_rtx (addr, virtual_stack_vars_rtx,
 					   hard_frame_pointer_rtx));
-	  
+
 	  /* Restore the stack pointer.  Note this uses fp just restored.  */
 	  addr = p->nonlocal_goto_stack_level;
 	  if (addr)
@@ -1189,7 +1189,7 @@ expand_asm_operands (string, outputs, inputs, clobbers, vol, filename, line)
 	  error ("too many alternatives in `asm'");
 	  return;
 	}
-      
+
       tmp = outputs;
       while (tmp)
 	{
@@ -1469,7 +1469,7 @@ expand_asm_operands (string, outputs, inputs, clobbers, vol, filename, line)
 		tree o = outputs;
 		for (j = constraint[j] - '0'; j > 0; --j)
 		  o = TREE_CHAIN (o);
-	
+
 		c_len = TREE_STRING_LENGTH (TREE_PURPOSE (o)) - 1;
 		constraint = TREE_STRING_POINTER (TREE_PURPOSE (o));
 		j = 0;
@@ -1684,7 +1684,7 @@ expand_expr_stmt (exp)
       else
 	{
 	  rtx lab = gen_label_rtx ();
-	  
+
 	  /* Compare the value with itself to reference it.  */
 	  emit_cmp_and_jump_insns (last_expr_value, last_expr_value, EQ,
 				   expand_expr (TYPE_SIZE (last_expr_type),
@@ -1791,7 +1791,7 @@ warn_if_unused_value (exp)
       if (TREE_CODE (TREE_TYPE (TREE_OPERAND (exp, 0))) == REFERENCE_TYPE)
 	return warn_if_unused_value (TREE_OPERAND (exp, 0));
       /* ... fall through ...  */
-      
+
     default:
       /* Referencing a volatile value is a side effect, so don't warn.  */
       if ((TREE_CODE_CLASS (TREE_CODE (exp)) == 'd'
@@ -2134,7 +2134,7 @@ expand_end_loop ()
 	 body;
 	 goto start_label;
 	 end_label:
-	 
+
      transform it to look like:
 
          goto start_label;
@@ -2165,7 +2165,7 @@ expand_end_loop ()
       for (insn = NEXT_INSN (loop_stack->data.loop.start_label); insn;
 	   insn = NEXT_INSN (insn))
 	{
-	  if (GET_CODE (insn) == NOTE) 
+	  if (GET_CODE (insn) == NOTE)
 	    {
 	      if (optimize < 2
 		  && (NOTE_LINE_NUMBER (insn) == NOTE_INSN_BLOCK_BEG
@@ -2182,7 +2182,7 @@ expand_end_loop ()
 	      else if (NOTE_LINE_NUMBER (insn) == NOTE_INSN_EH_REGION_END)
 		{
 		  --eh_regions;
-		  if (eh_regions < 0) 
+		  if (eh_regions < 0)
 		    /* We've come to the end of an EH region, but
 		       never saw the beginning of that region.  That
 		       means that an EH region begins before the top
@@ -2209,37 +2209,37 @@ expand_end_loop ()
 	  if (last_test_insn && num_insns > 30)
 	    break;
 
-	  if (eh_regions > 0) 
+	  if (eh_regions > 0)
 	    /* We don't want to move a partial EH region.  Consider:
 
 		  while ( ( { try {
-				if (cond ()) 0;	
+				if (cond ()) 0;
 				else {
 				  bar();
 				  1;
 				}
-			      } catch (...) { 
+			      } catch (...) {
 				1;
 			      } )) {
 		     body;
-		  } 
+		  }
 
 	        This isn't legal C++, but here's what it's supposed to
 	        mean: if cond() is true, stop looping.  Otherwise,
 	        call bar, and keep looping.  In addition, if cond
 	        throws an exception, catch it and keep looping. Such
-	        constructs are certainy legal in LISP.  
+	        constructs are certainy legal in LISP.
 
 		We should not move the `if (cond()) 0' test since then
 		the EH-region for the try-block would be broken up.
 		(In this case we would the EH_BEG note for the `try'
 		and `if cond()' but not the call to bar() or the
-		EH_END note.)  
+		EH_END note.)
 
 	        So we don't look for tests within an EH region.  */
 	    continue;
 
-	  if (GET_CODE (insn) == JUMP_INSN 
+	  if (GET_CODE (insn) == JUMP_INSN
 	      && GET_CODE (PATTERN (insn)) == SET
 	      && SET_DEST (PATTERN (insn)) == pc_rtx)
 	    {
@@ -2264,9 +2264,9 @@ expand_end_loop ()
 
 	      do {
 		if (dest1 && GET_CODE (dest1) == LABEL_REF
-		    && ((XEXP (dest1, 0) 
+		    && ((XEXP (dest1, 0)
 			 == loop_stack->data.loop.alt_end_label)
-			|| (XEXP (dest1, 0) 
+			|| (XEXP (dest1, 0)
 			    == loop_stack->data.loop.end_label)))
 		  {
 		    last_test_insn = potential_last_test;
@@ -2782,7 +2782,7 @@ expand_return (retval)
 	big_endian_correction = (BITS_PER_WORD - ((bytes % UNITS_PER_WORD)
 						  * BITS_PER_UNIT));
 
-      /* Copy the structure BITSIZE bits at a time.  */ 
+      /* Copy the structure BITSIZE bits at a time.  */
       for (bitpos = 0, xbitpos = big_endian_correction;
 	   bitpos < bytes * BITS_PER_UNIT;
 	   bitpos += bitsize, xbitpos += bitsize)
@@ -3074,7 +3074,7 @@ void
 expand_end_target_temps ()
 {
   expand_end_bindings (NULL_TREE, 0, 0);
-  
+
   /* This is so that even if the result is preserved, the space
      allocated will be freed, as we know that it is no longer in use.  */
   pop_temp_slots ();
@@ -3349,15 +3349,15 @@ expand_end_bindings (vars, mark_ends, dont_jump_in)
   /* Since expand_eh_region_start does an expand_start_bindings, we
      have to first end all the bindings that were created by
      expand_eh_region_start.  */
-     
+
   thisblock = block_stack;
 
   if (warn_unused)
     for (decl = vars; decl; decl = TREE_CHAIN (decl))
-      if (TREE_CODE (decl) == VAR_DECL 
+      if (TREE_CODE (decl) == VAR_DECL
 	  && ! TREE_USED (decl)
 	  && ! DECL_IN_SYSTEM_HEADER (decl)
-	  && DECL_NAME (decl) && ! DECL_ARTIFICIAL (decl)) 
+	  && DECL_NAME (decl) && ! DECL_ARTIFICIAL (decl))
 	warning_with_decl (decl, "unused variable `%s'");
 
   if (thisblock->exit_label)
@@ -3615,7 +3615,7 @@ expand_decl (decl)
       free_temp_slots ();
 
       /* Allocate space on the stack for the variable.  Note that
-	 DECL_ALIGN says how the variable is to be aligned and we 
+	 DECL_ALIGN says how the variable is to be aligned and we
 	 cannot use it to conclude anything about the alignment of
 	 the size.  */
       address = allocate_dynamic_stack_space (size, NULL_RTX,
@@ -4388,7 +4388,7 @@ pushcase_range (value1, value2, converter, label, duplicate)
 
   value1 = (*converter) (nominal_type, value1);
 
-  /* If the max was unbounded, use the max of the nominal_type we are 
+  /* If the max was unbounded, use the max of the nominal_type we are
      converting to.  Do this after the < check above to suppress false
      positives.  */
   if (!value2)
@@ -4711,7 +4711,7 @@ all_cases_count (type, spareness)
 		}
 	      prev = TREE_VALUE (t);
 	    }
-	  
+
 	}
     }
   return count;
@@ -4768,11 +4768,11 @@ mark_seen_cases (type, cases_seen, count, sparseness)
 	      /* Keep going past elements distinctly greater than VAL.  */
 	      if (tree_int_cst_lt (val, n->low))
 		n = n->left;
-	
+
 	      /* or distinctly less than VAL.  */
 	      else if (tree_int_cst_lt (n->high, val))
 		n = n->right;
-	
+
 	      else
 		{
 		  /* We have found a matching range.  */
@@ -4840,7 +4840,7 @@ mark_seen_cases (type, cases_seen, count, sparseness)
 			      TREE_INT_CST_LOW (val), TREE_INT_CST_HIGH (val),
 			      &xlo, &xhi);
 		}
-	      
+
 	      if (xhi == 0 && xlo >= 0 && xlo < count)
 		BITARRAY_SET (cases_seen, xlo);
 	      add_double (TREE_INT_CST_LOW (val), TREE_INT_CST_HIGH (val),
@@ -5220,7 +5220,7 @@ expand_end_case (orig_index)
 	      use_cost_table
 		= (TREE_CODE (TREE_TYPE (orig_index)) != ENUMERAL_TYPE
 		   && estimate_case_costs (thiscase->data.case_stmt.case_list));
-	      balance_case_nodes (&thiscase->data.case_stmt.case_list, 
+	      balance_case_nodes (&thiscase->data.case_stmt.case_list,
 				  NULL_PTR);
 	      emit_case_nodes (index, thiscase->data.case_stmt.case_list,
 			       default_label, index_type);

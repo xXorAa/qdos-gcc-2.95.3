@@ -917,7 +917,7 @@ extern enum reg_class reg_class_from_letter[];
 		 || TREE_CODE (VALTYPE) == OFFSET_TYPE))		\
 	    ? SImode : TYPE_MODE (VALTYPE)),				\
 	   BASE_RETURN_VALUE_REG (TYPE_MODE (VALTYPE)))
-     
+
 /* Define how to find the value returned by a library function
    assuming the value has mode MODE.  */
 #define LIBCALL_VALUE(MODE) \
@@ -1107,7 +1107,7 @@ extern int current_function_anonymous_args;
 
 #define FUNCTION_EPILOGUE(STREAM, SIZE)  function_epilogue ((STREAM), (SIZE))
 
-/* 
+/*
    On the SH, the trampoline looks like
    2 0002 DD02     	   	mov.l	l2,r13
    1 0000 D301     		mov.l	l1,r3
@@ -2131,7 +2131,7 @@ extern struct rtx_def *get_fpscr_rtx ();
   {"register_operand", {SUBREG, REG}},
 
 /* Define this macro if it is advisable to hold scalars in registers
-   in a wider mode than that declared by the program.  In such cases, 
+   in a wider mode than that declared by the program.  In such cases,
    the value is constrained to be within the bounds of the declared
    type, but kept valid in the wider mode.  The signedness of the
    extension may differ from that of the type.

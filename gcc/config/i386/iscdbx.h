@@ -38,6 +38,6 @@ Boston, MA 02111-1307, USA.  */
    %{!posix:%{!Xp:%{pg:mcrt1.o%s}%{!pg:%{p:mcrt1.o%s}%{!p:crt1.o%s}}}}\
    %{p:-L/usr/lib/libp} %{pg:-L/usr/lib/libp}}\
    %{shlib:%{posix:crtp1.o%s}%{Xp:crtp1.o%s}%{!posix:%{!Xp:crt1.o%s}}}"
-  
+
 #undef ENDFILE_SPEC
 #define ENDFILE_SPEC "crtn.o%s"

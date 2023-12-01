@@ -147,7 +147,7 @@ quote_string (pfile, src)
 	CPP_PUTC_Q (pfile, '\\');
 	CPP_PUTC_Q (pfile, c);
 	break;
-      
+
       case '\0':
 	CPP_PUTC_Q (pfile, '\"');
 	CPP_NUL_TERMINATE_Q (pfile);
@@ -196,7 +196,7 @@ cpp_define (pfile, str)
     }
   else
       strcpy (&buf[count-3], " 1");
-  
+
   if (cpp_push_buffer (pfile, buf, count - 1) != NULL)
     {
       do_define (pfile, NULL);
@@ -248,7 +248,7 @@ skip_comment (pfile, m)
     {
       int c, prev_c = -1;
       long line, col;
-      
+
       FORWARD(1);
       cpp_buf_line_and_col (CPP_BUFFER (pfile), &line, &col);
       for (;;)
@@ -537,7 +537,7 @@ handle_directive (pfile)
       if (kt->length <= 0)
 	return 0;
       if (kt->length == ident_length
-	  && !strncmp (kt->name, ident, ident_length)) 
+	  && !strncmp (kt->name, ident, ident_length))
 	break;
     }
 
@@ -880,7 +880,7 @@ output_line_command (pfile, file_change)
   sprintf ((char *) CPP_PWRITTEN (pfile), "%ld ", line);
   CPP_ADJUST_WRITTEN (pfile, strlen (CPP_PWRITTEN (pfile)));
 
-  quote_string (pfile, ip->nominal_fname); 
+  quote_string (pfile, ip->nominal_fname);
   if (file_change != same_file)
     {
       CPP_PUTC_Q (pfile, ' ');
@@ -961,7 +961,7 @@ do_include (pfile, keyword)
   /* Chain of dirs to search */
   struct include_hash *ihash;
   struct file_name_list *search_start;
-  
+
   long old_written = CPP_WRITTEN (pfile);
 
   int fd;
@@ -1063,7 +1063,7 @@ do_include (pfile, keyword)
       cpp_fatal (pfile, "cpp internal error: fp == NULL_BUFFER in do_include");
       return 0;
     }
-  
+
   /* For #include_next, skip in the search path past the dir in which the
      containing file was found.  Treat files specified using an absolute path
      as if there are no more directories to search.  Treat the primary source
@@ -1077,7 +1077,7 @@ do_include (pfile, keyword)
     {
       if (skip_dirs)
 	cpp_warning (pfile, "#include_next in primary source file");
-      
+
       if (angle_brackets)
 	search_start = CPP_OPTIONS (pfile)->bracket_include;
       else
@@ -1102,7 +1102,7 @@ do_include (pfile, keyword)
 
   if (fd == -2)
     return 0;
-  
+
   if (fd == -1)
     {
       if (CPP_OPTIONS (pfile)->print_deps_missing_files
@@ -1167,13 +1167,13 @@ do_include (pfile, keyword)
 
   if (importing)
     ihash->control_macro = "";
-  
+
   if (cpp_push_buffer (pfile, NULL, 0) == NULL)
     {
       close (fd);
       return 0;
     }
-  
+
   if (angle_brackets)
     pfile->system_include_depth++;   /* Decremented in file_cleanup. */
 
@@ -1215,7 +1215,7 @@ do_line (pfile, keyword)
     {
       cpp_error (pfile, "token after `#line' is not an integer");
       goto bad_line_directive;
-    }      
+    }
   CPP_SET_WRITTEN (pfile, old_written);
 
   if (CPP_PEDANTIC (pfile) && new_lineno <= 0)
@@ -1264,9 +1264,9 @@ do_line (pfile, keyword)
 	      goto bad_line_directive;
 	    }
 	}
-      
+
       *end_name = '\0';
-      
+
       if (strcmp (fname, ip->nominal_fname))
 	{
 	  char *newname, *oldname;
@@ -1291,7 +1291,7 @@ do_line (pfile, keyword)
 	    ip->last_nominal_fname = NULL;
 	  else
 	    ip->last_nominal_fname = oldname;
-	} 
+	}
     }
   else if (token != CPP_VSPACE && token != CPP_EOF)
     {
@@ -1467,11 +1467,11 @@ do_pragma (pfile, keyword)
 
   CPP_PUTS (pfile, "#pragma ", 8);
   cpp_skip_hspace (pfile);
-  
+
   here = CPP_WRITTEN (pfile);
   copy_rest_of_line (pfile);
   buf = pfile->token_buffer + here;
-  
+
   if (!strncmp (buf, "once", 4))
     {
       cpp_buffer *ip = NULL;
@@ -1480,7 +1480,7 @@ do_pragma (pfile, keyword)
 	 fault.  */
       if (!CPP_BUFFER (pfile)->system_header_p)
 	cpp_warning (pfile, "`#pragma once' is obsolete");
-      
+
       for (ip = CPP_BUFFER (pfile); ; ip = CPP_PREV_BUFFER (ip))
         {
 	  if (ip == CPP_NULL_BUFFER (pfile))
@@ -1746,12 +1746,12 @@ conditional_skip (pfile, skip, type, control_macro)
 static int
 consider_directive_while_skipping (pfile, stack)
     cpp_reader *pfile;
-    IF_STACK_FRAME *stack; 
+    IF_STACK_FRAME *stack;
 {
   long ident_len, ident;
   struct directive *kt;
   IF_STACK_FRAME *temp;
-    
+
   cpp_skip_hspace (pfile);
 
   ident = CPP_WRITTEN (pfile);
@@ -1782,7 +1782,7 @@ consider_directive_while_skipping (pfile, stack)
 	case T_ELIF:
 	    if (pfile->if_stack->type == T_ELSE)
 	      cpp_error (pfile, "`%s' after `#else'", kt->name);
-	    
+
 	    if (pfile->if_stack == stack)
 	      return 1;
 	    else
@@ -1797,7 +1797,7 @@ consider_directive_while_skipping (pfile, stack)
 
 		if (pfile->if_stack == stack)
 		  return 1;
-		    
+
 		temp = pfile->if_stack;
 		pfile->if_stack = temp->next;
 		free (temp);
@@ -1833,7 +1833,7 @@ skip_if_group (pfile)
     }
 
   old_written = CPP_WRITTEN (pfile);
-  
+
   for (;;)
     {
       beg_of_line = CPP_BUFFER (pfile)->cur;
@@ -1881,7 +1881,7 @@ skip_if_group (pfile)
 	    }
 	  CPP_BUMP_LINE (pfile);
 	}
-    }	  
+    }
 
   /* Back up to the beginning of this line.  Caller will process the
      directive. */
@@ -2013,7 +2013,7 @@ validate_else (pfile, directive)
 
 /* Get the next token, and add it to the text in pfile->token_buffer.
    Return the kind of token we got.  */
-  
+
 enum cpp_token
 cpp_get_token (pfile)
      cpp_reader *pfile;
@@ -2072,7 +2072,7 @@ cpp_get_token (pfile)
 	    goto handle_eof;
 	  else if (c != ' ')
 	    goto randomchar;
-	  
+
 	  /* Comments are equivalent to spaces.
 	     For -traditional, a comment is equivalent to nothing.  */
 	  if (opts->traditional || opts->put_out_comments)
@@ -2087,7 +2087,7 @@ cpp_get_token (pfile)
 	    U_CHAR *argbp;
 	    int cmdlen, arglen;
 	    char *lintcmd = get_lintcmd (ibp, limit, &argbp, &arglen, &cmdlen);
-	    
+
 	    if (lintcmd != NULL) {
 	      /* I believe it is always safe to emit this newline: */
 	      obp[-1] = '\n';
@@ -2209,7 +2209,7 @@ cpp_get_token (pfile)
 				  "internal error: unrecognized escape \\r%c",
 				       d);
 			  CPP_ADJUST_WRITTEN (pfile, -1);
-			}			  
+			}
 		    }
 		}
 	      return CPP_STRING;
@@ -2556,7 +2556,7 @@ parse_string (pfile, c)
      int c;
 {
   long start_line, start_column;
-  
+
   cpp_buf_line_and_col (cpp_file_buffer (pfile), &start_line, &start_column);
 
   CPP_PUTC (pfile, c);
@@ -2772,7 +2772,7 @@ do_assert (pfile, keyword)
   this = cpp_install (pfile, sym, thislen, T_ASSERT,
 		      (char *)base->value.aschain, -1);
   base->value.aschain = this;
-  
+
   pfile->limit = (unsigned char *) sym; /* Pop */
   return 0;
 
@@ -2791,7 +2791,7 @@ do_unassert (pfile, keyword)
   char *sym;
   long baselen, thislen;
   HASHNODE *base, *this, *next;
-  
+
   if (CPP_PEDANTIC (pfile) && CPP_OPTIONS (pfile)->done_initializing
       && !CPP_BUFFER (pfile)->system_header_p)
     cpp_pedwarn (pfile, "ANSI C does not allow `#unassert'");
@@ -2802,7 +2802,7 @@ do_unassert (pfile, keyword)
   ret = parse_assertion (pfile);
   if (ret == 0)
     goto error;
-  
+
   cpp_skip_hspace (pfile);
   c = PEEKC ();
   if (c != EOF && c != '\n')
@@ -2816,7 +2816,7 @@ do_unassert (pfile, keyword)
 	goto error;  /* It isn't an error to #undef what isn't #defined,
 			so it isn't an error to #unassert what isn't
 			#asserted either. */
-      
+
       for (this = base->value.aschain; this; this = next)
         {
 	  next = this->value.aschain;
@@ -2842,7 +2842,7 @@ do_unassert (pfile, keyword)
       if (base->value.aschain == NULL)
 	delete_macro (base);  /* Last answer for this predicate deleted. */
     }
-  
+
   pfile->limit = (unsigned char *) sym; /* Pop */
   return 0;
  error:
@@ -2862,7 +2862,7 @@ cpp_unassert (pfile, str)
       do_assert (pfile, NULL);
       cpp_pop_buffer (pfile);
     }
-}  
+}
 
 int
 cpp_read_check_assertion (pfile)
@@ -2871,7 +2871,7 @@ cpp_read_check_assertion (pfile)
   U_CHAR *name = CPP_PWRITTEN (pfile);
   int result;
   HASHNODE *hp;
-  
+
   FORWARD (1);  /* Skip '#' */
   cpp_skip_hspace (pfile);
   if (! parse_assertion (pfile))
@@ -2966,7 +2966,7 @@ cpp_error VPROTO ((cpp_reader * pfile, const char *msgid, ...))
   va_list ap;
 
   VA_START(ap, msgid);
-  
+
 #ifndef ANSI_PROTOTYPES
   pfile = va_arg (ap, cpp_reader *);
   msgid = va_arg (ap, const char *);
@@ -3003,9 +3003,9 @@ cpp_warning VPROTO ((cpp_reader * pfile, const char *msgid, ...))
   const char *msgid;
 #endif
   va_list ap;
-  
+
   VA_START (ap, msgid);
-  
+
 #ifndef ANSI_PROTOTYPES
   pfile = va_arg (ap, cpp_reader *);
   msgid = va_arg (ap, const char *);
@@ -3025,9 +3025,9 @@ cpp_pedwarn VPROTO ((cpp_reader * pfile, const char *msgid, ...))
   const char *msgid;
 #endif
   va_list ap;
-  
+
   VA_START (ap, msgid);
-  
+
 #ifndef ANSI_PROTOTYPES
   pfile = va_arg (ap, cpp_reader *);
   msgid = va_arg (ap, const char *);
@@ -3069,9 +3069,9 @@ cpp_error_with_line VPROTO ((cpp_reader * pfile, int line, int column,
   const char *msgid;
 #endif
   va_list ap;
-  
+
   VA_START (ap, msgid);
-  
+
 #ifndef ANSI_PROTOTYPES
   pfile = va_arg (ap, cpp_reader *);
   line = va_arg (ap, int);
@@ -3107,7 +3107,7 @@ v_cpp_warning_with_line (pfile, line, column, msgid, ap)
     cpp_file_line_for_message (pfile, ip->nominal_fname, line, column);
 
   v_cpp_message (pfile, 0, msgid, ap);
-}  
+}
 
 void
 cpp_warning_with_line VPROTO ((cpp_reader * pfile, int line, int column,
@@ -3120,9 +3120,9 @@ cpp_warning_with_line VPROTO ((cpp_reader * pfile, int line, int column,
   const char *msgid;
 #endif
   va_list ap;
-  
+
   VA_START (ap, msgid);
-  
+
 #ifndef ANSI_PROTOTYPES
   pfile = va_arg (ap, cpp_reader *);
   line = va_arg (ap, int);
@@ -3145,9 +3145,9 @@ cpp_pedwarn_with_line VPROTO ((cpp_reader * pfile, int line, int column,
   const char *msgid;
 #endif
   va_list ap;
-  
+
   VA_START (ap, msgid);
-  
+
 #ifndef ANSI_PROTOTYPES
   pfile = va_arg (ap, cpp_reader *);
   line = va_arg (ap, int);
@@ -3176,7 +3176,7 @@ cpp_pedwarn_with_file_and_line VPROTO ((cpp_reader *pfile, char *file, int line,
   const char *msgid;
 #endif
   va_list ap;
-  
+
   VA_START (ap, msgid);
 
 #ifndef ANSI_PROTOTYPES

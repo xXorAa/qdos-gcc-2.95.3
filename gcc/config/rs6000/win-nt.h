@@ -82,10 +82,10 @@ Boston, MA 02111-1307, USA.  */
 
 /* NT always runs little endian */
 #undef  BYTES_BIG_ENDIAN
-#define BYTES_BIG_ENDIAN 0 
+#define BYTES_BIG_ENDIAN 0
 
 #undef  WORDS_BIG_ENDIAN
-#define WORDS_BIG_ENDIAN 0 
+#define WORDS_BIG_ENDIAN 0
 
 /* Define cutoff for using external functions to save floating point.
    Currently on NT, always use inline stores */
@@ -116,7 +116,7 @@ Boston, MA 02111-1307, USA.  */
 #undef TARGET_VERSION
 #define TARGET_VERSION fprintf (stderr, " (PowerPC PE)");
 
-#undef TARGET_DEFAULT 
+#undef TARGET_DEFAULT
 #define TARGET_DEFAULT (MASK_POWERPC | MASK_NEW_MNEMONICS | MASK_NO_FP_IN_TOC | MASK_NO_SUM_IN_TOC)
 
 /* MEM representing address to save the TOC register */
@@ -142,7 +142,7 @@ Boston, MA 02111-1307, USA.  */
          fprintf ((FILE), ",%d,%d\n", (SIZE), 3);               \
        else                                                     \
 	 fprintf( (FILE), ",%d\n", (SIZE));                     \
-  } while (0) 
+  } while (0)
 
 #undef	ASM_OUTPUT_ALIGNED_LOCAL
 

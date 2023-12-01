@@ -5,7 +5,7 @@ CROSS_LIBGCC1 =
 LIBGCC1_TEST =
 
 # These are really part of libgcc1, but this will cause them to be
-# built correctly, so... 
+# built correctly, so...
 
 LIB2FUNCS_EXTRA = fp-bit.c dp-bit.c
 

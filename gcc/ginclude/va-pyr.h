@@ -8,10 +8,10 @@
  * a way that is compatible with code compiled by the Pyramid Technology
  * C compiler.
  * As such, it depends strongly on the Pyramid conventions for
- * parameter passing.ct and independent implementation. 
+ * parameter passing.ct and independent implementation.
  * These (somewhat bizarre) parameter-passing conventions are described
  * in the ``OSx Operating System Porting Guide''.
- * 
+ *
  * A quick summary is useful:
  * 12 of the 48 register-windowed regs available for
  * parameter passing.  Parameters of a function call that are eligible
@@ -26,13 +26,13 @@
  * rule, a double-sized param would have been passed in TR11,
  * that parameter is passed on the stack and no parameters are
  * passed in TR11.
- * 
+ *
  * It is only known to work for passing 32-bit integer quantities
- * (ie chars, shorts, ints/enums, longs), doubles, or pointers. 
+ * (ie chars, shorts, ints/enums, longs), doubles, or pointers.
  * Passing structures on a Pyramid via varargs is a loser.
  * Passing an object larger than 8 bytes on a pyramid via varargs may
  * also be a loser.
- * 
+ *
  */
 
 

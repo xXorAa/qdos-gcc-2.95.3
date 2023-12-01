@@ -226,7 +226,7 @@ while (0)
 #define RETURN_IN_MEMORY(TYPE) \
   (TREE_CODE (TYPE) == ARRAY_TYPE || int_size_in_bytes(TYPE) > 8)
 
-#define ASM_LOAD_ADDR(loc, reg)   "     lda " #reg "," #loc "\n" 
+#define ASM_LOAD_ADDR(loc, reg)   "     lda " #reg "," #loc "\n"
 
 #undef ASM_FILE_START
 #define ASM_FILE_START(FILE)					\

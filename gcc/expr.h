@@ -222,7 +222,7 @@ enum direction {none, upward, downward};  /* Value has this type.  */
 /* Supply a default definition for FUNCTION_ARG_BOUNDARY.  Normally, we let
    FUNCTION_ARG_PADDING, which also pads the length, handle any needed
    alignment.  */
-  
+
 #ifndef FUNCTION_ARG_BOUNDARY
 #define FUNCTION_ARG_BOUNDARY(MODE, TYPE)	PARM_BOUNDARY
 #endif
@@ -381,7 +381,7 @@ extern optab sub_optab;
 extern optab smul_optab;	/* Signed and floating-point multiply */
 extern optab smul_highpart_optab; /* Signed multiply, return high word */
 extern optab umul_highpart_optab;
-extern optab smul_widen_optab;	/* Signed multiply with result 
+extern optab smul_widen_optab;	/* Signed multiply with result
 				   one machine mode wider than args */
 extern optab umul_widen_optab;
 extern optab sdiv_optab;	/* Signed divide */
@@ -641,7 +641,7 @@ extern void emit_0_to_1_insn PROTO((rtx));
 extern void emit_cmp_insn PROTO((rtx, rtx, enum rtx_code, rtx,
 				 enum machine_mode, int, int));
 
-/* Emit a pair of rtl insns to compare two rtx's and to jump 
+/* Emit a pair of rtl insns to compare two rtx's and to jump
    to a label if the comparison is true.  */
 extern void emit_cmp_and_jump_insns PROTO((rtx, rtx, enum rtx_code, rtx,
 					   enum machine_mode, int, int, rtx));
@@ -985,7 +985,7 @@ extern void emit_stack_restore PROTO((enum save_level, rtx, rtx));
    says how many bytes.  */
 extern rtx allocate_dynamic_stack_space PROTO((rtx, rtx, int));
 
-/* Probe a range of stack addresses from FIRST to FIRST+SIZE, inclusive. 
+/* Probe a range of stack addresses from FIRST to FIRST+SIZE, inclusive.
    FIRST is a constant and size is a Pmode RTX.  These are offsets from the
    current stack pointer.  STACK_GROWS_DOWNWARD says whether to add or
    subtract from the stack.  If SIZE is constant, this is done

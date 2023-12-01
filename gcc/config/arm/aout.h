@@ -1,7 +1,7 @@
 /* Definitions of target machine for GNU compiler, for ARM with a.out
    Copyright (C) 1995, 1996, 1997, 1998 Free Software Foundation, Inc.
    Contributed by Richard Earnshaw (rearnsha@armltd.co.uk).
-   
+
 This file is part of GNU CC.
 
 GNU CC is free software; you can redistribute it and/or modify
@@ -126,7 +126,7 @@ do {									\
   text_section ();							\
   ASM_OUTPUT_INTERNAL_LABEL (STREAM, "Ltext", 0);			\
 } while (0)
-  
+
 /* Output a function label definition.  */
 #ifndef ASM_DECLARE_FUNCTION_NAME
 #define ASM_DECLARE_FUNCTION_NAME(STREAM,NAME,DECL)	\
@@ -144,13 +144,13 @@ do {					\
   fputs (":\n", STREAM);		\
 } while (0)
 #endif
-     
+
 /* Output a globalising directive for a label.  */
 #ifndef ASM_GLOBALIZE_LABEL
 #define ASM_GLOBALIZE_LABEL(STREAM,NAME)  \
   (fprintf (STREAM, "\t.global\t"),	  \
    assemble_name (STREAM, NAME),	  \
-   fputc ('\n',STREAM))                   
+   fputc ('\n',STREAM))
 #endif
 
 /* Make an internal label into a string.  */
@@ -158,7 +158,7 @@ do {					\
 #define ASM_GENERATE_INTERNAL_LABEL(STRING, PREFIX, NUM)  \
   sprintf (STRING, "*%s%s%u", LOCAL_LABEL_PREFIX, PREFIX, (unsigned int)(NUM))
 #endif
-     
+
 /* Nothing special is done about jump tables */
 /* #define ASM_OUTPUT_CASE_LABEL(STREAM,PREFIX,NUM,TABLE)   */
 /* #define ASM_OUTPUT_CASE_END(STREAM,NUM,TABLE)	    */
@@ -189,7 +189,7 @@ do { char dstr[30];							\
 	      l[0], l[1], l[2], ASM_COMMENT_START, dstr);		\
    } while (0)
 
-    
+
 #define ASM_OUTPUT_DOUBLE(STREAM, VALUE)  				\
 do { char dstr[30];							\
      long l[2];								\
@@ -236,7 +236,7 @@ do { char dstr[30];							\
    fprintf (STREAM, "\t.space\t%d\n", NBYTES)
 
 /* Align output to a power of two.  Horrible /bin/as.  */
-#ifndef ASM_OUTPUT_ALIGN  
+#ifndef ASM_OUTPUT_ALIGN
 #define ASM_OUTPUT_ALIGN(STREAM, POWER)  \
   do                                                           \
     {                                                          \
@@ -257,7 +257,7 @@ do { char dstr[30];							\
    assemble_name ((STREAM), (NAME)),		     			\
    fprintf (STREAM, ", %d\t%s %d\n", ROUNDED, ASM_COMMENT_START, SIZE))
 #endif
-     
+
 /* Output a local common block.  /bin/as can't do this, so hack a
    `.space' into the bss segment.  Note that this is *bad* practice,
    which is guaranteed NOT to work since it doesn't define STATIC
@@ -271,13 +271,13 @@ do { char dstr[30];							\
     fprintf (STREAM, "\t.space\t%d\n", SIZE);				\
   } while (0)
 #endif
-     
+
 /* Output a zero-initialized block.  */
 #ifndef ASM_OUTPUT_ALIGNED_BSS
 #define ASM_OUTPUT_ALIGNED_BSS(STREAM,DECL,NAME,SIZE,ALIGN) \
   asm_output_aligned_bss (STREAM, DECL, NAME, SIZE, ALIGN)
 #endif
-     
+
 /* Output a source line for the debugger.  */
 /* #define ASM_OUTPUT_SOURCE_LINE(STREAM,LINE) */
 
@@ -286,7 +286,7 @@ do { char dstr[30];							\
 #define ASM_OUTPUT_IDENT(STREAM,STRING)  \
   fprintf (STREAM, "%s - - - ident %s\n", ASM_COMMENT_START, STRING)
 #endif
-     
+
 /* The assembler's parentheses characters.  */
 #define ASM_OPEN_PAREN 		"("
 #define ASM_CLOSE_PAREN 	")"

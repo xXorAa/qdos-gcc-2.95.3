@@ -51,13 +51,13 @@ static int is_c68_lib(id)
      tree id;
 {
   int i;
-  
+
 #if 0
   if (c68_scount==0)
     init_c68_specials();
 #endif
 
-#if 0  
+#if 0
   printf("is_c68_lib: %s\n",IDENTIFIER_POINTER(id));
   printf("c68_scount %d\n",c68_scount);
 #endif
@@ -74,7 +74,7 @@ static int is_c68_lib(id)
   for(i=0; i<c68_scount; i++)
     {
       if ( IDENTIFIER_LENGTH(id)==c68_specials[i].len )
-	{ 
+	{
 	  /* try hashed value compare first */
 	  if ( id == c68_specials[i].id )
 	    return 1;
@@ -82,12 +82,12 @@ static int is_c68_lib(id)
 	  if (!c68_specials[i].id && !bcmp(IDENTIFIER_POINTER(id),
 		    c68_specials[i].name,
 		    c68_specials[i].len))
-	    { 
+	    {
 	      /* add hash id for speedup */
 	      /*printf("addind hashed id for %s\n",IDENTIFIER_POINTER(id));*/
 	      c68_specials[i].id=id;
 	      return 1;
-	    }   
+	    }
 	}
     }
 
@@ -135,7 +135,7 @@ qdos_asm_output_common(file,name,size,rounded)
   assemble_name ((file), (name)), fputs(":\n",(file));
   if (IS_GWASS)
     fprintf((file),"    DS.%s %d\n",((size) % 2) ? "b" : "w",
-	                              ((size) % 2) ? (size) : (size)/2 ); 
+	                              ((size) % 2) ? (size) : (size)/2 );
   else {
     fprintf ((file), "\t.space\t%u\n", (size));
     fputs((size)!=(rounded) ?"\t.align\t2\n":"",(file));
@@ -150,7 +150,7 @@ qdos_asm_output_local(file,name,size,rounded)
   assemble_name ((file), (name)), fputs(":\n",(file));
   if (IS_GWASS)
     fprintf((file),"    DS.%s %d\n",((size) % 2) ? "B" : "W",
-	                              ((size) % 2) ? (size) : (size)/2 ); 
+	                              ((size) % 2) ? (size) : (size)/2 );
   else {
     fprintf ((file), "\t.space\t%u\n", (size));
     fputs((size)!=(rounded) ?"\t.align\t2\n":"",(file));
@@ -171,10 +171,10 @@ qdos_asm_output_align(file,log)
 	fprintf (file, "    ALIGN16\n");
     }
   else
-    { 
+    {
       int _LOG = log;
-      if (_LOG == 1)     
-	fprintf (file, "\t.align 2\n"); 
+      if (_LOG == 1)
+	fprintf (file, "\t.align 2\n");
       else if (_LOG == 2)
 	fprintf (file, "\t.align 4\n");
       else if (_LOG != 0)

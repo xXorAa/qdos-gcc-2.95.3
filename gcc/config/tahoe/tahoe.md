@@ -1595,7 +1595,7 @@
   if (GET_CODE(operands[0]) == MEM
       && CONSTANT_ADDRESS_P (XEXP(operands[0], 0))
       && INTVAL (operands[1]) < 64)
-    return \"callf %1,%0\"; /* this is much faster */   
+    return \"callf %1,%0\"; /* this is much faster */
   return \"calls %1,%0\";
 }")
 
@@ -1613,7 +1613,7 @@
   if (GET_CODE(operands[1]) == MEM
       && CONSTANT_ADDRESS_P (XEXP(operands[1], 0))
       && INTVAL (operands[2]) < 64)
-    return \"callf %2,%1\"; /* this is much faster */   
+    return \"callf %2,%1\"; /* this is much faster */
   return \"calls %2,%1\";
 }")
 

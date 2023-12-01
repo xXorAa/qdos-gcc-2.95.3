@@ -122,7 +122,7 @@ Boston, MA 02111-1307, USA.  */
 #define FILE_NAME_ABSOLUTE_P(NAME)	\
 	(FILE_NAME_NONDIRECTORY (NAME) != (&NAME[1]))
 
-/* FILE_NAME_JOINER is defined to be the characters that are inserted between 
+/* FILE_NAME_JOINER is defined to be the characters that are inserted between
    a directory name and a filename in order to make an absolute file
    specification.  Under VMS the directory specification contains all of the
    required characters, so we define this to be a null string.  */

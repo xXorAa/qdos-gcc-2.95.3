@@ -7,12 +7,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -56,7 +56,7 @@ infodir = $(prefix)/info
 includedir = $(prefix)/include
 # Directory in which the compiler finds executables, libraries, etc.
 libsubdir = $(libdir)/gcc-lib/$(target_alias)/$(gcc_version)
-GDB_NLM_DEPS = 
+GDB_NLM_DEPS =
 
 SHELL = /bin/sh
 
@@ -79,7 +79,7 @@ CC = cc
 # Special variables passed down in EXTRA_GCC_FLAGS.  They are defined
 # here so that they can be overridden by Makefile fragments.
 HOST_CC = $(CC_FOR_BUILD)
-HOST_PREFIX = 
+HOST_PREFIX =
 HOST_PREFIX_1 = loser-
 
 # These flag values are normally overridden by the configure script.
@@ -88,10 +88,10 @@ CXXFLAGS = -g -O2
 
 LIBCFLAGS = $(CFLAGS)
 CFLAGS_FOR_TARGET = $(CFLAGS)
-LDFLAGS_FOR_TARGET = 
+LDFLAGS_FOR_TARGET =
 LIBCFLAGS_FOR_TARGET = $(CFLAGS_FOR_TARGET)
-PICFLAG = 
-PICFLAG_FOR_TARGET = 
+PICFLAG =
+PICFLAG_FOR_TARGET =
 
 CHILLFLAGS = $(CFLAGS)
 CHILL_LIB = -lchill
@@ -165,7 +165,7 @@ CC_FOR_BUILD = $(CC)
 CXX_FOR_BUILD = $(CXX)
 
 SUBDIRS = "this is set via configure, don't edit this"
-OTHERS = 
+OTHERS =
 
 # This is set by the configure script to the list of directories which
 # should be built using the target tools.
@@ -176,7 +176,7 @@ TARGET_CONFIGDIRS = libiberty libgloss newlib libio librx libstdc++ libg++ winsu
 TARGET_SUBDIR = .
 
 # This is set by the configure script to the arguments passed to configure.
-CONFIG_ARGUMENTS = 
+CONFIG_ARGUMENTS =
 
 # This is set by configure to REALLY_SET_LIB_PATH if --enable-shared
 # was used.
@@ -1051,7 +1051,7 @@ local-maintainer-clean:
 clean: do-clean local-clean
 mostlyclean: do-mostlyclean local-clean
 distclean: do-distclean local-clean local-distclean
-maintainer-clean: local-maintainer-clean do-maintainer-clean local-clean 
+maintainer-clean: local-maintainer-clean do-maintainer-clean local-clean
 maintainer-clean: local-distclean
 realclean: maintainer-clean
 
@@ -1115,8 +1115,8 @@ mail-report-with-warnings.log: warning.log
 # Installation targets.
 
 .PHONY: install install-cross uninstall source-vault binary-vault vault-install
-install: $(INSTALL_TARGET) 
-install-cross: $(INSTALL_TARGET_CROSS) 
+install: $(INSTALL_TARGET)
+install-cross: $(INSTALL_TARGET_CROSS)
 
 uninstall:
 	@echo "the uninstall target is not supported in this tree"
@@ -1160,7 +1160,7 @@ install-no-fixedincludes: \
 	$(INSTALL_MODULES) \
 	$(INSTALL_TARGET_MODULES) \
 	$(INSTALL_X11_MODULES) \
-	gcc-no-fixedincludes 
+	gcc-no-fixedincludes
 
 # Install the gcc headers files, but not the fixed include files,
 # which Cygnus is not allowed to distribute.  This rule is very
@@ -1656,7 +1656,7 @@ all-tgas: all-libiberty all-bfd all-opcodes
 all-time:
 all-tix: all-tcl all-tk
 all-wdiff:
-all-target-winsup: all-target-newlib all-target-libiberty all-target-libio configure-target-winsup 
+all-target-winsup: all-target-newlib all-target-libiberty all-target-libio configure-target-winsup
 configure-target-winsup: configure-target-newlib
 all-uudecode: all-libiberty
 all-zip:
@@ -1685,7 +1685,7 @@ dir.info: do-install-info
 
 dist:
 	@echo "Building a full distribution of this tree isn't done"
-	@echo "via 'make dist'.  Check out the etc/ subdirectory" 
+	@echo "via 'make dist'.  Check out the etc/ subdirectory"
 
 etags tags: TAGS
 

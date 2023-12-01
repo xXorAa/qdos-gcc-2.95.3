@@ -65,10 +65,10 @@ Boston, MA 02111-1307, USA.  */
 
 /* Use crt1.o as a startup file and crtn.o as a closing file.  */
 /*
- * The loader directive file svr3.ifile defines how to merge the constructor 
- * sections into the data section.  Also, since gas only puts out those 
- * sections in response to N_SETT stabs, and does not (yet) have a 
- * ".sections" directive, svr3.ifile also defines the list symbols 
+ * The loader directive file svr3.ifile defines how to merge the constructor
+ * sections into the data section.  Also, since gas only puts out those
+ * sections in response to N_SETT stabs, and does not (yet) have a
+ * ".sections" directive, svr3.ifile also defines the list symbols
  * __DTOR_LIST__ and __CTOR_LIST__.
  */
 #undef STARTFILE_SPEC
@@ -76,8 +76,8 @@ Boston, MA 02111-1307, USA.  */
   "%{!r:%{!z:svr3.ifile%s}%{z:svr3z.ifile%s}}\
    %{pg:gcrt1.o%s}%{!pg:%{posix:%{p:mcrtp1.o%s}%{!p:crtp1.o%s}}%{!posix:%{p:mcrt1.o%s}%{!p:crt1.o%s}}} \
    %{p:-L/usr/lib/libp}%{pg:-L/usr/lib/libp}"
-  
+
 #define ENDFILE_SPEC "crtn.o%s"
-  
+
 #undef LIB_SPEC
 #define LIB_SPEC "%{posix:-lcposix} %{shlib:-lc_s} -lc -lg"

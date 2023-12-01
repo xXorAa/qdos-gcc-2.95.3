@@ -65,7 +65,7 @@ Boston, MA 02111-1307, USA.  */
 #define FINI_SECTION_ASM_OP "section\t.fini,\"xa\",#progbits"
 
 /* Define the pseudo-ops used to switch to the .ctors and .dtors sections.
- 
+
    Note that we want to give these sections the SHF_WRITE attribute
    because these sections will actually contain data (i.e. tables of
    addresses of functions in the current root executable or shared library
@@ -78,7 +78,7 @@ Boston, MA 02111-1307, USA.  */
    use the `-z text' option when building a shared library, you will get
    errors unless the .ctors and .dtors sections are marked as writable
    via the SHF_WRITE attribute.)  */
- 
+
 #undef	CTORS_SECTION_ASM_OP
 #define CTORS_SECTION_ASM_OP	"section\t.ctors,\"aw\""
 #undef	DTORS_SECTION_ASM_OP

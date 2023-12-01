@@ -20,7 +20,7 @@ the Free Software Foundation, 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.  */
 
 
-/* Write out the correct language type definition for the header files.  
+/* Write out the correct language type definition for the header files.
    Unless we have assembler language, write out the symbols for C.  */
 #define CPP_SPEC "\
 %{!undef:\
@@ -408,7 +408,7 @@ extern void override_options ();
 #define	WCHAR_TYPE_SIZE 32
 
 /* Define this macro if it is advisable to hold scalars in registers
-   in a wider mode than that declared by the program.  In such cases, 
+   in a wider mode than that declared by the program.  In such cases,
    the value is constrained to be within the bounds of the declared
    type, but kept valid in the wider mode.  The signedness of the
    extension may differ from that of the type.
@@ -486,7 +486,7 @@ extern void override_options ();
 /* A bitfield declared as `int' forces `int' alignment for the struct.  */
 #define PCC_BITFIELD_TYPE_MATTERS 1
 
-/* Align loop starts for optimal branching.  
+/* Align loop starts for optimal branching.
 
    ??? Kludge this and the next macro for the moment by not doing anything if
    we don't optimize and also if we are writing ECOFF symbols to work around
@@ -542,7 +542,7 @@ extern void override_options ();
    We define all 32 integer registers, even though $31 is always zero,
    and all 32 floating-point registers, even though $f31 is also
    always zero.  We do not bother defining the FP status register and
-   there are no other registers. 
+   there are no other registers.
 
    Since $31 is always zero, we will use register number 31 as the
    argument pointer.  It will never appear in the generated code
@@ -669,7 +669,7 @@ extern void override_options ();
 /* Base register for access to local variables of function.  */
 #define FRAME_POINTER_REGNUM 63
 
-/* Register in which static-chain is passed to a function. 
+/* Register in which static-chain is passed to a function.
 
    For the Alpha, this is based on an example; the calling sequence
    doesn't seem to specify this.  */
@@ -699,7 +699,7 @@ extern void override_options ();
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 enum reg_class { NO_REGS, GENERAL_REGS, FLOAT_REGS, ALL_REGS,
 		 LIM_REG_CLASSES };
 
@@ -882,7 +882,7 @@ extern int normal_memory_operand ();
 #define CLASS_CANNOT_CHANGE_SIZE	FLOAT_REGS
 
 /* Define the cost of moving between registers of various classes.  Moving
-   between FLOAT_REGS and anything else except float regs is expensive. 
+   between FLOAT_REGS and anything else except float regs is expensive.
    In fact, we make it quite expensive because we really don't want to
    do these moves unless it is clearly worth it.  Optimizations may
    reduce the impact of not being able to allocate a pseudo to a
@@ -1128,7 +1128,7 @@ extern int alpha_memory_latency;
  ? 6 - (CUM) : 0)
 
 /* Perform any needed actions needed for a function that is receiving a
-   variable number of arguments. 
+   variable number of arguments.
 
    CUM is as above.
 
@@ -1139,7 +1139,7 @@ extern int alpha_memory_latency;
    it.
 
    Normally, this macro will push all remaining incoming registers on the
-   stack and set PRETEND_SIZE to the length of the registers pushed. 
+   stack and set PRETEND_SIZE to the length of the registers pushed.
 
    On the Alpha, we allocate space for all 12 arg registers, but only
    push those that are remaining.
@@ -1154,7 +1154,7 @@ extern int alpha_memory_latency;
    not the most efficient way to implement varargs with just one register
    class, but it isn't worth doing anything more efficient in this rare
    case.  */
-   
+
 
 #define SETUP_INCOMING_VARARGS(CUM,MODE,TYPE,PRETEND_SIZE,NO_RTL)	\
 { if ((CUM) < 6)							\
@@ -1224,7 +1224,7 @@ extern void alpha_start_function ();
 #define ASM_DECLARE_FUNCTION_SIZE(FILE,NAME,DECL) \
   alpha_end_function(FILE,NAME,DECL)
 extern void alpha_end_function ();
-   
+
 /* This macro notes the end of the prologue.  */
 
 #define FUNCTION_END_PROLOGUE(FILE)  output_end_prologue (FILE)
@@ -1287,7 +1287,7 @@ extern void output_end_prologue ();
    of a trampoline, leaving space for the variable parts.
 
    The trampoline should set the static chain pointer to value placed
-   into the trampoline and should branch to the specified routine.  
+   into the trampoline and should branch to the specified routine.
    Note that $27 has been set to the address of the trampoline, so we can
    use it for addressability of the two data items.  Trampolines are always
    aligned to FUNCTION_BOUNDARY, which is 64 bits.  */
@@ -1423,7 +1423,7 @@ extern void alpha_init_expanders ();
 /* GO_IF_LEGITIMATE_ADDRESS recognizes an RTL expression
    that is a valid memory address for an instruction.
    The MODE argument is the machine mode for the MEM expression
-   that wants to use this address. 
+   that wants to use this address.
 
    For Alpha, we have either a constant address or the sum of a register
    and a constant address, or just a register.  For DImode, any of those
@@ -1485,7 +1485,7 @@ extern void alpha_init_expanders ();
    GO_IF_LEGITIMATE_ADDRESS.
 
    It is always safe for this macro to do nothing.  It exists to recognize
-   opportunities to optimize the output. 
+   opportunities to optimize the output.
 
    For the Alpha, there are three cases we handle:
 
@@ -1558,7 +1558,7 @@ extern void alpha_init_expanders ();
    For the Alpha, we wish to handle large displacements off a base
    register by splitting the addend across an ldah and the mem insn.
    This cuts number of extra insns needed from 3 to 1.  */
-   
+
 #define LEGITIMIZE_RELOAD_ADDRESS(X,MODE,OPNUM,TYPE,IND_LEVELS,WIN)	\
 do {									\
   /* We must recognize output that we have already generated ourselves.  */ \
@@ -1669,7 +1669,7 @@ do {									\
 
 /* Nonzero if access to memory by bytes is no faster than for words.
    Also non-zero if doing byte operations (specifically shifts) in registers
-   is undesirable. 
+   is undesirable.
 
    On the Alpha, we want to not use the byte operation and instead use
    masking operations to access fields; these will save instructions.  */
@@ -1797,10 +1797,10 @@ do {									\
       return COSTS_N_INSNS (2);					\
     default: abort();						\
     }
-    
+
 /* Provide the costs of a rtl expression.  This is in the body of a
    switch on CODE.  */
-   
+
 #define RTX_COSTS(X,CODE,OUTER_CODE)			\
   case PLUS:  case MINUS:				\
     if (FLOAT_MODE_P (GET_MODE (X)))			\
@@ -2073,7 +2073,7 @@ literal_section ()						\
     REAL_VALUE_TO_TARGET_SINGLE ((VALUE), t);			\
     fprintf (FILE, "\t.long 0x%lx\n", t & 0xffffffff);		\
 } while (0)
-  
+
 /* This is how to output an assembler line defining an `int' constant.  */
 
 #define ASM_OUTPUT_INT(FILE,VALUE)  		\

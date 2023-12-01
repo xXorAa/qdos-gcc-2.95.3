@@ -53,7 +53,7 @@ ___divhi3:
 	sub a0,a0
 
 	/* If first operand is negative, then make it positive.
-	   It will be contained in d2 just before .L1. 
+	   It will be contained in d2 just before .L1.
 
 	   a0 tells us if the first operand was negated.  */
 	cmp d2,d0
@@ -65,7 +65,7 @@ ___divhi3:
 	mov d0,d2
 .L1:
 	/* If the second operand is negative, then make it positive.
-	   It will be contained in d3 just before .L3. 
+	   It will be contained in d3 just before .L3.
 
 	   d0 tells us if the second operand was negated.  */
 	cmp d3,d1
@@ -109,7 +109,7 @@ ___divhi3:
 .L6:
 	mov d2,d0
 .L7:
-	
+
 	/* Restore our scratch registers, deallocate our stack and return.  */
 	movx (0,a3),d2
 	movx (4,a3),d3

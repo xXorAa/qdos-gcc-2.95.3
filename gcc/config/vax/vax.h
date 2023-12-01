@@ -236,7 +236,7 @@ extern int target_flags;
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 /* The vax has only one kind of registers, so NO_REGS and ALL_REGS
    are the only classes.  */
 
@@ -289,7 +289,7 @@ enum reg_class { NO_REGS, ALL_REGS, LIM_REG_CLASSES };
    : 0)
 
 /* Similar, but for floating constants, and defining letters G and H.
-   Here VALUE is the CONST_DOUBLE rtx itself. 
+   Here VALUE is the CONST_DOUBLE rtx itself.
 
    `G' is a floating-point zero.  */
 
@@ -374,7 +374,7 @@ gen_rtx (PLUS, Pmode, frame, GEN_INT (12))
    If the precise function being called is known, FUNC is its FUNCTION_DECL;
    otherwise, FUNC is 0.  */
 
-/* On the Vax the return value is in R0 regardless.  */   
+/* On the Vax the return value is in R0 regardless.  */
 
 #define FUNCTION_VALUE(VALTYPE, FUNC)  \
   gen_rtx (REG, TYPE_MODE (VALTYPE), 0)
@@ -382,7 +382,7 @@ gen_rtx (PLUS, Pmode, frame, GEN_INT (12))
 /* Define how to find the value returned by a library function
    assuming the value has mode MODE.  */
 
-/* On the Vax the return value is in R0 regardless.  */   
+/* On the Vax the return value is in R0 regardless.  */
 
 #define LIBCALL_VALUE(MODE)  gen_rtx (REG, MODE, 0)
 
@@ -443,7 +443,7 @@ gen_rtx (PLUS, Pmode, frame, GEN_INT (12))
    NAMED is nonzero if this argument is a named parameter
     (otherwise it is an extra parameter matching an ellipsis).  */
 
-/* On the vax all args are pushed.  */   
+/* On the vax all args are pushed.  */
 
 #define FUNCTION_ARG(CUM, MODE, TYPE, NAMED) 0
 

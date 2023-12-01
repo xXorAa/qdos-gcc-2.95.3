@@ -1,4 +1,4 @@
-/* Header file for collect/tlink routines.  
+/* Header file for collect/tlink routines.
    Copyright (C) 1998 Free Software Foundation, Inc.
 
 This file is part of GNU CC.

@@ -26,7 +26,7 @@ RM	= rm -f
 SHELL = /bin/sh
 
 # We do not use texi2dvi because (a) we need no index, and
-# (b) texi2dvi monkeys with TEXINPUTS 
+# (b) texi2dvi monkeys with TEXINPUTS
 TEX = tex
 
 #### End of system configuration section. ####

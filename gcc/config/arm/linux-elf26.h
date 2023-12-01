@@ -1,4 +1,4 @@
-/* Definitions for ARM running Linux-based GNU systems 
+/* Definitions for ARM running Linux-based GNU systems
    using ELF and 26-bit APCS.
    Copyright (C) 1999 Free Software Foundation, Inc.
    Contributed by Philip Blundell <Philip.Blundell@pobox.com>

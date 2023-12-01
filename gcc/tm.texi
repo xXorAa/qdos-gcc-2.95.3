@@ -1082,7 +1082,7 @@ If @code{DEFAULT_VTABLE_THUNKS} is 0, GNU CC uses the traditional
 implementation by default.  The ``thunk'' implementation is more efficient
 (especially if you have provided an implementation of
 @code{ASM_OUTPUT_MI_THUNK}, see @ref{Function Entry}), but is not binary
-compatible with code compiled using the traditional implementation.  
+compatible with code compiled using the traditional implementation.
 If you are writing a new ports, define @code{DEFAULT_VTABLE_THUNKS} to 1.
 
 If you do not define this macro, the default for @samp{-fvtable-thunk} is 0.
@@ -1375,7 +1375,7 @@ Zero or more C statements that may conditionally modify four variables
 (these three are of type @code{char []}) and @code{reg_class_contents}
 (of type @code{HARD_REG_SET}).
 Before the macro is called @code{fixed_regs}, @code{call_used_regs}
-and @code{reg_class_contents} have been initialized from 
+and @code{reg_class_contents} have been initialized from
 @code{FIXED_REGISTERS}, @code{CALL_USED_REGISTERS} and
 @code{REG_CLASS_CONTENTS}, respectively,
 @code{global_regs} has been cleared, and any @samp{-ffixed-@var{reg}},
@@ -1497,7 +1497,7 @@ definition of this macro is
 
 @findex ALTER_HARD_SUBREG
 @item ALTER_HARD_SUBREG (@var{tgt_mode}, @var{word}, @var{src_mode}, @var{regno})
-A C expression that returns an adjusted hard register number for 
+A C expression that returns an adjusted hard register number for
 
 @smallexample
 (subreg:@var{tgt_mode} (reg:@var{src_mode} @var{regno}) @var{word})
@@ -2308,7 +2308,7 @@ debugging information like that provided by DWARF 2.
 @item ARG_POINTER_CFA_OFFSET
 A C expression whose value is an integer giving the offset, in bytes,
 from the argument pointer to the canonical frame address (cfa).  The
-final value should coincide with that calculated by 
+final value should coincide with that calculated by
 @code{INCOMING_FRAME_SP_OFFSET}.  Which is unfortunately not usable
 during virtual register instantiation.
 
@@ -2348,8 +2348,8 @@ will use the third approach.
 @findex STACK_CHECK_BUILTIN
 @item STACK_CHECK_BUILTIN
 A nonzero value if stack checking is done by the configuration files in a
-machine-dependent manner.  You should define this macro if stack checking 
-is require by the ABI of your machine or if you would like to have to stack 
+machine-dependent manner.  You should define this macro if stack checking
+is require by the ABI of your machine or if you would like to have to stack
 checking in some more efficient way than GNU CC's portable approach.
 The default value of this macro is zero.
 
@@ -2362,7 +2362,7 @@ default value of 4096 is suitable for most systems.
 
 @findex STACK_CHECK_PROBE_LOAD
 @item STACK_CHECK_PROBE_LOAD
-A integer which is nonzero if GNU CC should perform the stack probe 
+A integer which is nonzero if GNU CC should perform the stack probe
 as a load instruction and zero if GNU CC should use a store instruction.
 The default is zero, which is the most efficient choice on most systems.
 
@@ -2794,7 +2794,7 @@ register in which to pass this part of the argument, and the mode of the
 register RTX indicates how large this part of the argument is.  The
 second operand of the @code{expr_list} is a @code{const_int} which gives
 the offset in bytes into the entire argument of where this part starts.
-As a special exception the first @code{expr_list} in the @code{parallel} 
+As a special exception the first @code{expr_list} in the @code{parallel}
 RTX may have a first operand of zero.  This indicates that the bytes
 starting from the second operand of that @code{expr_list} are stored on
 the stack and not held in a register.
@@ -2978,7 +2978,7 @@ stack.
 @findex LOAD_ARGS_REVERSED
 @item LOAD_ARGS_REVERSED
 If defined, the order in which arguments are loaded into their
-respective argument registers is reversed so that the last 
+respective argument registers is reversed so that the last
 argument is loaded first.  This macro only effects arguments
 passed in registers.
 
@@ -3191,7 +3191,7 @@ must live across calls.
 @item DEFAULT_CALLER_SAVES
 Define this macro if function calls on the target machine do not preserve
 any registers; in other words, if @code{CALL_USED_REGISTERS} has 1
-for all registers.  When defined, this macro enables @samp{-fcaller-saves} 
+for all registers.  When defined, this macro enables @samp{-fcaller-saves}
 by default for all optimization levels.  It has no effect for optimization
 levels 2 and higher, where @samp{-fcaller-saves} is the default.
 
@@ -4352,7 +4352,7 @@ A C compound statement that attempts to replace @var{x}, which is an address
 that needs reloading, with a valid memory address for an operand of mode
 @var{mode}.  @var{win} will be a C statement label elsewhere in the code.
 It is not necessary to define this macro, but it might be useful for
-performance reasons. 
+performance reasons.
 
 For example, on the i386, it is sometimes possible to use a single
 reload register instead of two by reloading a sum of two pseudo
@@ -4622,7 +4622,7 @@ calculation is used for any RTL for which this macro does not return a
 value.
 
 This macro is optional; do not define it if the default cost assumptions
-are adequate for the target machine.  
+are adequate for the target machine.
 
 @findex ADDRESS_COST
 @item ADDRESS_COST (@var{address})
@@ -4983,7 +4983,7 @@ data section.
 
 @findex JUMP_TABLES_IN_TEXT_SECTION
 @item JUMP_TABLES_IN_TEXT_SECTION
-Define this macro to be an expression with a non-zero value if jump 
+Define this macro to be an expression with a non-zero value if jump
 tables (for @code{tablejump} insns) should be output in the text
 section, along with the assembler instructions.  Otherwise, the
 readonly data section is used.
@@ -6340,7 +6340,7 @@ If this macro is not defined, nothing special is output at the end of
 the jump-table.
 @end table
 
-@node Exception Region Output 
+@node Exception Region Output
 @subsection Assembler Commands for Exception Regions
 
 @c prevent bad page break with this line
@@ -7153,7 +7153,7 @@ elements of a jump-table should have.
 Optional: return the preferred mode for an @code{addr_diff_vec}
 when the minimum and maximum offset are known.  If you define this,
 it enables extra code in branch shortening to deal with @code{addr_diff_vec}.
-To make this work, you also have to define INSN_ALIGN and 
+To make this work, you also have to define INSN_ALIGN and
 make the alignment for @code{addr_diff_vec} explicit.
 The @var{body} argument is provided so that the offset_unsigned and scale
 flags can be updated.

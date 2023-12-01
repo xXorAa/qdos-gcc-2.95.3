@@ -19,7 +19,7 @@ You should have received a copy of the GNU General Public License
 along with GNU CC; see the file COPYING.  If not, write to
 the Free Software Foundation, 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.  */
-   
+
 
 
 #define AOF_ASSEMBLER
@@ -50,7 +50,7 @@ Boston, MA 02111-1307, USA.  */
    we must create a new area with the same attributes and add the new output
    to that.  Unfortunately, there is nothing we can do here to guarantee that
    two areas with the same attributes will be linked adjacently in the
-   resulting executable, so we have to be careful not to do pc-relative 
+   resulting executable, so we have to be careful not to do pc-relative
    addressing across such boundaries.  */
 char *aof_text_section ();
 #define TEXT_SECTION_ASM_OP aof_text_section ()

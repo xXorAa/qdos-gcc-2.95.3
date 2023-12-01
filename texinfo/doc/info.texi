@@ -1,8 +1,8 @@
 \input texinfo    @c -*-texinfo-*-
-@comment %**start of header 
+@comment %**start of header
 @setfilename info.info
 @settitle Info 1.0
-@comment %**end of header 
+@comment %**end of header
 @comment $Id: info.texi,v 1.1.1.2 1998/03/24 18:20:37 law Exp $
 
 @dircategory Texinfo documentation system
@@ -11,7 +11,7 @@
 @end direntry
 
 @ifinfo
-This file describes how to use Info, 
+This file describes how to use Info,
 the on-line, menu-driven GNU documentation system.
 
 Copyright (C) 1989, 92, 96, 97 Free Software Foundation, Inc.
@@ -76,8 +76,8 @@ Info is a program for reading documentation, which you are using now.
 To learn how to use Info, type the command @kbd{h}.  It brings you
 to a programmed instruction sequence.
 
-@c Need to make sure that `Info-help' goes to the right node, 
-@c which is the first node of the first chapter. (It should.) 
+@c Need to make sure that `Info-help' goes to the right node,
+@c which is the first node of the first chapter. (It should.)
 @c   (Info-find-node "info"
 @c                (if (< (window-height) 23)
 @c                    "Help-Small-Screen"
@@ -101,7 +101,7 @@ To learn advanced Info commands, type @kbd{n} twice.  This brings you to
 This first part of the Info manual describes how to get around inside
 of Info.  The second part of the manual describes various advanced
 Info commands, and how to write an Info as distinct from a Texinfo
-file.  The third part is about how to generate Info files from 
+file.  The third part is about how to generate Info files from
 Texinfo files.
 
 @iftex
@@ -110,7 +110,7 @@ try Info commands while reading about them.  Reading it on paper is less
 effective, since you must take it on faith that the commands described
 really do what the manual says.  By all means go through this manual now
 that you have it; but please try going through the on-line version as
-well.  
+well.
 
 There are two ways of looking at the online version of this manual:
 
@@ -340,7 +340,7 @@ Info can interpret it.  The beginning of a menu is always identified
 by a line which starts with @samp{* Menu:}.  A node contains a menu if and
 only if it has a line in it which starts that way.  The only menu you
 can use at any moment is the one in the node you are in.  To use a
-menu in any other node, you must move to that node first. 
+menu in any other node, you must move to that node first.
 
   After the start of the menu, each line that starts with a @samp{*}
 identifies one subtopic.  The line usually contains a brief name
@@ -741,7 +741,7 @@ to help identify the node for the user.
 @comment  node-name,  next,  previous,  up
 @section How to Create Menus
 
-  Any node in the Info hierarchy may have a @dfn{menu}---a list of subnodes. 
+  Any node in the Info hierarchy may have a @dfn{menu}---a list of subnodes.
 The @kbd{m} command searches the current node's menu for the topic which it
 reads from the terminal.
 
@@ -816,7 +816,7 @@ They are just examples.  The places they ``lead to'' do not really exist!
 
   You can speed up the access to nodes of a large Info file by giving
 it a tag table.  Unlike the tag table for a program, the tag table for
-an Info file lives inside the file itself and is used 
+an Info file lives inside the file itself and is used
 automatically whenever Info reads in the file.
 
   To make a tag table, go to a node in the file using Emacs Info mode and type

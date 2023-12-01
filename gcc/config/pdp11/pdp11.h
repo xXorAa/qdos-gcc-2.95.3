@@ -152,12 +152,12 @@ extern int target_flags;
 #define SHORT_TYPE_SIZE		16
 #define INT_TYPE_SIZE		(TARGET_INT16 ? 16 : 32)
 #define LONG_TYPE_SIZE		32
-#define LONG_LONG_TYPE_SIZE	64     
+#define LONG_LONG_TYPE_SIZE	64
 
-/* if we set FLOAT_TYPE_SIZE to 32, we could have the benefit 
-   of saving core for huge arrays - the definitions are 
-   already in md - but floats can never reside in 
-   an FPU register - we keep the FPU in double float mode 
+/* if we set FLOAT_TYPE_SIZE to 32, we could have the benefit
+   of saving core for huge arrays - the definitions are
+   already in md - but floats can never reside in
+   an FPU register - we keep the FPU in double float mode
    all the time !! */
 #define FLOAT_TYPE_SIZE		(TARGET_FLOAT32 ? 32 : 64)
 #define DOUBLE_TYPE_SIZE	64
@@ -166,8 +166,8 @@ extern int target_flags;
 /* machine types from ansi */
 #define SIZE_TYPE "unsigned int" 	/* definition of size_t */
 
-/* is used in cexp.y - we don't have target_flags there, 
-   so just give default definition 
+/* is used in cexp.y - we don't have target_flags there,
+   so just give default definition
 
    hope it does not come back to haunt us! */
 #define WCHAR_TYPE "int" 		/* or long int???? */
@@ -197,14 +197,14 @@ extern int target_flags;
 /*  This is a machine with 16-bit registers */
 #define BITS_PER_WORD 16
 
-/* Width of a word, in units (bytes). 
+/* Width of a word, in units (bytes).
 
    UNITS OR BYTES - seems like units */
 #define UNITS_PER_WORD 2
 
-/* Maximum sized of reasonable data type 
+/* Maximum sized of reasonable data type
    DImode or Dfmode ...*/
-#define MAX_FIXED_MODE_SIZE 64	
+#define MAX_FIXED_MODE_SIZE 64
 
 /* Width in bits of a pointer.
    See also the macro `Pmode' defined below.  */
@@ -237,7 +237,7 @@ extern int target_flags;
    All registers that the compiler knows about must be given numbers,
    even those that are not normally considered general registers.
 
-   we have 8 integer registers, plus 6 float 
+   we have 8 integer registers, plus 6 float
    (don't use scratch float !) */
 
 #define FIRST_PSEUDO_REGISTER 14
@@ -248,7 +248,7 @@ extern int target_flags;
    On the pdp, these are:
    Reg 7	= pc;
    reg 6	= sp;
-   reg 5	= fp;  not necessarily! 
+   reg 5	= fp;  not necessarily!
 */
 
 /* don't let them touch fp regs for the time being !*/
@@ -314,7 +314,7 @@ extern int target_flags;
 ((REGNO < 8)?								\
     ((GET_MODE_SIZE (MODE) + UNITS_PER_WORD - 1) / UNITS_PER_WORD)	\
     :1)
-    
+
 
 /* Value is 1 if hard register REGNO can hold a value of machine-mode MODE.
    On the pdp, the cpu registers can hold any mode - check alignment
@@ -326,7 +326,7 @@ extern int target_flags;
   ((GET_MODE_BITSIZE(MODE) <= 16) 			\
    || (GET_MODE_BITSIZE(MODE) == 32 && !((REGNO) & 1)))	\
   :(MODE) == DFmode)
-    
+
 
 /* Value is 1 if it is a good idea to tie two pseudo registers
    when one has mode MODE1 and one has mode MODE2.
@@ -362,7 +362,7 @@ extern int target_flags;
 #define STATIC_CHAIN_REGNUM 4
 
 /* Register in which address to store a structure value
-   is passed to a function.  
+   is passed to a function.
    let's make it an invisible first argument!!! */
 
 #define STRUCT_VALUE 0
@@ -387,7 +387,7 @@ extern int target_flags;
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 /* The pdp has a couple of classes:
 
 MUL_REGS are used for odd numbered regs, to use in 16 bit multiplication
@@ -397,7 +397,7 @@ LMUL_REGS long multiply registers (even numbered regs )
 GENERAL_REGS is all cpu
 LOAD_FPU_REGS is the first four cpu regs, they are easier to load
 NO_LOAD_FPU_REGS is ac4 and ac5, currently - difficult to load them
-FPU_REGS is all fpu regs 
+FPU_REGS is all fpu regs
 */
 
 enum reg_class { NO_REGS, MUL_REGS, GENERAL_REGS, LOAD_FPU_REGS, NO_LOAD_FPU_REGS, FPU_REGS, ALL_REGS, LIM_REG_CLASSES };
@@ -441,7 +441,7 @@ enum reg_class { NO_REGS, MUL_REGS, GENERAL_REGS, LOAD_FPU_REGS, NO_LOAD_FPU_REG
 ((C) == 'f' ? FPU_REGS :			\
   ((C) == 'd' ? MUL_REGS : 			\
    ((C) == 'a' ? LOAD_FPU_REGS : NO_REGS)))
-    
+
 
 /* The letters I, J, K, L and M in a register constraint string
    can be used to stand for particular ranges of immediate operands.
@@ -453,8 +453,8 @@ enum reg_class { NO_REGS, MUL_REGS, GENERAL_REGS, LOAD_FPU_REGS, NO_LOAD_FPU_REG
    J		bits 15-00 0000
    K		completely random 32 bit
    L,M,N	-1,1,0 respectively
-   O 		where doing shifts in sequence is faster than 
-                one big shift 
+   O 		where doing shifts in sequence is faster than
+                one big shift
 */
 
 #define CONST_OK_FOR_LETTER_P(VALUE, C)  \
@@ -476,7 +476,7 @@ enum reg_class { NO_REGS, MUL_REGS, GENERAL_REGS, LOAD_FPU_REGS, NO_LOAD_FPU_REG
 
 
 /* Letters in the range `Q' through `U' may be defined in a
-   machine-dependent fashion to stand for arbitrary operand types. 
+   machine-dependent fashion to stand for arbitrary operand types.
    The machine description macro `EXTRA_CONSTRAINT' is passed the
    operand as its first argument and the constraint letter as its
    second operand.
@@ -494,7 +494,7 @@ enum reg_class { NO_REGS, MUL_REGS, GENERAL_REGS, LOAD_FPU_REGS, NO_LOAD_FPU_REG
 /* Given an rtx X being reloaded into a reg required to be
    in class CLASS, return the class of reg to actually use.
    In general this is just CLASS; but on some machines
-   in some cases it is preferable to use a more restrictive class.  
+   in some cases it is preferable to use a more restrictive class.
 
 loading is easier into LOAD_FPU_REGS than FPU_REGS! */
 
@@ -537,11 +537,11 @@ loading is easier into LOAD_FPU_REGS than FPU_REGS! */
    On the pdp11, the stack is on an even boundary */
 #define PUSH_ROUNDING(BYTES) ((BYTES + 1) & ~1)
 
-/* current_first_parm_offset stores the # of registers pushed on the 
+/* current_first_parm_offset stores the # of registers pushed on the
    stack */
 extern int current_first_parm_offset;
 
-/* Offset of first parameter from the argument pointer register value.  
+/* Offset of first parameter from the argument pointer register value.
    For the pdp11, this is non-zero to account for the return address.
 	1 - return address
 	2 - frame pointer (always saved, even when not used!!!!)
@@ -563,9 +563,9 @@ extern int current_first_parm_offset;
    If the precise function being called is known, FUNC is its FUNCTION_DECL;
    otherwise, FUNC is 0.  */
 #define BASE_RETURN_VALUE_REG(MODE) \
- ((MODE) == DFmode ? 8 : 0) 
+ ((MODE) == DFmode ? 8 : 0)
 
-/* On the pdp11 the value is found in R0 (or ac0??? 
+/* On the pdp11 the value is found in R0 (or ac0???
 not without FPU!!!! ) */
 
 #define FUNCTION_VALUE(VALTYPE, FUNC)  \
@@ -584,7 +584,7 @@ not without FPU!!!! ) */
 
 /* 1 if N is a possible register number for a function value
    as seen by the caller.
-   On the pdp, the first "output" reg is the only register thus used. 
+   On the pdp, the first "output" reg is the only register thus used.
 
 maybe ac0 ? - as option someday! */
 
@@ -593,7 +593,7 @@ maybe ac0 ? - as option someday! */
 /* should probably return DImode and DFmode in memory,lest
    we fill up all regs!
 
- have to, else we crash - exception: maybe return result in 
+ have to, else we crash - exception: maybe return result in
  ac0 if DFmode and FPU present - compatibility problem with
  libraries for non-floating point ...
 */
@@ -630,7 +630,7 @@ maybe ac0 ? - as option someday! */
 
 /* Update the data in CUM to advance over an argument
    of mode MODE and data type TYPE.
-   (TYPE is null for libcalls where that information may not be available.)  
+   (TYPE is null for libcalls where that information may not be available.)
 
 */
 
@@ -638,7 +638,7 @@ maybe ac0 ? - as option someday! */
 #define FUNCTION_ARG_ADVANCE(CUM, MODE, TYPE, NAMED)	\
  ((CUM) += ((MODE) != BLKmode			\
 	    ? (GET_MODE_SIZE (MODE))		\
-	    : (int_size_in_bytes (TYPE))))	
+	    : (int_size_in_bytes (TYPE))))
 
 /* Determine where to put an argument to a function.
    Value is zero to push the argument on the stack,
@@ -696,7 +696,7 @@ extern int current_function_pretend_args_size;
 
 #define FUNCTION_EPILOGUE(FILE, SIZE) \
     output_function_epilogue(FILE, SIZE);
-  
+
 #define INITIAL_FRAME_POINTER_OFFSET(DEPTH_VAR)	\
 {								\
   int offset, regno;		      				\
@@ -709,8 +709,8 @@ extern int current_function_pretend_args_size;
       offset += 8;						\
   /* offset -= 2;   no fp on stack frame */			\
   (DEPTH_VAR) = offset;						\
-}   
-    
+}
+
 
 /* Addressing modes, and classification of registers for them.  */
 
@@ -922,7 +922,7 @@ extern int current_function_pretend_args_size;
 #define DEFAULT_SIGNED_CHAR 1
 
 /* Max number of bytes we can move from memory to memory
-   in one reasonably fast instruction.  
+   in one reasonably fast instruction.
 */
 
 #define MOVE_MAX 2
@@ -981,9 +981,9 @@ extern int current_function_pretend_args_size;
 /* Compute the cost of computing a constant rtl expression RTX
    whose rtx-code is CODE.  The body of this macro is a portion
    of a switch statement.  If the code is computed here,
-   return it with a return statement.  Otherwise, break from the switch. 
+   return it with a return statement.  Otherwise, break from the switch.
 
-   -1, 0, 1 are cheaper for add, sub ... 
+   -1, 0, 1 are cheaper for add, sub ...
 */
 
 #define CONST_COSTS(RTX,CODE,OUTER_CODE) \
@@ -1017,10 +1017,10 @@ extern struct rtx_def *cc0_reg_rtx;
 /* Here we define machine-dependent flags and fields in cc_status
    (see `conditions.h').  */
 
-#define CC_IN_FPU 04000 
+#define CC_IN_FPU 04000
 
 /* Do UPDATE_CC if EXP is a set, used in
-   NOTICE_UPDATE_CC 
+   NOTICE_UPDATE_CC
 
    floats only do compare correctly, else nullify ...
 
@@ -1172,7 +1172,7 @@ fprintf (FILE, "$help$: . = .+8 ; space for tmp moves!\n")	\
 
 /* This is how to output an assembler line
    that says to advance the location counter
-   to a multiple of 2**LOG bytes. 
+   to a multiple of 2**LOG bytes.
 
    who needs this????
 */
@@ -1271,8 +1271,8 @@ fprintf (FILE, "$help$: . = .+8 ; space for tmp moves!\n")	\
 #define ASM_IDENTIFY_GCC(FILE)			\
     fprintf(FILE, "gcc_compiled:\n")
 
-/* trampoline - how should i do it in separate i+d ? 
-   have some allocate_trampoline magic??? 
+/* trampoline - how should i do it in separate i+d ?
+   have some allocate_trampoline magic???
 
    the following should work for shared I/D: */
 
@@ -1332,14 +1332,14 @@ JMP	FUNCTION	0x0058  0x0000 <- FUNCTION
 
 
 /* Provide the costs of a rtl expression.  This is in the body of a
-   switch on CODE. 
+   switch on CODE.
 
    we don't say how expensive SImode is - pretty expensive!!!
 
-   there is something wrong in MULT because MULT is not 
+   there is something wrong in MULT because MULT is not
    as cheap as total = 2 even if we can shift!
 
-   if optimizing for size make mult etc cheap, but not 1, so when 
+   if optimizing for size make mult etc cheap, but not 1, so when
    in doubt the faster insn is chosen.
 */
 
@@ -1413,7 +1413,7 @@ JMP	FUNCTION	0x0058  0x0000 <- FUNCTION
     break;
 
 
-/* there is no point in avoiding branches on a pdp, 
+/* there is no point in avoiding branches on a pdp,
    since branches are really cheap - I just want to find out
    how much difference the BRANCH_COST macro makes in code */
 #define BRANCH_COST (TARGET_BRANCH_CHEAP ? 0 : 1)

@@ -113,7 +113,7 @@
   [(eq_attr "in_delay_slot" "true")
    (eq_attr "in_delay_slot" "true")
    (eq_attr "in_delay_slot" "true")])
-   
+
 ;; Function units of the ARC
 
 ;; (define_function_unit {name} {num-units} {n-users} {test}
@@ -1149,7 +1149,7 @@
 ;; Compare instructions.
 ;; This controls RTL generation and register allocation.
 
-;; We generate RTL for comparisons and branches by having the cmpxx 
+;; We generate RTL for comparisons and branches by having the cmpxx
 ;; patterns store away the operands.  Then, the scc and bcc patterns
 ;; emit RTL for both the compare and the branch.
 
@@ -1488,7 +1488,7 @@
   ""
   "j%* %a0"
   [(set_attr "type" "uncond_branch")])
- 
+
 ;; Implement a switch statement.
 ;; This wouldn't be necessary in the non-pic case if we could distinguish
 ;; label refs of the jump table from other label refs.  The problem is that

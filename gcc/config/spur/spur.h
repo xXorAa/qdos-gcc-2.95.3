@@ -239,7 +239,7 @@ extern int target_flags;
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 /* The 68000 has two kinds of registers, hence four classes.  */
 
 enum reg_class { NO_REGS, GENERAL_REGS, FP_REGS, ALL_REGS, LIM_REG_CLASSES };
@@ -674,7 +674,7 @@ extern int current_function_pretend_args_size;
    that wants to use this address.
 
    On SPUR, the actual legitimate addresses must be REG+SMALLINT or REG+REG.
-   Actually, REG+REG is not legitimate for stores, so 
+   Actually, REG+REG is not legitimate for stores, so
    it is obtained only by combination on loads.
    We can treat a SYMBOL_REF as legitimate if it is part of this
    function's constant-pool, because such addresses can actually

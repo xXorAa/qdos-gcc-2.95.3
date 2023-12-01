@@ -821,7 +821,7 @@ MIL-STD-1750A processors.
 
 The MIL-STD-1750A cross configuration produces output for
 @code{as1750}, an assembler/linker available under the GNU Public
-License for the 1750A. @code{as1750} can be obtained at 
+License for the 1750A. @code{as1750} can be obtained at
 @emph{ftp://ftp.fta-berlin.de/pub/crossgcc/1750gals/}.
 A similarly licensed simulator for
 the 1750A is available from same address.
@@ -1064,15 +1064,15 @@ link with GNU malloc instead of the malloc that comes with the system.
 Use this configuration for SCO release 3.2 version 4.
 
 @item i386-*-sco3.2v5*
-Use this for the SCO OpenServer Release family including 5.0.0, 5.0.2, 
+Use this for the SCO OpenServer Release family including 5.0.0, 5.0.2,
 5.0.4, 5.0.5, Internet FastStart 1.0, and Internet FastStart 1.1.
 
 GNU CC can generate COFF binaries if you specify @samp{-mcoff} or ELF
 binaries, the default.    A full @samp{make bootstrap} is recommended
-so that an ELF compiler that builds ELF is generated.                   
+so that an ELF compiler that builds ELF is generated.
 
 You must have TLS597 from @uref{ftp://ftp.sco.com/TLS} installed for ELF
-C++ binaries to work correctly on releases before 5.0.4. 
+C++ binaries to work correctly on releases before 5.0.4.
 
 The native SCO assembler that is provided with the OS at no charge
 is normally required.  If, however, you must be able to use the GNU

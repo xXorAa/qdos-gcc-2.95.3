@@ -113,7 +113,7 @@ extern int target_flags;
 #define MASK_5200	2048
 #define TARGET_5200 (target_flags & MASK_5200)
 
-/* Align ints to a word boundary.  This breaks compatibility with the 
+/* Align ints to a word boundary.  This breaks compatibility with the
    published ABI's for structures containing ints, but produces faster
    code on cpus with 32 bit busses (020, 030, 040, 060, CPU32+, coldfire).
    It's required for coldfire cpus without a misalignment module.  */
@@ -281,7 +281,7 @@ extern int target_flags;
 /* Alignment of field after `int : 0' in a structure.  */
 #define EMPTY_FIELD_BOUNDARY 16
 
-/* No data type wants to be aligned rounder than this. 
+/* No data type wants to be aligned rounder than this.
    Most published ABIs say that ints should be aligned on 16 bit
    boundaries, but cpus with 32 bit busses get better performance
    aligned on 32 bit boundaries.  Coldfires without a misalignment
@@ -759,10 +759,10 @@ extern enum reg_class regno_reg_class[];
 #endif /* defined SUPPORT_SUN_FPA */
 
 /* A C expression that defines the optional machine-dependent constraint
-   letters that can be used to segregate specific types of operands,  
+   letters that can be used to segregate specific types of operands,
    usually memory references, for the target machine.  It should return 1 if
    VALUE corresponds to the operand type represented by the constraint letter
-   C.  If C is not defined as an extra constraint, the value returned should 
+   C.  If C is not defined as an extra constraint, the value returned should
    be 0 regardless of VALUE.  */
 
 /* For the m68k, `Q' means address register indirect addressing mode. */
@@ -1041,7 +1041,7 @@ do							\
   }							\
 while(0)
 
-/* Output assembler code to FILE to indicate return from 
+/* Output assembler code to FILE to indicate return from
    a function during basic block profiling. */
 
 #define FUNCTION_BLOCK_PROFILER_EXIT(FILE)		\
@@ -1171,7 +1171,7 @@ while(0)
 
 /* Generate the assembly code for function exit. */
 #define FUNCTION_EPILOGUE(FILE, SIZE) output_function_epilogue (FILE, SIZE)
-  
+
 /* This is a hook for other tm files to change.  */
 /* #define FUNCTION_EXTRA_EPILOGUE(FILE, SIZE) */
 
@@ -1218,7 +1218,7 @@ while(0)
    using an out-of-line transfer function or pc-relative data, but
    the fact remains that the code to jump to the transfer function
    or the code to load the pc-relative data needs to be flushed
-   just as much as the "variable" portion of the trampoline.  
+   just as much as the "variable" portion of the trampoline.
    Recognizing that a cache flush is going to be required anyway,
    dispense with such notions and build a smaller trampoline.  */
 
@@ -1355,7 +1355,7 @@ __transfer_from_trampoline ()					\
 #define LEGITIMATE_CONSTANT_P(X) 1
 
 /* Nonzero if the constant value X is a legitimate general operand
-   when generating PIC code.  It is given that flag_pic is on and 
+   when generating PIC code.  It is given that flag_pic is on and
    that X satisfies CONSTANT_P or is a CONST_DOUBLE.  */
 
 #define LEGITIMATE_PIC_OPERAND_P(X)	\
@@ -1858,13 +1858,13 @@ __transfer_from_trampoline ()					\
   sprintf (LABEL, "*%s%s%d", LOCAL_LABEL_PREFIX, PREFIX, NUM)
 
 /* This is how to output a `long double' extended real constant. */
-  
+
 #define ASM_OUTPUT_LONG_DOUBLE(FILE,VALUE)  				\
 do { long l[3];								\
      REAL_VALUE_TO_TARGET_LONG_DOUBLE (VALUE, l);			\
      fprintf (FILE, "\t.long 0x%lx,0x%lx,0x%lx\n", l[0], l[1], l[2]);	\
    } while (0)
-  
+
 /* This is how to output an assembler line defining a `double' constant.  */
 
 #define ASM_OUTPUT_DOUBLE(FILE,VALUE)				\

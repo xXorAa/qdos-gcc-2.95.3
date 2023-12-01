@@ -52,7 +52,7 @@ struct label_node {
    it has.
 
    FALSE_LABEL is used when either setjmp/longjmp exceptions are in
-   use, or old style table exceptions. It contains the label for 
+   use, or old style table exceptions. It contains the label for
    branching to the next runtime type check as handlers are processed.
 
    FINALIZATION is the tree codes for the handler, or is NULL_TREE if
@@ -167,10 +167,10 @@ void set_exception_version_code                 PROTO((int));
    means This is a cleanup, and must always be called. A value of
    CATCH_ALL_TYPE works like a cleanup, but a call to the runtime matcher
    is still performed to avoid being caught by a different language
-   exception. NEXT is a pointer to the next handler for this region. 
+   exception. NEXT is a pointer to the next handler for this region.
    NULL means there are no more. */
 
-typedef struct handler_info 
+typedef struct handler_info
 {
   rtx handler_label;
   int handler_number;

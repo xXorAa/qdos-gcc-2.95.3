@@ -2,7 +2,7 @@
    Copyright (C) 1993 Free Software Foundation, Inc.
 
 This file is part of GNU CC.
-   
+
 GNU CC is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2, or (at your option)
@@ -21,7 +21,7 @@ Boston, MA 02111-1307, USA.  */
 
 /* This file does the following:
 
-    - Sets VIRTUAL addr of .text to 0x400200 
+    - Sets VIRTUAL addr of .text to 0x400200
       Sets FILE addr of .text to 0x200 (BLOCK directive)
     - Depending on size of .text section rounds up to next
       4 MG boundary, adds (size of .text and vaddr of .text) mod 64K

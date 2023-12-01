@@ -19,7 +19,7 @@ HOST_ALLOCA=$(ALLOCA)
 HOST_MALLOC=$(MALLOC)
 HOST_OBSTACK=$(OBSTACK)
 
-# To build the native compiler with the cross compiler, the headers 
+# To build the native compiler with the cross compiler, the headers
 # for the target are already fixed. And /usr/include is for host, not
 # target.
 FIXINCLUDES=Makefile.in

@@ -9,17 +9,17 @@
 # Copyright (C) 1995, 1996, 1997, 1998 Free Software Foundation, Inc.
 #
 # This file is part of GNU CC.
-# 
+#
 # GNU CC is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2, or (at your option)
 # any later version.
-# 
+#
 # GNU CC is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with GNU CC; see the file COPYING.  If not, write to
 # the Free Software Foundation, 59 Temple Place - Suite 330,
@@ -109,7 +109,7 @@ if $LINKS; then
   echo 'Making internal symbolic directory links'
   for file in $files; do
     dest=`ls -ld $file | sed -n 's/.*-> //p'`
-    if [ "$dest" ]; then    
+    if [ "$dest" ]; then
       cwd=`pwd`
       # In case $dest is relative, get to $file's dir first.
       cd ${INPUT}
@@ -347,8 +347,8 @@ if [ \! -z "$file_to_fix" ]; then
 fi
 
 #
-# Also, the static functions lstat() and fchmod() in <sys/stat.h> 
-# cause G++ grief since they're not wrapped in "if __cplusplus".   
+# Also, the static functions lstat() and fchmod() in <sys/stat.h>
+# cause G++ grief since they're not wrapped in "if __cplusplus".
 # Fix that up now.
 #
 file=sys/stat.h
@@ -423,7 +423,7 @@ if $LINKS; then
   files=`find . -type l -print`
   for file in $files; do
     dest=`ls -ld $file | sed -n 's/.*-> //p'`
-    if expr "$dest" : '[^/].*' > /dev/null; then    
+    if expr "$dest" : '[^/].*' > /dev/null; then
       target=${LIB}/`echo file | sed "s|[^/]*\$|$dest|"`
       if [ -f $target ]; then
         ln -s $dest ${LIB}/$file >/dev/null 2>&1

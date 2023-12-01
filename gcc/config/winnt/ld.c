@@ -145,7 +145,7 @@ expand_lib (name)
       if (!lib_path)
         {
           fprintf
-            (stderr, 
+            (stderr,
              "Couldn't locate library: lib%s.a or lib%s.lib\n", name, name);
           exit (1);
         }
@@ -287,7 +287,7 @@ main (argc, argv)
         {
 	  addarg (expand_lib (&argv[i][2]));
         }
-      else if (!strcmp (argv [i], "-v") 
+      else if (!strcmp (argv [i], "-v")
             || !strcmp (argv [i], "-g")
             || !strcmp (argv [i], "-noinhibit-exec"))
         {

@@ -36,7 +36,7 @@ EXPECT = `if [ -f $${rootme}/../../expect/expect ] ; \
 RUNTEST = `if [ -f ${srcdir}/../../dejagnu/runtest ] ; \
            then echo ${srcdir}/../../dejagnu/runtest ; \
            else echo runtest ;  fi`
-RUNTESTFLAGS = 
+RUNTESTFLAGS =
 FLAGS_TO_PASS =
 
 #### host, target, and site specific Makefile frags come in here.

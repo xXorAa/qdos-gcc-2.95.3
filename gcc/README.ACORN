@@ -1,10 +1,10 @@
-Specifying the -g flag to GCC on a RISC iX machine requires upgrading the 
-standard assembler distributed with both RISC iX 1.1 and RISC iX 1.2 with a 
+Specifying the -g flag to GCC on a RISC iX machine requires upgrading the
+standard assembler distributed with both RISC iX 1.1 and RISC iX 1.2 with a
 replacement that is available from Acorn.  This version of the assembler is
-also an order of magnitude faster when assembling to an NFS mounted 
+also an order of magnitude faster when assembling to an NFS mounted
 file-system.
 
-Users of RISC iX 1.2 and above can obtain a copy of the assembler from the 
+Users of RISC iX 1.2 and above can obtain a copy of the assembler from the
 following places:
 
 1) Via ftp from acorn.acorn.co.uk, directory pub/riscix.

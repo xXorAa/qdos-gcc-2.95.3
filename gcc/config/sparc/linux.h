@@ -61,7 +61,7 @@ Boston, MA 02111-1307, USA.  */
    the GNU/Linux magical crtbegin.o file (see crtstuff.c) which
    provides part of the support for getting C++ file-scope static
    object constructed before entering `main'. */
-   
+
 #undef  STARTFILE_SPEC
 #define STARTFILE_SPEC \
   "%{!shared: \
@@ -92,16 +92,16 @@ Boston, MA 02111-1307, USA.  */
 
 #undef SIZE_TYPE
 #define SIZE_TYPE "unsigned int"
- 
+
 #undef PTRDIFF_TYPE
 #define PTRDIFF_TYPE "int"
-  
+
 #undef WCHAR_TYPE
 #define WCHAR_TYPE "long int"
-   
+
 #undef WCHAR_TYPE_SIZE
 #define WCHAR_TYPE_SIZE BITS_PER_WORD
-    
+
 #undef CPP_PREDEFINES
 #define CPP_PREDEFINES "-D__ELF__ -Dunix -D__sparc__ -Dlinux -Asystem(unix) -Asystem(posix)"
 

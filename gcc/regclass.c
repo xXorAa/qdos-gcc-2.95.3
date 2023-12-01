@@ -89,7 +89,7 @@ HARD_REG_SET losing_caller_save_reg_set;
 /* Data for initializing the above.  */
 
 static char initial_call_used_regs[] = CALL_USED_REGISTERS;
-  
+
 /* Indexed by hard register number, contains 1 for registers that are
    fixed use or call used registers that cannot hold quantities across
    calls even if we are willing to save and restore them.  call fixed
@@ -111,7 +111,7 @@ int n_non_fixed_regs;
    and are also considered fixed.  */
 
 char global_regs[FIRST_PSEUDO_REGISTER];
-  
+
 /* Table of register numbers in the order in which to try to use them.  */
 #ifdef REG_ALLOC_ORDER
 int reg_alloc_order[FIRST_PSEUDO_REGISTER] = REG_ALLOC_ORDER;
@@ -128,7 +128,7 @@ HARD_REG_SET reg_class_contents[N_REG_CLASSES];
 #define N_REG_INTS  \
   ((FIRST_PSEUDO_REGISTER + (HOST_BITS_PER_INT - 1)) / HOST_BITS_PER_INT)
 
-static unsigned int_reg_class_contents[N_REG_CLASSES][N_REG_INTS] 
+static unsigned int_reg_class_contents[N_REG_CLASSES][N_REG_INTS]
   = REG_CLASS_CONTENTS;
 
 /* For each reg class, number of regs it contains.  */
@@ -589,8 +589,8 @@ fix_register (name, fixed, call_used)
 	  static char* what_option[2][2] = {
 	    { "call-saved", "call-used" },
 	    { "no-such-option", "fixed" }};
-	  
-	  error ("can't use '%s' as a %s register", name, 
+
+	  error ("can't use '%s' as a %s register", name,
 		 what_option[fixed][call_used]);
 	}
       else
@@ -672,7 +672,7 @@ static char *prefclass;
 
    It might appear to be more general to have a bitmask of classes here,
    but since it is recommended that there be a class corresponding to the
-   union of most major pair of classes, that generality is not required. 
+   union of most major pair of classes, that generality is not required.
 
    This is available after `regclass' is run.  */
 
@@ -694,7 +694,7 @@ static int loop_cost;
 static rtx scan_one_insn	PROTO((rtx, int));
 static void record_reg_classes	PROTO((int, int, rtx *, enum machine_mode *,
 				       char *, const char **, rtx));
-static int copy_cost		PROTO((rtx, enum machine_mode, 
+static int copy_cost		PROTO((rtx, enum machine_mode,
 				       enum reg_class, int));
 static void record_address_regs	PROTO((rtx, enum reg_class, int));
 #ifdef FORBIDDEN_INC_DEC_CLASSES
@@ -877,7 +877,7 @@ scan_one_insn (insn, pass)
      Then handle any address registers.  Finally record the desired
      classes for any pseudos, doing it twice if some pair of
      operands are commutative.  */
-	     
+
   for (i = 0; i < recog_n_operands; i++)
     {
       op_costs[i] = init_cost;
@@ -1038,12 +1038,12 @@ regclass (f, nregs)
 	{
 	  insn = scan_one_insn (insn, pass);
 	}
-      
+
       /* Now for each register look at how desirable each class is
 	 and find which class is preferred.  Store that in
 	 `prefclass[REGNO]'.  Record in `altclass[REGNO]' the largest register
 	 class any of whose registers is better than memory.  */
-    
+
       if (pass == 0)
 	{
 	  prefclass = prefclass_buffer;
@@ -1096,7 +1096,7 @@ regclass (f, nregs)
 #endif
 		  )
 		alt = reg_class_subunion[(int) alt][class];
-	  
+
 	  /* If we don't add any classes, nothing to try.  */
 	  if (alt == best)
 	    alt = NO_REGS;
@@ -1130,7 +1130,7 @@ regclass (f, nregs)
    This procedure works alternative by alternative.  For each alternative
    we assume that we will be able to allocate all pseudos to their ideal
    register class and calculate the cost of using that alternative.  Then
-   we compute for each operand that is a pseudo-register, the cost of 
+   we compute for each operand that is a pseudo-register, the cost of
    having the pseudo allocated to each register class and using it in that
    alternative.  To this cost is added the cost of the alternative.
 
@@ -1176,7 +1176,7 @@ record_reg_classes (n_alts, n_ops, ops, modes, subreg_changes_size,
 	  /* Initially show we know nothing about the register class.  */
 	  classes[i] = NO_REGS;
 
-	  /* If this operand has no constraints at all, we can conclude 
+	  /* If this operand has no constraints at all, we can conclude
 	     nothing about it since anything is valid.  */
 
 	  if (*p == 0)
@@ -1218,7 +1218,7 @@ record_reg_classes (n_alts, n_ops, ops, modes, subreg_changes_size,
 		       || REGNO (ops[j]) < FIRST_PSEUDO_REGISTER)
 		{
 		  /* This op is a pseudo but the one it matches is not.  */
-		  
+
 		  /* If we can't put the other operand into a register, this
 		     alternative can't be used.  */
 
@@ -1404,7 +1404,7 @@ record_reg_classes (n_alts, n_ops, ops, modes, subreg_changes_size,
 	  constraints[i] = p;
 
 #ifdef CLASS_CANNOT_CHANGE_SIZE
-	  /* If we noted a subreg earlier, and the selected class is a 
+	  /* If we noted a subreg earlier, and the selected class is a
 	     subclass of CLASS_CANNOT_CHANGE_SIZE, zap it.  */
 	  if (subreg_changes_size[i]
 	      && (reg_class_subunion[(int) CLASS_CANNOT_CHANGE_SIZE]
@@ -1576,7 +1576,7 @@ copy_cost (x, mode, class, to_p)
   class = PREFERRED_RELOAD_CLASS (x, class);
 
 #ifdef HAVE_SECONDARY_RELOADS
-  /* If we need a secondary reload (we assume here that we are using 
+  /* If we need a secondary reload (we assume here that we are using
      the secondary reload as an intermediate, not a scratch register), the
      cost is that to load the input into the intermediate register, then
      to copy them.  We use a special value of TO_P to avoid recursion.  */
@@ -1671,7 +1671,7 @@ record_address_regs (x, class, scale)
 
 	/* If index and base registers are the same on this machine, just
 	   record registers in any non-constant operands.  We assume here,
-	   as well as in the tests below, that all addresses are in 
+	   as well as in the tests below, that all addresses are in
 	   canonical form.  */
 
 	else if (INDEX_REG_CLASS == BASE_REG_CLASS)
@@ -2114,7 +2114,7 @@ reg_scan_mark_refs (x, insn, note_flag, min_regno)
 	 Likewise if it is setting the destination from an address or from a
 	 value equivalent to an address or to the sum of an address and
 	 something else.
-		     
+
 	 But don't do any of this if the pseudo corresponds to a user
 	 variable since it should have already been set as a pointer based
 	 on the type.  */

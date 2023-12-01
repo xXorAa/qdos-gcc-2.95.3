@@ -18,7 +18,7 @@
 12/11/59,
 12/11/63,
 My Mom's House,
-Learning at home with my mother., 
+Learning at home with my mother.,
 This was the most learning I ever did.}
 
 @entry{12/11/63, 12/11/77, Brookline\, MA, Learning in the public school system.}

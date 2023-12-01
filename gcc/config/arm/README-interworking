@@ -90,7 +90,7 @@ then the following rules must be obeyed:
 	-mthumb-interwork specified on the command line.  (If the file
 	is assembled by calling gcc it will automatically pass on the
 	-mthumb-interwork switch to the assembler, provided that it
-	was specified on the gcc command line in the first place.) 
+	was specified on the gcc command line in the first place.)
 
 
 3. Support for old, non-interworking aware code.
@@ -145,7 +145,7 @@ declspec for individual functions, indicating that that particular
 function should support being called by non-interworking aware code.
 The function should be defined like this:
 
-	int __attribute__((interfacearm)) function 
+	int __attribute__((interfacearm)) function
 	{
 		... body of function ...
 	}
@@ -334,7 +334,7 @@ like this:
 _interwork_call_via_r0
 	bx 	pc
 	nop
-	
+
 	.code 32
 	tst	r0, #1
 	stmeqdb	r13!, {lr}
@@ -358,7 +358,7 @@ performs a BX instruction to call the function.
 The '_arm_return' code looks like this:
 
 	.code 32
-_arm_return:		
+_arm_return:
 	ldmia 	r13!, {r12}
 	bx 	r12
 	.code 16
@@ -407,7 +407,7 @@ if this function is now called from a Thumb mode piece of code
 outsside of the current file, the linker will generate a calling stub
 to switch from Thumb mode into ARM mode, and then this is immediately
 overridden by the function's header which switches back into Thumb
-mode. 
+mode.
 
 In addition the (interfacearm) attribute also forces the function to
 return by using the BX instruction, even if has not been compiled with
@@ -493,7 +493,7 @@ implies `-mthumb-interworking'.
    Given this test file:
 
      	int func (void) { return 1; }
-     
+
      	int call (int (* ptr)(void)) { return ptr (); }
 
    The following varying pieces of assembler are produced by the Thumb
@@ -506,7 +506,7 @@ version of GCC depending upon the command line options used:
      	_func:
      		mov	r0, #1
      		bx	lr
-     
+
      		.globl	_call
      		.thumb_func
      	_call:
@@ -529,7 +529,7 @@ link register.
      	_func:
      		mov	r0, #1
      		bx	lr
-     
+
      		.globl	_call
      		.thumb_func
      	_call:
@@ -549,7 +549,7 @@ than the previous version.
      	_func:
      		mov	r0, #1
      		bx	lr
-     
+
      		.globl	_call
      		.thumb_func
      	_call:
@@ -571,20 +571,20 @@ called from ARM code.
      	_func:
      		orr	r12, pc, #1
      		bx	r12
-     
+
      		.code	16
      		.globl .real_start_of_func
      		.thumb_func
      	.real_start_of_func:
      		mov	r0, #1
      		bx	lr
-     
+
      		.code	32
      		.globl	_call
      	_call:
      		orr	r12, pc, #1
      		bx	r12
-     
+
      		.code	16
      		.globl .real_start_of_call
      		.thumb_func
@@ -614,13 +614,13 @@ line):
      	_func:
      		mov	r0, #1
      		bx	lr
-     
+
      		.globl	_call
      		.code	32
      	_call:
      		orr	r12, pc, #1
      		bx	r12
-     
+
      		.code	16
      		.globl .real_start_of_call
      		.thumb_func
@@ -644,7 +644,7 @@ that call can be entered in ARM mode.
    Given a program (`prog.c') like this:
 
              extern int func_in_dll (void);
-     
+
              int main (void) { return func_in_dll(); }
 
    And a DLL source file (`dll.c') like this:

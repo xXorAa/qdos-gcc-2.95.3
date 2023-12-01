@@ -53,14 +53,14 @@ fprintf(FILE, "\t/* SP ignored by cret? */\n");     			\
 fprintf(FILE, "\tjmp cret\n");                                    	\
 } while (0)
 
-#undef INITIAL_FRAME_POINTER_OFFSET  
+#undef INITIAL_FRAME_POINTER_OFFSET
 #define INITIAL_FRAME_POINTER_OFFSET(DEPTH_VAR)	\
 {								\
   int offset, regno;		      				\
   offset = get_frame_size();					\
   offset = (offset <= 2)? 0: (offset -2);			\
   (DEPTH_VAR) = offset+10;						\
-}   
+}
 
 /* Value should be nonzero if functions must have frame pointers.
    Zero means the frame pointer need not be set up (and parms
@@ -68,7 +68,7 @@ fprintf(FILE, "\tjmp cret\n");                                    	\
    This is computed in `reload', in reload1.c.
   */
 
-#undef FRAME_POINTER_REQUIRED 
+#undef FRAME_POINTER_REQUIRED
 #define FRAME_POINTER_REQUIRED 1
 
 /* Offset within stack frame to start allocating local variables at.

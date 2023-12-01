@@ -27,7 +27,7 @@ Boston, MA 02111-1307, USA. */
 #include "i386/cygwin.h"
 
 /* Please keep changes to CPP_PREDEFINES in sync with i386/crtdll. The
-   only difference between the two should be __MSVCRT__ needed to 
+   only difference between the two should be __MSVCRT__ needed to
    distinguish MSVC from CRTDLL runtime in mingw headers. */
 #undef CPP_PREDEFINES
 #define CPP_PREDEFINES "-Di386 -D_WIN32 -DWIN32 -D__WIN32__ \

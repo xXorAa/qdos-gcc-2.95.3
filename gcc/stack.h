@@ -21,7 +21,7 @@ Boston, MA 02111-1307, USA.  */
    on top of obstacks for GNU C++.  */
 
 /* Stack of data placed on obstacks.  */
-   
+
 struct stack_level
 {
   /* Pointer back to previous such level.  */

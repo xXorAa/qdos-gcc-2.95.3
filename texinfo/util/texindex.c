@@ -234,7 +234,7 @@ main (argc, argv)
 
   flush_tempfiles (tempcount);
   exit (TI_NO_ERROR);
-  
+
   return 0; /* Avoid bogus warnings.  */
 }
 

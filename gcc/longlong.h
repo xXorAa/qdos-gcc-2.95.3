@@ -434,7 +434,7 @@ UDItype __umulsidi3 (USItype, USItype);
 	     : "=d" (__w)						\
 	     : "%dI" ((USItype) (u)),					\
 	       "dI" ((USItype) (v)));					\
-    __w; })  
+    __w; })
 #endif /* __i960__ */
 
 #if defined (__M32R__)
@@ -982,7 +982,7 @@ UDItype __umulsidi3 (USItype, USItype);
   __asm__ ("scan %1,1,%0"                                               \
            : "=r" ((USItype) (count))                                   \
            : "r" ((USItype) (x)));					\
-  } while (0)    
+  } while (0)
 #else
 /* SPARC without integer multiplication and divide instructions.
    (i.e. at least Sun4/20,40,60,65,75,110,260,280,330,360,380,470,490) */

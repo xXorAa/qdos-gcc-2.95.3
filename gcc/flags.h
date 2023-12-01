@@ -397,7 +397,7 @@ extern int flag_pic;
 
 extern int flag_exceptions;
 
-/* Nonzero means use the new model for exception handling. Replaces 
+/* Nonzero means use the new model for exception handling. Replaces
    -DNEW_EH_MODEL as a compile option. */
 
 extern int flag_new_exceptions;
@@ -419,7 +419,7 @@ extern int flag_inhibit_size_directive;
 extern int flag_function_sections;
 
 /* ... and similar for data.  */
- 
+
 extern int flag_data_sections;
 
 /* -fverbose-asm causes extra commentary information to be produced in

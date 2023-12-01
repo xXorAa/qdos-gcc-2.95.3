@@ -192,7 +192,7 @@ Tue Nov  7 15:41:30 1995  Stan Shebs  <shebs@andros.cygnus.com>
 	(CC_MWCPPC): Add -mpw_chars, disable warnings, add comments
 	explaining reasons for various flags.
 	(EXTRALIBS_PPC, EXTRALIBS_MWCPPC ): Put runtime library first.
-	
+
 Fri Oct 13 14:44:25 1995  Jason Molenda  (crash@phydeaux.cygnus.com)
 
 	* mh-aix, mh-sun:  Removed.
@@ -201,7 +201,7 @@ Fri Oct 13 14:44:25 1995  Jason Molenda  (crash@phydeaux.cygnus.com)
 
 	* mh-sco, mh-solaris, mh-sysv4 (X11_EXTRA_LIBS): Define.
 
-        * mh-hp300, mh-hpux, mh-hpux8, mh-solaris, mh-sun3, mh-sysv4: Don't 
+        * mh-hp300, mh-hpux, mh-hpux8, mh-solaris, mh-sun3, mh-sysv4: Don't
 	hardcode location of X stuff here.
 
 Thu Sep 28 13:14:56 1995  Stan Shebs  <shebs@andros.cygnus.com>

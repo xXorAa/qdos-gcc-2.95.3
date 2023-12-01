@@ -7,7 +7,7 @@
 
 #if 0 /* #ifndef USE_COLLECT2 */
 
-/* We use set vectors for the constructors/destructors. */ 
+/* We use set vectors for the constructors/destructors. */
 
 #undef ASM_OUTPUT_CONSTRUCTOR
 #undef ASM_OUTPUT_DESTRUCTOR
@@ -18,9 +18,9 @@
  */
 #define CTOR_LISTS_DEFINED_EXTERNALLY
 
-/* similar to default, but allows for the table defined by ld with gcc.ifile. 
+/* similar to default, but allows for the table defined by ld with gcc.ifile.
    nptrs is always 0.  So we need to instead check that __DTOR_LIST__[1] != 0.
-   The old check is left in so that the same macro can be used if and when  
+   The old check is left in so that the same macro can be used if and when
    a future version of gas does support section directives. */
 
 #define DO_GLOBAL_DTORS_BODY {int nptrs = *(int *)__DTOR_LIST__; int i; \
@@ -61,7 +61,7 @@
  */
 #define const_section()  text_section()
 #define fini_section() while (0)
-			       
+
 #undef CTORS_SECTION_ASM_OP
 #define CTORS_SECTION_ASM_OP "\t.data"
 #undef DTORS_SECTION_ASM_OP

@@ -222,7 +222,7 @@ do {								\
        REAL_VALUE_TO_TARGET_SINGLE (VALUE, l);		\
        asm_fprintf ((FILE), "%I0x%x", l);		\
      } while (0)
-  
+
 #undef ASM_OUTPUT_DOUBLE_OPERAND
 #define ASM_OUTPUT_DOUBLE_OPERAND(FILE,VALUE)		\
   do { long l[2];					\
@@ -432,7 +432,7 @@ extern int switch_table_difference_label_flag;
 
 /* Currently, JUMP_TABLES_IN_TEXT_SECTION must be defined in order to
    keep switch tables in the text section. */
-   
+
 #define JUMP_TABLES_IN_TEXT_SECTION 1
 
 /* Store in OUTPUT a string (made with alloca) containing

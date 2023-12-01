@@ -49,7 +49,7 @@ Boston, MA 02111-1307, USA.  */
 
 /* for 68k machines this only needs to be TRUE for the 68000 */
 
-#undef STRICT_ALIGNMENT     
+#undef STRICT_ALIGNMENT
 #define STRICT_ALIGNMENT 0
 
 /* Names to predefine in the preprocessor for this target machine.  */
@@ -63,7 +63,7 @@ Boston, MA 02111-1307, USA.  */
 #define LINK_SPEC "-X"
 
 /* Every structure or union's size must be a multiple of 4 bytes. */
-#define STRUCTURE_SIZE_BOUNDARY 16 
+#define STRUCTURE_SIZE_BOUNDARY 16
 
 /* No data type wants to be aligned rounder than this.  */
 #undef BIGGEST_ALIGNMENT

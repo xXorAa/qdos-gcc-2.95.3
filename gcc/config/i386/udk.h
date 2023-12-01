@@ -9,10 +9,10 @@
 #include "i386/sysv5.h"
 
 #undef MD_EXEC_PREFIX
-#define MD_EXEC_PREFIX 		"/udk/usr/ccs/bin/" 
+#define MD_EXEC_PREFIX 		"/udk/usr/ccs/bin/"
 
 #undef MD_STARTFILE_PREFIX
-#define MD_STARTFILE_PREFIX 	"/udk/usr/ccs/lib/" 
+#define MD_STARTFILE_PREFIX 	"/udk/usr/ccs/lib/"
 
 #define STANDARD_INCLUDE_DIR	"/udk/usr/include"
 

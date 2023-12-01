@@ -135,7 +135,7 @@ extern int target_flags;
 #define WCHAR_TYPE_SIZE BITS_PER_UNIT
 
 /* Define this macro if it is advisable to hold scalars in registers
-   in a wider mode than that declared by the program.  In such cases, 
+   in a wider mode than that declared by the program.  In such cases,
    the value is constrained to be within the bounds of the declared
    type, but kept valid in the wider mode.  The signedness of the
    extension may differ from that of the type.  */
@@ -158,7 +158,7 @@ extern int target_flags;
 #define BYTES_BIG_ENDIAN 1
 
 /* Define this if most significant word of a multiword number is lowest
-   numbered. 
+   numbered.
 
    For 29k we can decide arbitrarily since there are no machine instructions
    for them.  Might as well be consistent with bytes. */
@@ -507,7 +507,7 @@ extern int target_flags;
 
    For any two classes, it is very desirable that there be another
    class that represents their union.
-   
+
    The 29k has nine registers classes: LR0_REGS, GENERAL_REGS, SPECIAL_REGS,
    BP_REGS, FC_REGS, CR_REGS, Q_REGS, ACCUM_REGS, and ACCUM0_REGS.
    LR0_REGS, BP_REGS, FC_REGS, CR_REGS, and Q_REGS contain just the single
@@ -884,7 +884,7 @@ extern struct rtx_def *a29k_get_reloaded_address ();
  ? 16 - (CUM) : 0)
 
 /* Perform any needed actions needed for a function that is receiving a
-   variable number of arguments. 
+   variable number of arguments.
 
    CUM is as above.
 
@@ -1242,7 +1242,7 @@ extern char *a29k_function_name;
 
 /* Nonzero if access to memory by bytes is no faster than for words.
    Also non-zero if doing byte operations (specifically shifts) in registers
-   is undesirable. 
+   is undesirable.
 
    On the 29k, large masks are expensive, so we want to use bytes to
    manipulate fields.  */
@@ -1313,7 +1313,7 @@ extern char *a29k_function_name;
 
    We only care about the cost if it is valid in an insn.  The only
    constants that cause an insn to generate more than one machine
-   instruction are those involving floating-point or address.  So 
+   instruction are those involving floating-point or address.  So
    only these need be expensive.  */
 
 #define CONST_COSTS(RTX,CODE,OUTER_CODE) \
@@ -1325,7 +1325,7 @@ extern char *a29k_function_name;
     return 6;							\
   case CONST_DOUBLE:						\
     return GET_MODE (RTX) == SFmode ? 6 : 8;
-    
+
 /* Provide the costs of a rtl expression.  This is in the body of a
    switch on CODE.
 

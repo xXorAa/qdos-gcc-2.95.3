@@ -100,7 +100,7 @@ extern char *make_temp_file PROTO ((char *));
 
 /* Some systems have an ISCOFF macro, but others do not.  In some cases
    the macro may be wrong.  MY_ISCOFF is defined in tm.h files for machines
-   that either do not have an ISCOFF macro in /usr/include or for those 
+   that either do not have an ISCOFF macro in /usr/include or for those
    where it is wrong.  */
 
 #ifndef MY_ISCOFF
@@ -160,7 +160,7 @@ int do_collecting = 0;
 
 /* Linked lists of constructor and destructor names.  */
 
-struct id 
+struct id
 {
   struct id *next;
   int sequence;
@@ -265,7 +265,7 @@ static char *libexts[3] = {"a", "so", NULL};  /* possible library extentions */
 #endif
 
 void error		PVPROTO((const char *, ...)) ATTRIBUTE_PRINTF_1;
-void fatal		PVPROTO((const char *, ...)) 
+void fatal		PVPROTO((const char *, ...))
   ATTRIBUTE_PRINTF_1 ATTRIBUTE_NORETURN;
 void fatal_perror	PVPROTO((const char *, ...))
   ATTRIBUTE_PRINTF_1 ATTRIBUTE_NORETURN;
@@ -314,7 +314,7 @@ dup2 (oldfd, newfd)
   int fdtmp[256];
   int fdx = 0;
   int fd;
- 
+
   if (oldfd == newfd)
     return oldfd;
   close (newfd);
@@ -456,13 +456,13 @@ fatal VPROTO((const char * msgid, ...))
   const char *msgid;
 #endif
   va_list ap;
-  
+
   VA_START (ap, msgid);
 
 #ifndef ANSI_PROTOTYPES
   msgid = va_arg (ap, const char *);
 #endif
-  
+
   fprintf (stderr, "collect2: ");
   vfprintf (stderr, _(msgid), ap);
   fprintf (stderr, "\n");
@@ -480,9 +480,9 @@ error VPROTO((const char * msgid, ...))
   const char * msgid;
 #endif
   va_list ap;
- 
+
   VA_START (ap, msgid);
-  
+
 #ifndef ANSI_PROTOTYPES
   msgid = va_arg (ap, const char *);
 #endif
@@ -799,7 +799,7 @@ static char *target_machine = TARGET_MACHINE;
 #endif
 
 /* Search for NAME using prefix list PPREFIX.  We only look for executable
-   files. 
+   files.
 
    Return 0 if not found, otherwise return its name, allocated with malloc.  */
 
@@ -814,7 +814,7 @@ find_a_file (pprefix, name)
 
   if (debug)
     fprintf (stderr, "Looking for '%s'\n", name);
-  
+
 #ifdef EXECUTABLE_SUFFIX
   len += strlen (EXECUTABLE_SUFFIX);
 #endif
@@ -835,7 +835,7 @@ find_a_file (pprefix, name)
 
 	  if (debug)
 	    fprintf (stderr, "  - found: absolute path\n");
-	  
+
 	  return temp;
 	}
 
@@ -844,7 +844,7 @@ find_a_file (pprefix, name)
 	   So try appending that.  */
       strcpy (temp, name);
 	strcat (temp, EXECUTABLE_SUFFIX);
-	
+
 	if (access (temp, X_OK) == 0)
 	  return temp;
 #endif
@@ -857,7 +857,7 @@ find_a_file (pprefix, name)
       {
 	strcpy (temp, pl->prefix);
 	strcat (temp, name);
-	
+
 	if (access (temp, X_OK) == 0)
 	  return temp;
 
@@ -865,7 +865,7 @@ find_a_file (pprefix, name)
 	/* Some systems have a suffix for executable files.
 	   So try appending that.  */
 	strcat (temp, EXECUTABLE_SUFFIX);
-	
+
 	if (access (temp, X_OK) == 0)
 	  return temp;
 #endif
@@ -938,7 +938,7 @@ prefix_from_string (p, pprefix)
 
   if (debug)
     fprintf (stderr, "Convert string '%s' into prefixes, separator = '%c'\n", p, PATH_SEPARATOR);
-  
+
   startp = endp = p;
   while (1)
     {
@@ -959,7 +959,7 @@ prefix_from_string (p, pprefix)
 
 	  if (debug)
 	    fprintf (stderr, "  - add prefix: %s\n", nstore);
-	  
+
 	  add_prefix (pprefix, nstore);
 	  if (*endp == 0)
 	    break;
@@ -1039,7 +1039,7 @@ main (argc, argv)
      are called.  */
   {
     int i;
-    
+
     for (i = 1; argv[i] != NULL; i ++)
       if (! strcmp (argv[i], "-debug"))
 	debug = 1;
@@ -1142,7 +1142,7 @@ main (argc, argv)
   strcpy (full_strip_suffix, target_machine);
   strcat (full_strip_suffix, "-");
   strcat (full_strip_suffix, strip_suffix);
-  
+
   full_gstrip_suffix
     = xcalloc (strlen (gstrip_suffix) + strlen (target_machine) + 2, 1);
   strcpy (full_gstrip_suffix, target_machine);
@@ -1256,7 +1256,7 @@ main (argc, argv)
   add_prefix (&libpath_lib_dirs, "/usr/lib");
 #endif
 
-  /* Get any options that the upper GCC wants to pass to the sub-GCC.  
+  /* Get any options that the upper GCC wants to pass to the sub-GCC.
 
      AIX support needs to know if -shared has been specified before
      parsing commandline arguments.  */
@@ -1400,7 +1400,7 @@ main (argc, argv)
 #ifdef COLLECT_EXPORT_LIST
 	  /* libraries can be specified directly, i.e. without -l flag.  */
        	  else
-       	    { 
+       	    {
 	      /* If we will use an import list for this library,
 		 we should exclude it from ld args.  */
 	      if (use_import_list (arg))
@@ -1661,7 +1661,7 @@ main (argc, argv)
   /* Let scan_prog_file do any final mods (OSF/rose needs this for
      constructors/destructors in shared libraries.  */
   scan_prog_file (output_file, PASS_SECOND);
-#endif 
+#endif
 
   maybe_unlink (c_file);
   maybe_unlink (o_file);
@@ -2136,7 +2136,7 @@ write_c_file_glob (stream, name)
   int frames = (frame_tables.number > 0);
 
   fprintf (stream, "typedef void entry_pt();\n\n");
-    
+
   write_list_with_asm (stream, "extern entry_pt ", constructors.first);
 
   if (frames)
@@ -2336,7 +2336,7 @@ scan_prog_file (prog_name, which_pass)
 
       if (ch != '_')
 	continue;
-  
+
       name = p;
       /* Find the end of the symbol name.
 	 Do not include `|', because Encore nm can tack that on the end.  */
@@ -2525,7 +2525,7 @@ locatelib (name)
       char *ld_rules;
       char *ldr = 0;
       /* counting elements in array, need 1 extra for null */
-      cnt = 1;  
+      cnt = 1;
       ld_rules = (char *) (ld_2->ld_rules + code);
       if (ld_rules)
 	{
@@ -2553,7 +2553,7 @@ locatelib (name)
       if (ldr)
 	{
 	  *pp++ = ldr;
-	  for (; *ldr != 0; ldr++) 
+	  for (; *ldr != 0; ldr++)
 	    if (*ldr == ':')
 	      {
 		*ldr++ = 0;
@@ -2563,7 +2563,7 @@ locatelib (name)
       if (q)
 	{
 	  *pp++ = q;
-	  for (; *q != 0; q++) 
+	  for (; *q != 0; q++)
 	    if (*q == ':')
 	      {
 		*q++ = 0;
@@ -2602,7 +2602,7 @@ locatelib (name)
 /* Scan the _DYNAMIC structure of the output file to find shared libraries
    that it depends upon and any constructors or destructors they contain.  */
 
-static void 
+static void
 scan_libraries (prog_name)
      char *prog_name;
 {
@@ -2677,7 +2677,7 @@ scan_libraries (prog_name)
    the output file depends upon and their initialization/finalization
    routines, if any.  */
 
-static void 
+static void
 scan_libraries (prog_name)
      char *prog_name;
 {
@@ -2774,7 +2774,7 @@ scan_libraries (prog_name)
 	fatal ("dynamic dependency %s not found", buf);
 
       /* Find the end of the symbol name.  */
-      for (end = p; 
+      for (end = p;
 	   (ch2 = *end) != '\0' && ch2 != '\n' && !ISSPACE (ch2) && ch2 != '|';
 	   end++)
 	continue;
@@ -2972,7 +2972,7 @@ scan_prog_file (prog_name, which_pass)
 			  /* If we are building a shared object on AIX we need
 			     to explicitly export all global symbols or add
 			     them to import list.  */
-			  if (shared_obj) 
+			  if (shared_obj)
 			    {
 			      if (which_pass == PASS_OBJ && (! export_flag))
 				add_to_list (&exports, name);

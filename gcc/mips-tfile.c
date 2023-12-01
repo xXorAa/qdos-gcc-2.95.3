@@ -4,7 +4,7 @@
    assembly access to debug information).
    Copyright (C) 1991, 93-95, 97, 98, 1999 Free Software Foundation, Inc.
    Contributed by Michael Meissner (meissner@cygnus.com).
-   
+
 This file is part of GNU CC.
 
 GNU CC is free software; you can redistribute it and/or modify
@@ -97,31 +97,31 @@ Boston, MA 02111-1307, USA.  */
 		array, pointer, function, etc. qualifiers.  The
 		current base types that I have documentation for are:
 
-			btNil		-- undefined 
+			btNil		-- undefined
 			btAdr		-- address - integer same size as ptr
-			btChar		-- character 
-			btUChar		-- unsigned character 
-			btShort		-- short 
-			btUShort	-- unsigned short 
-			btInt		-- int 
-			btUInt		-- unsigned int 
-			btLong		-- long 
-			btULong		-- unsigned long 
-			btFloat		-- float (real) 
-			btDouble	-- Double (real) 
-			btStruct	-- Structure (Record) 
-			btUnion		-- Union (variant) 
-			btEnum		-- Enumerated 
-			btTypedef	-- defined via a typedef isymRef 
-			btRange		-- subrange of int 
-			btSet		-- pascal sets 
-			btComplex	-- fortran complex 
-			btDComplex	-- fortran double complex 
-			btIndirect	-- forward or unnamed typedef 
-			btFixedDec	-- Fixed Decimal 
-			btFloatDec	-- Float Decimal 
-			btString	-- Varying Length Character String 
-			btBit		-- Aligned Bit String 
+			btChar		-- character
+			btUChar		-- unsigned character
+			btShort		-- short
+			btUShort	-- unsigned short
+			btInt		-- int
+			btUInt		-- unsigned int
+			btLong		-- long
+			btULong		-- unsigned long
+			btFloat		-- float (real)
+			btDouble	-- Double (real)
+			btStruct	-- Structure (Record)
+			btUnion		-- Union (variant)
+			btEnum		-- Enumerated
+			btTypedef	-- defined via a typedef isymRef
+			btRange		-- subrange of int
+			btSet		-- pascal sets
+			btComplex	-- fortran complex
+			btDComplex	-- fortran double complex
+			btIndirect	-- forward or unnamed typedef
+			btFixedDec	-- Fixed Decimal
+			btFloatDec	-- Float Decimal
+			btString	-- Varying Length Character String
+			btBit		-- Aligned Bit String
 			btPicture	-- Picture
 			btVoid		-- Void (MIPS cc revision >= 2.00)
 
@@ -129,12 +129,12 @@ Boston, MA 02111-1307, USA.  */
 		current type qualifier fields I have documentation for
 		are:
 
-			tqNil		-- no more qualifiers 
-			tqPtr		-- pointer 
-			tqProc		-- procedure 
-			tqArray		-- array 
-			tqFar		-- 8086 far pointers 
-			tqVol		-- volatile 
+			tqNil		-- no more qualifiers
+			tqPtr		-- pointer
+			tqProc		-- procedure
+			tqArray		-- array
+			tqFar		-- 8086 far pointers
+			tqVol		-- volatile
 
 
    The dense number table is used in the front ends, and disappears by
@@ -243,7 +243,7 @@ Boston, MA 02111-1307, USA.  */
 	}
 
    Mips-tdump produces the following information:
-   
+
    Global file header:
        magic number             0x162
        # sections               2
@@ -252,12 +252,12 @@ Boston, MA 02111-1307, USA.  */
        symbolic header size     96
        optional header          56
        flags                    0x0
-   
+
    Symbolic header, magic number = 0x7009, vstamp = 1.31:
-   
+
        Info                      Offset      Number       Bytes
        ====                      ======      ======      =====
-   
+
        Line numbers                 380           4           4 [13]
        Dense numbers                  0           0           0
        Procedures Tables            384           1          52
@@ -269,14 +269,14 @@ Boston, MA 02111-1307, USA.  */
        File Tables                 1008           2         144
        Relative Files                 0           0           0
        External Symbols            1152          20         320
-   
+
    File #0, "hello2.c"
-   
+
        Name index  = 1          Readin      = No
        Merge       = No         Endian      = LITTLE
        Debug level = G2         Language    = C
        Adr         = 0x00000000
-   
+
        Info                       Start      Number        Size      Offset
        ====                       =====      ======        ====      ======
        Local strings                  0          15          15         784
@@ -286,7 +286,7 @@ Boston, MA 02111-1307, USA.  */
        Procedures                     0           1          52         384
        Auxiliary symbols              0          14          56         628
        Relative Files                 0           0           0           0
-   
+
     There are 6 local symbols, starting at 436
 
 	Symbol# 0: "hello2.c"
@@ -1077,7 +1077,7 @@ typedef struct efdr {
 } efdr_t;
 
 /* Pre-initialized extended file structure.  */
-static efdr_t init_file = 
+static efdr_t init_file =
 {
   {			/* FDR structure */
     0,			/* adr:		memory address of beginning of file */
@@ -2218,7 +2218,7 @@ add_aux_sym_tir (t, state, hash_tbl)
   ret = vp->num_allocated++;
 
   /* Add bitfield length if it exists.
-     
+
      NOTE:  Mips documentation claims bitfield goes at the end of the
      AUX record, but the DECstation compiler emits it here.
      (This would only make a difference for enum bitfields.)
@@ -4093,7 +4093,7 @@ write_varray (vp, offset, str)
       fprintf (stderr, ", offset = %7lu, size = %7lu, %s\n",
 	       (unsigned long) offset, vp->num_allocated * vp->object_size, str);
     }
-  
+
   if (file_offset != offset
       && fseek (object_stream, (long)offset, SEEK_SET) < 0)
     pfatal_with_name (object_name);

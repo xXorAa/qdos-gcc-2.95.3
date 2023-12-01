@@ -235,9 +235,9 @@ do {									   \
 } while (0)
 
 /* Support the ctors/dtors and other sections.  */
- 
+
 /* Define the pseudo-ops used to switch to the .ctors and .dtors sections.
- 
+
    Note that we want to give these sections the SHF_WRITE attribute
    because these sections will actually contain data (i.e. tables of
    addresses of functions in the current root executable or shared library
@@ -253,12 +253,12 @@ do {									   \
 
 #define CTORS_SECTION_ASM_OP    "\t.section\t.ctors,\"aw\""
 #define DTORS_SECTION_ASM_OP    "\t.section\t.dtors,\"aw\""
- 
+
 /* A list of other sections which the compiler might be "in" at any
    given time.  */
 #undef EXTRA_SECTIONS
 #define EXTRA_SECTIONS in_sdata, in_rdata, in_ctors, in_dtors
- 
+
 #define INVOKE__main
 #define NAME__MAIN "__gccmain"
 #define SYMBOL__MAIN __gccmain
@@ -305,11 +305,11 @@ void FN ()                                                            \
 #define CTOR_LIST_BEGIN                                 \
 asm (CTORS_SECTION_ASM_OP);                             \
 func_ptr __CTOR_LIST__[1] = { (func_ptr) (-1) }
- 
+
 #define CTOR_LIST_END                                   \
 asm (CTORS_SECTION_ASM_OP);                             \
 func_ptr __CTOR_END__[1] = { (func_ptr) 0 };
- 
+
 #define DTOR_LIST_BEGIN                                 \
 asm (DTORS_SECTION_ASM_OP);                             \
 func_ptr __DTOR_LIST__[1] = { (func_ptr) (-1) }

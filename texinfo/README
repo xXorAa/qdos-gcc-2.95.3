@@ -44,7 +44,7 @@ Texinfo source files (in ./doc):
                                 in GNU Emacs, TeX, makeinfo, and the
                                 Emacs Lisp Texinfo formatting commands.
 
-    info.texi                   This manual tells you how to use 
+    info.texi                   This manual tells you how to use
                                 Info.  This document comes as part of
                                 GNU Emacs.  If you do not have Emacs,
                                 you can format this Texinfo source
@@ -94,29 +94,29 @@ Source files for standalone C programs (./lib, ./makeinfo, ./info):
 
 Installation files:
 
-    configure                   This file creates a Makefile 
+    configure                   This file creates a Makefile
                                 which in turn creates an `info' or
                                 `makeinfo' executable, or a C sources
                                 distribution.
 
-    configure.in                This is a template for creating 
+    configure.in                This is a template for creating
                                 `configure' using Autoconf.
 
-    Makefile.in                 This is a template for `configure' 
+    Makefile.in                 This is a template for `configure'
                                 to use to make a Makefile.  Created by
                                 Automake.
-                               
+
     Makefile.am                 This is a template for Automake
                                 to use to make a Makefile.in.
-                               
+
 
 Other files (util):
 
     NEWS                        This contains a summary of new
-                                features since the first edition 
+                                features since the first edition
                                 of Texinfo.
 
-    fixfonts                    This is a shell script to install the 
+    fixfonts                    This is a shell script to install the
                                 `lcircle10' TeX fonts as an alias for
                                 the `circle10' fonts.  In some older
                                 TeX distributions the names are

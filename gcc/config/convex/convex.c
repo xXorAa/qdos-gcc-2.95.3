@@ -110,7 +110,7 @@ psw_disable_float ()
       p[1] &= ~0x1000c400;
       p = (int *) p[2];
     }
-#endif  
+#endif
 }
 
 /* Here to output code for a compare insn.  Output nothing, just
@@ -213,8 +213,8 @@ output_condjump (label, cond, jbr_sense)
 }
 
 /* Return 1 if OP is valid for cmpsf.
-   In IEEE mode, +/- zero compares are not handled by 
-     the immediate versions of eq.s and on some machines, lt.s, and le.s.  
+   In IEEE mode, +/- zero compares are not handled by
+     the immediate versions of eq.s and on some machines, lt.s, and le.s.
    So disallow 0.0 as the immediate operand of xx.s compares in IEEE mode. */
 
 int
@@ -362,7 +362,7 @@ expand_movstr (operands)
       load = gen_rtx (SET, VOIDmode, reg, src);
       store = gen_rtx (SET, VOIDmode, dest, reg);
 
-      /* Emit the load and the store from last time. 
+      /* Emit the load and the store from last time.
 	 When we emit a store, we can reuse its temp reg. */
       emit_insn (load);
       if (prev_store)
@@ -439,7 +439,7 @@ check_float_value (mode, dp, overflow)
 	{
 	  *dp = -MAX_FLOAT;
 	  return 1;
-	}	
+	}
       else if ((d > 0 && d < MIN_FLOAT) || (d < 0 && d > -MIN_FLOAT))
 	{
 	  *dp = 0.0;
@@ -467,7 +467,7 @@ asm_declare_function_name (file, name, decl)
   extern char *version_string;
   static char vers[4];
   int i;
-  
+
   p = version_string;
   for (i = 0; i < 3; ) {
     c = *p;
@@ -520,7 +520,7 @@ print_operand (file, x, code)
       switch (GET_MODE (x)) {
       case DFmode:
 #if 0 /* doesn't work, produces dfloats */
-	REAL_VALUE_TO_TARGET_DOUBLE (d, u); 
+	REAL_VALUE_TO_TARGET_DOUBLE (d, u);
 #else
 	{
 	  union { double d; int i[2]; } t;
@@ -640,7 +640,7 @@ replace_arg_pushes ()
      1 - CONST_INT, the number of bytes in the arg list
      2 - CONST_INT, the number of arguments
      3 - CONST_INT, the number of bytes to pop
-     4 - address of the arg list.  
+     4 - address of the arg list.
  */
 
 char *

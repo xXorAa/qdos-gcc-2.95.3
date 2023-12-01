@@ -999,7 +999,7 @@ main (argc, argv)
           if (sscanf (optarg, "%d", &fill_column) != 1)
             {
               fprintf (stderr,
-                       _("%s: %s arg must be numeric, not `%s'.\n"), 
+                       _("%s: %s arg must be numeric, not `%s'.\n"),
                        "--fill-column", progname, optarg);
               usage (FATAL);
             }
@@ -1008,7 +1008,7 @@ main (argc, argv)
         case 'F':
           force++; /* Do not remove erroneous output.  */
           break;
-          
+
         case 'h':
           usage (NO_ERROR);
           break;
@@ -1035,7 +1035,7 @@ main (argc, argv)
           if (set_paragraph_indent (optarg) < 0)
             {
               fprintf (stderr,
-   _("%s: --paragraph-indent arg must be numeric/`none'/`asis', not `%s'.\n"), 
+   _("%s: --paragraph-indent arg must be numeric/`none'/`asis', not `%s'.\n"),
                        progname, optarg);
               usage (FATAL);
             }
@@ -1061,13 +1061,13 @@ main (argc, argv)
               free (tmp);
             }
           break;
- 
+
         case 'r':
           /* User specified reference warning limit. */
           if (sscanf (optarg, "%d", &reference_warning_limit) != 1)
             {
               fprintf (stderr,
-                     _("%s: %s arg must be numeric, not `%s'.\n"), 
+                     _("%s: %s arg must be numeric, not `%s'.\n"),
                      "--reference-limit", progname, optarg);
               usage (FATAL);
             }
@@ -1078,7 +1078,7 @@ main (argc, argv)
           if (set_footnote_style (optarg) < 0)
             {
               fprintf (stderr,
-          _("%s: --footnote-style arg must be `separate' or `end', not `%s'.\n"), 
+          _("%s: --footnote-style arg must be `separate' or `end', not `%s'.\n"),
                        progname, optarg);
               usage (FATAL);
             }
@@ -1495,7 +1495,7 @@ expand_filename (filename, input_name)
       strcpy (filename + i, ".info");
       return (filename);
     }
-        
+
   if (filename[0] == '.' || filename[0] == '/')
     return (filename);
 
@@ -1503,7 +1503,7 @@ expand_filename (filename, input_name)
     {
       /* Make it so that relative names work. */
       char *result;
-      
+
       i = strlen (input_name) - 1;
 
       result = (char *)xmalloc (1 + strlen (input_name) + strlen (filename));
@@ -1533,7 +1533,7 @@ full_pathname (filename)
   /* No filename given? */
   if (!filename || !(initial_character = *filename))
     return (xstrdup (""));
-  
+
   /* Already absolute? */
   if ((initial_character == '/') ||
       ((strncmp (filename, "./", 2) == 0) ||
@@ -1814,12 +1814,12 @@ get_until_in_line (expand, match, string)
         @end macro
 
         @node @foo{A,B}, next, prev, top
-     
+
      Otherwise, the `,' separating the macro args A and B is taken as
      the node argument separator, so the node name is `@foo{A'.  This
      expansion is only necessary on the first call, since we expand the
      whole line then.
-     
+
      Furthermore, if we're executing a string, don't do it -- we'll end
      up shrinking the execution string which is currently aliased to
      `input_text', so it might get moved, and not updated in the
@@ -1830,18 +1830,18 @@ get_until_in_line (expand, match, string)
     {
       char *xp;
       unsigned xp_len, new_len;
-      
+
       /* Get original string from input.  */
       unsigned raw_len = limit - input_text_offset;
       char *str = xmalloc (raw_len + 1);
       strncpy (str, input_text + input_text_offset, raw_len);
       str[raw_len] = 0;
-      
+
       /* Expand it.  */
       xp = expansion (str, 0);
       xp_len = strlen (xp);
       free (str);
-      
+
       /* Plunk the expansion into the middle of `input_text' --
          which is terminated by a newline, not a null.  */
       str = xmalloc (real_bottom - limit + 1);
@@ -1853,7 +1853,7 @@ get_until_in_line (expand, match, string)
 	       real_bottom - limit + 1);
       free (str);
       free (xp);
-      
+
       limit += xp_len - raw_len;
       real_bottom += xp_len - raw_len;
     }
@@ -2048,7 +2048,7 @@ convert_from_file (name)
 
   convert_from_loaded_file (name);
 }
-  
+
 void
 convert_from_loaded_file (name)
      char *name;
@@ -3806,7 +3806,7 @@ discard_insertions (specials_ok)
         {
           char *offender = insertion_type_pname (insertion_stack->insertion);
           char *current_filename = input_filename;
-          
+
           input_filename = insertion_stack->filename;
           line_number = insertion_stack->line_number;
           line_error (_("No matching `%cend %s'"), COMMAND_PREFIX, offender);
@@ -3925,7 +3925,7 @@ cm_accent (arg)
       else if (strcmp (command, ",") == 0)     /* cedilla */
         add_word (",");
     }
-} 
+}
 
 /* Non-English letters/characters that don't insert themselves.  */
 void
@@ -4753,7 +4753,7 @@ cm_node ()
 
   if (verbose_mode)
     printf (_("Formatting node %s...\n"), node);
-    
+
 #if defined (HAVE_MACROS)
   if (macro_expansion_output_stream && !executing_string)
     remember_itext (input_text, input_text_offset);
@@ -5793,7 +5793,7 @@ cm_xref (arg)
                   && input_text[temp] != '\t')
                {
                  line_error (
-                          _("`.' or `,' must follow cross reference, not %c"), 
+                          _("`.' or `,' must follow cross reference, not %c"),
                              input_text[temp]);
                 }
               break;
@@ -5868,12 +5868,12 @@ cm_uref (arg, start_pos, end_pos)
       else
         {
           extern int printing_index;
-          
+
           if (!printing_index)
             add_char ('`');
-            
+
           add_word (arg);
-          
+
           if (!printing_index)
             add_char ('\'');
         }
@@ -5927,7 +5927,7 @@ cm_image (arg)
       if (arg) free (arg);
       arg = get_xref_token ();
       if (arg) free (arg);
-      
+
       if (*name_arg)
         {
           /* Try to open foo.txt.  */
@@ -5941,21 +5941,21 @@ cm_image (arg)
               int ch;
               int save_inhibit_indentation = inhibit_paragraph_indentation;
               int save_filling_enabled = filling_enabled;
-              
+
               inhibit_paragraph_indentation = 1;
               filling_enabled = 0;
               last_char_was_newline = 0;
-              
+
               /* Maybe we need to remove the final newline if the image
                  file is only one line to allow in-line images.  On the
                  other hand, they could just make the file without a
                  final newline.  */
               while ((ch = getc (image_file)) != EOF)
                 add_char (ch);
-              
+
               inhibit_paragraph_indentation = save_inhibit_indentation;
               filling_enabled = save_filling_enabled;
-              
+
               if (fclose (image_file) != 0) {
                 perror (name);
               }
@@ -6490,7 +6490,7 @@ handle_variable_internal (action, name)
                     }
                   free (freeable_line);
                 }
-              
+
               if (!done)
                 {
                   int save = line_number;
@@ -6499,7 +6499,7 @@ handle_variable_internal (action, name)
                               condition);
                   line_number = save;
                 }
-                
+
               /* We found the end of a false @ifset/ifclear.  If we are
                  in a menu, back up over the newline that ends the ifset,
                  since that newline may also begin the next menu entry. */
@@ -6646,7 +6646,7 @@ expansion (str, implicit_code)
   result = xmalloc (1 + length);
   memcpy (result, (char *) (output_paragraph + start), length);
   result[length] = 0;
-  
+
   /* Pretend it never happened.  */
   output_paragraph_offset = start;
   paragraph_is_open = saved_paragraph_is_open;
@@ -6784,7 +6784,7 @@ cm_item ()
             /* We need this to determine if we have two @item's in a row
                (see test just below).  */
             static int last_item_output_position = 0;
-            
+
             /* Get rid of extra characters. */
             kill_self_indent (-1);
 
@@ -6793,7 +6793,7 @@ cm_item ()
                @itemx, though.  */
             if (!itemx_flag && last_item_output_position == output_position)
               insert ('\n');
-              
+
             /* `close_paragraph' almost does what we want.  The problem
                is when paragraph_is_open, and last_char_was_newline, and
                the last newline has been turned into a space, because
@@ -8069,7 +8069,7 @@ cm_synindex ()
       name_index_alist[target]->write_index
         = name_index_alist[source]->write_index;
     }
-  
+
   free (abbrev1);
   free (abbrev2);
 }
@@ -8214,7 +8214,7 @@ sort_index (index)
       /* If this particular entry should be printed as a "code" index,
          then wrap the entry with "@code{...}". */
       array[count - 1]->entry = expansion (temp->entry, index->code);
-      
+
       temp = temp->next;
     }
   array[count] = (INDEX_ELT *) NULL;    /* terminate the array. */
@@ -8274,7 +8274,7 @@ cm_printindex ()
   /* This will probably be enough.  */
   line_length = 100;
   line = xmalloc (line_length);
-  
+
   for (item = 0; (index = array[item]); item++)
     {
       /* A pathological document might have an index entry outside of any
@@ -8285,7 +8285,7 @@ cm_printindex ()
       if (new_length < 37) /* minimum length used below */
         new_length = 37;
       new_length += strlen (index_node) + 7; /* * : .\n\0 */
-      
+
       if (new_length > line_length)
         {
           line_length = new_length;
@@ -8305,7 +8305,7 @@ cm_printindex ()
     }
 
   free (line);
-  
+
 #if defined (HAVE_MACROS)
   me_inhibit_expansion--;
 #endif /* HAVE_MACROS */
@@ -9548,7 +9548,7 @@ get_file_info_in_path (filename, path, finfo)
         (filename[1] == '.' && filename[2] == '/')))
 #ifdef WIN32
       /* Handle names that look like "d:/foo/bar" */
-      || (isalpha (*filename) && filename [1] == ':' 
+      || (isalpha (*filename) && filename [1] == ':'
           && (filename [2] == '/' || filename [2] == '\\'))
 #endif
      )

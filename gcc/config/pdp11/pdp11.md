@@ -21,7 +21,7 @@
 
 
 ;; HI is 16 bit
-;; QI is 8 bit 
+;; QI is 8 bit
 
 ;;- See file "rtl.def" for documentation on define_insn, match_*, et. al.
 
@@ -33,28 +33,28 @@
 ;; Compare instructions.
 
 ;; currently we only support df floats, which saves us quite some
-;; hassle switching the FP mode! 
-;; we assume that CPU is always in long float mode, and 
+;; hassle switching the FP mode!
+;; we assume that CPU is always in long float mode, and
 ;; 16 bit integer mode - currently, the prologue for main does this,
-;; but maybe we should just set up a NEW crt0 properly, 
+;; but maybe we should just set up a NEW crt0 properly,
 ;; -- and what about signal handling code?
 ;; (we don't even let sf floats in the register file, so
-;; we only should have to worry about truncating and widening 
+;; we only should have to worry about truncating and widening
 ;; when going to memory)
 
 ;; abort() call by g++ - must define libfunc for cmp_optab
 ;; and ucmp_optab for mode SImode, because we don't have that!!!
 ;; - yet since no libfunc is there, we abort ()
 
-;; The only thing that remains to be done then is output 
-;; the floats in a way the assembler can handle it (and 
+;; The only thing that remains to be done then is output
+;; the floats in a way the assembler can handle it (and
 ;; if you're really into it, use a PDP11 float emulation
-;; library to do floating point constant folding - but 
+;; library to do floating point constant folding - but
 ;; I guess you'll get reasonable results even when not
 ;; doing this)
 ;; the last thing to do is fix the UPDATE_CC macro to check
 ;; for floating point condition codes, and set cc_status
-;; properly, also setting the CC_IN_FCCR flag. 
+;; properly, also setting the CC_IN_FCCR flag.
 
 ;; define attributes
 ;; currently type is only fpu or arith or unknown, maybe branch later ?
@@ -67,7 +67,7 @@
 ;; a user's asm statement
 (define_asm_attributes
   [(set_attr "type" "unknown")
-; all bets are off how long it is - make it 256, forces long jumps 
+; all bets are off how long it is - make it 256, forces long jumps
 ; whenever jumping around it !!!
    (set_attr "length" "256")])
 
@@ -93,8 +93,8 @@
 }"
   [(set_attr "length" "2,3,6")])
 
-;; a bit of brain damage, maybe inline later - 
-;; problem is - gcc seems to NEED SImode because 
+;; a bit of brain damage, maybe inline later -
+;; problem is - gcc seems to NEED SImode because
 ;; of the cmp weirdness - maybe change gcc to handle this?
 
 (define_expand "cmpsi"
@@ -126,14 +126,14 @@
   if (GET_CODE (br_insn) != JUMP_INSN)
     abort();
   br_code =  GET_CODE (XEXP (XEXP (PATTERN (br_insn), 1), 0));
-  
+
   switch(br_code)
   {
     case GEU:
     case LTU:
     case GTU:
     case LEU:
-      
+
       return \"jsr pc, ___ucmpsi\;cmp $1,r0\";
 
     case GE:
@@ -168,7 +168,7 @@
   ""
   "cmpb %0,%1"
   [(set_attr "length" "1,2,2,3")])
-			   
+
 
 ;; We have to have this because cse can optimize the previous pattern
 ;; into this one.
@@ -242,12 +242,12 @@
 
  /* emulate sob */
  output_asm_insn (\"dec %0\", operands);
- 
+
  sprintf (buf, \"bge LONG_SOB%d\", labelcount);
  output_asm_insn (buf, NULL);
 
  output_asm_insn (\"jmp %l1\", operands);
- 
+
  sprintf (buf, \"LONG_SOB%d:\", labelcount++);
  output_asm_insn (buf, NULL);
 
@@ -265,11 +265,11 @@
 ;; These control RTL generation for conditional jump insns
 ;; and match them for register allocation.
 
-;; problem with too short jump distance! we need an assembler which can 
+;; problem with too short jump distance! we need an assembler which can
 ;; make this valid for all jump distances!
 ;; e.g. gas!
 
-;; these must be changed to check for CC_IN_FCCR if float is to be 
+;; these must be changed to check for CC_IN_FCCR if float is to be
 ;; enabled
 
 (define_insn "beq"
@@ -555,7 +555,7 @@
 			  (const_int 0))
 		      (pc)
 		      (label_ref (match_operand 0 "" ""))))]
-  ""  
+  ""
   "* return output_jump(\"blt\", \"bge\", get_attr_length(insn));"
   [(set (attr "length") (if_then_else (ior (le (minus (match_dup 0)
 						      (pc))
@@ -662,8 +662,8 @@
 }"
   [(set_attr "length" "1,2,2,3")])
 
-;; do we have to supply all these moves? e.g. to 
-;; NO_LOAD_FPU_REGs ? 
+;; do we have to supply all these moves? e.g. to
+;; NO_LOAD_FPU_REGs ?
 (define_insn "movdf"
   [(set (match_operand:DF 0 "general_operand" "=f,R,f,Q,f,m")
         (match_operand:DF 1 "general_operand" "fR,f,Q,f,F,m"))]
@@ -679,7 +679,7 @@
   "* return output_move_double (operands);"
   [(set_attr "length" "8,8,8")])
 
-;; maybe fiddle a bit with move_ratio, then 
+;; maybe fiddle a bit with move_ratio, then
 ;; let constraints only accept a register ...
 
 (define_expand "movstrhi"
@@ -719,7 +719,7 @@
   "* return output_block_move (operands);"
 ;;; just a guess
   [(set_attr "length" "40")])
-   
+
 
 
 ;;- truncation instructions
@@ -738,7 +738,7 @@
      }
      else if (which_alternative == 1)
        return \"{stcdf|movfo} %1, %0\";
-     else 
+     else
        return \"{stcdf|movfo} %1, %0\";
   "
   [(set_attr "length" "3,1,2")])
@@ -746,7 +746,7 @@
 
 (define_expand "truncsihi2"
   [(set (match_operand:HI 0 "general_operand" "=g")
-	(subreg:HI 
+	(subreg:HI
 	  (match_operand:SI 1 "general_operand" "or")
           0))]
   ""
@@ -761,13 +761,13 @@
   ""
   "bic $(256*255), %0"
   [(set_attr "length" "2")])
-			 
+
 (define_expand "zero_extendhisi2"
-  [(set (subreg:HI 
+  [(set (subreg:HI
           (match_dup 0)
           1)
         (match_operand:HI 1 "register_operand" "r"))
-   (set (subreg:HI 
+   (set (subreg:HI
           (match_operand:SI 0 "register_operand" "=r")
           0)
         (const_int 0))]
@@ -806,10 +806,10 @@
   /* make register pair available */
   latehalf[0] = operands[0];
   operands[0] = gen_rtx(REG, HImode, REGNO (operands[0])+1);
-    
+
   output_asm_insn(\"movb %1, %0\", operands);
   output_asm_insn(\"sxt %0\", latehalf);
-    
+
   return \"\";
 }"
   [(set_attr "length" "2,3")])
@@ -822,7 +822,7 @@
 	(sign_extend:SI (match_operand:HI 1 "general_operand" "g")))]
   ""
   "")
-  
+
 (define_insn "" ; "extendhisi2"
   [(set (match_operand:SI 0 "general_operand" "=o,<,r")
 	(sign_extend:SI (match_operand:HI 1 "general_operand" "g,g,g")))]
@@ -832,14 +832,14 @@
   rtx latehalf[2];
 
   /* we don't want to mess with auto increment */
-  
+
   switch(which_alternative)
   {
     case 0:
 
       latehalf[0] = operands[0];
       operands[0] = adj_offsettable_operand(operands[0], 2);
-  
+
       output_asm_insn(\"mov %1, %0\", operands);
       output_asm_insn(\"sxt %0\", latehalf);
 
@@ -903,7 +903,7 @@
 }"
   [(set_attr "length" "6")])
 
-;; make float to int and vice versa 
+;; make float to int and vice versa
 ;; using the cc_status.flag field we could probably cut down
 ;; on seti and setl
 ;; assume that we are normally in double and integer mode -
@@ -917,11 +917,11 @@
      {
        rtx latehalf[2];
 
-       latehalf[0] = NULL; 
+       latehalf[0] = NULL;
        latehalf[1] = gen_rtx(REG, HImode, REGNO (operands[0])+1);
        output_asm_insn(\"mov %1, -(sp)\", latehalf);
        output_asm_insn(\"mov %1, -(sp)\", operands);
-       
+
        output_asm_insn(\"setl\", operands);
        output_asm_insn(\"{ldcld|movif} (sp)+, %0\", operands);
        output_asm_insn(\"seti\", operands);
@@ -929,7 +929,7 @@
      }
      else if (which_alternative == 1)
        return \"setl\;{ldcld|movif} %1, %0\;seti\";
-     else 
+     else
        return \"setl\;{ldcld|movif} %1, %0\;seti\";
   "
   [(set_attr "length" "5,3,4")])
@@ -940,7 +940,7 @@
   "TARGET_FPU"
   "{ldcid|movif} %1, %0"
   [(set_attr "length" "1,2")])
-	
+
 ;; cut float to int
 (define_insn "fix_truncdfsi2"
   [(set (match_operand:SI 0 "general_operand" "=r,R,Q")
@@ -958,7 +958,7 @@
      }
      else if (which_alternative == 1)
        return \"setl\;{stcdl|movfi} %1, %0\;seti\";
-     else 
+     else
        return \"setl\;{stcdl|movfi} %1, %0\;seti\";
   "
   [(set_attr "length" "5,3,4")])
@@ -988,20 +988,20 @@
 		 (match_operand:SI 2 "general_operand" "r,o,r,o,I,J,K,I,J,K")))]
   ""
   "*
-{ /* Here we trust that operands don't overlap 
+{ /* Here we trust that operands don't overlap
 
      or is lateoperands the low word?? - looks like it! */
 
   unsigned int i;
   rtx lateoperands[3];
-  
+
   lateoperands[0] = operands[0];
 
   if (REG_P (operands[0]))
     operands[0] = gen_rtx(REG, HImode, REGNO(operands[0]) + 1);
   else
     operands[0] = adj_offsettable_operand (operands[0], 2);
-  
+
   if (! CONSTANT_P(operands[2]))
   {
     lateoperands[2] = operands[2];
@@ -1019,9 +1019,9 @@
 
   lateoperands[2] = GEN_INT ((INTVAL(operands[2]) >> 16) & 0xffff);
   operands[2] = GEN_INT (INTVAL(operands[2]) & 0xffff);
-  
+
   if (INTVAL(operands[2]))
-  { 
+  {
     output_asm_insn (\"add %2, %0\", operands);
     output_asm_insn (\"adc %0\", lateoperands);
   }
@@ -1073,7 +1073,7 @@
 
 
 ;;- subtract instructions
-;; we don't have to care for constant second 
+;; we don't have to care for constant second
 ;; args, since they are canonical plus:xx now!
 ;; also for minus:DF ??
 
@@ -1091,20 +1091,20 @@
                   (match_operand:SI 2 "general_operand" "r,o,r,o")))]
   ""
   "*
-{ /* Here we trust that operands don't overlap 
+{ /* Here we trust that operands don't overlap
 
      or is lateoperands the low word?? - looks like it! */
 
   unsigned int i;
   rtx lateoperands[3];
-  
+
   lateoperands[0] = operands[0];
 
   if (REG_P (operands[0]))
     operands[0] = gen_rtx(REG, HImode, REGNO(operands[0]) + 1);
   else
     operands[0] = adj_offsettable_operand (operands[0], 2);
-  
+
   lateoperands[2] = operands[2];
 
   if (REG_P (operands[2]))
@@ -1199,20 +1199,20 @@
                 (not:SI (match_operand:SI 2 "general_operand" "r,o,r,o,I,J,K,I,J,K"))))]
   ""
   "*
-{ /* Here we trust that operands don't overlap 
+{ /* Here we trust that operands don't overlap
 
      or is lateoperands the low word?? - looks like it! */
 
   unsigned int i;
   rtx lateoperands[3];
-  
+
   lateoperands[0] = operands[0];
 
   if (REG_P (operands[0]))
     operands[0] = gen_rtx(REG, HImode, REGNO(operands[0]) + 1);
   else
     operands[0] = adj_offsettable_operand (operands[0], 2);
-  
+
   if (! CONSTANT_P(operands[2]))
   {
     lateoperands[2] = operands[2];
@@ -1229,8 +1229,8 @@
 
   lateoperands[2] = GEN_INT ((INTVAL(operands[2]) >> 16) & 0xffff);
   operands[2] = GEN_INT (INTVAL(operands[2]) & 0xffff);
-  
-  /* these have different lengths, so we should have 
+
+  /* these have different lengths, so we should have
      different constraints! */
   if (INTVAL(operands[2]))
     output_asm_insn (\"bic %2, %0\", operands);
@@ -1265,20 +1265,20 @@
                   (match_operand:SI 2 "general_operand" "r,o,r,o,I,J,K,I,J,K")))]
   ""
   "*
-{ /* Here we trust that operands don't overlap 
+{ /* Here we trust that operands don't overlap
 
      or is lateoperands the low word?? - looks like it! */
 
   unsigned int i;
   rtx lateoperands[3];
-  
+
   lateoperands[0] = operands[0];
 
   if (REG_P (operands[0]))
     operands[0] = gen_rtx(REG, HImode, REGNO(operands[0]) + 1);
   else
     operands[0] = adj_offsettable_operand (operands[0], 2);
-  
+
   if (! CONSTANT_P(operands[2]))
   {
     lateoperands[2] = operands[2];
@@ -1295,8 +1295,8 @@
 
   lateoperands[2] = GEN_INT ((INTVAL(operands[2]) >> 16) & 0xffff);
   operands[2] = GEN_INT (INTVAL(operands[2]) & 0xffff);
-  
-  /* these have different lengths, so we should have 
+
+  /* these have different lengths, so we should have
      different constraints! */
   if (INTVAL(operands[2]))
     output_asm_insn (\"bis %2, %0\", operands);
@@ -1342,7 +1342,7 @@
   {
     lateoperands[2] = operands[2];
     operands[2] = gen_rtx(REG, HImode, REGNO(operands[2]) + 1);
-    
+
     output_asm_insn (\"xor %2, %0\", operands);
     output_asm_insn (\"xor %2, %0\", lateoperands);
 
@@ -1351,7 +1351,7 @@
 
   lateoperands[2] = GEN_INT ((INTVAL(operands[2]) >> 16) & 0xffff);
   operands[2] = GEN_INT (INTVAL(operands[2]) & 0xffff);
-  
+
   if (INTVAL(operands[2]))
     output_asm_insn (\"xor %2, %0\", operands);
 
@@ -1408,8 +1408,8 @@
 
 ;; define asl aslb asr asrb - ashc missing!
 
-;; asl 
-(define_insn "" 
+;; asl
+(define_insn ""
   [(set (match_operand:HI 0 "general_operand" "=rR,Q")
 	(ashift:HI (match_operand:HI 1 "general_operand" "0,0")
 		   (const_int 1)))]
@@ -1419,10 +1419,10 @@
 
 ;; and another possibility for asr is << -1
 ;; might cause problems since -1 can also be encoded as 65535!
-;; not in gcc2 ??? 
+;; not in gcc2 ???
 
 ;; asr
-(define_insn "" 
+(define_insn ""
   [(set (match_operand:HI 0 "general_operand" "=rR,Q")
 	(ashift:HI (match_operand:HI 1 "general_operand" "0,0")
 		   (const_int -1)))]
@@ -1430,10 +1430,10 @@
   "asr %0"
   [(set_attr "length" "1,2")])
 
-;; shift is by arbitrary count is expensive, 
+;; shift is by arbitrary count is expensive,
 ;; shift by one cheap - so let's do that, if
 ;; space doesn't matter
-(define_insn "" 
+(define_insn ""
   [(set (match_operand:HI 0 "general_operand" "=r")
 	(ashift:HI (match_operand:HI 1 "general_operand" "0")
 		   (match_operand:HI 2 "expand_shift_operand" "O")))]
@@ -1447,14 +1447,14 @@
       output_asm_insn(\"asr %0\", operands);
     else
       output_asm_insn(\"asl %0\", operands);
-      
+
   return \"\";
 }"
 ;; longest is 4
   [(set (attr "length") (const_int 4))])
 
 ;; aslb
-(define_insn "" 
+(define_insn ""
   [(set (match_operand:QI 0 "general_operand" "=r,o")
 	(ashift:QI (match_operand:QI 1 "general_operand" "0,0")
 		   (match_operand:HI 2 "const_immediate_operand" "n,n")))]
@@ -1471,12 +1471,12 @@
   return \"\";
 }"
 ;; set attribute length ( match_dup 2 & 7 ) *(1 or 2) !!!
-  [(set_attr_alternative "length" 
+  [(set_attr_alternative "length"
                          [(const_int 7)
                           (const_int 14)])])
 
-;;; asr 
-;(define_insn "" 
+;;; asr
+;(define_insn ""
 ;  [(set (match_operand:HI 0 "general_operand" "=rR,Q")
 ;	(ashiftrt:HI (match_operand:HI 1 "general_operand" "0,0")
 ;		     (const_int 1)))]
@@ -1485,7 +1485,7 @@
 ;  [(set_attr "length" "1,2")])
 
 ;; asrb
-(define_insn "" 
+(define_insn ""
   [(set (match_operand:QI 0 "general_operand" "=r,o")
 	(ashiftrt:QI (match_operand:QI 1 "general_operand" "0,0")
 		     (match_operand:HI 2 "const_immediate_operand" "n,n")))]
@@ -1501,7 +1501,7 @@
 
   return \"\";
 }"
-  [(set_attr_alternative "length" 
+  [(set_attr_alternative "length"
                          [(const_int 7)
                           (const_int 14)])])
 
@@ -1513,7 +1513,7 @@
 
 
 
-;; can we get +-1 in the next pattern? should 
+;; can we get +-1 in the next pattern? should
 ;; have been caught by previous patterns!
 
 (define_insn "ashlhi3"
@@ -1554,7 +1554,7 @@
 ;;  ""
 ;;  "srl %0,%2")
 
-;; absolute 
+;; absolute
 
 (define_insn "absdf2"
   [(set (match_operand:DF 0 "general_operand" "=fR,Q")
@@ -1571,7 +1571,7 @@
 {
   static int count = 0;
   char buf[200];
-	
+
   output_asm_insn(\"tst %0\", operands);
   sprintf(buf, \"bge abshi%d\", count);
   output_asm_insn(buf, NULL);
@@ -1586,9 +1586,9 @@
 
 ;; define expand abshi - is much better !!! - but
 ;; will it be optimized into an abshi2 ?
-;; it will leave better code, because the tsthi might be 
+;; it will leave better code, because the tsthi might be
 ;; optimized away!!
-; -- just a thought - don't have time to check 
+; -- just a thought - don't have time to check
 ;
 ;(define_expand "abshi2"
 ;  [(match_operand:HI 0 "general_operand" "")
@@ -1607,7 +1607,7 @@
 ;  emit_insn (gen_bge (label1));
 ;
 ;  emit_insn (gen_neghi(operands[0], operands[0])
-;  
+;
 ;  emit_barrier ();
 ;
 ;  emit_label (label);
@@ -1666,7 +1666,7 @@
   [(set_attr "length" "1,2")])
 
 ;; indirect jump - let's be conservative!
-;; allow only register_operand, even though we could also 
+;; allow only register_operand, even though we could also
 ;; allow labels etc.
 
 (define_insn "indirect_jump"
@@ -1705,7 +1705,7 @@
   "nop")
 
 
-;;- multiply 
+;;- multiply
 
 (define_insn "muldf3"
   [(set (match_operand:DF 0 "register_operand" "=a,a,a")
@@ -1716,9 +1716,9 @@
   [(set_attr "length" "1,2,5")])
 
 ;; 16 bit result multiply:
-;; currently we multiply only into odd registers, so we don't use two 
-;; registers - but this is a bit inefficient at times. If we define 
-;; a register class for each register, then we can specify properly 
+;; currently we multiply only into odd registers, so we don't use two
+;; registers - but this is a bit inefficient at times. If we define
+;; a register class for each register, then we can specify properly
 ;; which register need which scratch register ....
 
 (define_insn "mulhi3"
@@ -1734,7 +1734,7 @@
   [(set (match_dup 3)
 	(match_operand:HI 1 "general_operand" "g,g"))
    (set (match_operand:SI 0 "register_operand" "=r,r") ; even numbered!
-	(mult:SI (truncate:HI 
+	(mult:SI (truncate:HI
                   (match_dup 0))
 		 (match_operand:HI 2 "general_operand" "rR,Qi")))]
   "TARGET_45"
@@ -1742,7 +1742,7 @@
 
 (define_insn ""
   [(set (match_operand:SI 0 "register_operand" "=r,r") ; even numbered!
-	(mult:SI (truncate:HI 
+	(mult:SI (truncate:HI
                   (match_operand:SI 1 "register_operand" "%0,0"))
 		 (match_operand:HI 2 "general_operand" "rR,Qi")))]
   "TARGET_45"
@@ -1751,7 +1751,7 @@
 
 ;(define_insn "mulhisi3"
 ;  [(set (match_operand:SI 0 "register_operand" "=r,r") ; even numbered!
-;	(mult:SI (truncate:HI 
+;	(mult:SI (truncate:HI
 ;                  (match_operand:SI 1 "register_operand" "%0,0"))
 ;		 (match_operand:HI 2 "general_operand" "rR,Qi")))]
 ;  "TARGET_45"
@@ -1767,7 +1767,7 @@
   "{divd|divf} %2, %0"
   [(set_attr "length" "1,2,5")])
 
-	 
+
 (define_expand "divhi3"
   [(set (subreg:HI (match_dup 1) 0)
 	(div:HI (match_operand:SI 1 "general_operand" "0")
@@ -1826,5 +1826,5 @@
 ;  "TARGET_45"
 ;  "div %2, %0")
 ;
-   
+
 ;; is rotate doing the right thing to be included here ????

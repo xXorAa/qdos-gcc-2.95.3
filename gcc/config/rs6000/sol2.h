@@ -161,7 +161,7 @@ while (0)
 #undef ASM_FORMAT_PRIVATE_NAME
 #define ASM_FORMAT_PRIVATE_NAME(OUTPUT, NAME, LABELNO)	\
 ( (OUTPUT) = (char *) alloca (strlen ((NAME)) + 10),	\
-  sprintf ((OUTPUT), "%s_.%d", (NAME), (LABELNO))) 
+  sprintf ((OUTPUT), "%s_.%d", (NAME), (LABELNO)))
 
 
 /* Define this macro as a C expression for the initializer of an

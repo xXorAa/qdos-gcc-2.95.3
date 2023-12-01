@@ -33,7 +33,7 @@ Boston, MA 02111-1307, USA.  */
 %{G*} \
 %{!mgas: \
 	%{dy} %{dn}}"
-		    
+
 #define LIB_SPEC "\
 	%{p:-lprof1} \
 	%{!p:%{pg:-lprof1} \

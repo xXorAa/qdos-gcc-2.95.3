@@ -1,5 +1,5 @@
 /* Configuration for an OpenBSD i386 target.
-   
+
    Copyright (C) 1999 Free Software Foundation, Inc.
 
 This file is part of GNU CC.
@@ -120,7 +120,7 @@ Boston, MA 02111-1307, USA.  */
    command to advance the location counter to a multiple of 1<<LOG
    bytes if it is within MAX_SKIP bytes.
 
-   This will be used to align code labels according to Intel 
+   This will be used to align code labels according to Intel
    recommendations, in prevision of binutils upgrade.  */
 #ifdef HAVE_GAS_MAX_SKIP_P2ALIGN
 #define ASM_OUTPUT_MAX_SKIP_ALIGN(FILE,LOG,MAX_SKIP)			\

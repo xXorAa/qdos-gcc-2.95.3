@@ -108,7 +108,7 @@ Boston, MA 02111-1307, USA.  */
 /* Follow sysV68 cc regarding alignment imposed by char:0; */
 
 #define PCC_BITFIELD_TYPE_MATTERS 1
-  
+
 /* Allocation boundary (in *bits*) for storing arguments in argument list.  */
 /* Be compatible with native compiler.  */
 #undef PARM_BOUNDARY
@@ -148,7 +148,7 @@ Boston, MA 02111-1307, USA.  */
   { extern int current_function_returns_pointer;			\
     if ((current_function_returns_pointer) &&				\
       ! find_equiv_reg (0, get_last_insn (), 0, 0, 0, 8, Pmode))        \
-      asm_fprintf (FILE, "\tmov.l %Ra0,%Rd0\n"); } 
+      asm_fprintf (FILE, "\tmov.l %Ra0,%Rd0\n"); }
 
 #undef FUNCTION_PROFILER
 #define FUNCTION_PROFILER(FILE, LABEL_NO)	\
@@ -327,7 +327,7 @@ dtors_section ()							\
 
 #undef NEEDS_UNTYPED_CALL
 #define NEEDS_UNTYPED_CALL 1
- 
+
 #ifndef USE_GAS
 /* This is the command to make the user-level label named NAME
    defined for reference from other files.  */
@@ -560,7 +560,7 @@ do { long l;					\
     asm_fprintf (FILE, "\tswbeg &%d\n%L%s%d:\n",			\
 	     XVECLEN (PATTERN (TABLE), 1), (PREFIX), (NUM))
 
-/* sysV68 as cannot handle LD%n(%pc,%reg) */ 
+/* sysV68 as cannot handle LD%n(%pc,%reg) */
 #define SGS_NO_LI
 
 /* labelno is not used here */
@@ -574,7 +574,7 @@ do { long l;					\
     else					\
       return "jmp 8(%%pc,%0.w)";		\
   } while (0)
-	     
+
 #else /* USE_GAS */
 
 /* labelno is not used here */

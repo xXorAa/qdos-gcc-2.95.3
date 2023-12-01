@@ -1,4 +1,4 @@
-/* Definitions for ARM running Linux-based GNU systems 
+/* Definitions for ARM running Linux-based GNU systems
    using ELF with old binutils.
    Copyright (C) 1999 Free Software Foundation, Inc.
    Contributed by Philip Blundell <Philip.Blundell@pobox.com>
@@ -21,7 +21,7 @@ the Free Software Foundation, 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.  */
 
 /* Unfortunately, owing to various historical accidents, version 2.9.4
-   and newer of GNU binutils are not quite compatible with the old 
+   and newer of GNU binutils are not quite compatible with the old
    (2.9.1-based) toolset.  This tells linux-elf.h to generate specs
    appropriate for the older versions.  */
 #define SUBTARGET_OLD_LINKER

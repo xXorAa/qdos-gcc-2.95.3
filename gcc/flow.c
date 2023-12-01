@@ -57,7 +57,7 @@ Boston, MA 02111-1307, USA.  */
    pseudo register.  The bit is 1 if the register is live at the
    beginning of the basic block.
 
-   Two types of elements can be added to an insn's REG_NOTES.  
+   Two types of elements can be added to an insn's REG_NOTES.
    A REG_DEAD note is added to an insn's REG_NOTES for any register
    that meets both of two conditions:  The value in the register is not
    needed in subsequent insns and the insn does not replace the value in
@@ -110,7 +110,7 @@ Boston, MA 02111-1307, USA.  */
    life_analysis sets current_function_sp_is_unchanging if the function
    doesn't modify the stack pointer.  */
 
-/* TODO: 
+/* TODO:
 
    Split out from life_analysis:
 	- local property discovery (bb->local_live, bb->local_set)
@@ -167,7 +167,7 @@ varray_type basic_block_info;
 
 /* The special entry and exit blocks.  */
 
-struct basic_block_def entry_exit_blocks[2] = 
+struct basic_block_def entry_exit_blocks[2] =
 {
   {
     NULL,			/* head */
@@ -243,7 +243,7 @@ static int loop_depth;
 static int cc0_live;
 
 /* During propagate_block, this contains a list of all the MEMs we are
-   tracking for dead store elimination. 
+   tracking for dead store elimination.
 
    ?!? Note we leak memory by not free-ing items on this list.  We need to
    write some generic routines to operate on memory lists since cse, gcse,
@@ -262,7 +262,7 @@ static HARD_REG_SET elim_reg_set;
 varray_type basic_block_for_insn;
 
 /* The labels mentioned in non-jump rtl.  Valid during find_basic_blocks.  */
-/* ??? Should probably be using LABEL_NUSES instead.  It would take a 
+/* ??? Should probably be using LABEL_NUSES instead.  It would take a
    bit of surgery to be able to use or co-opt the routines in jump.  */
 
 static rtx label_value_list;
@@ -307,7 +307,7 @@ static void mark_regs_live_at_end	PROTO((regset));
 static void life_analysis_1		PROTO((rtx, int, int));
 static void init_regset_vector		PROTO ((regset *, int,
 						struct obstack *));
-static void propagate_block		PROTO((regset, rtx, rtx, int, 
+static void propagate_block		PROTO((regset, rtx, rtx, int,
 					       regset, int, int));
 static int insn_dead_p			PROTO((rtx, regset, int, rtx));
 static int libcall_dead_p		PROTO((rtx, regset, rtx, rtx));
@@ -359,7 +359,7 @@ find_basic_blocks (f, nregs, file, do_cleanup)
 
       clear_edges ();
 
-      /* Clear bb->aux on all extant basic blocks.  We'll use this as a 
+      /* Clear bb->aux on all extant basic blocks.  We'll use this as a
 	 tag for reuse during create_basic_block, just in case some pass
 	 copies around basic block notes improperly.  */
       for (i = 0; i < n_basic_blocks; ++i)
@@ -374,7 +374,7 @@ find_basic_blocks (f, nregs, file, do_cleanup)
      by find_basic_blocks_1, since we want to keep the structure pointers
      stable across calls to find_basic_blocks.  */
   /* ??? This whole issue would be much simpler if we called find_basic_blocks
-     exactly once, and thereafter we don't have a single long chain of 
+     exactly once, and thereafter we don't have a single long chain of
      instructions at all until close to the end of compilation when we
      actually lay them out.  */
 
@@ -385,7 +385,7 @@ find_basic_blocks (f, nregs, file, do_cleanup)
   bb_eh_end = (rtx *) alloca (n_basic_blocks * sizeof (rtx));
 
   label_value_list = find_basic_blocks_1 (f, bb_eh_end);
-  
+
   /* Record the block to which an insn belongs.  */
   /* ??? This should be done another way, by which (perhaps) a label is
      tagged directly with the basic block that it starts.  It is used for
@@ -428,7 +428,7 @@ find_basic_blocks (f, nregs, file, do_cleanup)
 
 /* Count the basic blocks of the function.  */
 
-static int 
+static int
 count_basic_blocks (f)
      rtx f;
 {
@@ -532,7 +532,7 @@ find_basic_blocks_1 (f, bb_eh_end)
   rtx label_value_list = NULL_RTX;
   rtx head = NULL_RTX;
   rtx end = NULL_RTX;
-  
+
   /* We process the instructions in a slightly different way than we did
      previously.  This is so that we see a NOTE_BASIC_BLOCK after we have
      closed out the previous block, so that it gets attached at the proper
@@ -577,7 +577,7 @@ find_basic_blocks_1 (f, bb_eh_end)
 	    else if (kind == NOTE_INSN_EH_REGION_END)
 	      eh_list = XEXP (eh_list, 1);
 
-	    /* Look for basic block notes with which to keep the 
+	    /* Look for basic block notes with which to keep the
 	       basic_block_info pointers stable.  Unthread the note now;
 	       we'll put it back at the right place in create_basic_block.
 	       Or not at all if we've already found a note in this block.  */
@@ -592,7 +592,7 @@ find_basic_blocks_1 (f, bb_eh_end)
 	  }
 
 	case CODE_LABEL:
-	  /* A basic block starts at a label.  If we've closed one off due 
+	  /* A basic block starts at a label.  If we've closed one off due
 	     to a barrier or some such, no need to do it again.  */
 	  if (head != NULL_RTX)
 	    {
@@ -620,14 +620,14 @@ find_basic_blocks_1 (f, bb_eh_end)
 	    head = insn;
 	  else
 	    {
-	      /* ??? Make a special check for table jumps.  The way this 
+	      /* ??? Make a special check for table jumps.  The way this
 		 happens is truely and amazingly gross.  We are about to
 		 create a basic block that contains just a code label and
 		 an addr*vec jump insn.  Worse, an addr_diff_vec creates
 		 its own natural loop.
 
 		 Prevent this bit of brain damage, pasting things together
-		 correctly in make_edges.  
+		 correctly in make_edges.
 
 		 The correct solution involves emitting the table directly
 		 on the tablejump instruction as a note, or JUMP_LABEL.  */
@@ -695,14 +695,14 @@ find_basic_blocks_1 (f, bb_eh_end)
 	  rtx note;
 
 	  /* Make a list of all labels referred to other than by jumps
-	     (which just don't have the REG_LABEL notes). 
+	     (which just don't have the REG_LABEL notes).
 
 	     Make a special exception for labels followed by an ADDR*VEC,
-	     as this would be a part of the tablejump setup code. 
+	     as this would be a part of the tablejump setup code.
 
 	     Make a special exception for the eh_return_stub_label, which
 	     we know isn't part of any otherwise visible control flow.  */
-	     
+
 	  for (note = REG_NOTES (insn); note; note = XEXP (note, 1))
 	    if (REG_NOTE_KIND (note) == REG_LABEL)
 	      {
@@ -861,7 +861,7 @@ clear_edges ()
    NONLOCAL_LABEL_LIST is a list of non-local labels in the function.  Blocks
    that are otherwise unreachable may be reachable with a non-local goto.
 
-   BB_EH_END is an array indexed by basic block number in which we record 
+   BB_EH_END is an array indexed by basic block number in which we record
    the list of exception regions active at the end of the basic block.  */
 
 static void
@@ -952,7 +952,7 @@ make_edges (label_value_list, bb_eh_end)
 
 	      for (x = label_value_list; x; x = XEXP (x, 1))
 		make_label_edge (bb, XEXP (x, 0), EDGE_ABNORMAL);
-	      
+
 	      for (x = forced_labels; x; x = XEXP (x, 1))
 		make_label_edge (bb, XEXP (x, 0), EDGE_ABNORMAL);
 	    }
@@ -1152,10 +1152,10 @@ mark_critical_edges ()
 }
 
 /* Split a (typically critical) edge.  Return the new block.
-   Abort on abnormal edges. 
+   Abort on abnormal edges.
 
    ??? The code generally expects to be called on critical edges.
-   The case of a block ending in an unconditional jump to a 
+   The case of a block ending in an unconditional jump to a
    block with multiple predecessors is not handled optimally.  */
 
 basic_block
@@ -1166,7 +1166,7 @@ split_edge (edge_in)
   edge edge_out;
   rtx bb_note;
   int i;
- 
+
   /* Abnormal edges cannot be split.  */
   if ((edge_in->flags & EDGE_ABNORMAL) != 0)
     abort ();
@@ -1223,7 +1223,7 @@ split_edge (edge_in)
 
   /* Tricky case -- if there existed a fallthru into the successor
      (and we're not it) we must add a new unconditional jump around
-     the new block we're actually interested in. 
+     the new block we're actually interested in.
 
      Further, if that edge is critical, this means a second new basic
      block must be created to hold it.  In order to simplify correct
@@ -1264,7 +1264,7 @@ split_edge (edge_in)
 
 	  /* ... let jump know that label is in use, ...  */
 	  ++LABEL_NUSES (old_succ->head);
-	  
+
 	  /* ... and clear fallthru on the outgoing edge.  */
 	  e->flags &= ~EDGE_FALLTHRU;
 
@@ -1401,7 +1401,7 @@ commit_one_edge_insertion (e)
       else
 	after = PREV_INSN (tmp);
     }
-  
+
   /* If the source has one successor and the edge is not abnormal,
      insert there.  Except for the entry block.  */
   else if ((e->flags & EDGE_ABNORMAL) == 0
@@ -1508,7 +1508,7 @@ delete_unreachable_blocks ()
       /* Mark the block with a handy non-null value.  */
       e->dest->aux = e;
     }
-      
+
   /* Iterate: find everything reachable from what we've already seen.  */
 
   while (tos != worklist)
@@ -1573,7 +1573,7 @@ delete_unreachable_blocks ()
     }
 
   /* Attempt to merge blocks as made possible by edge removal.  If a block
-     has only one successor, and the successor has only one predecessor, 
+     has only one successor, and the successor has only one predecessor,
      they may be combined.  */
 
   for (i = 0; i < n_basic_blocks; )
@@ -1616,7 +1616,7 @@ delete_eh_regions ()
     if (GET_CODE (insn) == NOTE)
       {
 	if ((NOTE_LINE_NUMBER (insn) == NOTE_INSN_EH_REGION_BEG) ||
-	    (NOTE_LINE_NUMBER (insn) == NOTE_INSN_EH_REGION_END)) 
+	    (NOTE_LINE_NUMBER (insn) == NOTE_INSN_EH_REGION_END))
 	  {
 	    int num = CODE_LABEL_NUMBER (insn);
 	    /* A NULL handler indicates a region is no longer needed */
@@ -1692,7 +1692,7 @@ delete_block (b)
      notes.  */
 
   insn = b->head;
-  
+
   if (GET_CODE (insn) == CODE_LABEL)
     {
       rtx x, *prev = &exception_handler_labels;
@@ -1748,7 +1748,7 @@ delete_block (b)
 
 no_delete_insns:
 
-  /* Remove the edges into and out of this block.  Note that there may 
+  /* Remove the edges into and out of this block.  Note that there may
      indeed be edges in, if we are removing an unreachable loop.  */
   {
     edge e, next, *q;
@@ -1836,7 +1836,7 @@ flow_delete_insn (insn)
 
 /* True if a given label can be deleted.  */
 
-static int 
+static int
 can_delete_label_p (label)
      rtx label;
 {
@@ -1858,7 +1858,7 @@ can_delete_label_p (label)
   /* User declared labels must be preserved.  */
   if (LABEL_NAME (label) != 0)
     return 0;
-  
+
   return 1;
 }
 
@@ -1886,7 +1886,7 @@ merge_blocks_nomove (a, b)
     }
 
   /* Delete the basic block note.  */
-  if (GET_CODE (b_head) == NOTE 
+  if (GET_CODE (b_head) == NOTE
       && NOTE_LINE_NUMBER (b_head) == NOTE_INSN_BASIC_BLOCK)
     {
       if (b_head == b_end)
@@ -1947,12 +1947,12 @@ merge_blocks_nomove (a, b)
       a_end = b_head;
     }
   a->end = a_end;
-  
+
   /* Compact the basic block array.  */
   expunge_block (b);
 }
 
-/* Attempt to merge basic blocks that are potentially non-adjacent.  
+/* Attempt to merge basic blocks that are potentially non-adjacent.
    Return true iff the attempt succeeded.  */
 
 static int
@@ -2285,7 +2285,7 @@ mark_regs_live_at_end (set)
      regset set;
 {
   int i;
-  
+
   /* If exiting needs the right stack value, consider the stack pointer
      live at the end of the function.  */
   if (! EXIT_IGNORE_STACK
@@ -2307,7 +2307,7 @@ mark_regs_live_at_end (set)
 #if FRAME_POINTER_REGNUM != HARD_FRAME_POINTER_REGNUM
       /* If they are different, also mark the hard frame pointer as live */
       SET_REGNO_REG_SET (set, HARD_FRAME_POINTER_REGNUM);
-#endif      
+#endif
     }
 
   /* Mark all global registers, and all registers used by the epilogue
@@ -2530,7 +2530,7 @@ life_analysis_1 (f, nregs, remove_dead_code)
 #endif
     }
 
-  /* We have a problem with any pseudoreg that lives across the setjmp. 
+  /* We have a problem with any pseudoreg that lives across the setjmp.
      ANSI says that if a user variable does not change in value between
      the setjmp and the longjmp, then the longjmp preserves it.  This
      includes longjmp from a place where the pseudo appears dead.
@@ -2672,7 +2672,7 @@ propagate_block (old, first, last, final, significant, bnum, remove_dead_code)
   regset dead;
 
   /* Find the loop depth for this block.  Ignore loop level changes in the
-     middle of the basic block -- for register allocation purposes, the 
+     middle of the basic block -- for register allocation purposes, the
      important uses will be in the blocks wholely contained within the loop
      not in the loop pre-header or post-trailer.  */
   loop_depth = BASIC_BLOCK (bnum)->loop_depth;
@@ -2867,7 +2867,7 @@ propagate_block (old, first, last, final, significant, bnum, remove_dead_code)
 	      mark_set_regs (old, dead, PATTERN (insn),
 			     final ? insn : NULL_RTX, significant);
 
-	      /* If an insn doesn't use CC0, it becomes dead since we 
+	      /* If an insn doesn't use CC0, it becomes dead since we
 		 assume that every insn clobbers it.  So show it dead here;
 		 mark_used_regs will set it live if it is referenced.  */
 	      cc0_live = 0;
@@ -2994,7 +2994,7 @@ insn_dead_p (x, needed, call_ok, notes)
       if (GET_CODE (r) == CC0)
 	return ! cc0_live;
 #endif
-      
+
       if (GET_CODE (r) == MEM && ! MEM_VOLATILE_P (r))
 	{
 	  rtx temp;
@@ -3291,7 +3291,7 @@ mark_set_1 (needed, dead, x, insn, significant)
 	 || GET_CODE (reg) == STRICT_LOW_PART)
     reg = XEXP (reg, 0);
 
-  /* If this set is a MEM, then it kills any aliased writes. 
+  /* If this set is a MEM, then it kills any aliased writes.
      If this set is a REG, then it kills any MEMs which use the reg.  */
   if (GET_CODE (reg) == MEM
       || GET_CODE (reg) == REG)
@@ -3328,7 +3328,7 @@ mark_set_1 (needed, dead, x, insn, significant)
       /* We do not know the size of a BLKmode store, so we do not track
 	 them for redundant store elimination.  */
       && GET_MODE (reg) != BLKmode
-      /* There are no REG_INC notes for SP, so we can't assume we'll see 
+      /* There are no REG_INC notes for SP, so we can't assume we'll see
 	 everything that invalidates it.  To be safe, don't eliminate any
 	 stores though SP; none of them should be redundant anyway.  */
       && ! reg_mentioned_p (stack_pointer_rtx, reg))
@@ -3422,7 +3422,7 @@ mark_set_1 (needed, dead, x, insn, significant)
 	      REG_N_SETS (regno)++;
 
 	      REG_N_REFS (regno) += loop_depth;
-		  
+
 	      /* The insns where a reg is live are normally counted
 		 elsewhere, but we want the count to include the insn
 		 where the reg is set, and the normal counting mechanism
@@ -3604,7 +3604,7 @@ find_auto_inc (needed, x, insn)
 
 	      /* INCR will become a NOTE and INSN won't contain a
 		 use of ADDR.  If a use of ADDR was just placed in
-		 the insn before INSN, make that the next use. 
+		 the insn before INSN, make that the next use.
 		 Otherwise, invalidate it.  */
 	      if (GET_CODE (PREV_INSN (insn)) == INSN
 		  && GET_CODE (PATTERN (PREV_INSN (insn))) == SET
@@ -3942,7 +3942,7 @@ mark_used_regs (needed, live, x, final, insn)
 	    mark_used_regs (needed, live, SET_SRC (x), final, insn);
 	    return;
 	  }
-	    
+
 	/* Storing in STRICT_LOW_PART is like storing in a reg
 	   in that this SET might be dead, so ignore it in TESTREG.
 	   but in some other ways it is like using the reg.
@@ -4032,7 +4032,7 @@ mark_used_regs (needed, live, x, final, insn)
 
 	   Consider for instance a volatile asm that changes the fpu rounding
 	   mode.  An insn should not be moved across this even if it only uses
-	   pseudo-regs because it might give an incorrectly rounded result. 
+	   pseudo-regs because it might give an incorrectly rounded result.
 
 	   ?!? Unfortunately, marking all hard registers as live causes massive
 	   problems for the register allocator and marking all pseudos as live
@@ -4068,7 +4068,7 @@ mark_used_regs (needed, live, x, final, insn)
   {
     register char *fmt = GET_RTX_FORMAT (code);
     register int i;
-    
+
     for (i = GET_RTX_LENGTH (code) - 1; i >= 0; i--)
       {
 	if (fmt[i] == 'e')
@@ -4609,7 +4609,7 @@ compute_preds_succs (s_preds, s_succs, num_preds, num_succs)
   for (i = 0; i < n; ++i)
     {
       basic_block bb = BASIC_BLOCK (i);
-      
+
       for (e = bb->succ; e ; e = e->succ_next)
 	add_pred_succ (i, e->dest->index, s_preds, s_succs,
 		       num_preds, num_succs);
@@ -4892,7 +4892,7 @@ count_reg_references (x)
 	    count_reg_references (SET_SRC (x));
 	    return;
 	  }
-	    
+
 	/* Storing in STRICT_LOW_PART is like storing in a reg
 	   in that this SET might be dead, so ignore it in TESTREG.
 	   but in some other ways it is like using the reg.
@@ -4941,7 +4941,7 @@ count_reg_references (x)
   {
     register char *fmt = GET_RTX_FORMAT (code);
     register int i;
-    
+
     for (i = GET_RTX_LENGTH (code) - 1; i >= 0; i--)
       {
 	if (fmt[i] == 'e')
@@ -5012,7 +5012,7 @@ recompute_reg_usage (f, loop_step)
 	  else if (NOTE_LINE_NUMBER (insn) == NOTE_INSN_LOOP_BEG)
 	    loop_depth += loop_step;
 
-	  /* If we have LOOP_DEPTH == 0, there has been a bookkeeping error. 
+	  /* If we have LOOP_DEPTH == 0, there has been a bookkeeping error.
 	     Abort now rather than setting register status incorrectly.  */
 	  if (loop_depth == 0)
 	    abort ();
@@ -5068,7 +5068,7 @@ set_block_for_insn (insn, bb)
   if (uid >= basic_block_for_insn->num_elements)
     {
       int new_size;
-      
+
       /* Add one-eighth the size so we don't keep calling xrealloc.  */
       new_size = uid + (uid + 7) / 8;
 
@@ -5092,7 +5092,7 @@ set_block_num (insn, bb)
    aborts when something is wrong.  Hope that this function will help to
    convert many optimization passes to preserve CFG consistent.
 
-   Currently it does following checks: 
+   Currently it does following checks:
 
    - test head/end pointers
    - overlapping of basic blocks
@@ -5101,7 +5101,7 @@ set_block_num (insn, bb)
    - tails of basic blocks (ensure that boundary is necesary)
    - scans body of the basic block for JUMP_INSN, CODE_LABEL
      and NOTE_INSN_BASIC_BLOCK
-   - check that all insns are in the basic blocks 
+   - check that all insns are in the basic blocks
    (except the switch handling code, barriers and notes)
 
    In future it can be extended check a lot of other stuff as well

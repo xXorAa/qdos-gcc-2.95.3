@@ -55,9 +55,9 @@ then
     then
       dummy=if$$
       cat >$dummy.c <<EOF
-#include <features.h>                      
+#include <features.h>
 main(argc, argv)
-     int argc;          
+     int argc;
      char *argv[];
 {
   printf("%d\n", __GLIBC_MINOR__);

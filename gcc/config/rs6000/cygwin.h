@@ -1,5 +1,5 @@
 /* Operating system specific defines to be used when targeting GCC for
-   hosting on Windows NT 3.x, using the Cygnus API 
+   hosting on Windows NT 3.x, using the Cygnus API
 
    This is different to the winnt.h file, since that is used
    to build GCC for use with a windows style library and tool
@@ -62,6 +62,6 @@ Boston, MA 02111-1307, USA. */
 #define WCHAR_TYPE_SIZE 16
 #define WCHAR_TYPE "short unsigned int"
 
-#define DBX_DEBUGGING_INFO 
-#undef SDB_DEBUGGING_INFO 
+#define DBX_DEBUGGING_INFO
+#undef SDB_DEBUGGING_INFO
 #define PREFERRED_DEBUGGING_TYPE DBX_DEBUG

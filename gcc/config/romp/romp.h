@@ -83,7 +83,7 @@ extern int target_flags;
 #define BYTES_BIG_ENDIAN 1
 
 /* Define this if most significant word of a multiword number is lowest
-   numbered. 
+   numbered.
 
    For ROMP we can decide arbitrarily since there are no machine instructions
    for them.  Might as well be consistent with bits and bytes. */
@@ -303,7 +303,7 @@ extern int target_flags;
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 /* The ROMP has two types of registers, general and floating-point.
 
    However, r0 is special in that it cannot be used as a base register.
@@ -439,7 +439,7 @@ enum reg_class { NO_REGS, R0_REGS, R15_REGS, BASE_REGS, GENERAL_REGS,
    GET_CODE (XEXP (XEXP (X, 0), 1)) == CONST ? BASE_REGS : GENERAL_REGS)
 
 /* Return the register class of a scratch register needed to store into
-   OUT from a register of class CLASS in MODE.  
+   OUT from a register of class CLASS in MODE.
 
    On the ROMP, we cannot store into a symbolic memory address from an
    integer register; we need a BASE_REGS register as a scratch to do it.  */
@@ -568,7 +568,7 @@ enum reg_class { NO_REGS, R0_REGS, R15_REGS, BASE_REGS, GENERAL_REGS,
    count as one register.  */
 
 struct rt_cargs {int gregs, fregs; };
-#define CUMULATIVE_ARGS struct rt_cargs 
+#define CUMULATIVE_ARGS struct rt_cargs
 
 #define USE_FP_REG(MODE,CUM)					\
   (TARGET_FP_REGS && GET_MODE_CLASS (MODE) == MODE_FLOAT	\
@@ -643,7 +643,7 @@ struct rt_cargs {int gregs, fregs; };
       ? 4 - (CUM).gregs : 0))
 
 /* Perform any needed actions needed for a function that is receiving a
-   variable number of arguments. 
+   variable number of arguments.
 
    CUM is as above.
 
@@ -695,7 +695,7 @@ struct rt_cargs {int gregs, fregs; };
    location is the address of _.name, which is really the name of
    the function.  We need to set all this up here.
 
-   The global declaration of the data area, if needed, is done in 
+   The global declaration of the data area, if needed, is done in
    `assemble_function', where it thinks it is globalizing the function
    itself.  */
 
@@ -967,7 +967,7 @@ struct rt_cargs {int gregs, fregs; };
           || GET_CODE (XEXP (XEXP (X, 0), 0)) == LABEL_REF)		\
       && GET_CODE (XEXP (XEXP (X, 0), 1)) == CONST_INT))
 
-/* Include all constant integers and constant double, but exclude 
+/* Include all constant integers and constant double, but exclude
    SYMBOL_REFs that are to be obtained from the data area (see below).  */
 #define LEGITIMATE_CONSTANT_P(X)		\
   ((LEGITIMATE_ADDRESS_CONSTANT_P (X)		\
@@ -1058,7 +1058,7 @@ struct rt_cargs {int gregs, fregs; };
    integer that is out of range.  If so, generate code to add the
    constant with the low-order 16 bits masked to the register and force
    this result into another register (this can be done with `cau').
-   Then generate an address of REG+(CONST&0xffff), allowing for the 
+   Then generate an address of REG+(CONST&0xffff), allowing for the
    possibility of bit 16 being a one.
 
    If the register is not OK for a base register, abort.  */
@@ -1103,7 +1103,7 @@ struct rt_cargs {int gregs, fregs; };
    This is used on the ROMP, to compensate for a bug in the floating-point
    code.  When a floating-point operation is done with the first and third
    operands both the same floating-point register, it will generate bad code
-   for the MC68881.  So we must detect this.  If it occurs, we patch the 
+   for the MC68881.  So we must detect this.  If it occurs, we patch the
    first operand to be fr0 and insert a move insn to move it to the desired
    destination.  */
 #define FINAL_PRESCAN_INSN(INSN,OPERANDS,NOPERANDS)			\
@@ -1216,7 +1216,7 @@ extern int romp_debugger_arg_correction();
 
 /* We don't have GAS for the RT yet, so don't write out special
    .stabs in cc1plus.  */
-   
+
 #define FASCIST_ASSEMBLER
 
 /* Do not break .stabs pseudos into continuations.  */
@@ -1282,7 +1282,7 @@ extern int romp_debugger_arg_correction();
 	    ? COSTS_N_INSNS (5) : COSTS_N_INSNS (4));
 
 /* Provide the costs of a rtl expression.  This is in the body of a
-   switch on CODE. 
+   switch on CODE.
 
    References to our own data area are really references to r14, so they
    are very cheap.  Multiples and divides are very expensive.  */

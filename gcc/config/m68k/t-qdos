@@ -5,7 +5,7 @@ qdos.o: $(srcdir)/config/m68k/qdos.c
 
 
 # don't ever test it
-LIBGCC1_TEST = 
+LIBGCC1_TEST =
 
 ## use this to skip library build
 #CROSS_LIBGCC1 =

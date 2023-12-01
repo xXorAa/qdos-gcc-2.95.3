@@ -148,14 +148,14 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 +++ doc/gettext.texi	1998/07/18 00:25:15	0.10.35.1
 @@ -1854,13 +1854,19 @@ List of directories searched for input f
  Join messages with existing file.
- 
+
  @item -k @var{word}
 -@itemx --keyword[=@var{word}]
 -Additonal keyword to be looked for (without @var{word} means not to
 +@itemx --keyword[=@var{keywordspec}]
 +Additonal keyword to be looked for (without @var{keywordspec} means not to
  use default keywords).
- 
+
 -The default keywords, which are always looked for if not explicitly
 -disabled, are @code{gettext}, @code{dgettext}, @code{dcgettext} and
 -@code{gettext_noop}.
@@ -168,7 +168,7 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 +The default keyword specifications, which are always looked for if not
 +explicitly disabled, are @code{gettext}, @code{dgettext:2},
 +@code{dcgettext:2} and @code{gettext_noop}.
- 
+
  @item -m [@var{string}]
  @itemx --msgstr-prefix[=@var{string}]
 ===================================================================
@@ -180,7 +180,7 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 +++ intl/Makefile.in	1998/07/09 21:39:18	0.10.35.1
 @@ -143,10 +143,14 @@ install-data: all
  installcheck:
- 
+
  uninstall:
 -	dists="$(DISTFILES.common)"; \
 -	for file in $$dists; do \
@@ -194,9 +194,9 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 +	else \
 +	  : ; \
 +	fi
- 
+
  info dvi:
- 
+
 ===================================================================
 RCS file: src/xget-lex.c,v
 retrieving revision 0.10.35.0
@@ -211,7 +211,7 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 +#include "hash.h"
  #include "str-list.h"
  #include "xget-lex.h"
- 
+
 @@ -83,6 +84,7 @@ enum token_type_ty
    token_type_eoln,
    token_type_hash,
@@ -227,12 +227,12 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 -static string_list_ty *keywords;
 +static hash_table keywords;
  static int default_keywords = 1;
- 
+
  /* These are for tracking whether comments count as immediately before
 @@ -941,6 +943,10 @@ phase5_get (tp)
        tp->type = token_type_lp;
        return;
- 
+
 +    case ')':
 +      tp->type = token_type_rp;
 +      return;
@@ -245,7 +245,7 @@ diff -pu -r0.10.35.0 -r0.10.35.1
      {
        token_ty token;
 +      void *keyword_value;
- 
+
        phase8_get (&token);
        switch (token.type)
 @@ -1213,17 +1220,20 @@ xgettext_lex (tp)
@@ -259,7 +259,7 @@ diff -pu -r0.10.35.0 -r0.10.35.1
  	      xgettext_lex_keyword ("gettext_noop");
  	      default_keywords = 0;
  	    }
- 
+
 -	  if (string_list_member (keywords, token.string))
 -	    {
 -	      tp->type = (strcmp (token.string, "dgettext") == 0
@@ -279,7 +279,7 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 @@ -1236,6 +1246,12 @@ xgettext_lex (tp)
  	  tp->type = xgettext_token_type_lp;
  	  return;
- 
+
 +	case token_type_rp:
 +	  last_non_comment_line = newline_count;
 +
@@ -288,9 +288,9 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 +
  	case token_type_comma:
  	  last_non_comment_line = newline_count;
- 
+
 @@ -1263,16 +1279,32 @@ xgettext_lex (tp)
- 
+
  void
  xgettext_lex_keyword (name)
 -     char *name;
@@ -320,12 +320,12 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 +	  len = strlen (name);
 +	  argnum = 1;
 +	}
- 
+
 -      string_list_append_unique (keywords, name);
 +      insert_entry (&keywords, name, len, (void *) argnum);
      }
  }
- 
+
 ===================================================================
 RCS file: src/xget-lex.h,v
 retrieving revision 0.10.35.0
@@ -348,7 +348,7 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 @@ -37,8 +37,14 @@ struct xgettext_token_ty
  {
    xgettext_token_type_ty type;
- 
+
 -  /* These 3 are only set for xgettext_token_type_string_literal.  */
 +  /* This 1 is set only for xgettext_token_type_keyword.  */
 +  int argnum;
@@ -369,7 +369,7 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 +void xgettext_lex_keyword PARAMS ((const char *__name));
  void xgettext_lex_cplusplus PARAMS ((void));
  void xgettext_lex_trigraphs PARAMS ((void));
- 
+
 ===================================================================
 RCS file: src/xgettext.c,v
 retrieving revision 0.10.35.0
@@ -383,13 +383,13 @@ diff -pu -r0.10.35.0 -r0.10.35.1
    int state;
 +  int commas_to_skip;	/* defined only when in states 1 and 2 */
 +  int paren_nesting;	/* defined only when in state 2 */
- 
+
    /* Inform scanner whether we have C++ files or not.  */
    if (is_cpp_file)
 @@ -854,63 +856,79 @@ scan_c_file(filename, mlp, is_cpp_file)
     {
       xgettext_token_ty token;
- 
+
 -     /* A simple state machine is used to do the recognising:
 +     /* A state machine is used to do the recognising:
          State 0 = waiting for something to happen
@@ -427,7 +427,7 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 +	 commas_to_skip = token.argnum - 1;
  	 state = 1;
  	 continue;
- 
+
 -       case xgettext_token_type_keyword2:
 -	 state = 3;
 -	 continue;
@@ -448,7 +448,7 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 -	     state = 0;
  	   }
  	 continue;
- 
+
 +       case xgettext_token_type_rp:
 +	 if (state == 2 && paren_nesting != 0)
 +	   paren_nesting--;
@@ -463,7 +463,7 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 +	 else
 +	   state = 0;
  	 continue;
- 
+
         case xgettext_token_type_string_literal:
 -	 if (extract_all || state == 2 || state == 6)
 -	   {
@@ -479,17 +479,17 @@ diff -pu -r0.10.35.0 -r0.10.35.1
 +	     state = state == 2 ? 2 : 0;
  	   }
  	 continue;
- 
+
         case xgettext_token_type_symbol:
 -	 state = (state == 4 || state == 5) ? 5 : 0;
 +	 state = state == 2 ? 2 : 0;
  	 continue;
- 
+
         default:
 -	 state = 0;
 -	 continue;
 +	 abort ();
- 
+
         case xgettext_token_type_eof:
  	 break;
 ===================================================================
@@ -501,26 +501,26 @@ diff -u -r0.10.35.0 -r0.10.35.5
 +++ po/Makefile.in.in	1998/07/26 09:07:52	0.10.35.5
 @@ -62,7 +62,7 @@
  	$(COMPILE) $<
- 
+
  .po.pox:
 -	$(MAKE) $(PACKAGE).pot
 +	$(MAKE) $(srcdir)/$(PACKAGE).pot
  	$(MSGMERGE) $< $(srcdir)/$(PACKAGE).pot -o $*.pox
- 
+
  .po.mo:
 @@ -79,7 +79,7 @@
- 
+
  all: all-@USE_NLS@
- 
+
 -all-yes: cat-id-tbl.c $(CATALOGS)
 +all-yes: $(srcdir)/cat-id-tbl.c $(CATALOGS)
  all-no:
- 
+
  $(srcdir)/$(PACKAGE).pot: $(POTFILES)
 @@ -90,8 +90,8 @@
  	   || ( rm -f $(srcdir)/$(PACKAGE).pot \
  		&& mv $(PACKAGE).po $(srcdir)/$(PACKAGE).pot )
- 
+
 -$(srcdir)/cat-id-tbl.c: stamp-cat-id; @:
 -$(srcdir)/stamp-cat-id: $(PACKAGE).pot
 +$(srcdir)/cat-id-tbl.c: $(srcdir)/stamp-cat-id; @:
@@ -529,27 +529,27 @@ diff -u -r0.10.35.0 -r0.10.35.5
  	sed -f ../intl/po2tbl.sed $(srcdir)/$(PACKAGE).pot \
  		| sed -e "s/@PACKAGE NAME@/$(PACKAGE)/" > cat-id-tbl.tmp
 @@ -180,7 +180,8 @@
- 
+
  check: all
- 
+
 -cat-id-tbl.o: ../intl/libgettext.h
 +cat-id-tbl.o: $(srcdir)/cat-id-tbl.c $(top_srcdir)/intl/libgettext.h
 +	$(COMPILE) $(srcdir)/cat-id-tbl.c
- 
+
  dvi info tags TAGS ID:
- 
+
 @@ -196,7 +197,7 @@
  maintainer-clean: distclean
  	@echo "This command is intended for maintainers to use;"
  	@echo "it deletes files that may require special tools to rebuild."
 -	rm -f $(GMOFILES)
 +	rm -f $(GMOFILES) cat-id-tbl.c stamp-cat-id
- 
+
  distdir = ../$(PACKAGE)-$(VERSION)/$(subdir)
  dist distdir: update-po $(DISTFILES)
 @@ -207,7 +208,7 @@
  	done
- 
+
  update-po: Makefile
 -	$(MAKE) $(PACKAGE).pot
 +	$(MAKE) $(srcdir)/$(PACKAGE).pot

@@ -163,7 +163,7 @@
 (define_function_unit "pa700memory" 1 0
   (and (eq_attr "type" "load,fpload")
        (eq_attr "cpu" "700")) 2 0)
-(define_function_unit "pa700memory" 1 0 
+(define_function_unit "pa700memory" 1 0
   (and (eq_attr "type" "store,fpstore")
        (eq_attr "cpu" "700")) 3 3)
 
@@ -220,7 +220,7 @@
 (define_function_unit "pa7100memory" 1 0
   (and (eq_attr "type" "load,fpload")
        (eq_attr "cpu" "7100,7100LC")) 2 0)
-(define_function_unit "pa7100memory" 1 0 
+(define_function_unit "pa7100memory" 1 0
   (and (eq_attr "type" "store,fpstore")
        (eq_attr "cpu" "7100,7100LC")) 2 2)
 
@@ -271,7 +271,7 @@
 
 
 ;; Memory subsystem works just like 7100/7150 (except for cache miss times which
-;; we don't model here).  
+;; we don't model here).
 
 ;; The 7100LC has three floating-point units: ALU, MUL, and DIV.
 ;; Note divides and sqrt flops lock the cpu until the flop is
@@ -349,7 +349,7 @@
 ;; treat it just like the 7100LC pipeline.
 ;; Similarly for the multi-issue fake units.
 
-;; 
+;;
 ;; Scheduling for the PA8000 is somewhat different than scheduling for a
 ;; traditional architecture.
 ;;
@@ -2159,7 +2159,7 @@
   /* This does happen, but not often enough to worry much about.  */
   if (size / align < MOVE_RATIO)
     FAIL;
-  
+
   /* Fall through means we're going to use our block move pattern.  */
   operands[0]
     = change_address (operands[0], VOIDmode,
@@ -2243,7 +2243,7 @@
   DONE;
 }")
 
-(define_expand "reload_outdf" 
+(define_expand "reload_outdf"
  [(set (match_operand:DF 0 "non_hard_reg_operand" "")
 	(match_operand:DF 1  "register_operand" "Z"))
    (clobber (match_operand:DF 2 "register_operand" "=&r"))]
@@ -2750,7 +2750,7 @@
 	(sign_extend:HI (match_operand:QI 1 "register_operand" "r")))]
   ""
   "extrs %1,31,8,%0"
-  [(set_attr "type" "shift") 
+  [(set_attr "type" "shift")
   (set_attr "length" "4")])
 
 (define_insn "extendqisi2"
@@ -2965,7 +2965,7 @@
 
   /* Try dividing the constant by 2, then 4, and finally 8 to see
      if we can get a constant which can be loaded into a register
-     in a single instruction (cint_ok_for_move). 
+     in a single instruction (cint_ok_for_move).
 
      If that fails, try to negate the constant and subtract it
      from our input operand.  */
@@ -3773,7 +3773,7 @@
 ;; This variant of the above insn can occur if the first operand
 ;; is the frame pointer.  This is a kludge, but there doesn't
 ;; seem to be a way around it.  Only recognize it while reloading.
-;; Note how operand 3 uses a predicate of "const_int_operand", but 
+;; Note how operand 3 uses a predicate of "const_int_operand", but
 ;; has constraints allowing a register.  I don't know how this works,
 ;; but it somehow makes sure that out-of-range constants are placed
 ;; in a register which somehow magically is a "const_int_operand".
@@ -4356,7 +4356,7 @@
     return \"ble 0(%%sr4,%%r22)\;copy %%r31,%%r2\";
 
   /* Now the normal case -- we can reach $$dyncall directly or
-     we're sure that we can get there via a long-branch stub. 
+     we're sure that we can get there via a long-branch stub.
 
      No need to check target flags as the length uniquely identifies
      the remaining cases.  */
@@ -4516,7 +4516,7 @@
     return \"ble 0(%%sr4,%%r22)\;copy %%r31,%%r2\";
 
   /* Now the normal case -- we can reach $$dyncall directly or
-     we're sure that we can get there via a long-branch stub. 
+     we're sure that we can get there via a long-branch stub.
 
      No need to check target flags as the length uniquely identifies
      the remaining cases.  */
@@ -5078,7 +5078,7 @@
 
   xoperands[0] = operands[2];
   xoperands[1] = operands[1];
-      
+
   if (FP_REG_P (xoperands[1]))
     output_asm_insn (output_fp_move_double (xoperands), xoperands);
   else
@@ -5114,7 +5114,7 @@
 
   xoperands[0] = operands[2];
   xoperands[1] = operands[0];
-      
+
   if (FP_REG_P (xoperands[1]))
     output_asm_insn (output_fp_move_double (xoperands), xoperands);
   else
@@ -5256,7 +5256,7 @@
   [(set_attr "type" "multi")
    (set_attr "length" "8")])
 
-;; Given a function pointer, canonicalize it so it can be 
+;; Given a function pointer, canonicalize it so it can be
 ;; reliably compared to another function pointer.  */
 (define_expand "canonicalize_funcptr_for_compare"
   [(set (reg:SI 26) (match_operand:SI 1 "register_operand" ""))
@@ -5351,7 +5351,7 @@
 		(const_int 0))
 	    (const_int 40)]
 
-;; Out of range and PIC 
+;; Out of range and PIC
 	  (const_int 44)))])
 
 ;; On the PA, the PIC register is call clobbered, so it must

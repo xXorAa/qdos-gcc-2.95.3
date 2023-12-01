@@ -1,9 +1,9 @@
 
 
-*CHANGE* libgcc.a will now be built by default, disable it in 
-gcc/config/m68k/t-qdos if it causes too many complications. To 
-build the libs copy the qdos/qdos-{ar,ranlib} scripts somewhere 
-into you path. You will also need a working as68 and slb in 
+*CHANGE* libgcc.a will now be built by default, disable it in
+gcc/config/m68k/t-qdos if it causes too many complications. To
+build the libs copy the qdos/qdos-{ar,ranlib} scripts somewhere
+into you path. You will also need a working as68 and slb in
 /usr/local/qdos-gcc/bin - ask for patches.
 The lib may still need qdos-ranlib after it is built, install it
 by hand into /usr/local/qdos-gcc/lib.
@@ -25,11 +25,11 @@ use of a build-dir recommended:
 
 This will install 'qdos-gcc' in /usr/local/bin/
 
-Next you will need 'as' (as68) and 'ld' built from c68 sources in 
+Next you will need 'as' (as68) and 'ld' built from c68 sources in
 /usr/local/qdos-gcc/bin,
 QDOS/c68 includes in /usr/local/qdos-gcc/include and /usr/local/qdos-gcc/include/sys,
 c68 libs in /usr/local/qdos-gcc/lib
-A few of the QDOS/c68 libs/includes/Makefiles may have wrongly spelled names 
+A few of the QDOS/c68 libs/includes/Makefiles may have wrongly spelled names
 (mostly case, sometimes '_/') which can cause rather mysterious build
 failures.
 

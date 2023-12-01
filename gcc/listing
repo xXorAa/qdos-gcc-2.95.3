@@ -9,14 +9,14 @@
 # Revision 1.3  89/12/18  13:58:27  metz
 # lister must now be configured before it can be used. This is done in the
 # /bin/sh part of the code.
-# 
-# 
+#
+#
 # Revision 1.2  89/08/16  17:35:02  metz
 # Support for SPARC added.
-# 
+#
 # Revision 1.1  89/08/16  16:49:22  metz
 # Initial revision
-# 
+#
 
 # Requires: gawk (may be it works also with nawk)
 
@@ -47,7 +47,7 @@ END
 WD=`pwd`
 cd /tmp
 gcc -c $$.c
-case "`file $$.o`" in 
+case "`file $$.o`" in
 *ELF*) MYSYS=elf ;;
 *COFF*|*BCS*) MYSYS=coff ;;
 *mc68k*|*M68000*) MYSYS=mc68030 ;;
@@ -137,7 +137,7 @@ BEGIN {
 
   while ( getline asm_code < asm_filename > 0 ) {
     if ( (ignore_stabd==0) && (asm_code ~ line_hint)) {
-      while ( sys == "elf" && (asm_code !~ "word" && asm_code !~ "byte") && 
+      while ( sys == "elf" && (asm_code !~ "word" && asm_code !~ "byte") &&
         getline asm_code < asm_filename > 0);
       # source line hint found. Split the line into fields separated by commas.
       # num_of_fields is 4 for sparc, 3 for m68k
@@ -163,19 +163,19 @@ BEGIN {
     }
     else if ( sys == "elf" && asm_code ~ "section.*\.debug" ) {
       while ( asm_code !~ "^[ \t]*[.]*previous" &&
-	      asm_code !~ "\.popsection" && 
+	      asm_code !~ "\.popsection" &&
               getline asm_code < asm_filename > 0 );
       if ( ! (getline asm_code < asm_filename > 0)) break;
     }
     else if ( sys == "coff" && asm_code ~ "^[ \t]*sdef" ) {
       if ( asm_code ~ "\.bf" ) {
-         while ( asm_code !~ "^[ \t]*line" && 
+         while ( asm_code !~ "^[ \t]*line" &&
                  getline asm_code < asm_filename > 0 ) {
            num_of_fields = split(asm_code, fields, "\t")
            line_offset = fields[line_field] - 1;
          }
       }
-      while ( asm_code !~ "^[ \t]*endef" && 
+      while ( asm_code !~ "^[ \t]*endef" &&
               getline asm_code < asm_filename > 0 ) {
       }
       if ( ! (getline asm_code < asm_filename > 0)) break;

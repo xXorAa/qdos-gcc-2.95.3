@@ -92,7 +92,7 @@ char *himode_reg_name[] = HIMODE_REGISTER_NAMES;
 #define SHIFT_INDEX_8   2
 #define SHIFT_INDEX_16  3
 
-static char *ashift_right_asm[] = 
+static char *ashift_right_asm[] =
 {
   "%0=%0>>1",
   "%0=%0>>4",
@@ -100,7 +100,7 @@ static char *ashift_right_asm[] =
   "%0=%0>>16"
 };
 
-static char *ashift_right_asm_first[] = 
+static char *ashift_right_asm_first[] =
 {
   "%0=%1>>1",
   "%0=%1>>4",
@@ -108,7 +108,7 @@ static char *ashift_right_asm_first[] =
   "%0=%1>>16"
 };
 
-static char *ashift_left_asm[] = 
+static char *ashift_left_asm[] =
 {
   "%0=%0<<1",
   "%0=%0<<4",
@@ -116,7 +116,7 @@ static char *ashift_left_asm[] =
   "%0=%0<<16"
 };
 
-static char *ashift_left_asm_first[] = 
+static char *ashift_left_asm_first[] =
 {
   "%0=%1<<1",
   "%0=%1<<4",
@@ -124,7 +124,7 @@ static char *ashift_left_asm_first[] =
   "%0=%1<<16"
 };
 
-static char *lshift_right_asm[] = 
+static char *lshift_right_asm[] =
 {
   "%0=%0>>1\n\t%0=%b0&0x7fff",
   "%0=%0>>4\n\t%0=%b0&0x0fff",
@@ -132,7 +132,7 @@ static char *lshift_right_asm[] =
   "%0=%0>>16\n\t%0=%b0&0x0000"
 };
 
-static char *lshift_right_asm_first[] = 
+static char *lshift_right_asm_first[] =
 {
   "%0=%1>>1\n\t%0=%b0&0x7fff",
   "%0=%1>>4\n\t%0=%b0&0x0fff",
@@ -140,7 +140,7 @@ static char *lshift_right_asm_first[] =
   "%0=%1>>16\n\t%0=%b0&0x0000"
 };
 
-int 
+int
 hard_regno_mode_ok (regno, mode)
 int regno;
 enum machine_mode mode;
@@ -149,8 +149,8 @@ enum machine_mode mode;
     {
     case VOIDmode:
       return 1;
-      
-      /* 
+
+      /*
 	We can't use the c0-c2 for QImode, since they are only
 	8 bits in length */
 
@@ -159,11 +159,11 @@ enum machine_mode mode;
 	return 1;
       else
 	return 0;
-      
+
       /* We only allow a0, a1, y, and p to be allocated for 32-bit modes.
          Additionally we allow the virtual ybase registers to be used for 32-bit
 	 modes. */
-      
+
     case HFmode:
     case SFmode:
     case DFmode:
@@ -176,7 +176,7 @@ enum machine_mode mode;
 	return 1;
       else
 	return 0;
-      
+
     default:
       return 0;
     }
@@ -190,22 +190,22 @@ int c;
     {
     case 'A':
       return ACCUM_REGS;
-      
+
     case 'h':
       return ACCUM_HIGH_REGS;
-      
+
     case 'j':
       return A0H_REG;
-      
+
     case 'k':
       return A0L_REG;
-      
+
     case 'q':
       return A1H_REG;
-      
+
     case 'u':
       return A1L_REG;
-      
+
     case 'x':
       return X_REG;
 
@@ -268,7 +268,7 @@ int c;
 /* Return the class number of the smallest class containing
    reg number REGNO. */
 
-int 
+int
 regno_reg_class(regno)
 int regno;
 {
@@ -278,51 +278,51 @@ int regno;
       return (int) A0L_REG;
     case REG_A1L:
       return (int) A1L_REG;
-      
+
     case REG_A0:
       return (int) A0H_REG;
     case REG_A1:
       return (int) A1H_REG;
-      
+
     case REG_X:
       return (int) X_REG;
-      
+
     case REG_Y:
       return (int) YH_REG;
     case REG_YL:
       return (int) YL_REG;
-      
+
     case REG_PROD:
       return (int) PH_REG;
     case REG_PRODL:
       return (int) PL_REG;
-      
+
     case REG_R0: case REG_R1: case REG_R2: case REG_R3:
       return (int) Y_ADDR_REGS;
-      
+
     case REG_J:
       return (int) J_REG;
     case REG_K:
       return (int) GENERAL_REGS;
-      
+
     case REG_YBASE:
       return (int) GENERAL_REGS;
-      
+
     case REG_PT:
       return (int) GENERAL_REGS;
-      
+
     case REG_AR0: case REG_AR1: case REG_AR2: case REG_AR3:
       return (int) BMU_REGS;
-      
+
     case REG_C0: case REG_C1: case REG_C2:
       return (int) GENERAL_REGS;
-      
+
     case REG_PR:
       return (int) GENERAL_REGS;
-      
+
     case REG_RB:
       return (int) GENERAL_REGS;
-      
+
     case REG_YBASE0: case REG_YBASE1: case REG_YBASE2: case REG_YBASE3:
     case REG_YBASE4: case REG_YBASE5: case REG_YBASE6: case REG_YBASE7:
     case REG_YBASE8: case REG_YBASE9: case REG_YBASE10: case REG_YBASE11:
@@ -332,7 +332,7 @@ int regno;
     case REG_YBASE24: case REG_YBASE25: case REG_YBASE26: case REG_YBASE27:
     case REG_YBASE28: case REG_YBASE29: case REG_YBASE30: case REG_YBASE31:
       return (int) YBASE_VIRT_REGS;
-      
+
     default:
       return (int) NO_REGS;
     }
@@ -451,7 +451,7 @@ enum reg_class class;
 	return ACCUM_LOW_OR_YL_OR_P_REGS;
 
     case NO_FRAME_Y_ADDR_REGS:
-    case Y_ADDR_REGS: 
+    case Y_ADDR_REGS:
     case ACCUM_LOW_OR_Y_ADDR_REGS:
       return class;
 
@@ -505,7 +505,7 @@ enum reg_class class;
     case YBASE_VIRT_REGS:
     case ACCUM_LOW_OR_YBASE_REGS:
       return class;
-      
+
     case ACCUM_OR_YBASE_REGS:
       if (GET_MODE_SIZE(mode) > 1)
 	return class;
@@ -677,7 +677,7 @@ preferred_reload_class (x, class)
   else
     return class;
 }
-	
+
 /* Return the register class of a scratch register needed to copy IN into
    or out of a register in CLASS in MODE.  If it can be done directly,
    NO_REGS is returned.  */
@@ -693,7 +693,7 @@ secondary_reload_class (class, mode, in)
   if (GET_CODE (in) == REG || GET_CODE (in) == SUBREG)
     regno = true_regnum (in);
 
-  if (class == ACCUM_HIGH_REGS 
+  if (class == ACCUM_HIGH_REGS
       || class == ACCUM_LOW_REGS
       || class == A1L_REG
       || class == A0L_REG
@@ -704,9 +704,9 @@ secondary_reload_class (class, mode, in)
 	{
 	  rtx addr0 = XEXP (in, 0);
 	  rtx addr1 = XEXP (in, 1);
-	  
+
 	  /* If we are reloading a plus (reg:QI) (reg:QI)
-	     we need an additional register. */ 
+	     we need an additional register. */
 	  if (REG_P (addr0) && REG_P (addr1))
 	    return NO_REGS;
 	}
@@ -717,7 +717,7 @@ secondary_reload_class (class, mode, in)
 
   if ((class == ACCUM_REGS || class == ACCUM_HIGH_REGS ||
        class == ACCUM_LOW_REGS || class == A0H_REG || class == A0L_REG ||
-       class == A1H_REG || class == A1_REG) || 
+       class == A1H_REG || class == A1_REG) ||
       (regno >= REG_A0 && regno < REG_A1L + 1))
     return NO_REGS;
 
@@ -906,7 +906,7 @@ rtx op;
 enum machine_mode mode;
 {
    return (memory_address_p (mode, op) && !symbolic_address_p (op));
-}	     
+}
 
 int
 sp_operand (op, mode)
@@ -924,7 +924,7 @@ sp_operand2 (op, mode)
 rtx op;
 enum machine_mode mode;
 {
-  if ((GET_CODE (op) == PLUS 
+  if ((GET_CODE (op) == PLUS
        && (XEXP (op, 0) == stack_pointer_rtx
 	   || XEXP (op, 0) == frame_pointer_rtx)
        && (REG_P (XEXP (op,1))
@@ -1037,7 +1037,7 @@ rtx exp;
 	else if (GET_MODE_CLASS (GET_MODE (SET_SRC (exp))) == MODE_INT)
 	    switch( GET_CODE (SET_SRC (exp)) )
 	    {
-	    case PLUS: 
+	    case PLUS:
 	    case MINUS:
 	      if (REG_P (SET_DEST (exp)))
 		{
@@ -1048,11 +1048,11 @@ rtx exp;
 		      break;
 		    }
 		}
-	    case ASHIFTRT: 
+	    case ASHIFTRT:
 	    case LSHIFTRT:
-	    case ASHIFT: 
-	    case AND: 
-	    case IOR: 
+	    case ASHIFT:
+	    case AND:
+	    case IOR:
 	    case XOR:
 	    case MULT:
 	    case NEG:
@@ -1060,7 +1060,7 @@ rtx exp;
 	      cc_status.value1 = SET_SRC (exp);
 	      cc_status.value2 = SET_DEST (exp);
 	      break;
-	      
+
 	    default:
 	      CC_STATUS_INIT;
 	    }
@@ -1115,7 +1115,7 @@ int size;
   extra_size = 0;
   var_size = size;
   args_size = current_function_outgoing_args_size;
-  reg_size = reg_save_size ();  
+  reg_size = reg_save_size ();
 
   total_size = var_size + args_size + extra_size + reg_size;
 
@@ -1165,7 +1165,7 @@ ybase_regs_ever_used ()
   return live;
 }
 
-void 
+void
 function_prologue (file, size)
 FILE *file;
 int  size;
@@ -1176,9 +1176,9 @@ int  size;
   sp = reg_names[STACK_POINTER_REGNUM];
   rr = reg_names[RETURN_ADDRESS_REGNUM];   /* return address register */
   a1h = reg_names[REG_A1];
-  
+
   total_size = compute_frame_size (size);
-  
+
   fprintf( file, "\t/* FUNCTION PROLOGUE: */\n" );
   fprintf (file, "\t/* total=%d, vars= %d, regs= %d, args=%d, extra= %d */\n",
 	   current_frame_info.total_size,
@@ -1186,12 +1186,12 @@ int  size;
 	   current_frame_info.reg_size,
 	   current_function_outgoing_args_size,
 	   current_frame_info.extra_size);
-  
+
   fprintf (file, "\t/* fp save offset= %d, sp save_offset= %d */\n\n",
 	   current_frame_info.fp_save_offset,
 	   current_frame_info.sp_save_offset);
   /* Set up the 'ybase' register window. */
-  
+
   if (ybase_regs_ever_used())
     {
       fprintf (file, "\t%s=%s\n", a1h, reg_names[REG_YBASE]);
@@ -1201,13 +1201,13 @@ int  size;
 	fprintf (file, "\t%s=%sh+32\n", reg_names[REG_A1], a1h);
       fprintf (file, "\t%s=%s\n", reg_names[REG_YBASE], a1h);
     }
-  
+
 #if 0
   if (current_frame_info.function_makes_calls)
     fprintf( file, "\t*%s++=%s\n", sp, rr );   /* Push return address */
 #endif
-  
-  
+
+
   if (current_frame_info.var_size)
     {
       if (current_frame_info.var_size == 1)
@@ -1220,13 +1220,13 @@ int  size;
 	    fatal ("Stack size > 32k");
 	}
     }
-  
+
   /* Save any registers this function uses, unless they are
    * used in a call, in which case we don't need to
    */
-  
+
   for( regno = 0; regno < FIRST_PSEUDO_REGISTER; ++ regno )
-    if (dsp16xx_call_saved_register (regno)) 
+    if (dsp16xx_call_saved_register (regno))
       {
 #if OLD_REGISTER_SAVE
 	fprintf( file, "\t*%s++=%s\n", sp, reg_names[regno] );
@@ -1234,7 +1234,7 @@ int  size;
 	fprintf( file, "\tpush(*%s)=%s\n", sp, reg_names[regno] );
 #endif
       }
-  
+
   if (current_frame_info.args_size)
     {
       if (current_frame_info.args_size == 1)
@@ -1247,7 +1247,7 @@ int  size;
 	    fatal ("Stack size > 32k");
 	}
     }
-  
+
   if (frame_pointer_needed)
     {
       fprintf( file, "\t%s=%s\n", a1h, sp );
@@ -1255,7 +1255,7 @@ int  size;
       fprintf( file, "\t%s=%d\n", reg_names[REG_J], -total_size);
       fprintf( file, "\t*%s++%s\n", fp, reg_names[REG_J]);
     }
-  
+
   fprintf( file, "\t/* END FUNCTION PROLOGUE: */\n\n" );
 }
 
@@ -1293,25 +1293,25 @@ int   size;
 {
   int regno;
   int initial_stack_dec = 0;
-  
+
   fp = reg_names[FRAME_POINTER_REGNUM];
   sp = reg_names[STACK_POINTER_REGNUM];
   rr = reg_names[RETURN_ADDRESS_REGNUM];   /* return address register */
   a1h = reg_names[REG_A1];
-  
+
   fprintf( file, "\n\t/* FUNCTION EPILOGUE: */\n" );
-  
+
   if (current_frame_info.args_size)
     {
       if (current_frame_info.args_size == 1)
 	fprintf (file, "\t*%s--\n", sp);
       else
 	{
-	  fprintf (file, "\t%s=%d\n\t*%s++%s\n", 
+	  fprintf (file, "\t%s=%d\n\t*%s++%s\n",
 		   reg_names[REG_J], -current_frame_info.args_size, sp, reg_names[REG_J]);
 	}
     }
-  
+
   if (ybase_regs_ever_used())
     {
       fprintf (file, "\t%s=%s\n", a1h, reg_names[REG_YBASE]);
@@ -1321,7 +1321,7 @@ int   size;
 	fprintf (file, "\t%s=%sh-32\n", reg_names[REG_A1], a1h);
       fprintf (file, "\t%s=%s\n", reg_names[REG_YBASE], a1h);
     }
-  
+
   for (regno = FIRST_PSEUDO_REGISTER - 1; regno >= 0; --regno)
     if (dsp16xx_call_saved_register(regno))
       {
@@ -1339,26 +1339,26 @@ int   size;
 	fprintf( file, "\t%s=pop(*%s)\n", reg_names[regno], sp );
 #endif
       }
-  
+
   /* If we restored any registers we have to account for the
      initial pre-decrement. But only if we had any local variables
      or spills. */
-#if OLD_REGISTER_SAVE  
-  if (initial_stack_dec) 
+#if OLD_REGISTER_SAVE
+  if (initial_stack_dec)
     fprintf (file, "\t*%s++\n", sp);
 #endif
-  
+
   if (current_frame_info.var_size)
     {
       if (current_frame_info.var_size == 1)
 	fprintf (file, "\t*%s--\n", sp);
       else
 	{
-	  fprintf (file, "\t%s=%d\n\t*%s++%s\n", 
+	  fprintf (file, "\t%s=%d\n\t*%s++%s\n",
 		   reg_names[REG_J], -current_frame_info.var_size, sp, reg_names[REG_J]);
 	}
     }
-  
+
   fprintf (file, "\treturn\n");
   /* Reset the frame info for the next function */
   current_frame_info = zero_frame_info;
@@ -1402,7 +1402,7 @@ rtx operands[];
     {
 	xoperands[1] = XEXP (XEXP (operands[1], 0), 0);
 	xoperands[0] = operands[0];
-	
+
 	/* We can't use j anymore since the compiler can allocate it. */
 /*	output_asm_insn ("j=-3\n\t%u0=*%1++\n\t%w0=*%1++j", xoperands); */
 	output_asm_insn ("%u0=*%1++\n\t%w0=*%1--\n\t*%1--\n\t*%1--", xoperands);
@@ -1451,7 +1451,7 @@ rtx operands[];
     {
 	xoperands[0] = XEXP (XEXP (operands[0], 0), 0);
 	xoperands[1] = operands[1];
-	
+
 	/* We can't use j anymore since the compiler can allocate it. */
 
 /*	output_asm_insn ("j=-3\n\t*%0++=%u1\n\t*%0++j=%w1", xoperands); */
@@ -1494,33 +1494,33 @@ override_options ()
 
   if (text_seg_name == (char *) 0)
     text_seg_name = DEFAULT_TEXT_SEG_NAME;
-  
+
   if (data_seg_name == (char *) 0)
     data_seg_name = DEFAULT_DATA_SEG_NAME;
-  
+
   if (bss_seg_name == (char *) 0)
     bss_seg_name = DEFAULT_BSS_SEG_NAME;
-  
+
   if (const_seg_name == (char *) 0)
     const_seg_name = DEFAULT_CONST_SEG_NAME;
-  
+
   save_chip_name = (char *) xmalloc (strlen(chip_name) + 1);
   strcpy (save_chip_name, chip_name);
 
-  rsect_text = (char *) xmalloc (strlen(".rsect ") + 
+  rsect_text = (char *) xmalloc (strlen(".rsect ") +
 				 strlen(text_seg_name) + 3);
-  rsect_data = (char *) xmalloc (strlen(".rsect ") + 
+  rsect_data = (char *) xmalloc (strlen(".rsect ") +
 				 strlen(data_seg_name) + 3);
-  rsect_bss = (char *) xmalloc (strlen(".rsect ") + 
+  rsect_bss = (char *) xmalloc (strlen(".rsect ") +
 				strlen(bss_seg_name) + 3);
-  rsect_const = (char *) xmalloc (strlen(".rsect ") + 
+  rsect_const = (char *) xmalloc (strlen(".rsect ") +
 				  strlen(const_seg_name) + 3);
-  
+
   sprintf (rsect_text, ".rsect \"%s\"", text_seg_name);
   sprintf (rsect_data, ".rsect \"%s\"", data_seg_name);
   sprintf (rsect_bss,  ".rsect \"%s\"", bss_seg_name);
   sprintf (rsect_const, ".rsect \"%s\"", const_seg_name);
-  
+
   if (optimize)
     {
       if (TARGET_OPTIMIZE_SPEED)
@@ -1582,42 +1582,42 @@ int letter;
 	  /* Fallthrough */
 
        case 'C':
-          if (code == EQ) 
-          { 
-	      fputs ("eq", file); 
-	      return; 
+          if (code == EQ)
+          {
+	      fputs ("eq", file);
+	      return;
 	  }
-          else if (code == NE)  
-	  { 
-	      fputs ("ne", file); 
-	      return; 
-	  }
-          else if (code == GT || code == GTU)  
-	  { 
-	      fputs ("gt", file); 
-	      return; 
-	  }
-          else if (code == LT || code == LTU)  
-	  { 
-	      fputs ("mi", file); 
-	      return; 
-	  }
-          else if (code == GE || code == GEU)  
+          else if (code == NE)
 	  {
-	      fputs ("pl", file); 
-	      return; 
+	      fputs ("ne", file);
+	      return;
 	  }
-          else if (code == LE || code == LEU)  
-	  { 
-	      fputs ("le", file); 
-	      return; 
+          else if (code == GT || code == GTU)
+	  {
+	      fputs ("gt", file);
+	      return;
 	  }
-          else 
+          else if (code == LT || code == LTU)
+	  {
+	      fputs ("mi", file);
+	      return;
+	  }
+          else if (code == GE || code == GEU)
+	  {
+	      fputs ("pl", file);
+	      return;
+	  }
+          else if (code == LE || code == LEU)
+	  {
+	      fputs ("le", file);
+	      return;
+	  }
+          else
 	      abort ();
 	  break;
 
        default:
-          break;  
+          break;
     }
 
     if( code == REG )
@@ -1637,7 +1637,7 @@ int letter;
     else if( code == MEM )
         output_address( XEXP(op,0) );
     else if( code == CONST_INT )
-    { 
+    {
 	HOST_WIDE_INT val = INTVAL (op);
         if( letter == 'H' )
             fprintf( file, HOST_WIDE_INT_PRINT_HEX, val & 0xffff);
@@ -1668,7 +1668,7 @@ rtx addr;
 {
   rtx base;
   int offset;
-  
+
   switch (GET_CODE (addr))
     {
     case REG:
@@ -1694,10 +1694,10 @@ rtx addr;
 	}
       else
 	fatal ("Invalid register in ybase addressing");
-      
+
       fprintf (file, "*(%d)", offset);
       break;
-      
+
     default:
       if( FITS_5_BITS( addr ) )
 	fprintf( file, "*(0x%x)", (INTVAL(addr) & 0x20) );
@@ -1712,14 +1712,14 @@ rtx *operands;
 {
   rtx dst = operands[0];
   rtx src = operands[1];
-  
+
 #if HOST_FLOAT_FORMAT == TARGET_FLOAT_FORMAT
   REAL_VALUE_TYPE d;
   long value;
-  
+
   REAL_VALUE_FROM_CONST_DOUBLE (d, src);
   REAL_VALUE_TO_TARGET_SINGLE (d, value);
-  
+
   operands[1] = GEN_INT (value);
   output_asm_insn ("%u0=%U1\n\t%w0=%H1", operands);
 #else
@@ -1732,7 +1732,7 @@ reg_save_size ()
 {
   int reg_save_size = 0;
  int regno;
- 
+
   for (regno = 0; regno < FIRST_PSEUDO_REGISTER; regno++)
     if (dsp16xx_call_saved_register (regno))
       {
@@ -1747,7 +1747,7 @@ dsp16xx_starting_frame_offset()
 {
   int reg_save_size = 0;
  int regno;
- 
+
   for (regno = 0; regno < FIRST_PSEUDO_REGISTER; regno++)
     if (dsp16xx_call_saved_register (regno))
       {
@@ -1763,7 +1763,7 @@ initial_frame_pointer_offset()
   int frame_size;
   int regno;
   int offset = 0;
-  
+
   offset = compute_frame_size (get_frame_size());
 
 #ifdef STACK_GROWS_DOWNWARD
@@ -1787,7 +1787,7 @@ enum machine_mode mode;
   int quotient;
   int i;
   int first_shift_emitted = 0;
-  
+
   while (shift_amount != 0)
     {
       if (shift_amount/16)
@@ -1796,7 +1796,7 @@ enum machine_mode mode;
 	  shift_amount = shift_amount - (quotient * 16);
 	  for (i = 0; i < quotient; i++)
 	    emit_insn (gen_rtx (SET, VOIDmode, operands[0],
-				gen_rtx (shift_op, mode, 
+				gen_rtx (shift_op, mode,
 					 first_shift_emitted ? operands[0] : operands[1],
 					 GEN_INT (16))));
 	  first_shift_emitted = 1;
@@ -1807,7 +1807,7 @@ enum machine_mode mode;
 	  shift_amount = shift_amount - (quotient * 8);
 	  for (i = 0; i < quotient; i++)
 	    emit_insn (gen_rtx (SET, VOIDmode, operands[0],
-				gen_rtx (shift_op, mode, 
+				gen_rtx (shift_op, mode,
 					 first_shift_emitted ? operands[0] : operands[1],
 					 GEN_INT (8))));
 	  first_shift_emitted = 1;
@@ -1818,7 +1818,7 @@ enum machine_mode mode;
 	  shift_amount = shift_amount - (quotient * 4);
 	  for (i = 0; i < quotient; i++)
 	    emit_insn (gen_rtx (SET, VOIDmode, operands[0],
-				gen_rtx (shift_op, mode, 
+				gen_rtx (shift_op, mode,
 					 first_shift_emitted ? operands[0] : operands[1],
 					 GEN_INT (4))));
 	  first_shift_emitted = 1;
@@ -1829,7 +1829,7 @@ enum machine_mode mode;
 	  shift_amount = shift_amount - (quotient * 1);
 	  for (i = 0; i < quotient; i++)
 	    emit_insn (gen_rtx (SET, VOIDmode, operands[0],
-				gen_rtx (shift_op, mode, 
+				gen_rtx (shift_op, mode,
 					 first_shift_emitted ? operands[0] : operands[1],
 					 GEN_INT (1))));
 	  first_shift_emitted = 1;
@@ -2015,21 +2015,21 @@ rtx addr;
 	  {
 	     register rtx plus0 = XEXP (addr, 0);
 	     register rtx plus1 = XEXP (addr, 1);
-	     
+
 	     if (GET_CODE (plus0) != REG && GET_CODE (plus1) == REG)
 	     {
 		 plus0 = XEXP (addr, 1);
 		 plus1 = XEXP (addr, 0);
 	     }
-	     
+
 	     if (GET_CODE (plus0) != REG)
 		 break;
-	     
+
 	     switch (GET_CODE (plus1))
 	     {
 		   default:
 		      break;
-		 
+
 		   case CONST_INT:
 		      return 4;
 
@@ -2040,7 +2040,7 @@ rtx addr;
 	     }
 	  }
      }
-	     
+
      return 4;
 }
 
@@ -2211,7 +2211,7 @@ gen_compare_reg (code, x, y)
 	}
       else
 	emit_insn (gen_rtx (SET, VOIDmode, cc0_rtx,
-			    gen_rtx (COMPARE, VOIDmode, force_reg(HImode, x), 
+			    gen_rtx (COMPARE, VOIDmode, force_reg(HImode, x),
 				     force_reg(HImode,y))));
     }
   else

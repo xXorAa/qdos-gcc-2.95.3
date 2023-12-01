@@ -6,7 +6,7 @@
 #define __GNUC_VA_LIST
 /* The first element is the address of the first argument.
    The second element is the number of bytes skipped past so far.  */
-typedef unsigned __gnuc_va_list[2];	
+typedef unsigned __gnuc_va_list[2];
 #endif /* not __GNUC_VA_LIST */
 
 /* If this is for internal libc use, don't define anything but

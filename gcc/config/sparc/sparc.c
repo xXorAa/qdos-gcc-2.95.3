@@ -220,7 +220,7 @@ sparc_override_options ()
   struct cpu_table *cpu;
   struct sparc_cpu_select *sel;
   int fpu;
-  
+
 #ifndef SPARC_BI_ARCH
   /* Check for unsupported architecture size.  */
   if (! TARGET_64BIT != DEFAULT_ARCH32_P)
@@ -243,7 +243,7 @@ sparc_override_options ()
 
   /* Code model selection.  */
   sparc_cmodel = SPARC_DEFAULT_CMODEL;
-  
+
 #ifdef SPARC_BI_ARCH
   if (TARGET_ARCH32)
     sparc_cmodel = CM_32;
@@ -314,7 +314,7 @@ sparc_override_options ()
   /* Don't use stack biasing in 32 bit mode.  */
   if (TARGET_ARCH32)
     target_flags &= ~MASK_STACK_BIAS;
-    
+
   /* Don't allow -mvis if FPU is disabled.  */
   if (! TARGET_FPU)
     target_flags &= ~MASK_VIS;
@@ -2272,7 +2272,7 @@ eligible_for_epilogue_delay (trial, slot)
       else
         return GET_MODE_SIZE (GET_MODE (src)) <= GET_MODE_SIZE (SImode);
     }
-    
+
   /* This matches "*return_di".  */
   else if (arith_double_operand (src, GET_MODE (src)))
     return GET_MODE_SIZE (GET_MODE (src)) <= GET_MODE_SIZE (DImode);
@@ -2329,7 +2329,7 @@ check_return_regs (x)
     case NEG:
     case MEM:
       return check_return_regs (XEXP (x, 0));
-      
+
     default:
       return 0;
     }
@@ -2423,7 +2423,7 @@ check_pic (i)
     }
 }
 
-/* Return true if X is an address which needs a temporary register when 
+/* Return true if X is an address which needs a temporary register when
    reloaded while generating PIC code.  */
 
 int
@@ -2693,7 +2693,7 @@ mem_min_alignment (mem, desired)
 	 it is to a constant address, or the address involves a LO_SUM.  */
       return 1;
     }
-  
+
   /* An obviously unaligned address.  */
   return 0;
 }
@@ -2834,7 +2834,7 @@ sparc_init_modes ()
 	    sparc_mode_class[i] = 1 << (int) T_MODE;
 	  else if (GET_MODE_SIZE (i) == 32)
 	    sparc_mode_class[i] = 1 << (int) O_MODE;
-	  else 
+	  else
 	    sparc_mode_class[i] = 0;
 	  break;
 	case MODE_FLOAT:
@@ -2847,7 +2847,7 @@ sparc_init_modes ()
 	    sparc_mode_class[i] = 1 << (int) TF_MODE;
 	  else if (GET_MODE_SIZE (i) == 32)
 	    sparc_mode_class[i] = 1 << (int) OF_MODE;
-	  else 
+	  else
 	    sparc_mode_class[i] = 0;
 	  break;
 	case MODE_CC:
@@ -3102,7 +3102,7 @@ build_big_number (file, num, reg)
       int asize = num;
       int inv = ~asize;
       int low = -0x400 + (asize & 0x3FF);
-	  
+
       fprintf (file, "\tsethi\t%%hi(%d), %s\n\txor\t%s, %d, %s\n",
 	       inv, reg, reg, low, reg);
     }
@@ -3283,14 +3283,14 @@ output_function_epilogue (file, size, leaf_function)
 #endif
 
   else if (current_function_epilogue_delay_list == 0)
-    {                                                
+    {
       /* If code does not drop into the epilogue, we need
 	 do nothing except output pending case vectors.  */
-      rtx insn = get_last_insn ();                               
-      if (GET_CODE (insn) == NOTE)                               
-      insn = prev_nonnote_insn (insn);                           
-      if (insn && GET_CODE (insn) == BARRIER)                    
-      goto output_vectors;                                                    
+      rtx insn = get_last_insn ();
+      if (GET_CODE (insn) == NOTE)
+      insn = prev_nonnote_insn (insn);
+      if (insn && GET_CODE (insn) == BARRIER)
+      goto output_vectors;
     }
 
   /* Restore any call saved registers.  */
@@ -3377,7 +3377,7 @@ output_function_epilogue (file, size, leaf_function)
       else if ((actual_fsize & 0x3ff) == 0)
 	fprintf (file, "\tsethi\t%%hi(%d), %%g1\n\t%s\n\tadd\t%%sp, %%g1, %%sp\n",
 		 actual_fsize, ret);
-      else		 
+      else
 	fprintf (file, "\tsethi\t%%hi(%d), %%g1\n\tor\t%%g1, %%lo(%d), %%g1\n\t%s\n\tadd\t%%sp, %%g1, %%sp\n",
 		 actual_fsize, actual_fsize, ret);
       target_flags |= old_target_epilogue;
@@ -3703,7 +3703,7 @@ function_arg_record_value_1 (type, startbitpos, parms)
 
 /* Handle recursive structure field register assignment.  */
 
-static void 
+static void
 function_arg_record_value_3 (bitpos, parms)
      int bitpos;
      struct function_arg_record_value_parms *parms;
@@ -4245,9 +4245,9 @@ function_value (type, mode, incoming_p)
 	  mode = mode_for_size (bytes * BITS_PER_UNIT, MODE_INT, 0);
 	}
     }
-    
+
   if (TARGET_ARCH64
-      && GET_MODE_CLASS (mode) == MODE_INT 
+      && GET_MODE_CLASS (mode) == MODE_INT
       && GET_MODE_SIZE (mode) < UNITS_PER_WORD
       && type && TREE_CODE (type) != UNION_TYPE)
     mode = DImode;
@@ -4291,7 +4291,7 @@ sparc_builtin_saveregs (arglist)
       && first_reg < NPARM_REGS (word_mode))
     emit_library_call (chkr_set_right_libfunc, 1, VOIDmode, 3,
 		       address, ptr_mode,
-		       GEN_INT (UNITS_PER_WORD 
+		       GEN_INT (UNITS_PER_WORD
 			 	* (NPARM_REGS (word_mode) - first_reg)),
 		       TYPE_MODE (sizetype), GEN_INT (MEMORY_USE_RW),
 		       TYPE_MODE (integer_type_node));
@@ -4837,7 +4837,7 @@ sparc_absnegfloat_split_legitimate (x, y)
 }
 
 /* Return 1 if REGNO (reg1) is even and REGNO (reg1) == REGNO (reg2) - 1.
-   This makes them candidates for using ldd and std insns. 
+   This makes them candidates for using ldd and std insns.
 
    Note reg1 and reg2 *must* be hard registers.  */
 
@@ -4846,31 +4846,31 @@ registers_ok_for_ldd_peep (reg1, reg2)
      rtx reg1, reg2;
 {
   /* We might have been passed a SUBREG.  */
-  if (GET_CODE (reg1) != REG || GET_CODE (reg2) != REG) 
+  if (GET_CODE (reg1) != REG || GET_CODE (reg2) != REG)
     return 0;
 
   if (REGNO (reg1) % 2 != 0)
     return 0;
 
-  /* Integer ldd is deprecated in SPARC V9 */ 
-  if (TARGET_V9 && REGNO (reg1) < 32)                  
-    return 0;                             
+  /* Integer ldd is deprecated in SPARC V9 */
+  if (TARGET_V9 && REGNO (reg1) < 32)
+    return 0;
 
   return (REGNO (reg1) == REGNO (reg2) - 1);
 }
 
-/* Return 1 if addr1 and addr2 are suitable for use in an ldd or 
+/* Return 1 if addr1 and addr2 are suitable for use in an ldd or
    std insn.
 
    This can only happen when addr1 and addr2 are consecutive memory
-   locations (addr1 + 4 == addr2).  addr1 must also be aligned on a 
-   64 bit boundary (addr1 % 8 == 0).  
+   locations (addr1 + 4 == addr2).  addr1 must also be aligned on a
+   64 bit boundary (addr1 % 8 == 0).
 
    We know %sp and %fp are kept aligned on a 64 bit boundary.  Other
-   registers are assumed to *never* be properly aligned and are 
+   registers are assumed to *never* be properly aligned and are
    rejected.
 
-   Knowing %sp and %fp are kept aligned on a 64 bit boundary, we 
+   Knowing %sp and %fp are kept aligned on a 64 bit boundary, we
    need only check that the offset for addr1 % 8 == 0.  */
 
 int
@@ -4919,7 +4919,7 @@ addrs_ok_for_ldd_peep (addr1, addr2)
   if (reg1 != REGNO (XEXP (addr2, 0)))
     return 0;
 
-  /* The first offset must be evenly divisible by 8 to ensure the 
+  /* The first offset must be evenly divisible by 8 to ensure the
      address is 64 bit aligned.  */
   if (offset1 % 8 != 0)
     return 0;
@@ -4933,7 +4933,7 @@ addrs_ok_for_ldd_peep (addr1, addr2)
   return 1;
 }
 
-/* Return 1 if reg is a pseudo, or is the first register in 
+/* Return 1 if reg is a pseudo, or is the first register in
    a hard register pair.  This makes it a candidate for use in
    ldd and std insns.  */
 
@@ -4942,12 +4942,12 @@ register_ok_for_ldd (reg)
      rtx reg;
 {
   /* We might have been passed a SUBREG.  */
-  if (GET_CODE (reg) != REG) 
+  if (GET_CODE (reg) != REG)
     return 0;
 
   if (REGNO (reg) < FIRST_PSEUDO_REGISTER)
     return (REGNO (reg) % 2 == 0);
-  else 
+  else
     return 1;
 }
 
@@ -5325,7 +5325,7 @@ sparc_type_code (type)
 	{
 	case ERROR_MARK:
 	  return qualifiers;
-  
+
 	case ARRAY_TYPE:
 	  qualifiers |= (3 << shift);
 	  break;
@@ -5373,16 +5373,16 @@ sparc_type_code (type)
 
 	  if (TYPE_PRECISION (type) <= CHAR_TYPE_SIZE)
 	    return (qualifiers | (TREE_UNSIGNED (type) ? 12 : 2));
-  
+
 	  else if (TYPE_PRECISION (type) <= SHORT_TYPE_SIZE)
 	    return (qualifiers | (TREE_UNSIGNED (type) ? 13 : 3));
-  
+
 	  else if (TYPE_PRECISION (type) <= INT_TYPE_SIZE)
 	    return (qualifiers | (TREE_UNSIGNED (type) ? 14 : 4));
-  
+
 	  else
 	    return (qualifiers | (TREE_UNSIGNED (type) ? 15 : 5));
-  
+
 	case REAL_TYPE:
 	  /* If this is a range type, consider it to be the underlying
 	     type.  */
@@ -5395,9 +5395,9 @@ sparc_type_code (type)
 	  if (TYPE_PRECISION (type) == FLOAT_TYPE_SIZE)
 	    return (qualifiers | 6);
 
-	  else 
+	  else
 	    return (qualifiers | 7);
-  
+
 	case COMPLEX_TYPE:	/* GNU Fortran COMPLEX type.  */
 	  /* ??? We need to distinguish between double and float complex types,
 	     but I don't know how yet because I can't reach this code from
@@ -5410,7 +5410,7 @@ sparc_type_code (type)
 	case SET_TYPE:		/* GNU Pascal SET type.  */
 	case LANG_TYPE:		/* ? */
 	  return qualifiers;
-  
+
 	default:
 	  abort ();		/* Not a type! */
         }
@@ -5703,7 +5703,7 @@ sparc_flat_compute_frame_size (size)
       total_size += gp_reg_size + fp_reg_size;
     }
 
-  /* If we must allocate a stack frame at all, we must also allocate 
+  /* If we must allocate a stack frame at all, we must also allocate
      room for register window spillage, so as to be binary compatible
      with libraries and operating systems that do not use -mflat.  */
   if (total_size > 0)
@@ -5961,7 +5961,7 @@ sparc_flat_output_function_prologue (file, size)
 	  unsigned int size1 = ((size - reg_offset + 64) + 15) & -16;
 	  /* Offset to register save area from %sp.  */
 	  unsigned int offset = size1 - (size - reg_offset);
-	  
+
 	  if (size1 <= 4096)
 	    {
 	      fprintf (file, "\tadd\t%s, %d, %s\n",
@@ -6274,7 +6274,7 @@ supersparc_adjust_cost (insn, link, dep_insn, cost)
       if (insn_type == TYPE_IALU || insn_type == TYPE_SHIFT)
 	return 0;
     }
-	
+
   return cost;
 }
 
@@ -6321,13 +6321,13 @@ hypersparc_adjust_cost (insn, link, dep_insn, cost)
 	  if (dep_type == TYPE_STORE || dep_type == TYPE_FPSTORE)
 	    {
 	      if (GET_CODE (pat) != SET || GET_CODE (dep_pat) != SET
-		  || GET_CODE (SET_DEST (dep_pat)) != MEM        
+		  || GET_CODE (SET_DEST (dep_pat)) != MEM
 		  || GET_CODE (SET_SRC (pat)) != MEM
 		  || ! rtx_equal_p (XEXP (SET_DEST (dep_pat), 0),
 				    XEXP (SET_SRC (pat), 0)))
 		return cost + 2;
 
-	      return cost + 8;        
+	      return cost + 8;
 	    }
 	  break;
 
@@ -6354,7 +6354,7 @@ hypersparc_adjust_cost (insn, link, dep_insn, cost)
 
     default:
       break;
-    }    
+    }
 
   return cost;
 }
@@ -7183,7 +7183,7 @@ ultrasparc_sched_reorder (dump, sched_verbose, ready, n_ready)
 	    this_insn--;
 	  }
       }
-    
+
     /* Continue on with FPA class if we have not filled the group already.  */
     if (up->free_slot_mask != 0
 	&& up->contents[FPA] == 0)
@@ -7266,23 +7266,23 @@ ultrasparc_sched_reorder (dump, sched_verbose, ready, n_ready)
     }
 }
 
-int                                                           
+int
 sparc_issue_rate ()
 {
   switch (sparc_cpu)
     {
-    default:                                 
-      return 1;                                                    
-    case PROCESSOR_V9:                                                
+    default:
+      return 1;
+    case PROCESSOR_V9:
       /* Assume V9 processors are capable of at least dual-issue.  */
       return 2;
-    case PROCESSOR_SUPERSPARC:                                        
-      return 3;                                                      
+    case PROCESSOR_SUPERSPARC:
+      return 3;
     case PROCESSOR_HYPERSPARC:
     case PROCESSOR_SPARCLITE86X:
       return 2;
-    case PROCESSOR_ULTRASPARC:                                            
-      return 4;                                                    
+    case PROCESSOR_ULTRASPARC:
+      return 4;
     }
 }
 
@@ -7355,14 +7355,14 @@ sparc_defer_case_vector (lab, vec, diff)
     sparc_addr_list = gen_rtx_EXPR_LIST (VOIDmode, vec, sparc_addr_list);
 }
 
-static void 
+static void
 sparc_output_addr_vec (vec)
      rtx vec;
 {
   rtx lab = XEXP (vec, 0), body = XEXP (vec, 1);
   int idx, vlen = XVECLEN (body, 0);
 
-#ifdef ASM_OUTPUT_ADDR_VEC_START  
+#ifdef ASM_OUTPUT_ADDR_VEC_START
   ASM_OUTPUT_ADDR_VEC_START (asm_out_file);
 #endif
 
@@ -7378,13 +7378,13 @@ sparc_output_addr_vec (vec)
       ASM_OUTPUT_ADDR_VEC_ELT
 	(asm_out_file, CODE_LABEL_NUMBER (XEXP (XVECEXP (body, 0, idx), 0)));
     }
-    
+
 #ifdef ASM_OUTPUT_ADDR_VEC_END
   ASM_OUTPUT_ADDR_VEC_END (asm_out_file);
 #endif
 }
 
-static void 
+static void
 sparc_output_addr_diff_vec (vec)
      rtx vec;
 {
@@ -7392,7 +7392,7 @@ sparc_output_addr_diff_vec (vec)
   rtx base = XEXP (XEXP (body, 0), 0);
   int idx, vlen = XVECLEN (body, 1);
 
-#ifdef ASM_OUTPUT_ADDR_VEC_START  
+#ifdef ASM_OUTPUT_ADDR_VEC_START
   ASM_OUTPUT_ADDR_VEC_START (asm_out_file);
 #endif
 
@@ -7411,7 +7411,7 @@ sparc_output_addr_diff_vec (vec)
          CODE_LABEL_NUMBER (XEXP (XVECEXP (body, 1, idx), 0)),
          CODE_LABEL_NUMBER (base));
     }
-    
+
 #ifdef ASM_OUTPUT_ADDR_VEC_END
   ASM_OUTPUT_ADDR_VEC_END (asm_out_file);
 #endif
@@ -7433,7 +7433,7 @@ sparc_output_deferred_case_vectors ()
   align = floor_log2 (FUNCTION_BOUNDARY / BITS_PER_UNIT);
   if (align > 0)
     ASM_OUTPUT_ALIGN (asm_out_file, align);
-  
+
   for (t = sparc_addr_list; t ; t = XEXP (t, 1))
     sparc_output_addr_vec (XEXP (t, 0));
   for (t = sparc_addr_diff_list; t ; t = XEXP (t, 1))
@@ -7590,7 +7590,7 @@ sparc_function_profiler (file, labelno)
 	of the function.
 
 	The name of the block is a local symbol made with this statement:
-	
+
 	    ASM_GENERATE_INTERNAL_LABEL (BUFFER, "LPBX", 0);
 
 	Of course, since you are writing the definition of
@@ -7647,13 +7647,13 @@ sparc_function_block_profiler(file, block_or_label)
       fputs ("\tsethi\t%hi(", file);
       assemble_name (file, LPBX);
       fputs ("),%o0\n", file);
-  
+
       fprintf (file, "\tsethi\t%%hi(%d),%%o1\n", block_or_label);
 
       fputs ("\tor\t%o0,%lo(", file);
       assemble_name (file, LPBX);
       fputs ("),%o0\n", file);
-  
+
       fprintf (file, "\tcall\t%s__bb_init_trace_func\n", user_label_prefix);
 
       fprintf (file, "\t or\t%%o1,%%lo(%d),%%o1\n", block_or_label);
@@ -7666,7 +7666,7 @@ sparc_function_block_profiler(file, block_or_label)
       fputs ("\tsethi\t%hi(", file);
       assemble_name (file, LPBX);
       fputs ("),%o0\n", file);
-      
+
       fputs ("\tld\t[%lo(", file);
       assemble_name (file, LPBX);
       fputs (")+%o0],%o1\n", file);
@@ -7707,12 +7707,12 @@ sparc_function_block_profiler(file, block_or_label)
 
 	`__bb' consists of two words. In the first word the number
 	of the basic block has to be stored. In the second word
-	the address of a block allocated in the object module 
+	the address of a block allocated in the object module
 	has to be stored.
 
 	The basic block number is given by BLOCKNO.
 
-	The address of the block is given by the label created with 
+	The address of the block is given by the label created with
 
 	    ASM_GENERATE_INTERNAL_LABEL (BUFFER, "LPBX", 0);
 
@@ -7736,7 +7736,7 @@ sparc_function_block_profiler(file, block_or_label)
 	either in this macro or in the macros MACHINE_STATE_SAVE
 	and MACHINE_STATE_RESTORE. The last two macros will be
 	used in the function `__bb_trace_func', so you must make
-	sure that the function prologue does not change any 
+	sure that the function prologue does not change any
 	register prior to saving it with MACHINE_STATE_SAVE.
 
    else if profile_block_flag != 0
@@ -7744,7 +7744,7 @@ sparc_function_block_profiler(file, block_or_label)
 	Output code to increment the counter directly.
 	Basic blocks are numbered separately from zero within each
 	compiled object module. The count associated with block number
-	BLOCKNO is at index BLOCKNO in an array of words; the name of 
+	BLOCKNO is at index BLOCKNO in an array of words; the name of
 	this array is a local symbol made with this statement:
 
 	    ASM_GENERATE_INTERNAL_LABEL (BUFFER, "LPBX", 2);
@@ -7752,7 +7752,7 @@ sparc_function_block_profiler(file, block_or_label)
 	Of course, since you are writing the definition of
 	`ASM_GENERATE_INTERNAL_LABEL' as well as that of this macro, you
 	can take a short cut in the definition of this macro and use the
-	name that you know will result. 
+	name that you know will result.
 
 	If described in a virtual assembler language, the code to be
 	output looks like:
@@ -7782,11 +7782,11 @@ sparc_block_profiler(file, blockno)
       fputs ("\tsethi\t%hi(", file);
       assemble_name (file, LPBX);
       fputs ("),%g2\n", file);
-  
+
       fputs ("\tor\t%g2,%lo(", file);
       assemble_name (file, LPBX);
       fputs ("),%g2\n", file);
-  
+
       fputs ("\tst\t%g2,[%g1+4]\n", file);
       fputs ("\tmov\t%o7,%g2\n", file);
 
@@ -7827,7 +7827,7 @@ sparc_block_profiler(file, blockno)
 	either in this macro or in the macros MACHINE_STATE_SAVE_RET
 	and MACHINE_STATE_RESTORE_RET. The last two macros will be
 	used in the function `__bb_trace_ret', so you must make
-	sure that the function prologue does not change any 
+	sure that the function prologue does not change any
 	register prior to saving it with MACHINE_STATE_SAVE_RET.
 
    else if profile_block_flag != 0:

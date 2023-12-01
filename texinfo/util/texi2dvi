@@ -95,14 +95,14 @@ export TEXINPUTS
 # canonical name to match the value appended after the `=' character.
 while :; do
   test $# -eq 0 && break
-  
+
   case "$1" in
     -b | --batch | --b* ) batch=t; shift ;;
     -c | --clean | --c* ) clean=t; shift ;;
     -D | --debug | --d* ) debug=t; shift ;;
     -h | --help | --h* )   echo "$usage"; exit 0 ;;
     # OK, we should do real option parsing here, but be lazy for now.
-    -t | --texinfo | --t*) shift; textra="$textra $1"; shift ;; 
+    -t | --texinfo | --t*) shift; textra="$textra $1"; shift ;;
     -v | --vers* )
       echo "$progname (GNU Texinfo 3.12) $version"
       echo "Copyright (C) 1998 Free Software Foundation, Inc.
@@ -250,7 +250,7 @@ for command_line_filename in ${1+"$@"}; do
 
     # Now save copies of original index files so we have some means of
     # comparison later.
-    $verbose "Backing up current index files: $orig_index_files ..."  
+    $verbose "Backing up current index files: $orig_index_files ..."
     for index_file_to_save in ${orig_index_files}; do
       cp "${index_file_to_save}" "${index_file_to_save}${backup_extension}"
     done
@@ -275,7 +275,7 @@ for command_line_filename in ${1+"$@"}; do
     $cmd
 
     # Check if index files changed.
-    # 
+    #
     definite_index_files=
     # Get list of new index files.
     possible_index_files="`eval echo ${filename_noext}.?? ${filename_noext}.aux`"

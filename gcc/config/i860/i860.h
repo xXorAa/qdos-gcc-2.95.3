@@ -272,7 +272,7 @@ extern int target_flags;
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 /* The i860 has two kinds of registers, hence four classes.  */
 
 enum reg_class { NO_REGS, GENERAL_REGS, FP_REGS, ALL_REGS, LIM_REG_CLASSES };
@@ -315,7 +315,7 @@ enum reg_class { NO_REGS, GENERAL_REGS, FP_REGS, ALL_REGS, LIM_REG_CLASSES };
    C is the letter, and VALUE is a constant value.
    Return 1 if VALUE is in the range specified by C.
 
-   For the i860, `I' is used for the range of constants 
+   For the i860, `I' is used for the range of constants
    an add/subtract insn can actually contain.
    But not including -0x8000, since we need
    to negate the constant sometimes.
@@ -351,7 +351,7 @@ enum reg_class { NO_REGS, GENERAL_REGS, FP_REGS, ALL_REGS, LIM_REG_CLASSES };
    in some cases it is preferable to use a more restrictive class.
 
    If we are trying to put an integer constant into some register, prefer an
-   integer register to an FP register.  If we are trying to put a 
+   integer register to an FP register.  If we are trying to put a
    non-zero floating-point constant into some register, use an integer
    register if the constant is SFmode and GENERAL_REGS is one of our options.
    Otherwise, put the constant into memory.
@@ -1391,7 +1391,7 @@ extern unsigned long sfmode_constant_to_ulong ();
 
    Defining this macro does not affect the generated code (however,
    incorrect definitions that omit an rtl code that may be matched
-   by the predicate can cause the compiler to malfunction). 
+   by the predicate can cause the compiler to malfunction).
    Instead, it allows the table built by `genrecog' to be more
    compact and efficient, thus speeding up the compiler.  The most
    important predicates to include in the list specified by this

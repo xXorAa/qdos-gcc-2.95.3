@@ -11,7 +11,7 @@
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
- 
+
    You should have received a copy of the GNU General Public License along
    with this program; if not, write to the Free Software Foundation, Inc.,
    59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
@@ -35,6 +35,6 @@
 #define XCONCAT3(a,b,c)   CONCAT3(a,b,c)
 #define XCONCAT4(a,b,c,d) CONCAT4(a,b,c,d)
 
-#define XSTRING(s) STRINGX(s) 
+#define XSTRING(s) STRINGX(s)
 
 #endif SYM_CAT_H

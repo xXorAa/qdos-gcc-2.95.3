@@ -116,7 +116,7 @@ Boston, MA 02111-1307, USA.  */
    -- rms, 20 July 1991.  */
 
 /*
-  this really should go into dgux-local.h 
+  this really should go into dgux-local.h
 */
 
 #undef	OPTIMIZATION_OPTIONS
@@ -138,7 +138,7 @@ Boston, MA 02111-1307, USA.  */
 #undef MD_STARTFILE_PREFIX
 #define MD_STARTFILE_PREFIX "/usr/lib/"
 
-/* Macros to be automatically defined.  
+/* Macros to be automatically defined.
    __CLASSIFY_TYPE__ is used in the <varargs.h> and <stdarg.h> header
    files with DG/UX revision 5.40 and later.  This allows GNU CC to
    operate without installing the header files.  */

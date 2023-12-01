@@ -6,7 +6,7 @@ ANYVERSION=no
 
 for arg in $1 $2
 do
-	case $arg in 
+	case $arg in
 		--dammit | -d ) ANYVERSION=yes ;;
 
 		* ) dir=$arg

@@ -34,7 +34,7 @@
  #define _IO_IS_FILEBUF 0x2000
  #define _IO_BAD_SEEN 0x4000
 +#define _IO_USER_LOCK 0x8000
- 
+
  /* These are "formatting flags" matching the iostream fmtflags enum values. */
  #define _IO_SKIPWS 01
 @@ -277,7 +278,7 @@ typedef struct
@@ -45,10 +45,10 @@
 +  _IO_off_t (*seek) __PMT ((struct _IO_FILE *, _IO_off_t, int));
    int (*close) __PMT ((struct _IO_FILE *));
  } _IO_cookie_io_functions_t;
- 
+
 @@ -348,11 +349,11 @@ extern _IO_ssize_t _IO_padn __P ((_IO_FI
  extern _IO_size_t _IO_sgetn __P ((_IO_FILE *, void *, _IO_size_t));
- 
+
  #if defined(_G_IO_IO_FILE_VERSION) && _G_IO_IO_FILE_VERSION == 0x20001
 -extern _IO_fpos64_t _IO_seekoff __P ((_IO_FILE *, _IO_off64_t, int, int));
 -extern _IO_fpos64_t _IO_seekpos __P ((_IO_FILE *, _IO_fpos64_t, int));
@@ -60,7 +60,7 @@
 +extern _IO_off_t _IO_seekoff __P ((_IO_FILE *, _IO_off_t, int, int));
 +extern _IO_off_t _IO_seekpos __P ((_IO_FILE *, _IO_off_t, int));
  #endif
- 
+
  extern void _IO_free_backup_area __P ((_IO_FILE *));
 --- gcc-2.95.2/libio/libioP.h.jj	Tue May 18 00:58:56 1999
 +++ gcc-2.95.2/libio/libioP.h	Tue Oct 10 11:40:57 2000
@@ -88,7 +88,7 @@
 +typedef _IO_off_t (*_IO_seekpos_t) __PMT ((_IO_FILE *, _IO_off_t, int));
  #endif
  #define _IO_SEEKPOS(FP, POS, FLAGS) JUMP2 (__seekpos, FP, POS, FLAGS)
- 
+
 @@ -213,9 +213,9 @@ typedef _IO_ssize_t (*_IO_write_t) __PMT
     It matches the streambuf::sys_seek virtual function, which is
     specific to this implementation. */
@@ -100,10 +100,10 @@
 +typedef _IO_off_t (*_IO_seek_t) __PMT ((_IO_FILE *, _IO_off_t, int));
  #endif
  #define _IO_SYSSEEK(FP, OFFSET, MODE) JUMP2 (__seek, FP, OFFSET, MODE)
- 
+
 @@ -298,11 +298,11 @@ struct _IO_FILE_plus
  /* Generic functions */
- 
+
  #if defined(_G_IO_IO_FILE_VERSION) && _G_IO_IO_FILE_VERSION == 0x20001
 -extern _IO_fpos64_t _IO_seekoff __P ((_IO_FILE *, _IO_off64_t, int, int));
 -extern _IO_fpos64_t _IO_seekpos __P ((_IO_FILE *, _IO_fpos64_t, int));
@@ -115,7 +115,7 @@
 +extern _IO_off_t _IO_seekoff __P ((_IO_FILE *, _IO_off_t, int, int));
 +extern _IO_off_t _IO_seekpos __P ((_IO_FILE *, _IO_off_t, int));
  #endif
- 
+
  extern void _IO_switch_to_main_get_area __P ((_IO_FILE *));
 @@ -340,22 +340,22 @@ extern _IO_size_t _IO_default_xsputn __P
  					   _IO_size_t));
@@ -174,11 +174,11 @@
 +extern _IO_off_t _IO_str_seekoff __P ((_IO_FILE *, _IO_off_t, int, int));
  #endif
  extern void _IO_str_finish __P ((_IO_FILE *, int));
- 
+
 @@ -544,12 +544,12 @@ extern int _IO_vscanf __P ((const char *
     where an _IO_fpos_t is a struct.
     Note that _IO_off_t must be an integral type. */
- 
+
 -/* _IO_pos_BAD is an _IO_fpos_t value indicating error, unknown, or EOF. */
 +/* _IO_pos_BAD is an _IO_off_t value indicating error, unknown, or EOF. */
  #ifndef _IO_pos_BAD
@@ -194,7 +194,7 @@
 --- gcc-2.95.2/libio/streambuf.h.jj	Mon Aug  9 02:07:01 1999
 +++ gcc-2.95.2/libio/streambuf.h	Tue Oct 10 11:40:57 2000
 @@ -72,10 +72,10 @@ class ostream; class streambuf;
- 
+
  #if defined(_G_IO_IO_FILE_VERSION) && _G_IO_IO_FILE_VERSION == 0x20001
  typedef _IO_off64_t streamoff;
 -typedef _IO_fpos64_t streampos;
@@ -205,11 +205,11 @@
 +typedef _IO_off_t streampos;
  #endif
  typedef _IO_ssize_t streamsize;
- 
+
 --- gcc-2.95.2/libio/parsestream.h.jj	Fri Aug 22 00:58:20 1997
 +++ gcc-2.95.2/libio/parsestream.h	Tue Oct 10 11:40:57 2000
 @@ -42,7 +42,7 @@ extern "C++" {
- 
+
  class parsebuf : public streambuf {
    protected:
 -    _IO_fpos_t pos_at_line_start;
@@ -223,7 +223,7 @@
  /* This is part of libio/iostream, providing -*- C++ -*- input/output.
 -   Copyright (C) 1993, 1997 Free Software Foundation, Inc.
 +   Copyright (C) 1993, 1997, 2000 Free Software Foundation, Inc.
- 
+
     This file is part of the GNU IO Library.  This library is free
     software; you can redistribute it and/or modify it under the
 @@ -687,6 +687,10 @@ ostream& ostream::operator<<(double n)
@@ -253,7 +253,7 @@
 @@ -1,4 +1,4 @@
 -#include "libio.h"
 +#include <libio.h>
- 
+
  /* These emulate stdio functionality, but with a different name
     (_IO_ungetc instead of ungetc), and using _IO_FILE instead of FILE. */
 @@ -38,7 +38,11 @@ extern int _IO_obstack_vprintf __P ((str
@@ -271,12 +271,12 @@
  #define _IO_fseek(__fp, __offset, __whence) \
 --- gcc-2.95.2/libio/stdstreams.cc.jj	Fri Aug 22 00:58:21 1997
 +++ gcc-2.95.2/libio/stdstreams.cc	Thu Nov  2 17:33:00 2000
-@@ -36,7 +36,7 @@ the executable file might be covered by 
+@@ -36,7 +36,7 @@ the executable file might be covered by
  // then we don't need to, since in that case stdin/stdout/stderr
  // are identical to _IO_stdin/_IO_stdout/_IO_stderr.
- 
+
 -#include "libio.h"
 +#include <libio.h>
- 
+
  #ifdef _STDIO_USES_IOSTREAM
  #define CIN_SBUF _IO_stdin_

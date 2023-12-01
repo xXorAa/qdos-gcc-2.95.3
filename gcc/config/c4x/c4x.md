@@ -44,8 +44,8 @@
 ; HImode                long long              (64-bits)
 ; QFmode                float, double          (32-bits)
 ; HFmode                long double            (40-bits)
-; CCmode		
-; CC_NOOVmode		
+; CCmode
+; CC_NOOVmode
 
 ;
 ; C4x PREDICATES:
@@ -90,11 +90,11 @@
 ; a   address reg          AR0-AR7
 ; b   stack pointer        SP
 ; c   other int reg        AR0-AR7, IR0-IR1, RC, RS, RE
-; d   fp reg               R0-R11 (sets CC when dst) 
+; d   fp reg               R0-R11 (sets CC when dst)
 ; e
 ; f   fp reg               R0-R11 (sets CC when dst)
 ; g   general reg, memory, constant
-; h   fp reg (HFmode)      R0-R11 (sets CC when dst) 
+; h   fp reg (HFmode)      R0-R11 (sets CC when dst)
 ; i   immediate int constant
 ; j
 ; k   block count          BK
@@ -145,14 +145,14 @@
 ;  for a chosen pattern.  The constraint that requires the fewest
 ;  instructions to load an operand is chosen.
 
-;  Note that the 'r' constraint is mostly only used for src integer register 
+;  Note that the 'r' constraint is mostly only used for src integer register
 ;  operands,  while 'c' and 'd' constraints are generally only used for dst
 ;  integer register operands (the 'r' constraint is the union of the 'c' and
 ;  'd' constraints).  When a register satisfying the 'd' constraint
-;  is used as a dst operand, the CC gets clobbered (except for LDIcond)---but 
+;  is used as a dst operand, the CC gets clobbered (except for LDIcond)---but
 ;  not for 'c'.
 
-;  The 'f' constraint is only for float register operands---when 
+;  The 'f' constraint is only for float register operands---when
 ;  a register satisying the 'f' constraint is used as a dst operand,
 ;  the CC gets clobbered (except for LDFcond).
 
@@ -173,7 +173,7 @@
 
 ;  Since the C[34]x has many instructions that set the CC, we pay the
 ;  price of having to explicity define which insns clobber the CC
-;  (rather than using the macro NOTICE_UPDATE_CC). 
+;  (rather than using the macro NOTICE_UPDATE_CC).
 
 ;  Note that many patterns say that the CC is clobbered when in fact
 ;  that it may not be (depending on the destination register).
@@ -209,7 +209,7 @@
 ; imm  dir  ind  reg  |  imm  dir  ind  reg  |  reg      Notes
 ;---------------------+----------------------+------
 ; ILH   T   Q<>   r   |   -    -    -    0   |   r       2 operand
-;  -    -   S<>   r   |   -    -   S<>   r   |   r       
+;  -    -   S<>   r   |   -    -   S<>   r   |   r
 ;  J    -    R    -   |   -    -    R    r   |   r       C4x
 
 ;  Arithmetic operations use the I, J constraints for immediate constants,
@@ -318,8 +318,8 @@
 ;        op2             fetch and decode executed
 ;        op3             fetch executed
 ; This means that we can allow any instruction in the last delay slot
-; and only instructions which modify registers in the first two. 
-; lda can not be executed in the first delay slot 
+; and only instructions which modify registers in the first two.
+; lda can not be executed in the first delay slot
 ; and ldpk can not be executed in the first two delay slots.
 
 (define_attr "onlyreg" "false,true"
@@ -1145,12 +1145,12 @@
 
 ; CC has been selected to load a symbolic address.  We force the address
 ; into memory and then generate LDP and LDIU insns.
-; This is also required for the C30 if we pretend that we can 
+; This is also required for the C30 if we pretend that we can
 ; easily load symbolic addresses into a register.
 (define_split
   [(set (match_operand:QI 0 "reg_operand" "")
         (match_operand:QI 1 "symbolic_address_operand" ""))]
-  "! TARGET_SMALL 
+  "! TARGET_SMALL
    && (TARGET_C3X || (reload_completed
                       && ! std_reg_operand (operands[0], QImode)))"
   [(set (match_dup 2) (high:QI (match_dup 3)))
@@ -1178,7 +1178,7 @@
   [(set (match_dup 0) (match_dup 2))
    (use (match_dup 1))]
   "
-{  
+{
    rtx dp_reg = gen_rtx_REG (Pmode, DP_REGNO);
    operands[2] = force_const_mem (Pmode, operands[1]);
    operands[2] = change_address (operands[2], QImode,
@@ -1257,7 +1257,7 @@
 
 (define_insn "*movqi_set"
   [(set (reg:CC 21)
-        (compare:CC (match_operand:QI 1 "src_operand" "rIm") 
+        (compare:CC (match_operand:QI 1 "src_operand" "rIm")
                     (const_int 0)))
    (set (match_operand:QI 0 "ext_reg_operand" "=d")
         (match_dup 1))]
@@ -1271,7 +1271,7 @@
 ; when a simple compare with zero will suffice.
 ;(define_insn "*movqi_test"
 ; [(set (reg:CC 21)
-;       (compare:CC (match_operand:QI 1 "src_operand" "rIm") 
+;       (compare:CC (match_operand:QI 1 "src_operand" "rIm")
 ;                   (const_int 0)))
 ;  (clobber (match_scratch:QI 0 "=d"))]
 ; ""
@@ -1301,7 +1301,7 @@
 }")
 
 (define_insn "*movqi_update"
-  [(set (match_operand:QI 0 "reg_operand" "=r") 
+  [(set (match_operand:QI 0 "reg_operand" "=r")
         (mem:QI (plus:QI (match_operand:QI 1 "addr_reg_operand" "a")
                          (match_operand:QI 2 "index_reg_operand" "x"))))
    (set (match_dup 1)
@@ -1380,7 +1380,7 @@
   ""
   "absi\\t%1,%0"
   [(set_attr "type" "unarycc")
-   (set_attr "data" "int16")])        
+   (set_attr "data" "int16")])
 
 ;
 ; NEGI
@@ -1420,7 +1420,7 @@
   ""
   "negi\\t%1,%0"
   [(set_attr "type" "unarycc")
-   (set_attr "data" "int16")])        
+   (set_attr "data" "int16")])
 
 (define_insn "*negbqi2_clobber"
   [(set (match_operand:QI 0 "ext_reg_operand" "=d")
@@ -1430,7 +1430,7 @@
   ""
   "negb\\t%1,%0"
   [(set_attr "type" "unarycc")
-   (set_attr "data" "int16")])        
+   (set_attr "data" "int16")])
 
 ;
 ; NOT
@@ -1465,12 +1465,12 @@
   [(set (reg:CC 21)
         (compare:CC (not:QI (match_operand:QI 1 "lsrc_operand" "rLm"))
                     (const_int 0)))
-   (set (match_operand:QI 0 "ext_reg_operand" "=d")        
+   (set (match_operand:QI 0 "ext_reg_operand" "=d")
         (not:QI (match_dup 1)))]
   ""
   "not\\t%1,%0"
   [(set_attr "type" "unarycc")
-   (set_attr "data" "uint16")])        
+   (set_attr "data" "uint16")])
 
 (define_insn "*one_cmplqi2_const_clobber"
   [(set (match_operand:QI 0 "reg_operand" "=d,c")
@@ -1560,12 +1560,12 @@
      {
         int i;
 	rtx tmp;
- 
+
         /* If we have 4 or fewer shifts, then it is probably faster
            to emit separate ROL instructions.  A C3x requires
            at least 4 instructions (a C4x requires at least 3), to
            perform a rotation by shifts.  */
- 
+
 	tmp = operands[1];
         for (i = 0; i < INTVAL (operands[2]) - 1; i++)
 	  {
@@ -1606,7 +1606,7 @@
   ""
   "legitimize_operands (PLUS, operands, QImode);
    if (reload_in_progress
-       || (! IS_PSEUDO_REGNO (operands[0]) 
+       || (! IS_PSEUDO_REGNO (operands[0])
            && ! IS_EXT_REG (REGNO (operands[0]))))
    {
       emit_insn (gen_addqi3_noclobber (operands[0], operands[1], operands[2]));
@@ -1655,7 +1655,7 @@
    addi3\\t%2,%1,%0
    addi3\\t%2,%1,%0"
   [(set_attr "type" "binarycc,binarycc,binarycc")])
-  
+
 (define_peephole
   [(parallel [(set (match_operand:QI 0 "ext_reg_operand" "=d,d,d")
                    (plus:QI (match_operand:QI 1 "src_operand" "%0,rR,rS<>")
@@ -1806,7 +1806,7 @@
    subi3\\t%2,%1,%0
    subi3\\t%2,%1,%0"
   [(set_attr "type" "binarycc,binarycc,binarycc,binarycc")])
-  
+
 (define_insn "*subqi3_set"
   [(set (reg:CC_NOOV 21)
         (compare:CC_NOOV (minus:QI (match_operand:QI 1 "src_operand" "0,rIm,rR,rS<>")
@@ -1874,7 +1874,7 @@
        && exact_log2 (INTVAL (operands[2])) >= 0))
      legitimize_operands (MULT, operands, QImode);
    else
-     {        
+     {
        if (GET_CODE (operands[2]) == CONST_INT)
          {
           /* Let GCC try to synthesise the multiplication using shifts
@@ -1930,13 +1930,13 @@
   "*
   if (which_alternative == 0)
     {
-      if (TARGET_C3X 
+      if (TARGET_C3X
           && GET_CODE (operands[2]) == CONST_INT
           && exact_log2 (INTVAL (operands[2])) >= 0)
         return \"ash\\t%L2,%0\";
       else
         return \"mpyi\\t%2,%0\";
-    } 
+    }
   else
       return \"mpyi3\\t%2,%1,%0\";"
   [(set_attr "type" "binarycc,binarycc,binarycc")])
@@ -1954,7 +1954,7 @@
   "*
   if (which_alternative == 0)
     {
-      if (TARGET_C3X 
+      if (TARGET_C3X
           && GET_CODE (operands[2]) == CONST_INT
           && exact_log2 (INTVAL (operands[2])) >= 0)
         return \"ash\\t%L2,%0\";
@@ -2000,15 +2000,15 @@
                    (and:QI (match_dup 7) (const_int 65535)))
               (clobber (reg:CC 21))])
    (parallel [(set (match_dup 4)
-                   (mult:QI (sign_extend:QI (and:QI (match_dup 2) 
+                   (mult:QI (sign_extend:QI (and:QI (match_dup 2)
                                                     (const_int 16777215)))
-                            (sign_extend:QI (and:QI (match_dup 2) 
+                            (sign_extend:QI (and:QI (match_dup 2)
                                                     (const_int 16777215)))))
               (clobber (reg:CC_NOOV 21))])
    (parallel [(set (match_dup 5)
-                   (mult:QI (sign_extend:QI (and:QI (match_dup 2) 
+                   (mult:QI (sign_extend:QI (and:QI (match_dup 2)
                                                     (const_int 16777215)))
-                            (sign_extend:QI (and:QI (match_dup 3) 
+                            (sign_extend:QI (and:QI (match_dup 3)
                                                     (const_int 16777215)))))
               (clobber (reg:CC_NOOV 21))])
    (parallel [(set (match_dup 6)
@@ -2043,25 +2043,25 @@
                            (const_int 65535)))
               (clobber (reg:CC 21))])
    (parallel [(set (match_dup 5)
-                   (and:QI (match_dup 14) 
+                   (and:QI (match_dup 14)
                            (const_int 65535)))
               (clobber (reg:CC 21))])
    (parallel [(set (match_dup 7)
-                   (mult:QI (sign_extend:QI (and:QI (match_dup 4) 
+                   (mult:QI (sign_extend:QI (and:QI (match_dup 4)
                                                     (const_int 16777215)))
-                            (sign_extend:QI (and:QI (match_dup 5) 
+                            (sign_extend:QI (and:QI (match_dup 5)
                                                     (const_int 16777215)))))
               (clobber (reg:CC_NOOV 21))])
    (parallel [(set (match_dup 8)
-                   (mult:QI (sign_extend:QI (and:QI (match_dup 3) 
+                   (mult:QI (sign_extend:QI (and:QI (match_dup 3)
                                                     (const_int 16777215)))
-                            (sign_extend:QI (and:QI (match_dup 5) 
+                            (sign_extend:QI (and:QI (match_dup 5)
                                                     (const_int 16777215)))))
               (clobber (reg:CC_NOOV 21))])
    (parallel [(set (match_dup 9)
-                   (mult:QI (sign_extend:QI (and:QI (match_dup 3) 
+                   (mult:QI (sign_extend:QI (and:QI (match_dup 3)
                                                     (const_int 16777215)))
-                            (sign_extend:QI (and:QI (match_dup 6) 
+                            (sign_extend:QI (and:QI (match_dup 6)
                                                     (const_int 16777215)))))
               (clobber (reg:CC_NOOV 21))])
    (parallel [(set (match_dup 10)
@@ -2112,7 +2112,7 @@
 
 (define_insn "*smulqi3_highpart_clobber"
   [(set (match_operand:QI 0 "reg_operand" "=d,d,?d,c,c,?c")
-        (truncate:QI 
+        (truncate:QI
          (lshiftrt:HI
           (mult:HI
            (sign_extend:HI (match_operand:QI 1 "src_operand" "%0,rR,rS<>,0,rR,rS<>"))
@@ -2144,7 +2144,7 @@
               (clobber (reg:CC_NOOV 21))])]
  ""
  "legitimize_operands (MULT, operands, QImode);
-  if (TARGET_C3X) 
+  if (TARGET_C3X)
     {
       c4x_emit_libcall_mulhi (UMULHI3_LIBCALL, ZERO_EXTEND, QImode, operands);
       DONE;
@@ -2155,7 +2155,7 @@
   [(set (match_operand:QI 0 "reg_operand" "=d,d,?d,c,c,?c")
         (truncate:QI
          (lshiftrt:HI
-          (mult:HI 
+          (mult:HI
            (zero_extend:HI (match_operand:QI 1 "src_operand" "%0,rR,rS<>,0,rR,rS<>"))
            (zero_extend:HI (match_operand:QI 2 "lsrc_operand" "rLm,JR,rS<>,rLm,JR,rS<>")))
           (const_int 32))))
@@ -2251,7 +2251,7 @@
    and3\\t%2,%1,%0"
   [(set_attr "type" "binarycc,binarycc,binarycc,binarycc")
    (set_attr "data" "not_uint16,uint16,int16,uint16")])
-  
+
 (define_insn "*andqi3_set"
   [(set (reg:CC 21)
         (compare:CC (and:QI (match_operand:QI 1 "src_operand" "%0,0,rR,rS<>")
@@ -2376,7 +2376,7 @@
    or3\\t%2,%1,%0"
   [(set_attr "type" "binarycc,binarycc,binarycc")
    (set_attr "data" "uint16,int16,uint16")])
-  
+
 (define_insn "*iorqi3_set"
   [(set (reg:CC 21)
         (compare:CC (ior:QI (match_operand:QI 1 "src_operand" "%0,rR,rS<>")
@@ -2393,7 +2393,7 @@
   [(set_attr "type" "binarycc,binarycc,binarycc")
    (set_attr "data" "uint16,int16,uint16")])
 
-; This pattern is used for loading symbol references in several parts. 
+; This pattern is used for loading symbol references in several parts.
 (define_insn "iorqi3_noclobber"
   [(set (match_operand:QI 0 "std_reg_operand" "=c,c,c")
         (ior:QI (match_operand:QI 1 "src_operand" "%0,rR,rS<>")
@@ -2472,7 +2472,7 @@
 ; shifted is determined by the seven LSBs of the shift count.
 ; If the absolute value of the count is 32 or greater, the result
 ; using the LSH instruction is zero; with the ASH insn the result
-; is zero or negative 1.   Note that the ISO C standard allows 
+; is zero or negative 1.   Note that the ISO C standard allows
 ; the result to be machine dependent whenever the shift count
 ; exceeds the size of the object.
 (define_expand "ashlqi3"
@@ -2713,7 +2713,7 @@
 ; reload) so that it can hoist invariants out of loops.
 ; The current solution modifies legitimize_operands () so that small
 ; constants are forced into a pseudo register.
-; 
+;
 (define_expand "cmpqi"
   [(set (reg:CC 21)
         (compare:CC (match_operand:QI 0 "src_operand" "")
@@ -3183,7 +3183,7 @@
   [(set_attr "type" "unarycc")])
 
 (define_insn "*movqf_update"
-  [(set (match_operand:QF 0 "reg_operand" "=r") 
+  [(set (match_operand:QF 0 "reg_operand" "=r")
         (mem:QF (plus:QI (match_operand:QI 1 "addr_reg_operand" "a")
                          (match_operand:QI 2 "index_reg_operand" "x"))))
    (set (match_dup 1)
@@ -3323,7 +3323,7 @@
 
 ; Unsigned conversions are a little tricky because we need to
 ; add the value for the high bit if necessary.
-; 
+;
 ;
 (define_expand "floatunsqiqf2"
  [(set (match_dup 2) (match_dup 3))
@@ -3341,11 +3341,11 @@
              (clobber (reg:CC_NOOV 21))])]
  ""
  "operands[2] = gen_reg_rtx (QFmode);
-  operands[3] = CONST0_RTX (QFmode); 
+  operands[3] = CONST0_RTX (QFmode);
   operands[4] = gen_reg_rtx (QFmode);
   operands[5] = gen_reg_rtx (QFmode);
   operands[6] = gen_reg_rtx (QFmode);
-  emit_move_insn (operands[5], 
+  emit_move_insn (operands[5],
    immed_real_const_1 (REAL_VALUE_ATOF (\"4294967296.0\", QFmode), QFmode));")
 
 (define_insn "floatqihf2"
@@ -3437,7 +3437,7 @@
                    (unsigned_fix:HI (match_operand:QF 1 "src_operand" "")))
               (clobber (reg:CC 21))])]
   ""
-  "c4x_emit_libcall (FIXUNS_TRUNCQFHI2_LIBCALL, UNSIGNED_FIX, 
+  "c4x_emit_libcall (FIXUNS_TRUNCQFHI2_LIBCALL, UNSIGNED_FIX,
                      HImode, QFmode, 2, operands);
    DONE;")
 
@@ -3808,7 +3808,7 @@
 ; Move operand 2 to operand 0 if condition (operand 1) is true
 ; else move operand 3 to operand 0.
 ; The temporary register is required below because some of the operands
-; might be identical (namely 0 and 2). 
+; might be identical (namely 0 and 2).
 ;
 (define_expand "movqicc"
   [(set (match_operand:QI 0 "reg_operand" "")
@@ -3816,7 +3816,7 @@
                          (match_operand:QI 2 "src_operand" "")
                          (match_operand:QI 3 "src_operand" "")))]
  ""
- "{ 
+ "{
     enum rtx_code code = GET_CODE (operands[1]);
     rtx ccreg = c4x_gen_compare_reg (code, c4x_compare_op0, c4x_compare_op1);
     if (ccreg == NULL_RTX) FAIL;
@@ -3825,7 +3825,7 @@
                                  gen_rtx (code, VOIDmode, ccreg, const0_rtx),
                                           operands[2], operands[3])));
     DONE;}")
-                      
+
 (define_insn "*ldf_conditional"
   [(set (match_operand:QF 0 "reg_operand" "=f,f")
         (if_then_else:QF (match_operator 1 "comparison_operator"
@@ -3859,7 +3859,7 @@
                          (match_operand:QF 2 "src_operand" "")
                          (match_operand:QF 3 "src_operand" "")))]
  ""
- "{ 
+ "{
     enum rtx_code code = GET_CODE (operands[1]);
     rtx ccreg = c4x_gen_compare_reg (code, c4x_compare_op0, c4x_compare_op1);
     if (ccreg == NULL_RTX) FAIL;
@@ -3917,7 +3917,7 @@
         (if_then_else:QI (gt (match_dup 1) (const_int 0))
 	 	        (const_int 1)
 		         (match_dup 0)))]
-  "" 
+  ""
   "operands[1] = c4x_gen_compare_reg (GT, c4x_compare_op0, c4x_compare_op1);
    if (operands[1] == NULL_RTX) FAIL;")
 
@@ -4026,7 +4026,7 @@
   "operands[5] = gen_reg_rtx (QImode);
    operands[6] = gen_reg_rtx (QImode);
    operands[7] = gen_reg_rtx (QImode);")
-                
+
 ;
 ; PARALLEL FLOAT INSTRUCTIONS
 ;
@@ -4216,7 +4216,7 @@
   [(set_attr "type" "binarycc")])
 
 ;
-; ASH(left)/STI 
+; ASH(left)/STI
 ;
 
 (define_insn "*ashlqi3_movqi_clobber"
@@ -4231,7 +4231,7 @@
   [(set_attr "type" "binarycc")])
 
 ;
-; ASH(right)/STI 
+; ASH(right)/STI
 ;
 
 (define_insn "*ashrqi3_movqi_clobber"
@@ -4260,7 +4260,7 @@
   [(set_attr "type" "binarycc")])
 
 ;
-; LSH(right)/STI 
+; LSH(right)/STI
 ;
 
 (define_insn "*lshrqi3_movqi_clobber"
@@ -4286,7 +4286,7 @@
         (plus:QI (match_operand:QI 4 "parallel_operand" "S<>q")
                  (match_operand:QI 5 "parallel_operand" "S<>q")))
    (clobber (reg:CC 21))]
-  "TARGET_PARALLEL_MPY && TARGET_MPYI 
+  "TARGET_PARALLEL_MPY && TARGET_MPYI
    && valid_parallel_operands_6 (operands, QImode)"
   "mpyi3\\t%2,%1,%0\\n||\\taddi3\\t%5,%4,%3"
   [(set_attr "type" "binarycc")])
@@ -4604,7 +4604,7 @@
        (call (mem:QI (match_operand:QI 1 "call_address_operand" "Ur"))
              (match_operand:QI 2 "general_operand" "")))
   (clobber (reg:QI 31))]
-  ;; Operand 0 and 2 not really used for the C4x. 
+  ;; Operand 0 and 2 not really used for the C4x.
   ;; The C30 doesn't have reg 31.
 
   "TARGET_C3X"
@@ -4741,7 +4741,7 @@
 ; strength reduction is used.  It is actually created when the instruction
 ; combination phase combines the special loop test.  Since this insn
 ; is both a jump insn and has an output, it must deal with its own
-; reloads, hence the `m' constraints. 
+; reloads, hence the `m' constraints.
 
 ; The C4x does the decrement and then compares the result against zero.
 ; It branches if the result was greater than or equal to zero.
@@ -4878,7 +4878,7 @@
               (use (reg:QI 26))
               (clobber (reg:CC_NOOV 21))])]
   ""
-  "if (! TARGET_LOOP_UNSIGNED 
+  "if (! TARGET_LOOP_UNSIGNED
        && (unsigned HOST_WIDE_INT) INTVAL (operands[3]) > (1U << 31))
      FAIL;
    if (INTVAL (operands[4]) > 1 || ! TARGET_RPTB)
@@ -4920,7 +4920,7 @@
   "
  {
     rtx src, dst, tmp;
-    rtx src_mem, dst_mem;    
+    rtx src_mem, dst_mem;
     int len;
     int i;
 
@@ -4932,16 +4932,16 @@
     src_mem = gen_rtx_MEM (QImode, src);
     dst_mem = gen_rtx_MEM (QImode, dst);
 
-    emit_insn (gen_movqi (tmp, src_mem));	
-    emit_insn (gen_addqi3_noclobber (src, src, const1_rtx));	
+    emit_insn (gen_movqi (tmp, src_mem));
+    emit_insn (gen_addqi3_noclobber (src, src, const1_rtx));
     for (i = 1; i < len; i++)
       {
          emit_insn (gen_movqi_parallel (tmp, src_mem, dst_mem, tmp));
-         emit_insn (gen_addqi3_noclobber (src, src, const1_rtx));	
-         emit_insn (gen_addqi3_noclobber (dst, dst, const1_rtx));	
+         emit_insn (gen_addqi3_noclobber (src, src, const1_rtx));
+         emit_insn (gen_addqi3_noclobber (dst, dst, const1_rtx));
       }
-    emit_insn (gen_movqi (dst_mem, tmp));	
-    emit_insn (gen_addqi3_noclobber (dst, dst, const1_rtx));	
+    emit_insn (gen_movqi (dst_mem, tmp));
+    emit_insn (gen_addqi3_noclobber (dst, dst, const1_rtx));
     DONE;
   }
   ")
@@ -4980,7 +4980,7 @@
         output_asm_insn (\"|| ldi\\t*%1++,%4\", operands);
       output_asm_insn (\"sti\\t%4,*%0++\", operands);
       first = 0;
-    } 
+    }
   return \"\";
   }
   "
@@ -5005,7 +5005,7 @@
    output_asm_insn (\"ldiu\\t*%1++,%4\", operands);
    if (TARGET_RPTS_CYCLES (len))
      {
-        output_asm_insn (\"rpts\\t%2-2\", operands);  
+        output_asm_insn (\"rpts\\t%2-2\", operands);
         output_asm_insn (\"sti\\t%4,*%0++\", operands);
         output_asm_insn (\"|| ldi\\t*%1++,%4\", operands);
         return \"sti\\t%4,*%0++\";
@@ -5013,7 +5013,7 @@
    else
      {
         output_asm_insn (\"ldiu\\t%2-2,rc\", operands);
-        output_asm_insn (\"rptb\\t$+1\", operands);  
+        output_asm_insn (\"rptb\\t$+1\", operands);
         output_asm_insn (\"sti\\t%4,*%0++\", operands);
         output_asm_insn (\"|| ldi\\t*%1++,%4\", operands);
 
@@ -5033,8 +5033,8 @@
   "
  {
    rtx tmp;
-   if (GET_CODE (operands[2]) != CONST_INT 
-       || INTVAL (operands[2]) > 32767 
+   if (GET_CODE (operands[2]) != CONST_INT
+       || INTVAL (operands[2]) > 32767
        || INTVAL (operands[2]) <= 0)
      {
         FAIL;  /* Try to call _memcpy */
@@ -5084,7 +5084,7 @@
   "
 {
    if (GET_CODE (operands[3]) != CONST_INT
-       || INTVAL (operands[3]) > 32767 
+       || INTVAL (operands[3]) > 32767
        || INTVAL (operands[3]) <= 0)
      {
         FAIL;
@@ -5477,7 +5477,7 @@
                    (unsigned_fix:HI (match_operand:HF 1 "reg_operand" "")))
               (clobber (reg:CC 21))])]
   ""
-  "c4x_emit_libcall (FIXUNS_TRUNCHFHI2_LIBCALL, UNSIGNED_FIX, 
+  "c4x_emit_libcall (FIXUNS_TRUNCHFHI2_LIBCALL, UNSIGNED_FIX,
                      HImode, HFmode, 2, operands);
    DONE;")
 
@@ -5650,7 +5650,7 @@
   "#"
   [(set_attr "type" "multi,multi")])
 
-; This will fail miserably if the destination register is used in the 
+; This will fail miserably if the destination register is used in the
 ; source memory address.
 ; The usual strategy in this case is to swap the order of insns we emit,
 ; however, this will fail if we have an autoincrement memory address.
@@ -5686,7 +5686,7 @@
         operands[3] = tmp;
 	tmp = operands[4];
         operands[4] =operands[5];
-        operands[5] = tmp;        
+        operands[5] = tmp;
      }")
 
 
@@ -6073,7 +6073,7 @@
 ; %0.lo = %1.lo << %2
 ; %0.hi = (%1.hi << %2 ) | (%1.lo >> (32 - %2))
 ; This algorithm should work for shift counts greater than 32
-(define_expand "ashlhi3_reg" 
+(define_expand "ashlhi3_reg"
  [(use (match_operand:HI 1 "reg_operand" ""))
   (use (match_operand:HI 0 "reg_operand" ""))
   /* If the shift count is greater than 32 this will give zero.  */
@@ -6097,7 +6097,7 @@
                   (ior:QI (match_dup 8) (match_dup 9)))
              (clobber (reg:CC 21))])]
  ""
- " 
+ "
   operands[3] = operand_subword (operands[1], 0, 1, HImode); /* lo */
   operands[4] = operand_subword (operands[1], 1, 1, HImode); /* hi */
   operands[5] = operand_subword (operands[0], 0, 1, HImode); /* lo */
@@ -6137,7 +6137,7 @@
 ; %0.hi = %1.hi >> %2
 ; %0.lo = (%1.lo >> %2 ) | (%1.hi << (32 - %2))
 ; This algorithm should work for shift counts greater than 32
-(define_expand "lshrhi3_reg" 
+(define_expand "lshrhi3_reg"
  [(use (match_operand:HI 1 "reg_operand" ""))
   (use (match_operand:HI 0 "reg_operand" ""))
   (parallel [(set (match_dup 11)
@@ -6150,7 +6150,7 @@
              (clobber (reg:CC 21))])
   /* If the shift count is greater than 32 this will give zero.  */
   (parallel [(set (match_dup 8)
-                  (lshiftrt:QI (match_dup 4) 
+                  (lshiftrt:QI (match_dup 4)
                                (neg:QI (match_dup 11))))
              (clobber (reg:CC 21))])
   (parallel [(set (match_dup 10)
@@ -6166,7 +6166,7 @@
                   (ior:QI (match_dup 7) (match_dup 9)))
              (clobber (reg:CC 21))])]
  ""
- " 
+ "
   operands[3] = operand_subword (operands[1], 0, 1, HImode); /* lo */
   operands[4] = operand_subword (operands[1], 1, 1, HImode); /* hi */
   operands[5] = operand_subword (operands[0], 0, 1, HImode); /* lo */
@@ -6207,7 +6207,7 @@
 ; %0.hi = %1.hi >> %2
 ; %0.lo = (%1.lo >> %2 ) | (%1.hi << (32 - %2))
 ; This algorithm should work for shift counts greater than 32
-(define_expand "ashrhi3_reg" 
+(define_expand "ashrhi3_reg"
  [(use (match_operand:HI 1 "reg_operand" ""))
   (use (match_operand:HI 0 "reg_operand" ""))
   (parallel [(set (match_dup 11)
@@ -6220,7 +6220,7 @@
              (clobber (reg:CC 21))])
   /* If the shift count is greater than 32 this will give zero.  */
   (parallel [(set (match_dup 8)
-                  (ashiftrt:QI (match_dup 4) 
+                  (ashiftrt:QI (match_dup 4)
                                (neg:QI (match_dup 11))))
              (clobber (reg:CC 21))])
   (parallel [(set (match_dup 10)
@@ -6236,7 +6236,7 @@
                   (ior:QI (match_dup 7) (match_dup 9)))
              (clobber (reg:CC 21))])]
  ""
- " 
+ "
   operands[3] = operand_subword (operands[1], 0, 1, HImode); /* lo */
   operands[4] = operand_subword (operands[1], 1, 1, HImode); /* hi */
   operands[5] = operand_subword (operands[0], 0, 1, HImode); /* lo */
@@ -6334,7 +6334,7 @@
      return \"\";
    }"
   [(set_attr "type" "multi")])
- 
+
 (define_insn "*cmphi_noov"
   [(set (reg:CC_NOOV 21)
         (compare:CC_NOOV (match_operand:HI 0 "src_operand" "rR,rS<>")
@@ -6385,7 +6385,7 @@
    }"
   [(set_attr "type" "multi")])
 
- 
+
 (define_insn "cmphi_cc"
   [(set (reg:CC 21)
         (unspec [(compare:CC (match_operand:HI 0 "src_operand" "rR,rS<>")
@@ -6562,7 +6562,7 @@
        (match_operand:QI 1 "par_ind_operand" ""))
   (set (match_operand:QI 2 "ext_low_reg_operand" "")
        (match_operand:QI 3 "par_ind_operand" ""))]
- "(REGNO (operands[0]) != REGNO (operands[2])) 
+ "(REGNO (operands[0]) != REGNO (operands[2]))
   && ! c4x_address_conflict (operands[1], operands[3], 0, 0)"
  "ldi1\\t%1,%0\\n||\\tldi2\\t%3,%2")
 

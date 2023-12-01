@@ -42,7 +42,7 @@ Boston, MA 02111-1307, USA.  */
 
 #define MY_ISCOFF(magic) ((magic) == SIPFBOMAGIC || (magic) == SIPRBOMAGIC)
 
-/* For some systems, it is best if double-word objects are aligned on a 
+/* For some systems, it is best if double-word objects are aligned on a
    doubleword boundary.  We want to maintain compatibility with MetaWare in
    a29k.h, but do not feel constrained to do so here.  */
 

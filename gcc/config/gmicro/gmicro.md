@@ -30,7 +30,7 @@
 ;;- When naming insn's (operand 0 of define_insn) be careful about using
 ;;- names from other targets machine descriptions.
 
-;;- cpp macro #define NOTICE_UPDATE_CC is essentially a no-op for the 
+;;- cpp macro #define NOTICE_UPDATE_CC is essentially a no-op for the
 ;;- gmicro; no compares are eliminated.
 
 ;;- The original structure of this file is m68k.md.
@@ -85,7 +85,7 @@
 	(match_operand:QI 0 "nonimmediate_operand" "rm"))]
   ""
   "cmp:z.b #0,%0")
-  
+
 
 (define_insn "tstsf"
   [(set (cc0)
@@ -132,17 +132,17 @@
 	  return cmp_imm_word (INTVAL (operands[1]), operands[0]);
 	}
       if (signed_flag)
-	return \"cmp.w %0,%1\"; 
-      return \"cmpu.w %0,%1\"; 
+	return \"cmp.w %0,%1\";
+      return \"cmpu.w %0,%1\";
     }
   if (signed_flag)
     {
       if (GET_CODE (operands[1]) == CONST_INT)
 	return cmp_imm_word (INTVAL (operands[1]), operands[0]);
-      return \"cmp.w %1,%0\"; 
+      return \"cmp.w %1,%0\";
     }
   else
-    return \"cmpu.w %1,%0\"; 
+    return \"cmpu.w %1,%0\";
 }")
 
 (define_insn "cmphi"
@@ -158,12 +158,12 @@
     {
       cc_status.flags |= CC_REVERSED;
       if (signed_flag)
-	return \"cmp.h %0,%1\"; 
-      return \"cmpu.h %0,%1\"; 
+	return \"cmp.h %0,%1\";
+      return \"cmpu.h %0,%1\";
     }
   if (signed_flag)
-    return \"cmp.h %1,%0\"; 
-  return \"cmpu.h %1,%0\"; 
+    return \"cmp.h %1,%0\";
+  return \"cmpu.h %1,%0\";
 }")
 
 (define_insn "cmpqi"
@@ -179,12 +179,12 @@
     {
       cc_status.flags |= CC_REVERSED;
       if (signed_flag)
-	return \"cmp.b %0,%1\"; 
-      return \"cmpu.b %0,%1\"; 
+	return \"cmp.b %0,%1\";
+      return \"cmpu.b %0,%1\";
     }
   if (signed_flag)
-    return \"cmp.b %1,%0\"; 
-  return \"cmpu.b %1,%0\"; 
+    return \"cmp.b %1,%0\";
+  return \"cmpu.b %1,%0\";
 }")
 
 
@@ -281,7 +281,7 @@
 ; mtst is supported only by G/300.
 
 (define_insn ""
-  [(set (cc0) 
+  [(set (cc0)
 	(and:SI (match_operand:SI 0 "general_operand" "%rmi")
 		(match_operand:SI 1 "general_operand" "rm")))]
   "TARGET_G300"
@@ -293,7 +293,7 @@
 }")
 
 (define_insn ""
-  [(set (cc0) 
+  [(set (cc0)
 	(and:HI (match_operand:HI 0 "general_operand" "%rmi")
 		(match_operand:HI 1 "general_operand" "rm")))]
   "TARGET_G300"
@@ -305,7 +305,7 @@
 }")
 
 (define_insn ""
-  [(set (cc0) 
+  [(set (cc0)
 	(and:QI (match_operand:QI 0 "general_operand" "%rmi")
 		(match_operand:QI 1 "general_operand" "rm")))]
   "TARGET_G300"
@@ -323,7 +323,7 @@
 /* added by M.Yuhara */
 ;; 1.35.04 89.08.28 modification start
 ;; register_operand -> general_operand
-;; ashift -> mult 
+;; ashift -> mult
 
 (define_insn ""
   [(set (mem:SI (plus:SI
@@ -691,7 +691,7 @@
       abort ();
       output_asm_insn (\"mova.w %p1,r0\", operands);
     }
-    
+
   if (CONSTANT_P (operands[0]))
     {
       fprintf (stderr, \"smov 0 const err \");
@@ -720,7 +720,7 @@
       fprintf (stderr, \"smov 0 else err \");
       abort ();
     }
-    
+
   if (GET_CODE (operands[2]) == CONST_INT)
     {
       op2const = INTVAL (operands[2]);
@@ -745,7 +745,7 @@
 	  output_asm_insn (\"mov.w @(8,r0),@(8,r1)\", operands);
 	  return \"mov.w @(12,r0),@(12,r1)\";
 	}
-	    
+
       operands[2] = GEN_INT (op2const);
       output_asm_insn (\"mov.w %2,r2\", operands);
       return \"smov/n/f.w\";
@@ -1512,8 +1512,8 @@
       && (INTVAL (operands[2]) | 0xffff) == 0xffffffff
       && (GREG_P (operands[0])
 	  || offsettable_memref_p (operands[0])))
-   
-    { 
+
+    {
       if (GET_CODE (operands[0]) != REG)
         operands[0] = adj_offsettable_operand (operands[0], 2);
       operands[2] = GEN_INT (INTVAL (operands[2]) & 0xffff);
@@ -1577,7 +1577,7 @@
       && INTVAL (operands[2]) >> 16 == 0
       && (GREG_P (operands[0])
 	  || offsettable_memref_p (operands[0])))
-    { 
+    {
       if (GET_CODE (operands[0]) != REG)
         operands[0] = adj_offsettable_operand (operands[0], 2);
       /* Do not delete a following tstl %0 insn; that would be incorrect.  */
@@ -1588,7 +1588,7 @@
       && (logval = exact_log2 (INTVAL (operands[2]))) >= 0
       && (GREG_P (operands[0])
 	  || offsettable_memref_p (operands[0])))
-    { 
+    {
       if (GREG_P (operands[0]))
 	{
 	  if (logval < 7)
@@ -1635,7 +1635,7 @@
   if (GET_CODE (operands[2]) == CONST_INT
       && INTVAL (operands[2]) >> 16 == 0
       && (offsettable_memref_p (operands[0]) || GREG_P (operands[0])))
-    { 
+    {
       if (! GREG_P (operands[0]))
 	operands[0] = adj_offsettable_operand (operands[0], 2);
       /* Do not delete a following tstl %0 insn; that would be incorrect.  */
@@ -1852,7 +1852,7 @@
 
 ;; Logical right shift on the gmicro works by negating the shift count,
 ;; then emitting a right shift with the shift count negated.  This means
-;; that all actual shift counts in the RTL will be positive.  This 
+;; that all actual shift counts in the RTL will be positive.  This
 ;; prevents converting shifts to ZERO_EXTRACTs with negative positions,
 ;; which isn't valid.
 
@@ -2163,7 +2163,7 @@
 ;; so that its address is reloaded.
 
 ;; extv dest:SI src(:QI/:SI) width:SI pos:SI
-;;        r.w    m            r.w/#    rmi  
+;;        r.w    m            r.w/#    rmi
 ;;        %0     %1           %2       %3
 
 (define_expand "extv"
@@ -2225,7 +2225,7 @@
 
 ;;; bfins/bfinsu ????????
 
-;; == == == == == == == == == == == == == 
+;; == == == == == == == == == == == == ==
 
 ;; Now recognize bit field insns that operate on registers
 ;; (or at least were intended to do so).
@@ -2256,7 +2256,7 @@
   operands[2] = GEN_INT (-(32 - INTVAL (operands[2])));
   return \"sha.w %3,%0\";
 }")
-    
+
 
 (define_insn ""
   [(set (match_operand:SI 0 "general_operand" "=r")
@@ -2337,7 +2337,7 @@
 ")
 
 ;; bms ?????
-;; 
+;;
 
 (define_insn "bltu"
   [(set (pc)
@@ -2589,10 +2589,10 @@
     "nop")
 
 ;; Turned off because the general move-an-address pattern handles it.
-;; 
+;;
 ;; Thus goes after the move instructions
 ;; because the move instructions are better (require no spilling)
-;; when they can apply. 
+;; when they can apply.
 ;; After add/sub now !!
 
 ;(define_insn "pushasi"
@@ -2691,7 +2691,7 @@
 ;    {
 ;      rtx xreg, xdisp;
 ;
-;      if (GET_CODE (XEXP (operands[1], 0)) == REG 
+;      if (GET_CODE (XEXP (operands[1], 0)) == REG
 ;	  && REGNO (XEXP (operands[1], 0)) == REGNO (operands[0]))
 ;	{
 ;	  xreg = XEXP (operands[1], 0);

@@ -47,7 +47,7 @@ fix = {
 };
 
 
-/* 
+/*
  * Remove erroneous parentheses in sym.h on Alpha OSF/1.
  */
 fix = {
@@ -405,10 +405,10 @@ fix = {
      *
      *  We have a second regexp in the selector to detect
      *  #endif followed by a / followed by anything other
-     *  than a *.  For example "#endif / * foo * /" or 
+     *  than a *.  For example "#endif / * foo * /" or
      *  "#endif /% blah %/ which appear on OSF4.0A and AIX4.2
      *  repsectively.
-     * 
+     *
      *  We use the pattern [!-.0-z{|}~] instead of [^/ \t] to match a
      *  noncomment following #else or #endif because some buggy egreps
      *  think [^/] matches newline, and they thus think `#else ' matches
@@ -670,7 +670,7 @@ fix = {
     sed      = "s/fmod(double)/fmod(double, double)/";
 };
 
-  
+
 /*
  * Fix nested comments in Motorola's <limits.h> and <sys/limits.h>
  */
@@ -685,7 +685,7 @@ fix = {
           "\\(/\\*error value returned by Math lib\\*/\\)$@\\1*/ \\2@";
 };
 
-  
+
 /*
  * Fixing nested comments in ISC <sys/limits.h>
  */
@@ -984,9 +984,9 @@ enough to have '#ifdef __cplusplus' anywhere in the file?
 ***************
 *** 25,31 ****
 --- 25,37 ----
-  
+
   @ifndef __cplusplus
-  
+
 + @ifdef __cplusplus
 + @define exception __math_exception
 + @endif
@@ -1002,7 +1002,7 @@ enough to have '#ifdef __cplusplus' anywhere in the file?
 --- 40,58 ----
         double  retval;
   };
-  
+
 + @ifdef __cplusplus
 + @define exception __math_exception
 + @endif
@@ -1016,7 +1016,7 @@ enough to have '#ifdef __cplusplus' anywhere in the file?
 + @ifdef __cplusplus
 + @undef exception
 + @endif
-  
+
   @endif /*__cplusplus*/
 #endif
 };
@@ -1222,13 +1222,13 @@ fix = {
 
 
 /*
- *  function class(double x) conflicts with C++ keyword on rs/6000 
+ *  function class(double x) conflicts with C++ keyword on rs/6000
  */
 fix = {
     hackname = rs6000_double;
     files    = math.h;
     select   = '[^a-zA-Z_]class\(';
-    
+
     sed   = "/class[(]/i\\\n#ifndef __cplusplus\n";
     sed   = "/class[(]/a\\\n#endif\n";
 };
@@ -1246,7 +1246,7 @@ fix = {
 
 
 /*
- *  parameters conflict with C++ new on rs/6000 
+ *  parameters conflict with C++ new on rs/6000
  */
 fix = {
     hackname = rs6000_param;

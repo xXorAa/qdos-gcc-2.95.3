@@ -103,7 +103,7 @@ extern struct hash_entry *hash_lookup
 
 /* Base method for creating a hash table entry.  */
 extern struct hash_entry *hash_newfunc
-  PARAMS ((struct hash_entry *, struct hash_table *, 
+  PARAMS ((struct hash_entry *, struct hash_table *,
 	   hash_table_key key));
 
 /* Grab some space for a hash table entry.  */
@@ -122,7 +122,7 @@ extern void hash_traverse PARAMS ((struct hash_table *,
 extern unsigned long string_hash PARAMS ((hash_table_key k));
 
 /* Compare two strings K1, K2 which are really of type `char*'.  */
-extern boolean string_compare PARAMS ((hash_table_key k1, 
+extern boolean string_compare PARAMS ((hash_table_key k1,
 				       hash_table_key k2));
 
 /* Copy a string K, which is really of type `char*'.  */

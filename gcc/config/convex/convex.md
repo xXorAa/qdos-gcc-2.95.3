@@ -539,7 +539,7 @@
   operands[4] = gen_label_rtx ();
 }")
 
-;; These patterns are identical to gcc's default action 
+;; These patterns are identical to gcc's default action
 ;; if DI->DF and DI->SF are not present.  There are here
 ;; only to prevent SI->*F from promoting to DI->*F.
 
@@ -1492,11 +1492,11 @@
 ;;
 ;; The most important case where we can use the carry bit from an
 ;; arithmetic insn to eliminate a redundant compare is the decrement in
-;; constructs like while (n--) and while (--n >= 0).  
+;; constructs like while (n--) and while (--n >= 0).
 ;;
 ;; We do it with combine patterns instead of NOTICE_UPDATE_CC because
 ;; the decrement needs to be kept at the end of the block during scheduling.
-;; 
+;;
 ;; These patterns must have memory alternatives because reload refuses
 ;; to do output reloads for an insn that sets cc0 (since it does not
 ;; want to clobber cc0 with its moves).  Convex moves do not clobber
@@ -1522,7 +1522,7 @@
       return \"psh.w s7\;ld.w %0,s7\;add.w #-1,s7\;st.w s7,%0\;pop.w s7\";
     }
 }")
-     
+
 (define_insn ""
   [(set (cc0)
 	(plus:SI (match_operand:SI 0 "register_operand" "+r,*m")
@@ -1565,7 +1565,7 @@
       return \"psh.w s7\;ld.h %0,s7\;add.h #-1,s7\;st.h s7,%0\;pop.w s7\";
     }
 }")
-     
+
 (define_insn ""
   [(set (cc0)
 	(plus:HI (match_operand:HI 0 "register_operand" "+r,*m")
@@ -1870,7 +1870,7 @@
   "
 {
   emit_ap_optimizations ();
-  DONE; 
+  DONE;
 }")
 
 (define_insn "tablejump"

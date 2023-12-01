@@ -41,8 +41,8 @@ Info hierarchy.  The first time you invoke Info you start off
 looking at that node, which is (dir)Top.
 
 File: dir	Node: Top	This is the top of the INFO tree
-  This (the Directory node) gives a menu of major topics. 
-  Typing "d" returns here, "q" exits, "?" lists all INFO commands, "h" 
+  This (the Directory node) gives a menu of major topics.
+  Typing "d" returns here, "q" exits, "?" lists all INFO commands, "h"
   gives a primer for first-timers, "mTexinfo<Return>" visits Texinfo topic,
   etc.
   --- PLEASE ADD DOCUMENTATION TO THIS TREE. (See INFO topic first.) ---
@@ -57,8 +57,8 @@ moobler
 ### info, then create a minimal dir entry, otherwise use the given info.
 ###
 ### Then remove that file from the list of existing files.  If any
-### additional files remain (ones that don't have a template entry), 
-### then generate entries for those in the same way, putting the info for 
+### additional files remain (ones that don't have a template entry),
+### then generate entries for those in the same way, putting the info for
 ### those at the very end....
 
 for file in ${template} ; do
@@ -80,7 +80,7 @@ for file in ${template} ; do
 
       infofiles=`echo ${infofiles} | sed -e "s/${file}\.info//"`
     fi
-  fi 
+  fi
 done
 
 if [ -z "${infofiles}" ] ; then

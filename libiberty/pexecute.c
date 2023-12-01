@@ -348,7 +348,7 @@ pexecute (program, argv, this_pname, temp_base, errmsg_fmt, errmsg_arg, flags)
     {
       org_stdin = dup (STDIN_FILE_NO);
       dup2 (input_desc, STDIN_FILE_NO);
-      close (input_desc); 
+      close (input_desc);
     }
 
   if (output_desc != STDOUT_FILE_NO)
@@ -385,7 +385,7 @@ pexecute (program, argv, this_pname, temp_base, errmsg_fmt, errmsg_arg, flags)
 
 /* MS CRTDLL doesn't return enough information in status to decide if the
    child exited due to a signal or not, rather it simply returns an
-   integer with the exit code of the child; eg., if the child exited with 
+   integer with the exit code of the child; eg., if the child exited with
    an abort() call and didn't have a handler for SIGABRT, it simply returns
    with status = 3. We fix the status code to conform to the usual WIF*
    macros. Note that WIFSIGNALED will never be true under CRTDLL. */

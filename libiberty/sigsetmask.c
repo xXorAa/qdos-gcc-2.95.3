@@ -3,7 +3,7 @@
    Contributed by Cygnus Support.
    This file is in the public doamin. */
 
-/* Set the current signal mask to the set provided, and return the 
+/* Set the current signal mask to the set provided, and return the
    previous value */
 
 #define _POSIX_SOURCE
@@ -19,7 +19,7 @@ DEFUN(sigsetmask,(set),
 {
     sigset_t new;
     sigset_t old;
-    
+
     sigemptyset (&new);
     if (set != 0) {
       abort();	/* FIXME, we don't know how to translate old mask to new */

@@ -149,11 +149,11 @@ Boston, MA 02111-1307, USA.  */
 
       This means structures should be padded to a word boundary if
       alignment of 32 is required for byte structures etc.
-      
+
    2. A potential performance penalty may exist if strings are no longer
       word aligned.  GCC will not be able to use word load/stores to copy
       short strings.
-      
+
    This modification is not encouraged but with the present state of the
    NetBSD source tree it is currently the only solution that meets the
    requirements.  */

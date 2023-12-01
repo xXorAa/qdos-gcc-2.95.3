@@ -868,7 +868,7 @@ add_dependence (insn, elem, dep_type)
      such dependency is useless and can be ignored.  */
   if (GET_CODE (elem) == NOTE)
     return;
-	
+
   /* If elem is part of a sequence that must be scheduled together, then
      make the dependence point to the last insn of the sequence.
      When HAVE_cc0, it is possible for NOTEs to exist between users and
@@ -1657,7 +1657,7 @@ find_rgns (s_preds, s_succs, num_preds, num_succs, dom)
 		 If there exists a block that is not dominated by the loop
 		 header, then the block is reachable from outside the loop
 		 and thus the loop is not a natural loop.  */
-	      for (j = 0; j < n_basic_blocks; j++)	
+	      for (j = 0; j < n_basic_blocks; j++)
 		{
 		  /* First identify blocks in the loop, except for the loop
 		     entry block.  */
@@ -1726,7 +1726,7 @@ find_rgns (s_preds, s_succs, num_preds, num_succs, dom)
 
 		      if (node == ENTRY_BLOCK || node == EXIT_BLOCK)
 			continue;
- 
+
 		      if (max_hdr[node] == loop_head && node != i)
 			{
 			  /* This is a loop latch.  */
@@ -1739,7 +1739,7 @@ find_rgns (s_preds, s_succs, num_preds, num_succs, dom)
 			      break;
 			    }
 			}
-		      
+
 		    }
 		}
 
@@ -1773,7 +1773,7 @@ find_rgns (s_preds, s_succs, num_preds, num_succs, dom)
 
 	     We do not do this because I'm not sure that the actual
 	     scheduling code will properly handle this case. ?!? */
-	
+
 	      while (head < tail && !too_large_failure)
 		{
 		  int_list_ptr ps;
@@ -4202,7 +4202,7 @@ rank_for_schedule (x, y)
 	return val;
     }
 
-  /* Prefer the insn which has more later insns that depend on it. 
+  /* Prefer the insn which has more later insns that depend on it.
      This gives the scheduler more freedom when scheduling later
      instructions at the expense of added register pressure.  */
   depend_count1 = 0;
@@ -4216,7 +4216,7 @@ rank_for_schedule (x, y)
   val = depend_count2 - depend_count1;
   if (val)
     return val;
-  
+
   /* If insns are equally good, sort by INSN_LUID (original insn order),
      so that we make the sort stable.  This minimizes instruction movement,
      thus minimizing sched's effect on debugging and cross-jumping.  */
@@ -4456,7 +4456,7 @@ schedule_insn (insn, ready, n_ready, clock)
 	}
     }
 
-  /* Annotate the instruction with issue information -- TImode 
+  /* Annotate the instruction with issue information -- TImode
      indicates that the instruction is expected not to be able
      to issue on the same cycle as the previous insn.  A machine
      may use this information to decide how the instruction should
@@ -4515,7 +4515,7 @@ create_reg_dead_note (reg, insn)
 
 	  /* LINK might be zero if we killed more registers after scheduling
 	     than before, and the last hard register we kill is actually
-	     multiple hard regs. 
+	     multiple hard regs.
 
 	     This is normal for interblock scheduling, so deal with it in
 	     that case, else abort.  */
@@ -4524,7 +4524,7 @@ create_reg_dead_note (reg, insn)
 	  else if (link == NULL_RTX)
 	    link = alloc_EXPR_LIST (REG_DEAD, gen_rtx_REG (word_mode, 0),
 				    NULL_RTX);
-	     
+
 	  reg_note_regs += (REGNO (XEXP (link, 0)) >= FIRST_PSEUDO_REGISTER ? 1
 			    : HARD_REGNO_NREGS (REGNO (XEXP (link, 0)),
 						GET_MODE (XEXP (link, 0))));
@@ -7456,9 +7456,9 @@ compute_block_backward_dependences (bb)
 	while (e != first_edge);
     }
 
-  /* Free up the INSN_LISTs 
+  /* Free up the INSN_LISTs
 
-     Note this loop is executed max_reg * nr_regions times.  It's first 
+     Note this loop is executed max_reg * nr_regions times.  It's first
      implementation accounted for over 90% of the calls to free_list.
      The list was empty for the vast majority of those calls.  On the PA,
      not calling free_list in those cases improves -O2 compile times by
@@ -8045,7 +8045,7 @@ update_flow_info (notes, first, last, orig_insn)
 	         register that was not needed by this instantiation of the
 	         pattern, so we can safely ignore it.  */
 	      if (insn == first)
-		{			
+		{
 		  if (REG_NOTE_KIND (note) != REG_UNUSED)
 		    abort ();
 
@@ -8411,7 +8411,7 @@ update_flow_info (notes, first, last, orig_insn)
 	     set.  This case is OK, because deleting a no-op can not affect
 	     REG_DEAD notes on other insns.  If this is not the case, then
 	     abort.  */
-	  
+
 	  regno = REGNO (orig_dest);
 	  for (i = HARD_REGNO_NREGS (regno, GET_MODE (orig_dest)) - 1;
 	       i >= 0; i--)

@@ -25,7 +25,7 @@ DESCRIPTION
 RETURNS
 	If the character <[c]> is found within <[length]> characters
 	of <<*<[src]>>>, a pointer to the character is returned. If
-	<[c]> is not found, then <<NULL>> is returned. 	
+	<[c]> is not found, then <<NULL>> is returned.
 
 PORTABILITY
 <<memchr>>  requires no supporting OS subroutines.
@@ -49,7 +49,7 @@ memchr (src_void, c, length)
      size_t length;
 {
   const unsigned char *src = (const unsigned char *)src_void;
-  
+
   while (--length >= 0)
   {
     if (*src == c)

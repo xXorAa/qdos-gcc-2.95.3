@@ -52,7 +52,7 @@ Boston, MA 02111-1307, USA.  */
  *       short a_part = a & 0x7f;
  *       unsigned b_tmp = b;
  *       a >>= 7;
- * 
+ *
  *       for (j = 0; (i+j) < 32; j += 7)
  * 	{
  * 	  short b_part = b_tmp & 0x7f;

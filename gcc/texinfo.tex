@@ -33,11 +33,11 @@
 %   (and all CTAN mirrors, finger ctan@tug.org for a list).
 % The texinfo.tex in the texinfo distribution itself could well be out
 % of date, so if that's what you're using, please check.
-% 
+%
 % Send bug reports to bug-texinfo@gnu.org.
 % Please include a precise test case in each bug report,
 % including a complete document with which we can reproduce the problem.
-% 
+%
 % To process a Texinfo manual with TeX, it's most reliable to use the
 % texi2dvi shell script that comes with the distribution.  For simple
 % manuals, you can get away with:
@@ -138,7 +138,7 @@
 
 % For @cropmarks command.
 % Do @cropmarks to get crop marks.
-% 
+%
 \newif\ifcropmarks
 \let\cropmarks = \cropmarkstrue
 %
@@ -605,7 +605,7 @@ where each line of input produces a line of output.}
 }}
 
 % @enddots{} is an end-of-sentence ellipsis.
-% 
+%
 \def\enddots{%
   \hbox to 2em{%
     \hskip 0pt plus 0.25fil minus 0.25fil
@@ -955,7 +955,7 @@ where each line of input produces a line of output.}
 % contains other Texinfo commands, it's almost certain it will fail
 % (although perhaps we could fix that with sufficient work to do a
 % one-level expansion on the result, instead of complete).
-% 
+%
 \def\expandablevalue#1{%
   \expandafter\ifx\csname SET#1\endcsname\relax
     {[No value for ``#1'']v}%
@@ -1081,7 +1081,7 @@ where each line of input produces a line of output.}
 % So open here the files we need to have open while reading the input.
 % This makes it possible to make a .fmt file for texinfo.
 \def\setfilename{%
-   \iflinks 
+   \iflinks
      \readauxfile
      \opencontents
    \fi % \openindices needs to do some work in any case.
@@ -1101,7 +1101,7 @@ where each line of input produces a line of output.}
 }
 
 % Called from \setfilename.
-% 
+%
 \def\openindices{%
   \newindex{cp}%
   \newcodeindex{fn}%
@@ -1472,7 +1472,7 @@ where each line of input produces a line of output.}
 % @uref (abbreviation for `urlref') takes an optional second argument
 % specifying the text to display.  First (mandatory) arg is the url.
 % Perhaps eventually put in a hypertex \special here.
-% 
+%
 \def\uref#1{\urefxxx #1,,\finish}
 \def\urefxxx#1,#2,#3\finish{%
   \setbox0 = \hbox{\ignorespaces #2}%
@@ -2106,7 +2106,7 @@ July\or August\or September\or October\or November\or December\fi
 \multitablelinespace=0pt
 
 % Macros used to set up halign preamble:
-% 
+%
 \let\endsetuptable\relax
 \def\xendsetuptable{\endsetuptable}
 \let\columnfractions\relax
@@ -2184,15 +2184,15 @@ July\or August\or September\or October\or November\or December\fi
   % In order to keep entries from bumping into each other
   % we will add a \leftskip of \multitablecolspace to all columns after
   % the first one.
-  % 
+  %
   % If a template has been used, we will add \multitablecolspace
   % to the width of each template entry.
-  % 
+  %
   % If the user has set preamble in terms of percent of \hsize we will
   % use that dimension as the width of the column, and the \leftskip
   % will keep entries from bumping into each other.  Table will start at
   % left margin and final column will justify at right margin.
-  % 
+  %
   % Make sure we don't inherit \rightskip from the outer environment.
   \rightskip=0pt
   \ifnum\colcount=1
@@ -2481,14 +2481,14 @@ width0pt\relax} \fi
 \def\emptymacro{\empty}
 
 % Most index entries go through here, but \dosubind is the general case.
-% 
+%
 \def\doind#1#2{\dosubind{#1}{#2}\empty}
 
 % Workhorse for all \fooindexes.
 % #1 is name of index, #2 is stuff to put there, #3 is subentry --
 % \empty if called from \doind, as we usually are.  The main exception
 % is with defuns, which call us directly.
-% 
+%
 \def\dosubind#1#2#3{%
   % Put the index entry in the margin if desired.
   \ifx\SETmarginindex\relax\else
@@ -2732,7 +2732,7 @@ width0pt\relax} \fi
 \def\begindoublecolumns{\begingroup % ended by \enddoublecolumns
   % Grab any single-column material above us.
   \output = {\global\setbox\partialpage = \vbox{%
-    % 
+    %
     % Here is a possibility not foreseen in manmac: if we accumulate a
     % whole lot of material, we might end up calling this \output
     % routine twice in a row (see the doublecol-lose test, which is
@@ -3955,7 +3955,7 @@ width0pt\relax} \fi
 % #2 is the \...x control sequence for consecutive fns (which we define).
 % #3 is the control sequence to call to resume processing.
 % #4, delimited by the space, is the class name.
-% 
+%
 \def\defmethparsebody#1#2#3#4 {\begingroup\inENV %
 \medbreak %
 % Define the end token that this defining construct specifies
@@ -3973,7 +3973,7 @@ width0pt\relax} \fi
 % #3 is the control sequence to call to resume processing.
 % #4, delimited by the space, is the class name.
 % #5 is the method's return type.
-% 
+%
 \def\deftypemethparsebody#1#2#3#4 #5 {\begingroup\inENV %
 \medbreak %
 % Define the end token that this defining construct specifies
@@ -4361,7 +4361,7 @@ width0pt\relax} \fi
 \message{macros,}
 % @macro.
 
-% To do this right we need a feature of e-TeX, \scantokens, 
+% To do this right we need a feature of e-TeX, \scantokens,
 % which we arrange to emulate with a temporary file in ordinary TeX.
 \ifx\eTeXversion\undefined
  \newwrite\macscribble
@@ -4405,7 +4405,7 @@ width0pt\relax} \fi
   \usembodybackslash}
 
 % \mbodybackslash is the definition of \ in @macro bodies.
-% It maps \foo\ => \csname macarg.foo\endcsname => #N 
+% It maps \foo\ => \csname macarg.foo\endcsname => #N
 % where N is the macro parameter number.
 % We define \csname macarg.\endcsname to be \realbackslash, so
 % \\ in macro replacement text gets you a backslash.
@@ -4418,7 +4418,7 @@ width0pt\relax} \fi
 
 % The catcode games are necessary because @macro may or may not
 % have a brace-surrounded list of arguments, and we need to do
-% different stuff in each case.  Making {, } \other is the only 
+% different stuff in each case.  Making {, } \other is the only
 % way to prevent their being deleted by the tokenizer.
 \def\macro{\recursivefalse
   \bgroup\catcode`\{=\other\catcode`\}=\other\parsearg\macroxxx}
@@ -4431,7 +4431,7 @@ width0pt\relax} \fi
   \ifx\temp\empty       % no arguments
      \paramno=0%
   \else
-     \expandafter\parsemargdef \the\toks0;% 
+     \expandafter\parsemargdef \the\toks0;%
   \fi
   \expandafter\ifx \csname macsave.\the\macname\endcsname \relax
      \cslet{macsave.\the\macname}{\the\macname}%
@@ -4440,7 +4440,7 @@ width0pt\relax} \fi
   \fi
   \begingroup \macrobodyctxt
   \ifrecursive \expandafter\parsermacbody
-  \else \expandafter\parsemacbody 
+  \else \expandafter\parsemacbody
   \fi}
 
 \def\unmacro{\parsearg\unmacroxxx}
@@ -4506,7 +4506,7 @@ width0pt\relax} \fi
       \expandafter\expandafter
       \expandafter\edef
       \expandafter\expandafter
-        \csname\the\macname xxx\endcsname 
+        \csname\the\macname xxx\endcsname
           \paramlist{\noexpand\scantokens{\temp}}%
     \fi
   \else
@@ -4543,7 +4543,7 @@ width0pt\relax} \fi
 \def\braceorline#1{\let\next=#1\futurelet\nchar\braceorlinexxx}
 \def\braceorlinexxx{%
   \ifx\nchar\bgroup\else
-    \expandafter\parsearg 
+    \expandafter\parsearg
   \fi \next}
 
 % We need {} to be \other inside these commands. [] are temporary
@@ -4738,7 +4738,7 @@ width0pt\relax} \fi
 }
 
 % This is the macro invoked by entries in the aux file.
-% 
+%
 \def\xrdef#1{\begingroup
   % Reenable \ as an escape while reading the second argument.
   \catcode`\\ = 0
@@ -4963,7 +4963,7 @@ width0pt\relax} \fi
 
 % @image.  We use the macros from epsf.tex to support this.
 % If epsf.tex is not installed and @image is used, we complain.
-% 
+%
 % Check for and read epsf.tex up front.  If we read it only at @image
 % time, we might be inside a group, and then its definitions would get
 % undone and the next image would fail.
@@ -5131,7 +5131,7 @@ width0pt\relax} \fi
 % @pagesizes TEXTHEIGHT[,TEXTWIDTH]
 % Perhaps we should allow setting the margins, \topskip, \parskip,
 % and/or leading, also. Or perhaps we should compute them somehow.
-% 
+%
 \def\pagesizes{\parsearg\pagesizesxxx}
 \def\pagesizesxxx#1{\pagesizesyyy #1,,\finish}
 \def\pagesizesyyy#1,#2,#3\finish{{%
@@ -5145,7 +5145,7 @@ width0pt\relax} \fi
 }}
 
 % Set default to letter.
-% 
+%
 \letterpaper
 
 \message{and turning on texinfo input format.}

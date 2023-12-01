@@ -52,7 +52,7 @@ Boston, MA 02111-1307, USA.  */
         output_file_directive (FILE, main_input_filename);              \
         fprintf (FILE, "\t.version\t\"01.01\"\n");                      \
   } while (0)
-  
+
 #undef ASM_CPU_DEFAULT_SPEC
 #define ASM_CPU_DEFAULT_SPEC "-Av9a"
 
@@ -60,7 +60,7 @@ Boston, MA 02111-1307, USA.  */
    the GNU/Linux magical crtbegin.o file (see crtstuff.c) which
    provides part of the support for getting C++ file-scope static
    object constructed before entering `main'. */
-   
+
 #undef  STARTFILE_SPEC
 
 #define STARTFILE_SPEC32 \
@@ -72,7 +72,7 @@ Boston, MA 02111-1307, USA.  */
   "%{!shared: \
      %{pg:/usr/lib64/gcrt1.o%s} %{!pg:%{p:/usr/lib64/gcrt1.o%s} %{!p:/usr/lib64/crt1.o%s}}}\
    /usr/lib64/crti.o%s %{!shared:crtbegin.o%s} %{shared:crtbeginS.o%s}"
-   
+
 #ifdef SPARC_BI_ARCH
 
 #if DEFAULT_ARCH32_P
@@ -106,7 +106,7 @@ Boston, MA 02111-1307, USA.  */
 
 #define ENDFILE_SPEC64 \
   "%{!shared:crtend.o%s} %{shared:crtendS.o%s} /usr/lib64/crtn.o%s"
-  
+
 #ifdef SPARC_BI_ARCH
 
 #if DEFAULT_ARCH32_P
@@ -136,7 +136,7 @@ Boston, MA 02111-1307, USA.  */
 
 #undef WCHAR_TYPE
 #define WCHAR_TYPE "long int"
-   
+
 #undef WCHAR_TYPE_SIZE
 #define WCHAR_TYPE_SIZE BITS_PER_WORD
 
@@ -184,7 +184,7 @@ Boston, MA 02111-1307, USA.  */
   { "link_arch64",       LINK_ARCH64_SPEC },              \
   { "link_arch_default", LINK_ARCH_DEFAULT_SPEC },	  \
   { "link_arch",	 LINK_ARCH_SPEC },
-    
+
 #define LINK_ARCH32_SPEC "-m elf32_sparc -Y P,/usr/lib %{shared:-shared} \
   %{!shared: \
     %{!ibcs: \
@@ -339,7 +339,7 @@ do {									\
 
 /* DWARF bits.  */
 
-/* Follow Irix 6 and not the Dwarf2 draft in using 64-bit offsets. 
+/* Follow Irix 6 and not the Dwarf2 draft in using 64-bit offsets.
    Obviously the Dwarf2 folks havn't tried to actually build systems
    with their spec.  On a 64-bit system, only 64-bit relocs become
    RELATIVE relocations.  */

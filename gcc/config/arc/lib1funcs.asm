@@ -43,7 +43,7 @@ ___mulsi3:
 
 /* This the simple version.
 
-  while (a) 
+  while (a)
     {
       if (a & 1)
         r += b;
@@ -79,7 +79,7 @@ ___umulsidi3:
 
 /* This the simple version.
 
-  while (a) 
+  while (a)
     {
       if (a & 1)
         r += b;

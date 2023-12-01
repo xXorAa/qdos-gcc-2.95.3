@@ -132,7 +132,7 @@ cc1plus.exe: $(CC1PLUSOBJS) $(ALLOCA) $(INDEPOBJS)
 
 gcc.exe: gcc.obj version.obj choose-temp.obj pexecute.obj prefix.obj obstack.obj
 	$(LINK)$(LFLAGS)/exe=$@ $^$(ALLOCA)$(LIBS)
-        
+
 install: cpp.exe cc1.exe gcc.exe libgcc2.olb
 	$(CP) $^ GNU_CC_LIBRARY
 

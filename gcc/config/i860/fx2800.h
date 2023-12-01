@@ -37,7 +37,7 @@ Boston, MA 02111-1307, USA.  */
 
 /* atexit is not present prior to Concentrix 2.2. Uncomment the following
    if you're on 2.1 or older. */
- 
+
 /* #undef HAVE_ATEXIT */
 
 #define I860_STRICT_ABI_PROLOGUES
@@ -263,7 +263,7 @@ Boston, MA 02111-1307, USA.  */
 /* Provide a set of pre-definitions and pre-assertions appropriate for
    the i860 running Concentrix 2.x.  */
 
-#undef CPP_PREDEFINES 
+#undef CPP_PREDEFINES
 #define CPP_PREDEFINES "-Di860 -Dunix -DBSD4_3 -Dalliant -Asystem(unix) -Asystem(bsd) -Acpu(i860) -Amachine(i860)"
 
 #undef I860_REG_PREFIX

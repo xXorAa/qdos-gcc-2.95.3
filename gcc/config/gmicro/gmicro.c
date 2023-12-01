@@ -76,21 +76,21 @@ output_ascii (file, p, size)
 
   fprintf (file, "\t.sdata ");
 
-  for (i = 0; i < size; i++) 
+  for (i = 0; i < size; i++)
     {
       c = p[i];
-      if (c >= ' ' && c < 0x7f) 
+      if (c >= ' ' && c < 0x7f)
 	{
-	  if (!in_quote) 
+	  if (!in_quote)
 	    {
 	      putc ('"', file);
 	      in_quote = 1;
 	    }
 	  putc (c, file);
 	}
-      else 
+      else
 	{
-	  if (in_quote) 
+	  if (in_quote)
 	    {
 	      putc ('"', file);
 	      in_quote = 0;
@@ -112,12 +112,12 @@ print_scaled_index (file, index)
   register rtx ireg;
   int scale;
 
-  if (GET_CODE (XEXP (index, 0)) == REG) 
+  if (GET_CODE (XEXP (index, 0)) == REG)
     {
       ireg = XEXP (index, 0);
       scale = INTVAL (XEXP (index, 1));
     }
-  else 
+  else
     {
       ireg = XEXP (index, 1);
       scale = INTVAL (XEXP (index, 0));
@@ -127,7 +127,7 @@ print_scaled_index (file, index)
   else
     fprintf (file, "%s*%d", reg_names[REGNO (ireg)], scale);
 }
-    
+
 
 print_operand_address (file, addr)
      FILE *file;
@@ -140,7 +140,7 @@ print_operand_address (file, addr)
 
   fprintf (file, "@");
  retry:
-  switch (GET_CODE (addr)) 
+  switch (GET_CODE (addr))
     {
     case MEM:
       fprintf (file, "@");
@@ -168,17 +168,17 @@ print_operand_address (file, addr)
       xtmp1 = XEXP (addr, 1);
       ixreg = 0;	breg = 0;
       offset = 0;
-      if (CONSTANT_ADDRESS_P (xtmp0)) 
+      if (CONSTANT_ADDRESS_P (xtmp0))
 	{
 	  offset = xtmp0;
 	  breg = xtmp1;
 	}
-      else if (CONSTANT_ADDRESS_P (xtmp1)) 
+      else if (CONSTANT_ADDRESS_P (xtmp1))
 	{
 	  offset = xtmp1;
 	  breg = xtmp0;
 	}
-      else 
+      else
 	{
 	  goto NOT_DISP;
 	}
@@ -186,15 +186,15 @@ print_operand_address (file, addr)
       if (REG_CODE_BASE_P (breg))
 	goto PRINT_MEM;
 
-      if (GET_CODE (breg) == MULT) 
+      if (GET_CODE (breg) == MULT)
 	{
-	  if (REG_CODE_INDEX_P (XEXP (breg, 0))) 
+	  if (REG_CODE_INDEX_P (XEXP (breg, 0)))
 	    {
 	      ixreg = XEXP (breg, 0);
 	      scale = INTVAL (XEXP (breg, 1));
 	      breg = 0;
 	    }
-	  else 
+	  else
 	    {
 	      ixreg = XEXP (breg, 1);
 	      scale = INTVAL (XEXP (breg, 0));
@@ -206,31 +206,31 @@ print_operand_address (file, addr)
       /* GET_CODE (breg) must be PLUS here. */
       xtmp0 = XEXP (breg, 0);
       xtmp1 = XEXP (breg, 1);
-      if (REG_CODE_BASE_P (xtmp0)) 
+      if (REG_CODE_BASE_P (xtmp0))
 	{
 	  breg = xtmp0;
 	  xtmp0 = xtmp1;
 	}
-      else 
+      else
 	{
 	  breg = xtmp1;
 	  /* xtmp0 = xtmp0; */
 	}
 
-      if (GET_CODE (xtmp0) == MULT) 
+      if (GET_CODE (xtmp0) == MULT)
 	{
-	  if (REG_CODE_INDEX_P (XEXP (xtmp0, 0))) 
+	  if (REG_CODE_INDEX_P (XEXP (xtmp0, 0)))
 	    {
 	      ixreg = XEXP (xtmp0, 0);
 	      scale = INTVAL (XEXP (xtmp0, 1));
 	    }
-	  else 
+	  else
 	    {
 	      ixreg = XEXP (xtmp0, 1);
 	      scale = INTVAL (XEXP (xtmp0, 0));
 	    }
 	}
-      else 
+      else
 	{
 	  ixreg = xtmp0;
 	  scale = 1;
@@ -238,38 +238,38 @@ print_operand_address (file, addr)
       goto PRINT_MEM;
 
     NOT_DISP:
-      if (REG_CODE_BASE_P (xtmp0)) 
+      if (REG_CODE_BASE_P (xtmp0))
 	{
 	  breg = xtmp0;
 	  xtmp0 = xtmp1;
 	}
-      else if (REG_CODE_BASE_P (xtmp1)) 
+      else if (REG_CODE_BASE_P (xtmp1))
 	{
 	  breg = xtmp1;
 	  /* xtmp0 = xtmp0; */
 	}
       else
 	goto NOT_BASE;
-    
-      if (REG_CODE_INDEX_P (xtmp0)) 
+
+      if (REG_CODE_INDEX_P (xtmp0))
 	{
 	  ixreg = xtmp0;
 	  scale = 1;
 	  goto PRINT_MEM;
 	}
-      else if (CONSTANT_ADDRESS_P (xtmp0)) 
+      else if (CONSTANT_ADDRESS_P (xtmp0))
 	{
 	  offset = xtmp0;
 	  goto PRINT_MEM;
 	}
-      else if (GET_CODE (xtmp0) == MULT) 
+      else if (GET_CODE (xtmp0) == MULT)
 	{
-	  if (REG_CODE_INDEX_P (XEXP (xtmp0, 0))) 
+	  if (REG_CODE_INDEX_P (XEXP (xtmp0, 0)))
 	    {
 	      ixreg = XEXP (xtmp0, 0);
 	      scale = INTVAL (XEXP (xtmp0, 1));
 	    }
-	  else 
+	  else
 	    {
 	      ixreg = XEXP (xtmp0, 1);
 	      scale = INTVAL (XEXP (xtmp0, 0));
@@ -281,29 +281,29 @@ print_operand_address (file, addr)
       xtmp1 = XEXP (xtmp0, 1);
       xtmp0 = XEXP (xtmp0, 0);
 
-      if (CONSTANT_ADDRESS_P (xtmp0)) 
+      if (CONSTANT_ADDRESS_P (xtmp0))
 	{
 	  offset = xtmp0;
 	  xtmp0 = xtmp1;
 	}
-      else 
+      else
 	{
 	  offset = xtmp1;
 	  /* xtmp0 = xtmp0; */
 	}
 
-      if (REG_CODE_INDEX_P (xtmp0)) 
+      if (REG_CODE_INDEX_P (xtmp0))
 	{
 	  ixreg = xtmp0;
 	}
-      else 
+      else
 	{			/* GET_CODE (xtmp0) must be MULT. */
-	  if (REG_CODE_INDEX_P (XEXP (xtmp0, 0))) 
+	  if (REG_CODE_INDEX_P (XEXP (xtmp0, 0)))
 	    {
 	      ixreg = XEXP (xtmp0, 0);
 	      scale = INTVAL (XEXP (xtmp0, 1));
 	    }
-	  else 
+	  else
 	    {
 	      ixreg = XEXP (xtmp0, 1);
 	      scale = INTVAL (XEXP (xtmp0, 0));
@@ -312,70 +312,70 @@ print_operand_address (file, addr)
       goto PRINT_MEM;
 
     NOT_BASE:
-      if (GET_CODE (xtmp0) == PLUS) 
+      if (GET_CODE (xtmp0) == PLUS)
 	{
 	  ixreg = xtmp1;
 	  /* xtmp0 = xtmp0; */
 	}
-      else 
+      else
 	{
 	  ixreg = xtmp0;
 	  xtmp0 = xtmp1;
 	}
 
-      if (REG_CODE_INDEX_P (ixreg)) 
+      if (REG_CODE_INDEX_P (ixreg))
 	{
 	  scale = 1;
 	}
-      else if (REG_CODE_INDEX_P (XEXP (ixreg, 0))) 
+      else if (REG_CODE_INDEX_P (XEXP (ixreg, 0)))
 	{
 	  scale = INTVAL (XEXP (ixreg, 1));
 	  ixreg = XEXP (ixreg, 0);
 	}
-      else 
+      else
 	{			/* was else if with no condition. OK ??? */
 	  scale = INTVAL (XEXP (ixreg, 0));
 	  ixreg = XEXP (ixreg, 1);
 	}
 
-      if (REG_CODE_BASE_P (XEXP (xtmp0, 0))) 
+      if (REG_CODE_BASE_P (XEXP (xtmp0, 0)))
 	{
 	  breg = XEXP (xtmp0, 0);
 	  offset = XEXP (xtmp0, 1);
 	}
-      else 
+      else
 	{
 	  breg = XEXP (xtmp0, 1);
 	  offset = XEXP (xtmp0, 0);
 	}
 
     PRINT_MEM:
-      if (breg == 0 && ixreg == 0) 
+      if (breg == 0 && ixreg == 0)
 	{
 	  output_address (offset);
 	  break;
 	}
-      else if (ixreg == 0 && offset == 0) 
+      else if (ixreg == 0 && offset == 0)
 	{
 	  fprintf (file, "%s", reg_names[REGNO (breg)]);
 	  break;
 	}
-      else 
+      else
 	{
 	  fprintf (file, "(");
-	  if (offset != 0) 
+	  if (offset != 0)
 	    {
 	      output_addr_const (file, offset);
 	      needcomma = 1;
 	    }
-	  if (breg != 0) 
+	  if (breg != 0)
 	    {
 	      if (needcomma)
 		fprintf (file, ",");
 	      fprintf (file, "%s", reg_names[REGNO (breg)]);
 	      needcomma = 1;
 	    }
-	  if (ixreg != 0) 
+	  if (ixreg != 0)
 	    {
 	      if (needcomma)
 		fprintf (file, ",");
@@ -426,13 +426,13 @@ static char *
 singlemove_string (operands)
      rtx *operands;
 {
-  if (FPU_REG_P (operands[0]) || FPU_REG_P (operands[1])) 
+  if (FPU_REG_P (operands[0]) || FPU_REG_P (operands[1]))
     {
-      if (GREG_P (operands[0]) || GREG_P (operands[1])) 
+      if (GREG_P (operands[0]) || GREG_P (operands[1]))
 	{
 	  myabort (101);	/* Not Supported yet !! */
 	}
-      else 
+      else
 	{
 	  return "fmov.s %1,%0";
 	}
@@ -448,7 +448,7 @@ char *
 output_move_double (operands)
      rtx *operands;
 {
-  enum 
+  enum
     { REGOP, OFFSOP, MEMOP, PUSHOP, POPOP, CNSTOP, RNDOP }
   optype0, optype1;
   rtx latehalf[2];
@@ -523,7 +523,7 @@ output_move_double (operands)
      Normally we do the low-numbered word first,
      but if either operand is autodecrementing then we
      do the high-numbered word first.
-     
+
      In either case, set up in LATEHALF the operands to use
      for the high-numbered word and in some cases alter the
      operands in OPERANDS to be suitable for the low-numbered word.  */
@@ -617,7 +617,7 @@ output_move_const_double (operands)
 {
   int code = standard_fpu_constant_p (operands[1]);
 
-  if (FPU_REG_P (operands[0])) 
+  if (FPU_REG_P (operands[0]))
     {
       if (code != 0)
 	{
@@ -626,12 +626,12 @@ output_move_const_double (operands)
 	  sprintf (buf, "fmvr from%d,%%0.d", code);
 	  return buf;
 	}
-      else 
+      else
 	{
 	  return "fmov %1,%0.d";
 	}
     }
-  else if (GREG_P (operands[0])) 
+  else if (GREG_P (operands[0]))
     {
       rtx xoperands[2];
       xoperands[0] = gen_rtx (REG, SImode, REGNO (operands[0]) + 1);
@@ -640,7 +640,7 @@ output_move_const_double (operands)
       operands[1] = GEN_INT (CONST_DOUBLE_LOW (operands[1]));
       return "mov.w %1,%0";
     }
-  else 
+  else
     {
       return output_move_double (operands); /* ?????? */
     }
@@ -653,7 +653,7 @@ output_move_const_single (operands)
   int code = standard_fpu_constant_p (operands[1]);
   static char buf[40];
 
-  if (FPU_REG_P (operands[0])) 
+  if (FPU_REG_P (operands[0]))
     {
       if (code != 0)
 	{
@@ -662,7 +662,7 @@ output_move_const_single (operands)
 	}
       return "fmov.s %f1,%0";
     }
-  else 
+  else
     return "mov.w %f1,%0";
 }
 
@@ -756,15 +756,15 @@ add_imm_word (imm, dest, immp)
   int is_reg, short_ok;
 
 
-  if (imm < 0) 
+  if (imm < 0)
     {
       *immp = GEN_INT (-imm);
       return sub_imm_word (-imm, dest);
     }
-    
+
   if (imm == 0)
     return "mov:l.w #0,%0";
-    
+
   short_ok = short_format_ok (dest);
 
   if (short_ok && imm <= 8)
@@ -777,10 +777,10 @@ add_imm_word (imm, dest, immp)
 
   if (is_reg)
     return "add:l %1,%0.w";
-    
+
   if (short_ok)
     return "add:i %1,%0.w";
-    
+
   return "add %1,%0.w";
 }
 
@@ -791,15 +791,15 @@ sub_imm_word (imm, dest, immp)
 {
   int is_reg, short_ok;
 
-  if (imm < 0 &&  imm != 0x80000000) 
+  if (imm < 0 &&  imm != 0x80000000)
     {
       *immp = GEN_INT (-imm);
       return add_imm_word (-imm, dest);
     }
-    
+
   if (imm == 0)
     return "mov:z.w #0,%0";
-    
+
   short_ok = short_format_ok (dest);
 
   if (short_ok && imm <= 8)
@@ -812,10 +812,10 @@ sub_imm_word (imm, dest, immp)
 
   if (is_reg)
     return "sub:l %1,%0.w";
-    
+
   if (short_ok)
     return "sub:i %1,%0.w";
-    
+
   return "sub %1,%0.w";
 }
 
@@ -828,8 +828,8 @@ short_format_ok (x)
   if (GET_CODE (x) == REG)
     return 1;
 
-  if (GET_CODE (x) == MEM 
-      && GET_CODE (XEXP (x, 0)) == PLUS) 
+  if (GET_CODE (x) == MEM
+      && GET_CODE (XEXP (x, 0)) == PLUS)
     {
       x0 = XEXP (XEXP (x, 0), 0);
       x1 = XEXP (XEXP (x, 0), 1);
@@ -870,7 +870,7 @@ mov_imm_word (imm, dest)
 
   if (imm == 0)
     return "mov:z.w #0,%0";
-    
+
   short_ok = short_format_ok (dest);
 
   if (short_ok && imm > 0 && imm <= 8)
@@ -883,10 +883,10 @@ mov_imm_word (imm, dest)
 
   if (is_reg)
     return "mov:l %1,%0.w";
-    
+
   if (short_ok)
     return "mov:i %1,%0.w";
-    
+
   return "mov %1,%0.w";
 }
 
@@ -899,7 +899,7 @@ cmp_imm_word (imm, dest)
 
   if (imm == 0)
     return "cmp:z.w #0,%0";
-    
+
   short_ok = short_format_ok (dest);
 
   if (short_ok && imm >0 && imm <= 8)
@@ -912,10 +912,10 @@ cmp_imm_word (imm, dest)
 
   if (is_reg)
     return "cmp:l %1,%0.w";
-    
+
   if (short_ok)
     return "cmp:i %1,%0.w";
-    
+
   return "cmp %1,%0.w";
 }
 
@@ -925,7 +925,7 @@ push_imm_word (imm)
 {
   if (imm == 0)
     return "mov:z.w #0,%-";
-    
+
   if (imm > 0 && imm <= 8)
     return "mov:q %1,%-.w";
 
@@ -933,7 +933,7 @@ push_imm_word (imm)
     return "mov:e %1,%-.w";
 
   return "mov:g %1,%-.w";
-    
+
   /* In some cases, g-format may be better than I format.??
      return "mov %1,%0.w";
      */
@@ -945,19 +945,19 @@ my_signed_comp (insn)
   rtx my_insn;
 
   my_insn = NEXT_INSN (insn);
-  if (GET_CODE (my_insn) != JUMP_INSN) 
+  if (GET_CODE (my_insn) != JUMP_INSN)
     {
       fprintf (stderr, "my_signed_comp: Not Jump_insn ");
       myabort (GET_CODE (my_insn));
     }
   my_insn = PATTERN (my_insn);
-  if (GET_CODE (my_insn) != SET) 
+  if (GET_CODE (my_insn) != SET)
     {
       fprintf (stderr, "my_signed_comp: Not Set ");
       myabort (GET_CODE (my_insn));
     }
   my_insn = SET_SRC (my_insn);
-  if (GET_CODE (my_insn) != IF_THEN_ELSE) 
+  if (GET_CODE (my_insn) != IF_THEN_ELSE)
     {
       fprintf (stderr, "my_signed_comp: Not if_then_else ");
       myabort (GET_CODE (my_insn));

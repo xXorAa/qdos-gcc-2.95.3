@@ -1,7 +1,7 @@
 #! /bin/sh
 
 # Guess values for system-dependent variables and create Makefiles.
-# Generated automatically using autoconf version 2.13 
+# Generated automatically using autoconf version 2.13
 # Copyright (C) 1992, 93, 94, 95, 96 Free Software Foundation, Inc.
 #
 # This configure script is free software; the Free Software Foundation
@@ -607,7 +607,7 @@ case ${LIBRARY_PATH} in
 esac
 echo "$ac_t""$library_path_setting" 1>&6
 if test "$library_path_setting" != "ok"; then
-{ echo "configure: error: 
+{ echo "configure: error:
 *** LIBRARY_PATH shouldn't contain the current directory when
 *** building gcc. Please change the environment variable
 *** and run configure again." 1>&2; exit 1; }
@@ -632,7 +632,7 @@ case ${GCC_EXEC_PREFIX} in
 esac
 echo "$ac_t""$gcc_exec_prefix_setting" 1>&6
 if test "$gcc_exec_prefix_setting" != "ok"; then
-{ echo "configure: error: 
+{ echo "configure: error:
 *** GCC_EXEC_PREFIX shouldn't contain the current directory when
 *** building gcc. Please change the environment variable
 *** and run configure again." 1>&2; exit 1; }
@@ -898,7 +898,7 @@ fi
 # Check whether --enable-java-gc or --disable-java-gc was given.
 if test "${enable_java_gc+set}" = set; then
   enableval="$enable_java_gc"
-  
+
   JAVAGC=$enableval
 else
   JAVAGC=boehm
@@ -1248,10 +1248,10 @@ else
 fi
 
 
-# If the native compiler is GCC, we can enable warnings even in stage1.  
+# If the native compiler is GCC, we can enable warnings even in stage1.
 # That's useful for people building cross-compilers, or just running a
 # quick `make'.
-if test "x$GCC" = "xyes"; then 
+if test "x$GCC" = "xyes"; then
   stage1_warn_cflags='$(WARN_CFLAGS)'
 else
   stage1_warn_cflags=""
@@ -1975,7 +1975,7 @@ if eval "test \"`echo '$ac_cv_header_'$ac_safe`\" = yes"; then
   cat >> confdefs.h <<EOF
 #define $ac_tr_hdr 1
 EOF
- 
+
 else
   echo "$ac_t""no" 1>&6
 fi
@@ -2208,7 +2208,7 @@ if eval "test \"`echo '$ac_cv_func_'$ac_func`\" = yes"; then
   cat >> confdefs.h <<EOF
 #define $ac_tr_func 1
 EOF
- 
+
 else
   echo "$ac_t""no" 1>&6
 fi
@@ -2382,7 +2382,7 @@ fi
 
 case "${host}" in
 *-*-uwin*)
-  { echo "configure: error: 
+  { echo "configure: error:
 *** UWIN may not be used as a host platform because
 *** linking with posix.dll is not allowed by the GNU GPL" 1>&2; exit 1; }
   ;;
@@ -2810,7 +2810,7 @@ EOF
 fi
 
 
-# mkdir takes a single argument on some systems. 
+# mkdir takes a single argument on some systems.
 echo $ac_n "checking if mkdir takes one argument""... $ac_c" 1>&6
 echo "configure:2816: checking if mkdir takes one argument" >&5
 if eval "test \"`echo '$''{'gcc_cv_mkdir_takes_one_arg'+set}'`\" = set"; then
@@ -2951,7 +2951,7 @@ for machine in $build $host $target; do
 
 	tm_file=${cpu_type}/${cpu_type}.h
 	xm_file=${cpu_type}/xm-${cpu_type}.h
-	
+
 	# Common parts for linux-gnu and openbsd systems
 	case $machine in
 	*-*-linux-gnu*)
@@ -2960,7 +2960,7 @@ for machine in $build $host $target; do
 	*-*-openbsd*)
 		tm_file=${cpu_type}/openbsd.h
 		tmake_file="t-libc-ok t-openbsd"
-		# avoid surprises, always provide an xm-openbsd file 
+		# avoid surprises, always provide an xm-openbsd file
 		xm_file=${cpu_type}/xm-openbsd.h
 		# don't depend on processor x-fragments as well
 		xmake_file=none
@@ -3073,7 +3073,7 @@ for machine in $build $host $target; do
 		target_cpu_default="MASK_GAS"
 		tmake_file="alpha/t-ieee"
 		;;
-		
+
 	alpha*-dec-osf*)
 		if test x$stabs = xyes
 		then
@@ -3108,7 +3108,7 @@ for machine in $build $host $target; do
  	alpha*-*-vxworks*)
 		tm_file="${tm_file} dbx.h alpha/vxworks.h"
 		tmake_file="alpha/t-ieee"
-		if  x$gas != xyes 
+		if  x$gas != xyes
 		then
 			extra_passes="mips-tfile mips-tdump"
 		fi
@@ -3226,7 +3226,7 @@ for machine in $build $host $target; do
         arm*-*-ecos-elf)
 		tm_file=arm/ecos-elf.h
 		tmake_file=arm/t-elf
-		;; 
+		;;
 	arm*-*-elf)
 		tm_file=arm/unknown-elf.h
 		tmake_file=arm/t-arm-elf
@@ -3252,7 +3252,7 @@ for machine in $build $host $target; do
 		use_collect2=yes
 		;;
 	c38-convex-*)
-		target_cpu_default=16		
+		target_cpu_default=16
 		use_collect2=yes
 		;;
  	c4x-*)
@@ -3621,8 +3621,8 @@ for machine in $build $host $target; do
 		;;
 	i[34567]86-*-linux-gnulibc1)	# Intel 80386's running GNU/Linux
 					# GNU/Linux C library 5
-		xmake_file=x-linux	
-		tm_file=i386/linux.h	
+		xmake_file=x-linux
+		tm_file=i386/linux.h
 		tmake_file="t-linux t-linux-gnulibc1 i386/t-crtstuff"
 		extra_parts="crtbegin.o crtbeginS.o crtend.o crtendS.o"
 		gnu_ld=yes
@@ -5680,7 +5680,7 @@ for machine in $build $host $target; do
 				target_cpu_default2="MASK_CPU_EV5"
 				;;
 		esac
-				
+
 		if test x$gas = xyes
 		then
 			if test "$target_cpu_default2" = ""
@@ -5948,7 +5948,7 @@ null_defines=
 host_xm_file="auto-host.h gansidecl.h ${host_xm_file} hwint.h"
 
 # If host=build, it is correct to have hconfig include auto-host.h
-# as well.  If host!=build, we are in error and need to do more 
+# as well.  If host!=build, we are in error and need to do more
 # work to find out the build config parameters.
 if test x$host = x$build
 then
@@ -5957,7 +5957,7 @@ else
 	# We create a subdir, then run autoconf in the subdir.
 	# To prevent recursion we set host and build for the new
 	# invocation of configure to the build for this invocation
-	# of configure. 
+	# of configure.
 	tempdir=build.$$
 	rm -rf $tempdir
 	mkdir $tempdir
@@ -6108,7 +6108,7 @@ else
   echo "$ac_t""no" 1>&6
 fi
 
-  
+
 
 echo $ac_n "checking for working const""... $ac_c" 1>&6
 echo "configure:6108: checking for working const" >&5
@@ -6180,7 +6180,7 @@ fi
 echo "$ac_t""$ac_cv_c_const" 1>&6
 if test $ac_cv_c_const = no; then
   cat >> confdefs.h <<\EOF
-#define const 
+#define const
 EOF
 
 fi
@@ -6216,7 +6216,7 @@ echo "$ac_t""$ac_cv_c_inline" 1>&6
 case "$ac_cv_c_inline" in
   inline | yes) ;;
   no) cat >> confdefs.h <<\EOF
-#define inline 
+#define inline
 EOF
  ;;
   *)  cat >> confdefs.h <<EOF
@@ -6559,7 +6559,7 @@ if eval "test \"`echo '$ac_cv_header_'$ac_safe`\" = yes"; then
   cat >> confdefs.h <<EOF
 #define $ac_tr_hdr 1
 EOF
- 
+
 else
   echo "$ac_t""no" 1>&6
 fi
@@ -6614,7 +6614,7 @@ if eval "test \"`echo '$ac_cv_func_'$ac_func`\" = yes"; then
   cat >> confdefs.h <<EOF
 #define $ac_tr_func 1
 EOF
- 
+
 else
   echo "$ac_t""no" 1>&6
 fi
@@ -6791,7 +6791,7 @@ EOF
 
 fi
 
-                              
+
    for ac_hdr in argz.h limits.h locale.h nl_types.h malloc.h string.h \
 unistd.h sys/param.h
 do
@@ -6827,7 +6827,7 @@ if eval "test \"`echo '$ac_cv_header_'$ac_safe`\" = yes"; then
   cat >> confdefs.h <<EOF
 #define $ac_tr_hdr 1
 EOF
- 
+
 else
   echo "$ac_t""no" 1>&6
 fi
@@ -6883,7 +6883,7 @@ if eval "test \"`echo '$ac_cv_func_'$ac_func`\" = yes"; then
   cat >> confdefs.h <<EOF
 #define $ac_tr_func 1
 EOF
- 
+
 else
   echo "$ac_t""no" 1>&6
 fi
@@ -6940,7 +6940,7 @@ if eval "test \"`echo '$ac_cv_func_'$ac_func`\" = yes"; then
   cat >> confdefs.h <<EOF
 #define $ac_tr_func 1
 EOF
- 
+
 else
   echo "$ac_t""no" 1>&6
 fi
@@ -6999,7 +6999,7 @@ else
 fi
 
     echo "$ac_t""$USE_NLS" 1>&6
-    
+
 
     USE_INCLUDED_LIBINTL=no
 
@@ -7261,7 +7261,7 @@ if eval "test \"`echo '$ac_cv_func_'$ac_func`\" = yes"; then
   cat >> confdefs.h <<EOF
 #define $ac_tr_func 1
 EOF
- 
+
 else
   echo "$ac_t""no" 1>&6
 fi
@@ -7278,13 +7278,13 @@ else
   /*)
   ac_cv_path_GMSGFMT="$GMSGFMT" # Let the user override the test with a path.
   ;;
-  ?:/*)			 
+  ?:/*)
   ac_cv_path_GMSGFMT="$GMSGFMT" # Let the user override the test with a dos path.
   ;;
   *)
   IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS=":"
   ac_dummy="$PATH"
-  for ac_dir in $ac_dummy; do 
+  for ac_dir in $ac_dummy; do
     test -z "$ac_dir" && ac_dir=.
     if test -f $ac_dir/$ac_word; then
       ac_cv_path_GMSGFMT="$ac_dir/$ac_word"
@@ -7361,7 +7361,7 @@ rm -f conftest*
 		INSTOBJEXT=.mo
 	      fi
 	    fi
-	
+
 else
   echo "$ac_t""no" 1>&6
 fi
@@ -7483,13 +7483,13 @@ else
   /*)
   ac_cv_path_GENCAT="$GENCAT" # Let the user override the test with a path.
   ;;
-  ?:/*)			 
+  ?:/*)
   ac_cv_path_GENCAT="$GENCAT" # Let the user override the test with a dos path.
   ;;
   *)
   IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS=":"
   ac_dummy="$PATH"
-  for ac_dir in $ac_dummy; do 
+  for ac_dir in $ac_dummy; do
     test -z "$ac_dir" && ac_dir=.
     if test -f $ac_dir/$ac_word; then
       ac_cv_path_GENCAT="$ac_dir/$ac_word"
@@ -7519,13 +7519,13 @@ else
   /*)
   ac_cv_path_GMSGFMT="$GMSGFMT" # Let the user override the test with a path.
   ;;
-  ?:/*)			 
+  ?:/*)
   ac_cv_path_GMSGFMT="$GMSGFMT" # Let the user override the test with a dos path.
   ;;
   *)
   IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS=":"
   ac_dummy="$PATH"
-  for ac_dir in $ac_dummy; do 
+  for ac_dir in $ac_dummy; do
     test -z "$ac_dir" && ac_dir=.
     if test -f $ac_dir/$ac_word; then
       ac_cv_path_GMSGFMT="$ac_dir/$ac_word"
@@ -7683,13 +7683,13 @@ else
   /*)
   ac_cv_path_GMSGFMT="$GMSGFMT" # Let the user override the test with a path.
   ;;
-  ?:/*)			 
+  ?:/*)
   ac_cv_path_GMSGFMT="$GMSGFMT" # Let the user override the test with a dos path.
   ;;
   *)
   IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS=":"
   ac_dummy="$PATH"
-  for ac_dir in $ac_dummy; do 
+  for ac_dir in $ac_dummy; do
     test -z "$ac_dir" && ac_dir=.
     if test -f $ac_dir/$ac_word; then
       ac_cv_path_GMSGFMT="$ac_dir/$ac_word"
@@ -7742,7 +7742,7 @@ else
   echo "$ac_t""no" 1>&6
 fi
 
-        
+
 	USE_INCLUDED_LIBINTL=yes
         CATOBJEXT=.gmo
         INSTOBJEXT=.mo
@@ -7770,8 +7770,8 @@ fi
       nls_cv_header_intl=intl/libintl.h
       nls_cv_header_libgt=intl/libgettext.h
     fi
-    
-    
+
+
 
 
     # If this is used in GNU gettext we have to set USE_NLS to `yes'
@@ -7786,18 +7786,18 @@ fi
       POFILES="$POFILES $lang.po"
     done
 
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
+
+
+
+
+
+
+
+
+
+
+
+
 
    if test "x$CATOBJEXT" != "x"; then
      if test "x$ALL_LINGUAS" = "x"; then
@@ -7826,7 +7826,7 @@ echo "configure:7801: checking for catalogs to be installed" >&5
      INCLUDE_LOCALE_H="\
 /* The system does not provide the header <locale.h>.  Take care yourself.  */"
    fi
-   
+
 
             test -d intl || mkdir intl
    if test "$CATOBJEXT" = ".cat"; then
@@ -7877,8 +7877,8 @@ fi
      GT_NO=
      GT_YES="#YES#"
    fi
-   
-   
+
+
 
             MKINSTALLDIRS=
    if test -n "$ac_aux_dir"; then
@@ -7887,10 +7887,10 @@ fi
    if test -z "$MKINSTALLDIRS"; then
      MKINSTALLDIRS="\$(top_srcdir)/mkinstalldirs"
    fi
-   
+
 
       l=
-   
+
 
          test -d po || mkdir po
    if test "x$srcdir" != "x."; then
@@ -7905,7 +7905,7 @@ fi
    rm -f po/POTFILES
    sed -e "/^#/d" -e "/^\$/d" -e "s,.*,	$posrcprefix& \\\\," -e "\$s/\(.*\) \\\\/\1/" \
 	< $srcdir/po/POTFILES.in > po/POTFILES
-  
+
 XGETTEXT="AWK='$AWK' \$(SHELL) \$(top_srcdir)/exgettext $XGETTEXT"
 
 # Get an absolute path to the GCC top-level source directory
@@ -8457,7 +8457,7 @@ fi
 
 
 
-	
+
 # If this is using newlib, then define inhibit_libc in
 # LIBGCC2_CFLAGS.  This will cause __eprintf to be left out of
 # libgcc.a, but that's OK because newib should have its own version of

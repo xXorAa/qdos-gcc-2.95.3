@@ -41,7 +41,7 @@ Boston, MA 02111-1307, USA.  */
 #define ASM_SPEC \
  "%{m68020:-mc68020}%{mc68020:-mc68020}%{!mc68020:%{!m68020:-mc68010}} \
   %{fpic:-k} %{fPIC:-k} %{R} %{j} %{J} %{h} %{d2} %{keep-local-as-symbols:-L}"
-  
+
 /* Names to predefine in the preprocessor for this target machine.  */
 
 #define CPP_PREDEFINES "-Dmc68000 -Dsun -Dunix -Asystem(unix)  -Asystem(bsd) -Acpu(m68k) -Amachine(m68k)"

@@ -29,7 +29,7 @@ Boston, MA 02111-1307, USA.  */
 #undef ASM_APP_ON
 #undef ASM_APP_OFF
 #undef COMMENT_BEGIN
- 
+
 /* We default to ARM3.  */
 #define SUBTARGET_CPU_DEFAULT TARGET_CPU_arm3
 
@@ -42,11 +42,11 @@ Boston, MA 02111-1307, USA.  */
 	"%{mieee-fp:-lieee} %{p:-lgmon} %{pg:-lgmon} %{!ggdb:-lc} %{ggdb:-lg}"
 
 #define HANDLE_SYSV_PRAGMA
-  
+
 /* Run-time Target Specification.  */
 #define TARGET_VERSION  fputs (" (ARM GNU/Linux with a.out)", stderr);
 
-/* 
+/*
  * Maths operation domain error number, EDOM
  * We don't really want this for libc6.  However, taking it out would be
  * too much of a pain for now and it doesn't hurt much.

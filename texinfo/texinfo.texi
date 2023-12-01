@@ -245,7 +245,7 @@ Overview of Texinfo
 * Minimum::                     What a Texinfo file must have.
 * Six Parts::                   Usually, a Texinfo file has six parts.
 * Short Sample::                A short sample Texinfo file.
-* Acknowledgements::            
+* Acknowledgements::
 
 Using Texinfo Mode
 
@@ -320,13 +320,13 @@ Chapter Structuring
 * Tree Structuring::            A manual is like an upside down tree @dots{}
 * Structuring Command Types::   How to divide a manual into parts.
 * makeinfo top::                The @code{@@top} command, part of the `Top' node.
-* chapter::                     
-* unnumbered & appendix::       
-* majorheading & chapheading::  
-* section::                     
-* unnumberedsec appendixsec heading::  
-* subsection::                  
-* unnumberedsubsec appendixsubsec subheading::  
+* chapter::
+* unnumbered & appendix::
+* majorheading & chapheading::
+* section::
+* unnumberedsec appendixsec heading::
+* subsection::
+* unnumberedsubsec appendixsubsec subheading::
 * subsubsection::               Commands for the lowest level sections.
 * Raise/lower sections::        How to change commands' hierarchical level.
 
@@ -491,7 +491,7 @@ Inserting @TeX{} and the Copyright Symbol
 
 Glyphs for Examples
 
-* Glyphs Summary::              
+* Glyphs Summary::
 * result::                      How to show the result of expression.
 * expansion::                   How to indicate an expansion.
 * Print Glyph::                 How to indicate printed output.
@@ -518,7 +518,7 @@ Definition Commands
 * deffnx::                      How to group two or more `first' lines.
 * Def Cmds in Detail::          All the definition commands.
 * Def Cmd Conventions::         Conventions for writing definitions.
-* Sample Function Definition::  
+* Sample Function Definition::
 
 The Definition Commands
 
@@ -716,7 +716,7 @@ only one document.  (You can read the on-line information, known as an
 * Minimum::                     What a Texinfo file must have.
 * Six Parts::                   Usually, a Texinfo file has six parts.
 * Short Sample::                A short sample Texinfo file.
-* Acknowledgements::            
+* Acknowledgements::
 @end menu
 
 @node Using Texinfo, Info Files, Overview, Overview
@@ -3768,13 +3768,13 @@ heading at the top of each node---but you don't need to.@refill
 * Tree Structuring::            A manual is like an upside down tree @dots{}
 * Structuring Command Types::   How to divide a manual into parts.
 * makeinfo top::                The @code{@@top} command, part of the `Top' node.
-* chapter::                     
-* unnumbered & appendix::       
-* majorheading & chapheading::  
-* section::                     
-* unnumberedsec appendixsec heading::  
-* subsection::                  
-* unnumberedsubsec appendixsubsec subheading::  
+* chapter::
+* unnumbered & appendix::
+* majorheading & chapheading::
+* section::
+* unnumberedsec appendixsec heading::
+* subsection::
+* unnumberedsubsec appendixsubsec subheading::
 * subsubsection::               Commands for the lowest level sections.
 * Raise/lower sections::        How to change commands' hierarchical level.
 @end menu
@@ -9139,7 +9139,7 @@ most often they are.  Every  glyph-insertion command is followed by a pair of
 left- and right-hand braces.@refill
 
 @menu
-* Glyphs Summary::              
+* Glyphs Summary::
 * result::                      How to show the result of expression.
 * expansion::                   How to indicate an expansion.
 * Print Glyph::                 How to indicate printed output.
@@ -9837,7 +9837,7 @@ a given name.  An appendix containing a summary should use
 * deffnx::                      How to group two or more `first' lines.
 * Def Cmds in Detail::          All the definition commands.
 * Def Cmd Conventions::         Conventions for writing definitions.
-* Sample Function Definition::  
+* Sample Function Definition::
 @end menu
 
 @node Def Cmd Template, Optional Arguments, Definition Commands, Definition Commands

@@ -187,7 +187,7 @@ mpw_fopen (char *name, char *mode)
 
       pname[0] = strlen (tmpname);
       strcpy (pname+1, tmpname);
-	
+
       e = GetFInfo ((ConstStr255Param) pname, 0, &fi);
       /* should do spiffier error handling */
       if (e != 0)
@@ -395,7 +395,7 @@ mpw_abort ()
   printf("## Abort! ##\n");
 #ifdef MPW_SADE
   SysError(8005);
-#else 
+#else
   Debugger();
 #endif
   /* "g" in MacsBug will then cause a regular error exit. */
@@ -442,7 +442,7 @@ utime (char *filename, struct utimbuf *times)
   DirInfo *dpb = (DirInfo *) &cipbr;
   unsigned char pname[256];
   short err;
-  
+
   strcpy ((char *) pname, filename);
   c2pstr (pname);
 
@@ -524,7 +524,7 @@ _stat (char *name, long dirid, struct stat *buf)
   /* Make a temp copy of the name and pascalize. */
   strcpy ((char *) pname, name);
   c2pstr (pname);
-  
+
   cipbr.dirInfo.ioDrDirID = dirid;
   cipbr.hFileInfo.ioNamePtr = pname;
   cipbr.hFileInfo.ioVRefNum = 0;
@@ -618,7 +618,7 @@ fstat (int fd, struct stat *buf)
 #ifdef FIOFNAME
   /* Use an MPW-specific ioctl to get the pathname associated with
      the file descriptor.  */
-  ioctl (fd, FIOFNAME, (long *) pathname); 
+  ioctl (fd, FIOFNAME, (long *) pathname);
 #else
   you lose
 #endif
@@ -955,9 +955,9 @@ main ()
 	  x += (x * y) / j;
 	}
     }
-  
+
   END_PROGRESS ("hi");
-  
+
   tm = Microseconds () - start;
 
   printf ("Total time is %d.%d secs\n", tm / 1000000, tm % 1000000);

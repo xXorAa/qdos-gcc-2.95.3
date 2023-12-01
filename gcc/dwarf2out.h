@@ -18,20 +18,20 @@ along with GNU CC; see the file COPYING.  If not, write to
 the Free Software Foundation, 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.  */
 
-extern void dwarf2out_init 		PROTO ((FILE *asm_out_file, 
+extern void dwarf2out_init 		PROTO ((FILE *asm_out_file,
 						char *main_input_filename));
 extern void dwarf2out_finish		PROTO ((void));
 
 extern void dwarf2out_define		PROTO ((unsigned, char *));
-extern void dwarf2out_undef 		PROTO ((unsigned, char *));                                       
+extern void dwarf2out_undef 		PROTO ((unsigned, char *));
 extern void dwarf2out_start_source_file 	PROTO ((char *));
 extern void dwarf2out_end_source_file 	PROTO ((void));
 
 extern void dwarf2out_begin_block	PROTO ((unsigned));
 extern void dwarf2out_end_block		PROTO ((unsigned));
-extern void dwarf2out_label		PROTO ((rtx));			
-extern void dwarf2out_decl		PROTO ((tree));	
-extern void dwarf2out_line		PROTO ((char *, unsigned));			
+extern void dwarf2out_label		PROTO ((rtx));
+extern void dwarf2out_decl		PROTO ((tree));
+extern void dwarf2out_line		PROTO ((char *, unsigned));
 extern void dwarf2out_frame_init	PROTO ((void));
 extern void dwarf2out_frame_debug	PROTO ((rtx));
 extern void dwarf2out_frame_finish	PROTO ((void));

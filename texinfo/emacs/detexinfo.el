@@ -1,4 +1,4 @@
-;;; Here is a handy keybinding: 
+;;; Here is a handy keybinding:
 
 (global-set-key "\C-x\\" 'detexinfo)
 
@@ -12,22 +12,22 @@
 ;;;
 ;;; ==> test version <==
 ;;; Fails if Texinfo source file contains formatting errors.
-;;; 
+;;;
 ;;; Version 0.05 -  3 Jun 1992
 ;;; Add to list of removed commands.  Improve messages.
 ;;;
 ;;; Version 0.04 - 27 Jan 1992
 ;;; Rewrite to insert detexinfo'd text into a temporary buffer.
-;;; 
+;;;
 ;;; Version 0.03 - 27 Dec 1991
 ;;; Improved messages.
 ;;;
 ;;; Version 0.02 - 13 Nov 1991
-;;; detexinfo-remove-inline-cmd, detexinfo-syntax-table: Handle 
-;;;          nested commands.  
+;;; detexinfo-remove-inline-cmd, detexinfo-syntax-table: Handle
+;;;          nested commands.
 ;;; detexinfo: Handle nested @'s, eg @samp{@}} and @samp{@@};
 ;;;          replace @TeX{} with TeX.
-;;; 
+;;;
 ;;; Version 0.01 - 13 Nov 1991
 ;;;
 ;;; Based on detex.el, by Bengt Martensson, 4 Oct 1987
@@ -62,7 +62,7 @@ BUG: Fails if Texinfo source file contains formatting errors."
     (set-syntax-table detexinfo-syntax-table)
     (erase-buffer)
     (insert-buffer-substring input-buffer)
-    
+
     ;; Replace @{ and @} with %#* and *#% temporarily, so @samp{@{} works.
     ;; What is a better way of doing this??
     (goto-char (point-min))
@@ -78,7 +78,7 @@ BUG: Fails if Texinfo source file contains formatting errors."
         (forward-char 1)
         (delete-char 2)
         (insert "*#%")))
-    
+
     (goto-char (point-min))
     ;; Remove @refill, the only inline command without braces.
     (while (search-forward "@refill" nil t)
@@ -86,14 +86,14 @@ BUG: Fails if Texinfo source file contains formatting errors."
     ;; Replace @TeX{} with TeX
     (goto-char (point-min))
     (while (search-forward "@TeX{}" nil t) (replace-match "TeX" t t))
-    
+
     (detexinfo-remove-line-cmds-without-arg)
     (detexinfo-remove-inline-cmds-without-arg)
     (detexinfo-remove-inline-cmds-keep-arg)
     (detexinfo-remove-line-cmds-deletable-arg)
     (detexinfo-remove-line-cmds-maybe-delete-arg)
     (detexinfo-remove-line-cmds-keep-arg)
-    
+
     ;; Now replace %#*, *#%, and %&%#  with {,  }, and @@.
     (goto-char (point-min))
     (while (search-forward "%#*" nil t)
@@ -104,7 +104,7 @@ BUG: Fails if Texinfo source file contains formatting errors."
     (goto-char (point-min))
     (while (search-forward "%&%#" nil t)
       (replace-match "@@"))
-    
+
     ;; Scan for remaining two character @-commands
     (goto-char (point-min))
     (while (search-forward "@" nil t)
@@ -112,7 +112,7 @@ BUG: Fails if Texinfo source file contains formatting errors."
              (delete-region (1- (point)) (1+ (point))))
             ((looking-at "[{}^@.'`]\"?!")
              (delete-region (1- (point)) (point)))))
-    
+
     (goto-char (point-min))
     (message "Done...removed Texinfo commands from buffer. You may save it.")))
 
@@ -135,17 +135,17 @@ BUG: Fails if Texinfo source file contains formatting errors."
       (forward-char -1)
       (forward-sexp 1)
       (delete-char -1))                 ; delete right brace
-    (delete-region (point) (match-beginning 0)))) 
+    (delete-region (point) (match-beginning 0))))
 
-;;;;;;;;;;;;;;;; 
+;;;;;;;;;;;;;;;;
 
 ;;; 1. @setfilename and other line commands with args to delete
 
 (defvar detexinfo-line-cmds-deletable-arg
   '("enumerate" "ftable" "vtable" "itemize" "table"
-    "setfilename" "settitle" "setchapternewpage" 
+    "setfilename" "settitle" "setchapternewpage"
     "footnotestyle" "paragraphindent"
-    "include" "need" "sp" 
+    "include" "need" "sp"
     "clear" "ifclear" "ifset"  "set"
     "defcodeindex" "defindex" "syncodeindex" "synindex")
   "List of Texinfo commands whose arguments should be deleted.")
@@ -162,8 +162,8 @@ BUG: Fails if Texinfo source file contains formatting errors."
 
 (defvar detexinfo-line-cmds-maybe-delete-arg
    '("cindex" "findex" "kindex" "pindex" "tindex" "vindex" "node"
-     "c" "comment" "end" "headings"  "printindex" "vskip" 
-     "evenfooting"  "evenheading" "everyfooting" "everyheading" 
+     "c" "comment" "end" "headings"  "printindex" "vskip"
+     "evenfooting"  "evenheading" "everyfooting" "everyheading"
      "oddfooting" "oddheading")
   "List of Texinfo commands whose arguments may possibly be deleted.")
 
@@ -176,13 +176,13 @@ BUG: Fails if Texinfo source file contains formatting errors."
 ;;; 3. @chapter and other line cmds with args to keep.
 
 (defvar detexinfo-line-cmds-keep-arg
-   '("top" "chapter" "section" "subsection" "subsubsection" 
-     "unnumbered" "unnumberedsec" "unnumberedsubsec" "unnumberedsubsubsec" 
-     "majorheading" "chapheading" "heading" "subheading" "subsubheading" 
-      "appendix" "appendixsec" "appendixsubsec" "appendixsubsubsec" 
+   '("top" "chapter" "section" "subsection" "subsubsection"
+     "unnumbered" "unnumberedsec" "unnumberedsubsec" "unnumberedsubsubsec"
+     "majorheading" "chapheading" "heading" "subheading" "subsubheading"
+      "appendix" "appendixsec" "appendixsubsec" "appendixsubsubsec"
      "item" "itemx"
-     "title" "subtitle" "center" "author" "exdent"  
-     "defcv" "deffn" "defivar" "defmac" "defmethod" "defop" "defopt" 
+     "title" "subtitle" "center" "author" "exdent"
+     "defcv" "deffn" "defivar" "defmac" "defmethod" "defop" "defopt"
      "defspec" "deftp" "deftypefn" "deftypefun" "deftypvr"
      "deftypevar" "defun" "defvar" "defvr")
   "List of Texinfo line commands whose arguments should be kept.")
@@ -204,11 +204,11 @@ BUG: Fails if Texinfo source file contains formatting errors."
 ;;; 4. @bye and other line commands without args.
 
 (defvar detexinfo-line-cmds-without-arg
-  '("bye" "contents" "display" "example" "finalout" 
-    "flushleft" "flushright" "format" "group" "ifhtml" "ifinfo" "iftex" 
-    "ignore" "lisp" "menu" "noindent" "page" "quotation"  
-    "shortcontents" "smallbook" "smallexample" "smalllisp" 
-    "summarycontents" "tex" "thischapter" "thischaptername" 
+  '("bye" "contents" "display" "example" "finalout"
+    "flushleft" "flushright" "format" "group" "ifhtml" "ifinfo" "iftex"
+    "ignore" "lisp" "menu" "noindent" "page" "quotation"
+    "shortcontents" "smallbook" "smallexample" "smalllisp"
+    "summarycontents" "tex" "thischapter" "thischaptername"
     "thisfile" "thispage" "thissection" "thistitle" "titlepage")
   "List of Texinfo commands without arguments that should be deleted.")
 
@@ -236,7 +236,7 @@ BUG: Fails if Texinfo source file contains formatting errors."
 (defvar detexinfo-inline-cmds-keep-arg
   '("b" "cartouche" "cite" "code" "copyright" "ctrl" "dfn" "dmn"
     "emph" "file" "footnote" "i" "inforef"
-    "kbd" "key" "pxref" "r" "ref" "samp" "sc" "titlefont" 
+    "kbd" "key" "pxref" "r" "ref" "samp" "sc" "titlefont"
     "strong" "t" "var" "w" "xref")
   "List of Texinfo inline commands with arguments that should be kept.")
 

@@ -22,7 +22,7 @@ Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
    independant exception handling model. Both the static compiler and
    the runtime library share this file. */
 
-/* The runtime flag flag_new_exceptions is used to determine whether the 
+/* The runtime flag flag_new_exceptions is used to determine whether the
    compiler supports the new runtime typechecking mechanism or not. Under
    the new model, runtime info is contained in the exception table, and
    the __throw() library routine determines which handler to call based
@@ -33,11 +33,11 @@ Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
    get the exception, it performs a re-throw. */
 
 
-/* The handler_label field MUST be the first field in this structure. The 
+/* The handler_label field MUST be the first field in this structure. The
    __throw()  library routine expects uses __eh_stub() from except.c, which
    simply dereferences the context pointer to get the handler.
    The routine get_dynamic_handler_chain() also has a dependancy on
-   the location of 'dynamic_handler_chain'. If its location is changed, 
+   the location of 'dynamic_handler_chain'. If its location is changed,
    that routine must be modified as well. */
 
 struct eh_context
@@ -52,14 +52,14 @@ struct eh_context
 
 #ifndef EH_TABLE_LOOKUP
 
-typedef struct old_exception_table 
+typedef struct old_exception_table
 {
   void *start_region;
   void *end_region;
   void *exception_handler;
 } old_exception_table;
 
-typedef struct exception_table 
+typedef struct exception_table
 {
   void *start_region;
   void *end_region;
@@ -70,13 +70,13 @@ typedef struct exception_table
 
 /* The language identifying portion of an exception table */
 
-typedef struct exception_lang_info 
+typedef struct exception_lang_info
 {
   short language;
-  short version;  
+  short version;
 } exception_lang_info;
 
-/* This value in the first field of the exception descriptor 
+/* This value in the first field of the exception descriptor
    identifies the descriptor as the new model format. This value would never
    be present in this location under the old model */
 
@@ -85,16 +85,16 @@ typedef struct exception_lang_info
 /* Each function has an exception_descriptor which contains the
    language info, and a table of exception ranges and handlers */
 
-typedef struct exception_descriptor 
+typedef struct exception_descriptor
 {
-  void *runtime_id_field;    
+  void *runtime_id_field;
   exception_lang_info lang;
   exception_table table[1];
 } exception_descriptor;
 
 
-/* A pointer to a matching function is initialized at runtime by the 
-   specific language if run-time exceptions are supported. 
+/* A pointer to a matching function is initialized at runtime by the
+   specific language if run-time exceptions are supported.
    The function takes 3 parameters
     1 - runtime exception that has been thrown info. (__eh_info *)
     2 - Match info pointer from the region being considered (void *)
@@ -111,7 +111,7 @@ typedef void * (*__eh_matcher)          PROTO ((void *, void *, void *));
    information for an exception info pointer in an eh_context structure. */
 
 
-typedef struct __eh_info 
+typedef struct __eh_info
 {
   __eh_matcher match_function;
   short language;

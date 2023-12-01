@@ -100,7 +100,7 @@ Mon Dec 22 19:13:58 1997  Manfred Hollstein  <manfred@s-direktnet.de>
 	* configure.in (getrlimit, setrlimit): Call AC_CHECK_FUNCS.
 	* cccp.c (main): Check HAVE_{G,S}ETRLIMIT in addition to RLIMIT_STACK.
 	* toplev.c (main): Likewise.
-	
+
 	* fixincludes (target_canonical): New variable.
 	(size_t): Add support for Motorola's stdlib.h which fails to provide
 	a definition for size_t.
@@ -159,7 +159,7 @@ Sun Dec 21 14:51:51 1997  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 
 Sun Dec 14 06:49:05 1997  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 
-	* expr.c (expand_expr, case PLACEHOLDER_EXPR): Use placeholder_list 
+	* expr.c (expand_expr, case PLACEHOLDER_EXPR): Use placeholder_list
 	expression in preference to any other if correct type.
 
 	* i386.h (INITIAL_ELIMINATION_OFFSET): Correctly test for PIC
@@ -205,7 +205,7 @@ Thu Dec 11 17:54:23 1997  Paul Eggert  <eggert@twinsun.com>
 	* crtstuff.c (__do_global_ctors): Fix typo in last change.
 
 Wed Dec 10 18:38:28 1997  Kaveh R. Ghazi  <ghazi@caip.rutgers.edu>
- 
+
         * libgcc2.c (__bb_exit_func): Fix test of return value of fopen.
 
 Wed Dec 10 07:07:37 1997  Bernd Schmidt <crux@starsky.Informatik.RWTH-Aachen.DE>
@@ -431,7 +431,7 @@ Sun Nov 30 05:45:06 1997  Michael P. Hayes  <michaelh@ongaonga.chch.cri.nz>
 
 Sat Nov 29 13:47:40 1997  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 
-	* alpha/vms.h (HAVE_STRERROR, HAVE_{LIMITS,STDDEF,TIME}_H): Define. 
+	* alpha/vms.h (HAVE_STRERROR, HAVE_{LIMITS,STDDEF,TIME}_H): Define.
 
 Sat Nov 29 08:29:47 1997  J.J.van der Heijden <J.J.vanderHeijden@student.utwente.nl>
 
@@ -582,7 +582,7 @@ Wed Nov 26 14:58:42 1997  Michael Meissner  <meissner@cygnus.com>
 
 Wed Nov 26 14:09:01 1997  Jason Merrill  <jason@yorick.cygnus.com>
 
-	* dwarfout.c (output_type): If finalizing, write out nested types 
+	* dwarfout.c (output_type): If finalizing, write out nested types
 	of types we've already written.
 
 	* toplev.c (main): Complain about -gdwarfn.
@@ -740,7 +740,7 @@ Thu Nov 20 16:37:36 1997  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 
 Thu Nov 20 16:04:24 1997  Richard Earnshaw <rearnsha@arm.com>
 
-	* explow.c (plus_constant_wide, case MEM): If about to call 
+	* explow.c (plus_constant_wide, case MEM): If about to call
 	force_const_mem, generate the rtl in a saveable obstack.
 
 	* arm.md (movhi): Pass the full MEM to storeinthi, storehi and
@@ -868,7 +868,7 @@ Sun Nov 16 18:10:13 1997  Fila Kolodny  <fila@ibi.com>
 Sun Nov 16 08:40:35 1997  Bruno Haible  <bruno@linuix.mathematik.uni-karlsruhe.de>
 
 	* calls.c (expand_call, store_one_arg): Don't pass QImode arguments
-	to emit_library_call. 
+	to emit_library_call.
 	* expr.c (emit_push_insn, expand_assignment, store_expr): Likewise.
 	(expand_expr, expand_builtin): Likewise.
 	* function.c (put_var_into_stack, assign_parms): Likewise.
@@ -923,7 +923,7 @@ Thu Nov 13 07:30:53 1997  Richard Earnshaw (rearnsha@arm.com)
 
 	* arm/netbsd.h (LINK_SPEC): Redefine -- pass -X.
 
-	* arm.md (movsicc_insn): Add extra reload alternatives for better 
+	* arm.md (movsicc_insn): Add extra reload alternatives for better
 	register tying.
 	(movsfcc_hard_insn, movsfcc_soft_insn, movdfcc_insn): Likewise.
 
@@ -942,7 +942,7 @@ Sun Nov  9 14:34:47 1997  David Edelsohn  <edelsohn@mhpcc.edu>
 
 	* rs6000.md (lshrdi3_power): Delete '&' from first alternative and
 	swap instruction order.
-	
+
 Sun Nov  9 09:51:08 1997  Michael P. Hayes  <michaelh@ongaonga.chch.cri.nz>
 
 	* machmode.def (QCmode, HCmode): New modes.
@@ -966,7 +966,7 @@ Sun Nov  9 09:12:41 1997  Tristan Gingold  <gingold@haendel.enst.fr>
 
 	* expr.c (emit_push_insn): Avoid infinite recursion
 	when -fcheck-memory-usage.
-  
+
 Sun Nov  9 08:03:42 1997  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 
 	* cse.c (simplify_binary_operation): Fix error in last change.
@@ -1288,9 +1288,9 @@ Mon Oct 20 12:04:04 1997  Nick Clifton  <nickc@cygnus.com>
 
 	* v850.h (CPP_SPEC): Define __v850__.
 	(CPP_PREDEFINES): Do not define __v850__.
-	
+
 	* xm-v850.h: Use __v850 rather than __v850__ to identify v850 port.
-	
+
 Mon Oct 20 17:29:55 1997  Doug Evans  <dje@cygnus.com>
 
 	* sparc.h (SPARC_V9,SPARC_ARCH64): Delete.
@@ -1378,7 +1378,7 @@ Sun Oct 19 17:46:02 1997  Douglas Rupp  <rupp@gnat.com>
 	(VMS_{freopen,fopen,open}): Use instead of using macro on
 	unprefixed name.
 	(VMS_fstat): Use decc$fstat explicitly, not via macro.
-	
+
 Sun Oct 19 09:07:38 1997  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 
 	* prefix.c (get_key_value): Initialize prefix to null.
@@ -1392,7 +1392,7 @@ Sun Oct 19 09:07:38 1997  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 	* i386/mingw32.h (LIB_SPEC): Add -ladvapi32.
 	(STARTFILE_SPEC): If -dll, use dllcrt1.o.
 	(INCOMING_RETURN_ADDR_RTX): Undefine.
-	
+
 	* Makefile.in (float.h-nat): Avoid using /dev/null for input,
 	since it's not present on all systems.
 
@@ -1421,7 +1421,7 @@ Sun Oct 19 09:07:38 1997  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 
 	* sparc/sol2.h (WIDEST_HARDWARE_FP_SIZE): New macro.
 
-	* i386.c (ix86_prologue): Conditionalize Dwarf2 calls 
+	* i386.c (ix86_prologue): Conditionalize Dwarf2 calls
 	on #ifdef INCOMING_RETURN_ADDR_RTX.
 	* i386.md (allocate_stack): Fix incorrect operand number.
 
@@ -1462,7 +1462,7 @@ Sat Oct 18 13:35:09 1997  Marc Lehmann (pcg@goof.com)
 
 Sat Oct 18 13:26:42 1997  Richard Earnshaw  (rearnsha@arm.com)
 
-	* function.c (instantiate_virtual_regs): Don't instantiate the 
+	* function.c (instantiate_virtual_regs): Don't instantiate the
 	stack slots for the parm registers until after the insns have had
 	their virtuals instantiated.
 
@@ -1494,7 +1494,7 @@ Sat Oct 18 09:58:44 1997  Jeffrey A Law  <law@cygnus.com>
 	* integrate.c (save_for_inline_copying): Avoid undefined pointer
 	operations.
 	(expand_inline_function): Likewise.
-	
+
 Sat Oct 18 09:49:46 1997  Jason Merrill  <jason@yorick.cygnus.com>
 
 	* tree.c (restore_tree_status): Also free up temporary storage
@@ -1515,7 +1515,7 @@ Sat Oct 18 09:49:46 1997  Jason Merrill  <jason@yorick.cygnus.com>
 	(restore_tree_status): If this is a toplevel inline obstack and we
 	didn't want to save anything on it, recycle it.
 	(print_inline_obstack_statistics): New fn.
-	* function.c (pop_function_context_from): Pass context to 
+	* function.c (pop_function_context_from): Pass context to
 	restore_tree_status.
 
 Sat Oct 18 09:45:22 1997  Michael Meissner  <meissner@cygnus.com>
@@ -1567,7 +1567,7 @@ Sat Oct 18 08:50:04 1997  Philippe De Muyter  <phdm@info.ucl.ac.be>
 
 Sat Oct 18 08:47:46 1997  Douglas Rupp  <rupp@gnat.com>
 
-	* alpha/vms.h (LITERALS_SECTION_ASM_OP, ASM_OUTPUT_DEF): 
+	* alpha/vms.h (LITERALS_SECTION_ASM_OP, ASM_OUTPUT_DEF):
 	(EXTRA_SECTION_FUNCTIONS): Add literals_section.
 	(EXTRA_SECTIONS): Include in_literals.
 
@@ -1788,7 +1788,7 @@ Wed Oct  1 16:09:42 1997  Benjamin Kosnik  <bkoz@melange.gnu.ai.mit.edu>
 
 	* fixincludes: Fix sys/param.h so that MAXINT will not be redefined
 	on HPUX.
-	
+
 Wed Oct  1 08:08:21 1997  Jeffrey A Law  <law@chunks.cygnus.com>
 
         * cse.c (this_insn_cc0_mode): Initialize.
@@ -2098,7 +2098,7 @@ Mon Sep 22 13:35:56 1997  Doug Evans  <dje@cygnus.com>
 Sun Sep 21 19:28:48 1997  Jeffrey A Law  (law@cygnus.com)
 
 	* flow.c (jmp_uses_reg_or_mem): Deleted unused function.
-	(find_basic_blocks): Use computed_jump_p to determine if a 
+	(find_basic_blocks): Use computed_jump_p to determine if a
 	particular JUMP_INSN is a computed jump.
 	* reg-stack.c (find_blocks): Use computed_jump_p to determine
 	if a particular JUMP_INSN is a computed jump.
@@ -2148,7 +2148,7 @@ Sat Sep 20 16:22:06 1997  Jason Merrill  <jason@yorick.cygnus.com>
 
 	* frame.c (__deregister_frame): Properly check for initialized object.
 
-	* function.c (instantiate_virtual_regs): Instantiate 
+	* function.c (instantiate_virtual_regs): Instantiate
 	parm_reg_stack_locs.
 
 Sat Sep 20 03:07:54 1997  Doug Evans  <dje@cygnus.com>
@@ -2253,7 +2253,7 @@ Fri Sep 19 07:29:40 1997  Bernd Schmidt  <crux@Pool.Informatik.RWTH-Aachen.DE>
 	* unroll.c: Likewise.
 	* Makefile.in (emit-rtl.o, integrate.o, jump.o, unroll.o): Depend
 	on recog.h.
-	
+
 Fri Sep 19 06:52:22 1997  Paul Eggert  <eggert@twinsun.com>
 
 	* enquire.c (SYS_FLOAT_H_WRAP): New macro.
@@ -2287,7 +2287,7 @@ Fri Sep 19 06:52:22 1997  Paul Eggert  <eggert@twinsun.com>
 	(main): Ignore symbols whose flags are 0.
 
 Thu Sep 18 10:43:07 1997  Nick Clifton  <nickc@cygnus.com>
- 
+
 	* v850.c (compute_register_save_size): Correct register number.
 	* v850.md (save_interrupt, return_interrupt): Likewise.
 	* v850/lib1funcs.asm (save_interrupt): Likewise.
@@ -2448,7 +2448,7 @@ Mon Sep 15 22:02:46 1997  Jeffrey A Law  (law@cygnus.com)
 	* fixinc.math: New file to fix math.h on some systems.
 	* configure.in (*-*-freebsd*, *-*-netbsd*): Use fixinc.math on these
 	systems.
-   
+
 Mon Sep 15 18:58:36 1997  J"orn Rennecke <amylaar@cygnus.co.uk>
 
 	* sched.c (update_flow_info) When looking if to set found_split_dest
@@ -2480,7 +2480,7 @@ Mon Sep 15 11:43:38 1997  Jason Merrill  <jason@yorick.cygnus.com>
 
 	* dwarf2out.c (dwarf2out_frame_debug): Fix typo.
 	Handle epilogue restore of SP from FP.
-	* emit-rtl.c (gen_sequence): Still generate a sequence if the 
+	* emit-rtl.c (gen_sequence): Still generate a sequence if the
 	lone insn has RTX_FRAME_RELATED_P set.
 
 	* frame.c (extract_cie_info): Handle "e" augmentation.
@@ -2499,7 +2499,7 @@ Mon Sep 15 11:43:38 1997  Jason Merrill  <jason@yorick.cygnus.com>
 	* sparc/sun4gas.h: New file.
 	* configure.in: Use sun4gas.h if SunOS 4 --with-gnu-as.
 
-	* collect2.c (write_c_file_stat, write_c_file_glob): Declare 
+	* collect2.c (write_c_file_stat, write_c_file_glob): Declare
 	__register_frame_table and __deregister_frame.
 
 Mon Sep 15 19:04:34 1997  Brendan Kehoe  <brendan@cygnus.com>
@@ -2623,7 +2623,7 @@ Wed Sep 10 11:49:20 1997  Jason Merrill  <jason@yorick.cygnus.com>
 	(start_eh_unwinder): Don't do anything if DWARF2_UNWIND_INFO.
 	(end_eh_unwinder): Likewise.
 
-	* crtstuff.c: Wrap .eh_frame section, use EH_FRAME_SECTION_ASM_OP, 
+	* crtstuff.c: Wrap .eh_frame section, use EH_FRAME_SECTION_ASM_OP,
 	call __register_frame and __deregister_frame as needed.
 	* varasm.c (eh_frame_section): New fn if EH_FRAME_SECTION_ASM_OP.
 	* dwarf2out.c (EH_FRAME_SECTION): Now a function-like macro.  Check
@@ -2644,7 +2644,7 @@ Wed Sep 10 11:49:20 1997  Jason Merrill  <jason@yorick.cygnus.com>
  	__deregister_frame as needed.
 	(write_c_file_glob): Likewise.
 
-	* defaults.h (DWARF2_UNWIND_INFO): Default to 1 if supported.  
+	* defaults.h (DWARF2_UNWIND_INFO): Default to 1 if supported.
 	Also require unaligned reloc support.
 	* sparc.h (UNALIGNED_SHORT_ASM_OP, UNALIGNED_INT_ASM_OP,
  	UNALIGNED_DOUBLE_INT_ASM_OP): Define here.
@@ -2688,9 +2688,9 @@ Wed Sep 10  11:30:36 1997  Stan Cox  <coxs@dg-rtp.dg.com>
 
 	* i386.c (override_options): Don't set TARGET_SCHEDULE_PROLOGUE
 	(ix86_expand_prologue, ix86_expand_epilogue): Emit rtl by default.
-	
+
 Wed Sep 10  11:30:36 1997  Jason Merrill  <jason@cygnus.com>
-	
+
 	* i386.c (ix86_prologue): Add dwarf2 support for !do_rtl case.
 
 Wed Sep 10 08:48:44 1997  Jeffrey A Law  (law@cygnus.com)
@@ -2802,7 +2802,7 @@ Mon Sep  8 15:15:11 1997  Nick Clifton  <nickc@cygnus.com>
 	(CPP_PREDEFINES): Only define if not already specified.
 	(TARGET_VERSION): Only define if not already specified.
 	(MASK_CPU, MASK_V850, MASK_DEFAULT): Bits to specify target
-	processor. 
+	processor.
 	(EXTRA_SWITCHES): Extra entries in the switches array.
 	(TARGET_DEFAULT): Set default target processor.
 
@@ -2934,7 +2934,7 @@ Fri Sep  5 10:08:44 1997  Jeffrey A Law  (law@cygnus.com)
 	* ginclude/va-v850.h: New file.
 	* varargs.h, stdarg.h: Include va-mn10200.h.
 	* configure.in (mn10200-*-*): New target.
-	* Makefile.in (USER_H): Add va-mn10200.h. 
+	* Makefile.in (USER_H): Add va-mn10200.h.
 
 	* xm-svr4.h (SYS_SIGLIST_DECLARED): Define.
 	* mips/xm-news.h (SYS_SIGLIST_DECLARED): Define.
@@ -2966,7 +2966,7 @@ Wed Sep 3  17:30:36 1997  Stan Cox  <coxs@dg-rtp.dg.com>
 Wed Sep 3  17:30:36 1997  Jim Wilson  <wilson@cygnus.com>
 
 	* i386.c (ix86_expand_epilogue): Emit blockage instruction when pic.
-	
+
 Wed Sep  3 11:25:19 1997  Jeffrey A Law  (law@cygnus.com)
 
 	* pa.md (reload peepholes): Fix typo in last change.
@@ -3106,7 +3106,7 @@ Wed Aug 27 20:15:53 1997  J"orn Rennecke <amylaar@cygnus.co.uk>
 	Truncate shift count.  Use braf if not SH1.
 	* sh.c (sfunc_uses_reg): No longer static.
 	Check for SImode inside the USE.
-	(shiftcosts, expand_ashiftrt, shl_sext_kind): 
+	(shiftcosts, expand_ashiftrt, shl_sext_kind):
 	Use SH_DYNAMIC_SHIFT_COST.
 	(sh_dynamicalize_shift_p, output_branchy_insn): New functions.
 	(output_ieee_ccmpeq, mova_p, cache_align_p, fixup_aligns): Likewise.
@@ -3307,7 +3307,7 @@ Wed Aug 27 07:15:58 1997  Klaus Espenlaub  <kespenla@hydra.informatik.uni-ulm.de
 
 	* configure.in (AC_PROG_CC, AC_PROG_MAKE_SET): Check for gcc before
 	testing for flex.
- 
+
 Wed Aug 27 02:24:35 1997  Jim Wilson  <wilson@cygnus.com>
 
 	* dwarfout.c (dwarfout_file_scope_decl, case TYPE_DECL): Check
@@ -3388,7 +3388,7 @@ Sat Aug 23 18:43:22 1997  Jim Wilson  <wilson@cygnus.com>
 
 	* m68k/m68kemb.h (LIB_SPEC): Add missing comment end before it.
 	* m68k/next.h (GO_IF_INDEXABLE_BASE): Fix typo in undef.
-	
+
 Sat Aug 23 00:18:22 1997  Jeffrey A Law  (law@cygnus.com)
 
 	* pa.c (pa_reorg): Always put begin_brtab and end_brtab insns
@@ -3491,7 +3491,7 @@ Fri Aug 15 06:40:03 1997  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 
 	* alpha.md (allocate_stack): If stupid reg allocation, add USE
 	for loop variable.
-	
+
 	* fold-const.c (fold, compare cases): Add calls to `fold' to
 	previous change.
 
@@ -3559,7 +3559,7 @@ Wed Aug 13 12:40:15 1997  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 	(SETUP_INCOMING_VARARGS): Likewise.
 	(FUNCTION_ARG{,_PARTIAL_NREGS}, FUNCTION_ARG_ADVANCE): Likewise.
 	Only update CUM in FUNCTION_ARG_ADVANCE.
-	
+
 Tue Aug 12 19:27:32 1997  Philippe De Muyter  <phdm@info.ucl.ac.be>
 
 	* integrate.c (save_for_inline_copying): Use 0, not NULL_PTR,
@@ -3649,17 +3649,17 @@ Fri Aug  8 17:07:36 1997  Stan Cox  <coxs@dg-rtp.dg.com>
 
 	* m88k.c (m88k_expand_prologue): Set MEM_IN_STRUCT_P of va_list
 	template.
-	
+
 	* reg-stack.c (compare_for_stack_reg): Swap only if the source and
 	destination are both on the regstack.
 	(subst_stack_regs_pat): Put the destination at the top of the regstack.
-	
+
 Fri Aug  8 17:03:21 1997  Bernd Schmidt  <crux@pool.informatik.rwth-aachen.de>
 
         * i386.md (pop): pop increments the stack pointer.
         (prologue_set_stack_ptr): New pattern.
         * i386.c (ix86_expand_prologue): Use prologue_set_stack_ptr
-	instead of subsi3. 
+	instead of subsi3.
 
 Fri Aug  8 17:00:36 1997  Paul Eggert  <eggert@twinsun.com>
 
@@ -3722,7 +3722,7 @@ Thu Aug  7 15:35:25 1997  Jim Wilson  <wilson@cygnus.com>
 
 	* mips/iris6.h (TARGET_LONG64): Don't define here.
 	* mips.c (override_options): Set MASK_LONG64 for ABI_64.
-	
+
 	* mips.c (function_prologue): Don't emit ".ent", ".frame",
 	".mask", ".fmask" if flag_inhibit_size_directive is true.
 	(function_epilogue): Don't emit ".end" if
@@ -3751,7 +3751,7 @@ Thu Aug  7 10:04:42 1997  Douglas Rupp  <rupp@gnat.com>
 	* alpha/vms-tramp.asm: New file.
 
 	* gcc.c (execute): Don't allow -pipe on VMS.
-	
+
 	* alpha.c (vmskrunch): Don't strip off trailing digits.
 	(vms_valid_decl_attribute_p): New function.
 	* alpha/vms.h (TRAMPOLINE_TEMPLATE): Add another quadword of zeros.
@@ -3889,7 +3889,7 @@ Wed Aug  6 12:57:24 1997  Jason Merrill  <jason@yorick.cygnus.com>
 	(instantiate_decl): Don't bother looking into an ADDRESSOF.
 	(put_var_into_stack): Call gen_mem_addressof for local REGs instead
 	of calling put_reg_into_stack.
-	* expr.c (expand_expr, case TARGET_EXPR): Put the temp in a register 
+	* expr.c (expand_expr, case TARGET_EXPR): Put the temp in a register
 	if it will fit.
 	(expand_expr, case ADDR_EXPR): Call gen_mem_addressof to take the
 	address of a REG.
@@ -3907,7 +3907,7 @@ Wed Aug  6 12:57:24 1997  Jason Merrill  <jason@yorick.cygnus.com>
 
 Tue Aug  5 16:10:45 1997  Jason Merrill  <jason@yorick.cygnus.com>
 
-	* mips.c (function_arg): Handle passing a struct 
+	* mips.c (function_arg): Handle passing a struct
 	containing a double in a DFmode register without the PARALLEL.
 
 Tue Aug  5 12:27:31 1997  Doug Evans  <dje@cygnus.com>
@@ -4149,7 +4149,7 @@ Thu Jul 31 16:04:42 1997  Stan Cox  <coxs@dg-rtp.dg.com>
 	comparison when $ah is accessed directly instead of using eflags
 
 	* i386.md (*trunc*): Use scratch memory for output_fix_trunc.
-	(movsicc_1, movhicc_1) Change alternative 3 to: 
+	(movsicc_1, movhicc_1) Change alternative 3 to:
 	jCC L1; mov; jmp L2; L1:mov; L2:
 	(movsfcc, movdfcc, movxfcc): Force constant operands to memory.
 	(movsfcc_1, movdfcc_1, movxfcc_1): Change alternative 3 as above.
@@ -4159,7 +4159,7 @@ Thu Jul 31 16:04:42 1997  Jason Merrill  <jason@yorick.cygnus.com>
 	* i386.h (MAX_FIXED_MODE_SIZE): Define.
 
 Thu Jul 31 16:04:42 1997   Robert Lipe <robertl@dgii.com>
-	
+
 	* i386/sco5.h (SWITCHES_NEED_SPACES) Define.
 	Required by the COFF (but not ELF) linker.
 
@@ -4223,9 +4223,9 @@ Mon Jul 28 11:22:16 1997  Jason Merrill  <jason@yorick.cygnus.com>
 	(rest_of_compilation): Use decl_printable_name instead of DECL_NAME
 	to identify functions in the RTL dump files.
 
-	* dwarf2out.c (add_location_or_const_value_attribute): 
+	* dwarf2out.c (add_location_or_const_value_attribute):
  	leaf_renumber_regs_insn.  Also eliminate_regs here.
-	(add_AT_location_description): Not here.  Don't emit anything 
+	(add_AT_location_description): Not here.  Don't emit anything
 	for a variable that has been optimized away.
 	(add_const_value_attribute): Likewise.
 
@@ -4331,7 +4331,7 @@ Tue Jul 22 12:26:13 1997  Doug Evans  <dje@cygnus.com>
 	* configure.frag: New arguments xmake_files, tmake_files.
 	Build Make-host, Make-target.
 
-Mon Jul 21 23:17:44 1997  Paul Eggert  <eggert@twinsun.com>	
+Mon Jul 21 23:17:44 1997  Paul Eggert  <eggert@twinsun.com>
 
 	* objc/Make-lang.in, objc/Makefile.in: Comment out lines containing
 	just formfeeds.
@@ -4451,7 +4451,7 @@ Thu Jul 17 07:00:43 1997  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 	* flags.h (flag_stack_check): Likewise.
 	* explow.c (allocate_dynamic_stack_space): Call probe_stack_range.
 	(emit_stack_probe, probe_stack_range): New functions.
-	* function.c (expand_function_end): If function is non-leaf and stack 
+	* function.c (expand_function_end): If function is non-leaf and stack
 	checking is requested, emit needed probes.
 	* reload1.c (reload): If checking stack, verify frame small enough.
 	* stmt.c (expand_decl): If stack checking, use alloca for large vars.
@@ -4485,13 +4485,13 @@ Wed Jul 16 10:57:03 1997  Richard Earnshaw (rearnsha@cambridge.arm.com)
 	(amb@physig.ph.kcl.ac.uk):
 	* configure.in (arm-*-netbsd*): New configuration.
 	* arm/netbsd.h, arm/t-netbsd, arm/xm-netbsd.h: New files.
-	
+
 Wed Jul 16 10:57:03 1997  Richard Earnshaw (rearnsha@cambridge.arm.com)
 
 	* arm.c (tune_flags): New variable.
 	(target_{cpu,fpe}_name): Delete.
 	(arm_fpu_arch): New variable.
-	(arm_select): Also allow -march=... to configure just the 
+	(arm_select): Also allow -march=... to configure just the
 	architecture.
 	(all_procs): Allow armv{2,2a,3,3m,4,4t} for use with -march=.
 	(arm_override_options): Handle -march=, but don't let -mcpu=
@@ -4507,13 +4507,13 @@ Wed Jul 16 10:57:03 1997  Richard Earnshaw (rearnsha@cambridge.arm.com)
 	Remove redundant calculation of code_size. Use floating-point
 	load-multiples if permitted.
 	(emit_sfm): New function.
-	(arm_expand_prologue): Use floating-point store-multiples if 
+	(arm_expand_prologue): Use floating-point store-multiples if
 	permitted.
 
 	* arm.h (CPP_CPU_ARCH_SPEC): Handle -march=...
 	(TARGET_OPTIONS): Add arch= and fp=.  Delete fpe=.
 	(enum processor_type): Add PROCESSOR_NONE, for use in all_procs table.
-	(FP_DEFAULT): Default floating point architecture for generic 
+	(FP_DEFAULT): Default floating point architecture for generic
 	back-end.
 	(PREDICATE_CODES): Add f_register_operand.
 
@@ -4646,7 +4646,7 @@ Sat Jul 12 01:53:55 1997  Jason Merrill  <jason@yorick.cygnus.com>
 	(sparc_flat_output_function_prologue): Likewise.
 
 Fri Jul 11 09:49:15 1997  Jeffrey A Law  (law@cygnus.com)
-	
+
 	* mips.c (epilogue_reg_mentioned_p): Delete unused function.
 	(mips_epilogue_delay_slots): Likewise.
 	(function_epilogue): Greatly simplify.
@@ -4810,7 +4810,7 @@ Sun Jun 29 11:27:07 1997  Michael Meissner  <meissner@cygnus.com>
 	(toc_section): Make toc_initialized a global.
 	(RTX_COSTS): Set appropriate costs for add, logical operators that
 	are really two instructions.
-	
+
 	* rs6000.c (rs6000_debug_{name,stack,arg}): Add definitions.
 	(rs6000_override_options): Process debug flags.
 	(toc_initialized): Global to say toc initialized.
@@ -4832,7 +4832,7 @@ Sun Jun 29 11:27:07 1997  Michael Meissner  <meissner@cygnus.com>
 	(and_operand): Don't call reg_or_short_operand.
 	(rs6000_finalize_pic): If not optimizing, insert a USE of the GOT
 	register as the last insn.
-	
+
 	* rs6000.md (load/store update): Take -mno-update into account.
 	If -msoft-float, support SF load/store with update to GPR regs.
 	(allocate_stack): Take -mno-update into account.
@@ -4872,7 +4872,7 @@ Fri Jun 27 19:00:52 1997  Ralf Baechle  <ralf@waldorf-gmbh.de>
 	* config/linux.h (PREFERRED_DEBUGGING_TYPE): Undefine before define.
 
 Fri Jun 27 18:35:04 1997  Alan Modra  <alan@spri.levels.unisa.edu.au>
-	
+
  	* configure.in: Clean up Make-{host,target,hooks} in all
 	subdirs, not just '.'.
 	* Makefile.in (distclean): Delete */Make-{host,target,lang,hooks}.
@@ -4949,7 +4949,7 @@ Wed Jun 25 16:56:16 1997  Jason Merrill  <jason@yorick.cygnus.com>
 	* dwarf2out.c (dwarf_cfi_name, output_cfi): Support it.
 	(dwarf2out_cfi_label): Make non-static.
 	(initial_return_save): Support PLUS.
-	(dwarf2out_window_save, dwarf2out_return_save, 
+	(dwarf2out_window_save, dwarf2out_return_save,
 	dwarf2out_return_reg): New fns.
 
 	* dwarf2out.c (SECTION_FORMAT): Use PUSHSECTION_FORMAT, if defined.
@@ -4995,7 +4995,7 @@ Wed Jun 25 16:14:10 1997  Ovidiu Predescu <ovidiu@net-community.com>
 	(__objc_send_message_in_list): Rewrite using hash table.
 	(__objc_send_load): Remove calls to _objc_load_callback.
 	(objc_send_load): Make static.  Create Tree of classes resembling
-	class hierarchy for all modules.  Call __objc_send_load on all of 
+	class hierarchy for all modules.  Call __objc_send_load on all of
 	the modules in __objc_module_list.
 	(__objc_create_classes_tree): New function.
 
@@ -5003,7 +5003,7 @@ Wed Jun 25 16:14:10 1997  Ovidiu Predescu <ovidiu@net-community.com>
 	* objc/objc-api.h (OBJC_ERR_BAD_STATE): New error code.
 	On NeXT redefine object_copy and object_dispose to avoid
 	a conflict with those defined in system library.
-	* objc/selector.c (__objc_register_instance_methods_to_class): New 
+	* objc/selector.c (__objc_register_instance_methods_to_class): New
 	function.
 	* objc/runtime.h: Likewise.  Add missing function prototypes.
 
@@ -5044,7 +5044,7 @@ Mon Jun 23 10:51:53 1997  Jeffrey A Law  (law@cygnus.com)
 	* Makefile.in (USER_H): Add va-mn10200.h.
 	* varargs.h, stdarg.h: Include va-mn10200.h.
 	* configure.in (mn10200-*-*): New target.
-	
+
 Sun Jun 22 06:47:19 1997  Andreas Schwab  <schwab@issan.informatik.uni-dortmund.de>
 
 	* combine.c (force_to_mode): Don't do anything for ASM_OPERANDS insn.
@@ -5122,9 +5122,9 @@ Wed Jun 18 18:04:33 1997  Mike Stump  <mrs@cygnus.com>
 	function in the unwinder.
 
 Wed Jun 18 14:27:58 1997  Mike Stump  <mrs@cygnus.com>
- 
+
 	* flow.c (find_basic_blocks): Fix end case bug.
- 
+
 Tue Jun 17 18:35:57 1997  Mike Stump  <mrs@cygnus.com>
 
 	* libgcc2.c (__eh_pcnthrow): Add support -fno-sjlj-exceptions
@@ -5217,7 +5217,7 @@ Tue Jun 10 18:23:35 1997  Mike Stump  <mrs@cygnus.com>
 
 	* stmt.c (expand_decl_cleanup): Avoid core dumping when exceptions
 	aren't on.
-	
+
 Tue Jun 10 18:22:30 1997  Jason Merrill  <jason@yorick.cygnus.com>
 
 	* collect2.c (extract_string): New fn.
@@ -5225,7 +5225,7 @@ Tue Jun 10 18:22:30 1997  Jason Merrill  <jason@yorick.cygnus.com>
 
 Tue Jun 10 17:40:15 1997  Jim Wilson  <wilson@cygnus.com>
 
-	* expr.c (emit_group_load): Add case using gen_lowpart. 
+	* expr.c (emit_group_load): Add case using gen_lowpart.
 
 Tue Jun 10 17:14:58 1997  Michael Meissner  <meissner@cygnus.com>
 
@@ -5539,10 +5539,10 @@ Thu May 29 15:42:59 1997  Stan Cox  <coxs@dg-rtp.dg.com>
 
 	* i386.md (movsfcc_1, movdfcc_1, movxfcc_1): Use singlemove_string
 	for float conditional move when destination and operands all differ.
-	
+
 	* i386.h (ASM_OUTPUT_REG_{PUSH,POP}): add %% before register name.
 
-	* go32.h (ASM_OUTPUT_ALIGN): Use .p2align, not byte alignments. 
+	* go32.h (ASM_OUTPUT_ALIGN): Use .p2align, not byte alignments.
 
 Wed May 28 20:44:00 1997  Mike Stump  <mrs@cygnus.com>
 
@@ -5649,7 +5649,7 @@ Sun May 18 07:48:31 1997  J.T. Conklin  <jtc@netbsd.org>
 
 	* m68k.md (mov[qhs]i,movstrict[qs]i, mulsi3): Use 'Q' constraint
 	for TARGET_5200.
-	* m68k.h (EXTRA_CONSTRAINT): New macro. 
+	* m68k.h (EXTRA_CONSTRAINT): New macro.
 
 	* m68k.h (TARGET_SWITCHES): Add 68020-60.
 	Mask out bits which indicate a particular processor when a different
@@ -5763,7 +5763,7 @@ Fri May  9 14:29:33 1997  Jeffrey A Law  (law@cygnus.com)
 
 Thu May  8 18:20:30 1997 Richard Earnshaw (rearnshaw@cambridge.arm.com)
 
-	* arm/aout.h (ASM_OUTPUT_LONG_DOUBLE): Delete call to 
+	* arm/aout.h (ASM_OUTPUT_LONG_DOUBLE): Delete call to
 	arm_increase_location.
 	(ASM_OUTPUT_{DOUBLE,FLOAT,INT,SHORT,CHAR,BYTE,ASCII,SKIP}): Likewise.
 	(ASM_OUTPUT_ALIGN): Delete all code refering to arm_text_location.
@@ -5774,7 +5774,7 @@ Thu May  8 18:20:30 1997 Richard Earnshaw (rearnshaw@cambridge.arm.com)
 	(all_procs): Delete entries for arm{60,620,70,7d,7di,700i,710c}; add
 	entries for arm{7m,7500fe,8}, strongarm and strongarm110.
 	(arm_override_options): Rework so that configure can properly set
-	the default processor type. Add a warning that PIC code is not yet 
+	the default processor type. Add a warning that PIC code is not yet
 	supported.
 	(legitimate_pic_operand_p, legitimize_pic_address): New functions.
 	(is_pic, arm_finalize_pic): New functions.
@@ -5847,7 +5847,7 @@ Thu May  8 15:20:46 1997  Stan Cox  <coxs@dg-rtp.dg.com>
 
 Thu May  8 13:20:20 1997  Chris Torek  <torek@elf.bsdi.com>
 
-	* fold-const.c (fold, truth_andor): Disable optimization for 
+	* fold-const.c (fold, truth_andor): Disable optimization for
 	side effects on RHS.
 
 Wed May  7 15:43:57 1997  Mike Stump  <mrs@cygnus.com>
@@ -5998,7 +5998,7 @@ Wed Apr 30 02:23:24 1997  Jason Merrill  <jason@yorick.cygnus.com>
 	(SUPPORTS_ONE_ONLY): Define.
 	(MAKE_DECL_ONE_ONLY): Lose.
 	(ASM_OUTPUT_SECTION_NAME): Add reloc arg, use DECL_READONLY_SECTION.
-	* i386/winnt.c (i386_pe_unique_section): Add reloc arg, 
+	* i386/winnt.c (i386_pe_unique_section): Add reloc arg,
 	use DECL_READONLY_SECTION.
 
 	* mips/iris6.h (CTORS_SECTION_ASM_OP): Change aligment based on ABI.
@@ -6156,7 +6156,7 @@ Wed Apr 23 14:28:30 1997  Mike Stump  <mrs@cygnus.com>
 	(do_jump, case COND_EXPR): Likewise.
 	* stmt.c (struct nesting): Likewise.
 	(expand_return, expand_start_bindings, expand_end_bindings): Likewise.
-	(expand_cleanups, {start,end}_cleanup_deferal): Likewise.	
+	(expand_cleanups, {start,end}_cleanup_deferal): Likewise.
 	* tree.h (start_cleanup_deferal): Likewise.
 	(end_cleanup_deferal): Likewise.
 	* calls.c (expand_call): Likewise.
@@ -6282,7 +6282,7 @@ Sun Apr 20 10:45:35 1997  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 	(output_call_frame_info): Add missing arg to output_cfi call.
 	(dwarf2out_def_cfa): Local variable OLD_REG must be unsigned long.
 	* Makefile.in (dwarf2out.o): Includes expr.h.
-	
+
 	* dwarf2out.c: Cast first arg in all calls to bzero to char *.
 	(decl_ultimate_origin): Return NULL if equal to decl.
 	(constant_size): Never return more than 4.
@@ -6408,7 +6408,7 @@ Sun Apr 13 15:20:05 1997  J"orn Rennecke <amylaar@cygnus.co.uk>
 	Fix sign bug in last change.
 
 Sun Apr 13 15:03:38 1997  J.T. Conklin  <jtc@netbsd.org>
-	
+
 	* m68k.md (movstricthi): Remove extraneous comparisons.
 
 	* configure (*-*-netbsd): tmake_file now t-netbsd; delete xmake_file.
@@ -6436,7 +6436,7 @@ Sun Apr 13 12:53:03 1997  Andreas Schwab  <schwab@issan.informatik.uni-dortmund.
 
 	* m68k/linux.h (ASM_SPEC): Define.
 	(STRUCT_VALUE_REGNUM, STATIC_CHAIN_REGNUM, INITIALIZE_TRAMPOLINE):
-	Remove definitions, undoing the change of Mar 20 1996. 
+	Remove definitions, undoing the change of Mar 20 1996.
 
 	* m68k.c (output_move_qimode): Optimize pushing one byte if source
 	operand does not use stack pointer.
@@ -6486,7 +6486,7 @@ Sun Apr 13 09:48:26 1997  Richard Kenner  <kenner@vlsi1.ultra.nyu.edu>
 	(*return_subsi): New pattern.
 
 	* recog.c (validate_replace_rtx_1, case MINUS): New case.
-	
+
 Sun Apr 13 08:20:24 1997  Thomas Bushnell  <thomas@gnu.ai.mit.edu>
 
 	* i386/gnu.h (TARGET_VERSION): Redefine.
@@ -6651,7 +6651,7 @@ Wed Apr  2 17:21:23 1997  Jim Wilson  <wilson@cygnus.com>
 	(nabssi3_nopower define_split): Likewise.
 
 Tue Apr  1 19:30:01 1997  Mike Stump  <mrs@cygnus.com>
-	
+
 	* libgcc2.c (find_exception_table): Fix to logic to deal with
 	functions that are in their own section, such as template
 	instantiations, that cause overlapping EH tables.
@@ -6752,7 +6752,7 @@ Thu Mar 27 16:52:52 1997  Stan Cox  <coxs@dg-rtp.dg.com>
 
 	From J"orn Rennecke <amylaar@cygnus.co.uk>
 	* i386.md: (zero_extendhisi2+[12]): Use true_regnum instead of
-	REGNO for operand 0.  
+	REGNO for operand 0.
 	(zero_extendqisi2+3): Use reg_overlap_mentioned_p instead of REGNO
  	comparison; use true_regnum instead of REGNO for rtx generation.
 
@@ -6794,7 +6794,7 @@ Tue Mar 25 13:43:36 1997  Michael Meissner  <meissner@cygnus.com>
 	(main): Do not call init_spec if a specs file was found.
 	(set_spec,read_specs,do_spec_1): If DEBUG_SPECS is defined, print
 	debug information.
-	
+
 Tue Mar 25 14:43:58 1997  Doug Evans  <dje@cygnus.com>
 
 	* expr.c (emit_push_insn): Delete emission of CLOBBER
@@ -6822,7 +6822,7 @@ Tue Mar 25 13:20:18 1997  J.T. Conklin	<jtc@cygnus.com>
 	* m68k.md (mulsi3): Changed into define_expand.  Split insn into
  	m68k and coldfire specific versions with appropriate constraints.
 
-	* m68k.md (movqi): Disable use of address registers for 
+	* m68k.md (movqi): Disable use of address registers for
 	TARGET_5200.
 
 	* m68k/lb1sf68.asm (__modsi3, __umodsi3): Use mulsl instruction
@@ -6879,9 +6879,9 @@ Thu Mar 20 13:53:30 1997  Michael Meissner  <meissner@cygnus.com>
 	constants to be hard.
 
 Mon Mar 20 13:53:30 1997  Jim Wilson  <wilson@cygnus.com>
- 
+
 	* rs6000.md (movdf/movsf define_splits): Add SUBREG support.
- 
+
 	* rs6000.c (fp_reg_or_mem_operand): Delete.
 	* rs6000.h (PREDICATE_CODES): Remove fp_reg_or_mem_operand.
 	(fp_reg_or_mem_operand): Delete declaration.
@@ -6924,13 +6924,13 @@ Wed Mar 19 16:59:34 1997  Paul Eggert  <eggert@twinsun.com>
 Tue Mar 18 17:05:57 1997  Stan Cox  <coxs@dg-rtp.dg.com>
 
         * i386.h (STACK_BOUNDARY): Determine according to TARGET_ALIGN_DOUBLE.
-	
+
 	* i386.c (override_options) Make the default alignment 4 for 486,
 	otherwise 2.
-	
+
 	* i386/freebsd-elf.h (CPP_SPEC): Remove TARGET_CPU_DEFAULT reference.
 	* i386/linux{,-aout,-oldld}.h (CPP_SPEC): Likewise.
-	
+
 	* i386/go32.h (DBX_DEBUGGING_INFO, PREFERRED_DEBUGGING_TYPE,
 	NO_STAB_H, ASM_FILE_START, DBX_BLOCKS_FUNCTION_RELATIVE,
 	DBX_FUNCTION_FIRST, DBX_OUTPUT_MAIN_SOURCE_FILE_END,
@@ -7005,7 +7005,7 @@ Mon Mar 17 17:03:55 1997  J.T. Conklin  <jtc@cygnus.com>
 
 	* m68k.md (beq0_di, bne0_di, bge0_di, blt0_di): Use cmpw #0
  	instead of tstl when testing address registers on the 68000.
-	
+
 	* m68k/lb1sf68.asm: Fix prologues/epilogues to deal with the lack
  	of predecrement/postincrement addressing modes in the coldfire
 	moveml instruction.
@@ -7097,7 +7097,7 @@ Sat Mar 15 07:58:00 1997  Ovidiu Predescu <ovidiu@net-community.com>
 	* config/nextstep.h (INCLUDE_DEFAULTS): Define to something useful
 	when cross-compiling.
 
-	* The static instances list moved from the objc_module struct to 
+	* The static instances list moved from the objc_module struct to
 	objc_symtab struct, at the end of defs array. This now allows the NeXT
 	gdb to work with binaries generated for the GNU ObjC runtime.
 	* objc-act.c (build_objc_symtab_template): Make sure
@@ -7198,7 +7198,7 @@ Tue Mar 11 17:07:51 1997  Jeffrey A Law  (law@cygnus.com)
 	(ELIMINABLE_REGS, INITIAL_ELIMINATION_OFFSET): Define.
 	(CAN_DEUG_WITHOUT_FP): Define.
 	* mn10300.md (return_internal): Break into two patterns.
-	
+
 	* mn10300.h (CONST_OK_FOR_LETTER_P): Handle 'M' too.
 	(REGISTER_MOVE_COST): Fix errors and refine.
 
@@ -7429,7 +7429,7 @@ Sun Feb 16 04:55:11 1997  Jason Merrill  <jason@yorick.cygnus.com>
 	(v_message_with_decl): Likewise.
 	* dwarf2out.c (dwarf2_name): New fn, uses decl_printable_name.
 	(add_pubname): Use it.
-	(add_name_and_src_coords_attributes): Use it, add 
+	(add_name_and_src_coords_attributes): Use it, add
 	DW_AT_MIPS_linkage_name if appropriate.
 	(output_aranges): Use DW_AT_MIPS_linkage_name if present.
 
@@ -7456,7 +7456,7 @@ Sat Feb 15 18:26:50 1997  Philippe De Muyter  <phdm@info.ucl.ac.be>
 	(print_operand): Do not output '.' if CRDS.
 
 	* gcc.c (set_spec): Fix comment-in-comment typo.
-	
+
 Sat Feb 15 17:54:23 1997  H.J. Lu  (hjl@gnu.ai.mit.edu)
 
 	* Makefile.in (COMPILERS): Moved before GCC_PASSES.
@@ -7500,7 +7500,7 @@ Fri Feb 14 16:03:37 1997  Robert Lipe  <robertl@dgii.com>
 
 Fri Feb 14 16:00:23 1997  H.J. Lu  <hjl@gnu.ai.mit.edu>
 
-	* config/svr4.h (DBX_OUTPUT_MAIN_SOURCE_FILE_END): Set 
+	* config/svr4.h (DBX_OUTPUT_MAIN_SOURCE_FILE_END): Set
 	current-section variable to text.
 
 Wed Feb 12 16:07:34 1997  Brendan Kehoe  <brendan@lisa.cygnus.com>
@@ -7676,7 +7676,7 @@ Sun Feb  2 19:43:17 1997  Scott Christley <scottc@net-community.com>
 	* objc/runtime.h: Remove error handling declarations.
 	* objc/sendmsg.c (__objc_forward): Replace call to abort function
 	with call to objc_error function.
-	
+
 Sun Feb  2 19:42:52 1997  Thomas Baier <baier@ci.tuwien.ac.at>
 
 	* objc/hash.c (hash_delete): Step through the hash nodes
@@ -7687,7 +7687,7 @@ Sun Feb  2 19:42:52 1997  Thomas Baier <baier@ci.tuwien.ac.at>
 Sun Feb  2 08:25:05 1997  Ovidiu Predescu  <ovidiu@net-community.com>
 
 	* objc-act.c (encode_aggregate_within): New function.
-	(encode_aggregate): Generates encodings for unions similar 
+	(encode_aggregate): Generates encodings for unions similar
 	to those for structs except surrounded by parenthesis instead
 	of braces.
 
@@ -7783,7 +7783,7 @@ Wed Jan 29 15:23:59 1997  Ian Lance Taylor  <ian@cygnus.com>
 
 Tue Jan 28 16:00:23 1997  Stan Cox  (coxs@dg-rtp.dg.com)
 
-	From Robert Lipe <robertl@dgii.com> 
+	From Robert Lipe <robertl@dgii.com>
 	* i386/sco5.h (SCO_DEFAULT_ASM_COFF): Remove bytecode stuff.
 	(ASM_OUTPUT_ASCII): Use .ascii in both ELF and COFF modes.
 	(ASM_OUTPUT_SECTION_NAME): Handle alternate sections for COFF.
@@ -7920,7 +7920,7 @@ Sun Jan 19 08:57:26 1997  Richard Kenner  (kenner@vlsi1.ultra.nyu.edu)
 	* toplev.c (set_float_handler): Set up signal catcher on first call
 	in case a front end has disabled it.
 
-	* cccp.c, cexp.y: #define __attribute__ to be null if 
+	* cccp.c, cexp.y: #define __attribute__ to be null if
 	compiling with GCC older than 2.7, not 2.6.
 
 	* toplev.c (main): If PREFERRED_DEBUGGING_TYPE used and set
@@ -8058,7 +8058,7 @@ Sat Jan 11 00:13:03 1997  Torbjorn Granlund  <tege@quiet.matematik.su.se>
 	* mips.c (complemented_arith_operand): New function.
 	(print_operand): Handle `e' for CONST_INT.
 	* mips.h (PREDICATE_CODES): Add complemented_arith_operand.
-	
+
 Fri Jan 10 14:11:53 1997  David Edelsohn  <edelsohn@mhpcc.edu>
 
 	* rs6000/aix41.h (SUBTARGET_SWITCHES): Add threads and pe.
@@ -8331,7 +8331,7 @@ Thu Dec 12 20:04:55 1996  Jason Merrill  <jason@yorick.cygnus.com>
 
 	* rtl.h (RTX_FRAME_RELATED_P): New macro.
 	(struct rtx_def): Add frame_related bitfield.
-	* final.c (final_scan_insn): Call dwarf2out_frame_debug.  
+	* final.c (final_scan_insn): Call dwarf2out_frame_debug.
 	Don't call dwarf2out_begin_function.
 	(final): Initialize dwarf2out_frame_debug.
 	* dwarf2out.c (dwarf2out_begin_function): Remove.
@@ -8443,7 +8443,7 @@ Thu Dec 12 07:56:03 1996  Richard Kenner  (kenner@vlsi1.ultra.nyu.edu)
 
 	* va-alpha.h: Add definitions for VMS; they differ from Unix.
 
-	* Makefile.in (stamp-objlist): Handle first character of object 
+	* Makefile.in (stamp-objlist): Handle first character of object
 	file being a digit.
 
 	* 1750a.h (function_arg, {movcnt,mod}_regno_adjust): Add decls.
@@ -8524,7 +8524,7 @@ Tue Dec 10 17:36:47 1996  J.T. Conklin  <jtc@rhino.cygnus.com>
 	registers on all but TARGET_68040.
 	* m68k.c (output_function_{pro,epi}logue): Use lea instead of add.w
 	when adjusting stack pointer on all but TARGET_68040.
-	
+
 Tue Dec 10 15:55:23 1996  Ian Lance Taylor  <ian@cygnus.com>
 
 	* optabs.c (emit_unop_insn): Treat ZERO_EXTEND like SIGN_EXTEND.
@@ -8550,7 +8550,7 @@ Mon Dec  9 18:00:38 1996  Jason Merrill  <jason@yorick.cygnus.com>
 
 Thu Dec  5 11:25:30 1996  Jason Merrill  <jason@yorick.cygnus.com>
 
-	* dwarf2out.c (add_pure_or_virtual_attribute): Only add 
+	* dwarf2out.c (add_pure_or_virtual_attribute): Only add
 	AT_containing_type if -g2 or higher.
 
 	* dwarf2out.c (gen_struct_or_union_type_die): Make sure that
@@ -8607,7 +8607,7 @@ Mon Dec  2 03:55:15 1996  Jason Merrill  <jason@yorick.cygnus.com>
 	(decode_cfi_rtl, add_fde_cfi, dwarf2out_def_cfa, reg_save,
 	dwarf2out_reg_save, dwarf2out_return_save): New fns.
 	(dwarf2out_begin_function): Use them to generate CFIs.
-	(dwarf2out_finish): Use them to generate E CFIs.  
+	(dwarf2out_finish): Use them to generate E CFIs.
 	Don't set next_fde_offset.
 	(calc_fde_sizes): Initialize cie_size.
 	(output_call_frame_info): Don't generate CIE CFIs.
@@ -8620,9 +8620,9 @@ Fri Nov 29 15:13:39 1996  Stan Cox  <coxs@dg-rtp.dg.com>
 
 	* jump.c (jump_optimize): Don't move initialization if there is a
 	label between it and the jump for if (foo) bar++ to bar += (foo !=0)
-	
+
 Wed Nov 27 16:21:14 1996  Stan Cox  <coxs@dg-rtp.dg.com>
-	
+
 	* Remove change of Oct 4.
 	* i386.h (outer_function_chain): Remove.
 	(current_function_calls_alloca): Remove.
@@ -8631,13 +8631,13 @@ Wed Nov 27 16:21:14 1996  Stan Cox  <coxs@dg-rtp.dg.com>
 	* i386.md (adddi3_1, subdi3_1): Remove.
 	(adddi3, subdi3): Revert.
 	(movsf, movsf_mem, movsf_normal, movdf, movdf_mem, movdf_mem+1):
-	Likewise. 
+	Likewise.
 	(movxf, movxf_mem, movxf_mem+1, addsidi3_1, addsidi3_2): Likewise.
 	(adddi3_1, subsidi3, subdi3_1): Likewise.
 	(addsidi3_1, addsidi3_2, subsidi3): Likewise.
 	(addsidi3_1, addsidi3_2, adddi3, subsidi3): Disable the problem
-	reload alternatives. 
-	
+	reload alternatives.
+
 Wed Nov 27 16:21:14 1996  J"orn Rennecke <amylaar@cygnus.co.uk>
 
 	* i386.md (ashldi3_non_const_int, ashrdi3_non_const_int):
@@ -8704,7 +8704,7 @@ Wed Nov 27 07:56:27 1996  J.T. Conklin  <jtc@rhino.cygnus.com>
 
 	* m68k.md ({and,ior,xor}si3_internal): Removed !TARGET_5200 from
  	conditionals now that entire insn is disabled when !TARGET_5200.
-	
+
 Wed Nov 27 07:52:32 1996  Oliver Kellogg  <kellogg@space.otn.dasa.de>
 
 	* 1750a.md (movhi pattern):  Fixed MEM to MEM move problem.
@@ -8752,11 +8752,11 @@ Sun Nov 24 21:42:01 1996  J.T. Conklin  <jtc@rhino.cygnus.com>
 	to !TARGET_5200.
 	(andsi2_5200): New insn.
 	(iorsi3): Change into define_expand.
-	(iorsi2_internal): Rename from old iorsi3, changed condition 
+	(iorsi2_internal): Rename from old iorsi3, changed condition
 	to !TARGET_5200.
 	(iorsi2_5200): New insn.
 	(xorsi3): Change into define_expand.
-	(xorsi2_internal): Rename from old xorsi3, changed condition 
+	(xorsi2_internal): Rename from old xorsi3, changed condition
 	to !TARGET_5200.
 	(xorsi2_5200): New insn.
 
@@ -8820,7 +8820,7 @@ Fri Nov 22 17:53:15 1996  Jason Merrill  <jason@yorick.cygnus.com>
 	our scope.
 	(gen_subroutine_type_die): Parm types go under the fn type DIE.
 
-	* Makefile.in ($(T)crt{begin,end}.o): Move CRTSTUFF_T_CFLAGS after 
+	* Makefile.in ($(T)crt{begin,end}.o): Move CRTSTUFF_T_CFLAGS after
 	general flags.
 
 	* mips/t-iris6 (CRTSTUFF_T_CFLAGS): Define.
@@ -8840,8 +8840,8 @@ Fri Nov 22 17:53:15 1996  Jason Merrill  <jason@yorick.cygnus.com>
 
 Tue Nov 21 15:53:51 1996  Joern Rennecke <amylaar@cygnus.co.uk>
 
-	* sh.c (output_stack_adjust): New argument TEMP.  Changed all callers. 
-	If the adjust cannot be done with one, but can be done with two 
+	* sh.c (output_stack_adjust): New argument TEMP.  Changed all callers.
+	If the adjust cannot be done with one, but can be done with two
 	CONST_OK_FOR_I constants, do it that way.
 
 Thu Nov 21 14:25:55 1996  Ian Lance Taylor  <ian@cygnus.com>
@@ -8884,7 +8884,7 @@ Mon Nov 18 14:51:46 1996  Jason Merrill  <jason@yorick.cygnus.com>
 	* dwarf2out.c (DWARF_CIE_INSN_SIZE): New macro.
 	(DWARF_CIE_HEADER_SIZE): Use it.
 	(DWARF_FRAME_RETURN_COLUMN, DWARF_FRAME_REGNUM): New macros.
-	(output_call_frame_info, dwarf2out_begin_function): Use them.  
+	(output_call_frame_info, dwarf2out_begin_function): Use them.
 	For the MIPS, output the first CFA insn in the CIE.
 	* dwarf2.h (enum dwarf_call_reg_usage): Lose.
 	(dwarf_macinfo_record_type): Fix spelling.
@@ -9019,7 +9019,7 @@ Thu Nov 14 23:08:25 1996  Jason Merrill  <jason@yorick.cygnus.com>
 	* toplev.c (main): Support DWARF2_DEBUG.  Add -gdwarf-1, -gdwarf-2
  	options.  Check debug level after choosing type.
 	(debug_{start,end}_source_file, debug_{define,undef}): New functions.
-	(compile_file): Support dwarf2 separately from dwarf1. 
+	(compile_file): Support dwarf2 separately from dwarf1.
 	(rest_of_type_compilation, rest_of_compilation): Likewise.
 	* final.c (final_start_function): Likewise.
 	(final_end_function, final_scan_insn, output_source_line): Likewise.
@@ -9156,7 +9156,7 @@ Tue Nov 12 13:10:01 1996  J.T. Conklin  <jtc@cygnus.com>
 	New macros.
 	(FUNCTION_BOUNDARY): Use value derrived from  m68k_align_funcs
 	instead of constant.
- 
+
 	* m68k.c (output_function_{pro,epi}logue): Fix typo in last change.
 
 Tue Nov 12 09:26:51 1996  Torbjorn Granlund  <tege@wombat.gnu.ai.mit.edu>
@@ -9195,10 +9195,10 @@ Fri Nov  8 20:38:51 1996  Jim Wilson  <wilson@cygnus.com>
 
 Fri Nov  8 20:27:07 1996  Jason Merrill  <jason@yorick.cygnus.com>
 
-	* stor-layout.c (layout_record): Check for VAR_DECL instead 
+	* stor-layout.c (layout_record): Check for VAR_DECL instead
 	of TREE_STATIC.
 
-	* varasm.c (assemble_variable): Do write out DWARF for 
+	* varasm.c (assemble_variable): Do write out DWARF for
 	record-scope variables.
 	* toplev.c (rest_of_type_compilation): Do write out DWARF for
  	record-scope types.
@@ -9219,7 +9219,7 @@ Fri Nov  8 17:40:27 1996  Richard Kenner  (kenner@vlsi1.ultra.nyu.edu)
 
 Fri Nov  8 16:31:31 1996  Stan Cox  <coxs@dg-rtp.dg.com>
 
-	* reg-stack.c (compare_for_stack_reg, subst_stack_regs_pat): 
+	* reg-stack.c (compare_for_stack_reg, subst_stack_regs_pat):
 	Add support for float conditional move.
 
 Thu Nov  7 07:46:07 1996  Richard Kenner  (kenner@vlsi1.ultra.nyu.edu)
@@ -9292,7 +9292,7 @@ Sun Nov  3 15:56:35 1996  Michael Meissner  <meissner@tiktok.cygnus.com>
 
 Fri Nov  1 19:57:13 1996  Jason Merrill  <jason@yorick.cygnus.com>
 
-	* dwarf2out.c (based_loc_descr): Use DBX_REGISTER_NUMBER.  The 
+	* dwarf2out.c (based_loc_descr): Use DBX_REGISTER_NUMBER.  The
 	"frame base" is just the frame or stack reg without an offset.
 	(gen_subprogram_die): Likewise.
 	(dwarfout_begin_function): Use DBX_REGISTER_NUMBER.
@@ -9316,7 +9316,7 @@ Thu Oct 31 21:06:37 1996  Jason Merrill  <jason@yorick.cygnus.com>
 	(EXTRA_PARTS): Don't define.
 
 	* dwarf2out.c (gen_struct_or_union_type_die): Use AT_specification
-	for nested types defined outside their containing class.  Lose 
+	for nested types defined outside their containing class.  Lose
 	is_complete.
 	(gen_enumeration_type_die): Lose is_complete.
 	(gen_type_die): Lose is_complete.
@@ -9375,7 +9375,7 @@ Tue Oct 29 16:21:59 1996  Michael Meissner  <meissner@tiktok.cygnus.com>
 
 Tue Oct 29 15:49:18 1996  Jason Merrill  <jason@yorick.cygnus.com>
 
-	* Makefile.in (stmp-multilib): Pass $flags to s-m-sub in 
+	* Makefile.in (stmp-multilib): Pass $flags to s-m-sub in
 	MULTILIB_CFLAGS.
 	(stmp-multilib-sub): Build EXTRA_MULTILIB_PARTS.
 	($(T)crt*.o): Add $(T), lose stamp-crt rule, use MULTILIB_CFLAGS.
@@ -9403,7 +9403,7 @@ Mon Oct 28 14:26:08 1996  Ian Lance Taylor  <ian@cygnus.com>
 	(expand_compound_operation): Add some optimizations for ZERO_EXTEND.
 
 Mon Oct 28 14:11:20 1996  Gavin Koch  <gavin@cygnus.com>
-        
+
 	* varasm.c (make_decl_rtl,assemble_variable):
 	Allow named sections for uninitialized variables.
 
@@ -9547,7 +9547,7 @@ Wed Oct 23 14:27:43 1996  Mike Stump  <mrs@cygnus.com>
 	* crtstuff.c (__do_global_dtors_aux): Allow finalization code to
 	be run more than once.
 	* libgcc2.c (__do_global_dtors): Ditto.
-	
+
 Wed Oct 23 20:42:23 1996  Joern Rennecke <amylaar@cygnus.co.uk>
 
 	* sh.c (dump_table): handle SFmode and DFmode.
@@ -9579,7 +9579,7 @@ Wed Oct 23 14:16:06 1996  Ian Lance Taylor  <ian@cygnus.com>
 	* reload.c (find_reloads): Handle any unary operator.
 	* recog.c (constrain_operands): Likewise.
 
-	* mips.md: Remove extendsidi2 define_expand. 
+	* mips.md: Remove extendsidi2 define_expand.
 	Rename extendsidi2_internal define_insn to extendsidi2, and add a
 	register to register case.
 
@@ -9662,7 +9662,7 @@ Mon Oct 21 20:22:49 1996  Torbjorn Granlund  <tege@nada.kth.se>
 
 	* expmed.c (emit_store_flag_force): New function.
 	* optabs.c (expand_binop): Use it.
-	
+
 	* expr.c (do_store_flag): Don't check if target is 0 in code
 	emitting store flag as compare-branch.
 
@@ -9831,7 +9831,7 @@ Mon Oct 14 14:19:49 1996  Jason Merrill  <jason@yorick.cygnus.com>
 	(add_data_member_location_attribute): Handle getting a binfo.
 	(add_location_or_const_value_attribute): Handle a decl with no RTL.
 	(add_pure_or_virtual_attribute): Add AT_vtable_elem_location.
-	(add_name_and_src_coords_attributes): Only use DECL_ASSEMBLER_NAME 
+	(add_name_and_src_coords_attributes): Only use DECL_ASSEMBLER_NAME
 	for staticp things.
 	(gen_subprogram_die): Set up AT_inline for abstract decls.
 	(gen_inheritance_die): New fn.
@@ -10025,12 +10025,12 @@ Tue Oct  8 21:54:04 1996  Jason Merrill  <jason@yorick.cygnus.com>
 	(gen_variable_die): Call add_pubname.
 	(add_name_and_src_coords_attributes): Use DECL_ASSEMBLER_NAME for now.
 	(decl_start_label): Renamed from function_start_label.
-	(gen_subprogram_die): If weak or one_only, use a local label for 
+	(gen_subprogram_die): If weak or one_only, use a local label for
 	AT_low_pc.  Call add_pubname and add_arange.
-	(dwarfout_begin_prologue): New fn.  Start up FDE here. 
+	(dwarfout_begin_prologue): New fn.  Start up FDE here.
 	(dwarfout_begin_function): Not here.
 	(get_AT): Split out.  Look in specification and abstract_origin DIEs.
-	(get_AT_low_pc, get_AT_string, get_AT_flag, get_AT_unsigned, 
+	(get_AT_low_pc, get_AT_string, get_AT_flag, get_AT_unsigned,
 	get_AT_hi_pc): Use it.
 	(dwarfout_finish): Variables can produce pubnames, too.
 
@@ -10143,11 +10143,11 @@ Fri Oct  4 10:51:40 1996  Jason Merrill  <jason@yorick.cygnus.com>
 	* dwarf2out.c: Tear out backchaining brain damage.
 	(remove_AT, remove_children): New functions.
 	(modified_type_die): Call gen_type_die instead of backchaining.
-	(gen_subprogram_die): Don't generate a new specification DIE for 
+	(gen_subprogram_die): Don't generate a new specification DIE for
 	member functions defined in the class; use the declaration DIE instead.
 	(gen_struct_or_union_type_die): Support DW_AT_declaration.
 	(gen_type_die): Don't set TREE_ASM_WRITTEN on incomplete structs.
-	(gen_decl_die): Revert previous change; it's much simpler to emit 
+	(gen_decl_die): Revert previous change; it's much simpler to emit
 	the class from rest_of_type_compilation.
 
 Fri Oct  4 09:54:21 1996  J"orn Rennecke <amylaar@cygnus.co.uk>
@@ -10254,10 +10254,10 @@ Tue Oct  1 17:23:32 1996  Jason Merrill  <jason@yorick.cygnus.com>
 	(get_AT_flag): New fn.
 	(add_src_coords_attributes): Split out...
 	(add_name_and_src_coords_attributes): From here.
-	(gen_subprogram_die): Support DW_AT_declaration and 
-	DW_AT_specification. 
+	(gen_subprogram_die): Support DW_AT_declaration and
+	DW_AT_specification.
 
-	(gen_compile_unit_die): Don't emit full pathname for source file; 
+	(gen_compile_unit_die): Don't emit full pathname for source file;
 	comment claimed that SGI required it, but they don't emit it either.
 	Append -g to producer rather than replacing it.
 
@@ -10349,7 +10349,7 @@ Fri Sep 27 13:48:21 1996  Michael Meissner  <meissner@tiktok.cygnus.com>
 Fri Sep 27 12:28:54 1996  Stan Cox  <coxs@dg-rtp.dg.com>
 
         * gcc.c (do_spec_1): Allow -A in %[Spec].
-	
+
 	* i386.h (CPP_CPU_SPEC): New. Added for defining the submodel.
 
 	* i386.c (asm_output_function_prefix, function_prologue,
@@ -10357,10 +10357,10 @@ Fri Sep 27 12:28:54 1996  Stan Cox  <coxs@dg-rtp.dg.com>
 	is enabled) a function, to assist debugging.
 
 	* i386.md (gen_prologue_get_pc): Call the function created above.
-	(divdf3): Added. 
-	
+	(divdf3): Added.
+
 	* i386/dgux.h (CPP_PREDEFINES, CPP_SPEC): Reference CPP_CPU_SPEC.
-	Use svr4 assembler directive .backalign instead of .align.  
+	Use svr4 assembler directive .backalign instead of .align.
 	(align to x bytes if it takes no more than y bytes to do so.)
 
 	* i386/{aix386ng.h,dgux.h} (CPP_SPEC): Use %[cpp_cpu].
@@ -10401,7 +10401,7 @@ Wed Sep 25 21:22:57 1996  Jeffrey A Law  (law@cygnus.com)
 
 	* h8300.c (get_shift_alg): Fix HImode ASHIFTRT by 13 or 14 bits.
 
-Wed Sep 25 18:52:19 1996  Joern Rennecke <amylaar@cygnus.co.uk>	
+Wed Sep 25 18:52:19 1996  Joern Rennecke <amylaar@cygnus.co.uk>
 
 	* sh.md (insv): New pattern.
 
@@ -10421,7 +10421,7 @@ Wed Sep 25 15:32:35 1996  Jim Wilson  <wilson@cygnus.com>
 
 	* expmed.c (store_bit_field): Don't make flag_force_mem disable insv
 	for memory operands.
-	
+
 	* function.c (instantiate_decl): Always store addr back into x.
 
 Tue Sep 24 19:37:00 1996  Jim Wilson  <wilson@cygnus.com>
@@ -10572,7 +10572,7 @@ Sun Sep 22 10:50:03 1996  Scott Christley <scottc@net-community.com>
 	* Create consistent mechanism for memory allocation and release
 	so that garbage collection routines can be easily subsititued
 	for the ANSI standard malloc, realloc, free, etc.
-	* objc/archive.c: Replace use of __objc_xmalloc and free 
+	* objc/archive.c: Replace use of __objc_xmalloc and free
 	with objc_malloc and objc_free.
 	* objc/hash.c: Replace use of __objc_xcalloc and free
 	with objc_calloc and objc_free.
@@ -10647,7 +10647,7 @@ Wed Sep 18 20:51:09 1996  Jason Merrill  <jason@yorick.cygnus.com>
 Wed Sep 18 17:57:55 1996  Patrik Lantto (patrik@opq.se)
 
 	* jump.c (jump_optimize): Insert conditional move after jump
-	insn instead of before. 
+	insn instead of before.
 
 Wed Sep 18 17:33:36 1996  Richard Henderson  <rth@tamu.edu>
 
@@ -10823,7 +10823,7 @@ Tue Sep 10 19:04:19 1996  Jim Wilson  <wilson@cygnus.com>
 	* mips.c (mips_move_2words): Rewrite 32 bit shifts as 16 bit shifts.
 
 Tue Sep 10 10:39:07 1996  Jeffrey A Law  (law@cygnus.com)
-	
+
 	* pa/pa-gas.h (DBX_DEBUGGING_INFO): Remove all #define
 	and #undef statements related to debugging information.
 	* pa/pa-hpux.h, pa-hpux7.h: Likewise
@@ -10886,15 +10886,15 @@ Fri Aug 30 15:40:40 1996  James G. Smith  <jsmith@cygnus.co.uk>
 Fri Aug 30 15:00:06 1996  Stan Cox  <coxs@dg-rtp.dg.com>
 
 	* i386.md: (movsicc,movhicc): Allow reload from memory.
-	
+
 	* i386.c (override_options): Don't thread the prologue if profiling.
 
 Fri Aug 30 15:00:06 1996  James Hawtin  <cgjwh@sunrise.co.uk>
-	
+
 	* i386/t-sol2 (gcrt1.o): Added for profiling Solaris 2
 	* i386/sol2.h (STARTFILE_SPEC): New.
 	* i386/gmon-sol2.c, i386/sol2-gc1.asm: New files.
-	
+
 Thu Aug 29 22:08:03 1996  Jim Wilson  <wilson@cygnus.com>
 
 	* except.c (add_eh_table_entry): Multiply realloc size by sizeof int.
@@ -11190,7 +11190,7 @@ Fri Aug  9 16:05:13 1996  Stan Cox  <coxs@dg-rtp.dg.com>
 	aggregate local variable; use assignment statements instead.
 
 	* i386.h (RTX_COSTS): rtx_cost should pass two parameters.
-	
+
 	* i386/go32.h (ASM_OUTPUT_SECTION_NAME): New.
 
 Fri Aug  9 16:00:11 1996  Jim Wilson  <wilson@cygnus.com>
@@ -11270,11 +11270,11 @@ Fri Aug  2 13:36:42 1996  Stan Cox  <coxs@dg-rtp.dg.com>
 	* i386.c (output_float_compare): fcomi should be followed by the
 	correct conditional jump instead of fcom/pfstsw/and/jne
 	(override_options): Added -mbranch-cost to set BRANCH_COST.
-	
+
 	* i386.md (sgt+1,slt+1,sge+1,sle+1,bgt+1,blt+1,bge+1,ble+1,bleu+4)
 	Added TARGET_CMOVE check for fcomi.
 	(movsicc_1+1,movhicc_1+1): Added to handle the general case.
-	
+
 	* i386.h (i386_branch_cost, i386_branch_cost_string): Added.
 
 Fri Aug  2 11:53:55 1996  Brendan Kehoe  <brendan@lisa.cygnus.com>
@@ -11435,7 +11435,7 @@ Tue Jul 23 16:33:25 1996  Mike Stump  <mrs@cygnus.com>
 	* c-pragma.c, emit-rtl.c, expr.c, final.c, flow.c: Include except.h.
 	* function.c, integrate.c, jump.c, loop.c, objc-act.c: Likewise.
 	* stmt.c, stor-layout.c, toplev.c, tree.c, varasm.c: Likewise.
-	
+
 Tue Jul 23 12:32:54 1996  Michael Meissner  <meissner@tiktok.cygnus.com>
 
 	* rs6000.c (rs6000_replace_regno): Set pic_offset_table_rtx so
@@ -11799,13 +11799,13 @@ Thu Jul  4 11:44:39 1996  Richard Kenner  (kenner@vlsi1.ultra.nyu.edu)
 Wed Jul  3 18:23:17 1996  Stephen L Moshier  (moshier@world.std.com)
 
 	* c-common.c (record_function_format): Define as static.
-	
+
 	* collect2.c (at SUNOS4_SHARED_LIBRARIES): Fix reference to unistd.h.
 
 Wed Jul  3 17:35:20 1996  Gavin Koch  <gavin@cygnus.com>
 
         * c-typeck.c (default_conversion): Add bitfield promotions.
-                
+
 Wed Jul  3 17:09:22 1996  Richard Kenner  (kenner@vlsi1.ultra.nyu.edu)
 
 	* gcc.c (default_compilers): Add null entries for languages we
@@ -11934,7 +11934,7 @@ Fri Jun 28 15:06:05 1996  John F. Carr  <jfc@mit.edu>
 
 Fri Jun 28 14:35:45 1996  J.T. Conklin  <jtc@hippo.cygnus.com>
 
-	* c-decl.c (init_decl_processing): Register __builtin_memset 
+	* c-decl.c (init_decl_processing): Register __builtin_memset
 	and memset as builtin functions.
 	* expr.c (expand_builtin, case BUILTIN_MEMSET): Open code memset
 	where val == 0.
@@ -11951,7 +11951,7 @@ Fri Jun 28 14:10:03 1996  Richard Henderson  <rth@tamu.edu>
 	* alpha.md (movdi): Call it.
 	* expmed.c (expand_mult_highpart): Use op1 not wide_op1 in
 	expansion of mul_highpart.
-	
+
 	* alpha.c (output_{pro,epi}log): Flag_inhibit_size_directive
 	should supress .ent, .end, and accompanying directives.
 	(alpha_output_lineno): Fix polarity on GAS test.
@@ -11964,7 +11964,7 @@ Fri Jun 28 14:10:03 1996  Richard Henderson  <rth@tamu.edu>
 	(alpha-*-linux*): Use elf.h.
 	* crtstuff.c (init_dummy): Only i386-linux (at most)
 	needs ___brk_addr hack.
-	
+
 Thu Jun 27 20:23:30 1996  Jon Buller  (jonb@metronet.com)
 
 	* ns32k.c (split_di): New; from i386.c.
@@ -12069,7 +12069,7 @@ Wed Jun 19 17:50:33 1996  Richard Henderson  <richard@atheist.tamu.edu>
 	* combine.c (move_deaths): New parameter maybe_kill_insn.
 	Don't move note if reg killed by maybe_kill_insn.
 	(try_combine): Pass new arg to move_deaths.
-	
+
 Wed Jun 19 10:44:47 1996  Brendan Kehoe  <brendan@lisa.cygnus.com>
 
 	* toplev.c (flag_keep_static_consts): Define.
@@ -12098,11 +12098,11 @@ Tue Jun 18 06:24:28 1996  Richard Kenner  (kenner@vlsi1.ultra.nyu.edu)
 	* alpha.md: When not involving named pattern, update condition
 	to include alpha_tp != ALPHA_TP_INSN.
 	Don't do float_extend as part of other pattern when ALPHA_TP_INSN.
-	(extendsfsd2): Split into two patterns, depending on 
+	(extendsfsd2): Split into two patterns, depending on
 	value of alpha_tp.
 
 	* mips/iris6.h (ASM_SPEC): Treat -o32 as -32 and -n64 same as -64.
-	* mips.c (override_options): Likewise.	
+	* mips.c (override_options): Likewise.
 
 	* genattrtab.c (fatal): Declare A1 and A2 as char *.
 

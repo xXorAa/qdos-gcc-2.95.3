@@ -47,7 +47,7 @@ struct keydef
     #define MAC         ---   Indicates MAC must be defined with any defn
     #undef MAC          ---   Indicates MAC cannot be defined
 
-These preconditions must be true for a precompiled file to be used.  
+These preconditions must be true for a precompiled file to be used.
 The preconditions section is null terminated. */
 
 /* Then, there is a four byte number (in network byte order) which */
@@ -71,7 +71,7 @@ The preconditions section is null terminated. */
 
   Precondition 1
   Precondition 2
-  . 
+  .
   .
   .
   <NUL>
@@ -81,7 +81,7 @@ The preconditions section is null terminated. */
     Number of keys
       KEYDEF
       Key . . . <NUL>
-      KEYDEF 
+      KEYDEF
       Key . . . <NUL>
       .
       .

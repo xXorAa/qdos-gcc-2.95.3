@@ -546,8 +546,8 @@
 
 ;; Special Registers:
 ;; r0  count
-;; r1  from 
-;; r2  to   
+;; r1  from
+;; r2  to
 ;; r3  match
 
 
@@ -924,7 +924,7 @@
     {
       int i = INTVAL (xops[2]);
 
-      if (i <= 7 && i >= -8) 
+      if (i <= 7 && i >= -8)
         {
           if (i == 0)
 	    {
@@ -967,7 +967,7 @@
         }
       else
         {
-          if (flag_pic) 
+          if (flag_pic)
             return \"addr %a2[%1:b],%0\";
 	  else
 	    return \"addr %c2(%1),%0\";
@@ -1065,7 +1065,7 @@
   "GET_CODE (operands[0]) == CONST_INT"
   "*
 {
-  if (! TARGET_32532 && GET_CODE(operands[0]) == CONST_INT 
+  if (! TARGET_32532 && GET_CODE(operands[0]) == CONST_INT
       && INTVAL(operands[0]) < 64 && INTVAL(operands[0]) > -64)
     return \"adjspb %0\";
   return \"adjspd %0\";
@@ -1676,7 +1676,7 @@
       output_asm_insn (\"movqd %$0,%1\", xops);
       output_asm_insn (\"subcd %3,%1\", xops);
     }
-  return \"\"; 
+  return \"\";
 }")
 
 ;; See note 1
@@ -2029,7 +2029,7 @@
   ""
   "rotb %2,%0")
 
-;;- load or push effective address 
+;;- load or push effective address
 ;; These come after the move, add, and multiply patterns
 ;; because we don't want pushl $1 turned into pushad 1.
 
@@ -2854,19 +2854,19 @@
   [(set (match_operand:SI 0 "general_operand" "=g<")
 	(geu:SI (cc0) (const_int 0)))]
   ""
-  "shsd %0")  
+  "shsd %0")
 
 (define_insn ""
   [(set (match_operand:HI 0 "general_operand" "=g<")
 	(geu:HI (cc0) (const_int 0)))]
   ""
-  "shsw %0")  
+  "shsw %0")
 
 (define_insn ""
   [(set (match_operand:QI 0 "general_operand" "=g<")
 	(geu:QI (cc0) (const_int 0)))]
   ""
-  "shsb %0")  
+  "shsb %0")
 
 (define_insn "sle"
   [(set (match_operand:SI 0 "general_operand" "=g<")
@@ -2908,12 +2908,12 @@
 
 (define_insn ""
   [(set (match_operand:SI 0 "general_operand" "ro")
-	(minus:SI 
-		(plus:SI (ffs:SI (zero_extract:SI 
-				(match_operand:SI 1 "general_operand" "g") 
+	(minus:SI
+		(plus:SI (ffs:SI (zero_extract:SI
+				(match_operand:SI 1 "general_operand" "g")
 				(minus:SI (const_int 32) (match_dup 0))
 				(match_dup 0)))
-			(match_dup 0)) 
+			(match_dup 0))
 		(const_int 1)))]
   ""
   "ffsd %1,%0; bfc 1f; addqd %$-1,%0; 1:")
@@ -2921,12 +2921,12 @@
 (define_expand "ffssi2"
   [(set (match_operand:SI 0 "general_operand" "=g") (const_int 0))
    (set (match_dup 0)
-	(minus:SI 
-		(plus:SI (ffs:SI (zero_extract:SI 
-				(match_operand:SI 1 "general_operand" "g") 
+	(minus:SI
+		(plus:SI (ffs:SI (zero_extract:SI
+				(match_operand:SI 1 "general_operand" "g")
 				(minus:SI (const_int 32) (match_dup 0))
 				(match_dup 0)))
-			(match_dup 0)) 
+			(match_dup 0))
 		(const_int 1)))
    (set (match_dup 0)
 	(plus:SI (match_dup 0)

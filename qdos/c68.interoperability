@@ -65,9 +65,9 @@ typedef struct {double a; double b;} l4;
 l1 f1(l1 x) /* c68: return addr is hidden 1st arg, returns addr of struct */
 {           /* gcc: return word in D0 */
   printf("%p\n",&x);
-  return x;   
+  return x;
 }
-l2 f2(l2 x) 
+l2 f2(l2 x)
 {           /* gcc: return long in D0 */
   printf("%p\n",&x);
   return x;

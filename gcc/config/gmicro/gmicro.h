@@ -360,7 +360,7 @@ extern enum reg_class regno_reg_class[];
 
 #define INDEX_REG_CLASS GENERAL_REGS
 #define BASE_REG_CLASS  GENERAL_REGS
-  
+
 /* Get reg_class from a letter such as appears in the machine description.
    We do a trick here to modify the effective constraints on the
    machine description; we zorch the constraint letters that aren't
@@ -379,7 +379,7 @@ extern enum reg_class regno_reg_class[];
    C is the letter, and VALUE is a constant value.
    Return 1 if VALUE is in the range specified by C.
 
-   For the Gmicro, all immediate value optimizations are done 
+   For the Gmicro, all immediate value optimizations are done
    by assembler, so no machine dependent definition is necessary ??? */
 
 /* #define CONST_OK_FOR_LETTER_P(VALUE, C) ((C) == 'I') */
@@ -446,7 +446,7 @@ extern enum reg_class regno_reg_class[];
    FUNDECL is the declaration node of the function (as a tree),
    FUNTYPE is the data type of the function (as a tree),
    or for a library call it is an identifier node for the subroutine name.
-   SIZE is the number of bytes of arguments passed on the stack. 
+   SIZE is the number of bytes of arguments passed on the stack.
 
    On the Gmicro, the EXITD insn may be used to pop them if the number
    of args is fixed, but if the number is variable then the caller must pop
@@ -1527,7 +1527,7 @@ do { union { double d; long l[2];} tem;		\
    'b' for branch target label.
    '-' for an operand pushing on the stack.
    '+' for an operand pushing on the stack.
-   '#' for an immediate operand prefix 
+   '#' for an immediate operand prefix
 */
 
 #define PRINT_OPERAND_PUNCT_VALID_P(CODE)	\

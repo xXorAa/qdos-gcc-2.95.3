@@ -26,7 +26,7 @@ int
 open (const char *filename, int oflag, int pmode)
 {
   return _open (filename, oflag, pmode);
-} 
+}
 
 int
 read (int handle, void *buffer, unsigned int count)

@@ -113,7 +113,7 @@ safe_insn_src_p (op, mode)
 }
 
 /* Return 1 if REG is clobbered in IN.
-   Return 2 if REG is used in IN. 
+   Return 2 if REG is used in IN.
    Return 3 if REG is both used and clobbered in IN.
    Return 0 if neither.  */
 

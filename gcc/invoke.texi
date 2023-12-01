@@ -104,15 +104,15 @@ in the following sections.
 @xref{C++ Dialect Options,,Options Controlling C++ Dialect}.
 @smallexample
 -fno-access-control  -fcheck-new  -fconserve-space  -fdollars-in-identifiers
--fno-elide-constructors  -fexternal-templates  -ffor-scope  
+-fno-elide-constructors  -fexternal-templates  -ffor-scope
 -fno-for-scope  -fno-gnu-keywords  -fguiding-decls  -fhandle-signatures
 -fhonor-std -fhuge-objects  -fno-implicit-templates  -finit-priority
--fno-implement-inlines -fname-mangling-version-@var{n}  -fno-default-inline  
+-fno-implement-inlines -fname-mangling-version-@var{n}  -fno-default-inline
 -foperator-names  -fno-optional-diags  -fpermissive -frepo  -fstrict-prototype
 -fsquangle  -ftemplate-depth-@var{n}  -fthis-is-variable  -fvtable-thunks
--nostdinc++  -Wctor-dtor-privacy -Wno-deprecated -Weffc++  
--Wno-non-template-friend 
--Wnon-virtual-dtor  -Wold-style-cast  -Woverloaded-virtual  
+-nostdinc++  -Wctor-dtor-privacy -Wno-deprecated -Weffc++
+-Wno-non-template-friend
+-Wnon-virtual-dtor  -Wold-style-cast  -Woverloaded-virtual
 -Wno-pmf-conversions  -Wreorder  -Wsign-promo  -Wsynth
 @end smallexample
 
@@ -123,15 +123,15 @@ in the following sections.
 -w  -W  -Wall  -Waggregate-return  -Wbad-function-cast
 -Wcast-align  -Wcast-qual  -Wchar-subscripts  -Wcomment
 -Wconversion  -Werror  -Wformat
--Wid-clash-@var{len}  -Wimplicit -Wimplicit-int 
+-Wid-clash-@var{len}  -Wimplicit -Wimplicit-int
 -Wimplicit-function-declaration  -Wimport
 -Werror-implicit-function-declaration  -Winline
 -Wlarger-than-@var{len}  -Wlong-long
 -Wmain  -Wmissing-declarations  -Wmissing-noreturn
--Wmissing-prototypes  -Wmultichar  -Wnested-externs  -Wno-import  
+-Wmissing-prototypes  -Wmultichar  -Wnested-externs  -Wno-import
 -Wparentheses -Wpointer-arith  -Wredundant-decls
--Wreturn-type -Wshadow  -Wsign-compare  -Wstrict-prototypes  
--Wswitch  -Wtraditional  
+-Wreturn-type -Wshadow  -Wsign-compare  -Wstrict-prototypes
+-Wswitch  -Wtraditional
 -Wtrigraphs -Wundef  -Wuninitialized  -Wunused  -Wwrite-strings
 -Wunknown-pragmas
 @end smallexample
@@ -154,7 +154,7 @@ in the following sections.
 -fcaller-saves  -fcse-follow-jumps  -fcse-skip-blocks
 -fdelayed-branch   -fexpensive-optimizations
 -ffast-math  -ffloat-store  -fforce-addr  -fforce-mem
--fdata-sections -ffunction-sections  -fgcse 
+-fdata-sections -ffunction-sections  -fgcse
 -finline-functions -finline-limit-@var{n} -fkeep-inline-functions
 -fno-default-inline -fno-defer-pop  -fno-function-cse
 -fno-inline  -fno-peephole  -fomit-frame-pointer -fregmove
@@ -212,8 +212,8 @@ in the following sections.
 @smallexample
 @emph{M680x0 Options}
 -m68000  -m68020  -m68020-40  -m68020-60  -m68030  -m68040
--m68060  -mcpu32 -m5200  -m68881  -mbitfield  -mc68000  -mc68020  
--mfpa -mnobitfield  -mrtd  -mshort  -msoft-float  
+-m68060  -mcpu32 -m5200  -m68881  -mbitfield  -mc68000  -mc68020
+-mfpa -mnobitfield  -mrtd  -mshort  -msoft-float
 -malign-int
 
 @emph{VAX Options}
@@ -259,7 +259,7 @@ in the following sections.
 -mshort-load-bytes -mno-short-load-bytes -mshort-load-words -mno-short-load-words
 -msoft-float -mhard-float -mfpe
 -mthumb-interwork -mno-thumb-interwork
--mcpu= -march= -mfpe= 
+-mcpu= -march= -mfpe=
 -mstructure-size-boundary=
 -mbsd -mxopen -mno-symrename
 -mabort-on-noreturn
@@ -347,13 +347,13 @@ in the following sections.
 
 @emph{HPPA Options}
 -march=@var{architecture type}
--mbig-switch  -mdisable-fpregs  -mdisable-indexing  
--mfast-indirect-calls -mgas  -mjump-in-delay  
+-mbig-switch  -mdisable-fpregs  -mdisable-indexing
+-mfast-indirect-calls -mgas  -mjump-in-delay
 -mlong-load-store  -mno-big-switch  -mno-disable-fpregs
 -mno-disable-indexing  -mno-fast-indirect-calls  -mno-gas
--mno-jump-in-delay  -mno-long-load-store  
--mno-portable-runtime  -mno-soft-float  -mno-space  
--mno-space-regs  -msoft-float  -mpa-risc-1-0  
+-mno-jump-in-delay  -mno-long-load-store
+-mno-portable-runtime  -mno-soft-float  -mno-space
+-mno-space-regs  -msoft-float  -mpa-risc-1-0
 -mpa-risc-1-1  -mpa-risc-2-0 -mportable-runtime
 -mschedule=@var{cpu type}  -mspace  -mspace-regs
 
@@ -641,7 +641,7 @@ C (when compiling C code), or of ANSI standard C++ (when compiling C++ code),
 such as the @code{asm} and @code{typeof} keywords, and
 predefined macros such as @code{unix} and @code{vax} that identify the
 type of system you are using.  It also enables the undesirable and
-rarely used ANSI trigraph feature.  For the C compiler, 
+rarely used ANSI trigraph feature.  For the C compiler,
 it disables recognition of C++ style @samp{//} comments as well as
 the @code{inline} keyword.  For the C++ compiler,
 @samp{-foperator-names} is enabled as well.
@@ -670,7 +670,7 @@ The functions @code{alloca}, @code{abort}, @code{exit}, and
 
 @item -fstd=
 Determine the language standard.  A value for this option must be provided;
-possible values are 
+possible values are
 
 @itemize @minus
 @item iso9899:1990
@@ -1107,7 +1107,7 @@ errors if these functions are not inlined everywhere they are called.
 @item -fname-mangling-version-@var{n}
 Control the way in which names are mangled.  Version 0 is compatible
 with versions of g++ before 2.8.  Version 1 is the default.  Version 1
-will allow correct mangling of function templates.  For example, 
+will allow correct mangling of function templates.  For example,
 version 0 mangling does not mangle foo<int, double> and foo<int, char>
 given this declaration:
 
@@ -1438,7 +1438,7 @@ arguments, two, or three arguments of appropriate types.
 Warn if a multicharacter constant (@samp{'FOOF'}) is used.  Usually they
 indicate a typo in the user's code, as they have implementation-defined
 values, and should not be used in portable code.
-  
+
 @item -Wparentheses
 Warn if parentheses are omitted in certain contexts, such
 as when there is an assignment in a context where a truth value
@@ -2101,7 +2101,7 @@ Dump after purging ADDRESSOF, to @file{@var{file}.addressof}.
 Dump after flow analysis, to @file{@var{file}.flow}.
 @item g
 Dump after global register allocation, to @file{@var{file}.greg}.
-@item G      
+@item G
 Dump after GCSE, to @file{@var{file}.gcse}.
 @item j
 Dump after first jump optimization, to @file{@var{file}.jump}.
@@ -2115,7 +2115,7 @@ Dump after local register allocation, to @file{@var{file}.lreg}.
 Dump after loop optimization, to @file{@var{file}.loop}.
 @item M
 Dump after performing the machine dependent reorganisation pass, to
-@file{@var{file}.mach}. 
+@file{@var{file}.mach}.
 @item N
 Dump after the register move pass, to @file{@var{file}.regmove}.
 @item r
@@ -2124,12 +2124,12 @@ Dump after RTL generation, to @file{@var{file}.rtl}.
 Dump after the second instruction scheduling pass, to @file{@var{file}.sched2}.
 @item s
 Dump after CSE (including the jump optimization that sometimes follows
-CSE), to @file{@var{file}.cse}. 
+CSE), to @file{@var{file}.cse}.
 @item S
 Dump after the first instruction scheduling pass, to @file{@var{file}.sched}.
 @item t
 Dump after the second CSE pass (including the jump optimization that
-sometimes follows CSE), to @file{@var{file}.cse2}. 
+sometimes follows CSE), to @file{@var{file}.cse2}.
 @item a
 Produce all the dumps listed above.
 @item m
@@ -2348,13 +2348,13 @@ assembler code in its own right.
 @item -finline-limit-@var{n}
 By default, gcc limits the size of functions that can be inlined.  This flag
 allows the control of this limit for functions that are explicitly marked as
-inline (ie marked with the inline keyword or defined within the class 
-definition in c++).  @var{n} is the size of functions that can be inlined in 
+inline (ie marked with the inline keyword or defined within the class
+definition in c++).  @var{n} is the size of functions that can be inlined in
 number of pseudo instructions (not counting parameter handling).  The default
 value of n is 10000.  Increasing this value can result in more inlined code at
 the cost of compilation time and memory consumption.  Decreasing usually makes
-the compilation faster and less code will be inlined (which presumably 
-means slower programs).  This option is particularly useful for programs that 
+the compilation faster and less code will be inlined (which presumably
+means slower programs).  This option is particularly useful for programs that
 use inlining heavily such as those based on recursive templates with c++.
 
 @emph{Note:} pseudo instruction represents, in this particular context, an
@@ -2573,11 +2573,11 @@ object of one type is assumed never to reside at the same address as an
 object of a different type, unless the types are almost the same.  For
 example, an @code{unsigned int} can alias an @code{int}, but not a
 @code{void*} or a @code{double}.  A character type may alias any other
-type.  
+type.
 
 Pay special attention to code like this:
 @example
-union a_union @{ 
+union a_union @{
   int i;
   double d;
 @};
@@ -2594,7 +2594,7 @@ recently written to (called ``type-punning'') is common.  Even with
 is accessed through the union type.  So, the code above will work as
 expected.  However, this code might not:
 @example
-int f() @{ 
+int f() @{
   a_union t;
   int* ip;
   t.d = 3.0;
@@ -3225,7 +3225,7 @@ CPU32 or CPU32+ core, including the 68330, 68331, 68332, 68333, 68334,
 Generate output for a 520X "coldfire" family cpu.  This is the default
 when the compiler is configured for 520X-based systems.
 
-Use this option for microcontroller with a 5200 core, including 
+Use this option for microcontroller with a 5200 core, including
 the MCF5202, MCF5203, MCF5204 and MCF5202.
 
 
@@ -3290,7 +3290,7 @@ The @code{rtd} instruction is supported by the 68010, 68020, 68030,
 
 @item -malign-int
 @itemx -mno-align-int
-Control whether GCC aligns @code{int}, @code{long}, @code{long long}, 
+Control whether GCC aligns @code{int}, @code{long}, @code{long long},
 @code{float}, @code{double}, and @code{long double} variables on a 32-bit
 boundary (@samp{-malign-int}) or a 16-bit boundary (@samp{-mno-align-int}).
 Aligning variables on 32-bit boundaries produces code that runs somewhat
@@ -3958,14 +3958,14 @@ with this option.
 @kindex -mno-tpcs-frame
 Generate a stack frame that is compliant with the Thumb Procedure Call
 Standard for all non-leaf functions.  (A leaf function is one that does
-not call any other functions).  The default is @samp{-mno-apcs-frame}. 
+not call any other functions).  The default is @samp{-mno-apcs-frame}.
 
 @item -mtpcs-leaf-frame
 @kindex -mtpcs-leaf-frame
 @kindex -mno-tpcs-leaf-frame
 Generate a stack frame that is compliant with the Thumb Procedure Call
 Standard for all leaf functions.  (A leaf function is one that does
-not call any other functions).  The default is @samp{-mno-apcs-leaf-frame}. 
+not call any other functions).  The default is @samp{-mno-apcs-leaf-frame}.
 
 @item -mlittle-endian
 @kindex -mlittle-endian
@@ -4002,7 +4002,7 @@ Indicate to the linker that it should perform a relaxation optimization pass
 to shorten branches, calls and absolute memory addresses.  This option only
 has an effect when used on the command line for the final link step.
 
-This option makes symbolic debugging impossible. 
+This option makes symbolic debugging impossible.
 @end table
 
 @node MN10300 Options
@@ -4024,7 +4024,7 @@ Indicate to the linker that it should perform a relaxation optimization pass
 to shorten branches, calls and absolute memory addresses.  This option only
 has an effect when used on the command line for the final link step.
 
-This option makes symbolic debugging impossible. 
+This option makes symbolic debugging impossible.
 @end table
 
 
@@ -4433,18 +4433,18 @@ option; @samp{-mcpu=601} enables both the @samp{-mpower} and
 @samp{-mpower} and @samp{-mpowerpc} options.@refill
 @end ignore
 @c            changed paragraph
-Specifying any of the following options: 
+Specifying any of the following options:
 @samp{-mcpu=rios1}, @samp{-mcpu=rios2}, @samp{-mcpu=rsc},
-@samp{-mcpu=power}, or @samp{-mcpu=power2}  
-enables the @samp{-mpower} option and disables the @samp{-mpowerpc} option; 
+@samp{-mcpu=power}, or @samp{-mcpu=power2}
+enables the @samp{-mpower} option and disables the @samp{-mpowerpc} option;
 @samp{-mcpu=601} enables both the @samp{-mpower} and @samp{-mpowerpc} options.
 All of @samp{-mcpu=602}, @samp{-mcpu=603}, @samp{-mcpu=603e},
-@samp{-mcpu=604}, @samp{-mcpu=620}, 
-enable the @samp{-mpowerpc} option and disable the @samp{-mpower} option.  
-Exactly similarly, all of @samp{-mcpu=403},
-@samp{-mcpu=505}, @samp{-mcpu=821}, @samp{-mcpu=860} and @samp{-mcpu=powerpc} 
+@samp{-mcpu=604}, @samp{-mcpu=620},
 enable the @samp{-mpowerpc} option and disable the @samp{-mpower} option.
-@samp{-mcpu=common} disables both the 
+Exactly similarly, all of @samp{-mcpu=403},
+@samp{-mcpu=505}, @samp{-mcpu=821}, @samp{-mcpu=860} and @samp{-mcpu=powerpc}
+enable the @samp{-mpowerpc} option and disable the @samp{-mpower} option.
+@samp{-mcpu=common} disables both the
 @samp{-mpower} and @samp{-mpowerpc} options.@refill
 @c             end changes to prevent overfull hboxes
 
@@ -5100,7 +5100,7 @@ opposed to the Intel ones.
 
 @item -march=@var{cpu type}
 Generate instructions for the machine type @var{cpu type}.  The choices
-for @var{cpu type} are the same as for @samp{-mcpu}.  Moreover, 
+for @var{cpu type} are the same as for @samp{-mcpu}.  Moreover,
 specifying @samp{-march=@var{cpu type}} implies @samp{-mcpu=@var{cpu type}}.
 
 @item -m386
@@ -5247,7 +5247,7 @@ Streaming SIMD Extention (SSE) data type @code{__m128} suffers similar
 penalties if it is not 16 byte aligned.
 
 To ensure proper alignment of this values on the stack, the stack boundary
-must be as aligned as that required by any value stored on the stack. 
+must be as aligned as that required by any value stored on the stack.
 Further, every function must be generated such that it keeps the stack
 aligned.  Thus calling a function compiled with a higher preferred
 stack boundary from a function compiled with a lower preferred stack
@@ -5278,7 +5278,7 @@ other way around.
 
 PA 2.0 support currently requires gas snapshot 19990413 or later.  The
 next release of binutils (current is 2.9.1) will probably contain PA 2.0
-support.  
+support.
 
 @item -mpa-risc-1-0
 @itemx -mpa-risc-1-1
@@ -5336,8 +5336,8 @@ Enable the use of assembler directives only GAS understands.
 
 @item -mschedule=@var{cpu type}
 Schedule code according to the constraints for the machine type
-@var{cpu type}.  The choices for @var{cpu type} are @samp{700} 
-@samp{7100}, @samp{7100LC}, @samp{7200}, and @samp{8000}.  Refer to 
+@var{cpu type}.  The choices for @var{cpu type} are @samp{700}
+@samp{7100}, @samp{7100LC}, @samp{7200}, and @samp{8000}.  Refer to
 @file{/usr/lib/sched.models} on an HP-UX system to determine the
 proper scheduling option for your machine.
 
@@ -5516,8 +5516,8 @@ IEEE @var{inexact flag}.  Turning on this option causes the generated
 code to implement fully-compliant IEEE math.  The option is a shorthand
 for @samp{-D_IEEE_FP -D_IEEE_FP_INEXACT} plus the three following:
 @samp{-mieee-conformant},
-@samp{-mfp-trap-mode=sui}, 
-and @samp{-mtrap-precision=i}.  
+@samp{-mfp-trap-mode=sui},
+and @samp{-mtrap-precision=i}.
 On some Alpha implementations the resulting code may execute
 significantly slower than the code generated by default.  Since there
 is very little code that depends on the @var{inexact flag}, you should
@@ -5829,7 +5829,7 @@ memory access.
 @item -mbk
 @itemx -mno-bk
 Allow (disallow) allocation of general integer operands into the block
-count register BK. 
+count register BK.
 
 @item -mdb
 @itemx -mno-db
@@ -5969,7 +5969,7 @@ area can hold up to 64 kilobytes.
 @item -mzda=@var{n}
 Put static or global variables whose size is @var{n} bytes or less into
 the first 32 kilobytes of memory.
- 
+
 @item -mv850
 Specify that the target processor is the V850.
 
@@ -6149,8 +6149,8 @@ it.
 @table @code
 @item -fexceptions
 Enable exception handling. Generates extra code needed to propagate
-exceptions.  For some targets, this implies generation of frame unwind 
-information for all functions. This can produce significant data size 
+exceptions.  For some targets, this implies generation of frame unwind
+information for all functions. This can produce significant data size
 overhead, although it does not affect execution.
 If you do not specify this option, it is enabled by
 default for languages like C++ which normally require exception handling,

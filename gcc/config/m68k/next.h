@@ -189,7 +189,7 @@ Boston, MA 02111-1307, USA.  */
   emit_library_call(gen_rtx(SYMBOL_REF, Pmode, "__enable_execute_stack"), \
 		    0, VOIDmode, 1, memory_address(SImode, (TRAMP)), Pmode)
 
-/* A C expression used to clear the instruction cache from 
+/* A C expression used to clear the instruction cache from
    address BEG to address END.   On NeXTSTEP this i a system trap. */
 
 #define CLEAR_INSN_CACHE(BEG, END)   \

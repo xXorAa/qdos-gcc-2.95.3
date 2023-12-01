@@ -140,40 +140,40 @@
     (@majorheading . @majorheading)
     (@chapheading . @chapheading)
     (@appendix . @appendix)
-    
+
     (@section . @chapter)
     (@unnumberedsec . @unnumbered)
     (@heading . @chapheading)
     (@appendixsec . @appendix)
-    
+
     (@subsection . @section)
     (@unnumberedsubsec . @unnumberedsec)
     (@subheading . @heading)
     (@appendixsubsec . @appendixsec)
-    
+
     (@subsubsection . @subsection)
     (@unnumberedsubsubsec . @unnumberedsubsec)
     (@subsubheading . @subheading)
     (@appendixsubsubsec . @appendixsubsec)))
 
 (setq texinfo-lowersections-alist
-  '((@chapter . @section)  
+  '((@chapter . @section)
     (@unnumbered . @unnumberedsec)
     (@centerchap . @unnumberedsec)
     (@majorheading . @heading)
     (@chapheading . @heading)
     (@appendix . @appendixsec)
-    
+
     (@section . @subsection)
     (@unnumberedsec . @unnumberedsubsec)
     (@heading . @subheading)
     (@appendixsec . @appendixsubsec)
-    
+
     (@subsection . @subsubsection)
     (@unnumberedsubsec . @unnumberedsubsubsec)
     (@subheading . @subsubheading)
     (@appendixsubsec . @appendixsubsubsec)
-    
+
     (@subsubsection . @subsubsection) ; Cannot go lower.
     (@unnumberedsubsubsec . @unnumberedsubsubsec)
     (@subsubheading . @subsubheading)

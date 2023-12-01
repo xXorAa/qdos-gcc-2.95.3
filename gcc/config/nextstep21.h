@@ -31,7 +31,7 @@ Boston, MA 02111-1307, USA.  */
 #define DEFAULT_GDB_EXTENSIONS 0
 
 /* we need the call to __main to start all global destructors and constructors
-   correctly, so undef INIT_SECTION_ASM_OP, (see libgcc2.c line 1965) 
+   correctly, so undef INIT_SECTION_ASM_OP, (see libgcc2.c line 1965)
    and define INVOKE_main */
 #undef	INIT_SECTION_ASM_OP
 #define INVOKE__main
@@ -48,7 +48,7 @@ Boston, MA 02111-1307, USA.  */
       {								\
 	ASM_OUTPUT_ALIGN (FILE, 1);				\
       }								\
-  } while (0) 
+  } while (0)
 /* deleted: destructor_section ();				\ */
 /* deleted: constructor_section ();				\ */
 

@@ -24,8 +24,8 @@ Boston, MA 02111-1307, USA.  */
 extern int target_flags;
 
 /* Convex machine-specific flags
-   -mc1		      target instruction set, libraries, scheduling 
-   -mc2	
+   -mc1		      target instruction set, libraries, scheduling
+   -mc2
    -mc32
    -mc34
    -mc38
@@ -600,14 +600,14 @@ extern int target_flags;
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 /* Convex has classes A (address) and S (scalar).
    A is further divided into SP_REGS (stack pointer) and INDEX_REGS.
    SI_REGS is S_REGS + INDEX_REGS -- all the regs except SP. */
 
 enum reg_class {
   NO_REGS, S_REGS, INDEX_REGS, SP_REGS, A_REGS, SI_REGS,
-  ALL_REGS, LIM_REG_CLASSES 
+  ALL_REGS, LIM_REG_CLASSES
 };
 
 #define N_REG_CLASSES (int) LIM_REG_CLASSES
@@ -975,7 +975,7 @@ enum reg_class {
 
    For Convex, valid addresses are
        indirectable or (MEM indirectable)
-   where indirectable is 
+   where indirectable is
        const, reg, (PLUS reg const)
 
    We don't use indirection since with insn scheduling, load + indexing
@@ -1225,11 +1225,11 @@ extern double atof();
 
 /* Output before writable data.  */
 
-#define DATA_SECTION_ASM_OP (current_section_is_text = 0, ".data") 
+#define DATA_SECTION_ASM_OP (current_section_is_text = 0, ".data")
 
 /* Output before uninitialized data.  */
 
-#define BSS_SECTION_ASM_OP (current_section_is_text = 0, ".bss") 
+#define BSS_SECTION_ASM_OP (current_section_is_text = 0, ".bss")
 
 /* This is how to output an assembler line
    that says to advance the location counter
@@ -1399,7 +1399,7 @@ extern double atof();
 #define ASM_OUTPUT_ADDR_VEC_ELT(FILE, VALUE)  \
   fprintf (FILE, "\tds.w L%d\n", VALUE)
 
-/* This is how to output an element of a case-vector that is relative.  
+/* This is how to output an element of a case-vector that is relative.
    (not used on Convex) */
 
 #define ASM_OUTPUT_ADDR_DIFF_ELT(FILE, BODY, VALUE, REL)  \

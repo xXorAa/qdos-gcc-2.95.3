@@ -25,7 +25,7 @@ Boston, MA 02111-1307, USA.  */
 #include "m68k/m68kelf.h"
 #include "elfos.h"
 /* m68k/m68kemb.h sets some macros in ways that override the svr4 abi.  */
-#include "m68k/m68kemb.h" 
+#include "m68k/m68kemb.h"
 
 /* We need to override the default specs from elfos.h.  This suppresses the
    loading of crt0.o by gcc's default linker spec.  For embedded targets crt0

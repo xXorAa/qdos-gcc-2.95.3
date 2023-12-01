@@ -4,7 +4,7 @@
    Contributed by Ron Guilmette (rfg@monkeys.com).
    Renamed and changed to suit Dynix/ptx v4 and later.
    Modified by Tim Wright (timw@sequent.com).
-  
+
 This file is part of GNU CC.
 
 GNU CC is free software; you can redistribute it and/or modify
@@ -67,7 +67,7 @@ Boston, MA 02111-1307, USA.
 /* Provide an ASM_SPEC appropriate for svr4.  Here we try to support as
    many of the specialized svr4 assembler options as seems reasonable,
    given that there are certain options which we can't (or shouldn't)
-   support directly due to the fact that they conflict with other options 
+   support directly due to the fact that they conflict with other options
    for other svr4 tools (e.g. ld) or with other options for GCC itself.
    For example, we don't support the -o (output file) or -R (remove
    input file) options because GCC already handles these things.  We

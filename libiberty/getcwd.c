@@ -10,7 +10,7 @@ SYNOPSIS
 
 DESCRIPTION
 	Copy the absolute pathname for the current working directory into
-	the supplied buffer and return a pointer to the buffer.  If the 
+	the supplied buffer and return a pointer to the buffer.  If the
 	current directory's path doesn't fit in LEN characters, the result
 	is NULL and errno is set.
 

@@ -61,10 +61,10 @@ Boston, MA 02111-1307, USA.  */
    lc_p or -ggdb to LDFLAGS at the link time, respectively.  */
 #define LIB_SPEC \
 "%{mieee-fp:-lieee} %{p:-lgmon} %{pg:-lgmon} %{!ggdb:-lc} %{ggdb:-lg}"
-#else    
+#else
 #define LIB_SPEC \
 "%{mieee-fp:-lieee} %{p:-lgmon -lc_p} %{pg:-lgmon -lc_p} \
- %{!p:%{!pg:%{!g*:-lc} %{g*:-lg -static}}}" 
+ %{!p:%{!pg:%{!g*:-lc} %{g*:-lg -static}}}"
 #endif
 
 

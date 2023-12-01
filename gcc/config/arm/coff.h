@@ -2,7 +2,7 @@
    for ARM with COFF obj format.
    Copyright (C) 1995, 1996, 1997, 1998 Free Software Foundation, Inc.
    Contributed by Doug Evans (dje@cygnus.com).
-   
+
 This file is part of GNU CC.
 
 GNU CC is free software; you can redistribute it and/or modify
@@ -195,7 +195,7 @@ do {						\
 #undef DO_GLOBAL_CTORS_BODY
 #undef DO_GLOBAL_DTORS_BODY
 
-/* If you don't define HAVE_ATEXIT, and the object file format/OS/whatever 
+/* If you don't define HAVE_ATEXIT, and the object file format/OS/whatever
    does not support constructors/destructors, then gcc implements destructors
    by defining its own exit function, which calls the destructors.  This gcc
    exit function overrides the C library's exit function, and this can cause

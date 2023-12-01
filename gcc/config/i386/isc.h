@@ -11,7 +11,7 @@
    %{p:-L/lib/libp} %{pg:-L/lib/libp}}}}\
    %{shlib:%{Xp:crtp1.o%s}%{posix:crtp1.o%s}%{!posix:%{!Xp:crt1.o%s}}}\
    crtbegin.o%s"
-  
+
 #define ENDFILE_SPEC "crtend.o%s crtn.o%s"
 
 /* Library spec */

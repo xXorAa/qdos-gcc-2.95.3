@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 
 as68="/usr/local/qdos-gcc/bin/as68"
@@ -21,13 +21,13 @@ for i in $cmdline ; do
 			obj=" -o $1"
 			;;
 		-gwass)
-		        echo 1>&2 "GWass not yet supported"  
+		        echo 1>&2 "GWass not yet supported"
 		        ;;
 		-*)
 			opt="$opt$1 "
 			;;
 		*)
-			if [ "$1" != "" ] ; then 
+			if [ "$1" != "" ] ; then
 				if [ "$src" == "" ] ; then
 					src="$1"
 				else

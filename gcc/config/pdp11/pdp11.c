@@ -38,14 +38,14 @@ Boston, MA 02111-1307, USA.  */
 #define CPU_REG_P(X)	((X)>=0 && (X)<8)
 */
 
-/* this is the current value returned by the macro FIRST_PARM_OFFSET 
+/* this is the current value returned by the macro FIRST_PARM_OFFSET
    defined in tm.h */
 int current_first_parm_offset;
 
 /* This is where the condition code register lives.  */
 /* rtx cc0_reg_rtx; - no longer needed? */
 
-static rtx find_addr_reg (); 
+static rtx find_addr_reg ();
 
 /* Nonzero if OP is a valid second operand for an arithmetic insn.  */
 
@@ -65,7 +65,7 @@ const_immediate_operand (op, mode)
   return (GET_CODE (op) == CONST_INT);
 }
 
-int 
+int
 immediate15_operand (op, mode)
      rtx op;
      enum machine_mode mode;
@@ -78,8 +78,8 @@ expand_shift_operand (op, mode)
   rtx op;
   enum machine_mode mode;
 {
-    return (GET_CODE (op) == CONST_INT 
-	    && abs (INTVAL(op)) > 1 
+    return (GET_CODE (op) == CONST_INT
+	    && abs (INTVAL(op)) > 1
 	    && abs (INTVAL(op)) <= 4);
 }
 
@@ -89,22 +89,22 @@ expand_shift_operand (op, mode)
    Refer to the array `regs_ever_live' to determine which registers
    to save; `regs_ever_live[I]' is nonzero if register number I
    is ever used in the function.  This macro is responsible for
-   knowing which registers should not be saved even if used.  
+   knowing which registers should not be saved even if used.
 */
 
-void 
+void
 output_function_prologue(stream, size)
   FILE *stream;
   int size;
-{							       
-    int fsize = ((size) + 1) & ~1;      				
+{
+    int fsize = ((size) + 1) & ~1;
     int regno;
 
     int via_ac = -1;
-    
-    fprintf (stream, "\n\t;	/* function prologue %s*/\n", current_function_name);		
 
-    /* if we are outputting code for main, 
+    fprintf (stream, "\n\t;	/* function prologue %s*/\n", current_function_name);
+
+    /* if we are outputting code for main,
        the switch FPU to right mode if TARGET_FPU */
     if ( (strcmp ("main", current_function_name) == 0)
 	 && TARGET_FPU)
@@ -113,43 +113,43 @@ output_function_prologue(stream, size)
 	fprintf(stream, "\tsetd\n");
 	fprintf(stream, "\tseti\n\n");
     }
-    
-    if (frame_pointer_needed) 					
-    {								
-	fprintf(stream, "\tmov fp, -(sp)\n");			
-	fprintf(stream, "\tmov sp, fp\n");				
-    }								
-    else 								
-    {								
+
+    if (frame_pointer_needed)
+    {
+	fprintf(stream, "\tmov fp, -(sp)\n");
+	fprintf(stream, "\tmov sp, fp\n");
+    }
+    else
+    {
 	/* DON'T SAVE FP */
-    }								
+    }
 
     /* make frame */
-    if (fsize)							
-	fprintf (stream, "\tsub $%o, sp\n", fsize);			
+    if (fsize)
+	fprintf (stream, "\tsub $%o, sp\n", fsize);
 
     /* save CPU registers  */
-    for (regno = 0; regno < 8; regno++)				
-	if (regs_ever_live[regno] && ! call_used_regs[regno])	
-	    if (! ((regno == FRAME_POINTER_REGNUM)			
-		   && frame_pointer_needed))				
-		fprintf (stream, "\tmov %s, -(sp)\n", reg_names[regno]);	
+    for (regno = 0; regno < 8; regno++)
+	if (regs_ever_live[regno] && ! call_used_regs[regno])
+	    if (! ((regno == FRAME_POINTER_REGNUM)
+		   && frame_pointer_needed))
+		fprintf (stream, "\tmov %s, -(sp)\n", reg_names[regno]);
     /* fpu regs saving */
-    
+
     /* via_ac specifies the ac to use for saving ac4, ac5 */
     via_ac = -1;
-    
-    for (regno = 8; regno < FIRST_PSEUDO_REGISTER ; regno++) 
+
+    for (regno = 8; regno < FIRST_PSEUDO_REGISTER ; regno++)
     {
-	/* ac0 - ac3 */						
+	/* ac0 - ac3 */
 	if (LOAD_FPU_REG_P(regno)
-	    && regs_ever_live[regno] 
+	    && regs_ever_live[regno]
 	    && ! call_used_regs[regno])
 	{
 	    fprintf (stream, "\tfstd %s, -(sp)\n", reg_names[regno]);
 	    via_ac = regno;
 	}
-	
+
 	/* maybe make ac4, ac5 call used regs?? */
 	/* ac4 - ac5 */
 	if (NO_LOAD_FPU_REG_P(regno)
@@ -158,13 +158,13 @@ output_function_prologue(stream, size)
 	{
 	    if (via_ac == -1)
 		abort();
-	    
+
 	    fprintf (stream, "\tfldd %s, %s\n", reg_names[regno], reg_names[via_ac]);
 	    fprintf (stream, "\tfstd %s, -(sp)\n", reg_names[via_ac]);
 	}
     }
 
-    fprintf (stream, "\t;/* end of prologue */\n\n");		
+    fprintf (stream, "\t;/* end of prologue */\n\n");
 }
 
 /*
@@ -175,56 +175,56 @@ output_function_prologue(stream, size)
 
 /* maybe we can make leaf functions faster by switching to the
    second register file - this way we don't have to save regs!
-   leaf functions are ~ 50% of all functions (dynamically!) 
+   leaf functions are ~ 50% of all functions (dynamically!)
 
-   set/clear bit 11 (dec. 2048) of status word for switching register files - 
-   but how can we do this? the pdp11/45 manual says bit may only 
+   set/clear bit 11 (dec. 2048) of status word for switching register files -
+   but how can we do this? the pdp11/45 manual says bit may only
    be set (p.24), but not cleared!
 
-   switching to kernel is probably more expensive, so we'll leave it 
-   like this and not use the second set of registers... 
+   switching to kernel is probably more expensive, so we'll leave it
+   like this and not use the second set of registers...
 
    maybe as option if you want to generate code for kernel mode? */
 
 
-void 
+void
 output_function_epilogue(stream, size)
   FILE *stream;
   int size;
-{								
-    int fsize = ((size) + 1) & ~1;      				
+{
+    int fsize = ((size) + 1) & ~1;
     int i, j, k;
 
     int via_ac;
-    
-    fprintf (stream, "\n\t;	/*function epilogue */\n");		
 
-    if (frame_pointer_needed)					
-    {								
-	/* hope this is safe - m68k does it also .... */		
-	regs_ever_live[FRAME_POINTER_REGNUM] = 0;			
-								
-	for (i =7, j = 0 ; i >= 0 ; i--)				
-	    if (regs_ever_live[i] && ! call_used_regs[i])		
+    fprintf (stream, "\n\t;	/*function epilogue */\n");
+
+    if (frame_pointer_needed)
+    {
+	/* hope this is safe - m68k does it also .... */
+	regs_ever_live[FRAME_POINTER_REGNUM] = 0;
+
+	for (i =7, j = 0 ; i >= 0 ; i--)
+	    if (regs_ever_live[i] && ! call_used_regs[i])
 		j++;
-	
+
 	/* remember # of pushed bytes for CPU regs */
 	k = 2*j;
-	
-	for (i =7 ; i >= 0 ; i--)					
-	    if (regs_ever_live[i] && ! call_used_regs[i])		
+
+	for (i =7 ; i >= 0 ; i--)
+	    if (regs_ever_live[i] && ! call_used_regs[i])
 		fprintf(stream, "\tmov %o(fp), %s\n",-fsize-2*j--, reg_names[i]);
 
-	/* get ACs */						
+	/* get ACs */
 	via_ac = FIRST_PSEUDO_REGISTER -1;
-	
+
 	for (i = FIRST_PSEUDO_REGISTER; i > 7; i--)
 	    if (regs_ever_live[i] && ! call_used_regs[i])
 	    {
 		via_ac = i;
 		k += 8;
 	    }
-	
+
 	for (i = FIRST_PSEUDO_REGISTER; i > 7; i--)
 	{
 	    if (LOAD_FPU_REG_P(i)
@@ -234,63 +234,63 @@ output_function_epilogue(stream, size)
 		fprintf(stream, "\tfldd %o(fp), %s\n", -fsize-k, reg_names[i]);
 		k -= 8;
 	    }
-	    
+
 	    if (NO_LOAD_FPU_REG_P(i)
 		&& regs_ever_live[i]
 		&& ! call_used_regs[i])
 	    {
 		if (! LOAD_FPU_REG_P(via_ac))
 		    abort();
-		    
+
 		fprintf(stream, "\tfldd %o(fp), %s\n", -fsize-k, reg_names[via_ac]);
 		fprintf(stream, "\tfstd %s, %s\n", reg_names[via_ac], reg_names[i]);
 		k -= 8;
 	    }
 	}
-	
-	fprintf(stream, "\tmov fp, sp\n");				
-	fprintf (stream, "\tmov (sp)+, fp\n");     			
-    }								
-    else								
-    {		   
+
+	fprintf(stream, "\tmov fp, sp\n");
+	fprintf (stream, "\tmov (sp)+, fp\n");
+    }
+    else
+    {
 	via_ac = FIRST_PSEUDO_REGISTER -1;
-	
+
 	/* get ACs */
 	for (i = FIRST_PSEUDO_REGISTER; i > 7; i--)
 	    if (regs_ever_live[i] && call_used_regs[i])
 		via_ac = i;
-	
+
 	for (i = FIRST_PSEUDO_REGISTER; i > 7; i--)
 	{
 	    if (LOAD_FPU_REG_P(i)
 		&& regs_ever_live[i]
 		&& ! call_used_regs[i])
 	      fprintf(stream, "\tfldd (sp)+, %s\n", reg_names[i]);
-	    
+
 	    if (NO_LOAD_FPU_REG_P(i)
 		&& regs_ever_live[i]
 		&& ! call_used_regs[i])
 	    {
 		if (! LOAD_FPU_REG_P(via_ac))
 		    abort();
-		    
+
 		fprintf(stream, "\tfldd (sp)+, %s\n", reg_names[via_ac]);
 		fprintf(stream, "\tfstd %s, %s\n", reg_names[via_ac], reg_names[i]);
 	    }
 	}
 
-	for (i=7; i >= 0; i--)					
-	    if (regs_ever_live[i] && !call_used_regs[i])		
-		fprintf(stream, "\tmov (sp)+, %s\n", reg_names[i]);	
-								
-	if (fsize)						
-	    fprintf((stream), "\tadd $%o, sp\n", fsize);      		
-    }			
-					
-    fprintf (stream, "\trts pc\n");					
-    fprintf (stream, "\t;/* end of epilogue*/\n\n\n");		
+	for (i=7; i >= 0; i--)
+	    if (regs_ever_live[i] && !call_used_regs[i])
+		fprintf(stream, "\tmov (sp)+, %s\n", reg_names[i]);
+
+	if (fsize)
+	    fprintf((stream), "\tadd $%o, sp\n", fsize);
+    }
+
+    fprintf (stream, "\trts pc\n");
+    fprintf (stream, "\t;/* end of epilogue*/\n\n\n");
 }
-	
+
 /* Return the best assembler insn template
    for moving operands[1] into operands[0] as a fullword.  */
 static char *
@@ -407,7 +407,7 @@ output_move_double (operands)
     {
 	if (CONSTANT_P (operands[1]))
 	{
-	    /* now the mess begins, high word is in lower word??? 
+	    /* now the mess begins, high word is in lower word???
 
 	       that's what ashc makes me think, but I don't remember :-( */
 	    latehalf[1] = GEN_INT (INTVAL(operands[1])>>16);
@@ -494,7 +494,7 @@ output_move_quad (operands)
   rtx addreg0 = 0, addreg1 = 0;
 
   output_asm_insn(";; movdi/df: %1 -> %0", operands);
-  
+
   if (REG_P (operands[0]))
     optype0 = REGOP;
   else if (offsettable_memref_p (operands[0]))
@@ -530,22 +530,22 @@ output_move_quad (operands)
 
   if (optype0 == RNDOP || optype1 == RNDOP)
     abort ();
-  
+
   /* check if we move a CPU reg to an FPU reg, or vice versa! */
   if (optype0 == REGOP && optype1 == REGOP)
       /* bogus - 64 bit cannot reside in CPU! */
       if (CPU_REG_P(REGNO(operands[0]))
 	  || CPU_REG_P (REGNO(operands[1])))
 	  abort();
-  
+
   if (optype0 == REGOP || optype1 == REGOP)
   {
-      /* check for use of clrd???? 
-         if you ever allow ac4 and ac5 (now we require secondary load) 
-	 you must check whether 
-	 you want to load into them or store from them - 
-	 then dump ac0 into $help$ movce ac4/5 to ac0, do the 
-	 store from ac0, and restore ac0 - if you can find 
+      /* check for use of clrd????
+         if you ever allow ac4 and ac5 (now we require secondary load)
+	 you must check whether
+	 you want to load into them or store from them -
+	 then dump ac0 into $help$ movce ac4/5 to ac0, do the
+	 store from ac0, and restore ac0 - if you can find
 	 an unused ac[0-3], use that and you save a store and a load!*/
 
       if (FPU_REG_P(REGNO(operands[0])))
@@ -553,20 +553,20 @@ output_move_quad (operands)
 	  if (GET_CODE(operands[1]) == CONST_DOUBLE)
 	  {
 	      union { double d; int i[2]; } u;
-	      u.i[0] = CONST_DOUBLE_LOW (operands[1]); 
-	      u.i[1] = CONST_DOUBLE_HIGH (operands[1]); 
-	      
+	      u.i[0] = CONST_DOUBLE_LOW (operands[1]);
+	      u.i[1] = CONST_DOUBLE_HIGH (operands[1]);
+
 	      if (u.d == 0.0)
 		  return "{clrd|clrf} %0";
 	  }
-	      
+
 	  return "{ldd|movf} %1, %0";
       }
-      
+
       if (FPU_REG_P(REGNO(operands[1])))
 	  return "{std|movf} %1, %0";
   }
-      
+
   /* If one operand is decrementing and one is incrementing
      decrement the former register explicitly
      and change that operand into ordinary indexing.  */
@@ -627,7 +627,7 @@ output_move_quad (operands)
 	     we might get away with it !!!! */
 
 	    abort();
-	    
+
 #ifndef HOST_WORDS_BIG_ENDIAN
 	  latehalf[1] = GEN_INT (CONST_DOUBLE_LOW (operands[1]));
 	  operands[1] = GEN_INT (CONST_DOUBLE_HIGH (operands[1]));
@@ -642,7 +642,7 @@ output_move_quad (operands)
       }
       else
 	  abort();
-      
+
     }
   else
     latehalf[1] = operands[1];
@@ -889,7 +889,7 @@ print_operand_address (file, addr)
 
 /* register move costs, indexed by regs */
 
-static int move_costs[N_REG_CLASSES][N_REG_CLASSES] = 
+static int move_costs[N_REG_CLASSES][N_REG_CLASSES] =
 {
              /* NO  MUL  GEN  LFPU  NLFPU FPU ALL */
 
@@ -903,12 +903,12 @@ static int move_costs[N_REG_CLASSES][N_REG_CLASSES] =
 }  ;
 
 
-/* -- note that some moves are tremendously expensive, 
-   because they require lots of tricks! do we have to 
-   charge the costs incurred by secondary reload class 
+/* -- note that some moves are tremendously expensive,
+   because they require lots of tricks! do we have to
+   charge the costs incurred by secondary reload class
    -- as we do here with 22 -- or not ? */
 
-int 
+int
 register_move_cost(c1, c2)
   enum reg_class c1, c2;
 {
@@ -921,41 +921,41 @@ output_jump(pos, neg, length)
   char *pos, *neg;
 {
     static int x = 0;
-    
+
     static char buf[1000];
 
 #if 0
-/* currently we don't need this, because the tstdf and cmpdf 
-   copy the condition code immediately, and other float operations are not 
+/* currently we don't need this, because the tstdf and cmpdf
+   copy the condition code immediately, and other float operations are not
    yet recognized as changing the FCC - if so, then the length-cost of all
-   jump insns increases by one, because we have to potentially copy the 
+   jump insns increases by one, because we have to potentially copy the
    FCC! */
     if (cc_status.flags & CC_IN_FPU)
 	output_asm_insn("cfcc", NULL);
 #endif
-	
+
     switch (length)
     {
       case 1:
-	
+
 	strcpy(buf, pos);
 	strcat(buf, " %l0");
-	
+
 	return buf;
-	
+
       case 3:
-	
+
 	sprintf(buf, "%s JMP_%d\n\tjmp %%l0\nJMP_%d:", neg, x, x);
-	
+
 	x++;
-	
+
 	return buf;
-	
+
       default:
-	
+
 	abort();
     }
-    
+
 }
 
 void
@@ -964,69 +964,69 @@ notice_update_cc_on_set(exp, insn)
   rtx insn;
 {
     if (GET_CODE (SET_DEST (exp)) == CC0)
-    { 
-	cc_status.flags = 0;					
-	cc_status.value1 = SET_DEST (exp);			
-	cc_status.value2 = SET_SRC (exp);			
+    {
+	cc_status.flags = 0;
+	cc_status.value1 = SET_DEST (exp);
+	cc_status.value2 = SET_SRC (exp);
 
 /*
 	if (GET_MODE(SET_SRC(exp)) == DFmode)
 	    cc_status.flags |= CC_IN_FPU;
-*/	
-    }							
-    else if ((GET_CODE (SET_DEST (exp)) == REG		
-	      || GET_CODE (SET_DEST (exp)) == MEM)		
-	     && GET_CODE (SET_SRC (exp)) != PC		
-	     && (GET_MODE (SET_DEST(exp)) == HImode		
-		 || GET_MODE (SET_DEST(exp)) == QImode)	
-		&& (GET_CODE (SET_SRC(exp)) == PLUS		
-		    || GET_CODE (SET_SRC(exp)) == MINUS	
-		    || GET_CODE (SET_SRC(exp)) == AND	
-		    || GET_CODE (SET_SRC(exp)) == IOR	
-		    || GET_CODE (SET_SRC(exp)) == XOR	
-		    || GET_CODE (SET_SRC(exp)) == NOT	
-		    || GET_CODE (SET_SRC(exp)) == NEG	
-			|| GET_CODE (SET_SRC(exp)) == REG	
-		    || GET_CODE (SET_SRC(exp)) == MEM))	
-    { 
-	cc_status.flags = 0;					
-	cc_status.value1 = SET_SRC (exp);   			
-	cc_status.value2 = SET_DEST (exp);			
-	
-	if (cc_status.value1 && GET_CODE (cc_status.value1) == REG	
-	    && cc_status.value2					
-	    && reg_overlap_mentioned_p (cc_status.value1, cc_status.value2))
-    	    cc_status.value2 = 0;					
-	if (cc_status.value1 && GET_CODE (cc_status.value1) == MEM	
-	    && cc_status.value2					
-	    && GET_CODE (cc_status.value2) == MEM)			
-	    cc_status.value2 = 0; 					
-    }							
-    else if (GET_CODE (SET_SRC (exp)) == CALL)		
-    { 
-	CC_STATUS_INIT; 
+*/
     }
-    else if (GET_CODE (SET_DEST (exp)) == REG)       		
-	/* what's this ? */					
-    { 
-	if ((cc_status.value1					
+    else if ((GET_CODE (SET_DEST (exp)) == REG
+	      || GET_CODE (SET_DEST (exp)) == MEM)
+	     && GET_CODE (SET_SRC (exp)) != PC
+	     && (GET_MODE (SET_DEST(exp)) == HImode
+		 || GET_MODE (SET_DEST(exp)) == QImode)
+		&& (GET_CODE (SET_SRC(exp)) == PLUS
+		    || GET_CODE (SET_SRC(exp)) == MINUS
+		    || GET_CODE (SET_SRC(exp)) == AND
+		    || GET_CODE (SET_SRC(exp)) == IOR
+		    || GET_CODE (SET_SRC(exp)) == XOR
+		    || GET_CODE (SET_SRC(exp)) == NOT
+		    || GET_CODE (SET_SRC(exp)) == NEG
+			|| GET_CODE (SET_SRC(exp)) == REG
+		    || GET_CODE (SET_SRC(exp)) == MEM))
+    {
+	cc_status.flags = 0;
+	cc_status.value1 = SET_SRC (exp);
+	cc_status.value2 = SET_DEST (exp);
+
+	if (cc_status.value1 && GET_CODE (cc_status.value1) == REG
+	    && cc_status.value2
+	    && reg_overlap_mentioned_p (cc_status.value1, cc_status.value2))
+    	    cc_status.value2 = 0;
+	if (cc_status.value1 && GET_CODE (cc_status.value1) == MEM
+	    && cc_status.value2
+	    && GET_CODE (cc_status.value2) == MEM)
+	    cc_status.value2 = 0;
+    }
+    else if (GET_CODE (SET_SRC (exp)) == CALL)
+    {
+	CC_STATUS_INIT;
+    }
+    else if (GET_CODE (SET_DEST (exp)) == REG)
+	/* what's this ? */
+    {
+	if ((cc_status.value1
 	     && reg_overlap_mentioned_p (SET_DEST (exp), cc_status.value1)))
-	    cc_status.value1 = 0;				
-	if ((cc_status.value2					
+	    cc_status.value1 = 0;
+	if ((cc_status.value2
 	     && reg_overlap_mentioned_p (SET_DEST (exp), cc_status.value2)))
-	    cc_status.value2 = 0;				
-    }							
+	    cc_status.value2 = 0;
+    }
     else if (SET_DEST(exp) == pc_rtx)
-    { 
+    {
 	/* jump */
     }
-    else /* if (GET_CODE (SET_DEST (exp)) == MEM)	*/	
-    {  
-	/* the last else is a bit paranoiac, but since nearly all instructions 
+    else /* if (GET_CODE (SET_DEST (exp)) == MEM)	*/
+    {
+	/* the last else is a bit paranoiac, but since nearly all instructions
 	   play with condition codes, it's reasonable! */
 
-	CC_STATUS_INIT; /* paranoia*/ 
-    }		        
+	CC_STATUS_INIT; /* paranoia*/
+    }
 }
 
 
@@ -1049,7 +1049,7 @@ int simple_memory_operand(op, mode)
     /* Decode the address now.  */
 
   indirection:
-    
+
     addr = XEXP (op, 0);
 
     switch (GET_CODE (addr))
@@ -1057,25 +1057,25 @@ int simple_memory_operand(op, mode)
       case REG:
 	/* (R0) - no extra cost */
 	return 1;
-	
+
       case PRE_DEC:
       case POST_INC:
 	/* -(R0), (R0)+ - cheap! */
 	return 0;
-	
+
       case MEM:
-	/* cheap - is encoded in addressing mode info! 
+	/* cheap - is encoded in addressing mode info!
 
 	   -- except for @(R0), which has to be @0(R0) !!! */
 
 	if (GET_CODE (XEXP (addr, 0)) == REG)
 	    return 0;
-	
+
 	op=addr;
 	goto indirection;
-	
+
       case CONST_INT:
-      case LABEL_REF:	       
+      case LABEL_REF:
       case CONST:
       case SYMBOL_REF:
 	/* @#address - extra cost */
@@ -1088,7 +1088,7 @@ int simple_memory_operand(op, mode)
       default:
 	break;
     }
-    
+
     return FALSE;
 }
 
@@ -1103,14 +1103,14 @@ int simple_memory_operand(op, mode)
  * operands[4]  ... scratch register
  */
 
- 
+
 char *
 output_block_move(operands)
   rtx *operands;
 {
     static int count = 0;
     char buf[200];
-    
+
     if (GET_CODE(operands[2]) == CONST_INT
 	&& ! optimize_size)
     {
@@ -1118,7 +1118,7 @@ output_block_move(operands)
 	    && INTVAL(operands[3]) == 1)
 	{
 	    register int i;
-	    
+
 	    for (i = 1; i <= INTVAL(operands[2]); i++)
 		output_asm_insn("movb (%1)+, (%0)+", operands);
 
@@ -1127,11 +1127,11 @@ output_block_move(operands)
 	else if (INTVAL(operands[2]) < 32)
 	{
 	    register int i;
-	    
+
 	    for (i = 1; i <= INTVAL(operands[2])/2; i++)
 		output_asm_insn("mov (%1)+, (%0)+", operands);
-	    
-	    /* may I assume that moved quantity is 
+
+	    /* may I assume that moved quantity is
 	       multiple of alignment ???
 
 	       I HOPE SO !
@@ -1139,7 +1139,7 @@ output_block_move(operands)
 
 	    return "";
 	}
-	
+
 
 	/* can do other clever things, maybe... */
     }
@@ -1154,17 +1154,17 @@ output_block_move(operands)
 	/* just clobber the register */
 	operands[4] = operands[2];
     }
-    
+
 
     /* switch over alignment */
     switch (INTVAL(operands[3]))
     {
       case 1:
-	
-	/* 
+
+	/*
 	  x:
 	  movb (%1)+, (%0)+
-	  
+
 	  if (TARGET_45)
 	     sob %4,x
 	  else
@@ -1175,9 +1175,9 @@ output_block_move(operands)
 
 	sprintf(buf, "\nmovestrhi%d:", count);
 	output_asm_insn(buf, NULL);
-	
+
 	output_asm_insn("movb (%1)+, (%0)+", operands);
-	
+
 	if (TARGET_45)
 	{
 	    sprintf(buf, "sob %%4, movestrhi%d", count);
@@ -1186,17 +1186,17 @@ output_block_move(operands)
 	else
 	{
 	    output_asm_insn("dec %4", operands);
-	    
+
 	    sprintf(buf, "bgt movestrhi%d", count);
 	    output_asm_insn(buf, NULL);
 	}
-	
+
 	count ++;
 	break;
-	
+
       case 2:
-	
-	/* 
+
+	/*
 	   asr %4
 
 	   x:
@@ -1216,9 +1216,9 @@ output_block_move(operands)
 
 	sprintf(buf, "\nmovestrhi%d:", count);
 	output_asm_insn(buf, NULL);
-	
+
 	output_asm_insn("mov (%1)+, (%0)+", operands);
-	
+
 	if (TARGET_45)
 	{
 	    sprintf(buf, "sob %%4, movestrhi%d", count);
@@ -1227,16 +1227,16 @@ output_block_move(operands)
 	else
 	{
 	    output_asm_insn("dec %4", operands);
-	    
+
 	    sprintf(buf, "bgt movestrhi%d", count);
 	    output_asm_insn(buf, NULL);
 	}
-	
+
 	count ++;
 	break;
 
       case 4:
-	
+
 	/*
 
 	   asr %4
@@ -1256,16 +1256,16 @@ output_block_move(operands)
 
 	if (optimize_size)
 	    goto generate_compact_code;
-	
+
 	output_asm_insn("asr %4", operands);
 	output_asm_insn("asr %4", operands);
 
 	sprintf(buf, "\nmovestrhi%d:", count);
 	output_asm_insn(buf, NULL);
-	
+
 	output_asm_insn("mov (%1)+, (%0)+", operands);
 	output_asm_insn("mov (%1)+, (%0)+", operands);
-	
+
 	if (TARGET_45)
 	{
 	    sprintf(buf, "sob %%4, movestrhi%d", count);
@@ -1274,18 +1274,18 @@ output_block_move(operands)
 	else
 	{
 	    output_asm_insn("dec %4", operands);
-	    
+
 	    sprintf(buf, "bgt movestrhi%d", count);
 	    output_asm_insn(buf, NULL);
 	}
-	
+
 	count ++;
 	break;
-       
+
       default:
-	
+
 	/*
-	   
+
 	   asr %4
 	   asr %4
 	   asr %4
@@ -1296,7 +1296,7 @@ output_block_move(operands)
 	   mov (%1)+, (%0)+
 	   mov (%1)+, (%0)+
 	   mov (%1)+, (%0)+
-	   
+
 	   if (TARGET_45)
 	     sob %4, x
 	   else
@@ -1307,19 +1307,19 @@ output_block_move(operands)
 
 	if (optimize_size)
 	    goto generate_compact_code;
-	
+
 	output_asm_insn("asr %4", operands);
 	output_asm_insn("asr %4", operands);
 	output_asm_insn("asr %4", operands);
 
 	sprintf(buf, "\nmovestrhi%d:", count);
 	output_asm_insn(buf, NULL);
-	
+
 	output_asm_insn("mov (%1)+, (%0)+", operands);
 	output_asm_insn("mov (%1)+, (%0)+", operands);
 	output_asm_insn("mov (%1)+, (%0)+", operands);
 	output_asm_insn("mov (%1)+, (%0)+", operands);
-	
+
 	if (TARGET_45)
 	{
 	    sprintf(buf, "sob %%4, movestrhi%d", count);
@@ -1328,18 +1328,18 @@ output_block_move(operands)
 	else
 	{
 	    output_asm_insn("dec %4", operands);
-	    
+
 	    sprintf(buf, "bgt movestrhi%d", count);
 	    output_asm_insn(buf, NULL);
 	}
-	
+
 	count ++;
 	break;
-	
+
 	;
-	
+
     }
-    
+
     return "";
 }
 
@@ -1352,39 +1352,39 @@ comparison_operator_index(op)
     {
       case NE:
 	return 0;
-	
+
       case EQ:
 	return 1;
-	
+
       case GE:
 	return 2;
-	
+
       case GT:
 	return 3;
-	
+
       case LE:
 	return 4;
-	
+
       case LT:
 	return 5;
-	
+
       case GEU:
 	return 6;
-	
+
       case GTU:
 	return 7;
 
       case LEU:
 	return 8;
-	
+
       case LTU:
 	return 9;
-	
+
       default:
 	return -1;
     }
-}    
-	
+}
+
 /* tests whether the rtx is a comparison operator */
 int
 comp_operator (op, mode)
@@ -1394,7 +1394,7 @@ comp_operator (op, mode)
     return comparison_operator_index(op) >= 0;
 }
 
-    
+
 int
 legitimate_address_p (mode, address)
   enum machine_mode mode;
@@ -1402,9 +1402,9 @@ legitimate_address_p (mode, address)
 {
 /* #define REG_OK_STRICT */
     GO_IF_LEGITIMATE_ADDRESS(mode, address, win);
-    
+
     return 0;
-    
+
   win:
     return 1;
 

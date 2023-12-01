@@ -75,7 +75,7 @@ Alignment must be a small power of two, not %d, in #pragma pack",
 	       alignment);
       return 0;
     }
-  
+
   if (alignment_stack == NULL
       || alignment_stack->alignment != alignment
       || id != NULL_TREE)
@@ -94,7 +94,7 @@ Alignment must be a small power of two, not %d, in #pragma pack",
       entry->num_pushes = 1;
       entry->id         = id;
       entry->prev       = alignment_stack;
-      
+
       alignment_stack = entry;
 
       maximum_field_alignment = alignment * 8;
@@ -111,7 +111,7 @@ pop_alignment (id)
      tree id;
 {
   align_stack * entry;
-      
+
   if (alignment_stack == NULL)
     {
       warning ("\
@@ -174,14 +174,14 @@ insert_pack_attributes (node, attributes, prefix)
   if (TREE_CODE_CLASS (TREE_CODE (node)) != 'd'
       || TREE_CODE (node) != FIELD_DECL)
     return;
-  
+
   field_alignment = TYPE_ALIGN (TREE_TYPE (node));
   if (field_alignment <= 0 || field_alignment > maximum_field_alignment)
     field_alignment = maximum_field_alignment;
 
   /* Add a 'packed' attribute.  */
   * attributes = tree_cons (get_identifier ("packed"), NULL, * attributes);
-  
+
   /* If the alignment is > 8 then add an alignment attribute as well.  */
   if (field_alignment > 8)
     {
@@ -192,7 +192,7 @@ insert_pack_attributes (node, attributes, prefix)
 	  if (strcmp (IDENTIFIER_POINTER (name), "aligned") == 0)
 	    break;
 	}
-      
+
       if (a == NULL)
 	for (a = * prefix; a; a = TREE_CHAIN (a))
 	  {
@@ -200,7 +200,7 @@ insert_pack_attributes (node, attributes, prefix)
 	    if (strcmp (IDENTIFIER_POINTER (name), "aligned") == 0)
 	      break;
 	  }
-  
+
       if (a == NULL)
 	{
 	  * attributes = tree_cons
@@ -243,7 +243,7 @@ handle_pragma_token (string, token)
 
   /* If we have reached the end of the #pragma directive then
      determine what value we should return.  */
-  
+
   if (string == NULL)
     {
       int ret_val = 0;
@@ -257,8 +257,8 @@ handle_pragma_token (string, token)
 	case ps_done:
 	  /* The pragma was not recognised.  */
 	  break;
-	  
-#ifdef HANDLE_PRAGMA_PACK	  
+
+#ifdef HANDLE_PRAGMA_PACK
 	case ps_pack:
 	  if (state == ps_right)
 	    {
@@ -269,7 +269,7 @@ handle_pragma_token (string, token)
 	    warning ("malformed `#pragma pack'");
 	  break;
 #endif /* HANDLE_PRAGMA_PACK */
-	  
+
 #ifdef HANDLE_PRAGMA_PACK_PUSH_POP
 	case ps_push:
 	  if (state == ps_right)
@@ -277,7 +277,7 @@ handle_pragma_token (string, token)
 	  else
 	    warning ("malformed '#pragma pack(push[,id],<n>)'");
 	  break;
-	  
+
 	case ps_pop:
 	  if (state == ps_right)
 	    ret_val = pop_alignment (id);
@@ -285,7 +285,7 @@ handle_pragma_token (string, token)
 	    warning ("malformed '#pragma pack(pop[,id])'");
 	  break;
 #endif /* HANDLE_PRAGMA_PACK_PUSH_POP */
-	  
+
 #ifdef HANDLE_PRAGMA_WEAK
 	case ps_weak:
 	  if (HANDLE_PRAGMA_WEAK)
@@ -305,7 +305,7 @@ handle_pragma_token (string, token)
 
       type = state = ps_start;
       id = NULL_TREE;
-      
+
       return ret_val;
     }
 
@@ -317,17 +317,17 @@ handle_pragma_token (string, token)
 	{
 	case IDENTIFIER_NODE:
 	  break;
-	  
+
 	case INTEGER_CST:
 	  if (TREE_INT_CST_HIGH (token) != 0)
 	    return 0;
 	  break;
-	  
+
 	default:
 	  return 0;
 	}
     }
-      
+
   switch (state)
     {
     case ps_start:
@@ -339,9 +339,9 @@ handle_pragma_token (string, token)
 #ifdef HANDLE_PRAGMA_WEAK
       if (strcmp (string, "weak") == 0)
 	type = state = ps_weak;
-#endif	  
+#endif
       break;
-      
+
 #ifdef HANDLE_PRAGMA_WEAK
     case ps_weak:
       name = permalloc (strlen (string) + 1);
@@ -356,7 +356,7 @@ handle_pragma_token (string, token)
 	  state = ps_name;
 	}
       break;
-      
+
     case ps_name:
       state = (strcmp (string, "=") ? ps_bad : ps_equals);
       break;
@@ -379,7 +379,7 @@ handle_pragma_token (string, token)
       state = ps_bad;
       break;
 #endif /* HANDLE_PRAGMA_WEAK */
-      
+
 #ifdef HANDLE_PRAGMA_PACK
     case ps_pack:
       state = (strcmp (string, "(") ? ps_bad : ps_left);
@@ -486,7 +486,7 @@ handle_pragma_token (string, token)
 	state = ps_bad;
       break;
 #endif /* HANDLE_PRAGMA_PACK_PUSH_POP */
-      
+
     case ps_bad:
     case ps_done:
       break;

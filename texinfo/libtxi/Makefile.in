@@ -40,7 +40,7 @@ ALLOCA = @ALLOCA@
 # Standard functions that may be missing.
 LIBOBJS = @LIBOBJS@
 
-SRCS =  getopt.c getopt1.c bzero.c getopt.h 
+SRCS =  getopt.c getopt1.c bzero.c getopt.h
 OBJS =  getopt.o getopt1.o bzero.o $(ALLOCA) $(LIBOBJS)
 
 PROGS = libtxi.a

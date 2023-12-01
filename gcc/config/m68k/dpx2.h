@@ -1,4 +1,4 @@
-/* Definitions of target machine for GNU compiler.  
+/* Definitions of target machine for GNU compiler.
    Bull DPX/2 200 and 300 systems (m68k, SysVr3).
    Copyright (C) 1987, 1993, 1994, 1995, 1996 Free Software Foundation, Inc.
    Contributed by Frederic Pierresteguy (F.Pierresteguy@frcl.bull.fr).
@@ -33,7 +33,7 @@ Boston, MA 02111-1307, USA.  */
 
 /* See m68k.h.  7 means 68020 with 68881.
  * We really have 68030 and 68882,
- * but this will get us going.  
+ * but this will get us going.
  */
 #ifndef TARGET_DEFAULT
 #define TARGET_DEFAULT (MASK_BITFIELD|MASK_68881|MASK_68020)
@@ -111,7 +111,7 @@ Boston, MA 02111-1307, USA.  */
 /* Define if you don't want extended real, but do want to use the
    software floating point emulator for REAL_ARITHMETIC and
    decimal <-> binary conversion. */
-#define REAL_ARITHMETIC 
+#define REAL_ARITHMETIC
 
 #undef ASM_OUTPUT_SOURCE_FILENAME
 #define ASM_OUTPUT_SOURCE_FILENAME(FILE, NA)	\
@@ -124,7 +124,7 @@ Boston, MA 02111-1307, USA.  */
 #undef ASM_LONG
 #define ASM_LONG "\tdc.l"
 
-/* 
+/*
  * we don't seem to support any of:
  * .globl
  * .even
@@ -135,7 +135,7 @@ Boston, MA 02111-1307, USA.  */
 #define ASM_OUTPUT_SKIP(FILE,SIZE)  \
   fprintf (FILE, "\tdcb.b %u,0\n", (SIZE))
 
-#undef GLOBAL_ASM_OP 
+#undef GLOBAL_ASM_OP
 #define GLOBAL_ASM_OP "\txdef"
 
 #undef ASM_OUTPUT_ALIGN
@@ -235,11 +235,11 @@ Boston, MA 02111-1307, USA.  */
 	   "\t.def\t.eb%s\t.val\t*%s\t.scl\t100%s\t.line\t%d%s\t.endef\n",  \
 	   SDB_DELIM, SDB_DELIM, SDB_DELIM, (LINE), SDB_DELIM)
 
-#define PUT_SDB_EPILOGUE_END(NAME)	
+#define PUT_SDB_EPILOGUE_END(NAME)
 
-/* Output type in decimal not in octal as done in sdbout.c */	
+/* Output type in decimal not in octal as done in sdbout.c */
 #define PUT_SDB_TYPE(a) fprintf(asm_out_file, "\t.type\t0%d%s", a, SDB_DELIM)
-		
+
 #undef FUNCTION_PROLOGUE
 #define FUNCTION_PROLOGUE(FILE, SIZE)                                 \
 {                                                                     \
@@ -535,7 +535,7 @@ Boston, MA 02111-1307, USA.  */
 }
 
 /* This is how to output a `long double' extended real constant. */
-#undef ASM_OUTPUT_LONG_DOUBLE 
+#undef ASM_OUTPUT_LONG_DOUBLE
 #define ASM_OUTPUT_LONG_DOUBLE(FILE,VALUE)  				\
 do { long l[3];								\
      REAL_VALUE_TO_TARGET_LONG_DOUBLE (VALUE, l);			\
@@ -572,7 +572,7 @@ do { long l;						\
    } while (0)
 
 /* This is how to output an assembler line defining an `int' constant.  */
-#undef ASM_OUTPUT_INT 
+#undef ASM_OUTPUT_INT
 #define ASM_OUTPUT_INT(FILE,VALUE)  \
 ( fprintf (FILE, "\tdc.l "),			\
   output_addr_const (FILE, (VALUE)),		\
@@ -636,7 +636,7 @@ do { long l;						\
 
 /* Output a double value (represented as a C double) as an immediate operand.
    This macro is a 68k-specific macro.  */
-#undef ASM_OUTPUT_DOUBLE_OPERAND 
+#undef ASM_OUTPUT_DOUBLE_OPERAND
 #define ASM_OUTPUT_DOUBLE_OPERAND(FILE,VALUE)				\
  do { char dstr[30];							\
       REAL_VALUE_TO_DECIMAL (VALUE, "%.20g", dstr);			\
@@ -819,4 +819,4 @@ do { long l;						\
     }}
 
 
-#endif /* ! use gas */			
+#endif /* ! use gas */

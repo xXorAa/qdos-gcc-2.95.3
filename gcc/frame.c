@@ -87,7 +87,7 @@ typedef unsigned char ubyte;
    a) in a linear search, find the shared image (i.e. DLL) containing
       the PC
    b) using the FDE table for that shared object, locate the FDE using
-      binary search (which requires the sorting).  */   
+      binary search (which requires the sorting).  */
 
 /* The first few fields of a CIE.  The CIE_id field is 0 for a CIE,
    to distinguish it from a valid FDE.  FDEs are aligned to an addressing
@@ -159,7 +159,7 @@ init_object_mutex_once (void)
 
 #endif /* __GTHREAD_MUTEX_INIT_FUNCTION */
 #endif /* __GTHREADS */
-  
+
 /* Decode the unsigned LEB128 constant at BUF into the variable pointed to
    by R, and return the new value of BUF.  */
 
@@ -693,7 +693,7 @@ execute_cfa_insn (void *p, struct frame_state_internal *state,
       p = decode_uleb128 (p, &offset);
       state->s.cfa_offset = offset;
       break;
-      
+
     case DW_CFA_remember_state:
       {
 	struct frame_state_internal *save =
@@ -763,7 +763,7 @@ void
 __register_frame (void *begin)
 {
   struct object *ob = (struct object *) malloc (sizeof (struct object));
-  __register_frame_info (begin, ob);                       
+  __register_frame_info (begin, ob);
 }
 
 /* Similar, but BEGIN is actually a pointer to a table of unwind entries

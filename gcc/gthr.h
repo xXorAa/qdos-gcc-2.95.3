@@ -32,7 +32,7 @@ Boston, MA 02111-1307, USA.  */
 /* If this file is compiled with threads support, it must
        #define __GTHREADS 1
    to indicate that threads support is present.  Also it has define
-   function 
+   function
      int __gthread_active_p ()
    that returns 1 if thread system is active, 0 if not.
 

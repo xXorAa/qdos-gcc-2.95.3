@@ -270,14 +270,14 @@ divloop:
 	subcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (7*2+1), %o2
-	
+
 L4.23:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (7*2-1), %o2
-	
-	
+
+
 L3.19:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
@@ -288,13 +288,13 @@ L3.19:
 	subcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (5*2+1), %o2
-	
+
 L4.21:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (5*2-1), %o2
-	
+
 L2.17:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
@@ -310,7 +310,7 @@ L2.17:
 	subcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (3*2+1), %o2
-	
+
 L4.19:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
@@ -333,7 +333,7 @@ L4.17:
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (1*2-1), %o2
-	
+
 L1.16:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
@@ -354,13 +354,13 @@ L1.16:
 	subcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-1*2+1), %o2
-	
+
 L4.15:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-1*2-1), %o2
-	
+
 L3.15:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
@@ -371,13 +371,13 @@ L3.15:
 	subcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-3*2+1), %o2
-	
+
 L4.13:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-3*2-1), %o2
-	
+
 L2.15:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
@@ -393,13 +393,13 @@ L2.15:
 	subcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-5*2+1), %o2
-	
+
 L4.11:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-5*2-1), %o2
-	
+
 L3.13:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
@@ -416,7 +416,7 @@ L4.9:
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-7*2-1), %o2
-	
+
 	9:
 end_regular_divide:
 	subcc	%o4, 1, %o4
@@ -622,7 +622,7 @@ L4.23:
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (7*2-1), %o2
-	
+
 L3.19:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
@@ -633,13 +633,13 @@ L3.19:
 	subcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (5*2+1), %o2
-	
+
 L4.21:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (5*2-1), %o2
-	
+
 L2.17:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
@@ -655,13 +655,13 @@ L2.17:
 	subcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (3*2+1), %o2
-	
+
 L4.19:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (3*2-1), %o2
-	
+
 L3.17:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
@@ -672,13 +672,13 @@ L3.17:
 	subcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (1*2+1), %o2
-	
+
 L4.17:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (1*2-1), %o2
-	
+
 L1.16:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
@@ -699,13 +699,13 @@ L1.16:
 	subcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-1*2+1), %o2
-	
+
 L4.15:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-1*2-1), %o2
-	
+
 L3.15:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
@@ -716,13 +716,13 @@ L3.15:
 	subcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-3*2+1), %o2
-	
+
 L4.13:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-3*2-1), %o2
-	
+
 L2.15:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
@@ -738,13 +738,13 @@ L2.15:
 	subcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-5*2+1), %o2
-	
+
 L4.11:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-5*2-1), %o2
-	
+
 L3.13:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
@@ -755,13 +755,13 @@ L3.13:
 	subcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-7*2+1), %o2
-	
+
 L4.9:
 	! remainder is negative
 	addcc	%o3,%o5,%o3
 	b	9f
 	add	%o2, (-7*2-1), %o2
-	
+
 	9:
 end_regular_divide:
 	subcc	%o4, 1, %o4

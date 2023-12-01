@@ -18,12 +18,12 @@ exeext = .exe
 objext = .obj
 
 CC = gcc
-CLIB = 
-LDFLAGS = 
+CLIB =
+LDFLAGS =
 
 ld.o: $(srcdir)/config/winnt/ld.c
 	$(CC) -I. -I$(srcdir) -I$(srcdir)/config -c $(srcdir)/config/winnt/ld.c
- 
+
 ld.exe: ld.o
 	$(CC) -o ld.exe ld.o
 

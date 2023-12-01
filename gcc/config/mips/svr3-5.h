@@ -1,4 +1,4 @@
-/* Definitions of target machine for GNU compiler. 
+/* Definitions of target machine for GNU compiler.
    MIPS RISC-OS 5.0 System V version.
    Copyright (C) 1991, 1998 Free Software Foundation, Inc.
 
@@ -34,7 +34,7 @@ Boston, MA 02111-1307, USA.  */
 %{call_shared} %{no_archive} %{exact_version} \
 %{!shared: %{!non_shared: %{!call_shared: -non_shared}}} \
 -systype /sysv/ "
-		    
+
 #define LIB_SPEC "%{p:-lprof1} %{pg:-lprof1} -lc crtn.o%s"
 
 #define STARTFILE_SPEC "%{pg:gcrt0.o%s}%{!pg:%{p:mcrt0.o%s}%{!p:crt1.o%s}}"

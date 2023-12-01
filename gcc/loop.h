@@ -153,7 +153,7 @@ struct iv_class {
 				   biv controls. */
 };
 
-/* Information required to calculate the number of loop iterations. 
+/* Information required to calculate the number of loop iterations.
    This is set by loop_iterations.  */
 
 struct loop_info
@@ -231,8 +231,8 @@ rtx express_from PROTO((struct induction *, struct induction *));
 void unroll_loop PROTO((rtx, int, rtx, rtx, struct loop_info *, int));
 rtx biv_total_increment PROTO((struct iv_class *, rtx, rtx));
 unsigned HOST_WIDE_INT loop_iterations PROTO((rtx, rtx, struct loop_info *));
-int precondition_loop_p PROTO((rtx, struct loop_info *, 
-			       rtx *, rtx *, rtx *, 
+int precondition_loop_p PROTO((rtx, struct loop_info *,
+			       rtx *, rtx *, rtx *,
 			       enum machine_mode *mode));
 rtx final_biv_value PROTO((struct iv_class *, rtx, rtx,
 			   unsigned HOST_WIDE_INT));

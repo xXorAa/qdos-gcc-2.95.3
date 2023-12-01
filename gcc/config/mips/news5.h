@@ -1,4 +1,4 @@
-/* Definitions of target machine for GNU compiler. 
+/* Definitions of target machine for GNU compiler.
    Sony RISC NEWS (mips) System V version.
    Copyright (C) 1992 Free Software Foundation, Inc.
 

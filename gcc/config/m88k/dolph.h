@@ -28,15 +28,15 @@ Boston, MA 02111-1307, USA.  */
 /* Override m88k/sysv3.h */
 
 #undef	CPP_PREDEFINES
-#define CPP_PREDEFINES "-Dm88000 -Dm88k -DOCS88 -DDOLPHIN -Dunix -DsysV88 -D__CLASSIFY_TYPE__=2 -Asystem(unix) -Asystem(svr3) -Acpu(m88k) -Amachine(m88k)" 
+#define CPP_PREDEFINES "-Dm88000 -Dm88k -DOCS88 -DDOLPHIN -Dunix -DsysV88 -D__CLASSIFY_TYPE__=2 -Asystem(unix) -Asystem(svr3) -Acpu(m88k) -Amachine(m88k)"
 
-/* 
+/*
   If you want to detect dereferencing of NULL pointers, uncomment the
   following two lines. Alternatively, edit the appropriate specs file.
-  
+
   #undef LINK_SPEC
   #define LINK_SPEC "gcc.ld%s"
-  
+
   */
 
 #undef CPU_DEFAULT

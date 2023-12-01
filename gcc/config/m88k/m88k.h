@@ -651,7 +651,7 @@ extern char * reg_names[];
 
 /* True if register is an extended register.  */
 #define XRF_REGNO_P(N) ((N) < FIRST_PSEUDO_REGISTER && (N) >= FIRST_EXTENDED_REGISTER)
- 
+
 /* Return number of consecutive hard regs needed starting at reg REGNO
    to hold something of mode MODE.
    This is ordinarily the length in words of a value of mode MODE

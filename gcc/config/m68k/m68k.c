@@ -133,13 +133,13 @@ void output_movem_mask(stream, mask, dir)
      unsigned long mask;
      int dir;
 {
-  int first,regno;	
+  int first,regno;
 
   /*printf("MASK: %x\n",mask);*/
   for (regno = 0, first = 1; regno < 16; regno++)
-    if (mask & (1 << regno))          
-      {      
-	fprintf (stream, "%s%s",(first ?"":"/"),reg_names[dir ? regno : 15-regno]);                
+    if (mask & (1 << regno))
+      {
+	fprintf (stream, "%s%s",(first ?"":"/"),reg_names[dir ? regno : 15-regno]);
 	first = 0;
       }
 }
@@ -171,7 +171,7 @@ output_function_prologue (stream, size)
   extern char call_used_regs[];
   int fsize = (size + 3) & -4;
   int cfa_offset = INCOMING_FRAME_SP_OFFSET, cfa_store_offset = cfa_offset;
-  
+
 
   if (frame_pointer_needed)
     {
@@ -232,7 +232,7 @@ output_function_prologue (stream, size)
       if (dwarf2out_do_frame ())
 	{
 	  char *l;
-          l = (char *) dwarf2out_cfi_label ();   
+          l = (char *) dwarf2out_cfi_label ();
 	  cfa_store_offset += 4;
 	  cfa_offset = cfa_store_offset;
 	  dwarf2out_def_cfa (l, FRAME_POINTER_REGNUM, cfa_offset);
@@ -279,7 +279,7 @@ output_function_prologue (stream, size)
 			   fsize + 4 - 8);
 #endif
 	    }
-	  else 
+	  else
 #endif /* not NO_ADDSUB_Q */
 	  if (TARGET_68040)
 	    {
@@ -447,7 +447,7 @@ output_function_prologue (stream, size)
     {
       if (TARGET_5200)
 	{
-	  /* The coldfire does not support the predecrement form of the 
+	  /* The coldfire does not support the predecrement form of the
 	     movml instruction, so we must adjust the stack pointer and
 	     then use the plain address register indirect mode.  We also
 	     have to invert the register save mask to use the new mode.
@@ -456,7 +456,7 @@ output_function_prologue (stream, size)
 	     combine the stack pointer adjustment with any adjustment
 	     done when the initial stack frame is created.  This would
 	     save an instruction */
-	     
+
 	  int newmask = 0;
 	  int i;
 
@@ -534,14 +534,14 @@ use_return_insn ()
 
   if (!reload_completed || frame_pointer_needed || get_frame_size () != 0)
     return 0;
-  
+
   /* Copied from output_function_epilogue ().  We should probably create a
      separate layout routine to perform the common work.  */
-  
+
   for (regno = 0 ; regno < FIRST_PSEUDO_REGISTER ; regno++)
     if (regs_ever_live[regno] && ! call_used_regs[regno])
       return 0;
-  
+
   return 1;
 }
 
@@ -567,7 +567,7 @@ output_function_epilogue (stream, size)
   int big = 0;
   rtx insn = get_last_insn ();
   int restore_from_sp = 0;
-  
+
   /* If the last insn was a BARRIER, we don't have to write any code.  */
   if (GET_CODE (insn) == NOTE)
     insn = prev_nonnote_insn (insn);
@@ -834,7 +834,7 @@ output_function_epilogue (stream, size)
   else if (fsize)
     {
 #ifndef NO_ADDSUB_Q
-      if (fsize + 4 <= 8) 
+      if (fsize + 4 <= 8)
 	{
 	  if (!TARGET_5200)
 	    {
@@ -871,7 +871,7 @@ output_function_epilogue (stream, size)
       if (fsize + 4 < 0x8000)
 	{
 	  if (TARGET_68040)
-	    { 
+	    {
 	      /* asm_fprintf() cannot handle %. */
 #ifdef MOTOROLA
 	      asm_fprintf (stream, "\tadd.w %0I%d,%Rsp\n", fsize + 4);
@@ -918,14 +918,14 @@ not_sp_operand (op, mode)
   return op != stack_pointer_rtx && general_operand (op, mode);
 }
 
-/* Return TRUE if X is a valid comparison operator for the dbcc 
-   instruction.  
+/* Return TRUE if X is a valid comparison operator for the dbcc
+   instruction.
 
    Note it rejects floating point comparison operators.
    (In the future we could use Fdbcc).
 
    It also rejects some comparisons when CC_NO_OVERFLOW is set.  */
-   
+
 int
 valid_dbcc_comparison_p (x, mode)
      rtx x;
@@ -954,7 +954,7 @@ flags_in_68881 ()
   return cc_status.flags & CC_IN_68881;
 }
 
-/* Output a dbCC; jCC sequence.  Note we do not handle the 
+/* Output a dbCC; jCC sequence.  Note we do not handle the
    floating point version of this sequence (Fdbcc).  We also
    do not handle alternative conditions when CC_NO_OVERFLOW is
    set.  It is assumed that valid_dbcc_comparison_p and flags_in_68881 will
@@ -1156,7 +1156,7 @@ output_scc_di(op, operand1, operand2, dest)
     }
 
   loperands[5] = dest;
-  
+
   switch (op_code)
     {
       case EQ:
@@ -1354,19 +1354,19 @@ extend_operator(x, mode)
 /* Legitimize PIC addresses.  If the address is already
    position-independent, we return ORIG.  Newly generated
    position-independent addresses go to REG.  If we need more
-   than one register, we lose.  
+   than one register, we lose.
 
    An address is legitimized by making an indirect reference
    through the Global Offset Table with the name of the symbol
-   used as an offset.  
+   used as an offset.
 
-   The assembler and linker are responsible for placing the 
+   The assembler and linker are responsible for placing the
    address of the symbol in the GOT.  The function prologue
    is responsible for initializing a5 to the starting address
    of the GOT.
 
    The assembler is also responsible for translating a symbol name
-   into a constant displacement from the start of the GOT.  
+   into a constant displacement from the start of the GOT.
 
    A quick example may make things a little clearer:
 
@@ -1386,9 +1386,9 @@ extend_operator(x, mode)
 
 	movel   a5@(_foo:w), a0
 	movel   #12345, a0@
-   
 
-   That (in a nutshell) is how *all* symbol and label references are 
+
+   That (in a nutshell) is how *all* symbol and label references are
    handled.  */
 
 rtx
@@ -1461,7 +1461,7 @@ const_method (constant)
 
   /* The Coldfire doesn't have byte or word operations. */
   /* FIXME: This may not be useful for the m68060 either */
-  if (!TARGET_5200) 
+  if (!TARGET_5200)
     {
       /* if -256 < N < 256 but N is not in range for a moveq
 	 N^ff will be, so use moveq #N^ff, dreg; not.b dreg. */
@@ -1525,20 +1525,20 @@ output_move_const_into_data_reg (operands)
       return "moveq%.l %1,%0\n\tnot%.b %0";
 #else
       return "moveq %1,%0\n\tnot%.b %0";
-#endif	 
+#endif
     case NOTW :
       operands[1] = GEN_INT (i ^ 0xffff);
 #if defined (MOTOROLA) && !defined (CRDS)
       return "moveq%.l %1,%0\n\tnot%.w %0";
 #else
       return "moveq %1,%0\n\tnot%.w %0";
-#endif	 
+#endif
     case NEGW :
 #if defined (MOTOROLA) && !defined (CRDS)
       return "moveq%.l %#-128,%0\n\tneg%.w %0";
 #else
       return "moveq %#-128,%0\n\tneg%.w %0";
-#endif	 
+#endif
     case SWAP :
       {
 	unsigned u = i;
@@ -1548,7 +1548,7 @@ output_move_const_into_data_reg (operands)
 	return "moveq%.l %1,%0\n\tswap %0";
 #else
 	return "moveq %1,%0\n\tswap %0";
-#endif	 
+#endif
       }
     case MOVL :
 	return "move%.l %1,%0";
@@ -2248,7 +2248,7 @@ output_addsi3 (operands)
 	  if (TARGET_68040)
 	    return "add%.w %2,%0";
 	  else
-#ifdef MOTOROLA  
+#ifdef MOTOROLA
 #ifdef AS68
 	    return "lea %c2(%0),%0";
 #else
@@ -2285,20 +2285,20 @@ notice_update_cc (exp, insn)
 	   && GET_CODE (XVECEXP (exp, 0, 0)) == SET
 	   && XEXP (XVECEXP (exp, 0, 0), 0) == cc0_rtx))
     {
-      CC_STATUS_INIT; 
+      CC_STATUS_INIT;
     }
   else if (GET_CODE (exp) == SET)
     {
       if (GET_CODE (SET_SRC (exp)) == CALL)
 	{
-	  CC_STATUS_INIT; 
+	  CC_STATUS_INIT;
 	}
       else if (ADDRESS_REG_P (SET_DEST (exp)))
 	{
 	  if (cc_status.value1 && modified_in_p (cc_status.value1, insn))
 	    cc_status.value1 = 0;
 	  if (cc_status.value2 && modified_in_p (cc_status.value2, insn))
-	    cc_status.value2 = 0; 
+	    cc_status.value2 = 0;
 	}
       else if (!FP_REG_P (SET_DEST (exp))
 	       && SET_DEST (exp) != cc0_rtx
@@ -2307,7 +2307,7 @@ notice_update_cc (exp, insn)
 		   || GET_CODE (SET_SRC (exp)) == FLOAT_TRUNCATE
 		   || GET_CODE (SET_SRC (exp)) == FLOAT_EXTEND))
 	{
-	  CC_STATUS_INIT; 
+	  CC_STATUS_INIT;
 	}
       /* A pair of move insns doesn't produce a useful overall cc.  */
       else if (!FP_REG_P (SET_DEST (exp))
@@ -2317,11 +2317,11 @@ notice_update_cc (exp, insn)
 		   || GET_CODE (SET_SRC (exp)) == MEM
 		   || GET_CODE (SET_SRC (exp)) == CONST_DOUBLE))
 	{
-	  CC_STATUS_INIT; 
+	  CC_STATUS_INIT;
 	}
       else if (GET_CODE (SET_SRC (exp)) == CALL)
 	{
-	  CC_STATUS_INIT; 
+	  CC_STATUS_INIT;
 	}
       else if (XEXP (exp, 0) != pc_rtx)
 	{
@@ -2366,7 +2366,7 @@ notice_update_cc (exp, insn)
 	   ends with a move insn moving r2 in r2's mode.
 	   Thus, the cc's are set for r2.
 	   This can set N bit spuriously. */
-	cc_status.flags |= CC_NOT_NEGATIVE; 
+	cc_status.flags |= CC_NOT_NEGATIVE;
 
       default:
 	break;
@@ -2456,7 +2456,7 @@ output_move_const_single (operands)
    to get the desired constant.  */
 
 /* This code has been fixed for cross-compilation. */
-  
+
 static int inited_68881_table = 0;
 
 char *strings_68881[7] = {
@@ -2537,7 +2537,7 @@ standard_68881_constant_p (x)
       if (REAL_VALUES_IDENTICAL (r, values_68881[i]))
         return (codes_68881[i]);
     }
-  
+
   if (GET_MODE (x) == SFmode)
     return 0;
 
@@ -2958,9 +2958,9 @@ print_operand (file, op, letter)
    right behaviour.
 
    They also do not like things like "pea 1.w", so we simple leave off
-   the .w on small constants. 
+   the .w on small constants.
 
-   This routine is responsible for distinguishing between -fpic and -fPIC 
+   This routine is responsible for distinguishing between -fpic and -fPIC
    style relocations in an address.  When generating -fpic code the
    offset is output in word mode (eg movel a5@(_foo:w), a0).  When generating
    -fPIC code the offset is output in long mode (eg movel a5@(_foo:l), a0) */
@@ -3223,7 +3223,7 @@ print_operand_address (file, addr)
 	    break;
 	  }
 	else if (reg1 != 0 && GET_CODE (addr) == LABEL_REF
-		 && ! (flag_pic && reg1 == pic_offset_table_rtx))	
+		 && ! (flag_pic && reg1 == pic_offset_table_rtx))
 	  {
 	    ASM_OUTPUT_CASE_FETCH (file,
 			 CODE_LABEL_NUMBER (XEXP (addr, 0)),

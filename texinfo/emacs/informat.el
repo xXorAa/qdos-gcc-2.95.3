@@ -385,7 +385,7 @@ For example, invoke \"emacs -batch -f batch-info-validate $info/ ~/*.info\""
 	(cond ((not (file-exists-p file))
 	       (message ">> %s does not exist!" file)
 	       (setq error 1
-		     command-line-args-left (cdr command-line-args-left))) 
+		     command-line-args-left (cdr command-line-args-left)))
 	      ((file-directory-p file)
 	       (setq command-line-args-left (nconc (directory-files file)
 					      (cdr command-line-args-left))))

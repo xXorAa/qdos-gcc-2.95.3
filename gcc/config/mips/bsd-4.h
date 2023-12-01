@@ -31,7 +31,7 @@ Boston, MA 02111-1307, USA.  */
 %{G*} %{EB} %{EL} %{mips1} %{mips2} %{mips3} \
 %{bestGnum} %{shared} %{non_shared} \
 -systype /bsd43/"
-		    
+
 #define LIB_SPEC "%{p:-lprof1} %{pg:-lprof1} -lc"
 
 #define STARTFILE_SPEC "%{pg:gcrt0.o%s}%{!pg:%{p:mcrt0.o%s}%{!p:crt1.o%s crtn.o%s}}"

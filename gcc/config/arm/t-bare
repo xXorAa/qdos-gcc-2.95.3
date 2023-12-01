@@ -24,7 +24,7 @@ dp-bit.c: $(srcdir)/config/fp-bit.c
 # Avoid building a duplicate set of libraries for the default endian-ness.
 MULTILIB_OPTIONS = mlittle-endian/mbig-endian mhard-float
 MULTILIB_DIRNAMES = le be fpu
-MULTILIB_MATCHES = 
+MULTILIB_MATCHES =
 
 LIBGCC = stmp-multilib
 INSTALL_LIBGCC = install-multilib

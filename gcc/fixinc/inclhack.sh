@@ -13,16 +13,16 @@
 #  fixincludes copyright (c) 1999 The Free Software Foundation, Inc.
 #
 # fixincludes is free software.
-# 
+#
 # You may redistribute it and/or modify it under the terms of the
 # GNU General Public License, as published by the Free Software
 # Foundation; either version 2, or (at your option) any later version.
-# 
+#
 # fixincludes is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 # See the GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with fixincludes.  See the file "COPYING".  If not,
 # write to:  The Free Software Foundation, Inc.,
@@ -375,7 +375,7 @@ while [ $# != 0 ]; do
       aix_syswait"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^extern pid_t wait3();$/i\
 struct rusage;
@@ -398,7 +398,7 @@ struct rusage;
       aix_volatile"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/typedef volatile int sig_atomic_t/typedef int sig_atomic_t/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -420,7 +420,7 @@ struct rusage;
       alpha_getopt"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/getopt(int, char \*\[\],[ ]*char \*)/getopt(int, char *const[], const char *)/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -441,7 +441,7 @@ struct rusage;
       alpha_parens"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/#ifndef(__mips64)/#ifndef __mips64/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -462,7 +462,7 @@ struct rusage;
       alpha_sbrk"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/char\([ 	]*\*[	 ]*sbrk[ 	]*(\)/void\1/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -483,7 +483,7 @@ struct rusage;
       arm_norcroft_hint"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/___type p_type/p_type/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -504,7 +504,7 @@ struct rusage;
       arm_wchar"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/\(#[ 	]*ifndef[ 	]*\)__wchar_t/\1_GCC_WCHAR_T/' \
         -e 's/\(#[ 	]*define[ 	]*\)__wchar_t/\1_GCC_WCHAR_T/' \
@@ -526,7 +526,7 @@ struct rusage;
       aux_asm"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's|#ifndef NOINLINE|#if !defined(NOINLINE) \&\& !defined(__GNUC__)|' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -548,7 +548,7 @@ struct rusage;
       avoid_bool"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^#[ 	]*define[ 	][ 	]*bool[ 	][ 	]*char[ 	]*$/i\
 #ifndef __cplusplus
@@ -597,7 +597,7 @@ struct rusage;
       bad_struct_term"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/^[ 	]*typedef[ 	][ 	]*\(struct[ 	][ 	]*term[ 	]*;[ 	]*\)$/\1/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -616,7 +616,7 @@ struct rusage;
       badquote"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/doesn'\''t/does not/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -647,7 +647,7 @@ struct rusage;
       bad_lval"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/^[ 	]*#[ 	]*define[ 	]*\([^(]*\)\(([^)]*)\)[ 	]*\(_.\)\1\2[ 	]*$/#define \1 \3\1/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -668,7 +668,7 @@ struct rusage;
       broken_assert_stdio"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '1i\
 #include <stdio.h>
@@ -692,7 +692,7 @@ struct rusage;
       broken_assert_stdlib"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '1i\
 #ifdef __cplusplus\
@@ -716,7 +716,7 @@ struct rusage;
       bsd43_io_macros"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/[ 	]BSD43__IO[A-Z]*[ 	]*(/s/(\(.\),/('\''\1'\'',/' \
         -e '/#[ 	]*define[ 	]*[ 	]BSD43__IO/s/'\''\([cgx]\)'\''/\1/g' \
@@ -734,7 +734,7 @@ struct rusage;
       dec_intern_asm"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^[ 	]*float[ 	]*fasm/i\
 #ifdef __DECC
@@ -759,7 +759,7 @@ struct rusage;
       no_double_slash"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's,^//.*$,,' \
         -e 's,[^:]//[^"].*$,,' \
@@ -778,7 +778,7 @@ struct rusage;
       ecd_cursor"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/ecd.cursor/ecd_cursor/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -797,7 +797,7 @@ struct rusage;
       sco5_stat_wrappers"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^static int[ 	]*[a-z]*stat(/i\
 #ifdef __cplusplus\
@@ -828,7 +828,7 @@ extern "C"\
       end_else_label"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e ':loop
 /\\$/N
@@ -856,7 +856,7 @@ s%^\([ 	]*#[ 	]*endif\)[ 	][ 	]*[^/* 	].*%\1%' \
       hp_inline"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's,"../machine/inline.h",<machine/inline.h>,' \
         -e 's,"../machine/psl.h",<machine/psl.h>,' \
@@ -878,7 +878,7 @@ s%^\([ 	]*#[ 	]*endif\)[ 	][ 	]*[^/* 	].*%\1%' \
       hp_sysfile"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/(\.\.\.)/(struct file * ...)/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -900,7 +900,7 @@ s%^\([ 	]*#[ 	]*endif\)[ 	][ 	]*[^/* 	].*%\1%' \
       cxx_unready"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '1i\
 #ifdef __cplusplus\
@@ -929,7 +929,7 @@ extern "C" {\
       hpux_maxint"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^#[ 	]*define[ 	]*MAXINT[ 	]/i\
 #ifndef MAXINT
@@ -954,7 +954,7 @@ extern "C" {\
       hpux_systime"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/^extern struct sigevent;/struct sigevent;/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -981,7 +981,7 @@ extern "C" {\
       interactv_add1"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/!defined(__STDC__) && !defined(_POSIX_SOURCE)/!defined(_POSIX_SOURCE)/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1003,7 +1003,7 @@ extern "C" {\
       interactv_add2"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/fmod(double)/fmod(double, double)/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1025,7 +1025,7 @@ extern "C" {\
       interactv_add3"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/CHILD_MAX/s,/\* Max, Max,' \
         -e '/OPEN_MAX/s,/\* Max, Max,' \
@@ -1046,7 +1046,7 @@ extern "C" {\
       io_def_quotes"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/\([ 	]*[ 	]_IO[A-Z]*[ 	]*(\)\([^,'\'']\),/\1'\''\2'\'',/' \
         -e 's/\([ 	]*[ 	]DESIO[A-Z]*[ 	]*(\)\([^,'\'']\),/\1'\''\2'\'',/' \
@@ -1067,7 +1067,7 @@ extern "C" {\
       ioctl_fix_ctrl"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/[^A-Z0-9_]CTRL[ 	]*(/s/\([^'\'']\))/'\''\1'\'')/' \
         -e '/[^A-Z0-9]_CTRL[ 	]*(/s/\([^'\'']\))/'\''\1'\'')/' \
@@ -1089,7 +1089,7 @@ extern "C" {\
       ip_missing_semi"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^struct/,/^};/s/}$/};/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1107,7 +1107,7 @@ extern "C" {\
       irix_multiline_cmnt"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's@type of the result@type of the result */@' \
         -e 's@of the sizeof@/* of the sizeof@' \
@@ -1128,7 +1128,7 @@ extern "C" {\
       irix_sockaddr"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/authdes_create.*struct sockaddr/i\
 struct sockaddr;
@@ -1149,7 +1149,7 @@ struct sockaddr;
       irix_struct__file"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/xdrstdio_create.*struct __file_s/i\
 struct __file_s;
@@ -1171,7 +1171,7 @@ struct __file_s;
       isc_fmod"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/fmod(double)/fmod(double, double)/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1192,7 +1192,7 @@ struct __file_s;
       motorola_nested"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's@^\(#undef[ 	][ 	]*PIPE_BUF[ 	]*/\* max # bytes atomic in write to a\)$@\1 */@' \
         -e 's@\(/\*#define	HUGE_VAL	3.40282346638528860e+38 \)\(/\*error value returned by Math lib\*/\)$@\1*/ \2@' \
@@ -1215,7 +1215,7 @@ struct __file_s;
       isc_sys_limits"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/CHILD_MAX/s,/\* Max, Max,' \
         -e '/OPEN_MAX/s,/\* Max, Max,' \
@@ -1254,7 +1254,7 @@ struct __file_s;
       kandr_concat"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's|/\*\*/|##|g' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1276,7 +1276,7 @@ struct __file_s;
       limits_ifndefs"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/[ 	]FLT_MIN[ 	]/i\
 #ifndef FLT_MIN
@@ -1333,7 +1333,7 @@ struct __file_s;
       lynx_void_int"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/#[ 	]*define[ 	][ 	]*void[ 	]int/d' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1354,7 +1354,7 @@ struct __file_s;
       lynxos_fcntl_proto"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/\(fcntl.*(int, int, \)int)/\1...)/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1374,7 +1374,7 @@ struct __file_s;
       m88k_bad_hypot_opt"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/extern double floor(), ceil(), fmod(), fabs();/extern double floor(), ceil(), fmod(), fabs _PARAMS((double));/' \
         -e '/^extern double hypot();$/a\
@@ -1411,7 +1411,7 @@ static __inline__ double fake_hypot (x, y)\
       m88k_bad_s_if"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/^\(#define[ 	]*S_IS[A-Z]*(m)\)[ 	]*(m[ 	]*&[ 	]*\(S_IF[A-Z][A-Z][A-Z][A-Z]*\)[ 	]*)/\1 (((m)\&S_IFMT)==\2)/' \
         -e 's/^\(#define[ 	]*S_IS[A-Z]*(m)\)[ 	]*(m[ 	]*&[ 	]*\(0[0-9]*\)[ 	]*)/\1 (((m)\&S_IFMT)==\2)/' \
@@ -1436,7 +1436,7 @@ static __inline__ double fake_hypot (x, y)\
       m88k_multi_incl"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
     ( echo Fixing $file, to protect against multiple inclusion. >&2
       cpp_wrapper=`echo $file | sed -e 's,\.,_,g' -e 's,/,_,g'`
       echo "#ifndef __GCC_GOT_${cpp_wrapper}_"
@@ -1448,7 +1448,7 @@ static __inline__ double fake_hypot (x, y)\
     #  We interpret that to mean the file is not to be altered
     #
     if test ! -f ${DESTDIR}/fixinc.tmp
-    then continue ; fi 
+    then continue ; fi
     rm -f ${DESTFILE}
     mv -f ${DESTDIR}/fixinc.tmp ${DESTFILE}
     fi # end of selection 'if'
@@ -1467,7 +1467,7 @@ static __inline__ double fake_hypot (x, y)\
       machine_name"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e ':loop
 /\\$/N
@@ -1520,7 +1520,7 @@ s/\\+++fixinc_eol+++/\\/g
       math_exception"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/struct exception/i\
 #ifdef __cplusplus\
@@ -1558,7 +1558,7 @@ s/\\+++fixinc_eol+++/\\/g
       math_gcc_ifndefs"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
     ( 	dbl_max_def=`egrep 'define[ 	]+DBL_MAX[ 	]+.*' float.h 2>/dev/null`
 
 	if ( test -n "${dbl_max_def}" \
@@ -1577,7 +1577,7 @@ s/\\+++fixinc_eol+++/\\/g
     #  We interpret that to mean the file is not to be altered
     #
     if test ! -f ${DESTDIR}/fixinc.tmp
-    then continue ; fi 
+    then continue ; fi
     rm -f ${DESTFILE}
     mv -f ${DESTDIR}/fixinc.tmp ${DESTFILE}
     ;; # case end for file name test
@@ -1592,7 +1592,7 @@ s/\\+++fixinc_eol+++/\\/g
       nested_comment"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's@^\(/\*.*rpc/auth_des.h>.*\)/\*@\1*/ /*@' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1612,7 +1612,7 @@ s/\\+++fixinc_eol+++/\\/g
       news_os_recursion"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^#include <stdlib.h>/i\
 #ifdef BOGUS_RECURSION
@@ -1638,7 +1638,7 @@ s/\\+++fixinc_eol+++/\\/g
       next_math_prefix"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^extern.*double.*__const__.*sqrt(/s/__const__//' \
         -e '/^extern.*double.*__const__.*fabs(/s/__const__//' \
@@ -1663,7 +1663,7 @@ s/\\+++fixinc_eol+++/\\/g
       next_template"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/\(.*template\)/s/template//' \
         -e '/extern.*volatile.*void.*abort/s/volatile//' \
@@ -1685,7 +1685,7 @@ s/\\+++fixinc_eol+++/\\/g
       next_volitile"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/extern.*volatile.*void.*exit/s/volatile//' \
         -e '/extern.*volatile.*void.*abort/s/volatile//' \
@@ -1707,7 +1707,7 @@ s/\\+++fixinc_eol+++/\\/g
       next_wait_union"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's@wait(union wait@wait(void@' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1726,7 +1726,7 @@ s/\\+++fixinc_eol+++/\\/g
       nodeent_syntax"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/char.*na_addr *$/char *na_addr;/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1750,7 +1750,7 @@ s/\\+++fixinc_eol+++/\\/g
       osf_namespace_a"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/regex_t/__regex_t/g' \
         -e 's/regoff_t/__regoff_t/g' \
@@ -1776,7 +1776,7 @@ s/\\+++fixinc_eol+++/\\/g
       osf_namespace_b"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/#include <reg_types.h>/a\
 typedef __regex_t	regex_t;\
@@ -1801,7 +1801,7 @@ typedef __regmatch_t	regmatch_t;
       pthread_page_size"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/^int __page_size/extern int __page_size/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1822,7 +1822,7 @@ typedef __regmatch_t	regmatch_t;
       rs6000_double"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/class[(]/i\
 #ifndef __cplusplus
@@ -1848,7 +1848,7 @@ typedef __regmatch_t	regmatch_t;
       rs6000_fchmod"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/fchmod(char \*/fchmod(int/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1868,7 +1868,7 @@ typedef __regmatch_t	regmatch_t;
       rs6000_param"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's@rename(const char \*old, const char \*new)@rename(const char *_old, const char *_new)@' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1888,7 +1888,7 @@ typedef __regmatch_t	regmatch_t;
       sony_include"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's@"../machine/endian.h"@<machine/endian.h>@' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1909,7 +1909,7 @@ typedef __regmatch_t	regmatch_t;
       statsswtch"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/boottime$/boottime;/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1928,7 +1928,7 @@ typedef __regmatch_t	regmatch_t;
       stdio_va_list"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
     ( if ( egrep "__need___va_list" $file ) > /dev/null 2>&1 ; then
     :
   else
@@ -1952,7 +1952,7 @@ typedef __regmatch_t	regmatch_t;
     #  We interpret that to mean the file is not to be altered
     #
     if test ! -f ${DESTDIR}/fixinc.tmp
-    then continue ; fi 
+    then continue ; fi
     rm -f ${DESTFILE}
     mv -f ${DESTDIR}/fixinc.tmp ${DESTFILE}
     ;; # case end for file name test
@@ -1970,7 +1970,7 @@ typedef __regmatch_t	regmatch_t;
       sun_bogus_ifdef"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/\#ifdef __i386__ || __vax__/\#if __i386__ || __vax__/g' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -1991,7 +1991,7 @@ typedef __regmatch_t	regmatch_t;
       sun_bogus_ifdef_sun4c"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/\#ifdef __i386__ || __sun4c__/\#if __i386__ || __sun4c__/g' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -2012,7 +2012,7 @@ typedef __regmatch_t	regmatch_t;
       sun_catmacro"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^#define[ 	]CAT(a,b)/ i\
 #ifdef __STDC__ \
@@ -2038,7 +2038,7 @@ typedef __regmatch_t	regmatch_t;
       sun_malloc"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/typedef[ 	]char \*	malloc_t/typedef void \*	malloc_t/g' \
         -e 's/int[ 	][ 	]*free/void	free/g' \
@@ -2061,7 +2061,7 @@ typedef __regmatch_t	regmatch_t;
       sun_memcpy"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '1i\
 /* This file was generated by fixincludes */\
@@ -2103,7 +2103,7 @@ extern int memcmp();\
       sun_rusers_semi"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^struct/,/^};/s/_cnt$/_cnt;/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -2125,7 +2125,7 @@ extern int memcmp();\
       sun_signal"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^void	(\*signal())();$/i\
 #ifdef __cplusplus\
@@ -2156,7 +2156,7 @@ void	(*signal(...))(...);\
       sun_auth_proto"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/^\(.*(\*[a-z][a-z_]*)(\)\();.*\)/\
 #ifdef __cplusplus\
@@ -2180,7 +2180,7 @@ void	(*signal(...))(...);\
       sunos_matherr_decl"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^struct exception/,$b' \
         -e '/matherr/i\
@@ -2201,7 +2201,7 @@ struct exception;
       sunos_strlen"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/int[ 	]*strlen();/__SIZE_TYPE__ strlen();/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -2226,7 +2226,7 @@ struct exception;
       systypes"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^[ 	]*\*[ 	]*typedef unsigned int size_t;/N' \
         -e 's/^\([ 	]*\*[ 	]*typedef unsigned int size_t;\n[ 	]*\*\/\)/\1\
@@ -2276,7 +2276,7 @@ typedef __SIZE_TYPE__ size_t;\
       systypes_for_aix"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/typedef[ 	][ 	]*[A-Za-z_][ 	A-Za-z_]*[ 	]size_t/i\
 #ifndef _GCC_SIZE_T\
@@ -2301,7 +2301,7 @@ typedef __SIZE_TYPE__ size_t;\
       sysv68_string"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/extern[ 	]*int[ 	]*strlen();/extern unsigned int strlen();/' \
         -e 's/extern[ 	]*int[ 	]*ffs[ 	]*(long);/extern int ffs(int);/' \
@@ -2329,7 +2329,7 @@ extern unsigned int\
       sysz_stdlib_for_sun"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/int	abort/void	abort/g' \
         -e 's/int	free/void	free/g' \
@@ -2360,7 +2360,7 @@ extern unsigned int\
       sysz_stdtypes_for_sun"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/[	 ]size_t.*;/i\
 #ifndef _GCC_SIZE_T\
@@ -2398,7 +2398,7 @@ extern unsigned int\
       tinfo_cplusplus"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/[ 	]_cplusplus/ __cplusplus/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -2418,7 +2418,7 @@ extern unsigned int\
       ultrix_ansi_compat"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '1i\
 /* This file intentionally left blank. */
@@ -2442,7 +2442,7 @@ extern unsigned int\
       ultrix_fix_fixproto"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^[ 	]*extern[ 	]*int[ 	]*uname();$/i\
 struct utsname;
@@ -2463,7 +2463,7 @@ struct utsname;
       ultrix_atof_param"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's@atof(\([ 	]*char[ 	]*\*[^)]*\))@atof(const \1)@' \
         -e 's@inline int abs(int [a-z][a-z]*) {.*}@extern "C" int abs(int);@' \
@@ -2485,7 +2485,7 @@ struct utsname;
       ultrix_const"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's@perror( char \*__s );@perror( const char *__s );@' \
         -e 's@fputs( char \*__s,@fputs( const char *__s,@' \
@@ -2513,7 +2513,7 @@ struct utsname;
       ultrix_ifdef"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/#ifdef KERNEL/#if defined(KERNEL)/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -2532,7 +2532,7 @@ struct utsname;
       ultrix_nested_cmnt"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's@^\( \*	int protocol;  \)/\*@\1*/ /*@' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -2552,7 +2552,7 @@ struct utsname;
       ultrix_static"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/^static struct tlb_pid_state/struct tlb_pid_state/' \
         -e 's/^#include "r3_cpu\.h"$/#include <machine\/r3_cpu\.h>/' \
@@ -2575,7 +2575,7 @@ struct utsname;
       undefine_null"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/^#[ 	]*define[ 	][ 	]*NULL[ 	]/i\
 #undef NULL
@@ -2596,7 +2596,7 @@ struct utsname;
       va_i960_macro"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/__vsiz/__vxvsiz/' \
         -e 's/__vali/__vxvali/' \
@@ -2630,7 +2630,7 @@ struct utsname;
       void_null"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/^#[ 	]*define[ 	]*NULL[ 	]*((void[ 	]*\*)0)/#define NULL 0/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -2651,7 +2651,7 @@ struct utsname;
       vxworks_gcc_problem"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/#ifdef __GNUC_TYPEOF_FEATURE_BROKEN_USE_DEFAULT_UNTIL_FIXED__/#if 1/' \
         -e '/[ 	]size_t/i\
@@ -2693,7 +2693,7 @@ struct utsname;
       vxworks_needs_vxtypes"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/uint_t/unsigned int/' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -2717,7 +2717,7 @@ struct utsname;
       vxworks_needs_vxworks"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/#[ 	]define[ 	][ 	]*__INCstath/a\
 #include <types/vxTypesOld.h>
@@ -2741,7 +2741,7 @@ struct utsname;
       vxworks_time"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/VOIDFUNCPTR/i\
 #ifndef __gcc_VOIDFUNCPTR_defined\
@@ -2772,7 +2772,7 @@ typedef void (*__gcc_VOIDFUNCPTR) ();\
       x11_class"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/char \*class;/i\
 #ifdef __cplusplus\
@@ -2800,7 +2800,7 @@ typedef void (*__gcc_VOIDFUNCPTR) ();\
       x11_class_usage"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's/ class[)]/ c_class)/g' \
           < $infile > ${DESTDIR}/fixinc.tmp
@@ -2821,7 +2821,7 @@ typedef void (*__gcc_VOIDFUNCPTR) ();\
       x11_new"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e '/Widget	old, new;/i\
 #ifdef __cplusplus\
@@ -2848,7 +2848,7 @@ typedef void (*__gcc_VOIDFUNCPTR) ();\
       x11_sprintf"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
 
     sed -e 's,^extern char \*	sprintf();$,#ifndef __STDC__\
 extern char *	sprintf();\
@@ -2870,7 +2870,7 @@ extern char *	sprintf();\
       zzz_ki_iface"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
     ( echo "Removing incorrect fix to <$file>" >&2
 rm -f ${DESTDIR}/$file ${DESTDIR}/fixinc.tmp
 cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
@@ -2879,7 +2879,7 @@ cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
     #  We interpret that to mean the file is not to be altered
     #
     if test ! -f ${DESTDIR}/fixinc.tmp
-    then continue ; fi 
+    then continue ; fi
     rm -f ${DESTFILE}
     mv -f ${DESTDIR}/fixinc.tmp ${DESTFILE}
     fi # end of selection 'if'
@@ -2897,7 +2897,7 @@ cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
       zzz_ki"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
     ( echo "Removing incorrect fix to <$file>" >&2
 rm -f ${DESTDIR}/$file ${DESTDIR}/fixinc.tmp
 cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
@@ -2906,7 +2906,7 @@ cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
     #  We interpret that to mean the file is not to be altered
     #
     if test ! -f ${DESTDIR}/fixinc.tmp
-    then continue ; fi 
+    then continue ; fi
     rm -f ${DESTFILE}
     mv -f ${DESTDIR}/fixinc.tmp ${DESTFILE}
     fi # end of selection 'if'
@@ -2924,7 +2924,7 @@ cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
       zzz_ki_calls"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
     ( echo "Removing incorrect fix to <$file>" >&2
 rm -f ${DESTDIR}/$file ${DESTDIR}/fixinc.tmp
 cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
@@ -2933,7 +2933,7 @@ cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
     #  We interpret that to mean the file is not to be altered
     #
     if test ! -f ${DESTDIR}/fixinc.tmp
-    then continue ; fi 
+    then continue ; fi
     rm -f ${DESTFILE}
     mv -f ${DESTDIR}/fixinc.tmp ${DESTFILE}
     fi # end of selection 'if'
@@ -2951,7 +2951,7 @@ cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
       zzz_ki_defs"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
     ( echo "Removing incorrect fix to <$file>" >&2
 rm -f ${DESTDIR}/$file ${DESTDIR}/fixinc.tmp
 cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
@@ -2960,7 +2960,7 @@ cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
     #  We interpret that to mean the file is not to be altered
     #
     if test ! -f ${DESTDIR}/fixinc.tmp
-    then continue ; fi 
+    then continue ; fi
     rm -f ${DESTFILE}
     mv -f ${DESTDIR}/fixinc.tmp ${DESTFILE}
     fi # end of selection 'if'
@@ -2976,7 +2976,7 @@ cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
       zzz_bad_fixes"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
     ( echo "Removing incorrect fix to <$file>" >&2
 rm -f ${DESTDIR}/$file ${DESTDIR}/fixinc.tmp
 cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
@@ -2985,7 +2985,7 @@ cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
     #  We interpret that to mean the file is not to be altered
     #
     if test ! -f ${DESTDIR}/fixinc.tmp
-    then continue ; fi 
+    then continue ; fi
     rm -f ${DESTFILE}
     mv -f ${DESTDIR}/fixinc.tmp ${DESTFILE}
     ;; # case end for file name test
@@ -3002,7 +3002,7 @@ cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
       zzz_time"
     if [ ! -r ${DESTFILE} ]
     then infile=${file}
-    else infile=${DESTFILE} ; fi 
+    else infile=${DESTFILE} ; fi
     ( echo "Removing incorrect fix to <$file>" >&2
 rm -f ${DESTDIR}/$file ${DESTDIR}/fixinc.tmp
 cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
@@ -3011,7 +3011,7 @@ cat > /dev/null ) < $infile > ${DESTDIR}/fixinc.tmp
     #  We interpret that to mean the file is not to be altered
     #
     if test ! -f ${DESTDIR}/fixinc.tmp
-    then continue ; fi 
+    then continue ; fi
     rm -f ${DESTFILE}
     mv -f ${DESTDIR}/fixinc.tmp ${DESTFILE}
     fi # end of selection 'if'

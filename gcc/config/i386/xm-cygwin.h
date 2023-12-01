@@ -31,7 +31,7 @@ Boston, MA 02111-1307, USA. */
 #define DIR_SEPARATOR '/'
 #define DIR_SEPARATOR_2 '\\'
 
-/* Convert win32 style path lists to POSIX style for consistency. */ 
+/* Convert win32 style path lists to POSIX style for consistency. */
 #undef GET_ENV_PATH_LIST
 #define GET_ENV_PATH_LIST(VAR,NAME)					\
 do {									\

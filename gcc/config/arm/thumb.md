@@ -48,7 +48,7 @@
 (define_insn "*movsi_insn"
   [(set (match_operand:SI 0 "nonimmediate_operand" "=l,l,l,l,l,>,l,m,*r,*h")
 	(match_operand:SI 1 "general_operand" "l,I,J,K,>,l,mi,l,*h,*r"))]
-  "register_operand (operands[0], SImode) 
+  "register_operand (operands[0], SImode)
    || register_operand (operands[1], SImode)"
   "@
    add\\t%0, %1, #0
@@ -63,7 +63,7 @@
    mov\\t%0, %1"
 [(set_attr "length" "2,2,4,4,2,2,2,2,2,2")])
 
-(define_split 
+(define_split
   [(set (match_operand:SI 0 "register_operand" "")
 	(match_operand:SI 1 "const_int_operand" ""))]
   "thumb_shiftable_const (INTVAL (operands[1]))"
@@ -85,7 +85,7 @@
   operands[2] = GEN_INT (i);
 }")
 
-(define_split 
+(define_split
   [(set (match_operand:SI 0 "register_operand" "")
 	(match_operand:SI 1 "const_int_operand" ""))]
   "INTVAL (operands[1]) < 0 && INTVAL (operands[1]) > -256"
@@ -342,7 +342,7 @@
 (define_insn "*movsf_insn"
   [(set (match_operand:SF 0 "nonimmediate_operand" "=l,l,>,l,m,*r,*h")
 	(match_operand:SF 1 "general_operand"       "l,>,l,mF,l,*h,*r"))]
-  "register_operand (operands[0], SFmode) 
+  "register_operand (operands[0], SFmode)
    || register_operand (operands[1], SFmode)"
   "@
    add\\t%0, %1, #0
@@ -363,7 +363,7 @@
   if (GET_CODE (operands[1]) != MEM)
     {
       rtx temp = gen_reg_rtx (SImode);
-      
+
       operands[1] = force_reg (HImode, operands[1]);
       operands[1] = gen_lowpart (SImode, operands[1]);
       emit_insn (gen_ashlsi3 (temp, operands[1], GEN_INT (16)));
@@ -410,7 +410,7 @@
   if (GET_CODE (operands[1]) != MEM)
     {
       rtx temp = gen_reg_rtx (SImode);
-      
+
       operands[1] = force_reg (HImode, operands[1]);
       operands[1] = gen_lowpart (SImode, operands[1]);
       emit_insn (gen_ashlsi3 (temp, operands[1], GEN_INT (16)));
@@ -484,7 +484,7 @@
     {
       ops[1] = XEXP (XEXP (operands[1], 0), 0);
       ops[2] = XEXP (XEXP (operands[1], 0), 1);
-      
+
       if (GET_CODE (ops[1]) == REG && GET_CODE (ops[2]) == REG)
         output_asm_insn (\"ldrsb\\t%0, [%1, %2]\", ops);
       else if (GET_CODE (ops[1]) == REG)
@@ -609,7 +609,7 @@
 		 (match_operand:SI 2 "nonmemory_operand" "I,J,lL,*h,*r,!M,!O")))]
   ""
   "*
-   static char *asms[] = 
+   static char *asms[] =
 {
   \"add\\t%0, %0, %2\",
   \"sub\\t%0, %0, #%n2\",
@@ -632,7 +632,7 @@
 	(match_operand:SI 1 "const_int_operand" "M"))
    (set (match_dup 0)
 	(plus:SI (match_dup 0) (match_operand:SI 2 "register_operand" "k")))]
-  "REGNO (operands[2]) == STACK_POINTER_REGNUM 
+  "REGNO (operands[2]) == STACK_POINTER_REGNUM
    && (unsigned HOST_WIDE_INT) (INTVAL (operands[1])) < 1024
    && (INTVAL (operands[1]) & 3) == 0"
   "add\\t%0, %2, %1")
@@ -808,7 +808,7 @@
 	    operands[1] = force_reg (SImode, operands[1]);
 	  else
 	    {
-	      operands[1] = force_reg (SImode, 
+	      operands[1] = force_reg (SImode,
 				       GEN_INT (- INTVAL (operands[1])));
 	      emit_insn (gen_cmnsi (operands[0], operands[1]));
 	      DONE;
@@ -850,7 +850,7 @@
        (if_then_else (eq_attr "length" "4")
 		     (const_string "yes")
 		     (const_string "no")))
-  (set (attr "length") 
+  (set (attr "length")
        (if_then_else (and (ge (minus (match_dup 0) (pc)) (const_int -2048))
 			  (le (minus (match_dup 0) (pc)) (const_int 2044)))
 		     (const_int 2)
@@ -944,7 +944,7 @@
        (if_then_else (eq_attr "length" "6")
 		     (const_string "yes")
 		     (const_string "no")))
-  (set (attr "length") 
+  (set (attr "length")
        (if_then_else
 	(and (ge (minus (match_dup 0) (pc)) (const_int -252))
 	     (le (minus (match_dup 0) (pc)) (const_int 254)))
@@ -972,7 +972,7 @@
        (if_then_else (eq_attr "length" "6")
 		     (const_string "yes")
 		     (const_string "no")))
-   (set (attr "length") 
+   (set (attr "length")
        (if_then_else
 	(and (ge (minus (match_dup 0) (pc)) (const_int -252))
 	     (le (minus (match_dup 0) (pc)) (const_int 254)))

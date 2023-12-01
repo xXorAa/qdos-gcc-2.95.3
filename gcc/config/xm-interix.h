@@ -58,7 +58,7 @@ do {									\
   for (nptrs = 0; p[nptrs] != 0; nptrs++);				\
   for (i = nptrs-1; i >= 0; i--)					\
     p[i] ();								\
-} while (0) 
+} while (0)
 
 #define DO_GLOBAL_DTORS_BODY						\
 do {									\
@@ -74,4 +74,4 @@ do {									\
       p++;								\
       (*(p-1)) ();							\
     }									\
-} while (0) 
+} while (0)

@@ -87,7 +87,7 @@ extern int target_flags;
      * Tests of SETUP_INCOMING_VARARGS need to be made runtime checks
      since it depends on TARGET_GHS.  */
 #define TARGET_GHS (target_flags & MASK_GHS)
- 
+
 /* Don't do PC-relative calls, instead load the address of the target
    function into a register and perform a register indirect call.  */
 #define TARGET_LONG_CALLS (target_flags & MASK_LONG_CALLS)
@@ -217,7 +217,7 @@ extern struct small_memory_info small_memory[(int)SMALL_MEMORY_max];
    LEVEL is the optimization level specified; 2 if `-O2' is
    specified, 1 if `-O' is specified, and 0 if neither is specified.
 
-   SIZE is non-zero if `-Os' is specified, 0 otherwise.  
+   SIZE is non-zero if `-Os' is specified, 0 otherwise.
 
    You should not use this macro to change options that are not
    machine-specific.  These should uniformly selected by the same
@@ -413,7 +413,7 @@ extern struct small_memory_info small_memory[(int)SMALL_MEMORY_max];
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 enum reg_class
 {
   NO_REGS, GENERAL_REGS, ALL_REGS, LIM_REG_CLASSES
@@ -459,7 +459,7 @@ enum reg_class
    or a pseudo reg currently allocated to a suitable hard reg.
    Since they use reg_renumber, they are safe only once reg_renumber
    has been allocated, which happens in local-alloc.c.  */
- 
+
 #define REGNO_OK_FOR_BASE_P(regno) \
   ((regno) < FIRST_PSEUDO_REGISTER || reg_renumber[regno] >= 0)
 
@@ -517,8 +517,8 @@ enum reg_class
    0)
 
 /* Similar, but for floating constants, and defining letters G and H.
-   Here VALUE is the CONST_DOUBLE rtx itself. 
-     
+   Here VALUE is the CONST_DOUBLE rtx itself.
+
   `G' is a zero of some form.  */
 
 #define CONST_DOUBLE_OK_FOR_G(VALUE)					\
@@ -574,7 +574,7 @@ enum reg_class
 
 /* Register containing return address from latest function call.  */
 #define LINK_POINTER_REGNUM 31
-     
+
 /* On some machines the offset between the frame pointer and starting
    offset of the automatic variables is not known until after register
    allocation has been done (for example, because the saved registers
@@ -594,7 +594,7 @@ enum reg_class
 
    Do not define this macro if it would be the same as
    `FRAME_POINTER_REGNUM'. */
-#undef  HARD_FRAME_POINTER_REGNUM 
+#undef  HARD_FRAME_POINTER_REGNUM
 #define HARD_FRAME_POINTER_REGNUM 29
 
 /* Base register for access to arguments of the function.  */
@@ -741,7 +741,7 @@ extern int current_function_anonymous_args;
 
 #define FUNCTION_ARG_PASS_BY_REFERENCE(CUM, MODE, TYPE, NAMED)		\
   ((TYPE) && int_size_in_bytes (TYPE) > 8)
- 
+
 #define FUNCTION_ARG_CALLEE_COPIES(CUM, MODE, TYPE, NAMED) \
   ((TYPE) && int_size_in_bytes (TYPE) > 8)
 
@@ -753,7 +753,7 @@ extern int current_function_anonymous_args;
    VALTYPE is the data type of the value (as a tree).
    If the precise function being called is known, FUNC is its FUNCTION_DECL;
    otherwise, FUNC is 0.   */
-   
+
 #define FUNCTION_VALUE(VALTYPE, FUNC) \
   gen_rtx (REG, TYPE_MODE (VALTYPE), 10)
 
@@ -907,7 +907,7 @@ extern int current_function_anonymous_args;
    machine-independent.  */
 
 /* Accept either REG or SUBREG where a register is valid.  */
-  
+
 #define RTX_OK_FOR_BASE_P(X)						\
   ((REG_P (X) && REG_OK_FOR_BASE_P (X))					\
    || (GET_CODE (X) == SUBREG && REG_P (SUBREG_REG (X))			\
@@ -1018,7 +1018,7 @@ do {									\
 /* A crude cut at RTX_COSTS for the V850.  */
 
 /* Provide the costs of a rtl expression.  This is in the body of a
-   switch on CODE. 
+   switch on CODE.
 
    There aren't DImode MOD, DIV or MULT operations, so call them
    very expensive.  Everything else is pretty much a constant cost.  */
@@ -1038,7 +1038,7 @@ do {									\
 #define SLOW_BYTE_ACCESS 1
 
 /* Define this if zero-extension is slow (more than one real instruction).  */
-#define SLOW_ZERO_EXTEND 
+#define SLOW_ZERO_EXTEND
 
 /* According expr.c, a value of around 6 should minimize code size, and
    for the V850 series, that's our primary concern.  */
@@ -1049,7 +1049,7 @@ do {									\
 #define NO_FUNCTION_CSE
 
 /* The four different data regions on the v850.  */
-typedef enum 
+typedef enum
 {
   DATA_AREA_NORMAL,
   DATA_AREA_SDA,
@@ -1304,7 +1304,7 @@ do { char dstr[30];					\
 #define ASM_OUTPUT_ALIGNED_BSS(FILE, DECL, NAME, SIZE, ALIGN) \
   asm_output_aligned_bss ((FILE), (DECL), (NAME), (SIZE), (ALIGN))
 
-#undef  ASM_OUTPUT_ALIGNED_BSS 
+#undef  ASM_OUTPUT_ALIGNED_BSS
 #define ASM_OUTPUT_ALIGNED_BSS(FILE, DECL, NAME, SIZE, ALIGN) \
   v850_output_aligned_bss (FILE, DECL, NAME, SIZE, ALIGN)
 
@@ -1321,7 +1321,7 @@ do { char dstr[30];					\
 #undef  ASM_OUTPUT_LOCAL
 #define ASM_OUTPUT_ALIGNED_DECL_LOCAL(FILE, DECL, NAME, SIZE, ALIGN) \
      v850_output_local (FILE, DECL, NAME, SIZE, ALIGN)
-     
+
 /* This is how to output the definition of a user-level label named NAME,
    such as the label on a static function or variable NAME.  */
 
@@ -1343,7 +1343,7 @@ do { char dstr[30];					\
   char* real_name;                                \
   STRIP_NAME_ENCODING (real_name, (NAME));        \
   fprintf (FILE, "_%s", real_name);               \
-  } while (0)           
+  } while (0)
 
 /* Store in OUTPUT a string (made with alloca) containing
    an assembler-name for a local static variable named NAME.
@@ -1529,26 +1529,26 @@ enum v850_pragma_type
    can appear in the "ghs section" pragma.  These names are used to index
    into the GHS_default_section_names[] and GHS_current_section_names[]
    that are defined in v850.c, and so the ordering of each must remain
-   consistant. 
+   consistant.
 
-   These arrays give the default and current names for each kind of 
+   These arrays give the default and current names for each kind of
    section defined by the GHS pragmas.  The current names can be changed
-   by the "ghs section" pragma.  If the current names are null, use 
+   by the "ghs section" pragma.  If the current names are null, use
    the default names.  Note that the two arrays have different types.
 
    For the *normal* section kinds (like .data, .text, etc.) we do not
    want to explicitly force the name of these sections, but would rather
-   let the linker (or at least the back end) choose the name of the 
+   let the linker (or at least the back end) choose the name of the
    section, UNLESS the user has force a specific name for these section
    kinds.  To accomplish this set the name in ghs_default_section_names
    to null.  */
 
 enum GHS_section_kind
-{ 
+{
   GHS_SECTION_KIND_DEFAULT,
 
   GHS_SECTION_KIND_TEXT,
-  GHS_SECTION_KIND_DATA, 
+  GHS_SECTION_KIND_DATA,
   GHS_SECTION_KIND_RODATA,
   GHS_SECTION_KIND_BSS,
   GHS_SECTION_KIND_SDATA,
@@ -1620,7 +1620,7 @@ do {									\
   /* Note, due to dependency and search path conflicts, prototypes
      involving the FILE, rtx or tree types cannot be included here.
      They are included at the start of v850.c  */
-  
+
 extern void   asm_file_start                ();
 extern void   print_operand                 ();
 extern void   print_operand_address         ();

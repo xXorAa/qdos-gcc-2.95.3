@@ -100,7 +100,7 @@ struct processor_costs pentiumpro_cost = {
   17					/* cost of a divide/mod */
 };
 
-/* We use decoding time together with execution time. 
+/* We use decoding time together with execution time.
    To get correct vale add 1 for short decodable, 2 for long decodable
    and 4 for vector decodable instruction to execution time and divide
    by two (because CPU is able to do two insns at a time). */
@@ -1666,7 +1666,7 @@ asm_output_function_prefix (file, name)
 	 was changed to call ASM_OUTPUT_LABEL() instead. */
 
 
-      ASM_OUTPUT_LABEL (file, pic_label_name); 
+      ASM_OUTPUT_LABEL (file, pic_label_name);
       output_asm_insn ("movl (%1),%0", xops);
       output_asm_insn ("ret", xops);
     }
@@ -1812,7 +1812,7 @@ ix86_compute_frame_size (size, nregs_on_stack)
       offset += UNITS_PER_WORD;
 
     total_size += offset;
-    
+
     padding = ((total_size + preferred_alignment - 1)
 	       & -preferred_alignment) - total_size;
 
@@ -1979,7 +1979,7 @@ ix86_prologue (do_rtl)
 
 #ifdef SUBTARGET_PROLOGUE
   SUBTARGET_PROLOGUE;
-#endif  
+#endif
 
   if (pic_reg_used)
     load_pic_register (do_rtl);
@@ -2615,7 +2615,7 @@ legitimize_pic_address (orig, reg)
 	reg = gen_reg_rtx (Pmode);
       emit_move_insn (reg, new);
       new = reg;
-    }      
+    }
   else
     {
       if (GET_CODE (addr) == CONST)
@@ -3229,7 +3229,7 @@ put_condition_code (code, reverse_cc, mode, file)
    k --  likewise, print the SImode name of the register.
    h --  print the QImode name for a "high" register, either ah, bh, ch or dh.
    y --  print "st(0)" instead of "st" as a register.
-   P --  print as a PIC constant 
+   P --  print as a PIC constant
    _ --  output "_" if YES_UNDERSCORES */
 
 void
@@ -3605,8 +3605,8 @@ print_operand_address (file, addr)
 	if (scale == 2)
 	  {
 	    PRINT_B_I_S (ireg, ireg, 1, file);
-	  } 
-	else 
+	  }
+	else
 	  {
 	    output_addr_const (file, const0_rtx);
 	    PRINT_B_I_S (NULL_RTX, ireg, scale, file);
@@ -4155,7 +4155,7 @@ output_float_compare (insn, operands)
 	      output_asm_insn (AS2 (fucomip,%y1,%0), operands);
 	      output_asm_insn (AS1 (fstp, %y0), operands);
 	      if (!TARGET_IEEE_FP)
-		cc0_set = 0; 
+		cc0_set = 0;
 	    }
 	  else
 	    output_asm_insn ("fucompp", operands);
@@ -4167,7 +4167,7 @@ output_float_compare (insn, operands)
 	      output_asm_insn (AS2 (fcomip, %y1,%0), operands);
 	      output_asm_insn (AS1 (fstp, %y0), operands);
 	      if (!TARGET_IEEE_FP)
-		cc0_set = 0; 
+		cc0_set = 0;
 	    }
 	  else
 	    output_asm_insn ("fcompp", operands);
@@ -4193,16 +4193,16 @@ output_float_compare (insn, operands)
 	{
 	  output_asm_insn (strcat (buf, AS2 (%z1,%y1,%0)), operands);
 	  if (!TARGET_IEEE_FP)
-	    cc0_set = 0; 
+	    cc0_set = 0;
 	}
       else
         output_asm_insn (strcat (buf, AS1 (%z1,%y1)), operands);
     }
 
   /* Now retrieve the condition code. */
-  if (cc0_set) 
+  if (cc0_set)
     {
-      char *r = output_fp_cc0_set (insn); 
+      char *r = output_fp_cc0_set (insn);
       if (r[0]) output_asm_insn (r, operands);
     }
 
@@ -4213,7 +4213,7 @@ output_float_compare (insn, operands)
     {
       if (STACK_REG_P (operands[i])
           && find_regno_note (insn, REG_DEAD, REGNO (operands[i]))
-          && REGNO (operands[i]) != FIRST_STACK_REG 
+          && REGNO (operands[i]) != FIRST_STACK_REG
           && (!stack_top_dies || REGNO (operands[i]) != FIRST_STACK_REG + 1))
         {
           rtx xexp[2];
@@ -4252,7 +4252,7 @@ output_fp_cc0_set (insn)
       if (!(cc_status.flags & CC_REVERSED))
         {
           next = next_cc0_user (insn);
-  
+
           if (GET_CODE (PATTERN (next)) == SET
               && SET_DEST (PATTERN (next)) == pc_rtx
               && GET_CODE (SET_SRC (PATTERN (next))) == IF_THEN_ELSE)
@@ -5053,7 +5053,7 @@ agi_dependent (insn, dep_insn)
     push_dep = 1;
 
   /* CPUs contain special hardware to allow two pushes.  */
-  if (push && push_dep) 
+  if (push && push_dep)
     return 0;
 
   /* Push operation implicitly change stack pointer causing AGI stalls.  */
@@ -5471,7 +5471,7 @@ x86_adjust_cost (insn, link, dep_insn, cost)
 
    When optimizing for size, we know that src == dest, and we should always
    use "sal".  If src != dest, then copy src to dest and use "sal".
-   
+
    Pentium and PPro (speed):
 
      When src == dest, use "add" for a shift counts of one, else use
@@ -5614,7 +5614,7 @@ output_ashl (insn, operands)
 
 /* Given the memory address ADDR, calculate the length of the address or
    the length of just the displacement (controlled by DISP_LENGTH).
-  
+
    The length returned does not include the one-byte modrm, opcode,
    or prefix.  */
 
@@ -5634,7 +5634,7 @@ memory_address_info (addr, disp_length)
   /* Register Indirect.  */
   if (register_operand (addr, Pmode))
     {
-      /* Special cases: ebp and esp need the two-byte modrm form. 
+      /* Special cases: ebp and esp need the two-byte modrm form.
 
 	 We change [ESI] to [ESI+0] on the K6 when not optimizing
 	 for size.  */
@@ -5699,7 +5699,7 @@ memory_address_info (addr, disp_length)
     }
   else
     abort ();
-      
+
   /* Allow arg pointer and stack pointer as index if there is not scaling */
   if (base && index && !scale
       && (index == stack_pointer_rtx
@@ -5715,7 +5715,7 @@ memory_address_info (addr, disp_length)
   if (base == frame_pointer_rtx && !disp)
     disp = const0_rtx;
 
-  /* Scaling can not be encoded without base or displacement.  
+  /* Scaling can not be encoded without base or displacement.
      Except for scale == 1 where we can encode reg + reg instead of reg * 2.  */
   if (!base && index
       && (!scale || GET_CODE (scale) != CONST_INT || (INTVAL (scale) != 1)))

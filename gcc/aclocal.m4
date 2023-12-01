@@ -75,7 +75,7 @@ if test $ac_cv_func_vprintf != yes ; then
 fi
 AC_SUBST(vfprintf)
 AC_SUBST(doprint)
-])    
+])
 
 dnl See if the printf functions in libc support %p in format strings.
 AC_DEFUN(GCC_FUNC_PRINTF_PTR,
@@ -186,7 +186,7 @@ AC_DEFUN(GCC_FUNC_MKDIR_TAKES_ONE_ARG,
 #endif
 #ifdef HAVE_DIRECT_H
 # include <direct.h>
-#endif], [mkdir ("foo", 0);], 
+#endif], [mkdir ("foo", 0);],
         gcc_cv_mkdir_takes_one_arg=no, gcc_cv_mkdir_takes_one_arg=yes)])
 if test $gcc_cv_mkdir_takes_one_arg = yes ; then
   AC_DEFINE(MKDIR_TAKES_ONE_ARG)

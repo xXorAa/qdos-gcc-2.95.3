@@ -566,7 +566,7 @@ extern void		mips_select_section ();
 			   | TARGET_CPU_DEFAULT				\
 			   | TARGET_ENDIAN_DEFAULT),			\
      NULL},								\
-}     
+}
 
 /* Default target_flags if no switches are specified  */
 
@@ -612,7 +612,7 @@ extern void		mips_select_section ();
    initializer with a subgrouping for each command option.
 
    Each subgrouping contains a string constant, that defines the
-   fixed part of the option name, and the address of a variable. 
+   fixed part of the option name, and the address of a variable.
    The variable, type `char *', is set to the variable part of the
    given option if the fixed part matches.  The actual option name
    is made by appending `-m' to the specified name.
@@ -1504,7 +1504,7 @@ do {							\
 /* Define if loading in MODE, an integral mode narrower than BITS_PER_WORD
    will either zero-extend or sign-extend.  The value of this macro should
    be the code that says which one of the two operations is implicitly
-   done, NIL if none. 
+   done, NIL if none.
 
    When in 64 bit mode, mips_move_1word will sign extend SImode and CCmode
    moves.  All other referces are zero extended.  */
@@ -1513,7 +1513,7 @@ do {							\
    ? SIGN_EXTEND : ZERO_EXTEND)
 
 /* Define this macro if it is advisable to hold scalars in registers
-   in a wider mode than that declared by the program.  In such cases, 
+   in a wider mode than that declared by the program.  In such cases,
    the value is constrained to be within the bounds of the declared
    type, but kept valid in the wider mode.  The signedness of the
    extension may differ from that of the type.
@@ -1738,7 +1738,7 @@ extern char mips_hard_regno_mode_ok[][FIRST_PSEUDO_REGISTER];
 
 /* The register number of the register used to address a table of
    static data addresses in memory.  In some cases this register is
-   defined by a processor's "application binary interface" (ABI). 
+   defined by a processor's "application binary interface" (ABI).
    When this macro is defined, RTL is generated for this register
    once, as with the stack pointer and frame pointer registers.  If
    this macro is not defined, it is up to the machine-dependent
@@ -1996,7 +1996,7 @@ extern enum reg_class mips_char_to_class[];
    && (VALUE) == CONST0_RTX (GET_MODE (VALUE)))
 
 /* Letters in the range `Q' through `U' may be defined in a
-   machine-dependent fashion to stand for arbitrary operand types. 
+   machine-dependent fashion to stand for arbitrary operand types.
    The machine description macro `EXTRA_CONSTRAINT' is passed the
    operand as its first argument and the constraint letter as its
    second operand.
@@ -2195,7 +2195,7 @@ extern struct mips_frame_info current_frame_info;
 
    On some machines, the position of the argument pointer is not
    known until the compilation is completed.  In such a case, a
-   separate hard register must be used for the argument pointer. 
+   separate hard register must be used for the argument pointer.
    This register can be eliminated by replacing it with either the
    frame pointer or the argument pointer, depending on whether or not
    the frame pointer has been eliminated.
@@ -2347,9 +2347,9 @@ extern struct mips_frame_info current_frame_info;
   ((MAX_ARGS_IN_REGISTERS*UNITS_PER_WORD) - FIRST_PARM_OFFSET (FNDECL))
 
 /* Define this if it is the responsibility of the caller to
-   allocate the area reserved for arguments passed in registers. 
+   allocate the area reserved for arguments passed in registers.
    If `ACCUMULATE_OUTGOING_ARGS' is also defined, the only effect
-   of this macro is to determine whether the space is included in 
+   of this macro is to determine whether the space is included in
    `current_function_outgoing_args_size'.  */
 #define OUTGOING_REG_PARM_STACK_SPACE
 
@@ -2510,7 +2510,7 @@ typedef struct mips_args {
   int fp_code;			/* Mode of FP arguments (mips16) */
   int num_adjusts;		/* number of adjustments made */
 				/* Adjustments made to args pass in regs.  */
-				/* ??? The size is doubled to work around a 
+				/* ??? The size is doubled to work around a
 				   bug in the code that sets the adjustments
 				   in function_arg.  */
   struct rtx_def *adjust[MAX_ARGS_IN_REGISTERS*2];
@@ -2636,7 +2636,7 @@ typedef struct mips_args {
 
 
 /* A C statement to output, on the stream FILE, assembler code for a
-   block of data that contains the constant parts of a trampoline. 
+   block of data that contains the constant parts of a trampoline.
    This code should not include a label--the label is taken care of
    automatically.  */
 
@@ -2686,7 +2686,7 @@ typedef struct mips_args {
 #define CACHE_FLUSH_FUNC "_flush_cache"
 #endif
 
-/* A C statement to initialize the variable parts of a trampoline. 
+/* A C statement to initialize the variable parts of a trampoline.
    ADDR is an RTX for the address of the trampoline; FNADDR is an
    RTX for the address of the nested function; STATIC_CHAIN is an
    RTX for the static chain value that should be passed to the
@@ -2790,7 +2790,7 @@ typedef struct mips_args {
    to understand.
 
    This macro must exist in two variants: a strict variant and a
-   non-strict one.  The strict variant is used in the reload pass. 
+   non-strict one.  The strict variant is used in the reload pass.
    It must be defined so that any pseudo-register that has not been
    allocated a hard register is considered a memory reference.  In
    contexts where some kind of register is required, a
@@ -2827,7 +2827,7 @@ typedef struct mips_args {
    On some machines, whether a symbolic address is legitimate
    depends on the section that the address refers to.  On these
    machines, define the macro `ENCODE_SECTION_INFO' to store the
-   information into the `symbol_ref', and then check for it here. 
+   information into the `symbol_ref', and then check for it here.
    When you see a `const', you will have to look inside it to find
    the `symbol_ref' in order to determine the section.  */
 
@@ -3013,7 +3013,7 @@ typedef struct mips_args {
 
    When PIC, convert addresses of the form memory (symbol+large int) to
    memory (reg+large int).  */
-   
+
 
 #define LEGITIMIZE_ADDRESS(X,OLDX,MODE,WIN)				\
 {									\
@@ -3113,7 +3113,7 @@ typedef struct mips_args {
    function named by the symbol (such as what section it is in).
 
    The macro definition, if any, is executed immediately after the
-   rtl for DECL has been created and stored in `DECL_RTL (DECL)'. 
+   rtl for DECL has been created and stored in `DECL_RTL (DECL)'.
    The value of the rtl will be a `mem' whose address is a
    `symbol_ref'.
 
@@ -3123,7 +3123,7 @@ typedef struct mips_args {
    information).
 
    The best way to modify the name string is by adding text to the
-   beginning, with suitable punctuation to prevent any ambiguity. 
+   beginning, with suitable punctuation to prevent any ambiguity.
    Allocate the new name in `saveable_obstack'.  You will have to
    modify `ASM_OUTPUT_LABELREF' to remove and decode the added text
    and output the name accordingly.
@@ -3142,7 +3142,7 @@ typedef struct mips_args {
    constants which are put in the .text section.  We also record the
    total length of all such strings; this total is used to decide
    whether we need to split the constant table, and need not be
-   precisely correct. 
+   precisely correct.
 
    When not mips16 code nor embedded PIC, if a symbol is in a
    gp addresable section, SYMBOL_REF_FLAG is set prevent gcc from
@@ -3657,7 +3657,7 @@ while (0)
    used.
 
    For example, suppose an address that is equal to the sum of a
-   register and a constant is used twice in the same basic block. 
+   register and a constant is used twice in the same basic block.
    When this macro is not defined, the address will be computed in
    a register and memory references will be indirect through that
    register.  On machines where the cost of the addressing mode
@@ -3677,7 +3677,7 @@ while (0)
    defining `ADDRESS_COST' to reflect this can cause two registers
    to be live over a region of code where only one would have been
    if `ADDRESS_COST' were not defined in that manner.  This effect
-   should be considered in the definition of this macro. 
+   should be considered in the definition of this macro.
    Equivalent costs should probably only be given to addresses with
    different numbers of registers on machines with lots of registers.
 
@@ -3785,7 +3785,7 @@ while (0)
 
    Defining this macro does not affect the generated code (however,
    incorrect definitions that omit an rtl code that may be matched
-   by the predicate can cause the compiler to malfunction). 
+   by the predicate can cause the compiler to malfunction).
    Instead, it allows the table built by `genrecog' to be more
    compact and efficient, thus speeding up the compiler.  The most
    important predicates to include in the list specified by this
@@ -4204,7 +4204,7 @@ do {									\
 /* A C statement (sans semicolon) to output to the stdio stream
    STREAM any text necessary for declaring the name NAME of an
    initialized variable which is being defined.  This macro must
-   output the label definition (perhaps using `ASM_OUTPUT_LABEL'). 
+   output the label definition (perhaps using `ASM_OUTPUT_LABEL').
    The argument DECL is the `VAR_DECL' tree node representing the
    variable.
 

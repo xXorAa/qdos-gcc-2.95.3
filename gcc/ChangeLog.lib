@@ -102,7 +102,7 @@ Wed Jul 16 10:46:14 1997  Richard Earnshaw <rearnsha@cambridge.arm.com>
 Tue Jul 15 09:13:05 1997  Jim Meyering  <meyering@psilocin.gnu.ai.mit.edu>
 
 	* getloadavg.c: Add comment describing HAVE_PSTAT_GETDYNAMIC.
-	
+
 1997-07-14  Richard Stallman  <rms@psilocin.gnu.ai.mit.edu>
 
 	* config.guess (pc:*:*:*): New entry, for DJGPP.
@@ -151,7 +151,7 @@ Mon Jun 23 10:51:53 1997  Jeffrey A Law  (law@cygnus.com)
 1997-06-05  Richard Stallman  <rms@psilocin.gnu.ai.mit.edu>
 
 	* config.guess (*:Linux:*:*): Don't test for elf_i.86 or m68kelf.
-	
+
 	* config.guess (*:Linux:*:*): Recognize sparclinux.
 	Don't recognize UNAME_MACHINE = sparc.
 	Make the sample program check for libc version
@@ -174,7 +174,7 @@ Mon May  5 18:05:35 1997  Per Bothner  <bothner@frobnitz.gnu.ai.mit.edu>
 
 	* config.guess: CLIX patch from Thomas Dickey via
 	urs@akk.uni-karlsruhe.de (Urs Janssen).
-	
+
 Thu Apr 17 13:59:13 1997  Per Fogelstrom  <pefo@openbsd.org>
 
 	* config.guess: Fixes for MIPS OpenBSD systems.
@@ -251,7 +251,7 @@ Wed Nov 20 16:27:37 1996  David J. MacKenzie  <djm@churchy.gnu.ai.mit.edu>
 
 	* config.guess, config.sub: Additions for the Fujitsu UXP/V.
 	From joda@pdc.kth.se (Johan Danielsson).
-	
+
 Tue Nov 19 13:34:12 1996  David J. MacKenzie  <djm@churchy.gnu.ai.mit.edu>
 
 	* getpagesize.h: If no sys/param.h, default to 8k.
@@ -549,7 +549,7 @@ Tue Feb 13 13:20:32 1996  Miles Bader  <miles@gnu.ai.mit.edu>
 Mon Feb 12 18:23:35 1996  Doug Evans  <dje@cygnus.com>
 
 	* config.sub: Recognize sparclet cpu.
-	
+
 Sun Feb 11 18:40:11 1996  Richard Stallman  <rms@mole.gnu.ai.mit.edu>
 
 	* config.sub: Fix typo in previous change.
@@ -557,7 +557,7 @@ Sun Feb 11 18:40:11 1996  Richard Stallman  <rms@mole.gnu.ai.mit.edu>
 Sat Feb 10 08:28:12 1996  Martin Anantharaman  <martin@goofy.imech.uni-duisburg.de>
 
 	* config.sub (-psos*): New case.
-	
+
 Thu Feb  8 15:37:52 1996  Brendan Kehoe  <brendan@lisa.cygnus.com>
 
 	* config.guess (UNAME_VERSION): Recognize X4.x as an OSF version.
@@ -589,7 +589,7 @@ Wed Feb  7 15:31:09 1996  Roland McGrath  <roland@churchy.gnu.ai.mit.edu>
 Thu Feb  1 09:10:02 1996  Steve Chamberlain  <sac@slash.cygnus.com>
 
 	* config.sub (-cygwin32): New.
-	
+
 Wed Jan 31 14:13:25 1996  Richard Henderson  <rth@tamu.edu>
 
 	* config.sub: Add support for A/UX.
@@ -633,7 +633,7 @@ Sun Jan  7 02:00:27 1996  Karl Heuer  <kwzh@gnu.ai.mit.edu>
 Mon Jan 15 20:59:49 1996  J. Kean Johnston  <hug@netcom.com>
 
 	* config.sub (sco5): New case.
-	
+
 Tue Dec 19 15:56:15 1995  Eli Zaretskii  <eliz@is.elta.co.il>
 
 	* getloadavg.c (getloadavg) [MSDOS]: Return 0 load instead of

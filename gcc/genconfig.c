@@ -60,7 +60,7 @@ static void gen_split PROTO((rtx));
 static void gen_peephole PROTO((rtx));
 
 /* RECOG_P will be non-zero if this pattern was seen in a context where it will
-   be used to recognize, rather than just generate an insn. 
+   be used to recognize, rather than just generate an insn.
 
    NON_PC_SET_SRC will be non-zero if this pattern was seen in a SET_SRC
    of a SET whose destination is not (pc).  */

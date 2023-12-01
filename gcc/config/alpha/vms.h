@@ -72,10 +72,10 @@ Boston, MA 02111-1307, USA.  */
 #undef TARGET_OPEN_VMS
 #define TARGET_OPEN_VMS 1
 
-#undef TARGET_NAME   
+#undef TARGET_NAME
 #define TARGET_NAME "OpenVMS/Alpha"
 #undef TARGET_VERSION
-#define TARGET_VERSION fprintf (stderr, " (%s)", TARGET_NAME);           
+#define TARGET_VERSION fprintf (stderr, " (%s)", TARGET_NAME);
 
 /* The structure return address arrives as an "argument" on VMS.  */
 #undef STRUCT_VALUE_REGNUM
@@ -216,7 +216,7 @@ extern struct rtx_def *alpha_arg_info_reg_val ();
  ? 6 - (CUM).num_args : 0)
 
 /* Perform any needed actions needed for a function that is receiving a
-   variable number of arguments. 
+   variable number of arguments.
 
    CUM is as for INIT_CUMULATIVE_ARGS.
 
@@ -227,7 +227,7 @@ extern struct rtx_def *alpha_arg_info_reg_val ();
    it.
 
    Normally, this macro will push all remaining incoming registers on the
-   stack and set PRETEND_SIZE to the length of the registers pushed. 
+   stack and set PRETEND_SIZE to the length of the registers pushed.
 
    For VMS, we allocate space for all 6 arg registers plus a count.
 
@@ -356,8 +356,8 @@ dtors_section ()						\
 #define ASM_OUTPUT_CASE_LABEL(FILE,PREFIX,NUM,TABLEINSN)	\
 { ASM_OUTPUT_ALIGN (FILE, 3); ASM_OUTPUT_INTERNAL_LABEL (FILE, PREFIX, NUM); }
 
-/* This says how to output assembler code to declare an                
-   uninitialized external linkage data object.  */ 
+/* This says how to output assembler code to declare an
+   uninitialized external linkage data object.  */
 
 #define COMMON_ASM_OP ".comm"
 
@@ -375,7 +375,7 @@ do {									\
    of a trampoline, leaving space for the variable parts.
 
    The trampoline should set the static chain pointer to value placed
-   into the trampoline and should branch to the specified routine.  
+   into the trampoline and should branch to the specified routine.
    Note that $27 has been set to the address of the trampoline, so we can
    use it for addressability of the two data items.  Trampolines are always
    aligned to FUNCTION_BOUNDARY, which is 64 bits.  */

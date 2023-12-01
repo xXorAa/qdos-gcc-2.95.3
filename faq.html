@@ -10,7 +10,7 @@
 http://www.gnu.org/software/gcc/faq.html">http://www.gnu.org/software/gcc/faq.html</a>.</p>
 
 <p>This FAQ tries to answer specific questions concerning GCC. For
-general information regarding C, C++, resp. Fortran please check the 
+general information regarding C, C++, resp. Fortran please check the
 <a href="http://www.eskimo.com/~scs/C-faq/top.html">comp.lang.c FAQ</a>,
 <a href="http://www.cerfnet.com/~mpcline/On-Line-C++-FAQs/">
 comp.lang.c++ FAQ</a>,
@@ -30,7 +30,7 @@ page</a>.</p>
      <li><a href="#open-development">What is an open development model?</a></li>
      <li><a href="#bugreport">How to report bugs</a></li>
      <li><a href="#support">How do I get a bug fixed or a feature added?</a></li>
-  </ol></li> 
+  </ol></li>
 
   <li><a href="#installation">Installation</a>
   <ol>
@@ -52,7 +52,7 @@ page</a>.</p>
   </ol></li>
 
   <li><a href="#platform">Platform-specific issues</a>
-  <ol>    	  
+  <ol>
     <li><a href="#x86eh">Problems with exception handling on x86 platforms</a></li>
     <li><a href="#asmclobber">Problems with <tt>Invalid `asm' statement</tt>s</a></li>
     <li><a href="#linuxkernel">Building Linux kernels</a>  </li>
@@ -82,9 +82,9 @@ page</a>.</p>
     <li><a href="#cvssnapshots">Using CVS to download snapshots </a></li>
     <li><a href="#picflag-needed">Why can't I build a shared library?</a></li>
     <li><a href="spam.html">Dealing with spam on the lists</a></li>
-    <li><a href="#squangle">How to work around too long C++ symbol names? 
+    <li><a href="#squangle">How to work around too long C++ symbol names?
 	 (<tt>-fsquangle</tt>)</a></li>
-    <li><a href="#gperf">When building from CVS sources, I see 'gperf: invalid option -- F', 
+    <li><a href="#gperf">When building from CVS sources, I see 'gperf: invalid option -- F',
 	even with the most current version of gperf.</a></li>
     <li><a href="#vtables">When building C++, the linker says my constructors, destructors or virtual tables are undefined, but I defined them</a></li>
     <li><a href="#libstdc++">What is libstdc++-v3 and how can I use it with g++?</a></li>
@@ -129,7 +129,7 @@ developer time to GCC development, Cygnus does not control GCC.
 <p>Overall control of GCC is in the hands of the
 <a href="steering.html">GCC Steering Committee</a>
 which includes people from a variety of different organizations and
-backgrounds.  The purpose of the steering committee is to make decisions in 
+backgrounds.  The purpose of the steering committee is to make decisions in
 the best interest of GCC and to help ensure that no individual or company
 has control over the project.</p>
 
@@ -174,7 +174,7 @@ resulting stability and quality levels will be better than we've had
 before.</p>
 
 <blockquote>
-<a name="cathedral-vs-bazaar"><b>[1]</b></a> 
+<a name="cathedral-vs-bazaar"><b>[1]</b></a>
   We've been discussing different development models a lot over the
   past few months.  The paper which started all of this introduced two
   terms:  A <b>cathedral</b> development model versus a <b>bazaar</b>
@@ -307,9 +307,9 @@ the install instructions carefully.</p>
 "make bootstrap" if you are building a native compiler or "make cross"
 if you are building a cross compiler.</p>
 
-<p>It has also been reported that the Fortran compiler can not be built     
+<p>It has also been reported that the Fortran compiler can not be built
 on Red Hat 4.X GNU/Linux for the Alpha.  Fixing this may require upgrading
-binutils or to Red Hat 5.0; we'll provide more information as it becomes  
+binutils or to Red Hat 5.0; we'll provide more information as it becomes
 available.</p>
 
 <hr>
@@ -443,7 +443,7 @@ __mulsi3), then you likely have a problem with your environment variables.</p>
   [switches] input output
 </pre>
 <p>First look for an explicit '.' in either LIBRARY_PATH or GCC_EXEC_PREFIX
-from your environment.  If you do not find an explicit '.', look for 
+from your environment.  If you do not find an explicit '.', look for
 an empty pathname in those variables.  Note that ':' at either the start
 or end of these variables is an implicit '.' and will cause problems.</p>
 
@@ -505,8 +505,8 @@ dejagnu snapshot</a> available until a new version of dejagnu can be released.</
 <pre>
   make RUNTESTFLAGS='--target_board "unix{-fPIC,-fpic,}"' check-gcc
 </pre>
-<p>Either of these examples will run the tests three times.   Once 
-with <code>-fPIC</code>, once with <code>-fpic</code>, and once with 
+<p>Either of these examples will run the tests three times.   Once
+with <code>-fPIC</code>, once with <code>-fpic</code>, and once with
 no additional flags.</p>
 
 <p>This technique is particularly useful on multilibbed targets.</p>
@@ -592,7 +592,7 @@ person to person.  As there is a correct way to write such asm constructs,
 this obviousness-detection is not needed other than for reasons of
 compatibility with an existing code-base, and that code base can be
 corrected.</p>
-<p>This corrected and clobber-less version, is <b>valid</b> for GCC 2.95 
+<p>This corrected and clobber-less version, is <b>valid</b> for GCC 2.95
 as well as for previous versions of GCC and EGCS:</p>
 <pre>
 extern __inline__ void
@@ -845,7 +845,7 @@ example</p>
 in addition to being more portable.
 
 <hr>
-<a name="misc"></a>  
+<a name="misc"></a>
 <h1>Miscellaneous</h1>
 
 <h2><a name="memexhausted">Virtual memory exhausted error</a></h2>
@@ -1055,7 +1055,7 @@ support PIC in this manner.  For example:</p>
 
 
 <hr>
-<h2><a name="squangle">How to work around too long C++ symbol names? 
+<h2><a name="squangle">How to work around too long C++ symbol names?
 (<tt>-fsquangle</tt>)</a></h2>
 
 <p>If the standard assembler of your platform can't cope with the
@@ -1078,26 +1078,26 @@ have to rebuild them all again. :-(</p>
 initialized by default), then rebuilding egcs and any C++ libraries.</p>
 
 <hr>
-<h2><a name="gperf">When building from CVS sources, I see 'gperf: 
+<h2><a name="gperf">When building from CVS sources, I see 'gperf:
 invalid option -- F', even with the most current version of gperf.
 </a></h2>
 
-<p>The current version of gperf (v2.7) does not support the -F flag 
-which is used when building egcs from CVS sources.  You will need to 
-obtain a patch for gperf and rebuild the program; this patch is available 
+<p>The current version of gperf (v2.7) does not support the -F flag
+which is used when building egcs from CVS sources.  You will need to
+obtain a patch for gperf and rebuild the program; this patch is available
 at <a href="ftp://egcs.cygnus.com/pub/egcs/infrastructure">
 ftp://egcs.cygnus.com/pub/egcs/infrastructure/</a></p>
 
-<p>Patches for other tools, particularly autoconf, may also be necessary 
-if you're building from CVS sources.  Please see the 
-<a href="#generated_files">FAQ entry</a> regarding these tools to 
+<p>Patches for other tools, particularly autoconf, may also be necessary
+if you're building from CVS sources.  Please see the
+<a href="#generated_files">FAQ entry</a> regarding these tools to
 determine if anything else is needed.</p>
 
-<p>These patched utilities should <strong>only</strong> be required if 
-you are building from CVS sources.  For example, gperf is used to 
-generate C code for a perfect hash function given an input file.  
-Distributions of egcs already contain the generated C code, while the 
-CVS sources will provide only the gperf input file.  So gperf should 
+<p>These patched utilities should <strong>only</strong> be required if
+you are building from CVS sources.  For example, gperf is used to
+generate C code for a perfect hash function given an input file.
+Distributions of egcs already contain the generated C code, while the
+CVS sources will provide only the gperf input file.  So gperf should
 only be necessary if you are building anything obtained from CVS.</p>
 
 <hr>

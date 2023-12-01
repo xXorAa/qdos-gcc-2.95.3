@@ -2,7 +2,7 @@
 #
 # This script parses the output of a gcc bootstrap when using warning
 # flags and determines various statistics.
-# 
+#
 # usage: warn_summary [-llf] [-s stage] [-nosub|-ch|-cp|-f|-java]
 # 	[-pass|-wpass] [file(s)]
 #
@@ -96,7 +96,7 @@ warningFilter()
 # certain C keywords which are known appear in various messages.
 
 keywordFilter() {
-  sed 's/.*warning: //; 
+  sed 's/.*warning: //;
 	s/`\(int\)'"'"'/"\1"/g;
 	s/`\(long\)'"'"'/"\1"/g;
 	s/`\(char\)'"'"'/"\1"/g;

@@ -36,7 +36,7 @@ Boston, MA 02111-1307, USA.  */
    `constrain_operands' is called.  If either of these cases of a reference to
    an operand is found, `extract_insn' is called.
 
-   The special attribute `length' is also recognized.  For this operand, 
+   The special attribute `length' is also recognized.  For this operand,
    expressions involving the address of an operand or the current insn,
    (address (pc)), are valid.  In this case, an initial pass is made to
    set all lengths that do not depend on address.  Those that do are set to
@@ -51,7 +51,7 @@ Boston, MA 02111-1307, USA.  */
    parameters as it does not depend on any particular insn.  Constant
    attributes are typically used to specify which variety of processor is
    used.
-   
+
    Internal attributes are defined to handle DEFINE_DELAY and
    DEFINE_FUNCTION_UNIT.  Special routines are output for these cases.
 
@@ -254,7 +254,7 @@ static struct function_unit *units;
    computed and becomes the corresponding value.  To do this, we must be
    able to enumerate all values for each attribute used in the expression
    (currently, we give up if we find a numeric attribute).
-   
+
    If the set of EQ_ATTR tests used in an expression tests the value of N
    different attributes, the list of all possible combinations can be made
    by walking the N-dimensional attribute space defined by those
@@ -282,7 +282,7 @@ static struct function_unit *units;
    Once the dimensions are created, the algorithm enumerates all possible
    values and computes the current value of the given expression.  */
 
-struct dimension 
+struct dimension
 {
   struct attr_desc *attr;	/* Attribute for this dimension.  */
   rtx values;			/* List of attribute values used.  */
@@ -346,7 +346,7 @@ int optimize = 0;
 #define SIMPLIFY_TEST_EXP(EXP,INSN_CODE,INSN_INDEX)	\
   (RTX_UNCHANGING_P (EXP) || MEM_IN_STRUCT_P (EXP) ? (EXP)	\
    : simplify_test_exp (EXP, INSN_CODE, INSN_INDEX))
-  
+
 /* Simplify (eq_attr ("alternative") ...)
    when we are working with a particular alternative.  */
 #define SIMPLIFY_ALTERNATIVE(EXP)				\
@@ -677,7 +677,7 @@ attr_rtx VPROTO((enum rtx_code code, ...))
     {
     nohash:
       rt_val = rtx_alloc (code);	/* Allocate the storage space.  */
-      
+
       fmt = GET_RTX_FORMAT (code);	/* Find the right format...  */
       for (i = 0; i < GET_RTX_LENGTH (code); i++)
 	{
@@ -860,7 +860,7 @@ attr_copy_rtx (orig)
   copy->volatil = orig->volatil;
   copy->unchanging = orig->unchanging;
   copy->integrated = orig->integrated;
-  
+
   format_ptr = GET_RTX_FORMAT (GET_CODE (copy));
 
   for (i = 0; i < GET_RTX_LENGTH (GET_CODE (copy)); i++)
@@ -965,7 +965,7 @@ check_attr_test (exp, is_const)
 
 	  /* It shouldn't be possible to simplify the value given to a
 	     constant attribute, so don't expand this until it's time to
-	     write the test expression.  */	       
+	     write the test expression.  */
 	  if (attr->is_const)
 	    RTX_UNCHANGING_P (exp) = 1;
 
@@ -973,7 +973,7 @@ check_attr_test (exp, is_const)
 	    {
 	      for (p = XSTR (exp, 1); *p; p++)
 		if (*p < '0' || *p > '9')
-		   fatal ("Attribute `%s' takes only numeric values", 
+		   fatal ("Attribute `%s' takes only numeric values",
 			  XSTR (exp, 0));
 	    }
 	  else
@@ -1031,7 +1031,7 @@ check_attr_test (exp, is_const)
       /* These cases can't be simplified.  */
       RTX_UNCHANGING_P (exp) = 1;
       break;
- 
+
     case LE:  case LT:  case GT:  case GE:
     case LEU: case LTU: case GTU: case GEU:
     case NE:  case EQ:
@@ -1166,7 +1166,7 @@ check_attr_value (exp, attr)
 	else if ((attr && attr->is_const) && ! attr2->is_const)
 	  fatal ("Non-constant attribute `%s' referenced from `%s'",
 		 XSTR (exp, 0), attr->name);
-	else if (attr 
+	else if (attr
 		 && (attr->is_numeric != attr2->is_numeric
 		     || (! attr->negative_ok && attr2->negative_ok)))
 	  fatal ("Numeric attribute mismatch calling `%s' from `%s'",
@@ -1216,7 +1216,7 @@ convert_set_attr_alternative (exp, num_alt, insn_index)
 
       XVECEXP (condexp, 0, 2 * i) = attr_eq (alternative_name, p);
 #if 0
-      /* Sharing this EQ_ATTR rtl causes trouble.  */   
+      /* Sharing this EQ_ATTR rtl causes trouble.  */
       XVECEXP (condexp, 0, 2 * i) = rtx_alloc (EQ_ATTR);
       XSTR (XVECEXP (condexp, 0, 2 * i), 0) = alternative_name;
       XSTR (XVECEXP (condexp, 0, 2 * i), 1) = p;
@@ -1359,7 +1359,7 @@ convert_const_symbol_ref (exp, attr)
 
       value = attr_rtx (SYMBOL_REF, string);
       RTX_UNCHANGING_P (value) = 1;
-      
+
       XVECEXP (condexp, 0, 2 * i) = attr_rtx (EQ, exp, value);
 
       XVECEXP (condexp, 0, 2 * i + 1) = av->value;
@@ -1716,7 +1716,7 @@ operate_exp (op, left, right)
 	      XVECEXP (newexp, 0, i + 1)
 		= operate_exp (op, left, XVECEXP (right, 0, i + 1));
 	      if (! rtx_equal_p (XVECEXP (newexp, 0, i + 1),
-				 defval))     
+				 defval))
 		allsame = 0;
 	    }
 
@@ -1773,7 +1773,7 @@ operate_exp (op, left, right)
 	  XVECEXP (newexp, 0, i + 1)
 	    = operate_exp (op, XVECEXP (left, 0, i + 1), right);
 	  if (! rtx_equal_p (XVECEXP (newexp, 0, i + 1),
-			     defval))     
+			     defval))
 	    allsame = 0;
 	}
 
@@ -2141,7 +2141,7 @@ expand_units ()
 	       || atoi (XSTR (newexp, 0)) != 1);
 
 	  /* If the all values of BLOCKAGE (E,C) have the same value,
-	     neither blockage function is written.  */	  
+	     neither blockage function is written.  */
 	  unit->needs_range_function
 	    = (unit->needs_blockage_function
 	       || GET_CODE (max_blockage) != CONST_STRING);
@@ -2266,7 +2266,7 @@ encode_units_mask (x)
     case CC0:
     case EQ_ATTR:
       return x;
-      
+
     default:
       break;
     }
@@ -2319,7 +2319,7 @@ fill_attr (attr)
       value = NULL;
       if (XVEC (id->def, id->vec_idx))
 	for (i = 0; i < XVECLEN (id->def, id->vec_idx); i++)
-	  if (! strcmp (XSTR (XEXP (XVECEXP (id->def, id->vec_idx, i), 0), 0), 
+	  if (! strcmp (XSTR (XEXP (XVECEXP (id->def, id->vec_idx, i), 0), 0),
 			attr->name))
 	    value = XEXP (XVECEXP (id->def, id->vec_idx, i), 1);
 
@@ -2814,7 +2814,7 @@ make_alternative_compare (mask)
    of "attr" for this insn code.  From that value, we can compute a test
    showing when the EQ_ATTR will be true.  This routine performs that
    computation.  If a test condition involves an address, we leave the EQ_ATTR
-   intact because addresses are only valid for the `length' attribute. 
+   intact because addresses are only valid for the `length' attribute.
 
    EXP is the EQ_ATTR expression and VALUE is the value of that attribute
    for the insn corresponding to INSN_CODE and INSN_INDEX.  */
@@ -2852,7 +2852,7 @@ evaluate_eq_attr (exp, value, insn_code, insn_index)
       for (p = string; *p ; p++)
 	if (*p >= 'a' && *p <= 'z')
 	  *p -= 'a' - 'A';
-      
+
       newexp = attr_rtx (EQ, value,
 			 attr_rtx (SYMBOL_REF,
 				   attr_string(string, strlen(string))));
@@ -2864,7 +2864,7 @@ evaluate_eq_attr (exp, value, insn_code, insn_index)
 	 FALSE will be returned.
 
 	 Each case is the AND of the NOT's of the previous conditions with the
-	 current condition; in the default case the current condition is TRUE. 
+	 current condition; in the default case the current condition is TRUE.
 
 	 For each possible COND value, call ourselves recursively.
 
@@ -2933,7 +2933,7 @@ evaluate_eq_attr (exp, value, insn_code, insn_index)
    can be replaced with TRUE or FALSE, respectively.
 
    Note that (eq_attr "att" "v1") and (eq_attr "att" "v2") cannot both
-   be true and hence are complementary.  
+   be true and hence are complementary.
 
    There is one special case:  If we see
 	(and (not (eq_attr "att" "v1"))
@@ -3133,7 +3133,7 @@ simplify_or_tree (exp, pterm, insn_code, insn_index)
    code based on the values of other attributes being tested.  This can
    eliminate nested get_attr_... calls.
 
-   Note that if an endless recursion is specified in the patterns, the 
+   Note that if an endless recursion is specified in the patterns, the
    optimization will loop.  However, it will do so in precisely the cases where
    an infinite recursion loop could occur during compilation.  It's better that
    it occurs here!  */
@@ -3400,7 +3400,7 @@ simplify_test_exp (exp, insn_code, insn_index)
       if (current_alternative_string && XSTR (exp, 0) == alternative_name)
 	return (XSTR (exp, 1) == current_alternative_string
 		? true_rtx : false_rtx);
-	
+
       /* Look at the value for this insn code in the specified attribute.
 	 We normally can replace this comparison with the condition that
 	 would give this insn the values being tested for.   */
@@ -3411,7 +3411,7 @@ simplify_test_exp (exp, insn_code, insn_index)
 	    if (ie->insn_code == insn_code)
 	      return evaluate_eq_attr (exp, av->value, insn_code, insn_index);
       break;
-      
+
     default:
       break;
     }
@@ -4045,7 +4045,7 @@ clear_struct_flag (x)
     case EQ_ATTR:
     case ATTR_FLAG:
       return;
-      
+
     default:
       break;
     }
@@ -4100,7 +4100,7 @@ count_sub_rtxs (x, max)
     case EQ_ATTR:
     case ATTR_FLAG:
       return 1;
-      
+
     default:
       break;
     }
@@ -4192,7 +4192,7 @@ count_alternatives (exp)
 {
   int i, j, n;
   char *fmt;
-  
+
   if (GET_CODE (exp) == MATCH_OPERAND)
     return n_comma_elts (XSTR (exp, 2));
 
@@ -4286,7 +4286,7 @@ contained_in_p (inner, exp)
 
   return 0;
 }
-	
+
 /* Process DEFINE_PEEPHOLE, DEFINE_INSN, and DEFINE_ASM_ATTRIBUTES.  */
 
 static void
@@ -4327,7 +4327,7 @@ gen_insn (exp)
       id->vec_idx = 0;
       got_define_asm_attributes = 1;
       break;
-      
+
     default:
       abort ();
     }
@@ -4353,7 +4353,7 @@ gen_delay (def)
       if (XVECEXP (def, 1, i + 2))
 	have_annul_false = 1;
     }
-  
+
   delay = (struct delay_desc *) oballoc (sizeof (struct delay_desc));
   delay->def = def;
   delay->num = ++num_delays;
@@ -4361,7 +4361,7 @@ gen_delay (def)
   delays = delay;
 }
 
-/* Process a DEFINE_FUNCTION_UNIT.  
+/* Process a DEFINE_FUNCTION_UNIT.
 
    This gives information about a function unit contained in the CPU.
    We fill in a `struct function_unit_op' and a `struct function_unit'
@@ -4444,7 +4444,7 @@ gen_unit (def)
 }
 
 /* Given a piece of RTX, print a C expression to test its truth value.
-   We use AND and IOR both for logical and bit-wise operations, so 
+   We use AND and IOR both for logical and bit-wise operations, so
    interpret them as logical unless they are inside a comparison expression.
    The first bit of FLAGS will be non-zero in that case.
 
@@ -4564,7 +4564,7 @@ write_test_expr (exp, flags)
 
       /* Otherwise, fall through to normal unary operator.  */
 
-    /* Unary operators.  */   
+    /* Unary operators.  */
     case ABS:  case NEG:
       switch (code)
 	{
@@ -4899,7 +4899,7 @@ write_attr_get (attr)
     {
       rtx p = XEXP (common_av->value, 0);
 
-      /* No need to emit code to abort if the insn is unrecognized; the 
+      /* No need to emit code to abort if the insn is unrecognized; the
          other get_attr_foo functions will do that when we call them.  */
 
       write_toplevel_expr (p);
@@ -5022,7 +5022,7 @@ write_attr_set (attr, indent, value, prefix, suffix, known_true,
 	  write_indent (indent + 2);
 	  printf ("{\n");
 
-	  write_attr_set (attr, indent + 4,  
+	  write_attr_set (attr, indent + 4,
 			  XVECEXP (value, 0, i + 1), prefix, suffix,
 			  inner_true, insn_code, insn_index);
 	  write_indent (indent + 2);
@@ -5303,7 +5303,7 @@ write_attr_value (attr, value)
     case ATTR:
       {
 	struct attr_desc *attr2 = find_attr (XSTR (value, 0), 0);
-	printf ("get_attr_%s (%s)", attr2->name, 
+	printf ("get_attr_%s (%s)", attr2->name,
 		(attr2->is_const ? "" : "insn"));
       }
       break;
@@ -5393,7 +5393,7 @@ write_eligible_delay (kind)
   /* Write function prelude.  */
 
   printf ("int\n");
-  printf ("eligible_for_%s (delay_insn, slot, candidate_insn, flags)\n", 
+  printf ("eligible_for_%s (delay_insn, slot, candidate_insn, flags)\n",
 	   kind);
   printf ("     rtx delay_insn;\n");
   printf ("     int slot;\n");
@@ -5480,7 +5480,7 @@ write_eligible_delay (kind)
 	  }
 
       printf ("    default:\n");
-      printf ("      abort ();\n");     
+      printf ("      abort ();\n");
       printf ("    }\n");
     }
 
@@ -5889,7 +5889,7 @@ copy_rtx_unchanging (orig)
     case SYMBOL_REF:
     case CODE_LABEL:
       return orig;
-      
+
     default:
       break;
     }
@@ -5897,7 +5897,7 @@ copy_rtx_unchanging (orig)
   copy = rtx_alloc (code);
   PUT_MODE (copy, GET_MODE (orig));
   RTX_UNCHANGING_P (copy) = 1;
-  
+
   bcopy ((char *) &XEXP (orig, 0), (char *) &XEXP (copy, 0),
 	 GET_RTX_LENGTH (GET_CODE (copy)) * sizeof (rtx));
   return copy;
@@ -6092,7 +6092,7 @@ from the machine description file `md'.  */\n\n");
   printf ("#include \"output.h\"\n");
   printf ("#include \"insn-attr.h\"\n");
   printf ("#include \"toplev.h\"\n");
-  printf ("\n");  
+  printf ("\n");
   printf ("#define operands recog_operand\n\n");
 
   /* Make `insn_alternatives'.  */

@@ -22,12 +22,12 @@ To obtain a copy of the DWARF Version 1 and/or DWARF Version 2 specification
 from Data General's FTP server, use the following procedure:
 
 ---------------------------------------------------------------------------
-	ftp to machine: "dg-rtp.dg.com" (128.222.1.2).  
- 
+	ftp to machine: "dg-rtp.dg.com" (128.222.1.2).
+
 	Log in as "ftp".
 	cd to "plsig"
 	get any of the following file you are interested in:
- 
+
 	dwarf.1.0.3.ps
 	dwarf.2.0.0.index.ps
 	dwarf.2.0.0.ps
@@ -518,7 +518,7 @@ upon, but a few small issues (e.g. anonymous unions, access declarations)
 are still being discussed.  Also, we in the PLSIG are still discussing
 whether or not we need to do anything special for C++ templates.  (At this
 time it is not yet clear whether we even need to do anything special for
-these.) 
+these.)
 
 Unfortunately, as mentioned above, there are quite a few problems in the
 g++ front end itself, and these are currently responsible for severely

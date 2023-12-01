@@ -1,6 +1,6 @@
 /* Operating system specific defines to be used when targeting GCC for
-   hosting on U/WIN (Windows32), using GNU tools and the Windows32 API 
-   Library, as distinct from winnt.h, which is used to build GCC for use 
+   hosting on U/WIN (Windows32), using GNU tools and the Windows32 API
+   Library, as distinct from winnt.h, which is used to build GCC for use
    with a windows style library and tool set and uses the Microsoft tools.
    Copyright (C) 1999 Free Software Foundation, Inc.
    Contributed by Mumit Khan  <khan@xraylith.wisc.edu>.

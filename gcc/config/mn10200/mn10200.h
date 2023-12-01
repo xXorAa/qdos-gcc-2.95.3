@@ -231,7 +231,7 @@ extern int target_flags;
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 enum reg_class {
   NO_REGS, DATA_REGS, ADDRESS_REGS, GENERAL_REGS, ALL_REGS, LIM_REG_CLASSES
 };
@@ -282,7 +282,7 @@ enum reg_class {
    or a pseudo reg currently allocated to a suitable hard reg.
    Since they use reg_renumber, they are safe only once reg_renumber
    has been allocated, which happens in local-alloc.c.  */
- 
+
 #define REGNO_OK_FOR_BASE_P(regno) \
   (((regno) > 3 && regno < FIRST_PSEUDO_REGISTER)	\
    || (reg_renumber[regno] > 3 && reg_renumber[regno] < FIRST_PSEUDO_REGISTER))
@@ -341,8 +341,8 @@ enum reg_class {
    (C) == 'M' ? CONST_OK_FOR_M (VALUE) : 0)
 
 /* Similar, but for floating constants, and defining letters G and H.
-   Here VALUE is the CONST_DOUBLE rtx itself. 
-     
+   Here VALUE is the CONST_DOUBLE rtx itself.
+
   `G' is a floating-point zero.  */
 
 #define CONST_DOUBLE_OK_FOR_LETTER_P(VALUE, C) \
@@ -514,7 +514,7 @@ extern struct rtx_def *function_arg();
    modified.  */
 #define FUNCTION_ARG_PASS_BY_REFERENCE(CUM, MODE, TYPE, NAMED)		\
   ((TYPE) && int_size_in_bytes (TYPE) > 8)
- 
+
 #define FUNCTION_ARG_CALLEE_COPIES(CUM, MODE, TYPE, NAMED) \
   ((TYPE) && int_size_in_bytes (TYPE) > 8)
 
@@ -522,7 +522,7 @@ extern struct rtx_def *function_arg();
    VALTYPE is the data type of the value (as a tree).
    If the precise function being called is known, FUNC is its FUNCTION_DECL;
    otherwise, FUNC is 0.   */
-   
+
 #define FUNCTION_VALUE(VALTYPE, FUNC) \
   gen_rtx (REG, TYPE_MODE (VALTYPE), TYPE_MODE (VALTYPE) == PSImode ? 4 : 0)
 
@@ -617,7 +617,7 @@ extern struct rtx_def *function_arg();
    (GET_CODE (OP) == MEM					\
     && GET_MODE (OP) == QImode					\
     && REG_P (XEXP (OP, 0)))
- 
+
 /* Q is used for sp + <something> in the {zero,sign}_extendpsisi2 patterns.  */
 #define EXTRA_CONSTRAINT(OP, C) \
  ((C) == 'R' ? OK_FOR_R (OP) : \
@@ -674,7 +674,7 @@ extern struct rtx_def *function_arg();
    except for CONSTANT_ADDRESS_P which is actually machine-independent.  */
 
 /* Accept either REG or SUBREG where a register is valid.  */
-  
+
 #define RTX_OK_FOR_BASE_P(X)					\
   ((REG_P (X) && REG_OK_FOR_BASE_P (X))				\
    || (GET_CODE (X) == SUBREG && REG_P (SUBREG_REG (X))		\
@@ -782,7 +782,7 @@ extern struct rtx_def *function_arg();
 #define REGISTER_MOVE_COST(CLASS1, CLASS2)  (CLASS1 != CLASS2 ? 4 : 2)
 
 /* Provide the costs of a rtl expression.  This is in the body of a
-   switch on CODE. 
+   switch on CODE.
 
    ?!? This probably needs more work.  The definitions below were first
    taken from the H8 port, then tweaked slightly to improve code density
@@ -897,7 +897,7 @@ do { char dstr[30];					\
   char* real_name;                                \
   STRIP_NAME_ENCODING (real_name, (NAME));        \
   fprintf (FILE, "_%s", real_name);               \
-  } while (0)           
+  } while (0)
 
 /* Store in OUTPUT a string (made with alloca) containing
    an assembler-name for a local static variable named NAME.
@@ -982,7 +982,7 @@ do { char dstr[30];					\
 /* We need to prepend underscores.  */
 #define ASM_OUTPUT_DWARF2_ADDR_CONST(FILE,ADDR) \
   fprintf ((FILE), "\t%s\t_%s", UNALIGNED_WORD_ASM_OP, (ADDR))
-  
+
 /* Define to use software floating point emulator for REAL_ARITHMETIC and
    decimal <-> binary conversion. */
 #define REAL_ARITHMETIC

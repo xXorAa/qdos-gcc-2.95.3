@@ -81,7 +81,7 @@ Boston, MA 02111-1307, USA.  */
 /*
  * The MAYBE_VMS_FUNCTION_PROLOGUE macro works for both gcc and g++.  It
  * first checks to see if the current routine is "main", which will only
- * happen for GCC, and add the jsb if it is.  If is not the case then try and 
+ * happen for GCC, and add the jsb if it is.  If is not the case then try and
  * see if __MAIN_NAME is part of current_function_name, which will only happen
  * if we are running g++, and add the jsb if it is.  In gcc there should never
  * be a paren in the function name, and in g++ there is always a "(" in the
@@ -119,7 +119,7 @@ Boston, MA 02111-1307, USA.  */
 
 #define ENCODE_SECTION_INFO(decl)  				\
   if (DECL_EXTERNAL (decl) && TREE_PUBLIC (decl)) 		\
-    SYMBOL_REF_FLAG (XEXP (DECL_RTL (decl), 0)) = 1; 
+    SYMBOL_REF_FLAG (XEXP (DECL_RTL (decl), 0)) = 1;
 
 /* This is how to output a command to make the user-level label named NAME
    defined for reference from other files.  */

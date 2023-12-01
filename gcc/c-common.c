@@ -448,11 +448,11 @@ decl_attributes (node, attributes, prefix_attributes)
      anything done here.  */
   PRAGMA_INSERT_ATTRIBUTES (node, & attributes, & prefix_attributes);
 #endif
-  
+
 #ifdef INSERT_ATTRIBUTES
   INSERT_ATTRIBUTES (node, & attributes, & prefix_attributes);
 #endif
-  
+
   attributes = chainon (prefix_attributes, attributes);
 
   for (a = attributes; a; a = TREE_CHAIN (a))
@@ -679,7 +679,7 @@ decl_attributes (node, attributes, prefix_attributes)
 	      = (args ? TREE_VALUE (args)
 		 : size_int (BIGGEST_ALIGNMENT / BITS_PER_UNIT));
 	    int align;
-	    
+
 	    /* Strip any NOPs of any kind.  */
 	    while (TREE_CODE (align_expr) == NOP_EXPR
 		   || TREE_CODE (align_expr) == CONVERT_EXPR
@@ -725,7 +725,7 @@ decl_attributes (node, attributes, prefix_attributes)
 			 "argument format specified for non-function `%s'");
 		continue;
 	      }
-	
+
 	    if (TREE_CODE (format_type_id) != IDENTIFIER_NODE)
 	      {
 		error ("unrecognized format specifier");
@@ -734,7 +734,7 @@ decl_attributes (node, attributes, prefix_attributes)
 	    else
 	      {
 		const char *p = IDENTIFIER_POINTER (format_type_id);
-		
+
 		if (!strcmp (p, "printf") || !strcmp (p, "__printf__"))
 		  format_type = printf_format_type;
 		else if (!strcmp (p, "scanf") || !strcmp (p, "__scanf__"))
@@ -3026,9 +3026,9 @@ c_apply_type_quals_to_decl (type_quals, decl)
 	     alias set for the type pointed to by the type of the
 	     decl.  */
 
-	  int pointed_to_alias_set 
+	  int pointed_to_alias_set
 	    = get_alias_set (TREE_TYPE (TREE_TYPE (decl)));
-	  
+
 	  if (!pointed_to_alias_set)
 	    /* It's not legal to make a subset of alias set zero.  */
 	    ;
@@ -3062,7 +3062,7 @@ c_find_base_decl (t)
 
   decl = NULL_TREE;
 
-  if (TREE_CODE (t) == FIELD_DECL 
+  if (TREE_CODE (t) == FIELD_DECL
       || TREE_CODE (t) == PARM_DECL
       || TREE_CODE (t) == VAR_DECL)
     /* Aha, we found a pointer-typed declaration.  */
@@ -3158,7 +3158,7 @@ c_get_alias_set (t)
       && DECL_BIT_FIELD_TYPE (TREE_OPERAND (t, 1)))
     /* Since build_modify_expr calls get_unwidened for stores to
        component references, the type of a bit field can be changed
-       from (say) `unsigned int : 16' to `unsigned short' or from 
+       from (say) `unsigned int : 16' to `unsigned short' or from
        `enum E : 16' to `short'.  We want the real type of the
        bit-field in this case, not some the integral equivalent.  */
     type = DECL_BIT_FIELD_TYPE (TREE_OPERAND (t, 1));
@@ -3195,7 +3195,7 @@ c_get_alias_set (t)
   else if (TREE_CODE (type) == FUNCTION_TYPE)
     /* There are no objects of FUNCTION_TYPE, so there's no point in
        using up an alias set for them.  (There are, of course,
-       pointers and references to functions, but that's 
+       pointers and references to functions, but that's
        different.)  */
     TYPE_ALIAS_SET (type) = 0;
   else if (TREE_CODE (type) == RECORD_TYPE
@@ -3215,7 +3215,7 @@ c_get_alias_set (t)
 	 In particular, if we have `typedef int I', then `int *', and
 	 `I *' are different types.  So, we have to pick a canonical
 	 representative.  We do this below.
-	 
+
 	 Technically, this approach is actually more conservative that
 	 it needs to be.  In particular, `const int *' and `int *'
 	 chould be in different alias sets, according to the C and C++
@@ -3241,7 +3241,7 @@ c_get_alias_set (t)
 	TYPE_ALIAS_SET (type) = c_get_alias_set (t);
     }
 
-  if (!TYPE_ALIAS_SET_KNOWN_P (type)) 
+  if (!TYPE_ALIAS_SET_KNOWN_P (type))
     {
       /* Types that are not allocated on the permanent obstack are not
 	 placed in the type hash table.  Thus, there can be multiple

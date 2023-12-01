@@ -19,13 +19,13 @@ the Free Software Foundation, 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.  */
 
 /*
-  Definition for gcc-qdos target. Compiles using c68 calling conventions 
+  Definition for gcc-qdos target. Compiles using c68 calling conventions
   and as68 assembler output
  */
 
 #undef USE_GAS
 
-/* QDOS: use QDOS-c68 rules for ANSI arg promotion rules, this turns off 
+/* QDOS: use QDOS-c68 rules for ANSI arg promotion rules, this turns off
    PROMOTE_PROTOTYPES in m68k.h. See also PARM_BOUNDARY
    QDOS also used to control a few things in libgcc.a
 */
@@ -72,7 +72,7 @@ Boston, MA 02111-1307, USA.  */
 #define PIC_OFFSET_TABLE_REGNUM  14 /* c68 uses a6 ?*/
 /*#define PIC_OFFSET_TABLE_REG_CALL_CLOBBERED*/ /* not clobbered by calls in c68 */
 
-#undef CONDITIONAL_REGISTER_USAGE 
+#undef CONDITIONAL_REGISTER_USAGE
 #define CONDITIONAL_REGISTER_USAGE \
 { 						\
   if (flag_pic)					\
@@ -89,7 +89,7 @@ Boston, MA 02111-1307, USA.  */
 #define ARG_POINTER_REGNUM (flag_pic ? 13 : 14)
 #endif /* C68 PIC support */
 
-/* some other bits that may be needed to make it c68 compatible 
+/* some other bits that may be needed to make it c68 compatible
    see mot3300.h for library call hacks
 */
 #if 0
@@ -114,7 +114,7 @@ Boston, MA 02111-1307, USA.  */
      flag_omit_frame_pointer = 1;				\
  }
 
-#define MASK_C68MATH  8192   
+#define MASK_C68MATH  8192
 #undef SUBTARGET_SWITCHES
 #define SUBTARGET_SWITCHES \
         {"c68lib", +MASK_C68MATH, "use c68 version of math support library"},
@@ -148,7 +148,7 @@ Boston, MA 02111-1307, USA.  */
 
 #define ASM_OUTPUT_BSS(FILE,DECL,NAME,SIZE,ROUNDED) \
 (  asm_output_bss(FILE,DECL,NAME,SIZE,ROUNDED),\
-   fputs("\t.align\t2\n",(FILE)))                   
+   fputs("\t.align\t2\n",(FILE)))
 
 #define SPACE_ASM_OP ".space"
 
@@ -323,8 +323,8 @@ Boston, MA 02111-1307, USA.  */
 /* useless for now  */
 #define DBX_DEBUGGING_INFO
 #define ASM_STABS_OP "; .stabs"   /* output as comment */
-#define ASM_STABD_OP "; .stabd" 
-#define ASM_STABN_OP "; .stabn" 
+#define ASM_STABD_OP "; .stabd"
+#define ASM_STABN_OP "; .stabn"
 
 
 #undef CALL_USED_REGISTERS
@@ -341,7 +341,7 @@ Boston, MA 02111-1307, USA.  */
 #undef ASM_OUTPUT_DOUBLE
 #undef ASM_OUTPUT_SKIP
 #undef ASM_FORMAT_PRIVATE_NAME
-#endif  
+#endif
 
 #undef ASM_OUTPUT_ALIGN
 
@@ -358,10 +358,10 @@ Boston, MA 02111-1307, USA.  */
 #define EMPTY_FIELD_BOUNDARY 16
 
 /* for ADJUST_FIELD_ALIGN  see rs6000/rs6000.h */
-  
+
 /* QDOS makes d0-d2, a0-a1, fp0-fp2 unsaved registers  */
 /* aehm, just guessing the fp regs for now */
-  
+
 #define CALL_USED_REGISTERS \
  {1, 1, 1, 0, 0, 0, 0, 0, \
   1, 1, 0, 0, 0, 0, 0, 1, \
@@ -407,7 +407,7 @@ Boston, MA 02111-1307, USA.  */
 /* Output to assembler file text saying following lines
    no longer contain unusual constructs.  */
 
-#undef ASM_APP_OFF 
+#undef ASM_APP_OFF
 #define ASM_APP_OFF "; gcc generated assembler follows\n"
 
 #ifdef MOTOROLA
@@ -479,7 +479,7 @@ Boston, MA 02111-1307, USA.  */
 
 
 /* this had a few problems, fixed output_*logue in m68k.c instead */
-#if 0 
+#if 0
 #define FUNCTION_PROLOGUE(FILE, SIZE)                                 \
 {                                                                     \
   register int regno;                                                 \
@@ -764,7 +764,7 @@ Boston, MA 02111-1307, USA.  */
 
 #define ASM_OUTPUT_REG_POP(FILE,REGNO)  \
   fprintf (FILE, "\tmove.l (sp)+,%s\n", reg_names[REGNO])
-#endif  
+#endif
 
 
 #define ASM_OUTPUT_DOUBLE(FILE,VALUE)  \
@@ -779,7 +779,7 @@ do { long l[2];char dstr[30];						\
   fprintf (FILE, IS_GWASS?"\tDS.B %u\n":"\t.space %u\n", (SIZE))
 
 
-/* FIX: is it really local? Store in OUTPUT a string (made with alloca) 
+/* FIX: is it really local? Store in OUTPUT a string (made with alloca)
    containing an assembler-name for a local static variable named NAME.
    LABELNO is an integer which is different for each call.  */
 
@@ -825,7 +825,7 @@ do { long l;						\
         }								\
      } while (0)
 
-/* FIX: not used? Output a double value (represented as a C double) as an 
+/* FIX: not used? Output a double value (represented as a C double) as an
    immediate operand. This macro is a 68k-specific macro.  */
 #undef ASM_OUTPUT_DOUBLE_OPERAND
 #define ASM_OUTPUT_DOUBLE_OPERAND(FILE,VALUE)				\
@@ -861,11 +861,11 @@ do { long l[3];char dstr[30];						\
      REAL_VALUE_TO_DECIMAL (VALUE, "%.20g", dstr);			\
      asm_fprintf (FILE, "\t ; %I0r%s\n", dstr);				\
    } while (0)
-  
+
 
 #undef PRINT_OPERAND_ADDRESS
 
-/* hacked to suit QDOS conventions better, might need more finetuning 
+/* hacked to suit QDOS conventions better, might need more finetuning
    old version left below, see also crds.h */
 
 #define PRINT_OPERAND_ADDRESS(FILE, ADDR)  \

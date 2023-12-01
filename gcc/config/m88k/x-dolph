@@ -1,4 +1,4 @@
-# Use link editor directives to make NULL pointers point to 
+# Use link editor directives to make NULL pointers point to
 # invalid addresses.
 
 EXTRA_PARTS=crtbegin.o crtend.o gcc.ld
@@ -12,7 +12,7 @@ gcc.ld: $(srcdir)/config/m88k/dolphin.ld
 
 ALLOCA=alloca.o
 
-# Under DolphinOS 3.8.alfa, /bin/cc defines __GNUC__, but not __m88k__, 
+# Under DolphinOS 3.8.alfa, /bin/cc defines __GNUC__, but not __m88k__,
 # causing gdstarg.h to fail. Defining __m88k__ does probably not hurt on
 # DolphinOS 3.6.
 

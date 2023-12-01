@@ -114,7 +114,7 @@ create_manpage_file_buffer ()
   file_buffer->filesize = 0;
   file_buffer->contents = (char *)NULL;
   file_buffer->flags = (N_IsInternal | N_CannotGC | N_IsManPage);
-  
+
   return (file_buffer);
 }
 

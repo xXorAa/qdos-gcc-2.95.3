@@ -121,7 +121,7 @@
 
 % For @cropmarks command.
 % Do @cropmarks to get crop marks.
-% 
+%
 \newif\ifcropmarks
 \let\cropmarks = \cropmarkstrue
 %
@@ -1408,7 +1408,7 @@ where each line of input produces a line of output.}
 % @uref (abbreviation for `urlref') takes an optional second argument
 % specifying the text to display.  First (mandatory) arg is the url.
 % Perhaps eventually put in a hypertex \special here.
-% 
+%
 \def\uref#1{\urefxxx #1,,\finish}
 \def\urefxxx#1,#2,#3\finish{%
   \setbox0 = \hbox{\ignorespaces #2}%
@@ -2641,7 +2641,7 @@ width0pt\relax} \fi
 \def\begindoublecolumns{\begingroup % ended by \enddoublecolumns
   % Grab any single-column material above us.
   \output = {\global\setbox\partialpage = \vbox{%
-    % 
+    %
     % Here is a possibility not foreseen in manmac: if we accumulate a
     % whole lot of material, we might end up calling this \output
     % routine twice in a row (see the doublecol-lose test, which is
@@ -4613,7 +4613,7 @@ width0pt\relax} \fi
 
 % @image.  We use the macros from epsf.tex to support this.
 % If epsf.tex is not installed and @image is used, we complain.
-% 
+%
 % Check for and read epsf.tex up front.  If we read it only at @image
 % time, we might be inside a group, and then its definitions would get
 % undone and the next image would fail.

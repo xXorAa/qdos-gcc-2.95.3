@@ -163,7 +163,7 @@ while (0)
    is the data type of the value (as a tree).  If the precise function being
    called is known, FUNC is its FUNCTION_DECL; otherwise, FUNC is 0.
    For m68k/SVR4 generate the result in d0, a0, or fp0 as appropriate. */
-   
+
 #undef FUNCTION_VALUE
 #define FUNCTION_VALUE(VALTYPE, FUNC)					\
   (TREE_CODE (VALTYPE) == REAL_TYPE && TARGET_68881			\
@@ -201,7 +201,7 @@ do {									\
 
 /* Boundary (in *bits*) on which stack pointer should be aligned.
    The m68k/SVR4 convention is to keep the stack pointer longword aligned. */
- 
+
 #undef STACK_BOUNDARY
 #define STACK_BOUNDARY 32
 
@@ -214,11 +214,11 @@ do {									\
 /* No data type wants to be aligned rounder than this.
    For m68k/SVR4, some types (doubles for example) are aligned on 8 byte
    boundaries */
-	
+
 #undef BIGGEST_ALIGNMENT
 #define BIGGEST_ALIGNMENT 64
 
-/* SVR4 m68k assembler is bitching on the `comm i,1,1' which asks for 
+/* SVR4 m68k assembler is bitching on the `comm i,1,1' which asks for
    1 byte alignment. Don't generate alignment for COMMON seems to be
    safer until we the assembler is fixed. */
 #undef ASM_OUTPUT_ALIGNED_COMMON
@@ -283,7 +283,7 @@ int switch_table_difference_label_flag;
   assemble_name ((FILE), (NAME)),		\
   fprintf ((FILE), ",%u\n", (SIZE)))
 
-/* Override the definition in svr4.h. In m68k svr4, using swbeg is the 
+/* Override the definition in svr4.h. In m68k svr4, using swbeg is the
    standard way to do switch table. */
 #undef ASM_OUTPUT_BEFORE_CASE_LABEL
 #define ASM_OUTPUT_BEFORE_CASE_LABEL(FILE,PREFIX,NUM,TABLE)		\
@@ -300,7 +300,7 @@ int switch_table_difference_label_flag;
    || (GET_CODE (X) == SYMBOL_REF && SYMBOL_REF_FLAG (X)))
 
 /* Turn off function cse if we are doing PIC. We always want function call
-   to be done as `bsr foo@PLTPC', so it will force the assembler to create 
+   to be done as `bsr foo@PLTPC', so it will force the assembler to create
    the PLT entry for `foo'. Doing function cse will cause the address of `foo'
    to be loaded into a register, which is exactly what we want to avoid when
    we are doing PIC on svr4 m68k. */

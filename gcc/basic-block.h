@@ -96,7 +96,7 @@ do {									\
 /* Grow any tables needed when the number of registers is calculated
    or extended.  For the linked list allocation, nothing needs to
    be done, other than zero the statistics on the first allocation.  */
-#define MAX_REGNO_REG_SET(NUM_REGS, NEW_P, RENUMBER_P) 
+#define MAX_REGNO_REG_SET(NUM_REGS, NEW_P, RENUMBER_P)
 
 /* Control flow edge information.  */
 typedef struct edge_def {

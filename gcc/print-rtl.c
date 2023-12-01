@@ -320,7 +320,7 @@ print_rtx (in_rtx)
 
   if (GET_CODE (in_rtx) == CODE_LABEL)
     fprintf (outfile, " [num uses: %d]", LABEL_NUSES (in_rtx));
-  
+
   if (dump_for_graph
       && (is_insn || GET_CODE (in_rtx) == NOTE
 	  || GET_CODE (in_rtx) == CODE_LABEL || GET_CODE (in_rtx) == BARRIER))

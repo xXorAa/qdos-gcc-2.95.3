@@ -26,8 +26,8 @@ Boston, MA 02111-1307, USA. */
 /* Enable parsing of #pragma pack(push,<n>) and #pragma pack(pop).  */
 #define HANDLE_PRAGMA_PACK_PUSH_POP 1
 
-#define DBX_DEBUGGING_INFO 
-#define SDB_DEBUGGING_INFO 
+#define DBX_DEBUGGING_INFO
+#define SDB_DEBUGGING_INFO
 #define PREFERRED_DEBUGGING_TYPE DBX_DEBUG
 
 #include "i386/gas.h"
@@ -97,7 +97,7 @@ Boston, MA 02111-1307, USA. */
    so take that from libgcc2.c */
 
 #define NEED_ATEXIT 1
-#define HAVE_ATEXIT 1     
+#define HAVE_ATEXIT 1
 
 #undef EXTRA_SECTIONS
 #define EXTRA_SECTIONS in_ctor, in_dtor
@@ -152,9 +152,9 @@ dtor_section ()							\
    On i386, if using PIC, mark a SYMBOL_REF for a non-global symbol
    so that we may access it directly in the GOT.
 
-   On i386 running Windows NT, modify the assembler name with a suffix 
+   On i386 running Windows NT, modify the assembler name with a suffix
    consisting of an atsign (@) followed by string of digits that represents
-   the number of bytes of arguments passed to the function, if it has the 
+   the number of bytes of arguments passed to the function, if it has the
    attribute STDCALL. */
 
 #ifdef ENCODE_SECTION_INFO
@@ -181,7 +181,7 @@ while (0)
 
 /* This macro gets just the user-specified name
    out of the string in a SYMBOL_REF.  Discard
-   trailing @[NUM] encoded by ENCODE_SECTION_INFO. 
+   trailing @[NUM] encoded by ENCODE_SECTION_INFO.
    Do we need the stripping of leading '*'?  */
 #undef  STRIP_NAME_ENCODING
 #define STRIP_NAME_ENCODING(VAR,SYMBOL_NAME)				\
@@ -200,7 +200,7 @@ do {									\
   else									\
     (VAR) = _name;							\
 } while (0)
-      
+
 
 /* Emit code to check the stack when allocating more that 4000
    bytes in one go. */
@@ -212,7 +212,7 @@ do {									\
 #undef TARGET_DEFAULT
 
 #define TARGET_DEFAULT \
-   (MASK_80387 | MASK_IEEE_FP | MASK_FLOAT_RETURNS | MASK_STACK_PROBE) 
+   (MASK_80387 | MASK_IEEE_FP | MASK_FLOAT_RETURNS | MASK_STACK_PROBE)
 
 /* This is how to output an assembler line
    that says to advance the location counter

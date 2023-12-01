@@ -30,24 +30,24 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
    This exception does not however invalidate any other reasons why
    the executable file might be covered by the GNU General Public License.  */
 
-/* This had to be written in assembler because the division functions 
-   use a non-standard calling convention. 
+/* This had to be written in assembler because the division functions
+   use a non-standard calling convention.
 
-   This file provides an implementation of __divqu, __divq, __divlu, 
+   This file provides an implementation of __divqu, __divq, __divlu,
    __divl, __remqu, __remq, __remlu and __reml.  CPP macros control
    the exact operation.
 
    Operation performed: $27 := $24 o $25, clobber $28, return address to
    caller in $23, where o one of the operations.
 
-   The following macros need to be defined: 
+   The following macros need to be defined:
 
 	SIZE, the number of bits, 32 or 64.
 
 	TYPE, either UNSIGNED or SIGNED
 
 	OPERATION, either DIVISION or REMAINDER
-   
+
 	SPECIAL_CALLING_CONVENTION, 0 or 1.  It is useful for debugging to
 	define this to 0.  That removes the `__' prefix to make the function
 	name not collide with the existing libc.a names, and uses the

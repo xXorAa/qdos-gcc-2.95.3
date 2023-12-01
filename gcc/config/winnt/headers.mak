@@ -22,7 +22,7 @@ stmp-int-hdrs: $(USER_H)
 	type $(srcdir)\glimits.h >>xlimits.h
 	type $(srcdir)\limity.h >>xlimits.h
 
-	-mkdir include	
+	-mkdir include
 	for %%f in ($(USER_H)) do copy %%f include
 	del include\limits.h
 	copy xlimits.h include\limits.h

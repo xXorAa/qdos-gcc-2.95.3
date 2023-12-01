@@ -51,9 +51,9 @@ struct operand_alternative
   /* Nonzero if '&' was found in the constraint string.  */
   unsigned int earlyclobber:1;
   /* Nonzero if 'm' was found in the constraint string.  */
-  unsigned int memory_ok:1;  
+  unsigned int memory_ok:1;
   /* Nonzero if 'o' was found in the constraint string.  */
-  unsigned int offmem_ok:1;  
+  unsigned int offmem_ok:1;
   /* Nonzero if 'V' was found in the constraint string.  */
   unsigned int nonoffmem_ok:1;
   /* Nonzero if '<' was found in the constraint string.  */

@@ -15,7 +15,7 @@ typedef void *__gnuc_va_list;
 #define __gnuc_va_start(AP) ((AP) = (va_list)__builtin_saveregs())
 #else
 #define va_alist __va_a__, __va_b__, __va_c__, __va_d__
-#define __va_ellipsis 
+#define __va_ellipsis
 #define __gnuc_va_start(AP)\
   (AP) = (double *) &__va_a__, &__va_b__, &__va_c__, &__va_d__, \
   (AP) = (double *)((char *)(AP) + 4)

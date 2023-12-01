@@ -1,6 +1,6 @@
 #!/bin/sh
 # update-info -- update dir file from all extant info pages.
-# 
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2, or (at your option)
@@ -15,9 +15,9 @@
 # along with this program; if not, you can either send email to this
 # program's maintainer or write to: The Free Software Foundation,
 # Inc.; 59 Temple Place, Suite 330; Boston, MA 02111-1307, USA.
-# 
+#
 # Author: rhawes@dmapub.dma.org.  Please report bugs to him.
-# 
+#
 # run this program to install update-info
 # ###SECTION 0### install script
 # These constants set the version numbers for both files:

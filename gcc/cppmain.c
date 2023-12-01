@@ -62,13 +62,13 @@ main (argc, argv)
   parse_in.opts = opts;
 
   cpp_options_init (opts);
-  
+
   argi += cpp_handle_options (&parse_in, argc - argi , argv + argi);
   if (argi < argc && ! CPP_FATAL_ERRORS (&parse_in))
     cpp_fatal (&parse_in, "Invalid option `%s'", argv[argi]);
   if (CPP_FATAL_ERRORS (&parse_in))
     exit (FATAL_EXIT_CODE);
-      
+
   parse_in.show_column = 1;
 
   if (! cpp_start_read (&parse_in, opts->in_fname))

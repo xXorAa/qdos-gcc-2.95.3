@@ -20,7 +20,7 @@ the Free Software Foundation, 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.  */
 
 /* These routines are meant to be used by various optimization
-   passes which can be modeled as lazy code motion problems. 
+   passes which can be modeled as lazy code motion problems.
    Including, but not limited to:
 
 	* Traditional partial redundancy elimination.
@@ -426,7 +426,7 @@ compute_delayinout (n_blocks, n_exprs, s_preds, antloc,
   anti_and_early = sbitmap_vector_alloc (n_blocks, n_exprs);
   for (bb = 0; bb < n_blocks; bb++)
     sbitmap_a_and_b (anti_and_early[bb], antin[bb], earlyin[bb]);
-  
+
   sbitmap_vector_zero (delayout, n_blocks);
   sbitmap_copy (delayin[0], anti_and_early[0]);
 
@@ -465,7 +465,7 @@ compute_delayinout (n_blocks, n_exprs, s_preds, antloc,
 
    An expression is latest at the entrance to block BB if that is an optimal
    point for computing the expression and if on every path from block BB's
-   entrance to the exit block, any optimal computation point for the 
+   entrance to the exit block, any optimal computation point for the
    expression occurs after one of the points at which the expression was
    computed in the original flowgraph.  */
 
@@ -689,7 +689,7 @@ compute_earlierinout (n_blocks, n_exprs, s_succs, avloc,
   av_and_farther = sbitmap_vector_alloc (n_blocks, n_exprs);
   for (bb = 0; bb < n_blocks; bb++)
     sbitmap_a_and_b (av_and_farther[bb], avout[bb], fartherout[bb]);
-  
+
   sbitmap_vector_zero (earlierin, n_blocks);
   sbitmap_copy (earlierout[n_blocks - 1], av_and_farther[n_blocks - 1]);
 
@@ -722,7 +722,7 @@ compute_earlierinout (n_blocks, n_exprs, s_succs, avloc,
   free (temp_bitmap);
 }
 
-/* Compute firstness. 
+/* Compute firstness.
 
    This is effectively the same as latestness computed on the reverse
    flow graph.  */

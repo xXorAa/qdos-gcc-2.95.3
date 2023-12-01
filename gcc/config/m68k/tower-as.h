@@ -188,7 +188,7 @@ Boston, MA 02111-1307, USA.  */
   { extern int current_function_returns_pointer;			\
     if ((current_function_returns_pointer) &&				\
       ! find_equiv_reg (0, get_last_insn (), 0, 0, 0, 8, Pmode))        \
-      asm_fprintf (FILE, "\tmov.l %Rd0,%Ra0\n"); } 
+      asm_fprintf (FILE, "\tmov.l %Rd0,%Ra0\n"); }
 
 /* This is how to output an insn to push a register on the stack.
    It need not be very fast code.  */
@@ -241,7 +241,7 @@ Boston, MA 02111-1307, USA.  */
 #define ASM_FORMAT_PRIVATE_NAME(OUTPUT, NAME, LABELNO)	\
 ( (OUTPUT) = (char *) alloca (strlen ((NAME)) + 11),	\
   sprintf ((OUTPUT), "%s%%%%%d", (NAME), (LABELNO)))
- 
+
 /* This is the command to make the user-level label named NAME
    defined for reference from other files.  */
 

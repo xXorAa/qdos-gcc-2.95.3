@@ -38,7 +38,7 @@ Boston, MA 02111-1307, USA.  */
 
 /* for 68k machines this only needs to be TRUE for the 68000 */
 
-#undef STRICT_ALIGNMENT     
+#undef STRICT_ALIGNMENT
 #define STRICT_ALIGNMENT 0
 
 #undef SUBTARGET_SWITCHES
@@ -97,13 +97,13 @@ Boston, MA 02111-1307, USA.  */
 
 #undef SIZE_TYPE
 #define SIZE_TYPE "unsigned int"
- 
+
 #undef PTRDIFF_TYPE
 #define PTRDIFF_TYPE "int"
-  
+
 #undef WCHAR_TYPE
 #define WCHAR_TYPE "long int"
-   
+
 #undef WCHAR_TYPE_SIZE
 #define WCHAR_TYPE_SIZE BITS_PER_WORD
 
@@ -184,7 +184,7 @@ Boston, MA 02111-1307, USA.  */
 
 /* Currently, JUMP_TABLES_IN_TEXT_SECTION must be defined in order to
    keep switch tables in the text section.  */
-   
+
 #define JUMP_TABLES_IN_TEXT_SECTION 1
 
 /* Use the default action for outputting the case label.  */
@@ -266,7 +266,7 @@ Boston, MA 02111-1307, USA.  */
    the precise function being called is known, FUNC is its
    FUNCTION_DECL; otherwise, FUNC is 0.  For m68k/SVR4 generate the
    result in d0, a0, or fp0 as appropriate. */
-   
+
 #undef FUNCTION_VALUE
 #define FUNCTION_VALUE(VALTYPE, FUNC)					\
   (TREE_CODE (VALTYPE) == REAL_TYPE && TARGET_68881			\

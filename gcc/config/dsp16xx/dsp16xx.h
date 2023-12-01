@@ -257,7 +257,7 @@ extern int target_flags;
    initializer with a subgrouping for each command option.
 
    Each subgrouping contains a string constant, that defines the
-   fixed part of the option name, and the address of a variable. 
+   fixed part of the option name, and the address of a variable.
    The variable, type `char *', is set to the variable part of the
    given option if the fixed part matches.  The actual option name
    is made by appending `-m' to the specified name.
@@ -283,7 +283,7 @@ extern int target_flags;
    `OVERRIDE_OPTIONS' to take account of this.  This macro, if
    defined, is executed once just after all the command options have
    been parsed.
-  
+
    Don't use this macro to turn on various extra optimizations for
    `-O'.  That is what `OPTIMIZATION_OPTIONS' is for.  */
 
@@ -446,7 +446,7 @@ while (0)
 #define REG_A0     0
 #define REG_A0L    1
 #define REG_A1     2
-#define REG_A1L    3 
+#define REG_A1L    3
 #define REG_X      4
 #define REG_Y      5
 #define REG_YL     6
@@ -647,7 +647,7 @@ while (0)
 /* DSP1600 pc isn't overloaded on a register.  */
 /* #define PC_REGNUM  */
 
-/* Register to use for pushing function arguments.  
+/* Register to use for pushing function arguments.
    This is r3 in our case */
 #define STACK_POINTER_REGNUM  REG_R3
 
@@ -693,19 +693,19 @@ while (0)
    class that represents their union.  */
 
 
-enum reg_class 
-{ 
-    NO_REGS, 
+enum reg_class
+{
+    NO_REGS,
     A0H_REG,
     A0L_REG,
     A0_REG,
     A1H_REG,
     ACCUM_HIGH_REGS,
     A1L_REG,
-    ACCUM_LOW_REGS, 
+    ACCUM_LOW_REGS,
     A1_REG,
-    ACCUM_REGS, 
-    X_REG, 
+    ACCUM_REGS,
+    X_REG,
     X_OR_ACCUM_LOW_REGS,
     X_OR_ACCUM_REGS,
     YH_REG,
@@ -718,8 +718,8 @@ enum reg_class
     Y_REG,
     ACCUM_OR_Y_REGS,
     PH_REG,
-    X_OR_PH_REGS, 
-    PL_REG, 
+    X_OR_PH_REGS,
+    PL_REG,
     PL_OR_ACCUM_LOW_REGS,
     X_OR_PL_REGS,
     YL_OR_PL_OR_ACCUM_LOW_REGS,
@@ -728,9 +728,9 @@ enum reg_class
     YL_OR_P_REGS,
     ACCUM_LOW_OR_YL_OR_P_REGS,
     Y_OR_P_REGS,
-    ACCUM_Y_OR_P_REGS, 
+    ACCUM_Y_OR_P_REGS,
     NO_FRAME_Y_ADDR_REGS,
-    Y_ADDR_REGS, 
+    Y_ADDR_REGS,
     ACCUM_LOW_OR_Y_ADDR_REGS,
     ACCUM_OR_Y_ADDR_REGS,
     X_OR_Y_ADDR_REGS,
@@ -740,7 +740,7 @@ enum reg_class
     YBASE_ELIGIBLE_REGS,
     J_REG,
     J_OR_DAU_16_BIT_REGS,
-    BMU_REGS, 
+    BMU_REGS,
     NOHIGH_NON_ADDR_REGS,
     NON_ADDR_REGS,
     SLOW_MEM_LOAD_REGS,
@@ -759,8 +759,8 @@ enum reg_class
     YBASE_OR_NOHIGH_YBASE_ELIGIBLE_REGS,
     YBASE_OR_YBASE_ELIGIBLE_REGS,
     NO_HIGH_ALL_REGS,
-    ALL_REGS, 
-    LIM_REG_CLASSES 
+    ALL_REGS,
+    LIM_REG_CLASSES
 };
 
 /* GENERAL_REGS must be the name of a register class */
@@ -950,7 +950,7 @@ enum reg_class
 /* A C expression which is nonzero if register REGNO is suitable for use
    as a base register in operand addresses. It may be either a suitable
    hard register or a pseudo register that has been allocated such a
-   hard register. 
+   hard register.
 
   On the 1610 the Y address pointers can be used as a base registers */
 #define REGNO_OK_FOR_BASE_P(REGNO) \
@@ -1618,10 +1618,10 @@ const_section ()                                                   \
 /* THE OVERALL FRAMEWORK OF AN ASSEMBLER FILE */
 
 /* Output at beginning of assembler file.  */
-#define ASM_FILE_START(FILE) dsp16xx_file_start () 
+#define ASM_FILE_START(FILE) dsp16xx_file_start ()
 
 /* Prevent output of .gcc_compiled */
-#define ASM_IDENTIFY_GCC(FILE)   
+#define ASM_IDENTIFY_GCC(FILE)
 
 /* A C string constant describing how to begin a comment in the target
    assembler language. */
@@ -1841,7 +1841,7 @@ const_section ()                                                   \
 /* Print operand X (an rtx) in assembler syntax to file FILE.
    CODE is a letter or dot (`z' in `%z0') or 0 if no letter was specified.
    For `%' followed by punctuation, CODE is the punctuation and X is null.
-   
+
    DSP1610 extensions for operand codes:
 
    %H - print lower 16 bits of constant
@@ -1864,7 +1864,7 @@ const_section ()                                                   \
 
 /* This is how to output an insn to pop a register from the stack.
    It need not be very fast code since it is used only for profiling  */
-#define ASM_OUTPUT_REG_POP(FILE,REGNO)     fatal("Profiling not implemented yet."); 
+#define ASM_OUTPUT_REG_POP(FILE,REGNO)     fatal("Profiling not implemented yet.");
 
 /* OUTPUT OF DISPATCH TABLES */
 
@@ -1880,7 +1880,7 @@ const_section ()                                                   \
 
 /* ASSEMBLER COMMANDS FOR ALIGNMENT */
 
-/* This is how to output an assembler line that says to advance 
+/* This is how to output an assembler line that says to advance
    the location counter to a multiple of 2**LOG bytes. We should
    not have to do any alignment since the 1610 is a word machine. */
 #define ASM_OUTPUT_ALIGN(FILE,LOG)

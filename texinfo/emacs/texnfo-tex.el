@@ -7,7 +7,7 @@
 ;; DVI file.
 
 ;;; Version 2.07    22 October 1991
-;;; Robert J. Chassell      
+;;; Robert J. Chassell
 ;;; Please send bug reports to:  bug-texinfo@prep.ai.mit.edu
 
 ;;; Copyright (C) 1989, 1990, 1991 Free Software Foundation, Inc.
@@ -56,7 +56,7 @@
 ;   (define-key keymap "\C-c\C-t\C-r"    'texinfo-tex-region)
 ;   (define-key keymap "\C-c\C-t\C-b"    'texinfo-tex-buffer))
 
-;; See also texinfo-tex-start-shell. 
+;; See also texinfo-tex-start-shell.
 ;; The following is executed in the `texinfo.el' file
 ;(texinfo-define-common-keys texinfo-mode-map)
 
@@ -104,7 +104,7 @@ command.")
 ;;; Texinfo TeX main functions
 
 (defun texinfo-tex-region (beginning end)
-  "Run tex on the current region. 
+  "Run tex on the current region.
 
 A temporary file is written in the default directory, and tex is run
 in that directory.  The first line of the file is copied to the
@@ -114,17 +114,17 @@ lines between the strings defined by texinfo-start-of-header and
 texinfo-end-of-header inclusive.  The header must start in the first 100
 lines.  The value of texinfo-tex-trailer is appended to the temporary file
 after the region."
-  
+
   (interactive "r")
   (if (get-buffer "*texinfo-tex-shell*")
       (quit-process (get-process "texinfo-tex-shell") t)
     (texinfo-tex-start-shell))
-  
+
   (setq texinfo-tex-root-temp-file
-        (expand-file-name 
+        (expand-file-name
          (make-temp-name
           (prin1-to-string (read (buffer-name))))))
-  
+
   (let ((texinfo-tex-temp-file (concat texinfo-tex-root-temp-file ".tex")))
     (save-excursion
       (save-restriction
@@ -135,7 +135,7 @@ after the region."
               (header-beginning (point-min)) (header-end (point-min)))
           (goto-char (point-min))
           ;; Copy first line, the `\input texinfo' line, to temp file
-          (write-region (point) 
+          (write-region (point)
                         (save-excursion (forward-line 1) (point))
                         texinfo-tex-temp-file nil nil)
           ;; Don't copy first line twice if region includes it.
@@ -172,9 +172,9 @@ after the region."
             ;; make sure trailer isn't hidden by a comment
             (insert-string "\n")
             (if local-tex-trailer (insert local-tex-trailer))
-            (write-region (point-min) (point-max) 
+            (write-region (point-min) (point-max)
                           texinfo-tex-temp-file t nil)))
-        (set-process-sentinel (get-process "texinfo-tex-shell") 
+        (set-process-sentinel (get-process "texinfo-tex-shell")
                               'texinfo-tex-shell-sentinel)
         (send-string "texinfo-tex-shell"
                      (concat texinfo-tex-shell-cd-command " "
@@ -188,17 +188,17 @@ after the region."
   "Run TeX on current buffer.
 After running TeX the first time, you may have to run \\[texinfo-texindex]
 and then \\[texinfo-tex-buffer] again."
-  (interactive 
+  (interactive
    (list
     ;; Sometimes you put point into *texinfo-tex-shell*; this prompts
     ;; you for the correct file regardless.
-    (if (and 
+    (if (and
          (string= (buffer-name (current-buffer)) "*texinfo-tex-shell*")
          texinfo-tex-root-temp-file)
         (read-string (format "Run TeX on: ")
                      texinfo-tex-original-file)
       (read-string (format "Run TeX on: ") (buffer-name (current-buffer))))))
-  
+
   ;; Set to original buffer if in *texinfo-tex-shell*; otherwise,
   ;; record name of current buffer.
   (if (string= (buffer-name (current-buffer)) "*texinfo-tex-shell*")
@@ -213,10 +213,10 @@ and then \\[texinfo-tex-buffer] again."
          (error "Buffer not visiting any file!"))
         ((buffer-modified-p)
          (error "Buffer has been modified since last saved!"))
-        (t (set-process-sentinel (get-process "texinfo-tex-shell") 
+        (t (set-process-sentinel (get-process "texinfo-tex-shell")
                                  'texinfo-tex-shell-sentinel)
            (send-string "texinfo-tex-shell"
-                        (concat texinfo-tex-shell-cd-command 
+                        (concat texinfo-tex-shell-cd-command
                                 " "
                                 (file-name-directory
                                  (buffer-file-name
@@ -224,13 +224,13 @@ and then \\[texinfo-tex-buffer] again."
                                 "\n"))
            (send-string "texinfo-tex-shell"
                         (concat texinfo-tex-command " " buffer "\n  "))
-           
+
            ;; so the texinfo-tex-print command works
            (setq texinfo-tex-root-temp-file
                  (substring buffer 0
                             (or (string-match "\\.tex" buffer)
                                 (length buffer))))
-           
+
            (texinfo-recenter-tex-output-buffer 0))))
 
 (defun texinfo-texindex ()
@@ -330,7 +330,7 @@ You are prompted for the job number (shown by a previous
       (texinfo-kill-tex-job)
     (texinfo-tex-start-shell))
   (send-string "texinfo-tex-shell"
-               (concat 
+               (concat
                 texinfo-delete-from-print-queue-command
                 " "
                 job-number"\n"))

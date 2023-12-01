@@ -2165,7 +2165,7 @@ copy_loop_body (copy_start, copy_end, map, exit_label, last_iteration,
 	  /* VTOP and CONT notes are valid only before the loop exit test.
 	     If placed anywhere else, loop may generate bad code.  */
 	  /* BASIC_BLOCK notes exist to stabilize basic block structures with
-	     the associated rtl.  We do not want to share the structure in 
+	     the associated rtl.  We do not want to share the structure in
 	     this new block.  */
 
 	  if (NOTE_LINE_NUMBER (insn) != NOTE_INSN_DELETED

@@ -2,7 +2,7 @@
 
 /* NB.  This is NOT the definition needed for the new ANSI proposed
    standard */
- 
+
 
 struct __va_struct { char __regs[20]; };
 
@@ -18,7 +18,7 @@ struct __va_struct { char __regs[20]; };
 #endif
 
 /* The ... causes current_function_varargs to be set in cc1.  */
-#define va_dcl struct __va_struct __va_regs; int __va_stack; 
+#define va_dcl struct __va_struct __va_regs; int __va_stack;
 
 typedef struct {
     int __pnt;

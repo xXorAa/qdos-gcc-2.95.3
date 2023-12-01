@@ -169,7 +169,7 @@ do {							\
    be prefixed with the ".shrcomm" or ".shrbss" pseudo op, for common or
    local data respectively.  This is accomplished by redefining the
    ASM_OUTPUT_COMMON and ASM_OUTPUT_LOCAL macros. */
-    
+
 /* Assembler pseudo-op for shared data segment. */
 
 #define SHARED_SECTION_ASM_OP ".shrdata"

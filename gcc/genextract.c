@@ -35,7 +35,7 @@ struct obstack *rtl_obstack = &obstack;
 char **insn_name_ptr;
 
 /* This structure contains all the information needed to describe one
-   set of extractions methods.  Each method may be used by more than 
+   set of extractions methods.  Each method may be used by more than
    one pattern if the operands are in the same place.
 
    The string for each operand describes that path to the operand and
@@ -224,18 +224,18 @@ walk_rtx (x, path)
       duplocs[dup_count] = xstrdup (path);
       dupnums[dup_count] = XINT (x, 0);
       dup_count++;
-      
+
       newpath = (char *) alloca (depth + 2);
       strcpy (newpath, path);
       newpath[depth + 1] = 0;
-      
+
       for (i = XVECLEN (x, 1) - 1; i >= 0; i--)
         {
 	  newpath[depth] = '0' + i;
 	  walk_rtx (XVECEXP (x, 1, i), newpath);
         }
       return;
-      
+
     case MATCH_OPERATOR:
       oplocs[XINT (x, 0)] = xstrdup (path);
       op_count = MAX (op_count, XINT (x, 0) + 1);
@@ -330,7 +330,7 @@ print_path (path)
       else
 	abort ();
     }
-  
+
   printf ("pat");
 
   for (i = 0; i < len; i++)

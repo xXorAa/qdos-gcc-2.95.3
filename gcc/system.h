@@ -47,7 +47,7 @@ Boston, MA 02111-1307, USA.  */
    NEED_DECLARATION_PUTC_UNLOCKED actually indicates whether or not
    the IO code is multi-thread safe by default.  If it is not declared,
    then do not worry about using the _unlocked functions.
-   
+
    fputs_unlocked is an extension and needs to be prototyped specially.  */
 
 #if defined HAVE_PUTC_UNLOCKED && !defined NEED_DECLARATION_PUTC_UNLOCKED

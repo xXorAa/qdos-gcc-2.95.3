@@ -2,7 +2,7 @@
    for Thumb with COFF obj format.
    Copyright (C) 1995, 1996 Free Software Foundation, Inc.
    Derived from arm/coff.h originally by Doug Evans (dje@cygnus.com).
-   
+
 This file is part of GNU CC.
 
 GNU CC is free software; you can redistribute it and/or modify

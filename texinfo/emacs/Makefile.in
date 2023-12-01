@@ -90,7 +90,7 @@ noinst_LISP = info.el informat.el makeinfo.el \
 EXTRA_DIST = README elisp-comp new-useful-setqs $(noinst_LISP)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = ../config.h
-CONFIG_CLEAN_FILES = 
+CONFIG_CLEAN_FILES =
 LISP =  $(noinst_LISP)
 
 lispdir = @lispdir@
@@ -106,7 +106,7 @@ default: all
 
 .SUFFIXES:
 .SUFFIXES: .el .elc
-$(srcdir)/Makefile.in: @MAINT@ Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+$(srcdir)/Makefile.in: @MAINT@ Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4)
 	cd $(top_srcdir) && $(AUTOMAKE) --cygnus emacs/Makefile
 
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
@@ -139,7 +139,7 @@ check: all
 	$(MAKE)
 installcheck:
 install-info:
-install-exec: 
+install-exec:
 	@$(NORMAL_INSTALL)
 
 install-data: install-data-local
@@ -148,7 +148,7 @@ install-data: install-data-local
 install: install-exec install-data all
 	@:
 
-uninstall: 
+uninstall:
 
 all: Makefile $(LISP) $(ELCFILES)
 

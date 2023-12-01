@@ -221,7 +221,7 @@ int mips16;
    just a way to avoid using up another bit in target_flags.  */
 const char *mips_no_mips16_string;
 
-/* This is only used to determine if an type size setting option was 
+/* This is only used to determine if an type size setting option was
    explicitly specified (-mlong64, -mint64, -mlong32).  The specs
    set this option if such an option is used. */
 const char *mips_explicit_type_size_string;
@@ -1191,7 +1191,7 @@ int
 mips_check_split (address, mode)
      rtx address;
      enum machine_mode mode;
-{     
+{
   /* ??? This is the same check used in simple_memory_operand.
      We use it here because LO_SUM is not offsettable.  */
   if (GET_MODE_SIZE (mode) > UNITS_PER_WORD)
@@ -1630,7 +1630,7 @@ embedded_pic_offset (x)
       rtx seq;
 
       embedded_pic_fnaddr_rtx = gen_reg_rtx (Pmode);
-      
+
       /* Output code at function start to initialize the pseudo-reg.  */
       /* ??? We used to do this in FINALIZE_PIC, but that does not work for
 	 inline functions, because it is called after RTL for the function
@@ -2029,7 +2029,7 @@ mips_move_1word (operands, insn, unsignedp)
 
 	  if (i > sizeof (volatile_buffer) - sizeof ("%{%}"))
 	    abort ();
-	  
+
 	  sprintf (volatile_buffer, "%%{%s%%}", ret);
 	  ret = volatile_buffer;
 	}
@@ -2083,7 +2083,7 @@ mips_move_2words (operands, insn)
       op1 = SUBREG_REG (op1);
       code1 = GET_CODE (op1);
     }
-      
+
   /* Sanity check.  */
   if (GET_CODE (operands[1]) == SIGN_EXTEND
       && code1 != REG
@@ -2272,7 +2272,7 @@ mips_move_2words (operands, insn)
 		      : "mt%0\t%.\n");
 	    }
 	}
-	
+
       else if (code1 == CONST_INT && GET_MODE (op0) == DImode
 	       && GP_REG_P (regno0))
 	{
@@ -2473,7 +2473,7 @@ mips_move_2words (operands, insn)
 
 	  if (i > sizeof (volatile_buffer) - sizeof ("%{%}"))
 	    abort ();
-	  
+
 	  sprintf (volatile_buffer, "%%{%s%%}", ret);
 	  ret = volatile_buffer;
 	}
@@ -2560,7 +2560,7 @@ mips_address_cost (addr)
   return 4;
 }
 
-/* Return nonzero if X is an address which needs a temporary register when 
+/* Return nonzero if X is an address which needs a temporary register when
    reloaded while generating PIC code.  */
 
 int
@@ -2967,7 +2967,7 @@ gen_conditional_move (operands)
     }
   else if (cmp_code == NE)
     cmp_code = EQ, move_code = EQ;
-	  
+
   if (mode == SImode || mode == DImode)
     cmp_mode = mode;
   else if (mode == SFmode || mode == DFmode)
@@ -3151,7 +3151,7 @@ expand_block_move (operands)
   else if (constp && bytes <= 2 * MAX_MOVE_BYTES
 	   && align == UNITS_PER_WORD)
     move_by_pieces (orig_dest, orig_src, bytes, align);
-	
+
   else if (constp && bytes <= 2 * MAX_MOVE_BYTES)
     emit_insn (gen_movstrsi_internal (change_address (orig_dest, BLKmode,
 						      dest_reg),
@@ -3215,7 +3215,7 @@ expand_block_move (operands)
     block_move_call (dest_reg, src_reg, bytes_rtx);
 }
 
-/* Emit load/stores for a small constant block_move. 
+/* Emit load/stores for a small constant block_move.
 
    operands[0] is the memory address of the destination.
    operands[1] is the memory address of the source.
@@ -3718,7 +3718,7 @@ function_arg (cum, mode, type, named)
       fprintf (stderr, HOST_PTR_PRINTF, type);
       fprintf (stderr, ", %d ) = ", named);
     }
-  
+
 
   cum->last_arg_fp = 0;
   switch (mode)
@@ -3880,7 +3880,7 @@ function_arg (cum, mode, type, named)
 		  else
 		    reg = gen_rtx (REG, word_mode, regno);
 
-		  XVECEXP (ret, 0, i) 
+		  XVECEXP (ret, 0, i)
 		    = gen_rtx (EXPR_LIST, VOIDmode, reg,
 			       GEN_INT (bitpos / BITS_PER_UNIT));
 
@@ -4032,7 +4032,7 @@ override_options ()
 
   /* If both single-float and soft-float are set, then clear the one that
      was set by TARGET_DEFAULT, leaving the one that was set by the
-     user.  We assume here that the specs prevent both being set by the 
+     user.  We assume here that the specs prevent both being set by the
      user. */
 #ifdef TARGET_DEFAULT
   if (TARGET_SINGLE_FLOAT && TARGET_SOFT_FLOAT)
@@ -4093,7 +4093,7 @@ override_options ()
     error ("bad value (%s) for -mabi= switch", mips_abi_string);
 
   /* A specified ISA defaults the ABI if it was not specified.  */
-  if (mips_abi_string == 0 && mips_isa_string 
+  if (mips_abi_string == 0 && mips_isa_string
       && mips_abi != ABI_EABI && mips_abi != ABI_O64)
     {
       if (mips_isa <= 2)
@@ -4103,7 +4103,7 @@ override_options ()
     }
 
   /* A specified ABI defaults the ISA if it was not specified.  */
-  else if (mips_isa_string == 0 && mips_abi_string 
+  else if (mips_isa_string == 0 && mips_abi_string
 	   && mips_abi != ABI_EABI && mips_abi != ABI_O64)
     {
       if (mips_abi == ABI_32)
@@ -4705,7 +4705,7 @@ print_operand (file, op, letter)
 	    fputs (".set\tnoat\n\t", file);
 	  break;
 
-	case ']': 
+	case ']':
 	  if (set_noat == 0)
 	    error ("internal error: %%] found without a %%[ in assembler pattern");
 	  else if (--set_noat == 0)
@@ -5193,7 +5193,7 @@ mips_output_lineno (stream, line)
       fprintf (stream, "\n\t%s.loc\t%d %d\n",
 	       (ignore_line_number) ? "#" : "",
 	       num_source_filenames, line);
-  
+
       LABEL_AFTER_LOC (stream);
     }
 }
@@ -5351,7 +5351,7 @@ mips_asm_file_end (file)
 	    }
 	}
     }
-      
+
   if (TARGET_FILE_SWITCHING && ! TARGET_MIPS16)
     {
       fprintf (file, "\n\t.text\n");
@@ -5594,7 +5594,7 @@ compute_frame_size (size)
      The gp reg is callee saved in the 64 bit ABI, so all routines must
      save the gp reg.  This is not a leaf routine if -p, because of the
      call to mcount.  */
-  if (total_size == extra_size 
+  if (total_size == extra_size
       && (mips_abi == ABI_32 || mips_abi == ABI_O64 || mips_abi == ABI_EABI)
       && ! profile_flag)
     total_size = extra_size = 0;
@@ -5865,7 +5865,7 @@ save_restore_insns (store_p, large_reg, large_offset, file)
 		    insn = emit_move_insn (mem_rtx, reg_rtx);
 		    RTX_FRAME_RELATED_P (insn) = 1;
 		  }
-		else if (!TARGET_ABICALLS 
+		else if (!TARGET_ABICALLS
 			 || (mips_abi != ABI_32 && mips_abi != ABI_O64)
 			 || regno != (PIC_OFFSET_TABLE_REGNUM - GP_REG_FIRST))
 		  {
@@ -5879,7 +5879,7 @@ save_restore_insns (store_p, large_reg, large_offset, file)
 	      }
 	    else
 	      {
-		if (store_p || !TARGET_ABICALLS 
+		if (store_p || !TARGET_ABICALLS
 		    || (mips_abi != ABI_32 && mips_abi != ABI_O64)
 		    || regno != (PIC_OFFSET_TABLE_REGNUM - GP_REG_FIRST))
 		  {
@@ -5909,7 +5909,7 @@ save_restore_insns (store_p, large_reg, large_offset, file)
 			      ? (store_p) ? "sd" : "ld"
 			      : (store_p) ? "sw" : "lw"),
 			     reg_names[r]);
-		    fprintf (file, HOST_WIDE_INT_PRINT_DEC, 
+		    fprintf (file, HOST_WIDE_INT_PRINT_DEC,
 			     gp_offset - base_offset);
 		    fprintf (file, "(%s)\n", reg_names[REGNO(base_reg_rtx)]);
 		    if (! store_p
@@ -6796,7 +6796,7 @@ mips_expand_epilogue ()
 					   g6_rtx));
 		  tsize = 0;
 		}
-	      
+
 	      if (tsize && tsize != orig_tsize)
 		tsize_rtx = GEN_INT (tsize);
 	    }
@@ -6899,7 +6899,7 @@ mips_select_rtx_section (mode, x)
     {
       /* For hosted applications, always put constants in small data if
 	 possible, as this gives the best performance.  */
-     
+
       if (GET_MODE_SIZE (mode) <= mips_section_threshold
 	  && mips_section_threshold > 0)
 	SMALL_DATA_SECTION ();
@@ -7012,8 +7012,8 @@ mips_function_value (valtype, func)
     }
 
   else if (TREE_CODE (valtype) == RECORD_TYPE
-	   && mips_abi != ABI_32 
-	   && mips_abi != ABI_O64 
+	   && mips_abi != ABI_32
+	   && mips_abi != ABI_O64
 	   && mips_abi != ABI_EABI)
     {
       /* A struct with only one or two floating point fields is returned in
@@ -7032,7 +7032,7 @@ mips_function_value (valtype, func)
 
 	  fields[i++] = field;
 	}
-	  
+
       /* Must check i, so that we reject structures with no elements.  */
       if (! field)
 	{
@@ -7679,7 +7679,7 @@ build_mips16_call_stub (retval, fnmem, arg_size, fp_code)
       && strncmp (XSTR (fn, 0), "__mips16_", 9) == 0)
     return 0;
 
-  /* This code will only work for o32 and o64 abis.  The other ABI's 
+  /* This code will only work for o32 and o64 abis.  The other ABI's
      require more sophisticated support.  */
   if (mips_abi != ABI_32 && mips_abi != ABI_O64)
     abort ();
@@ -8111,7 +8111,7 @@ mips16_optimize_gp (first)
 	      emit_insn_after (gen_rtx (SET, VOIDmode, SET_DEST (set1),
 					force_const_mem (Pmode, sym)),
 			       next);
-	      
+
 	      PUT_CODE (insn, NOTE);
 	      NOTE_LINE_NUMBER (insn) = NOTE_INSN_DELETED;
 	      NOTE_SOURCE_FILE (insn) = 0;

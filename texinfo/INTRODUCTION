@@ -7,7 +7,7 @@ you can create a printed document with the normal features of a book,
 including chapters, sections, cross references, and indices.  From the
 same Texinfo source file, you can create a menu-driven, on-line Info
 file with nodes, menus, cross references, and indices.
-  
+
 The name of the Texinfo source documentation file is `texinfo.txi'.
 You can produce both on-line information and printed output from this
 source file.  The documentation describes Texinfo in detail, including
@@ -79,7 +79,7 @@ for `texindex', and the handy shell script `texi2dvi'.  The `tex'
 program is not part of this distribution, but is available separately.
 (See `How to Obtain TeX' in the Texinfo documentation.)
 
-  * Install `tex'.  (`texindex' is installed automagically by 
+  * Install `tex'.  (`texindex' is installed automagically by
     `make install' in this distribution.)
 
   * Move the `texinfo.tex' file to an appropriate directory; the current
@@ -96,7 +96,7 @@ files:
 
 You can then print the resulting .dvi files with the `lpr' command (on BSD
 systems.  On SysV systems the command is `lp'.  Consult your man pages for
-more information). 
+more information).
 
 For example, the command to print the texinfo.dvi file might be:
 

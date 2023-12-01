@@ -68,7 +68,7 @@ struct arglist
    `stringified_length' is the length the argument would have
    if stringified.
    `use_count' is the number of times this macro arg is substituted
-   into the macro.  If the actual use count exceeds 10, 
+   into the macro.  If the actual use count exceeds 10,
    the value stored is 10.  */
 
 /* raw and expanded are relative to ARG_BASE */
@@ -264,7 +264,7 @@ macro_cleanup (pbuf, pfile)
    in that list, or -1 for a macro name that wants no argument list.
    MACRONAME is the macro name itself (so we can avoid recursive expansion)
    and NAMELEN is its length in characters.
-   
+
    Note that comments, backslash-newlines, and leading white space
    have already been deleted from the argument.  */
 
@@ -566,7 +566,7 @@ collect_expansion (pfile, buf, limit, nargs, arglist)
 }
 
 /*
- * special extension string that can be added to the last macro argument to 
+ * special extension string that can be added to the last macro argument to
  * allow it to absorb the "rest" of the arguments when expanded.  Ex:
  * 		#define wow(a, b...)		process (b, a, b)
  *		{ wow (1, 2, 3); }	->	{ process (2, 3, 1, 2, 3); }
@@ -580,7 +580,7 @@ collect_expansion (pfile, buf, limit, nargs, arglist)
 static char rest_extension[] = "...";
 #define REST_EXTENSION_LENGTH	(sizeof (rest_extension) - 1)
 
-/* Create a DEFINITION node from a #define directive.  Arguments are 
+/* Create a DEFINITION node from a #define directive.  Arguments are
    as for do_define.  */
 
 MACRODEF
@@ -1685,7 +1685,7 @@ dump_definition (pfile, macro)
 	      x += 2;  /* skip the space after the comma */
 	    }
 	}
-      
+
       /* Now print out the argument list. */
       CPP_PUTC_Q (pfile, '(');
       for (i = 0; i < defn->nargs; i++)

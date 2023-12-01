@@ -5,7 +5,7 @@ looking at that node, which is (dir)Top.
 
 File: dir	Node: Top	This is the top of the INFO tree
 
-  This (the Directory node) gives a menu of major topics. 
+  This (the Directory node) gives a menu of major topics.
   Typing "q" exits, "?" lists all Info commands, "d" returns here,
   "h" gives a primer for first-timers,
   "mEmacs<Return>" visits the Emacs topic, etc.
@@ -13,4 +13,4 @@ File: dir	Node: Top	This is the top of the INFO tree
   In Emacs, you can click mouse button 2 on a menu item or cross reference
   to select it.
 
-* Menu: 
+* Menu:

@@ -10,9 +10,9 @@ SEARCH_DIR(@local_prefix@/lib);
 
 ENTRY(_start)
 
-SECTIONS 
+SECTIONS
 {
-	.lowmem 0 (DSECT) : { 
+	.lowmem 0 (DSECT) : {
 		/usr/lib/low.o (.data)
 	}
 	.text 0x10000000 : {

@@ -28,7 +28,7 @@
 @c NOTE: checks/things to do:
 @c
 @c -have bob do a search in all seven files for "mew" (ideally --mew,
-@c  but i may have forgotten the occasional "--"..).  
+@c  but i may have forgotten the occasional "--"..).
 @c     Just checked... all have `--'!  Bob 22Jul96
 @c     Use this to search:   grep -n '\-\-mew' *.texi
 @c -item/itemx, text after all (sub/sub)section titles, etc..
@@ -116,15 +116,15 @@ notice identical to this one except for the removal of this paragraph
 Permission is granted to copy and distribute modified versions of this
 manual under the conditions for verbatim copying, provided also that the
 sections entitled ``GNU General Public License'' and ``Funding for Free
-Software'' are included exactly as in the original, and provided that 
-the entire resulting derived work is distributed under the terms of a 
+Software'' are included exactly as in the original, and provided that
+the entire resulting derived work is distributed under the terms of a
 permission notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the above conditions for modified versions,
 except that the sections entitled ``GNU General Public License'' and
-``Funding for Free Software'', and this permission notice, may be 
-included in translations approved by the Free Software Foundation 
+``Funding for Free Software'', and this permission notice, may be
+included in translations approved by the Free Software Foundation
 instead of in the original English.
 @end ifinfo
 
@@ -171,15 +171,15 @@ are preserved on all copies.
 Permission is granted to copy and distribute modified versions of this
 manual under the conditions for verbatim copying, provided also that the
 sections entitled ``GNU General Public License'' and ``Funding for Free
-Software'' are included exactly as in the original, and provided that 
-the entire resulting derived work is distributed under the terms of a 
+Software'' are included exactly as in the original, and provided that
+the entire resulting derived work is distributed under the terms of a
 permission notice identical to this one.
 
 Permission is granted to copy and distribute translations of this manual
 into another language, under the above conditions for modified versions,
 except that the sections entitled ``GNU General Public License'' and
-``Funding for Free Software'', and this permission notice, may be 
-included in translations approved by the Free Software Foundation 
+``Funding for Free Software'', and this permission notice, may be
+included in translations approved by the Free Software Foundation
 instead of in the original English.
 @end titlepage
 @page
@@ -1717,7 +1717,7 @@ operates on pointers to @code{char}:
 string strfunc ();
 void charfunc (const char *);
 
-void 
+void
 f ()
 @{
   const char *p = strfunc().c_str();
@@ -3376,7 +3376,7 @@ the input file name.
 @cindex global common subexpression elimination
 @cindex constant propagation
 @cindex copy propagation
-@item               
+@item
 Global common subexpression elimination.  This pass performs GCSE
 using Morel-Renvoise Partial Redundancy Elimination, with the exception
 that it does not try to move invariants out of loops - that is left to
@@ -3954,7 +3954,7 @@ procedure will build all combinations of compatible options.
 For example, if you set @code{MULTILIB_OPTIONS} to @samp{m68000/m68020
 msoft-float}, @file{Makefile} will build special versions of
 @file{libgcc.a} using the following sets of options:  @samp{-m68000},
-@samp{-m68020}, @samp{-msoft-float}, @samp{-m68000 -msoft-float}, and 
+@samp{-m68020}, @samp{-msoft-float}, @samp{-m68000 -msoft-float}, and
 @samp{-m68020 -msoft-float}.
 
 @findex MULTILIB_DIRNAMES
@@ -4111,7 +4111,7 @@ already available.
 What they found was no accident---it was the GNU system.  The available
 free software added up to a complete system because the GNU Project
 had been working since 1984 to make one.  The GNU Manifesto
-had set forth the goal of developing a free Unix-like system, called 
+had set forth the goal of developing a free Unix-like system, called
 GNU.  By the time Linux was written, the system was almost finished.
 
 Most free software projects have the goal of developing a particular

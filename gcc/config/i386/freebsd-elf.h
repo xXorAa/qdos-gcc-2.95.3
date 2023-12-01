@@ -148,19 +148,19 @@ Boston, MA 02111-1307, USA.  */
 
 #undef SIZE_TYPE
 #define SIZE_TYPE "unsigned int"
- 
+
 #undef PTRDIFF_TYPE
 #define PTRDIFF_TYPE "int"
-  
+
 #undef WCHAR_TYPE
 #define WCHAR_TYPE "int"
 
 #undef WCHAR_UNSIGNED
 #define WCHAR_UNSIGNED 0
-   
+
 #undef WCHAR_TYPE_SIZE
 #define WCHAR_TYPE_SIZE BITS_PER_WORD
-    
+
 #undef CPP_PREDEFINES
 #define CPP_PREDEFINES "-Di386 -Dunix -D__ELF__ -D__FreeBSD__ -Asystem(unix) -Asystem(FreeBSD) -Acpu(i386) -Amachine(i386)"
 
@@ -180,10 +180,10 @@ Boston, MA 02111-1307, USA.  */
    || (CHAR) == 'R')
 
 /* Provide a STARTFILE_SPEC appropriate for FreeBSD.  Here we add
-   the magical crtbegin.o file (see crtstuff.c) which provides part 
-	of the support for getting C++ file-scope static object constructed 
+   the magical crtbegin.o file (see crtstuff.c) which provides part
+	of the support for getting C++ file-scope static object constructed
 	before entering `main'. */
-   
+
 #undef	STARTFILE_SPEC
 #define STARTFILE_SPEC \
   "%{!shared: \
@@ -193,9 +193,9 @@ Boston, MA 02111-1307, USA.  */
    crti.o%s %{!shared:crtbegin.o%s} %{shared:crtbeginS.o%s}"
 
 /* Provide a ENDFILE_SPEC appropriate for FreeBSD.  Here we tack on
-   the magical crtend.o file (see crtstuff.c) which provides part of 
-	the support for getting C++ file-scope static object constructed 
-	before entering `main', followed by a normal "finalizer" file, 
+   the magical crtend.o file (see crtstuff.c) which provides part of
+	the support for getting C++ file-scope static object constructed
+	before entering `main', followed by a normal "finalizer" file,
 	`crtn.o'.  */
 
 #undef	ENDFILE_SPEC

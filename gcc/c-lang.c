@@ -37,7 +37,7 @@ extern cpp_options parse_options;
 
 /* Each of the functions defined here
    is an alternative to a function in objc-actions.c.  */
-   
+
 int
 lang_decode_option (argc, argv)
      int argc;
@@ -67,7 +67,7 @@ lang_init ()
 #else
   check_newline ();
   yy_cur--;
-#endif 
+#endif
 }
 
 void
@@ -175,8 +175,8 @@ finish_file ()
     {
       tree fnname = get_file_function_name ('I');
       start_function (void_list_node,
-		      build_parse_node (CALL_EXPR, fnname, 
-					tree_cons (NULL_TREE, NULL_TREE, 
+		      build_parse_node (CALL_EXPR, fnname,
+					tree_cons (NULL_TREE, NULL_TREE,
 						   void_list_node),
 					NULL_TREE),
 		      NULL_TREE, NULL_TREE, 0);
@@ -197,7 +197,7 @@ finish_file ()
     {
       tree fnname = get_file_function_name ('D');
       start_function (void_list_node,
-		      build_parse_node (CALL_EXPR, fnname, 
+		      build_parse_node (CALL_EXPR, fnname,
 					tree_cons (NULL_TREE, NULL_TREE,
 						   void_list_node),
 					NULL_TREE),

@@ -71,7 +71,7 @@ Boston, MA 02111-1307, USA.  */
   -Asystem(unix) -Asystem(interix) -Asystem(interix) -Acpu(i386) -Amachine(i386)"
 
 #undef CPP_SPEC
-/* Write out the correct language type definition for the header files.  
+/* Write out the correct language type definition for the header files.
    Unless we have assembler language, write out the symbols for C.
    cpp_cpu is an Intel specific variant. See i386.h
    mieee is an Alpha specific variant.  Cross polination a bad idea.
@@ -430,7 +430,7 @@ while (0)
    be.  We pick one that works with gdb.  (The underlying problem is
    what to do about the segment registers.  Since we have access to them
    from /proc, we'll allow them to be accessed in gdb, even tho the
-   gcc compiler can't generate them.  (There's some evidence that 
+   gcc compiler can't generate them.  (There's some evidence that
    MSVC does, but possibly only for certain special "canned" sequences.) */
 
 #undef DBX_REGISTER_NUMBER
@@ -496,10 +496,10 @@ do {									\
   else									\
     (VAR) = _name;							\
 } while (0)
-      
-#if 0	
+
+#if 0
 /* Turn this back on when the linker is updated to handle grouped
-   .data$ sections correctly. See corresponding note in i386/interix.c. 
+   .data$ sections correctly. See corresponding note in i386/interix.c.
    MK. */
 
 /* Define this macro if in some cases global symbols from one translation

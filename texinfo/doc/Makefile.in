@@ -101,7 +101,7 @@ EXTRA_DIST = macro.texi userdoc.texi epsf.tex texinfo.tex
 TEXMF = @TEXMF@
 mkinstalldirs = $(SHELL) $(top_srcdir)/../mkinstalldirs
 CONFIG_HEADER = ../config.h
-CONFIG_CLEAN_FILES = 
+CONFIG_CLEAN_FILES =
 TEXI2DVI = texi2dvi
 TEXINFO_TEX = $(top_srcdir)/../texinfo.tex
 INFO_DEPS = info-stnd.info info.info texinfo
@@ -240,7 +240,7 @@ dvi: $(DVIS)
 check: all
 	$(MAKE)
 installcheck:
-install-exec: 
+install-exec:
 	@$(NORMAL_INSTALL)
 
 install-data: install-info-am install-data-local

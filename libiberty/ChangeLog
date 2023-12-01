@@ -113,7 +113,7 @@ Sun Apr 25 01:18:21 1999  Mumit Khan  <khan@xraylith.wisc.edu>
 1999-04-20  Jim Blandy  <jimb@zwingli.cygnus.com>
 
 	Fix from Dale Hawkins:
-	* cplus-dem.c (mop_up): Set typevec_size to zero, so it'll be 
+	* cplus-dem.c (mop_up): Set typevec_size to zero, so it'll be
 	reallocated properly if we use it again.
 
 	* cplus-dem.c (demangle_fund_type): Check for buffer overrun.  Be
@@ -193,7 +193,7 @@ Sun Apr 11 23:20:59 1999  Mumit Khan  <khan@xraylith.wisc.edu>
 	* cplus-dem.c (demangle_prefix): Don't grab all the '__' strings
 	when doing arm or hp style.
 	(demangle_nested_args): Decr forgetting_types field when done.
-	
+
 Thu Mar 11 01:22:58 1999  Mumit Khan  <khan@xraylith.wisc.edu>
 
 	* pexecute.c (__CYGWIN32__): Rename to
@@ -227,10 +227,10 @@ Tue Feb  9 01:12:27 1999  Marc Espie <Marc.Espie@liafa.jussieu.fr>
 	* configure.in (funcs): Check for and conditionally add mkstemps to
 	the list of functions libiberty will provide.
 	* configure: Rebuilt.
-	
+
 Wed Feb  3 00:01:15 1999  Mumit Khan  <khan@xraylith.wisc.edu>
 
-	* clock.c (HZ): Define in terms of (ISO C) CLOCKS_PER_SEC on 
+	* clock.c (HZ): Define in terms of (ISO C) CLOCKS_PER_SEC on
 	platforms that don't have HZ.
 	* getruntime.c (HZ): Likewise.
 
@@ -299,7 +299,7 @@ Fri Dec 18 17:50:18 1998  David Taylor  <taylor@texas.cygnus.com>
 	* cplus-dem.c (demangle_arm_pt): remove declaration -- function
  	doesn't exist.
 	(do_hpacc_template_literal): remove unused variable `i'.
-	
+
 Fri Dec 18 16:11:43 EST 1998  Andrew MacLeod  <amacleod@cygnus.com>
 
 	* cplus-dem.c (demangle_fund_type): Process CV and u codes before

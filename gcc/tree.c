@@ -156,7 +156,7 @@ char *momentary_function_firstobj;
 int all_types_permanent;
 
 /* Stack of places to restore the momentary obstack back to.  */
-   
+
 struct momentary_level
 {
   /* Pointer back to previous such level.  */
@@ -389,7 +389,7 @@ save_tree_status (p, context)
 
       current->next = *head;
       *head = current;
-    }      
+    }
 
   maybepermanent_firstobj
     = (char *) obstack_finish (function_maybepermanent_obstack);
@@ -926,7 +926,7 @@ resume_momentary (yes)
 void
 init_tree_codes ()
 {
-  
+
 }
 
 /* Return a newly allocated node of code CODE.
@@ -968,7 +968,7 @@ make_node (code)
 	 PARM_DECLs of top-level functions do not have this problem.  However,
 	 we allocate them where we put the FUNCTION_DECL for languages such as
 	 Ada that need to consult some flags in the PARM_DECLs of the function
-	 when calling it. 
+	 when calling it.
 
 	 See comment in restore_tree_status for why we can't put this
 	 in function_obstack.  */
@@ -1287,7 +1287,7 @@ get_identifier (text)
 
   hi &= (1 << HASHBITS) - 1;
   hi %= MAX_HASH_TABLE;
-  
+
   /* Search table for identifier */
   for (idp = hash_table[hi]; idp; idp = TREE_CHAIN (idp))
     if (IDENTIFIER_LENGTH (idp) == len
@@ -1350,7 +1350,7 @@ maybe_get_identifier (text)
 
   hi &= (1 << HASHBITS) - 1;
   hi %= MAX_HASH_TABLE;
-  
+
   /* Search table for identifier */
   for (idp = hash_table[hi]; idp; idp = TREE_CHAIN (idp))
     if (IDENTIFIER_LENGTH (idp) == len
@@ -1385,7 +1385,7 @@ set_identifier_size (size)
 
 /* Return a newly constructed INTEGER_CST node whose constant value
    is specified by the two ints LOW and HI.
-   The TREE_TYPE is set to `int'. 
+   The TREE_TYPE is set to `int'.
 
    This function should be used via the `build_int_2' macro.  */
 
@@ -1484,7 +1484,7 @@ build_real_from_int_cst_1 (data)
   PTR data;
 {
   struct brfic_args * args = (struct brfic_args *) data;
-  
+
 #ifdef REAL_ARITHMETIC
   args->d = real_value_from_int_cst (args->type, args->i);
 #else
@@ -1525,7 +1525,7 @@ build_real_from_int_cst (type, i)
       d = dconst0;
       overflow = 1;
     }
-  
+
   /* Check for valid float value for this type on this target machine.  */
 
 #ifdef CHECK_FLOAT_VALUE
@@ -1826,7 +1826,7 @@ real_twop (expr)
 }
 
 /* Nonzero if EXP is a constant or a cast of a constant.  */
- 
+
 int
 really_constant_p (exp)
      tree exp;
@@ -2372,7 +2372,7 @@ save_expr (expr)
   /* If the tree evaluates to a constant, then we don't want to hide that
      fact (i.e. this allows further folding, and direct checks for constants).
      However, a read-only object that has side effects cannot be bypassed.
-     Since it is no problem to reevaluate literals, we just return the 
+     Since it is no problem to reevaluate literals, we just return the
      literal node.  */
 
   if (TREE_CONSTANT (t) || (TREE_READONLY (t) && ! TREE_SIDE_EFFECTS (t))
@@ -2471,7 +2471,7 @@ unsave_expr_now (expr)
       TREE_OPERAND (expr, 1) = TREE_OPERAND (expr, 3);
       TREE_OPERAND (expr, 3) = NULL_TREE;
       break;
-      
+
     case RTL_EXPR:
       /* I don't yet know how to emit a sequence multiple times.  */
       if (RTL_EXPR_SEQUENCE (expr) != 0)
@@ -2552,7 +2552,7 @@ contains_placeholder_p (exp)
 		|| (TREE_CHAIN (exp) != 0
 		    && contains_placeholder_p (TREE_CHAIN (exp))));
       break;
-					
+
     case '1':
     case '2':  case '<':
     case 'e':
@@ -2717,7 +2717,7 @@ substitute_in_expr (exp, f, r)
 	  op0 = substitute_in_expr (TREE_OPERAND (exp, 0), f, r);
 	  if (op0 == TREE_OPERAND (exp, 0))
 	    return exp;
-	  
+
 	  new = fold (build1 (code, TREE_TYPE (exp), op0));
 	  break;
 
@@ -2786,7 +2786,7 @@ substitute_in_expr (exp, f, r)
 	      && TREE_OPERAND (exp, 1) == f)
 	    return r;
 
-	  /* If this expression hasn't been completed let, leave it 
+	  /* If this expression hasn't been completed let, leave it
 	     alone.  */
 	  if (TREE_CODE (inner) == PLACEHOLDER_EXPR
 	      && TREE_TYPE (inner) == 0)
@@ -2824,7 +2824,7 @@ substitute_in_expr (exp, f, r)
 	  abort ();
 	}
       break;
-      
+
     default:
       abort ();
     }
@@ -2972,7 +2972,7 @@ stabilize_reference_1 (e)
       /* Constants need no processing.  In fact, we should never reach
 	 here.  */
       return e;
-      
+
     case '2':
       /* Division is slow and tends to be compiled with jumps,
 	 especially the division by powers of 2 that is often
@@ -2995,7 +2995,7 @@ stabilize_reference_1 (e)
     default:
       abort ();
     }
-  
+
   TREE_TYPE (result) = TREE_TYPE (e);
   TREE_READONLY (result) = TREE_READONLY (e);
   TREE_SIDE_EFFECTS (result) = TREE_SIDE_EFFECTS (e);
@@ -3449,7 +3449,7 @@ valid_machine_attribute (attr_name, attr_args, decl, type)
       else
 	{
 	  /* If this is part of a declaration, create a type variant,
-	     otherwise, this is part of a type definition, so add it 
+	     otherwise, this is part of a type definition, so add it
 	     to the base type.  */
 	  type_attr_list = tree_cons (attr_name, attr_args, type_attr_list);
 	  if (decl != 0)
@@ -3667,7 +3667,7 @@ build_qualified_type (type, type_quals)
      int type_quals;
 {
   register tree t;
-  
+
   /* Search the chain of variants to see if there is already one there just
      like the one we need to have.  If so, use that existing one.  We must
      preserve the TYPE_NAME, since there is code that depends on this.  */
@@ -4098,7 +4098,7 @@ simple_cst_equal (t1, t2)
     case CONST_DECL:
     case FUNCTION_DECL:
       return 0;
-      
+
     default:
       break;
     }
@@ -4512,7 +4512,7 @@ build_complex_type (component_type)
    OP must have integer, real or enumeral type.  Pointers are not allowed!
 
    There are some cases where the obvious value we could return
-   would regenerate to OP if converted to OP's type, 
+   would regenerate to OP if converted to OP's type,
    but would not extend like OP to wider types.
    If FOR_TYPE indicates such extension is contemplated, we eschew such values.
    For example, if OP is (unsigned short)(signed char)-1,
@@ -5028,7 +5028,7 @@ get_set_constructor_bits (init, buffer, bit_size)
   for (i = 0; i < bit_size; i++)
     buffer[i] = 0;
 
-  for (vals = TREE_OPERAND (init, 1); 
+  for (vals = TREE_OPERAND (init, 1);
        vals != NULL_TREE; vals = TREE_CHAIN (vals))
     {
       if (TREE_CODE (TREE_VALUE (vals)) != INTEGER_CST

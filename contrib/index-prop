@@ -7,7 +7,7 @@
 
 while (<>)
 {
-  if (/^Index: (.*)/) 
+  if (/^Index: (.*)/)
     {
       $full = $1;
       print;

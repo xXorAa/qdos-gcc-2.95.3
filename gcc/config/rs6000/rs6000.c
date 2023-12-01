@@ -1170,7 +1170,7 @@ lwa_operand (op, mode)
 
   if (reload_completed && GET_CODE (inner) == SUBREG)
     inner = SUBREG_REG (inner);
-    
+
   return gpc_reg_operand (inner, mode)
     || (memory_operand (inner, mode)
 	&& GET_CODE (XEXP (inner, 0)) != PRE_INC
@@ -1414,9 +1414,9 @@ function_arg_padding (mode, type)
 }
 
 /* If defined, a C expression that gives the alignment boundary, in bits,
-   of an argument with the specified mode and type.  If it is not defined, 
+   of an argument with the specified mode and type.  If it is not defined,
    PARM_BOUNDARY is used for all arguments.
-   
+
    Windows NT wants anything >= 8 bytes to be double word aligned.
 
    V.4 wants long longs to be double word aligned.  */
@@ -1475,7 +1475,7 @@ function_arg_advance (cum, mode, type, named)
 	  if ((type && AGGREGATE_TYPE_P (type))
 	      || mode == TFmode)
 	    n_words = 1;
-	  else 
+	  else
 	    n_words = RS6000_ARG_SIZE (mode, type, 1);
 
 	  /* Long long is put in odd registers.  */
@@ -1602,7 +1602,7 @@ function_arg (cum, mode, type, named)
 	  if ((type && AGGREGATE_TYPE_P (type))
 	      || mode == TFmode)
 	    n_words = 1;
-	  else 
+	  else
 	    n_words = RS6000_ARG_SIZE (mode, type, 1);
 
 	  /* Long long is put in odd registers.  */
@@ -1733,7 +1733,7 @@ function_arg_pass_by_reference (cum, mode, type, named)
 
 
 /* Perform any needed actions needed for a function that is receiving a
-   variable number of arguments. 
+   variable number of arguments.
 
    CUM is as above.
 
@@ -1850,10 +1850,10 @@ setup_incoming_varargs (cum, mode, type, pretend_size, no_rtl)
 
    If this macro is not defined, the compiler will output an ordinary
    call to the library function `__builtin_saveregs'.
-   
+
    On the Power/PowerPC return the address of the area on the stack
    used to hold arguments.  Under AIX, this includes the 8 word register
-   save area. 
+   save area.
 
    Under V.4, things are more complicated.  We do not have access to
    all of the virtual registers required for va_start to do its job,
@@ -1883,10 +1883,10 @@ expand_builtin_saveregs (args)
   RTX_UNCHANGING_P (XEXP (block, 0)) = 1;
 
   mem_gpr_fpr = change_address (block, word_mode, XEXP (block, 0));
-  mem_overflow = change_address (block, ptr_mode, 
+  mem_overflow = change_address (block, ptr_mode,
 			         plus_constant (XEXP (block, 0),
 						UNITS_PER_WORD));
-  mem_reg_save_area = change_address (block, ptr_mode, 
+  mem_reg_save_area = change_address (block, ptr_mode,
 				      plus_constant (XEXP (block, 0),
 						     2 * UNITS_PER_WORD));
 
@@ -2454,7 +2454,7 @@ registers_ok_for_quad_peep (reg1, reg2)
      rtx reg1, reg2;
 {
   /* We might have been passed a SUBREG.  */
-  if (GET_CODE (reg1) != REG || GET_CODE (reg2) != REG) 
+  if (GET_CODE (reg1) != REG || GET_CODE (reg2) != REG)
     return 0;
 
   return (REGNO (reg1) == REGNO (reg2) - 1);
@@ -2578,7 +2578,7 @@ secondary_reload_class (class, mode, in)
 }
 
 /* Given a comparison operation, return the bit number in CCR to test.  We
-   know this is a valid comparison.  
+   know this is a valid comparison.
 
    SCC_P is 1 if this is for an scc.  That means that %D will have been
    used instead of %C, so the bits will be in different places.
@@ -2652,8 +2652,8 @@ rs6000_got_register (value)
 /* Search for any occurrence of the GOT_TOC register marker that should
    have been eliminated, but may have crept back in.
 
-   This function could completely go away now (June 1999), but we leave it 
-   in for a while until all the possible issues with the new -fpic handling 
+   This function could completely go away now (June 1999), but we leave it
+   in for a while until all the possible issues with the new -fpic handling
    are resolved. */
 
 void
@@ -2870,7 +2870,7 @@ print_operand (file, x, code)
       else
 	putc ('m', file);
       return;
-	
+
     case 'h':
       /* If constant, output low-order five bits.  Otherwise,
 	 write normally. */
@@ -2945,7 +2945,7 @@ print_operand (file, x, code)
 		     reg_names[SMALL_DATA_REG]);
 	}
       return;
-			    
+
     case 'm':
       /* MB value for a mask operand.  */
       if (! mask_operand (x, VOIDmode))
@@ -2969,7 +2969,7 @@ print_operand (file, x, code)
 	  fprintf (file, "%d", i);
 	  return;
 	}
-	  
+
       /* Otherwise, look for the first 0 bit from the right.  The result is its
 	 number plus 1. We know the low-order bit is one.  */
       for (i = 0; i < 32; i++)
@@ -3007,7 +3007,7 @@ print_operand (file, x, code)
 	  fprintf (file, "%d", 30 - i);
 	  return;
 	}
-	  
+
       /* Otherwise, look for the first 0 bit from the left.  The result is its
 	 number minus 1. We know the high-order bit is one.  */
       for (i = 0; i < 32; i++)
@@ -3131,7 +3131,7 @@ print_operand (file, x, code)
 	}
 
     case 't':
-      /* Write 12 if this jump operation will branch if true, 4 otherwise. 
+      /* Write 12 if this jump operation will branch if true, 4 otherwise.
 	 All floating-point operations except NE branch true and integer
 	 EQ, LT, GT, LTU and GTU also branch true.  */
       if (GET_RTX_CLASS (GET_CODE (x)) != '<')
@@ -3146,7 +3146,7 @@ print_operand (file, x, code)
       else
 	putc ('4', file);
       return;
-      
+
     case 'T':
       /* Opposite of 't': write 4 if this jump operation will branch if true,
 	 12 otherwise.   */
@@ -3162,7 +3162,7 @@ print_operand (file, x, code)
       else
 	fputs ("12", file);
       return;
-      
+
     case 'u':
       /* High-order 16 bits of constant for use in unsigned operand.  */
       if (! INT_P (x))
@@ -3274,7 +3274,7 @@ print_operand (file, x, code)
 		     reg_names[SMALL_DATA_REG]);
 	}
       return;
-			    
+
     case 'z':
       /* X is a SYMBOL_REF.  Write out the name preceded by a
 	 period and without any trailing data in brackets.  Used for function
@@ -3324,7 +3324,7 @@ print_operand (file, x, code)
 		     reg_names[SMALL_DATA_REG]);
 	}
       return;
-			    
+
     case 0:
       if (GET_CODE (x) == REG)
 	fprintf (file, "%s", reg_names[REGNO (x)]);
@@ -3542,17 +3542,17 @@ rs6000_makes_calls ()
 		| Parameter save area (P)		| 8
 		+---------------------------------------+
 		| Alloca space (A)			| 8+P
-		+---------------------------------------+    
+		+---------------------------------------+
 		| Varargs save area (V)			| 8+P+A
-		+---------------------------------------+    
+		+---------------------------------------+
 		| Local variable space (L)		| 8+P+A+V
-		+---------------------------------------+    
+		+---------------------------------------+
 		| Float/int conversion temporary (X)	| 8+P+A+V+L
 		+---------------------------------------+
 		| saved CR (C)				| 8+P+A+V+L+X
-		+---------------------------------------+    
+		+---------------------------------------+
 		| Save area for GP registers (G)	| 8+P+A+V+L+X+C
-		+---------------------------------------+    
+		+---------------------------------------+
 		| Save area for FP registers (F)	| 8+P+A+V+L+X+C+G
 		+---------------------------------------+
 	old SP->| back chain to caller's caller		|
@@ -3584,21 +3584,21 @@ rs6000_makes_calls ()
 		| Parameter save area (P)		| 24
 		+---------------------------------------+
 		| Alloca space (A)			| 24+P
-		+---------------------------------------+     
+		+---------------------------------------+
 		| Local variable space (L)		| 24+P+A
-		+---------------------------------------+     
+		+---------------------------------------+
 		| Float/int conversion temporary (X)	| 24+P+A+L
 		+---------------------------------------+
 		| Save area for FP registers (F)	| 24+P+A+L+X
-		+---------------------------------------+     
+		+---------------------------------------+
 		| Possible alignment area (Y)		| 24+P+A+L+X+F
-		+---------------------------------------+     
+		+---------------------------------------+
 		| Save area for GP registers (G)	| 24+P+A+L+X+F+Y
-		+---------------------------------------+     
+		+---------------------------------------+
 		| Save area for CR (C)			| 24+P+A+L+X+F+Y+G
-		+---------------------------------------+     
+		+---------------------------------------+
 		| Save area for TOC (T)			| 24+P+A+L+X+F+Y+G+C
-		+---------------------------------------+     
+		+---------------------------------------+
 		| Save area for LR (R)			| 24+P+A+L+X+F+Y+G+C+T
 		+---------------------------------------+
 	old SP->| back chain to caller's caller		|
@@ -3641,9 +3641,9 @@ rs6000_stack_info ()
 
   /* Calculate which registers need to be saved & save area size */
   info_ptr->first_gp_reg_save = first_reg_to_save ();
-  /* Assume that we will have to save PIC_OFFSET_TABLE_REGNUM, 
+  /* Assume that we will have to save PIC_OFFSET_TABLE_REGNUM,
      even if it currently looks like we won't.  */
-  if (flag_pic == 1 
+  if (flag_pic == 1
       && (abi == ABI_V4 || abi == ABI_SOLARIS)
       && info_ptr->first_gp_reg_save > PIC_OFFSET_TABLE_REGNUM)
     info_ptr->gp_size = reg_size * (32 - PIC_OFFSET_TABLE_REGNUM);
@@ -3826,7 +3826,7 @@ rs6000_stack_info ()
 			     : info_ptr->fpmem_offset);
     }
   else
-    info_ptr->fpmem_offset = 0;  
+    info_ptr->fpmem_offset = 0;
 
   /* Zero offsets if we're not saving those registers */
   if (info_ptr->fp_size == 0)
@@ -4252,7 +4252,7 @@ output_prolog (file, size)
     }
 
   /* If we need PIC_OFFSET_TABLE_REGNUM, initialize it now */
-  if ((DEFAULT_ABI == ABI_V4 || DEFAULT_ABI == ABI_SOLARIS) 
+  if ((DEFAULT_ABI == ABI_V4 || DEFAULT_ABI == ABI_SOLARIS)
       && flag_pic == 1 && regs_ever_live[PIC_OFFSET_TABLE_REGNUM])
     {
       if (!info->lr_save_p)
@@ -4871,7 +4871,7 @@ output_mi_thunk (file, thunk_fndecl, delta, function)
 	  if (flag_pic) fputs ("@plt", file);
 	  fputs ("\n", file);
 	  break;
-	      
+
 	  /* Don't use r11, that contains the static chain, just use r0/r12.  */
 	case ABI_AIX_NODESC:
 	case ABI_SOLARIS:
@@ -5076,7 +5076,7 @@ output_toc (file, x, labelno)
       base = XEXP (XEXP (x, 0), 0);
       offset = INTVAL (XEXP (XEXP (x, 0), 1));
     }
-  
+
   if (GET_CODE (base) == SYMBOL_REF)
     name = XSTR (base, 0);
   else if (GET_CODE (base) == LABEL_REF)
@@ -5460,9 +5460,9 @@ int get_issue_rate()
   case CPU_PPC601:
     return 3;       /* ? */
   case CPU_PPC603:
-    return 2; 
+    return 2;
   case CPU_PPC750:
-    return 2; 
+    return 2;
   case CPU_PPC604:
     return 4;
   case CPU_PPC604E:

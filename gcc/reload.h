@@ -99,7 +99,7 @@ extern rtx reload_reg_rtx[MAX_RELOADS];
 
 enum reload_type
 {
-  RELOAD_FOR_INPUT, RELOAD_FOR_OUTPUT, RELOAD_FOR_INSN, 
+  RELOAD_FOR_INPUT, RELOAD_FOR_OUTPUT, RELOAD_FOR_INSN,
   RELOAD_FOR_INPUT_ADDRESS, RELOAD_FOR_INPADDR_ADDRESS,
   RELOAD_FOR_OUTPUT_ADDRESS, RELOAD_FOR_OUTADDR_ADDRESS,
   RELOAD_FOR_OPERAND_ADDRESS, RELOAD_FOR_OPADDR_ADDR,
@@ -155,7 +155,7 @@ struct needs
 /* This structure describes instructions which are relevant for reload.
    Apart from all regular insns, this also includes CODE_LABELs, since they
    must be examined for register elimination.  */
-struct insn_chain 
+struct insn_chain
 {
   /* Links to the neighbour instructions.  */
   struct insn_chain *next, *prev;
@@ -225,7 +225,7 @@ extern void compute_use_by_pseudos		PROTO((HARD_REG_SET *, regset));
 
 /* Functions from reload.c:  */
 
-/* Return a memory location that will be used to copy X in mode MODE.  
+/* Return a memory location that will be used to copy X in mode MODE.
    If we haven't already made a location for this mode in this insn,
    call find_reloads_address on the location being returned.  */
 extern rtx get_secondary_mem PROTO((rtx, enum machine_mode,

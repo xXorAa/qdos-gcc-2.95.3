@@ -29,7 +29,7 @@ case $LIB in
 esac
 
 echo Building fixed headers in ${LIB}
-  
+
 file=selectbits.h
 echo Fixed $file for glibc-2.0.x
 rm -f $LIB/$file

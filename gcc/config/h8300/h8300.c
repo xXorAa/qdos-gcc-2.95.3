@@ -1,6 +1,6 @@
 /* Subroutines for insn-output.c for Hitachi H8/300.
    Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000
-   Free Software Foundation, Inc. 
+   Free Software Foundation, Inc.
    Contributed by Steve Chamberlain (sac@cygnus.com),
    Jim Wilson (wilson@cygnus.com), and Doug Evans (dje@cygnus.com).
 
@@ -205,7 +205,7 @@ static int push_order[FIRST_PSEUDO_REGISTER] =
 static int pop_order[FIRST_PSEUDO_REGISTER] =
 {6, 5, 4, 3, 2, 1, 0, -1, -1, -1};
 
-/* This is what the stack looks like after the prolog of 
+/* This is what the stack looks like after the prolog of
    a function with a frame has been set up:
 
    <args>
@@ -315,7 +315,7 @@ function_prologue (file, size)
 		      && (!frame_pointer_needed
 			  || second_regno != FRAME_POINTER_REGNUM))
 		    {
-		      fprintf (file, "\tstm.l %s-%s,@-sp\n", 
+		      fprintf (file, "\tstm.l %s-%s,@-sp\n",
 			       h8_reg_names[regno],
 			       h8_reg_names[fourth_regno]);
 		      idx += 3;
@@ -336,7 +336,7 @@ function_prologue (file, size)
 		      && (!frame_pointer_needed
 			  || second_regno != FRAME_POINTER_REGNUM))
 		    {
-		      fprintf (file, "\tstm.l %s-%s,@-sp\n", 
+		      fprintf (file, "\tstm.l %s-%s,@-sp\n",
 			       h8_reg_names[regno],
 			       h8_reg_names[third_regno]);
 		      idx += 2;
@@ -352,7 +352,7 @@ function_prologue (file, size)
 		      && (!frame_pointer_needed
 			  || second_regno != FRAME_POINTER_REGNUM))
 		    {
-		      fprintf (file, "\tstm.l %s-%s,@-sp\n", 
+		      fprintf (file, "\tstm.l %s-%s,@-sp\n",
 			       h8_reg_names[regno],
 			       h8_reg_names[second_regno]);
 		      idx += 1;
@@ -429,7 +429,7 @@ function_epilogue (file, size)
 		      && (!frame_pointer_needed
 			  || second_regno != FRAME_POINTER_REGNUM))
 		    {
-		      fprintf (file, "\tldm.l @sp+,%s-%s\n", 
+		      fprintf (file, "\tldm.l @sp+,%s-%s\n",
 			       h8_reg_names[fourth_regno],
 			       h8_reg_names[regno]);
 		      idx += 3;
@@ -450,7 +450,7 @@ function_epilogue (file, size)
 		      && (!frame_pointer_needed
 			  || second_regno != FRAME_POINTER_REGNUM))
 		    {
-		      fprintf (file, "\tldm.l @sp+,%s-%s\n", 
+		      fprintf (file, "\tldm.l @sp+,%s-%s\n",
 			       h8_reg_names[third_regno],
 			       h8_reg_names[regno]);
 		      idx += 2;
@@ -466,7 +466,7 @@ function_epilogue (file, size)
 		      && (!frame_pointer_needed
 			  || second_regno != FRAME_POINTER_REGNUM))
 		    {
-		      fprintf (file, "\tldm.l @sp+,%s-%s\n", 
+		      fprintf (file, "\tldm.l @sp+,%s-%s\n",
 			       h8_reg_names[second_regno],
 			       h8_reg_names[regno]);
 		      idx += 1;
@@ -1695,7 +1695,7 @@ bit_operator (x, mode)
 
    A trailing '*' after the shift count indicates the "best" mode isn't
    implemented.
-   
+
    H8/300 QImode shifts
    1-4    - do them inline
    5-6    - ASHIFT | LSHIFTRT: rotate, mask off other bits
@@ -2975,7 +2975,7 @@ h8300_valid_machine_decl_attribute (decl, attributes, attr, args)
       DECL_SECTION_NAME (decl) = build_string (6, ".tiny");
       return 1;
     }
-      
+
   return 0;
 }
 
@@ -3156,6 +3156,6 @@ h8300_adjust_insn_length (insn, length)
 
       /* XXX ??? Could check for more shift/rotate cases here.  */
     }
-    
+
   return 0;
 }

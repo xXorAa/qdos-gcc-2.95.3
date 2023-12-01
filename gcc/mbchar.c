@@ -46,7 +46,7 @@ typedef enum
 {
   ASCII, A_ESC, A_ESC_DL, JIS, JIS_1, JIS_2, J_ESC, J_ESC_BR,
   J2_ESC, J2_ESC_BR, INV, JIS_S_NUM
-} JIS_STATE; 
+} JIS_STATE;
 
 typedef enum
 {
@@ -141,7 +141,7 @@ local_mbtowc (pwc, s, n)
       char1 = *t;
       if (ISEUCJP (char1))
         {
-          int char2 = t[1];     
+          int char2 = t[1];
           if (n <= 1)
             return -1;
           if (ISEUCJP (char2))
@@ -164,7 +164,7 @@ local_mbtowc (pwc, s, n)
       JIS_CHAR_TYPE ch;
       unsigned char *ptr;
       int i, curr_ch;
- 
+
       if (s == NULL)
 	{
 	  save_state = ASCII;
@@ -208,7 +208,7 @@ local_mbtowc (pwc, s, n)
 
           action = JIS_action_table[curr_state][ch];
           curr_state = JIS_state_table[curr_state][ch];
-        
+
           switch (action)
             {
             case NOOP:
@@ -245,7 +245,7 @@ local_mbtowc (pwc, s, n)
 
       return -1;  /* n < bytes needed */
     }
-               
+
 #ifdef CROSS_COMPILE
   if (s == NULL)
     return 0;  /* not state-dependent */

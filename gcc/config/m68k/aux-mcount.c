@@ -1,4 +1,4 @@
-/* Profiling support code for A/UX 
+/* Profiling support code for A/UX
    Copyright (C) 1996 Free Software Foundation, Inc.
 
 This file is free software; you can redistribute it and/or modify it
@@ -31,8 +31,8 @@ Boston, MA 02111-1307, USA.  */
    the executable file might be covered by the GNU General Public License.  */
 
 /* This routine is called at the beginning of functions compiled with -p
-   or -pg.  The A/UX libraries call mcount%, but gas cannot generate 
-   symbols with embedded percent signs.  Previous ports of GCC to A/UX 
+   or -pg.  The A/UX libraries call mcount%, but gas cannot generate
+   symbols with embedded percent signs.  Previous ports of GCC to A/UX
    have done things like (1) assemble a stub routine with the native
    assembler, or (2) assemble a stub routine with gas and edit the object
    file.  This solution has the advantage that it can interoperate with

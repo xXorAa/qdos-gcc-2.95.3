@@ -236,7 +236,7 @@ print_operand (stream, x, code)
 	  interrupt_handler = 1;
 	else
 	  interrupt_handler = 0;
-	
+
       if (trap_exit)
 	fprintf (stream, "trapa #%d", trap_exit);
       else if (interrupt_handler)
@@ -752,11 +752,11 @@ output_branch (logic, insn, operands)
 	  int label = lf++;
 	  /* The call to print_slot will clobber the operands.  */
 	  rtx op0 = operands[0];
-    
+
 	  /* If the instruction in the delay slot is annulled (true), then
 	     there is no delay slot where we can put it now.  The only safe
 	     place for it is after the label.  final will do that by default.  */
-    
+
 	  if (final_sequence
 	      && ! INSN_ANNULLED_BRANCH_P (XVECEXP (final_sequence, 0, 0)))
 	    {
@@ -766,11 +766,11 @@ output_branch (logic, insn, operands)
 	    }
 	  else
 	    asm_fprintf (asm_out_file, "\tb%s\t%LLF%d\n", logic ? "f" : "t", label);
-    
+
 	  output_asm_insn ("bra\t%l0", &op0);
 	  fprintf (asm_out_file, "\tnop\n");
 	  ASM_OUTPUT_INTERNAL_LABEL(asm_out_file, "LF", label);
-    
+
 	  return "";
 	}
       /* When relaxing, handle this like a short branch.  The linker
@@ -871,7 +871,7 @@ static short shift_amounts[32][5] = {
 /* Likewise, but for shift amounts < 16, up to three highmost bits
    might be clobbered.  This is typically used when combined with some
    kind of sign or zero extension.  */
-   
+
 static char ext_shift_insns[]    =
   { 0,1,1,2,2,3,2,2,1,2,2,3,3,3,2,2,1,2,2,3,3,4,3,3,2,3,3,4,4,4,3,3};
 
@@ -1071,7 +1071,7 @@ gen_ashift_hi (type, n, reg)
 
 /* Output RTL to split a constant shift into its component SH constant
    shift instructions.  */
-   
+
 int
 gen_shifty_op (code, operands)
      int code;
@@ -1082,7 +1082,7 @@ gen_shifty_op (code, operands)
 
   /* Truncate the shift count in case it is out of bounds.  */
   value = value & 0x1f;
- 
+
   if (value == 31)
     {
       if (code == LSHIFTRT)
@@ -1116,7 +1116,7 @@ gen_shifty_op (code, operands)
   for (i = 0; i < max; i++)
     gen_ashift (code, shift_amounts[value][i], operands[0]);
 }
-   
+
 /* Same as above, but optimized for values where the topmost bits don't
    matter.  */
 
@@ -1479,7 +1479,7 @@ gen_shl_and (dest, left_rtx, mask_rtx, source)
 	  || reload_in_progress || reload_completed)
 	{
 	  rtx operands[3];
-  
+
 	  /* Cases 3 and 4 should be handled by this split
 	     only while combining  */
 	  if (kind > 2)
@@ -2400,7 +2400,7 @@ regs_used (x, is_dest)
     case SUBREG:
       {
 	rtx y = SUBREG_REG (x);
-     
+
 	if (GET_CODE (y) != REG)
 	  break;
 	if (REGNO (y) < 16)
@@ -2449,7 +2449,7 @@ regs_used (x, is_dest)
    pass 1.  Pass 2 if a definite blocking insn is needed.
    -1 is used internally to avoid deep recursion.
    If a blocking instruction is made or recognized, return it.  */
-   
+
 static rtx
 gen_block_redirect (jump, addr, need_block)
      rtx jump;
@@ -2485,11 +2485,11 @@ gen_block_redirect (jump, addr, need_block)
 	 it would cause trouble if an interrupt occurred.  */
       unsigned try = 0x7fff, used;
       int jump_left = flag_expensive_optimizations + 1;
-    
+
       /* It is likely that the most recent eligible instruction is wanted for
 	 the delay slot.  Therefore, find out which registers it uses, and
 	 try to avoid using them.  */
-	 
+
       for (scan = jump; scan = PREV_INSN (scan); )
 	{
 	  enum rtx_code code;
@@ -2541,7 +2541,7 @@ gen_block_redirect (jump, addr, need_block)
      threading with a jump beyond the delay slot insn.
      Don't check if we are called recursively; the jump has been or will be
      checked in a different invocation then.  */
-	
+
   else if (optimize && need_block >= 0)
     {
       rtx next = next_active_insn (next_active_insn (dest));
@@ -2684,7 +2684,7 @@ barrier_align (barrier_or_label)
 {
   rtx next = next_real_insn (barrier_or_label), pat, prev;
   int slot, credit;
- 
+
   if (! next)
     return 0;
 
@@ -3228,7 +3228,7 @@ split_branches (first)
 	if (type == TYPE_CBRANCH)
 	  {
 	    rtx next, beyond;
-    
+
 	    if (get_attr_length (insn) > 4)
 	      {
 		rtx src = SET_SRC (PATTERN (insn));
@@ -3239,7 +3239,7 @@ split_branches (first)
 		rtx label = 0;
 		int dest_uid = get_dest_uid (olabel, max_uid);
 		struct far_branch *bp = uid_branch[dest_uid];
-    
+
 		/* redirect_jump needs a valid JUMP_LABEL, and it might delete
 		   the label if the LABEL_NUSES count drops to zero.  There is
 		   always a jump_optimize pass that sets these values, but it
@@ -3305,7 +3305,7 @@ split_branches (first)
 		beyond
 		  = next_active_insn (XEXP (XEXP (SET_SRC (PATTERN (insn)), 1),
 					    0));
-	
+
 		if (beyond
 		    && (GET_CODE (beyond) == JUMP_INSN
 			|| (GET_CODE (beyond = next_active_insn (beyond))
@@ -3318,7 +3318,7 @@ split_branches (first)
 		  gen_block_redirect (beyond,
 				      insn_addresses[INSN_UID (beyond)], 1);
 	      }
-    
+
 	    next = next_active_insn (insn);
 
 	    if ((GET_CODE (next) == JUMP_INSN
@@ -3602,7 +3602,7 @@ pop (rn)
     x = gen_pop_e (gen_rtx (REG, SFmode, rn));
   else
     x = gen_pop (gen_rtx (REG, SImode, rn));
-    
+
   x = emit_insn (x);
   REG_NOTES (x) = gen_rtx (EXPR_LIST, REG_INC,
 			   gen_rtx(REG, SImode, STACK_POINTER_REGNUM), 0);
@@ -3740,7 +3740,7 @@ sh_expand_prologue ()
 	  for (i = 0; i < NPARM_REGS(SImode); i++)
 	    {
 	      int rn = NPARM_REGS(SImode) + FIRST_PARM_REG - i - 1;
-	      if (i >= (NPARM_REGS(SImode) 
+	      if (i >= (NPARM_REGS(SImode)
 			- current_function_args_info.arg_count[(int) SH_ARG_INT]
 			))
 		break;
@@ -3878,9 +3878,9 @@ sh_builtin_saveregs (arglist)
      named args need not be saved.  */
   if (n_intregs > 0)
     move_block_from_reg (BASE_ARG_REG (SImode) + first_intreg,
-			 gen_rtx (MEM, BLKmode, 
+			 gen_rtx (MEM, BLKmode,
 			 	plus_constant (XEXP (regbuf, 0),
-					n_floatregs * UNITS_PER_WORD)), 
+					n_floatregs * UNITS_PER_WORD)),
 			 n_intregs, n_intregs * UNITS_PER_WORD);
 
   /* Save float args.
@@ -4376,7 +4376,7 @@ binary_float_operator (op, mode)
 }
 
 /* Return the destination address of a branch.  */
-   
+
 int
 branch_dest (branch)
      rtx branch;
@@ -4666,7 +4666,7 @@ f(double a)
 
 int sh_flag_remove_dead_before_cse;
 
-static void 
+static void
 mark_use (x, reg_set_block)
      rtx x, *reg_set_block;
 {

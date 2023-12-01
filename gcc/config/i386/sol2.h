@@ -86,7 +86,7 @@ Boston, MA 02111-1307, USA.  */
 			 %{traditional:values-Xt.o%s} \
 			 %{!traditional:values-Xa.o%s}} \
  			crtbegin.o%s"
-  
+
 /* This should be the same as in svr4.h, except with -R added.  */
 #undef LINK_SPEC
 #define LINK_SPEC \

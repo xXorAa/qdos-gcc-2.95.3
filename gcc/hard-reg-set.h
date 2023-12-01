@@ -406,7 +406,7 @@ extern char call_used_regs[FIRST_PSEUDO_REGISTER];
 /* The same info as a HARD_REG_SET.  */
 
 extern HARD_REG_SET call_used_reg_set;
-  
+
 /* Registers that we don't want to caller save.  */
 extern HARD_REG_SET losing_caller_save_reg_set;
 

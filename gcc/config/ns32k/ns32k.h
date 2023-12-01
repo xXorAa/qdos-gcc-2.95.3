@@ -1339,7 +1339,7 @@ while (0)
 
 /* The number of scalar move insns which should be generated instead
    of a string move insn or a library call.
-   
+
    We have a smart movstrsi insn */
 #define MOVE_RATIO 0
 

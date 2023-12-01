@@ -11,14 +11,14 @@ __alloca:
 	addl   $0x8,%ecx	/* and point to return addr */
 
 probe: 	cmpl   $0x1000,%eax	/* > 4k ?*/
-	jb    done		
+	jb    done
 
 	subl   $0x1000,%ecx  		/* yes, move pointer down 4k*/
 	orl    $0x0,(%ecx)   		/* probe there */
 	subl   $0x1000,%eax  	 	/* decrement count */
 	jmp    probe           	 	/* and do it again */
 
-done: 	subl   %eax,%ecx	   
+done: 	subl   %eax,%ecx
 	orl    $0x0,(%ecx)	/* less that 4k, just peek here */
 
 	movl   %esp,%eax
@@ -26,7 +26,7 @@ done: 	subl   %eax,%ecx
 
 	movl   (%eax),%ecx	/* recover saved temp */
 	movl   4(%eax),%eax	/* get return address */
-	jmp    *%eax	
+	jmp    *%eax
 
 
 #endif

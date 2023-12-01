@@ -130,7 +130,7 @@ affix_data_type (param)
   char saved;
 
   strcpy (type_or_decl, param);
-  
+
   /* Skip as many leading const's or volatile's as there are.  */
 
   for (;;)
@@ -493,7 +493,7 @@ gen_type (ret_val, t, style)
         case TYPE_DECL:
           data_type = IDENTIFIER_POINTER (DECL_NAME (t));
           break;
- 
+
         case INTEGER_TYPE:
           data_type = IDENTIFIER_POINTER (DECL_NAME (TYPE_NAME (t)));
           /* Normally, `unsigned' is part of the deal.  Not so if it comes

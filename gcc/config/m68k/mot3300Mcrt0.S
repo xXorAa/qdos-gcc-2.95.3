@@ -63,7 +63,7 @@ LOCAL_LABEL(1):
 	mov.l	%a0,8(%sp)
 	mov.l	%a0,environ
 	jsr	initfpu
-	
+
 	sub	&8,%sp
 	clr.l	%d0		/* if (! isatty (fileno (stderr))) */
 	mov.b	_iob+27,%d0
@@ -130,7 +130,7 @@ LOCAL_LABEL(3):
 	jsr	write
 	bra.b	_exit
 LOCAL_LABEL(endofstart):
-	
+
 	EVEN
 
 	COMM	splimit%,4

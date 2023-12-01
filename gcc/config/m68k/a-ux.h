@@ -120,7 +120,7 @@ crt2.o%s "
    : (POINTER_TYPE_P (VALTYPE)		                               \
       ? gen_rtx (REG, TYPE_MODE (VALTYPE), 8)                           \
       : gen_rtx (REG, TYPE_MODE (VALTYPE), 0)))
-                    
+
 #undef LIBCALL_VALUE
 #define LIBCALL_VALUE(MODE)						\
   gen_rtx (REG, (MODE), ((TARGET_68881 &&				\
@@ -171,7 +171,7 @@ crt2.o%s "
 		    0, VOIDmode, 2, TRAMP, Pmode,			\
 		    plus_constant(TRAMP, TRAMPOLINE_SIZE), Pmode);
 
-/* Clear the instruction cache from `beg' to `end'.  This makes an 
+/* Clear the instruction cache from `beg' to `end'.  This makes an
    inline system call to SYS_sysm68k.  The arguments are as follows:
 
 	sysm68k(105, addr, scope, cache, len)

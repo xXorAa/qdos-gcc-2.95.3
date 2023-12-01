@@ -65,15 +65,15 @@ Boston, MA 02111-1307, USA.  */
 
 /* Use crt1.o as a startup file and crtn.o as a closing file.  */
 /*
- * The loader directive file gcc.ifile defines how to merge the constructor 
- * sections into the data section.  Also, since gas only puts out those 
- * sections in response to N_SETT stabs, and does not (yet) have a 
- * ".sections" directive, gcc.ifile also defines the list symbols 
+ * The loader directive file gcc.ifile defines how to merge the constructor
+ * sections into the data section.  Also, since gas only puts out those
+ * sections in response to N_SETT stabs, and does not (yet) have a
+ * ".sections" directive, gcc.ifile also defines the list symbols
  * __DTOR_LIST__ and __CTOR_LIST__.
- * 
+ *
  * Finally, we must explicitly specify the file from libgcc.a that defines
- * exit(), otherwise if the user specifies (for example) "-lc_s" on the 
- * command line, the wrong exit() will be used and global destructors will 
+ * exit(), otherwise if the user specifies (for example) "-lc_s" on the
+ * command line, the wrong exit() will be used and global destructors will
  * not get called .
  */
 
@@ -90,7 +90,7 @@ Boston, MA 02111-1307, USA.  */
 /* GAS register prefix assembly syntax: */
 
 /* User labels have no prefix */
-#undef  USER_LABEL_PREFIX 
+#undef  USER_LABEL_PREFIX
 #define USER_LABEL_PREFIX ""
 
 /* local labels are prefixed with ".L" */
@@ -112,7 +112,7 @@ Boston, MA 02111-1307, USA.  */
   { extern int current_function_returns_pointer;			\
     if ((current_function_returns_pointer) &&				\
       ! find_equiv_reg (0, get_last_insn (), 0, 0, 0, 8, Pmode))        \
-      asm_fprintf (FILE, "\tmovl %Rd0,%Ra0\n"); } 
+      asm_fprintf (FILE, "\tmovl %Rd0,%Ra0\n"); }
 
 #define ASM_RETURN_CASE_JUMP \
   do {						\
@@ -128,9 +128,9 @@ Boston, MA 02111-1307, USA.  */
  */
 #define CTOR_LISTS_DEFINED_EXTERNALLY
 
-/* similar to default, but allows for the table defined by ld with gcc.ifile. 
+/* similar to default, but allows for the table defined by ld with gcc.ifile.
    nptrs is always 0.  So we need to instead check that __DTOR_LIST__[1] != 0.
-   The old check is left in so that the same macro can be used if and when  
+   The old check is left in so that the same macro can be used if and when
    a future version of gas does support section directives. */
 
 #define DO_GLOBAL_DTORS_BODY {int nptrs = *(int *)__DTOR_LIST__; int i; \
@@ -139,13 +139,13 @@ Boston, MA 02111-1307, USA.  */
   for (i = nptrs; i >= 1; i--)						\
     __DTOR_LIST__[i] (); }
 
-/* 
+/*
  * Here is an example gcc.ifile.  I've tested it on PBB 68k and on sco 386
- * systems. The NEXT(0x200000) works on just about all 386 and m68k systems, 
+ * systems. The NEXT(0x200000) works on just about all 386 and m68k systems,
  * but can be reduced to any power of 2 that is >= NBPS (0x10000 on a pbb).
 
    SECTIONS {
-       .text BIND(0x200200) BLOCK (0x200) : 
+       .text BIND(0x200200) BLOCK (0x200) :
 		{ *(.init) *(.text) vfork = fork; *(.fini) }
 
       	GROUP BIND( NEXT(0x200000) + ADDR(.text) + SIZEOF(.text)):

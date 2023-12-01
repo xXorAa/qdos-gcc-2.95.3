@@ -1,5 +1,5 @@
-/* Definitions of target machine for GNU compiler. 
-   Hitachi H8/300 version generating coff 
+/* Definitions of target machine for GNU compiler.
+   Hitachi H8/300 version generating coff
    Copyright (C) 1992, 93-98, 1999 Free SoftwareFoundation, Inc.
    Contributed by Steve Chamberlain (sac@cygnus.com),
    Jim Wilson (wilson@cygnus.com), and Doug Evans (dje@cygnus.com).
@@ -131,12 +131,12 @@ do {				\
 /* Define this if addresses of constant functions
    shouldn't be put through pseudo regs where they can be cse'd.
    Desirable on machines where ordinary constants are expensive
-   but a CALL with constant address is cheap. 
+   but a CALL with constant address is cheap.
 
    Calls through a register are cheaper than calls to named
    functions; however, the register pressure this causes makes
    CSEing of function addresses generally a lose.  */
-#define NO_FUNCTION_CSE 
+#define NO_FUNCTION_CSE
 
 /* Target machine storage layout */
 
@@ -154,9 +154,9 @@ do {				\
 #define BYTES_BIG_ENDIAN 1
 
 /* Define this if most significant word of a multiword number is lowest
-   numbered.  
+   numbered.
    This is true on an H8/300 (actually we can make it up, but we choose to
-   be consistent).  */ 
+   be consistent).  */
 #define WORDS_BIG_ENDIAN 1
 
 /* Number of bits in an addressable storage unit */
@@ -223,7 +223,7 @@ do {				\
    from 0 to just below FIRST_PSEUDO_REGISTER.
 
    All registers that the compiler knows about must be given numbers,
-   even those that are not normally considered general registers.  
+   even those that are not normally considered general registers.
 
    Reg 9 does not correspond to any hardware register, but instead
    appears in the RTL as an argument pointer prior to reload, and is
@@ -244,7 +244,7 @@ do {				\
    The latter must include the registers where values are returned
    and the register where structure-value addresses are passed.
    Aside from that, you can include as many other registers as you
-   like.  
+   like.
 
    h8 destroys r0,r1,r2,r3.  */
 
@@ -264,7 +264,7 @@ do {				\
    to hold something of mode MODE.
 
    This is ordinarily the length in words of a value of mode MODE
-   but can be less for certain modes in special long registers. 
+   but can be less for certain modes in special long registers.
 
    We pretend the MAC register is 32bits -- we don't have any data
    types on the H8 series to handle more than 32bits.  */
@@ -333,7 +333,7 @@ do {				\
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 enum reg_class {
   NO_REGS, GENERAL_REGS, MAC_REGS, ALL_REGS, LIM_REG_CLASSES
 };
@@ -368,7 +368,7 @@ enum reg_class {
 #define INDEX_REG_CLASS NO_REGS
 #define BASE_REG_CLASS  GENERAL_REGS
 
-/* Get reg_class from a letter such as appears in the machine description. 
+/* Get reg_class from a letter such as appears in the machine description.
 
    'a' is the MAC register.  */
 
@@ -401,8 +401,8 @@ enum reg_class {
    0)
 
 /* Similar, but for floating constants, and defining letters G and H.
-   Here VALUE is the CONST_DOUBLE rtx itself. 
-     
+   Here VALUE is the CONST_DOUBLE rtx itself.
+
   `G' is a floating-point zero.  */
 
 #define CONST_DOUBLE_OK_FOR_LETTER_P(VALUE, C) \
@@ -424,7 +424,7 @@ enum reg_class {
 #define CLASS_MAX_NREGS(CLASS, MODE)	\
   ((GET_MODE_SIZE (MODE) + UNITS_PER_WORD - 1) / UNITS_PER_WORD)
 
-/* Any SI register to register move may need to be reloaded, 
+/* Any SI register to register move may need to be reloaded,
    so define REGISTER_MOVE_COST to be > 2 so that reload never
    shortcuts.  */
 
@@ -521,8 +521,8 @@ enum reg_class {
 /* Define how to find the value returned by a function.
    VALTYPE is the data type of the value (as a tree).
    If the precise function being called is known, FUNC is its FUNCTION_DECL;
-   otherwise, FUNC is 0. 
-   
+   otherwise, FUNC is 0.
+
    On the H8 the return value is in R0/R1.  */
 
 #define FUNCTION_VALUE(VALTYPE, FUNC) \
@@ -673,7 +673,7 @@ struct rtx_def *function_arg();
   function_epilogue (FILE, SIZE)
 
 /* Output assembler code for a block containing the constant parts
-   of a trampoline, leaving space for the variable parts.  
+   of a trampoline, leaving space for the variable parts.
 
    H8/300
 	      vvvv context
@@ -734,7 +734,7 @@ struct rtx_def *function_arg();
    or a pseudo reg currently allocated to a suitable hard reg.
    Since they use reg_renumber, they are safe only once reg_renumber
    has been allocated, which happens in local-alloc.c.  */
- 
+
 #define REGNO_OK_FOR_INDEX_P(regno) 0
 
 #define REGNO_OK_FOR_BASE_P(regno) \
@@ -799,7 +799,7 @@ struct rtx_def *function_arg();
 
 /* Extra constraints - 'U' if for an operand valid for a bset
    destination; i.e. a register, register indirect, or the
-   eightbit memory region (a SYMBOL_REF with an SYMBOL_REF_FLAG set). 
+   eightbit memory region (a SYMBOL_REF with an SYMBOL_REF_FLAG set).
 
    On the H8/S 'U' can also be a 16bit or 32bit absolute.  */
 #define OK_FOR_U(OP) \
@@ -813,7 +813,7 @@ struct rtx_def *function_arg();
        && GET_CODE (XEXP (XEXP (XEXP (OP, 0), 0), 0)) == SYMBOL_REF \
        && GET_CODE (XEXP (XEXP (XEXP (OP, 0), 0), 1)) == CONST_INT) \
        && (TARGET_H8300S || SYMBOL_REF_FLAG (XEXP (XEXP (OP, 0), 0))))
- 
+
 #define EXTRA_CONSTRAINT(OP, C) \
  ((C) == 'U' ? OK_FOR_U (OP) : 0)
 
@@ -824,13 +824,13 @@ struct rtx_def *function_arg();
 
    The other macros defined here are used only in GO_IF_LEGITIMATE_ADDRESS,
    except for CONSTANT_ADDRESS_P which is actually
-   machine-independent.  
+   machine-independent.
 
    On the H8/300, a legitimate address has the form
    REG, REG+CONSTANT_ADDRESS or CONSTANT_ADDRESS.  */
 
 /* Accept either REG or SUBREG where a register is valid.  */
-  
+
 #define RTX_OK_FOR_BASE_P(X)					\
   ((REG_P (X) && REG_OK_FOR_BASE_P (X))				\
    || (GET_CODE (X) == SUBREG && REG_P (SUBREG_REG (X))		\
@@ -854,7 +854,7 @@ struct rtx_def *function_arg();
    GO_IF_LEGITIMATE_ADDRESS.
 
    It is always safe for this macro to do nothing.  It exists to recognize
-   opportunities to optimize the output. 
+   opportunities to optimize the output.
 
    For the H8/300, don't do anything.  */
 
@@ -976,7 +976,7 @@ h8300_valid_machine_decl_attribute (DECL, ATTRIBUTES, IDENTIFIER, ARGS)
   case ROTATE:		\
   case ROTATERT:	\
     if (GET_MODE (RTX) == HImode) return 2; \
-    return 8; 
+    return 8;
 
 /* Tell final.c how to eliminate redundant test instructions.  */
 
@@ -1086,7 +1086,7 @@ readonly_data() 						\
   do { dtors_section();				\
        fprintf(FILE, "\t%s\t_%s\n", ASM_WORD_OP, NAME); } while (0)
 
-#undef DO_GLOBAL_CTORS_BODY                     
+#undef DO_GLOBAL_CTORS_BODY
 #define DO_GLOBAL_CTORS_BODY			\
 {						\
   typedef (*pfunc)();				\
@@ -1097,9 +1097,9 @@ readonly_data() 						\
     {						\
       (*--p)();					\
     }						\
-}						
+}
 
-#undef DO_GLOBAL_DTORS_BODY			 
+#undef DO_GLOBAL_DTORS_BODY
 #define DO_GLOBAL_DTORS_BODY                    \
 {						\
   typedef (*pfunc)();				\
@@ -1110,7 +1110,7 @@ readonly_data() 						\
     {						\
       (*p)();					\
     }						\
-}						 
+}
 
 #define TINY_DATA_NAME_P(NAME) (*(NAME) == '&')
 
@@ -1133,7 +1133,7 @@ readonly_data() 						\
 /* Store the user-specified part of SYMBOL_NAME in VAR.
    This is sort of inverse to ENCODE_SECTION_INFO.  */
 #define STRIP_NAME_ENCODING(VAR,SYMBOL_NAME) \
-  (VAR) = (SYMBOL_NAME) + ((SYMBOL_NAME)[0] == '*' || (SYMBOL_NAME)[0] == '@' || (SYMBOL_NAME)[0] == '&') 
+  (VAR) = (SYMBOL_NAME) + ((SYMBOL_NAME)[0] == '*' || (SYMBOL_NAME)[0] == '@' || (SYMBOL_NAME)[0] == '&')
 
 /* How to refer to registers in assembler output.
    This sequence is indexed by compiler's hard-register-number (see above).  */
@@ -1184,7 +1184,7 @@ readonly_data() 						\
 #define ASM_OUTPUT_LABELREF(FILE,NAME)  \
   asm_fprintf ((FILE), "%U%s", (NAME) + (TINY_DATA_NAME_P (NAME) ? 1 : 0))
 
-#define ASM_OUTPUT_EXTERNAL(FILE, DECL, NAME) 
+#define ASM_OUTPUT_EXTERNAL(FILE, DECL, NAME)
 
 /* This is how to output a command to make the user-level label named NAME
    defined for reference from other files.  */

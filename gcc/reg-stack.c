@@ -214,7 +214,7 @@ static HARD_REG_SET *block_out_reg_set;
 static int *block_number;
 
 /* We use this array to cache info about insns, because otherwise we
-   spend too much time in stack_regs_mentioned_p. 
+   spend too much time in stack_regs_mentioned_p.
 
    Indexed by insn UIDs.  A value of zero is uninitialized, one indicates
    the insn uses stack registers, two indicates the insn does not use
@@ -374,7 +374,7 @@ straighten_stack (insn, regstack)
 
   for (top = temp_stack.top = regstack->top; top >= 0; top--)
      temp_stack.reg[top] = FIRST_STACK_REG + temp_stack.top - top;
-  
+
   change_stack (insn, regstack, &temp_stack, emit_insn_after);
 }
 
@@ -1473,8 +1473,8 @@ delete_insn_for_stacker (insn)
 
 /* Emit an insn to pop virtual register REG before or after INSN.
    REGSTACK is the stack state after INSN and is updated to reflect this
-   pop.  WHEN is either emit_insn_before, emit_insn_after or NULL. 
-   in case WHEN is NULL we don't really emit the insn, just modify stack 
+   pop.  WHEN is either emit_insn_before, emit_insn_after or NULL.
+   in case WHEN is NULL we don't really emit the insn, just modify stack
    information.  Caller is expected to emit insn himself.
 
    A pop insn is represented as a SET whose destination is the register to
@@ -1770,12 +1770,12 @@ swap_rtx_condition (pat)
    Also, a fstp instruction may need to be emitted.  The 387 does have an
    `fcompp' insn that can pop two regs, but it is sometimes too expensive
    to do this - a `fcomp' followed by a `fstpl %st(0)' may be easier to
-   set up. 
- 
+   set up.
+
    We can not handle this by emiting fpop instruction after compare, because
    it appears between cc0 setter and user.  So we emit only
    REG_DEAD note and handle it as a special case in machine description.
- 
+
    This code used trick with delay_slot filling to emit pop insn after
    comparsion but it didn't worked because it caused confusion with cc_status
    in final pass. */
@@ -1789,7 +1789,7 @@ compare_for_stack_reg (insn, regstack, pat)
   rtx *src1, *src2;
   rtx src1_note, src2_note;
   rtx cc0_user;
-  int have_cmove; 
+  int have_cmove;
   int hard_regno;
 
   src1 = get_true_reg (&XEXP (SET_SRC (pat), 0));
@@ -1805,14 +1805,14 @@ compare_for_stack_reg (insn, regstack, pat)
 	  == MODE_FLOAT))
     {
       rtx *dest;
-      
+
       dest = get_true_reg (&SET_DEST (PATTERN (cc0_user)));
 
       have_cmove = 1;
       if (get_hard_regnum (regstack, *dest) >= FIRST_STACK_REG
 	  && REGNO (*dest) != regstack->reg[regstack->top])
 	{
-	  emit_swap_insn (insn, regstack, *dest);	
+	  emit_swap_insn (insn, regstack, *dest);
 	}
     }
   else
@@ -2144,7 +2144,7 @@ subst_stack_regs_pat (insn, regstack, pat)
 	   have to handle it here. */
 	if (get_hard_regnum (regstack, *dest) >= FIRST_STACK_REG
 	    && REGNO (*dest) != regstack->reg[regstack->top])
-	  emit_swap_insn (insn, regstack, *dest);	
+	  emit_swap_insn (insn, regstack, *dest);
 
 	src1 = get_true_reg (&XEXP (SET_SRC (pat), 1));
 	src2 = get_true_reg (&XEXP (SET_SRC (pat), 2));
@@ -2243,7 +2243,7 @@ subst_asm_stack_regs (insn, regstack)
 
   n_inputs = get_asm_operand_n_inputs (body);
   n_outputs = recog_n_operands - n_inputs;
-  
+
   if (alt < 0)
     abort ();
 
@@ -2644,7 +2644,7 @@ change_stack (insn, old, new, when)
 	abort ();
 
       /* If the stack is not empty (new->top != -1), loop here emitting
-	 swaps until the stack is correct. 
+	 swaps until the stack is correct.
 
 	 The worst case number of swaps emitted is N + 2, where N is the
 	 depth of the stack.  In some cases, the reg at the top of
@@ -2860,7 +2860,7 @@ convert_regs ()
 	    subst_stack_regs (insn, &regstack);
 
 	} while (insn != block_end[block]);
-      
+
       /* For all further actions, INSN needs to be the last insn in
          this basic block.  If subst_stack_regs inserted additional
          instructions after INSN, it is no longer the last one at

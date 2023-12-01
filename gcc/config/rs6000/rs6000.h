@@ -2032,7 +2032,7 @@ typedef struct rs6000_args
    For RS/6000, we wish to handle large displacements off a base
    register by splitting the addend across an addiu/addis and the mem insn.
    This cuts number of extra insns needed from 3 to 1.  */
-   
+
 #define LEGITIMIZE_RELOAD_ADDRESS(X,MODE,OPNUM,TYPE,IND_LEVELS,WIN)     \
 do {                                                                    \
   /* We must recognize output that we have already generated ourselves.  */ \
@@ -2217,7 +2217,7 @@ do {                                                                    \
 
    AIX 4.3 adds U803XTOCMAGIC (0757) for 64-bit objects, but collect2.c
    does not include files in the correct order to conditionally define
-   the symbolic name in this macro. 
+   the symbolic name in this macro.
 
    The AIX linker accepts import/export files as object files,
    so accept "#!" (0x2321) magic number.  */

@@ -11,7 +11,7 @@ LIBGCC1_TEST = #libgcc1-atest
 EXTRA_PARTS = crtbegin.o crtend.o
 STMP_FIXPROTO =
 
-# Rule to build libgcc1.a and libgcc2.a and libgcc.a, since the librarian 
+# Rule to build libgcc1.a and libgcc2.a and libgcc.a, since the librarian
 # for the ARM tools is somewhat quirky, and needs a special rule to use it.
 libgcc1-aof.a: libgcc1.c $(CONFIG_H) config.status
 	-rm -rf tmplib libgcc1.a libgcc1-aof.a tmplibgcc1.a

@@ -98,13 +98,13 @@ hash_lookup (table, key, create, copy)
      struct hash_table *table;
      hash_table_key key;
      boolean create;
-     hash_table_key (*copy) PARAMS ((struct obstack* memory, 
+     hash_table_key (*copy) PARAMS ((struct obstack* memory,
 				     hash_table_key key));
 {
   register unsigned long hash;
   struct hash_entry *hashp;
   unsigned int index;
-  
+
   hash = (*table->hash)(key);
 
   index = hash % table->size;
@@ -240,6 +240,6 @@ string_copy (memory, k)
       return NULL;
     }
   strcpy (new, string);
-  
+
   return new;
 }

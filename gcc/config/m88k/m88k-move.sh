@@ -39,9 +39,9 @@
 #			On my BSD 4.3 awk and my GNU-awk, only the
 #			first character of an argument to -F is passed
 #			through, so I can't get this to work.
-#	 5-Sep-90   Ray Essick/Tom Wood  
+#	 5-Sep-90   Ray Essick/Tom Wood
 #			Added a -no-tdesc option.
-#	27-Aug-90   Vince Guarna/Tom Wood   
+#	27-Aug-90   Vince Guarna/Tom Wood
 #			Version 3 assembler syntax (-abi).
 #	16-Aug-90   Ron Guilmette
 #			Avoid problems on a Sparc.  The common

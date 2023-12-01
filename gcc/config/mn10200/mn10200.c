@@ -136,7 +136,7 @@ print_operand (file, x, code)
 	else
 	  print_operand (file, x, 0);
 	break;
-     
+
       /* These are the least significant word in a 32bit value.
 	 'o' allows us to sign extend a constant if doing so
 	 makes for more compact code.  */
@@ -376,7 +376,7 @@ print_operand_address (file, addr)
 
 /* Count the number of tst insns which compare an address register
    with zero.  */
-static void 
+static void
 count_tst_insns (areg_countp)
      int *areg_countp;
 {
@@ -452,7 +452,7 @@ total_frame_size ()
       /* Multiply the current count by two and add one to account for the
 	 epilogue insns.  */
       inline_count = inline_count * 2 + 1;
-    
+
       /* Now compute how many bytes an out of line sequence would take.  */
       /* A relaxed jsr will be three bytes.  */
       outline_count = 3;
@@ -547,7 +547,7 @@ expand_prologue ()
       /* Multiply the current count by two and add one to account for the
 	 epilogue insns.  */
       inline_count = inline_count * 2 + 1;
-    
+
       /* Now compute how many bytes an out of line sequence would take.  */
       /* A relaxed jsr will be three bytes.  */
       outline_count = 3;
@@ -568,7 +568,7 @@ expand_prologue ()
 
       if (get_frame_size () == 0 && outgoing_args_size == 0)
 	outline_count -= 1;
-     
+
       /* If an out of line prologue is smaller, use it.  */
       if (inline_count > outline_count)
 	{
@@ -580,7 +580,7 @@ expand_prologue ()
 	  if (outgoing_args_size)
 	    emit_insn (gen_addpsi3 (stack_pointer_rtx, stack_pointer_rtx,
 				    GEN_INT (-outgoing_args_size)));
-	
+
 	  out_of_line_epilogue = 1;
 
 	  /* Determine if it is profitable to put the value zero into a register
@@ -669,7 +669,7 @@ expand_prologue ()
 	  /* If we're saving the frame pointer, then it will be found in
 	     register 4 (a0).  */
 	  regno = (i == FRAME_POINTER_REGNUM && frame_pointer_needed) ? 4 : i;
-	
+
 	  emit_move_insn (gen_rtx (MEM, PSImode,
 				   gen_rtx (PLUS, Pmode,
 					    stack_pointer_rtx,
@@ -763,7 +763,7 @@ expand_epilogue ()
 	     register.  */
 	  regno = ((i == FRAME_POINTER_REGNUM && frame_pointer_needed)
 		   ? temp_regno : i);
-	
+
 	  emit_move_insn (gen_rtx (REG, PSImode, regno),
 			  gen_rtx (MEM, PSImode,
 				   gen_rtx (PLUS, Pmode,
@@ -875,7 +875,7 @@ constant_memory_operand (op, mode)
 }
 
 /* What (if any) secondary registers are needed to move IN with mode
-   MODE into a register from in register class CLASS. 
+   MODE into a register from in register class CLASS.
 
    We might be able to simplify this.  */
 enum reg_class
@@ -932,7 +932,7 @@ secondary_reload_class (class, mode, in, input)
      1-4    do them inline
 
      5-7    If ashift, then multiply, else loop.
-	
+
      8-14 - If ashift, then multiply, if lshiftrt, then divide, else loop.
      15   - rotate the bit we want into the carry, clear the destination,
 	    (use mov 0,dst, not sub as sub will clobber the carry), then
@@ -1011,7 +1011,7 @@ enum shift_type
 
 enum shift_mode
   {
-    HIshift, 
+    HIshift,
   };
 
 /* For single bit shift insns, record assembler and what bits of the
@@ -1440,7 +1440,7 @@ char *
 output_tst (operand, insn)
      rtx operand, insn;
 {
-  
+
   rtx temp;
   int past_call = 0;
 
@@ -1501,7 +1501,7 @@ output_tst (operand, insn)
       if (REG_P (SET_DEST (set))
 	  && SET_SRC (set) == CONST0_RTX (GET_MODE (SET_DEST (set)))
 	  && !reg_set_between_p (SET_DEST (set), temp, insn)
-	  && (!past_call 
+	  && (!past_call
 	      || !call_used_regs[REGNO (SET_DEST (set))]))
 	{
 	  rtx xoperands[2];

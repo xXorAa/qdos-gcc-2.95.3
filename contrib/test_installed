@@ -85,12 +85,12 @@ Supported arguments:
 EOF
     exit
   ;;
-  
+
   --) shift; break;;
   *) break;;
   esac
 done
-  
+
 if test x"${testsuite+set}" != x"set" && test x"${srcdir+set}" != x"set"; then
   file=$0
   while [ -h $file ]; do

@@ -333,7 +333,7 @@ pow (double x, double y)
       if (y == temp)
         {
 	  int i = (int) y;
-	  
+
 	  if ((i & 1) == 0)			/* even */
 	    return exp (y * log (-x));
 	  else

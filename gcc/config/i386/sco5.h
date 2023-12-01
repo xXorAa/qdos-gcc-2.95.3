@@ -85,7 +85,7 @@ Boston, MA 02111-1307, USA.  */
 /* Avoid problems (long sectino names, forward assembler refs) with DWARF
    exception unwinding when we're generating COFF */
 #define DWARF2_UNWIND_INFO	\
-  ((TARGET_ELF) ? 1 : 0 )  
+  ((TARGET_ELF) ? 1 : 0 )
 
 #undef CONST_SECTION_ASM_OP
 #define CONST_SECTION_ASM_OP_COFF	"\t.section\t.rodata, \"x\""
@@ -374,7 +374,7 @@ do {									\
 	}								\
       if (bytes_in_chunk > 0)						\
         fprintf ((FILE), "\n");						\
-} while (0) 
+} while (0)
 
 /* Must use data section for relocatable constants when pic.  */
 #undef SELECT_RTX_SECTION
@@ -450,11 +450,11 @@ do {									\
 #undef USER_LABEL_PREFIX
 #define USER_LABEL_PREFIX ""
 
-/* 
+/*
  * Compensate for the difference between ELF and COFF assembler syntax.
  * Otherwise, this is cribbed from ../svr4.h.
  * We rename 'gcc_except_table' to the shorter name in preparation
- * for the day when we're ready to do DWARF2 eh unwinding under COFF 
+ * for the day when we're ready to do DWARF2 eh unwinding under COFF
  */
 #undef ASM_OUTPUT_SECTION_NAME
 #define ASM_OUTPUT_SECTION_NAME(FILE, DECL, NAME, RELOC) \
@@ -792,11 +792,11 @@ dtors_section ()							\
 #undef ASM_SPEC
 
 #if USE_GAS
-  /* Leave ASM_SPEC undefined so we pick up the master copy from gcc.c 
+  /* Leave ASM_SPEC undefined so we pick up the master copy from gcc.c
    * Undef MD_EXEC_PREFIX becuase we don't know where GAS is, but it's not
-   * likely in /usr/ccs/bin/ 
+   * likely in /usr/ccs/bin/
    */
-#undef MD_EXEC_PREFIX 
+#undef MD_EXEC_PREFIX
 #else
 
 #define ASM_SPEC \
@@ -916,7 +916,7 @@ dtors_section ()							\
 
 #define NO_DOLLAR_IN_LABEL
 
-/* Implicit library calls should use memcpy, not bcopy, etc.  They are 
+/* Implicit library calls should use memcpy, not bcopy, etc.  They are
    faster on OpenServer libraries. */
 
 #define TARGET_MEM_FUNCTIONS

@@ -301,7 +301,7 @@ i386_pe_mark_dllimport (decl)
     }
   else if (i386_pe_dllimport_name_p (oldname))
     {
-      /* Already done, but force correct linkage since the redeclaration 
+      /* Already done, but force correct linkage since the redeclaration
          might have omitted explicit extern.  Sigh.  */
       if (TREE_CODE (decl) == VAR_DECL
 	  /* ??? Is this test for vtables needed?  */
@@ -364,8 +364,8 @@ i386_pe_mark_dllimport (decl)
   DECL_NON_ADDR_CONST_P (decl) = 1;
 }
 
-/* Return string which is the former assembler name modified with a 
-   suffix consisting of an atsign (@) followed by the number of bytes of 
+/* Return string which is the former assembler name modified with a
+   suffix consisting of an atsign (@) followed by the number of bytes of
    arguments */
 
 char *
@@ -379,7 +379,7 @@ gen_stdcall_suffix (decl)
   char *newsym;
 
   if (TYPE_ARG_TYPES (TREE_TYPE (decl)))
-    if (TREE_VALUE (tree_last (TYPE_ARG_TYPES (TREE_TYPE (decl)))) 
+    if (TREE_VALUE (tree_last (TYPE_ARG_TYPES (TREE_TYPE (decl))))
         == void_type_node)
       {
 	tree formal_type = TYPE_ARG_TYPES (TREE_TYPE (decl));
@@ -420,7 +420,7 @@ i386_pe_encode_section_info (decl)
   if (TREE_CODE (decl) == FUNCTION_DECL)
     if (lookup_attribute ("stdcall",
 			  TYPE_ATTRIBUTES (TREE_TYPE (decl))))
-      XEXP (DECL_RTL (decl), 0) = 
+      XEXP (DECL_RTL (decl), 0) =
 	gen_rtx (SYMBOL_REF, Pmode, gen_stdcall_suffix (decl));
 
   /* Mark the decl so we can tell from the rtl whether the object is
@@ -472,7 +472,7 @@ i386_pe_unique_section (decl, reloc)
   /* The object is put in, for example, section .text$foo.
      The linker will then ultimately place them in .text
      (everything from the $ on is stripped). Don't put
-     read-only data in .rdata section to avoid a PE linker 
+     read-only data in .rdata section to avoid a PE linker
      bug when .rdata$* grouped sections are used in code
      without a .rdata section.  */
   if (TREE_CODE (decl) == FUNCTION_DECL)
@@ -550,7 +550,7 @@ static struct extern_list *exports_head;
 /* Assemble an export symbol entry.  We need to keep a list of
    these, so that we can output the export list at the end of the
    assembly.  We used to output these export symbols in each function,
-   but that causes problems with GNU ld when the sections are 
+   but that causes problems with GNU ld when the sections are
    linkonce.  */
 
 void

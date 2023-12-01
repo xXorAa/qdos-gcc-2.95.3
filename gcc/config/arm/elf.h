@@ -3,7 +3,7 @@
    Copyright (C) 1995, 1996, 1997, 1998, 1999 Free Software Foundation, Inc.
    Contributed by Philip Blundell <philb@gnu.org> and
    Catherine Moore <clm@cygnus.com>
-   
+
 This file is part of GNU CC.
 
 GNU CC is free software; you can redistribute it and/or modify
@@ -153,7 +153,7 @@ do {									 \
 #ifndef LINK_SPEC
 #define LINK_SPEC "%{mbig-endian:-EB} -X"
 #endif
-  
+
 /* Run-time Target Specification.  */
 #ifndef TARGET_VERSION
 #define TARGET_VERSION fputs (" (ARM/elf)", stderr)
@@ -207,7 +207,7 @@ do {								\
   output_file_directive ((STREAM), main_input_filename);	\
 } while (0)
 #endif
-     
+
 /* Output an internal label definition.  */
 #ifndef ASM_OUTPUT_INTERNAL_LABEL
 #define ASM_OUTPUT_INTERNAL_LABEL(STREAM, PREFIX, NUM)  	\
@@ -247,7 +247,7 @@ do {								\
 #ifndef CTORS_SECTION_ASM_OP
 #define CTORS_SECTION_ASM_OP	"\t.section\t.ctors,\"aw\""
 #endif
-     
+
 #ifndef DTORS_SECTION_ASM_OP
 #define DTORS_SECTION_ASM_OP	"\t.section\t.dtors,\"aw\""
 #endif
@@ -271,7 +271,7 @@ do {								\
 #define EXTRA_SECTION_FUNCTIONS 		\
   SUBTARGET_EXTRA_SECTION_FUNCTIONS		\
   CTORS_SECTION_FUNCTION			\
-  DTORS_SECTION_FUNCTION			
+  DTORS_SECTION_FUNCTION
 #endif
 
 #ifndef CTORS_SECTION_FUNCTION
@@ -316,7 +316,7 @@ do {						\
   fprintf (STREAM, "\n");			\
 } while (0)
 #endif
-     
+
 /* A C statement (sans semicolon) to output an element in the table of
    global destructors.  */
 #ifndef ASM_OUTPUT_DESTRUCTOR

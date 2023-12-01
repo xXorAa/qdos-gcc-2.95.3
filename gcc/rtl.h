@@ -141,7 +141,7 @@ typedef struct rtx_def
      0 if the MEM was a variable or the result of a * operator in C;
      1 if it was the result of a . or -> operator (on a struct) in C.
      1 in a REG if the register is used only in exit code a loop.
-     1 in a SUBREG expression if was generated from a variable with a 
+     1 in a SUBREG expression if was generated from a variable with a
      promoted mode.
      1 in a CODE_LABEL if the label is used for nonlocal gotos
      and must not be deleted even if its count is zero.
@@ -155,7 +155,7 @@ typedef struct rtx_def
   unsigned int in_struct : 1;
   /* 1 if this rtx is used.  This is used for copying shared structure.
      See `unshare_all_rtl'.
-     In a REG, this is not needed for that purpose, and used instead 
+     In a REG, this is not needed for that purpose, and used instead
      in `leaf_renumber_regs_insn'.
      In a SYMBOL_REF, means that emit_library_call
      has used it as the function.  */
@@ -166,7 +166,7 @@ typedef struct rtx_def
   unsigned integrated : 1;
   /* 1 in an INSN or a SET if this rtx is related to the call frame,
      either changing how we compute the frame address or saving and
-     restoring registers in the prologue and epilogue.  
+     restoring registers in the prologue and epilogue.
      1 in a MEM if the MEM refers to a scalar, rather than a member of
      an aggregate.  */
   unsigned frame_related : 1;
@@ -350,9 +350,9 @@ typedef struct rtvec_def{
    a non-local goto.
      REG_EH_RETHROW is used to indicate what that a call is actually a
    call to rethrow, and specifies which region the rethrow is targetting.
-   This provides a way to generate the non standard flow edges required 
+   This provides a way to generate the non standard flow edges required
    for a rethrow.  */
-   
+
 
 #define REG_NOTES(INSN)	((INSN)->fld[6].rtx)
 
@@ -551,7 +551,7 @@ extern char *note_insn_name[];
 /* 1 if the REG contained in SUBREG_REG is already known to be
    sign- or zero-extended from the mode of the SUBREG to the mode of
    the reg.  SUBREG_PROMOTED_UNSIGNED_P gives the signedness of the
-   extension.  
+   extension.
 
    When used as a LHS, is means that this extension must be done
    when assigning to SUBREG_REG.  */
@@ -1131,7 +1131,7 @@ extern rtx const_true_rtx;
 
 extern rtx const_tiny_rtx[3][(int) MAX_MACHINE_MODE];
 
-/* Returns a constant 0 rtx in mode MODE.  Integer modes are treated the 
+/* Returns a constant 0 rtx in mode MODE.  Integer modes are treated the
    same as VOIDmode.  */
 
 #define CONST0_RTX(MODE) (const_tiny_rtx[0][(int) (MODE)])
@@ -1261,7 +1261,7 @@ extern rtx gen_rtx_MEM PROTO((enum machine_mode, rtx));
 /* This points to the Canonical Frame Address of the function.  This
    should corrospond to the CFA produced by INCOMING_FRAME_SP_OFFSET,
    but is calculated relative to the arg pointer for simplicity; the
-   frame pointer nor stack pointer are necessarily fixed relative to 
+   frame pointer nor stack pointer are necessarily fixed relative to
    the CFA until after reload.  */
 
 #define virtual_cfa_rtx			(&global_rtl.virtual_cfa_val)
@@ -1595,7 +1595,7 @@ extern void rrotate_double	PROTO ((HOST_WIDE_INT, HOST_WIDE_INT,
 					HOST_WIDE_INT *));
 
 /* In calls.c */
-/* Emit library call.  */                                           
+/* Emit library call.  */
 extern void emit_library_call		PVPROTO ((rtx, int, enum machine_mode,
 						  int, ...));
 extern rtx emit_library_call_value	PVPROTO((rtx, rtx, int,

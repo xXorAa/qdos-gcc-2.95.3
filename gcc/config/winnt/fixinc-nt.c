@@ -39,7 +39,7 @@ mkdirpath (dirpath)
 
   fp = bp = ndirpath;
 
-  while (bp) 
+  while (bp)
     {
       bp = strchr (fp, '\\');
       if (bp)
@@ -66,12 +66,12 @@ newname (olddirname)
   if ((strlen (newname) >= 2)
       && (isalpha (newname[0]) && newname[1] == ':'))
     newname [1] = '-';
-  else if ((strlen (newname) >= 1) 
+  else if ((strlen (newname) >= 1)
            && (newname [0] == '/' || newname [0] == '\\'))
     newname = &newname[1];
 
   return newname;
- 
+
 }
 
 /* Run the sed script on one header file.  If no modifications were made, then
@@ -90,7 +90,7 @@ doheader (oneheader, outheader, oldsize)
 
   system (concat4 ("sed -f fixinc-nt.sed ", oneheader, " > ", newheader));
   _stat (newheader, &newstatbuf);
-  if (oldsize != newstatbuf.st_size) 
+  if (oldsize != newstatbuf.st_size)
     {
       atleastone = 1;
       printf ("Fixing: %s\n", oneheader);
@@ -119,7 +119,7 @@ doheader (oneheader, outheader, oldsize)
   free (newbuff);
   unlink (newheader);
   return 0;
-  
+
 }
 
 /* Examine the contents of a directory and call doheader () for a regular file
@@ -142,15 +142,15 @@ dodir (indir, outdir)
     {
       if (dire->d_name[0] == '.')
         continue;
-  
+
       intempbuf = slash2slash (concat3 (indir, "\\", dire->d_name));
       outtempbuf = slash2slash (concat3 (outdir, "\\", dire->d_name));
       _stat (intempbuf, &statbuf);
-  
+
       /* If directory ... */
       if (statbuf.st_mode & _S_IFDIR)
         dodir (intempbuf, outtempbuf);
-  
+
       /* If regular file ... */
       if (statbuf.st_mode & _S_IFREG)
         doheader (intempbuf, outtempbuf, statbuf.st_size);
@@ -164,9 +164,9 @@ dodir (indir, outdir)
    dodir () for each complete directory that is named therein.  If there is
    only one directory, then direct the output to use include\. as the
    root instead of include/<directory path>, where <directory path> is a path
-   constructed from the path named in the Include environment variable.  
+   constructed from the path named in the Include environment variable.
    I.e. if Include=C:\MSTOOLS\Include;D:\MSVC20\Include then the modified
-   header files will be in include\C-\MSTOOLS\Include and 
+   header files will be in include\C-\MSTOOLS\Include and
    include\D-\MSVC20\Include.  However if Include=C:\MSTOOLS\Include then the
    modified files will be in include\. */
 
@@ -206,14 +206,14 @@ main ()
           if (statbuf.st_mode & _S_IFDIR)
             {
               atleastone = 0;
-              if (onlyonedir) 
+              if (onlyonedir)
                 dodir (fp, ".");
               else
                 dodir (fp, fp);
               if (atleastone && !onlyonedir)
                 {
                   origdirs = concat3 (origdirs, ";", fp);
-                  fixeddirs = concat3 (fixeddirs, ";", 
+                  fixeddirs = concat3 (fixeddirs, ";",
                     concat3 (".\\include", "\\", newname(fp)));
                 }
             }

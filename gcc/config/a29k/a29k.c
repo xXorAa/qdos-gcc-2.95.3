@@ -1,6 +1,6 @@
 /* Subroutines used for code generation on AMD Am29000.
    Copyright (C) 1987, 88, 90-94, 1995, 1997, 1999 Free Software
-   Foundation, Inc. 
+   Foundation, Inc.
    Contributed by Richard Kenner (kenner@nyu.edu)
 
 This file is part of GNU CC.
@@ -209,7 +209,7 @@ gpc_reg_or_integer_constant_operand (op, mode)
 	   && (GET_CODE (op) == CONST_INT || GET_CODE (op) == CONST_DOUBLE))
 	  || gpc_reg_operand (op, mode));
 }
-     
+
 /* Returns 1 if OP is a special machine register.  */
 
 int
@@ -1082,7 +1082,7 @@ print_operand (file, x, code)
       else
 	fprintf (file, "\n\tnop");
       return;
-      
+
     case 'F':
       output_addr_const (file, x);
       if (dbr_sequence_length () == 0)

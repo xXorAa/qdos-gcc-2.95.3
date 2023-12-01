@@ -5,11 +5,11 @@
 # Wrapped by  on Fri Mar 12 08:41:28 CST 1993
 # Contents:  include/ include/limits.h include/math.h include/stddef.h
 #	include/stdlib.h
- 
+
 echo mkdir - include
 mkdir include
 chmod u=rwx,g=rwx,o=rx include
- 
+
 echo x - include/limits.h
 sed 's/^@//' > "include/limits.h" <<'@//E*O*F include/limits.h//'
 #ifndef _LIMITS_H
@@ -28,7 +28,7 @@ sed 's/^@//' > "include/limits.h" <<'@//E*O*F include/limits.h//'
 #endif /* _LIMITS_H */
 @//E*O*F include/limits.h//
 chmod u=rw,g=rw,o=r include/limits.h
- 
+
 echo x - include/math.h
 sed 's/^@//' > "include/math.h" <<'@//E*O*F include/math.h//'
 #ifndef _MATH_H
@@ -366,7 +366,7 @@ static __inline__ __const__ int __inline_irintf (float x)
 #endif /* _MATH_H */
 @//E*O*F include/math.h//
 chmod u=rw,g=rw,o=r include/math.h
- 
+
 echo x - include/stddef.h
 sed 's/^@//' > "include/stddef.h" <<'@//E*O*F include/stddef.h//'
 #ifndef _STDDEF_H
@@ -391,7 +391,7 @@ typedef __WCHAR_TYPE__ wchar_t;
 #endif /* _STDDEF_H */
 @//E*O*F include/stddef.h//
 chmod u=rw,g=rw,o=r include/stddef.h
- 
+
 echo x - include/stdlib.h
 sed 's/^@//' > "include/stdlib.h" <<'@//E*O*F include/stdlib.h//'
 #ifndef	_STDLIB_H
@@ -412,5 +412,5 @@ sed 's/^@//' > "include/stdlib.h" <<'@//E*O*F include/stdlib.h//'
 #endif	/* _STDLIB_H */
 @//E*O*F include/stdlib.h//
 chmod u=rw,g=rw,o=r include/stdlib.h
- 
+
 exit 0

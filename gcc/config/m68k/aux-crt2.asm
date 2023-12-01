@@ -23,7 +23,7 @@ __istart:
 	link %fp,#-4
 
 #ifndef USE_COLLECT2
-/* The ctors and dtors sections are used to support COFF collection of 
+/* The ctors and dtors sections are used to support COFF collection of
    c++ constructors and destructors */
 .section .ctors, "d"
 .even

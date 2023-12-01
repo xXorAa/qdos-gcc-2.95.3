@@ -138,7 +138,7 @@ output_file_start (file, f_options, f_len, W_options, W_len)
 }
 
 #ifndef CROSS_COMPILE
-#if defined (_abort_aux) 
+#if defined (_abort_aux)
 /* Debugging aid to be registered via `atexit'.  See the definition
    of abort in dgux.h.  */
 void

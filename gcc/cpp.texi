@@ -47,7 +47,7 @@ into another language, under the above conditions for modified versions.
 @author Richard M. Stallman
 @page
 @vskip 2pc
-This booklet is eventually intended to form the first chapter of a GNU 
+This booklet is eventually intended to form the first chapter of a GNU
 C Language manual.
 
 @vskip 0pt plus 1filll
@@ -483,7 +483,7 @@ accomplishes this goal.
 
 @dfn{Inheritance} is what happens when one object or file derives some
 of its contents by virtual copying from another object or file.  In
-the case of C header files, inheritance means that one header file 
+the case of C header files, inheritance means that one header file
 includes another header file and then replaces or adds something.
 
 If the inheriting header file and the base header file have different
@@ -516,7 +516,7 @@ means that any change in where the system's header files are kept
 requires a change somewhere else.
 
 @findex #include_next
-The clean way to solve this problem is to use 
+The clean way to solve this problem is to use
 @samp{#include_next}, which means, ``Include the @emph{next} file with
 this name.''  This directive works like @samp{#include} except in
 searching for the specified file: it starts searching the list of header
@@ -922,8 +922,8 @@ The GNU C compiler defines this when the compilation language is
 C++; use @samp{__GNUG__} to distinguish between GNU C and GNU
 C++.
 
-@item __cplusplus 
-@findex __cplusplus 
+@item __cplusplus
+@findex __cplusplus
 The draft ANSI standard for C++ used to require predefining this
 variable.  Though it is no longer required, GNU C++ continues to define
 it, as do other popular C++ compilers.  You can use @samp{__cplusplus}
@@ -1108,7 +1108,7 @@ following definition:
 #define CPP_PREDEFINES "-Dmc68000 -Dsun -Dunix -Dm68k"
 @end example
 
-@noindent 
+@noindent
 This macro is usually specified in @file{tm.h}.
 
 @node Stringification, Concatenation, Predefined, Macros
@@ -1152,7 +1152,7 @@ into one string constant: there is no way to combine the argument with
 other text and then stringify it all together.  But the example above shows
 how an equivalent result can be obtained in ANSI Standard C using the
 feature that adjacent string constants are concatenated as one string
-constant.  The preprocessor stringifies the actual value of @samp{EXP} 
+constant.  The preprocessor stringifies the actual value of @samp{EXP}
 into a separate string constant, resulting in text like
 
 @smallexample
@@ -2031,7 +2031,7 @@ it looks like:
 #endif /* Not @var{expression} */
 @end example
 
-If @var{expression} is nonzero, and thus the @var{text-if-true} is 
+If @var{expression} is nonzero, and thus the @var{text-if-true} is
 active, then @samp{#else} acts like a failing conditional and the
 @var{text-if-false} is ignored.  Contrariwise, if the @samp{#if}
 conditional fails, the @var{text-if-false} is considered included.
@@ -2677,7 +2677,7 @@ comment, or whenever a Backslash-Newline appears in a @samp{//} comment.
 @item -Wall
 @findex -Wall
 Requests both @samp{-Wtrigraphs} and @samp{-Wcomment} (but not
-@samp{-Wtraditional} or @samp{-Wundef}). 
+@samp{-Wtraditional} or @samp{-Wundef}).
 
 @item -Wtraditional
 @findex -Wtraditional
@@ -2786,7 +2786,7 @@ preprocessor; assuming you have no file @samp{foo.h}, the command
 touch foo.h; cpp -dM foo.h
 @end example
 
-@noindent 
+@noindent
 will show the values of any predefined macros.
 
 @item -dD
@@ -2856,7 +2856,7 @@ main input.
 @item -include @var{file}
 @findex -include
 Process @var{file} as input, and include all the resulting output,
-before processing the regular input file.  
+before processing the regular input file.
 
 @item -idirafter @var{dir}
 @findex -idirafter

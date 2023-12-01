@@ -63,7 +63,7 @@
 ;; clipper seems to be a traditional risc processor
 ;; we define a functional unit 'memory'
 ;;
-(define_function_unit "memory" 1 1 (eq_attr "type" "load") 4 0)     
+(define_function_unit "memory" 1 1 (eq_attr "type" "load") 4 0)
 
 
 ;; We don't want to allow a constant operand for test insns because
@@ -146,7 +146,7 @@
 ;;
 ;; provide two patterns with different predicates as we don't want combine
 ;; to recombine a mem -> mem move
-;; 
+;;
 (define_insn ""
   [(set (match_operand:DF 0 "register_operand" "=*rf")
 	(match_operand:DF 1 "nonimmediate_operand" "*rfo"))]
@@ -245,7 +245,7 @@
 ;;
 ;; provide two patterns with different predicates as we don't want combine
 ;; to recombine a mem -> mem move
-;; 
+;;
 (define_insn ""
   [(set (match_operand:SF 0 "register_operand" "=*rf")
 	(match_operand:SF 1 "nonimmediate_operand" "*rfm"))]
@@ -352,7 +352,7 @@
   xoperands[1] = adj_offsettable_operand (operands[1], 4);
   output_asm_insn (\"loadw  %1,%0\", xoperands);
   return \"\";
-}" 
+}"
 [(set_attr "type" "arith,arith,load")
   (set_attr "cc" "clobber,clobber,clobber")])
 
@@ -389,10 +389,10 @@
 ;; mem -> mem by the combiner.
 ;;
 ;; As a pseudo register can end up in a stack slot during reloading we must
-;; allow a r->m move for the next pattern. 
+;; allow a r->m move for the next pattern.
 ;; The first predicate must be `general_operand' because a predicate must
 ;; be true for each constraint.
-;;  
+;;
 (define_insn ""
   [(set (match_operand:SI 0 "general_operand" "=r,r,r,r,m")
 	(match_operand:SI 1 "general_operand"  "r,m,n,i,r"))]
@@ -482,7 +482,7 @@
   ""
   "
 {
-  if (GET_CODE (operands[0]) == MEM && 
+  if (GET_CODE (operands[0]) == MEM &&
       ! register_operand (operands[1], QImode))
     operands[1] = force_reg (QImode, operands[1]);
 }")

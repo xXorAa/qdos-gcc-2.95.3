@@ -83,7 +83,7 @@ Unrecognized value in TARGET_CPU_DEFAULT.
 #define LIB_SPEC ""
 
 /* Provide required defaults for linker. */
- 
+
 #define LINK_SPEC "-r"
 
 /* VxWorks provides the functionality of crt0.o and friends itself.  */

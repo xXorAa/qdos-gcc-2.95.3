@@ -59,7 +59,7 @@ Boston, MA 02111-1307, USA.  */
 #define SIGNED_CHAR_SPEC "%{!fsigned-char:%{!mic*:-D__CHAR_UNSIGNED__}}"
 #endif
 
-/* Specs for the compiler, to handle processor variations. 
+/* Specs for the compiler, to handle processor variations.
    If the user gives an explicit -gstabs or -gcoff option, then do not
    try to add an implicit one, as this will fail.  */
 #define CC1_SPEC \
@@ -192,7 +192,7 @@ extern int process_pragma ();
 #define	TARGET_CLEAN_LINKAGE	(target_flags & TARGET_FLAG_CLEAN_LINKAGE)
 
 /* For compatibility with iC960 v3.0.  */
-#define	TARGET_FLAG_IC_COMPAT3_0 0x800 
+#define	TARGET_FLAG_IC_COMPAT3_0 0x800
 #define	TARGET_IC_COMPAT3_0	(target_flags & TARGET_FLAG_IC_COMPAT3_0)
 
 /* For compatibility with iC960 v2.0.  */
@@ -630,11 +630,11 @@ extern int hard_regno_mode_ok ();
    On i960, we use g12.  We can't use any local register, because we need
    a register that can be set before a call or before a jump.  */
 #define STATIC_CHAIN_REGNUM 12
- 
+
 /* Functions which return large structures get the address
    to place the wanted value at in g13.  */
 
-#define STRUCT_VALUE_REGNUM 13 
+#define STRUCT_VALUE_REGNUM 13
 
 /* The order in which to allocate registers.  */
 
@@ -666,7 +666,7 @@ extern int hard_regno_mode_ok ();
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 /* The 80960 has four kinds of registers, global, local, floating point,
    and condition code.  The cc register is never allocated, so no class
    needs to be defined for it.  */
@@ -844,7 +844,7 @@ enum reg_class { NO_REGS, GLOBAL_REGS, LOCAL_REGS, LOCAL_OR_GLOBAL_REGS,
 #define FUNCTION_ARG_REGNO_P(N) ((N) < 12)
 
 /* Perform any needed actions needed for a function that is receiving a
-   variable number of arguments. 
+   variable number of arguments.
 
    CUM is as above.
 
@@ -1181,7 +1181,7 @@ extern struct rtx_def *legitimize_address ();
 
 /* Nonzero if access to memory by bytes is no faster than for words.
    Value changed to 1 after reports of poor bitfield code with g++.
-   Indications are that code is usually as good, sometimes better. */   
+   Indications are that code is usually as good, sometimes better. */
 
 #define SLOW_BYTE_ACCESS 1
 

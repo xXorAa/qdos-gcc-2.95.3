@@ -1,12 +1,12 @@
 /*
  *      dpx2.ifile - for collectless G++ on Bull DPX/2
- *	
+ *
  *      Peter Schauer <Peter.Schauer@regent.e-technik.tu-muenchen.dbp.de>
  *
  *      Install this file as $prefix/gcc-lib/dpx2/VERSION/gcc.ifile
  *	and comment out the lines referring to COLLECT at the top
  *      of Makefile before building GCC.
- *	
+ *
  *      This file has been tested with gcc-2.2.2 on a DPX/2 340
  *      running BOS 2.00.45, if it doesn't work for you, stick
  *      with collect.
@@ -15,7 +15,7 @@
 /*
  *	Ifile to link with memory configured at 0.
  *	BLOCK to an offset that leaves room for many headers ( the value
- *	here allows for a file header, an outheader, and up to 11 section 
+ *	here allows for a file header, an outheader, and up to 11 section
  *	headers on most systems.
  *	BIND to an address that excludes page 0 from being mapped. The value
  *	used for BLOCK should be or'd into this value. Here I'm setting BLOCK
@@ -41,13 +41,13 @@ SECTIONS
 	GROUP BIND( NEXT(0x100000) + (ADDR(.text) + (SIZEOF(.text)) % 0x1000)):
 	{
 			.data : {
-				___CTOR_LIST__ = . ; 
+				___CTOR_LIST__ = . ;
 				. += 4 ;	/* leading NULL */
-				*(.ctor) 
+				*(.ctor)
 				. += 4 ;	/* trailing NULL */
 				___DTOR_LIST__ = . ;
 				. += 4 ;	/* leading NULL */
-				*(.dtor) 
+				*(.dtor)
 				. += 4 ; 	/* trailing NULL */
 			 }
 			.bss : { }

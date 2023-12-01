@@ -203,10 +203,10 @@ extern int target_flags;
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 enum reg_class {
   NO_REGS, DATA_REGS, ADDRESS_REGS, SP_REGS,
-  DATA_OR_ADDRESS_REGS, SP_OR_ADDRESS_REGS, 
+  DATA_OR_ADDRESS_REGS, SP_OR_ADDRESS_REGS,
   GENERAL_REGS, ALL_REGS, LIM_REG_CLASSES
 };
 
@@ -262,7 +262,7 @@ enum reg_class {
    or a pseudo reg currently allocated to a suitable hard reg.
    Since they use reg_renumber, they are safe only once reg_renumber
    has been allocated, which happens in local-alloc.c.  */
- 
+
 #define REGNO_OK_FOR_BASE_P(regno) \
   (((regno) > 3 && regno < FIRST_PSEUDO_REGISTER)	\
    || (reg_renumber[regno] > 3 && reg_renumber[regno] < FIRST_PSEUDO_REGISTER))
@@ -325,8 +325,8 @@ enum reg_class {
 
 
 /* Similar, but for floating constants, and defining letters G and H.
-   Here VALUE is the CONST_DOUBLE rtx itself. 
-     
+   Here VALUE is the CONST_DOUBLE rtx itself.
+
   `G' is a floating-point zero.  */
 
 #define CONST_DOUBLE_OK_FOR_LETTER_P(VALUE, C) \
@@ -464,7 +464,7 @@ struct cum_arg {int nbytes; };
    NAMED is nonzero if this argument is a named parameter
     (otherwise it is an extra parameter matching an ellipsis).  */
 
-/* On the MN10300 all args are pushed.  */   
+/* On the MN10300 all args are pushed.  */
 
 extern struct rtx_def *function_arg ();
 #define FUNCTION_ARG(CUM, MODE, TYPE, NAMED) \
@@ -476,7 +476,7 @@ extern struct rtx_def *function_arg ();
 
 #define FUNCTION_ARG_PASS_BY_REFERENCE(CUM, MODE, TYPE, NAMED)		\
   ((TYPE) && int_size_in_bytes (TYPE) > 8)
- 
+
 #define FUNCTION_ARG_CALLEE_COPIES(CUM, MODE, TYPE, NAMED) \
   ((TYPE) && int_size_in_bytes (TYPE) > 8)
 
@@ -580,7 +580,7 @@ extern struct rtx_def *mn10300_builtin_saveregs ();
 #define CONSTANT_ADDRESS_P(X)   CONSTANT_P (X)
 
 /* Extra constraints.  */
- 
+
 #define OK_FOR_R(OP) \
    (GET_CODE (OP) == MEM					\
     && GET_MODE (OP) == QImode					\
@@ -594,7 +594,7 @@ extern struct rtx_def *mn10300_builtin_saveregs ();
 	    && XEXP (XEXP (OP, 0), 0) != stack_pointer_rtx	\
 	    && GET_CODE (XEXP (XEXP (OP, 0), 1)) == CONST_INT	\
 	    && INT_8_BITS (INTVAL (XEXP (XEXP (OP, 0), 1))))))
-	 
+
 #define EXTRA_CONSTRAINT(OP, C) \
  ((C) == 'R' ? OK_FOR_R (OP) : (C) == 'S' ? GET_CODE (OP) == SYMBOL_REF : 0)
 
@@ -657,7 +657,7 @@ extern struct rtx_def *mn10300_builtin_saveregs ();
    function record_unscaled_index_insn_codes.  */
 
 /* Accept either REG or SUBREG where a register is valid.  */
-  
+
 #define RTX_OK_FOR_BASE_P(X)					\
   ((REG_P (X) && REG_OK_FOR_BASE_P (X))				\
    || (GET_CODE (X) == SUBREG && REG_P (SUBREG_REG (X))		\
@@ -891,7 +891,7 @@ do { char dstr[30];					\
   char* real_name;                                \
   STRIP_NAME_ENCODING (real_name, (NAME));        \
   fprintf (FILE, "_%s", real_name);               \
-  } while (0)           
+  } while (0)
 
 /* Store in OUTPUT a string (made with alloca) containing
    an assembler-name for a local static variable named NAME.

@@ -96,9 +96,9 @@ dtor_section ()							\
    On i386, if using PIC, mark a SYMBOL_REF for a non-global symbol
    so that we may access it directly in the GOT.
 
-   On i386 running Windows NT, modify the assembler name with a suffix 
+   On i386 running Windows NT, modify the assembler name with a suffix
    consisting of an atsign (@) followed by string of digits that represents
-   the number of bytes of arguments passed to the function, if it has the 
+   the number of bytes of arguments passed to the function, if it has the
    attribute STDCALL. */
 
 #ifdef ENCODE_SECTION_INFO

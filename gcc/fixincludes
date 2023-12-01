@@ -172,7 +172,7 @@ if $LINKS; then
   echo 'Making symbolic directory links'
   for file in $files; do
     dest=`ls -ld $file | sed -n 's/.*-> //p'`
-    if [ "$dest" ]; then    
+    if [ "$dest" ]; then
       cwd=`${PWDCMD}`
       # In case $dest is relative, get to $file's dir first.
       cd ${INPUT}
@@ -479,7 +479,7 @@ do
     fi
   fi
 done
- 
+
 # Fix one other error in this file: a mismatched quote not inside a C comment.
 file=sundev/vuid_event.h
 if [ -r $file ] && [ ! -r ${LIB}/$file ]; then
@@ -1439,7 +1439,7 @@ if [ -r ${LIB}/$file ]; then
   fi
 fi
 
-# parameters conflict with C++ new on rs/6000 
+# parameters conflict with C++ new on rs/6000
 for file in stdio.h unistd.h ; do
   if [ -r $file ] && [ ! -r ${LIB}/$file ]; then
     cp $file ${LIB}/$file >/dev/null 2>&1 || echo "Can't copy $file"
@@ -1463,7 +1463,7 @@ for file in stdio.h unistd.h ; do
   fi
 done
 
-# function class(double x) conflicts with C++ keyword on rs/6000 
+# function class(double x) conflicts with C++ keyword on rs/6000
 file=math.h
 if [ -r $file ] && [ ! -r ${LIB}/$file ]; then
   cp $file ${LIB}/$file >/dev/null 2>&1 || echo "Can't copy $file"
@@ -1646,7 +1646,7 @@ if [ -r ${LIB}/$file ]; then
   fi
 fi
 
-# NeXT 3.2 uses the word "template" as a parameter for some 
+# NeXT 3.2 uses the word "template" as a parameter for some
 # functions. GCC reports an invalid use of a reserved key word
 # with the built-in functions. NeXT 3.2 includes the keyword
 # volatile in the prototype for abort(). This conflicts with
@@ -1672,8 +1672,8 @@ if [ -r ${LIB}/$file ]; then
   fi
 fi
 
-# NeXT 3.2 includes the keyword volatile in the abort() and 
-# exit() function prototypes. That conflicts with the 
+# NeXT 3.2 includes the keyword volatile in the abort() and
+# exit() function prototypes. That conflicts with the
 # built-in functions.
 file=ansi/stdlib.h
 if [ -r $file ] && [ ! -r ${LIB}/$file ]; then
@@ -1812,7 +1812,7 @@ if [ -r ${LIB}/$file ]; then
       -e 's@VA_LIST@DUMMY_VA_LIST@' \
       -e 's@_Va_LIST@_VA_LIST@' \
     ${LIB}/$file >> ${LIB}/${file}.sed
-  
+
   rm -f ${LIB}/$file; mv ${LIB}/${file}.sed ${LIB}/$file
   if cmp $file ${LIB}/$file >/dev/null 2>&1; then
     rm -f ${LIB}/$file
@@ -1981,7 +1981,7 @@ extern "C" {
     cat ${LIB}/${file} >> ${LIB}/${file}.sed
     echo '#ifdef __cplusplus
 }
-#endif' >> ${LIB}/${file}.sed 
+#endif' >> ${LIB}/${file}.sed
     rm -f ${LIB}/$file; mv ${LIB}/${file}.sed ${LIB}/$file
     if cmp $file ${LIB}/$file >/dev/null 2>&1; then
       rm -f ${LIB}/$file
@@ -2413,13 +2413,13 @@ if test -d /etc/conf/kconfig.d \
 	    < $file > ${LIB}/$name.
     mv ${LIB}/$name. ${LIB}/$name
   done
-  
+
   echo "Fixing ISC fmod declaration"
   # This one's already been fixed for other things.
   file=${LIB}/math.h
   sed 's/fmod(double)/fmod(double, double)/' <$file >$file.
   mv $file. $file
-  
+
   echo "Fixing nested comments in ISC <sys/limits.h>"
   file=sys/limits.h
   sed '/CHILD_MAX/s,/\* Max, Max,' < ${INPUT}/$file >${LIB}/$file.
@@ -2565,7 +2565,7 @@ extern "C" {
       cat ${LIB}/${file} >> ${LIB}/${file}.sed
       echo '#ifdef __cplusplus
 }
-#endif' >> ${LIB}/${file}.sed 
+#endif' >> ${LIB}/${file}.sed
       rm -f ${LIB}/$file; mv ${LIB}/${file}.sed ${LIB}/$file
     fi
     if cmp $file ${LIB}/$file >/dev/null 2>&1; then
@@ -2819,7 +2819,7 @@ if [ -r ${LIB}/$file ]; then
     done
   fi
 fi
-    
+
 # Fix hpux10.20 <sys/time.h> to avoid invalid forward decl
 file=sys/time.h
 if [ -r $file ] && [ ! -r ${LIB}/$file ]; then
@@ -2845,7 +2845,7 @@ if [ -r ${LIB}/$file ]; then
     done
   fi
 fi
-    
+
 # Another bad dependency in VxWorks 5.2 <time.h>.
 file=time.h
 if [ -r $file ] && [ ! -r ${LIB}/$file ]; then
@@ -2884,7 +2884,7 @@ typedef void (*__gcc_VOIDFUNCPTR) ();\
     done
   fi
 fi
-    
+
 # This file in A/UX 3.0.x/3.1.x contains an __asm directive for c89; gcc
 # doesn't understand it.
 file=sys/param.h
@@ -3019,7 +3019,7 @@ if [ -r ${LIB}/$file ]; then
 fi
 
 # rpc/auth.h on SunOS needs prototypes for its AUTH->auth_ops function pointers
-# Similarly for 
+# Similarly for
 #   rpc/clnt.h CLIENT->clnt_ops
 #   rpc/svc.h SVCXPRT->xp_ops
 #   rpc/xdr.h XDR->xdr_ops
@@ -3199,7 +3199,7 @@ fi
 #  files=`find . -type l -print`
 #  for file in $files; do
 #    dest=`ls -ld $file | sed -n 's/.*-> //p'`
-#    if expr "$dest" : '[^/].*' > /dev/null; then    
+#    if expr "$dest" : '[^/].*' > /dev/null; then
 #      target=${LIB}/`echo file | sed "s|[^/]*\$|$dest|"`
 #      if [ -f $target ]; then
 #        ln -s $dest ${LIB}/$file >/dev/null 2>&1

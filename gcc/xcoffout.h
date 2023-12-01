@@ -1,5 +1,5 @@
 /* XCOFF definitions.  These are needed in dbxout.c, final.c,
-   and xcoffout.h. 
+   and xcoffout.h.
    Copyright (C) 1998 Free Software Foundation, Inc.
 
 This file is part of GNU CC.

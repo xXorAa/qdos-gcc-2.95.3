@@ -7,11 +7,11 @@
 # By default all command-line options are passed to `cvs update` in
 # addition to $UPDATE_OPTIONS (defined below). If the first parameter
 # reads --nostdflags, $UPDATE_OPTIONS as well as this parameter itself
-# are omitted. 
-# 
+# are omitted.
+#
 # If the first parameter reads --patch, the second parameter is considered
 # a patch file.
-# 
+#
 # If the first parameter is --touch, no cvs operation will be performed,
 # only generated files that appear to be out of date in the local tree
 # will be touched.
@@ -139,7 +139,7 @@ fi
 
 case "$1" in
 # First of all, check whether we are going to process a patch.
---patch) 
+--patch)
     if test "$#" != 2; then
         echo "$1" expects only one argument >&2
 	exit 1
@@ -193,7 +193,7 @@ fi
 
 echo "Updating CVS tree"
 cvs -q update ${1+"$@"}
-if [ $? -ne 0 ]; then 
+if [ $? -ne 0 ]; then
     echo "CVS update of full tree failed." >&2
     exit 1
 fi

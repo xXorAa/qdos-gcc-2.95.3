@@ -1,4 +1,4 @@
-/* Definitions of target machine for GNU compiler, for HAL 
+/* Definitions of target machine for GNU compiler, for HAL
    SPARC running Solaris 2 HALOS
    Copyright 1998 Free Software Foundation, Inc.
    Contributed by Carol LePage (carolo@hal.com)

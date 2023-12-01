@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/sh
 # Generates multilib.h.
 #   Copyright (C) 1994, 1995, 1996, 1997 Free Software Foundation, Inc.
 
@@ -42,7 +42,7 @@
 # appear in the first argument, and the second should be a synonym for
 # it.  Question marks are replaced with equal signs in both options.
 
-# The optional fourth argument is a list of multilib directory 
+# The optional fourth argument is a list of multilib directory
 # combinations that should not be built.
 
 # The optional fifth argument is a list of options that should be

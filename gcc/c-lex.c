@@ -1103,7 +1103,7 @@ struct pf_args
   /* Output */
   REAL_VALUE_TYPE value;
 };
- 
+
 static void
 parse_float (data)
   PTR data;
@@ -1203,7 +1203,7 @@ parse_float (data)
 	warning ("floating point number exceeds range of `double'");
     }
 }
- 
+
 int
 yylex ()
 {
@@ -1662,7 +1662,7 @@ yylex ()
 	    imag = args.imag;
 	    type = args.type;
 	    conversion_errno = args.conversion_errno;
-	    
+
 #ifdef ERANGE
 	    /* ERANGE is also reported for underflow,
 	       so test the value to distinguish overflow from that.  */

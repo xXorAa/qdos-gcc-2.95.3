@@ -233,7 +233,7 @@ Boston, MA 02111-1307, USA.  */
 #define DATA_SECTION_ASM_OP "data"
 #endif
 #define	ASCII_DATA_ASM_OP "byte"
- 
+
 /* This is the command to make the user-level label named NAME
    defined for reference from other files.  */
 
@@ -288,7 +288,7 @@ do { long l[3];								\
      REAL_VALUE_TO_TARGET_LONG_DOUBLE (VALUE, l);			\
      fprintf (FILE, "\tlong 0x%x,0x%x,0x%x\n", l[0], l[1], l[2]);	\
    } while (0)
-  
+
 /* This is how to output an assembler line defining an `int' constant.  */
 
 #define ASM_OUTPUT_INT(FILE,VALUE)  \

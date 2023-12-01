@@ -34,13 +34,13 @@ Boston, MA 02111-1307, USA.  */
 #endif
 
 /* Riscix 1.1 doesn't have X/OPEN support, so only accept -mbsd (but ignore
-   it).  
+   it).
    By not having -mxopen and -mno-symrename, we get warning messages,
    but everything still compiles.  */
 /* None of these is actually used in cc1, so they modify bit 31 */
 #define SUBTARGET_SWITCHES \
-{"bsd", 0x80000000, ""}, 
-    
+{"bsd", 0x80000000, ""},
+
 
 /* Run-time Target Specification.  */
 #define TARGET_VERSION  \
@@ -64,8 +64,8 @@ Boston, MA 02111-1307, USA.  */
 
 /* Define this if the target system supports the function atexit form the
    ANSI C standard.  If this is not defined, and INIT_SECTION_ASM_OP is not
-   defined, a default exit function will be provided to support C++.  
-   The man page only describes on_exit, but atexit is also there.  
+   defined, a default exit function will be provided to support C++.
+   The man page only describes on_exit, but atexit is also there.
    This seems to be missing in early versions. */
 /*#define HAVE_ATEXIT 1 */
 /* Some systems use __main in a way incompatible with its use in gcc, in these

@@ -19,7 +19,7 @@ Sun Jul 25 23:40:51 PDT 1999 Jeff Law  (law@cygnus.com)
 	* gcc-2.95 Released.
 
 1999-07-17  Alexandre Oliva  <oliva@dcc.unicamp.br>
-	
+
 	* test_summary: Replace egcs with gcc.  Update e-mail address.
 
 1999-06-12  Alexandre Oliva  <oliva@dcc.unicamp.br>
@@ -40,8 +40,8 @@ Fri Apr  2 16:09:02 1999  Jeffrey A Law  (law@cygnus.com)
 
 1999-02-04  Robert Lipe  <robertlipe@usa.net>
 
-	* egcs_update: Test return values of 'cvs update'.  Propogate 
-	to caller as exit values.     
+	* egcs_update: Test return values of 'cvs update'.  Propogate
+	to caller as exit values.
 
 1999-01-25  Gerald Pfeifer  <pfeifer@dbai.tuwien.ac.at>
 
@@ -102,7 +102,7 @@ Sat Oct 31 10:53:40 1998  Kaveh R. Ghazi  <ghazi@caip.rutgers.edu>
  	inspection) of bootstrap output from a particular stageN as well
  	as language subdirs.
 
-	Add better comments/documentation.	
+	Add better comments/documentation.
 
 Sat Oct 31 16:39:31 1998  Gerald Pfeifer  <pfeifer@dbai.tuwien.ac.at>
 
@@ -131,7 +131,7 @@ Mon Oct  5 14:19:48 1998  Kaveh R. Ghazi  <ghazi@caip.rutgers.edu>
 	* warn_summary (subdirectoryFilter): New shell function to
  	optionally filter in/out gcc subdirectories when summarizing
  	warnings.  Add new flags to support subdirectory filtering.
-	
+
 	Also, ensure the bootstrap stage is a number.  Add some more C
  	keywords that are preserved in the "warning type" summary and
  	tighten up the "arg ???" regexp.
@@ -151,7 +151,7 @@ Wed Sep 16 16:06:51 1998  Kaveh R. Ghazi  <ghazi@caip.rutgers.edu>
 	* egcs_update: Additionally touch gcc/java/parse.[ch].
 
 Thu Sep  9 16:48 Bruce Korb <korb@datadesign.com>
-	
+
 	* fixinc/inclhack.def:  Added two files required by
 	SCO's Open Server 5's avoid_bool fix.
 	Regenerated fixinc.x and inclhack.sh to incorporate
@@ -160,7 +160,7 @@ Thu Sep  9 16:48 Bruce Korb <korb@datadesign.com>
 Thu Sep  3 10:11:32 1998  Robert Lipe   <robertl@dgii.com>
 
 	* egcs_update: Do the pass 1 CVS update only for files that
-	may reasonably be under CVS control. 
+	may reasonably be under CVS control.
 
 1998-08-14  Alexandre Oliva  <oliva@dcc.unicamp.br>
 

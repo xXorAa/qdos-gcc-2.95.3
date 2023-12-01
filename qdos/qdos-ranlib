@@ -1,4 +1,4 @@
-#!/bin/sh                                                                       
+#!/bin/sh
 
 libname=$1
 
@@ -9,10 +9,10 @@ mkdir /tmp/ranlib-tmp-$PPID
 cp $libname /tmp/ranlib-tmp-$PPID/libxx-old.a
 cd /tmp/ranlib-tmp-$PPID
 #slb -L- $libname.old | tsort | slb -cvek -m- $libname
-slb -Lmlist libxx-old.a 
-tsort mlist >slist 
+slb -Lmlist libxx-old.a
+tsort mlist >slist
 slb -x libxx-old.a
-slb -rcekv -mslist libxx.a 
+slb -rcekv -mslist libxx.a
 cd $bdir
 cp /tmp/ranlib-tmp-$PPID/libxx.a $libname
 rm -rf /tmp/ranlib-tmp-$PPID

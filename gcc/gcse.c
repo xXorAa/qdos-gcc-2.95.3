@@ -152,7 +152,7 @@ Boston, MA 02111-1307, USA.  */
 #include "recog.h"
 #include "basic-block.h"
 #include "output.h"
-#include "expr.h" 
+#include "expr.h"
 
 #include "obstack.h"
 #define obstack_chunk_alloc gmalloc
@@ -634,7 +634,7 @@ gcse_main (f, file)
      setjmp, so just punt to be safe.  */
   if (current_function_calls_setjmp)
     return 0;
-   
+
   /* Assume that we do not need to run jump optimizations after gcse.  */
   run_jump_opt_after_gcse = 0;
 
@@ -930,7 +930,7 @@ free_gcse_mem ()
    looks at the expr hash table; if nonzero this routine looks at
    the set hash table.  Additionally, TRANSP is computed as ~TRANSP,
    since this is really cprop's ABSALTERED.  */
- 
+
 static void
 compute_local_properties (transp, comp, antloc, setp)
      sbitmap *transp;
@@ -940,7 +940,7 @@ compute_local_properties (transp, comp, antloc, setp)
 {
   int i, hash_table_size;
   struct expr **hash_table;
-  
+
   /* Initialize any bitmaps that were passed in.  */
   if (transp)
     {
@@ -996,7 +996,7 @@ compute_local_properties (transp, comp, antloc, setp)
 	     we want to set to non-zero in COMP.  */
 	  if (comp)
 	    {
-	
+
 	      for (occr = expr->avail_occr; occr != NULL; occr = occr->next)
 		{
 		  int bb = BLOCK_NUM (occr->insn);
@@ -1655,7 +1655,7 @@ insert_expr_in_table (x, mode, insn, antic_p, avail_p)
 	  /* Add EXPR to end of this hash chain.  */
 	  last_expr->next_same_hash = cur_expr;
 	}
-      /* Set the fields of the expr element.  */ 
+      /* Set the fields of the expr element.  */
       cur_expr->expr = x;
       cur_expr->bitmap_index = n_exprs++;
       cur_expr->next_same_hash = NULL;
@@ -2100,7 +2100,7 @@ compute_hash_table (set_p)
 	   insn && insn != NEXT_INSN (BLOCK_END (bb));
 	   insn = NEXT_INSN (insn))
 	{
-#ifdef NON_SAVING_SETJMP 
+#ifdef NON_SAVING_SETJMP
 	  if (NON_SAVING_SETJMP && GET_CODE (insn) == NOTE
 	      && NOTE_LINE_NUMBER (insn) == NOTE_INSN_SETJMP)
 	    {
@@ -2617,7 +2617,7 @@ compute_kill_rd ()
     }
 }
 
-/* Compute the reaching definitions as in 
+/* Compute the reaching definitions as in
    Compilers Principles, Techniques, and Tools. Aho, Sethi, Ullman,
    Chapter 10.  It is the same algorithm as used for computing available
    expressions but applied to the gens and kills of reaching definitions.  */
@@ -2830,7 +2830,7 @@ compute_available ()
 
   for (bb = 1; bb < n_basic_blocks; bb++)
     sbitmap_difference (ae_out[bb], u_bitmap, ae_kill[bb]);
-    
+
   passes = 0;
   changed = 1;
   while (changed)
@@ -2941,7 +2941,7 @@ computing_insn (expr, insn)
   int bb = BLOCK_NUM (insn);
 
   if (expr->avail_occr->next == NULL)
-    {    
+    {
       if (BLOCK_NUM (expr->avail_occr->insn) == bb)
 	{
 	  /* The available expression is actually itself
@@ -2955,7 +2955,7 @@ computing_insn (expr, insn)
   else
     {
       /* Pattern is computed more than once.
-	 Search backwards from this insn to see how many of these 
+	 Search backwards from this insn to see how many of these
 	 computations actually reach this insn.  */
       struct occr *occr;
       rtx insn_computes_expr = NULL;
@@ -3065,7 +3065,7 @@ can_disregard_other_sets (addr_this_reg, insn, for_combine)
 	  if (number_of_reaching_defs > 1)
 	    {
 	      /* If in this setting the value the register is being
-		 set to is equal to the previous value the register 
+		 set to is equal to the previous value the register
 		 was set to and this setting reaches the insn we are
 		 trying to do the substitution on then we are ok.  */
 
@@ -3075,7 +3075,7 @@ can_disregard_other_sets (addr_this_reg, insn, for_combine)
 				 SET_SRC (PATTERN (insn))))
 		return 0;
 	    }
-	  *addr_this_reg = this_reg; 
+	  *addr_this_reg = this_reg;
 	}
 
       /* prev_this_reg = this_reg; */
@@ -3221,7 +3221,7 @@ handle_avail_expr (insn, expr)
 	      fprintf (gcse_file, "GCSE: Replacing the source in insn %d with reg %d set in insn %d\n",
 		       INSN_UID (insn),
 		       REGNO (SET_DEST (PATTERN (NEXT_INSN (insn_computes_expr)))),
-		       INSN_UID (insn_computes_expr)); 
+		       INSN_UID (insn_computes_expr));
 	    }
 
 	}
@@ -3720,7 +3720,7 @@ cprop_insn (insn, alter_jumps)
       set = find_avail_set (regno, insn);
       if (! set)
 	continue;
-  
+
       pat = set->expr;
       /* ??? We might be able to handle PARALLELs.  Later.  */
       if (GET_CODE (pat) != SET)
@@ -3788,7 +3788,7 @@ cprop_insn (insn, alter_jumps)
 	      /* That may have changed the structure of TEMP, so
 		 force it to be rerecognized if it has not turned
 		 into a nop or unconditional jump.  */
-		
+
 	      INSN_CODE (copy) = -1;
 	      if ((SET_DEST (set) == pc_rtx
 		   && (SET_SRC (set) == pc_rtx
@@ -4197,7 +4197,7 @@ insert_insn_end_bb (expr, bb, pre)
 	      nparm_regs--;
 	    }
 	}
-      
+
       /* If we found all the parameter loads, then we want to insert
 	 before the first parameter load.
 
@@ -4269,7 +4269,7 @@ pre_insert (index_map)
   int bb, i, set_size;
   sbitmap *inserted;
 
-  /* Compute INSERT = PRE_OPTIMAL & ~PRE_REDUNDANT. 
+  /* Compute INSERT = PRE_OPTIMAL & ~PRE_REDUNDANT.
      Where INSERT is nonzero, we add the expression at the end of the basic
      block if it reaches any of the deleted expressions.  */
 
@@ -4693,7 +4693,7 @@ compute_transpout ()
 		if (GET_CODE (addr) == SYMBOL_REF
 		    && CONSTANT_POOL_ADDRESS_P (addr))
 		  continue;
-		
+
 		/* ??? Optimally, we would use interprocedural alias
 		   analysis to determine if this mem is actually killed
 		   by this call.  */

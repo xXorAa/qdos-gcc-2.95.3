@@ -303,7 +303,7 @@ output_move_double (operands)
   else if (offsettable_memref_p (operands[1]))
     optype1 = OFFSOP;
   else if (GET_CODE (XEXP (operands[1], 0)) == POST_INC)
-    optype1 = POPOP; 
+    optype1 = POPOP;
   else if (GET_CODE (operands[1]) == MEM)
     optype1 = MEMOP;
   else if (CONSTANT_P (operands[1]))

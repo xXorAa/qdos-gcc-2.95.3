@@ -1,10 +1,10 @@
 @c This file is meant to be included in any arbitrary piece of
 @c documentation that wishes to describe the info program.  Some day
 @c info-stnd.texi should probably use this file instead of duplicating
-@c its contents. 
+@c its contents.
 @c
 @c This file documents the use of the standalone GNU Info program,
-@c versions 2.7 and later. 
+@c versions 2.7 and later.
 
 @ifclear InfoProgVer
 @set InfoProgVer 2.11
@@ -313,7 +313,7 @@ when you use the following commands:
 @item @code{n} (@code{next-node})
 @kindex n
 @findex next-node
-Selects the `Next' node.  
+Selects the `Next' node.
 
 @item @code{p} (@code{prev-node})
 @kindex p
@@ -674,7 +674,7 @@ of the subfile containing the node appears in the modeline as well:
 
 @example
 --zz-Info: (emacs)Top, 291 lines --Top-- Subfile: emacs-1.Z---------------
-@end example 
+@end example
 
 When Info makes a node internally, such that there is no corresponding
 info file on disk, the name of the node is surrounded by asterisks

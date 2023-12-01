@@ -62,7 +62,7 @@ LOCAL_LABEL(1):
 	mov.l	%a0,8(%sp)
 	mov.l	%a0,environ
 	jsr	initfpu
-	
+
 	subq.w	&8,%sp
 	clr.l	%d0		/* if (! isatty (fileno (stderr))) */
 	mov.b	_iob+27,%d0

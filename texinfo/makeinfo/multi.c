@@ -201,7 +201,7 @@ setup_multitable_parameters ()
          `@code{foo}' has a width of five, not ten.  Also have to match
          braces, then.  How to take into account current_indent here?  */
       setup_output_environment (i++, params++ - start);
-      
+
     } else {
       warning (_("ignoring stray text `%s' after @multitable"), params);
       break;
@@ -242,7 +242,7 @@ setup_output_environment (env_no, width)
 /* Direct current output to environment number N.  Used when
    switching work from one column of a multitable to the next.
    Returns previous environment number. */
-int 
+int
 select_output_environment (n)
     int n;
 {
@@ -359,10 +359,10 @@ output_multitable_row ()
     }
     if (!remaining)
       break;
-    
+
     for (s = 0; s < envs[0].current_indent; s++)
       out_char (' ');
-    
+
     if (vsep)
       out_char ('|');
 
@@ -402,7 +402,7 @@ cm_tab ()
 {
   if (!multitable_active)
     error (_("ignoring @tab outside of multitable"));
-  
+
   nselect_next_environment ();
   init_column ();
 }
@@ -420,7 +420,7 @@ end_multitable ()
   select_output_environment (0);
   close_paragraph ();
   insert ('\n'); /* we swallow newlines, so insert one of our own */
-  
+
   multitable_active = 0;
   uninhibit_output_flushing ();
 

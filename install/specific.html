@@ -97,7 +97,7 @@ available).  If the Makefile already exists, run
 Remove any existing <code>libstdc++.so*</code> from such directories,
 and run <code>make all-target-libstdc++</code> in the top-level
 directory, then <code>make install-target-libstdc++</code>.</p>
-	  
+
 <p>If you have already removed the build tree, you may just remove
 <code>libstdc++.so.2.10.0</code> from the install tree and re-create
 it with the command <code>gcc -shared -o libstdc++.so.2.10.0
@@ -180,8 +180,8 @@ Latin-America</a></li>
 <p>The HP assembler on these systems is much better than the hpux9 assembler,
 but still has some problems.  Most notably the assembler inserts timestamps
 into each object file it creates, causing the 3-stage comparison test to fail
-during a `<code>make bootstrap</code>'.  You should be able to continue by 
-saying `<code>make all</code>' after getting the failure from `<code>make 
+during a `<code>make bootstrap</code>'.  You should be able to continue by
+saying `<code>make all</code>' after getting the failure from `<code>make
 bootstrap</code>'.</p>
 
 
@@ -192,7 +192,7 @@ bootstrap</code>'.</p>
 object files. Current (as of late 2000) snapshots and GCC 3.0 do support
 HP-UX 11.</p>
 
- 
+
 <hr>
 <h3><a name="*-*-linux-gnu">*-*-linux-gnu</a></h3>
 
@@ -215,7 +215,7 @@ found on <a href="http://www.bitwizard.nl/sig11/">www.bitwizard.nl.</a></p>
 <h3><a name="ix86-*-sco3.2v5*">i?86-*-sco3.2v5*</a></h3>
 
 <p>Unlike earlier versions of GCC, the ability to generate COFF with this
-target is no longer provided.   
+target is no longer provided.
 
 <p>Earlier versions of GCC emitted Dwarf-1 when generating ELF to allow
 the system debugger to be used.  That support was too burdensome to
@@ -231,7 +231,7 @@ valid C++ programs including those in <code>libgcc.a</code>.  <b>You must do a `
 <p>Use of the `<code>-march-pentiumpro</code>' flag can result in
 unrecognized opcodes when using the native assembler on OS versions before
 5.0.6. (Support for P6 opcodes was added to the native ELF assembler in
-that version.)  While it's rather rare to see these emitted by GCC yet, 
+that version.)  While it's rather rare to see these emitted by GCC yet,
 errors of the basic form:</p>
 <pre>
   /usr/tmp/ccaNlqBc.s:22:unknown instruction: fcomip
@@ -278,7 +278,7 @@ Although it's conceivable that the error could be triggered by other
 code, only G77-compiled code has been observed to cause this abort.
 If you are getting core dumps immediately upon execution of your
 g77 program - and especially if it's compiled with -fPIC - try applying
-<a href="sco_osr5_g77.patch"><code>`sco_osr5_g77.patch'</code></a> to your libf2c and 
+<a href="sco_osr5_g77.patch"><code>`sco_osr5_g77.patch'</code></a> to your libf2c and
 rebuilding
 GCC.  Affected faults, when analyzed in a debugger, will show a stack
 backtrace with a fault occurring in <code>rtld()</code> and the program
@@ -303,7 +303,7 @@ href="x86-sol2-gas.patch"><code>`x86-sol2-gas.patch'</code></a>.</p>
 package be installed.  (If it is installed, you will have a <code>/udk/usr/ccs/bin/cc </code>file present.)  It's very much like the <code>i?86-*-unixware7*</code> target
 but is meant to be used when hosting on a system where UDK isn't the
 default compiler such as OpenServer 5 or Unixware 2.  This target will
-generate binaries that will run on OpenServer, Unixware 2, or Unixware 7, 
+generate binaries that will run on OpenServer, Unixware 2, or Unixware 7,
 with the same warnings and caveats as the SCO UDK.</p>
 
 <p>You can stage1 with either your native compiler or with UDK.   If you
@@ -312,7 +312,7 @@ you will have an utterly unusable pile of bits as your reward.</p>
 
 <p>This target is a little tricky to build because we have to distinguish
 it from the native tools (so it gets headers, startups, and libraries
-from the right place) while making the tools not think we're actually 
+from the right place) while making the tools not think we're actually
 building a cross compiler.   The easiest way to do this is with a configure
 command like this:</p>
 <pre>
@@ -322,7 +322,7 @@ command like this:</p>
 processor for your host.</i></p>
 
 <p>You should follow this with a `<code>make bootstrap</code>'  then
-`<code>make install</code>'.  You can then access the UDK-targeted GCC 
+`<code>make install</code>'.  You can then access the UDK-targeted GCC
 tools by adding <code>udk-</code> before the commonly known name.  For example, to invoke the C compiler, you would use `<code>udk-gcc</code>'.  They will coexist peacefully with any native-target GCC tools you may have installed.</p>
 
 
@@ -385,20 +385,20 @@ website as PTF U461879.  This fix is incorporated in AIX 4.3.3 and above.</p>
 
 <p>You absolutely <b>must</b> use GNU sed and GNU make on this platform.</p>
 
-<p>On NEXTSTEP 3.x where x &lt; 3 the build of GCC will abort during  
+<p>On NEXTSTEP 3.x where x &lt; 3 the build of GCC will abort during
 stage1 with an error message like this:</p>
 <pre>
   _eh
   /usr/tmp/ccbbsZ0U.s:987:Unknown pseudo-op: .section
-  /usr/tmp/ccbbsZ0U.s:987:Rest of line ignored. 1st junk character  
+  /usr/tmp/ccbbsZ0U.s:987:Rest of line ignored. 1st junk character
   valued 95 (_).
 </pre>
-<p>The reason for this is the fact that NeXT's assembler for these  
-versions of the operating system does not support the .section  
+<p>The reason for this is the fact that NeXT's assembler for these
+versions of the operating system does not support the .section
 pseudo op that's needed for full C++ exception functionality.</p>
 
-<p>As NeXT's assembler is a derived work from GNU as, a free  
-replacement that does can be obtained at 
+<p>As NeXT's assembler is a derived work from GNU as, a free
+replacement that does can be obtained at
 <a href="ftp://ftp.next.peak.org:/next-ftp/next/apps/devtools/as.3.3.NIHS.s.tar.gz">ftp://ftp.next.peak.org:/next-ftp/next/apps/devtools/as.3.3.NIHS.s.tar.gz</a>.
 </p>
 
@@ -517,7 +517,7 @@ using GCC on IRIX platforms.</p>
 <hr>
 <h3><a name="powerpc-*-linux-gnu*">powerpc-*-linux-gnu*</a></h3>
 
-<p>You will need 
+<p>You will need
 <a href="ftp://ftp.varesearch.com/pub/support/hjl/binutils">binutils-2.9.4.0.8</a> or newer for a working GCC. It is strongly recommended to recompile binutils
 if you initially built it with gcc-2.7.2.x.</p>
 
@@ -533,7 +533,7 @@ details.</p>
 <p>Sun as 4.X is broken in that it cannot cope with long symbol names.
 A typical error message might look similar to the following:
 <BLOCKQUOTE><CODE>
-/usr/ccs/bin/as: "/var/tmp/ccMsw135.s", line 11041: error: can't compute      
+/usr/ccs/bin/as: "/var/tmp/ccMsw135.s", line 11041: error: can't compute
 value of an expression involving an external symbol.
 </CODE></BLOCKQUOTE>
 <p>See the <a href="../faq.html#squangle">How to work around too long C++
@@ -572,7 +572,7 @@ the dynamic linker.  This problem (Sun bug 4210064) affects GCC 2.8
 and later, including all EGCS releases.  Sun formerly recommended
 107058-01 for all Solaris 7 users, but around 1999-09-01 it started to
 recommend it only for people who use Sun's compilers.</p>
-  
+
 <p>Here are some workarounds to this problem:
 <ul>
   <li>Do not install Sun patch 107058-01 until after Sun releases a
@@ -580,7 +580,7 @@ recommend it only for people who use Sun's compilers.</p>
   unless you must also use Sun's C compiler.  Unfortunately 107058-01
   is preinstalled on some new Solaris-based hosts, so you may have to
   back it out.</li>
-  
+
 <li>Copy the original, unpatched Solaris 7
   <code>/usr/ccs/bin/as</code> into
   <code>/usr/local/lib/gcc-lib/sparc-sun-solaris2.7/2.95.1/as</code>,
@@ -596,7 +596,7 @@ recommend it only for people who use Sun's compilers.</p>
   only a partial fix for bug 4210064, but Sun doesn't know whether the
   partial fix is adequate for GCC.  Revision -08 or later should fix
   the bug, but (as of 1999-10-06) it is still being tested.</li>
-</ul> 
+</ul>
 
 
 <hr>
@@ -636,7 +636,7 @@ from Sun's patch site.</p>
 <hr>
 <h3><a name="sparc-unknown-linux-gnulibc1">sparc-unknown-linux-gnulibc1</a></h3>
 
-<p>It has been reported that you might need 
+<p>It has been reported that you might need
 <a href="ftp://ftp.yggdrasil.com/private/hjl">binutils-2.8.1.0.23</a>
 for this platform, too.</p>
 
@@ -655,7 +655,7 @@ recognize (via <code>uname -a</code>) the system as
 <hr>
 <h3><a name="windows"></a>Microsoft Windows (32 bit)</h3>
 
-<p>A port of GCC 2.95.x is included with the 
+<p>A port of GCC 2.95.x is included with the
 <a href="http://www.cygwin.com/">Cygwin environment</a>.</p>
 
 <p>Current (as of early 2001) snapshots of GCC will build under Cygwin
@@ -668,7 +668,7 @@ without modification.</p>
 working on a generic OS/2 port with pgcc.  The current code code can be found
 at <a href="http://www.goof.com/pcg/os2/">http://www.goof.com/pcg/os2/</a>.</p>
 
-<p>An older copy of GCC 2.8.1 is included with the EMX tools available at 
+<p>An older copy of GCC 2.8.1 is included with the EMX tools available at
 <a href="ftp://ftp.leo.org/pub/comp/os/os2/leo/devtools/emx+gcc/">
 ftp://ftp.leo.org/pub/comp/os/os2/leo/devtools/emx+gcc/</a>.</p>
 

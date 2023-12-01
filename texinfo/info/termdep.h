@@ -33,9 +33,9 @@
 
 #ifdef HAVE_TERMIOS_H
 #  include <termios.h>
-/* 
+/*
  * POSIX does not mandate that we have these and it may, in fact, be only
- * partially implemented 
+ * partially implemented
  */
 #  undef TIOCGETC
 #else

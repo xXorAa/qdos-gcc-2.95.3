@@ -85,10 +85,10 @@ that is part of GNU Emacs.
 @end ifinfo
 
 @menu
-* What is Info::                
+* What is Info::
 * Options::                     Options you can pass on the command line.
 * Cursor Commands::             Commands which move the cursor within a node.
-* Scrolling Commands::          Commands for moving the node around 
+* Scrolling Commands::          Commands for moving the node around
                                   in a window.
 * Node Commands::               Commands for selecting a new node.
 * Searching Commands::          Commands for searching an Info file.
@@ -97,8 +97,8 @@ that is part of GNU Emacs.
 * Printing Nodes::              How to print out the contents of a node.
 * Miscellaneous Commands::      A few commands that defy categories.
 * Variables::                   How to change the default behavior of Info.
-* GNU Info Global Index::       Global index containing keystrokes, 
-                                  command names, variable names, 
+* GNU Info Global Index::       Global index containing keystrokes,
+                                  command names, variable names,
                                   and general concepts.
 @end menu
 
@@ -394,7 +394,7 @@ when you use the following commands:
 @item @code{n} (@code{next-node})
 @kindex n
 @findex next-node
-Select the `Next' node.  
+Select the `Next' node.
 
 @item @code{p} (@code{prev-node})
 @kindex p
@@ -757,7 +757,7 @@ of the subfile containing the node appears in the modeline as well:
 
 @example
 --zz-Info: (emacs)Top, 291 lines --Top-- Subfile: emacs-1.Z---------------
-@end example 
+@end example
 
 When Info makes a node internally, such that there is no corresponding
 info file on disk, the name of the node is surrounded by asterisks

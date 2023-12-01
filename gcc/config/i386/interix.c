@@ -27,8 +27,8 @@ Boston, MA 02111-1307, USA.  */
 #include "tree.h"
 #include "flags.h"
 
-/* Return string which is the former assembler name modified with a 
-   suffix consisting of an atsign (@) followed by the number of bytes of 
+/* Return string which is the former assembler name modified with a
+   suffix consisting of an atsign (@) followed by the number of bytes of
    arguments */
 
 char *
@@ -42,7 +42,7 @@ gen_stdcall_suffix (decl)
   char *newsym;
 
   if (TYPE_ARG_TYPES (TREE_TYPE (decl)))
-    if (TREE_VALUE (tree_last (TYPE_ARG_TYPES (TREE_TYPE (decl)))) 
+    if (TREE_VALUE (tree_last (TYPE_ARG_TYPES (TREE_TYPE (decl))))
         == void_type_node)
       {
 	tree formal_type = TYPE_ARG_TYPES (TREE_TYPE (decl));
@@ -65,9 +65,9 @@ gen_stdcall_suffix (decl)
   return IDENTIFIER_POINTER (get_identifier (newsym));
 }
 
-#if 0	
+#if 0
 /* Turn this back on when the linker is updated to handle grouped
-   .data$ sections correctly. See corresponding note in i386/interix.h. 
+   .data$ sections correctly. See corresponding note in i386/interix.h.
    MK. */
 
 /* Cover function for UNIQUE_SECTION.  */
@@ -87,7 +87,7 @@ i386_pe_unique_section (decl, reloc)
   /* The object is put in, for example, section .text$foo.
      The linker will then ultimately place them in .text
      (everything from the $ on is stripped). Don't put
-     read-only data in .rdata section to avoid a PE linker 
+     read-only data in .rdata section to avoid a PE linker
      bug when .rdata$* grouped sections are used in code
      without a .rdata section.  */
   if (TREE_CODE (decl) == FUNCTION_DECL)

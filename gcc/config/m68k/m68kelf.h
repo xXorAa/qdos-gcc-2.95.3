@@ -83,7 +83,7 @@ Boston, MA 02111-1307, USA.  */
 
 /* How to refer to registers in assembler output.
    This sequence is indexed by compiler's hard-register-number.
-   Motorola format uses different register names than defined 
+   Motorola format uses different register names than defined
    in m68k.h.  */
 
 #undef REGISTER_NAMES
@@ -166,7 +166,7 @@ Boston, MA 02111-1307, USA.  */
   fprintf (FILE, "\t%s %u\n", SPACE_ASM_OP, (SIZE))
 
 #if 0
-/* SVR4 m68k assembler is bitching on the `comm i,1,1' which askes for 
+/* SVR4 m68k assembler is bitching on the `comm i,1,1' which askes for
    1 byte alignment. Don't generate alignment for COMMON seems to be
    safer until we the assembler is fixed. */
 #undef ASM_OUTPUT_ALIGNED_COMMON
@@ -234,10 +234,10 @@ extern int switch_table_difference_label_flag;
 
 /* Currently, JUMP_TABLES_IN_TEXT_SECTION must be defined in order to
    keep switch tables in the text section. */
-   
+
 #define JUMP_TABLES_IN_TEXT_SECTION 1
 
-/* Override the definition in svr4.h. In m68k svr4, using swbeg is the 
+/* Override the definition in svr4.h. In m68k svr4, using swbeg is the
    standard way to do switch table. */
 #undef ASM_OUTPUT_BEFORE_CASE_LABEL
 #define ASM_OUTPUT_BEFORE_CASE_LABEL(FILE,PREFIX,NUM,TABLE)		\
@@ -251,7 +251,7 @@ extern int switch_table_difference_label_flag;
    || ((GET_CODE(X) == SYMBOL_REF) && SYMBOL_REF_FLAG(X)))
 
 /* Turn off function cse if we are doing PIC. We always want function call
-   to be done as `bsr foo@PLTPC', so it will force the assembler to create 
+   to be done as `bsr foo@PLTPC', so it will force the assembler to create
    the PLT entry for `foo'. Doing function cse will cause the address of `foo'
    to be loaded into a register, which is exactly what we want to avoid when
    we are doing PIC on svr4 m68k. */

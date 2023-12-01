@@ -1510,7 +1510,7 @@ demangle_template_value_parm (work, mangled, s, tk)
     {
       if (**mangled == 'Q')
 	success = demangle_qualified (work, mangled, s,
-				      /*isfuncname=*/0, 
+				      /*isfuncname=*/0,
 				      /*append=*/1);
       else
 	{
@@ -4396,7 +4396,7 @@ fancy_abort ()
 }
 
 
-/* Return the string of non-alnum characters that may occur 
+/* Return the string of non-alnum characters that may occur
    as a valid symbol component, in the standard assembler symbol
    syntax.  */
 

@@ -2,7 +2,7 @@
 
 # ----------default--------------------------------------------
 #  default VAR VALUE
-#          Check whether VAR exists and has a nonempty value; 
+#          Check whether VAR exists and has a nonempty value;
 #          if not, use VALUE as the default
 # -------------------------------------------------------------
 proc default {varname varval} {
@@ -13,13 +13,13 @@ proc default {varname varval} {
   } else {
     verbose "$varname retains existing value $outervar\n" 1
   }
-  return 
+  return
 }
 
 
 # ----------is_executable--------------------------------------
 #  is_executable NAME
-#          Boolean predicate: is NAME an executable file 
+#          Boolean predicate: is NAME an executable file
 #            somewhere on our PATH?
 # -------------------------------------------------------------
 proc is_executable {name} {

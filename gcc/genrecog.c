@@ -240,9 +240,9 @@ make_insn_sequence (insn, type)
 	last_real_name = name;
 	last_real_code = next_insn_code;
       }
-  
+
     insn_name_ptr[next_insn_code] = name;
-  }  
+  }
 
   if (XVECLEN (insn, type == RECOG) == 1)
     x = XVECEXP (insn, type == RECOG, 0);
@@ -545,7 +545,7 @@ add_to_sequence (pattern, last, position)
 	break;
 
       /* ... fall through ...  */
-      
+
     case COMPARE:
       /* Enforce the mode on the first operand to avoid ambiguous insns.  */
       newpos[depth] = '0';
@@ -554,7 +554,7 @@ add_to_sequence (pattern, last, position)
       newpos[depth] = '1';
       new = add_to_sequence (XEXP (pattern, 1), &new->success, newpos);
       return new;
-      
+
     default:
       break;
     }
@@ -804,7 +804,7 @@ merge_trees (oldh, addh)
       /* The semantics of pattern matching state that the tests are done in
 	 the order given in the MD file so that if an insn matches two
 	 patterns, the first one will be used.  However, in practice, most,
-	 if not all, patterns are unambiguous so that their order is 
+	 if not all, patterns are unambiguous so that their order is
 	 independent.  In that case, we can merge identical tests and
 	 group all similar modes and codes together.
 
@@ -815,7 +815,7 @@ merge_trees (oldh, addh)
 	 the same code and mode and the last one that tests just the same mode.
 
 	 If we have no match, place NEW after the closest match we found.  */
-	 
+
       for (old = oldh.last; old; old = old->prev)
 	{
 	  int our_merit;
@@ -1088,7 +1088,7 @@ static const char *indents[]
 
    We generate two nested switch statements, the outer statement for
    testing modes, and the inner switch for testing RTX codes.  It is
-   not worth optimizing cases when only a small number of modes or 
+   not worth optimizing cases when only a small number of modes or
    codes is tested, since the compiler can do that when compiling the
    resulting function.   We do check for when every test is the same mode
    or code.  */
@@ -1130,7 +1130,7 @@ write_tree_1 (tree, prevpos, afterward, type)
      done.  The exception is a branch from a node that does not test a
      mode or code to one that does.  In such cases, we set the `retest_mode'
      or `retest_code' flags.  That will ensure that we start a new switch
-     at that position and put the label before the switch. 
+     at that position and put the label before the switch.
 
      The branches in the latter case must set the position to that of the
      target node.  */

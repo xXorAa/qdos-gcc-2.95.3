@@ -231,7 +231,7 @@ Boston, MA 02111-1307, USA.  */
 
 /* This is how to output an assembler lines defining floating operands.
    There's no way to output a NaN's fraction, so we lose it.  */
-  
+
 #undef ASM_OUTPUT_FLOAT_OPERAND
 #define ASM_OUTPUT_FLOAT_OPERAND(CODE,FILE,VALUE)		\
  do { 								\

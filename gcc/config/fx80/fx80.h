@@ -271,7 +271,7 @@ extern int target_flags;
 #define FRAME_POINTER_REQUIRED 1
 
 /* Base register for access to arguments of the function.  */
-#define ARG_POINTER_REGNUM  8 
+#define ARG_POINTER_REGNUM  8
 
 /* Register in which static-chain is passed to a function.  */
 #define STATIC_CHAIN_REGNUM 10
@@ -435,7 +435,7 @@ extern enum reg_class regno_reg_class[];
    FUNDECL is the declaration node of the function (as a tree),
    FUNTYPE is the data type of the function (as a tree),
    or for a library call it is an identifier node for the subroutine name.
-   SIZE is the number of bytes of arguments passed on the stack. 
+   SIZE is the number of bytes of arguments passed on the stack.
 
    On the Alliant we define this as SIZE and make the calling sequence
    (in alliant.md) pop the args.  This wouldn't be necessary if we
@@ -1164,7 +1164,7 @@ do { int i; unsigned char *pp = (unsigned char *) (PTR);	\
   if ((LOG) == 1)			\
     fprintf (FILE, "\t.even\n");	\
   else if ((LOG) != 0)			\
-    fprintf (FILE, "\t.align %dn", (LOG));	
+    fprintf (FILE, "\t.align %dn", (LOG));
 
 #define ASM_OUTPUT_SKIP(FILE,SIZE)  \
   fprintf (FILE, "\t. = . + %u\n", (SIZE))

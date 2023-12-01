@@ -86,7 +86,7 @@ struct phdr {
 #define ARCDENSITY 2
 #define MINARCS 50
 #define BASEADDRESS 0x8000000 /* On Solaris 2 X86 all executables start here
-				 and not at 0 */ 
+				 and not at 0 */
 
 struct tostruct {
   char *selfpc;
@@ -399,7 +399,7 @@ moncontrol(mode)
       profil((unsigned short *)(sbuf + sizeof(struct phdr)),
 	     ssiz - sizeof(struct phdr),
 	     (int)s_lowpc, s_scale);
-      
+
       profiling = 0;
     } else {
       /* stop */

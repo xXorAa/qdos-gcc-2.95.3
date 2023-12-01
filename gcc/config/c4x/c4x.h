@@ -552,8 +552,8 @@ extern void c4x_optimization_options ();
    registers that can be used without being saved.
    The latter must include the registers where values are returned
    and the register where structure-value addresses are passed.
-   Aside from that, you can include as many other registers as you like.  
-   
+   Aside from that, you can include as many other registers as you like.
+
    Note that the extended precision registers are only saved in some
    modes.  The macro HARD_REGNO_CALL_CLOBBERED specifies which modes
    get clobbered for a given regno.  */
@@ -684,7 +684,7 @@ int c4x_hard_regno_mode_ok ();
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 enum reg_class
   {
     NO_REGS,
@@ -781,7 +781,7 @@ enum reg_class
 
 /*
   Register constraints for the C4x
- 
+
   a - address reg (ar0-ar7)
   b - stack reg (sp)
   c - other gp int-only reg
@@ -795,7 +795,7 @@ enum reg_class
   v - repeat count (rc)
   x - index register (ir0-ir1)
   y - status register (st)
-  z - dp reg (dp) 
+  z - dp reg (dp)
 
   Memory/constant constraints for the C4x
 
@@ -895,7 +895,7 @@ c4x_secondary_memory_needed(CLASS1, CLASS2, MODE)
 	: ((C) == 'M') ? (! TARGET_C3X && IS_UINT8_CONST (VAL))		\
 	: ((C) == 'N') ? (IS_NOT_UINT16_CONST (VAL))		        \
 	: ((C) == 'O') ? (IS_HIGH_CONST (VAL))			        \
-        : 0 )	
+        : 0 )
 
 #define CONST_DOUBLE_OK_FOR_LETTER_P(OP, C) 				\
         ( ((C) == 'G') ? (fp_zero_operand (OP))				\
@@ -951,24 +951,24 @@ c4x_secondary_memory_needed(CLASS1, CLASS2, MODE)
        I-------------I
    5   I saved reg1  I  <= SP points here
        I-------------I
-   4   I saved reg0  I  
+   4   I saved reg0  I
        I-------------I
-   3   I       loc2  I  
-       I-------------I  
-   2   I       loc1  I  
-       I-------------I  
-   1   I       loc0  I  
+   3   I       loc2  I
+       I-------------I
+   2   I       loc1  I
+       I-------------I
+   1   I       loc0  I
        I-------------I
    0   I     old FP  I <= FP (AR3) points here
        I-------------I
    -1  I  return PC  I
        I-------------I
-   -2  I       arg0  I  
-       I-------------I  
+   -2  I       arg0  I
+       I-------------I
    -3  I       arg1  I
-       I-------------I  
-   -4  I       arg2  I 
-       I-------------I  
+       I-------------I
+   -4  I       arg2  I
+       I-------------I
 
    All local variables (locn) are accessible by means of +FP(n+1)
    addressing, where n is the local variable number.
@@ -1013,7 +1013,7 @@ c4x_secondary_memory_needed(CLASS1, CLASS2, MODE)
 #define C4X_LOC0 1
 
 /* Basic Stack Layout  */
-     
+
 /* The stack grows upward, stack frame grows upward, and args grow
    downward.  */
 
@@ -1204,7 +1204,7 @@ extern struct rtx_def *c4x_function_arg();
 
    profile_block_flag == 2, -ax option used.
 
-      Generate code to allow several different profiling modes at run time. 
+      Generate code to allow several different profiling modes at run time.
       Available modes are:
              Produce a trace of all basic blocks.
              Count frequency of jump instructions executed.
@@ -1501,7 +1501,7 @@ extern struct rtx_def *c4x_function_arg();
    While the actual result is less than zero, the N flag is not set
    since the ideal result of the addition without truncation would
    have been positive.
-   
+
    Note that the while the N flag is handled differently to most other
    architectures, the use of it is self consistent and is not the
    cause of the problem.
@@ -1526,13 +1526,13 @@ extern struct rtx_def *c4x_function_arg();
    conditional load or branch instructions that make use of this
    feature (e.g., BMI---branch minus) instruction.  Note that BN and
    BLT are identical in the C4x.
-   
+
    To handle the problem where the N flag is set differently whenever
    there is an overflow we use a different CC mode, CC_NOOVmode which
    says that the CC reflects the comparison of the result against zero
    if no overflow occured.
 
-   For example, 
+   For example,
 
    [(set (reg:CC_NOOV 21)
          (compare:CC_NOOV (minus:QI (match_operand:QI 1 "src_operand" "")
@@ -1594,7 +1594,7 @@ extern struct rtx_def *c4x_gen_compare_reg ();
 /* The number of insns that can be packed into a single opcode.  */
 #define MULTIPACK_INSNS 2
 
-/* Recognize any constant value that is a valid address. 
+/* Recognize any constant value that is a valid address.
    We could allow arbitrary constant addresses in the large memory
    model but for the small memory model we can only accept addresses
    within the data page.  I suppose we could also allow
@@ -1694,7 +1694,7 @@ extern struct rtx_def *c4x_legitimize_reload_address ();
 
 
 /* Nonzero if the constant value X is a legitimate general operand.
-   It is given that X satisfies CONSTANT_P or is a CONST_DOUBLE. 
+   It is given that X satisfies CONSTANT_P or is a CONST_DOUBLE.
 
    The C4x can only load 16-bit immediate values, so we only allow a
    restricted subset of CONST_INT and CONST_DOUBLE.  Disallow
@@ -1739,14 +1739,14 @@ extern void c4x_encode_section_info ();
 /* Descripting Relative Cost of Operations  */
 
 /* Provide the costs of a rtl expression.  This is in the body of a
-   switch on CODE. 
+   switch on CODE.
 
    Note that we return, rather than break so that rtx_cost doesn't
    include CONST_COSTS otherwise expand_mult will think that it is
    cheaper to synthesise a multiply rather than to use a multiply
    instruction.  I think this is because the algorithm synth_mult
    doesn't take into account the loading of the operands, whereas the
-   calculation of mult_cost does. 
+   calculation of mult_cost does.
 */
 
 
@@ -1781,11 +1781,11 @@ extern void c4x_encode_section_info ();
    Some small integers are effectively free for the C40.  We should
    also consider if we are using the small memory model.  With
    the big memory model we require an extra insn for a constant
-   loaded from memory.  
+   loaded from memory.
 
    This is used by expand_binop to decide whether to force a constant
    into a register.  If the cost is greater than 2 and the constant
-   is used within a short loop, it gets forced into a register.  
+   is used within a short loop, it gets forced into a register.
    Ideally, there should be some weighting as to how mnay times it is used
    within the loop.  */
 
@@ -1833,7 +1833,7 @@ extern void c4x_encode_section_info ();
    is usually the case for CISC machines, this macro should not be defined.
    For aggressively RISCy machines, only one insn format is allowed, so
    this macro should be a constant.  The value of this macro only matters
-   for valid addresses.  We handle the most common address without 
+   for valid addresses.  We handle the most common address without
    a call to c4x_address_cost.  */
 
 extern int c4x_address_cost ();
@@ -1980,7 +1980,7 @@ const_section ()							\
 
 #define ASM_STABS_OP "\t.stabs"
 
-/* The ctors and dtors sections are not normally put into use 
+/* The ctors and dtors sections are not normally put into use
    by EXTRA_SECTIONS and EXTRA_SECTION_FUNCTIONS as defined in svr3.h,
    but it can't hurt to define these macros for whatever systems use them.  */
 
@@ -2125,7 +2125,7 @@ dtors_section ()							\
       fprintf (FILE, "\t.word\t0%08lxh\t; %s\n", l, str);\
 }
 
-/* Output long double constants  HFmode. 
+/* Output long double constants  HFmode.
    The first word contains the exponent and first part of the mantissa
    in the same manner as QFmode.  The second word contains the full
    mantissa.  We should ensure that the two words are allocated within
@@ -2461,7 +2461,7 @@ do { fprintf (asm_out_file, "\t.sdef\t");		\
    lsh  16,ar0
    or   BOTTOM_OF_STATIC,ar0
    or   1000h,st
-   
+
   */
 
 #define TRAMPOLINE_SIZE (TARGET_C3X ? 8 : 10)
@@ -2634,7 +2634,7 @@ if (final_sequence != NULL_RTX)		\
   {"par_ind_operand", {MEM}},					\
   {"parallel_operand", {SUBREG, REG, MEM}},			\
   {"symbolic_address_operand", {SYMBOL_REF, LABEL_REF, CONST}},	\
-  {"mem_operand", {MEM}},					
+  {"mem_operand", {MEM}},
 
 
 /* Variables in c4x.c */

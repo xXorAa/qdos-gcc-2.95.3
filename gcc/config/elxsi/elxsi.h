@@ -217,7 +217,7 @@ extern int target_flags;
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 /* The vax has only one kind of registers, so NO_REGS and ALL_REGS
    are the only classes.  */
 
@@ -316,7 +316,7 @@ enum reg_class { NO_REGS, GENERAL_REGS, ALL_REGS, LIM_REG_CLASSES };
    If the precise function being called is known, FUNC is its FUNCTION_DECL;
    otherwise, FUNC is 0.  */
 
-/* On the Vax the return value is in R0 regardless.  */   
+/* On the Vax the return value is in R0 regardless.  */
 
 #define FUNCTION_VALUE(VALTYPE, FUNC)  \
   gen_rtx (REG, TYPE_MODE (VALTYPE), 0)
@@ -324,7 +324,7 @@ enum reg_class { NO_REGS, GENERAL_REGS, ALL_REGS, LIM_REG_CLASSES };
 /* Define how to find the value returned by a library function
    assuming the value has mode MODE.  */
 
-/* On the Vax the return value is in R0 regardless.  */   
+/* On the Vax the return value is in R0 regardless.  */
 
 #define LIBCALL_VALUE(MODE)  gen_rtx (REG, MODE, 0)
 
@@ -385,7 +385,7 @@ enum reg_class { NO_REGS, GENERAL_REGS, ALL_REGS, LIM_REG_CLASSES };
    NAMED is nonzero if this argument is a named parameter
     (otherwise it is an extra parameter matching an ellipsis).  */
 
-/* On the vax all args are pushed.  */   
+/* On the vax all args are pushed.  */
 
 #define FUNCTION_ARG(CUM, MODE, TYPE, NAMED) 0
 

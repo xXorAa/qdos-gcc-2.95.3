@@ -54,7 +54,7 @@ skip_to_closing_brace (pfile)
 
 /* This function scans a C source file (actually, the output of cpp),
    reading from FP.  It looks for function declarations, and
-   external variable declarations.  
+   external variable declarations.
 
    The following grammar (as well as some extra stuff) is recognized:
 
@@ -238,7 +238,7 @@ scan_decls (pfile, argc, argv)
 
 	case CPP_LBRACE:  case CPP_RBRACE:  case CPP_DIRECTIVE:
 	  goto new_statement;  /* handle_statement? */
-	  
+
 	case CPP_HSPACE:  case CPP_VSPACE:  case CPP_COMMENT:  case CPP_POP:
 	  /* Skip initial white space.  */
 	  if (start_written == 0)

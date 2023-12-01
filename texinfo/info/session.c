@@ -291,7 +291,7 @@ initialize_info_session (node, clear_screen)
      standard input. */
   if (!info_input_stream)
     {
-      setbuf(stdin, NULL); 
+      setbuf(stdin, NULL);
       info_input_stream = stdin;
     }
 
@@ -2151,7 +2151,7 @@ DECLARE_INFO_COMMAND (info_goto_node, _("Read a node name and select it"))
 
                 add_pointer_to_array
                   (entry, items_index, items, items_slots, 100, REFERENCE *);
-              }         
+              }
 
             if (this_is_the_current_fb)
               {
@@ -2288,7 +2288,7 @@ kill_node (window, nodename)
   int iw, i;
   INFO_WINDOW *info_win;
   NODE *temp;
-  
+
   /* If there is no nodename to kill, quit now. */
   if (!nodename)
     {
@@ -2359,7 +2359,7 @@ kill_node (window, nodename)
       /* Copy this node. */
       {
         NODE *copy = xmalloc (sizeof (NODE));
-        
+
         temp = stealer->nodes[which];
         point = stealer->points[which];
         pagetop = stealer->pagetops[which];

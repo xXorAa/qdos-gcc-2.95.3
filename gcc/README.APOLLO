@@ -10,7 +10,7 @@ install gas (under the name as).  This should go through without any
 problems.
 
 After switching into the BSD environment, you can configure GCC 2.0
-with the command 
+with the command
 
 % ./configure m68k-apollo-bsd
 
@@ -75,8 +75,8 @@ patch -b -apollo <<'EOP'
 *** 24,30 ****
 --- 24,39 ----
   #endif
-  
-  
+
+
 + #ifdef __GNUC__
   #ifdef _PROTOTYPES
 + extern int sigsetjmp (sigjmp_buf env, int savemask);
@@ -95,9 +95,9 @@ patch -b -apollo <<'EOP'
   extern int sigsetjmp() #options(abnormal);
   extern void siglongjmp() #options(noreturn);
   #endif /* _PROTOTYPES */
-! 
+!
   #undef _PROTOTYPES
-  
+
   #ifdef __cplusplus
 --- 46,52 ----
   extern int sigsetjmp() #options(abnormal);
@@ -105,7 +105,7 @@ patch -b -apollo <<'EOP'
   #endif /* _PROTOTYPES */
 ! #endif /* not __GNUC__ */
   #undef _PROTOTYPES
-  
+
   #ifdef __cplusplus
 EOP
 

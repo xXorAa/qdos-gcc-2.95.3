@@ -657,7 +657,7 @@ For more information about these matters, see the files named COPYING.\n"),
       infile_basename++;
     else
       infile_basename = infile;
-    
+
     basename_len = strlen (infile_basename);
     infile_sans_info
       = (strlen (infile_basename) > 5
@@ -667,7 +667,7 @@ For more information about these matters, see the files named COPYING.\n"),
 
     infilelen_sans_info = strlen (infile_sans_info);
   }
-  
+
   /* Parse the dir file.  Find all the nodes, and their menus,
      and the sections of their menus.  */
 
@@ -1098,7 +1098,7 @@ menu_line_lessp (line1, len1, line2, len2)
 {
   int minlen = (len1 < len2 ? len1 : len2);
   int i;
-  
+
   for (i = 0; i < minlen; i++)
     {
       /* If one item name is a prefix of the other,
@@ -1131,7 +1131,7 @@ menu_line_equal (line1, len1, line2, len2)
 {
   int minlen = (len1 < len2 ? len1 : len2);
   int i;
-  
+
   for (i = 0; i < minlen; i++)
     {
       /* If both item names end here, they are equal.  */

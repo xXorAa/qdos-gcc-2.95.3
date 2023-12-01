@@ -1,4 +1,4 @@
-/* Definitions of MIPS sub target machine for GNU compiler. 
+/* Definitions of MIPS sub target machine for GNU compiler.
    Toshiba r3900.  You should include mips.h after this.
 
    Copyright (C) 1989, 90-6, 1997 Free Software Foundation, Inc.
@@ -57,9 +57,9 @@ Boston, MA 02111-1307, USA.  */
 #define DWARF2_DEBUGGING_INFO
 #define PREFERRED_DEBUGGING_TYPE DWARF2_DEBUG
 
-/* For the 'preferred' cases ("gN" and "ggdbN") we need to tell the 
+/* For the 'preferred' cases ("gN" and "ggdbN") we need to tell the
    gnu assembler not to generate debugging information. */
-   
+
 #define SUBTARGET_ASM_DEBUGGING_SPEC "\
 %{!mmips-as: \
   %{g:-g0} %{g0:-g0} %{g1:-g0} %{g2:-g0} %{g3:-g0} \

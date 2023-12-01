@@ -129,7 +129,7 @@ extern int target_flags;
 #define STACK_BOUNDARY 64
 
 /* Define this macro if it is advisable to hold scalars in registers
-   in a wider mode than that declared by the program.  In such cases, 
+   in a wider mode than that declared by the program.  In such cases,
    the value is constrained to be within the bounds of the declared
    type, but kept valid in the wider mode.  The signedness of the
    extension may differ from that of the type.
@@ -266,7 +266,7 @@ extern int target_flags;
 
    For any two classes, it is very desirable that there be another
    class that represents their union.  */
-   
+
 /* The clipper has general and FP regs.  */
 
 enum reg_class { NO_REGS, GENERAL_REGS, FLOAT_REGS, ALL_REGS, LIM_REG_CLASSES};
@@ -371,7 +371,7 @@ enum reg_class { NO_REGS, GENERAL_REGS, FLOAT_REGS, ALL_REGS, LIM_REG_CLASSES};
    only 2 args in regs. */
 
 /* #define ACCUMULATE_OUTGOING_ARGS */
-  
+
 
 /* Offset of first parameter from the argument pointer register value.
    size of PC + FP  */

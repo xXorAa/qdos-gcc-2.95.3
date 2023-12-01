@@ -4,7 +4,7 @@
    Contributed by Pieter `Tiggr' Schoenmakers (rcpieter@win.tue.nl)
    and Martin Simmons (@harleqn.co.uk).
    More major hacks by Richard Earnshaw (rwe11@cl.cam.ac.uk)
-   
+
 This file is part of GNU CC.
 
 GNU CC is free software; you can redistribute it and/or modify
@@ -306,7 +306,7 @@ extern const char * target_fp_name;
 /* Nonzero if we need to protect the prolog from scheduling */
 #define ARM_FLAG_NO_SCHED_PRO	(0x4000)
 
-/* Nonzero if a call to abort should be generated if a noreturn 
+/* Nonzero if a call to abort should be generated if a noreturn
 function tries to return. */
 #define ARM_FLAG_ABORT_NORETURN (0x8000)
 
@@ -488,13 +488,13 @@ extern int arm_is_6_or_7;
 /* Nonzero if we need to refer to the GOT with a PC-relative
    offset.  In other words, generate
 
-   .word	_GLOBAL_OFFSET_TABLE_ - [. - (.Lxx + 8)]  
+   .word	_GLOBAL_OFFSET_TABLE_ - [. - (.Lxx + 8)]
 
    rather than
 
    .word	_GLOBAL_OFFSET_TABLE_ - (.Lxx + 8)
 
-   The default is true, which matches NetBSD.  Subtargets can 
+   The default is true, which matches NetBSD.  Subtargets can
    override this if required.  */
 #ifndef GOT_PCREL
 #define GOT_PCREL   1
@@ -554,7 +554,7 @@ extern int arm_is_6_or_7;
    in instructions that operate on numbered bit-fields.  */
 #define BITS_BIG_ENDIAN  0
 
-/* Define this if most significant byte of a word is the lowest numbered.  
+/* Define this if most significant byte of a word is the lowest numbered.
    Most ARM processors are run in little endian mode, so that is the default.
    If you want to have it run-time selectable, change the definition in a
    cover file to be TARGET_BIG_ENDIAN.  */
@@ -629,7 +629,7 @@ extern const char * structure_size_string;
 
 	r4-r8	     S	register variable
 	r9	     S	(rfp) register variable (real frame pointer)
-	
+
 	r10  	   F S	(sl) stack limit (used by -mapcs-stack-check)
 	r11 	   F S	(fp) argument pointer
 	r12		(ip) temp workspace
@@ -696,7 +696,7 @@ extern const char * structure_size_string;
    The latter must include the registers where values are returned
    and the register where structure-value addresses are passed.
    Aside from that, you can include as many other registers as you like.
-   The CC is not preserved over function calls on the ARM 6, so it is 
+   The CC is not preserved over function calls on the ARM 6, so it is
    easier to assume this for all.  SFP is preserved, since FP is. */
 #define CALL_USED_REGISTERS  \
 {                            \
@@ -785,7 +785,7 @@ extern const char * structure_size_string;
 
 /* Value should be nonzero if functions must have frame pointers.
    Zero means the frame pointer need not be set up (and parms may be accessed
-   via the stack pointer) in functions that seem suitable.  
+   via the stack pointer) in functions that seem suitable.
    If we have to have a frame pointer we might as well make use of it.
    APCS says that the frame pointer does not need to be pushed in leaf
    functions, or simple tail call functions.  */
@@ -810,7 +810,7 @@ extern const char * structure_size_string;
 /* The order in which register should be allocated.  It is good to use ip
    since no saving is required (though calls clobber it) and it never contains
    function parameters.  It is quite good to use lr since other calls may
-   clobber it anyway.  Allocate r0 through r3 in reverse order since r3 is 
+   clobber it anyway.  Allocate r0 through r3 in reverse order since r3 is
    least likely to contain a function parameter; in addition results are
    returned in r0.
    */
@@ -881,9 +881,9 @@ enum reg_class
    C is the letter, and VALUE is a constant value.
    Return 1 if VALUE is in the range specified by C.
 	I: immediate arithmetic operand (i.e. 8 bits shifted as required).
-	J: valid indexing constants.  
+	J: valid indexing constants.
 	K: ~value ok in rhs argument of data operand.
-	L: -value ok in rhs argument of data operand. 
+	L: -value ok in rhs argument of data operand.
         M: 0..32, or a power of 2  (for shifts, or mult done by shift).  */
 #define CONST_OK_FOR_LETTER_P(VALUE, C)  		\
   ((C) == 'I' ? const_ok_for_arm (VALUE) :		\
@@ -895,7 +895,7 @@ enum reg_class
    : 0)
 
 /* For the ARM, `Q' means that this is a memory operand that is just
-   an offset from a register.  
+   an offset from a register.
    `S' means any symbol that has the SYMBOL_REF_FLAG set or a CONSTANT_POOL
    address.  This means that the symbol is in the text segment and can be
    accessed without using a load. */
@@ -908,7 +908,7 @@ enum reg_class
    : (C) == 'S' ? (optimize > 0 && CONSTANT_ADDRESS_P (OP))		    \
    : 0)
 
-/* Constant letter 'G' for the FPU immediate constants. 
+/* Constant letter 'G' for the FPU immediate constants.
    'H' means the same constant negated.  */
 #define CONST_DOUBLE_OK_FOR_LETTER_P(X,C)			\
     ((C) == 'G' ? const_double_rtx_ok_for_fpu (X) 		\
@@ -1790,8 +1790,8 @@ extern struct rtx_def *legitimize_pic_address ();
 			   || GET_RTX_CLASS (GET_CODE (XEXP (X, 1))) == 'c') \
 			  ? 1 : 0))					     \
 		: 4)))))
-	 
-   
+
+
 
 /* Try to generate sequences that don't involve branches, we can then use
    conditional instructions */
@@ -1820,7 +1820,7 @@ extern int arm_pic_register;
 	(! symbol_mentioned_p (X)				\
 	 && (! CONSTANT_POOL_ADDRESS_P (X)			\
 	     || ! symbol_mentioned_p (get_pool_constant (X))))
- 
+
 /* We need to know when we are making a constant pool; this determines
    whether data needs to be in the GOT or can be referenced via a GOT
    offset.  */
@@ -1829,7 +1829,7 @@ extern int making_const_table;
 
 /* Condition code information. */
 /* Given a comparison code (EQ, NE, etc.) and the first operand of a COMPARE,
-   return the mode to be used for the comparison. 
+   return the mode to be used for the comparison.
    CCFPEmode should be used with floating inequalities,
    CCFPmode should be used with floating equalities.
    CC_NOOVmode should be used with SImode integer equalities.
@@ -2120,7 +2120,7 @@ do {									\
      when running in 32 bit mode.  */					\
   ((!TARGET_APCS_32) ? (GEN_INT (0x03fffffc)) : (GEN_INT (0xffffffff)))
 
-/* The remainder of this file is only needed for building the compiler 
+/* The remainder of this file is only needed for building the compiler
    itself, not for the collateral.  */
 #ifdef HAVE_CONFIG_H
 

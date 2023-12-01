@@ -1,6 +1,6 @@
-@c 
+@c
 @c Reusme writing macros.  Produce a very specific format.
-@c 
+@c
 
 @c A macro which creates a macro.  The resultant macro can be called to
 @c set a variable which has the same name as the macro.  Use

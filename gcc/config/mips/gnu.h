@@ -107,7 +107,7 @@ Boston, MA 02111-1307, USA.  */
 %{call_shared} %{no_archive} %{exact_version} \
 %{!shared: %{!non_shared: %{!call_shared: -non_shared}}} \
 -systype /gnu/ "
-		    
+
 #undef LIB_SPEC
 #define LIB_SPEC "%{p:-lprof1} %{pg:-lprof1} -lc crtn.o%s"
 

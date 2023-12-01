@@ -140,7 +140,7 @@ REAL_VALUE_TYPE dconstm1;
 
    When to use frame_pointer_rtx and hard_frame_pointer_rtx is a little
    tricky: until register elimination has taken place hard_frame_pointer_rtx
-   should be used if it is being set, and frame_pointer_rtx otherwise.  After 
+   should be used if it is being set, and frame_pointer_rtx otherwise.  After
    register elimination hard_frame_pointer_rtx should always be used.
    On machines where the two registers are same (most) then these are the
    same.
@@ -166,7 +166,7 @@ struct rtx_def const_int_rtx[MAX_SAVED_CONST_INT * 2 + 1];
 
 /* The ends of the doubly-linked chain of rtl for the current function.
    Both are reset to null at the start of rtl generation for the function.
-   
+
    start_sequence saves both of these on `sequence_stack' along with
    `sequence_rtl_expr' and then starts a new, nested sequence of insns.  */
 
@@ -674,7 +674,7 @@ get_first_label_num ()
 
 /* Return a value representing some low-order bits of X, where the number
    of low-order bits is given by MODE.  Note that no conversion is done
-   between floating-point and fixed-point values, rather, the bit 
+   between floating-point and fixed-point values, rather, the bit
    representation is returned.
 
    This function handles the cases in common between gen_lowpart, below,
@@ -744,7 +744,7 @@ gen_lowpart_common (mode, x)
 		- HARD_REGNO_NREGS (REGNO (x), mode));
 
       /* If the register is not valid for MODE, return 0.  If we don't
-	 do this, there is no way to fix up the resulting REG later.  
+	 do this, there is no way to fix up the resulting REG later.
 	 But we do do this if the current REG is not valid for its
 	 mode.  This latter is a kludge, but is required due to the
 	 way that parameters are passed on some machines, most
@@ -816,7 +816,7 @@ gen_lowpart_common (mode, x)
   /* If X is an integral constant but we want it in floating-point, it
      must be the case that we have a union of an integer and a floating-point
      value.  If the machine-parameters allow it, simulate that union here
-     and return the result.  The two-word and single-word cases are 
+     and return the result.  The two-word and single-word cases are
      different.  */
 
   else if (((HOST_FLOAT_FORMAT == TARGET_FLOAT_FORMAT
@@ -1069,7 +1069,7 @@ gen_lowpart (mode, x)
     abort ();
 }
 
-/* Like `gen_lowpart', but refer to the most significant part. 
+/* Like `gen_lowpart', but refer to the most significant part.
    This is used to access the imaginary part of a complex number.  */
 
 rtx
@@ -1468,10 +1468,10 @@ operand_subword (op, i, validate_address, mode)
       return GEN_INT (u.i);
     }
 #endif /* no REAL_ARITHMETIC */
-      
+
   /* The only remaining cases that we can handle are integers.
      Convert to proper endianness now since these cases need it.
-     At this point, i == 0 means the low-order word.  
+     At this point, i == 0 means the low-order word.
 
      We do not want to handle the case when BITS_PER_WORD <= HOST_BITS_PER_INT
      in general.  However, if OP is (const_int 0), we can just return
@@ -1527,7 +1527,7 @@ operand_subword (op, i, validate_address, mode)
    the required subword, put OP into a register and try again.  If that fails,
    abort.  We always validate the address in this case.  It is not valid
    to call this function after reload; it is mostly meant for RTL
-   generation. 
+   generation.
 
    MODE is the mode of OP, in case it is CONST_INT.  */
 
@@ -1620,7 +1620,7 @@ change_address (memref, mode, addr)
     }
   else
     addr = memory_address (mode, addr);
-	
+
   if (rtx_equal_p (addr, XEXP (memref, 0)) && mode == GET_MODE (memref))
     return memref;
 
@@ -1771,7 +1771,7 @@ restore_emit_status (p)
   free_insn = 0;
 }
 
-/* Go through all the RTL insn bodies and copy any invalid shared 
+/* Go through all the RTL insn bodies and copy any invalid shared
    structure.  This routine should only be called once.  */
 
 void
@@ -1793,7 +1793,7 @@ unshare_all_rtl (fndecl, insn)
 
   /* Unshare just about everything else.  */
   unshare_all_rtl_1 (insn);
-  
+
   /* Make sure the addresses of stack slots found outside the insn chain
      (such as, in DECL_RTL of a variable) are not shared
      with the insn chain.
@@ -1804,7 +1804,7 @@ unshare_all_rtl (fndecl, insn)
   stack_slot_list = copy_rtx_if_shared (stack_slot_list);
 }
 
-/* Go through all the RTL insn bodies and copy any invalid shared 
+/* Go through all the RTL insn bodies and copy any invalid shared
    structure, again.  This is a fairly expensive thing to do so it
    should be done sparingly.  */
 
@@ -1927,7 +1927,7 @@ copy_rtx_if_shared (orig)
     case MEM:
       /* A MEM is allowed to be shared if its address is constant.
 
-	 We used to allow sharing of MEMs which referenced 
+	 We used to allow sharing of MEMs which referenced
 	 virtual_stack_vars_rtx or virtual_incoming_args_rtx, but
 	 that can lose.  instantiate_virtual_regs will not unshare
 	 the MEMs, and combine may change the structure of the address
@@ -2029,7 +2029,7 @@ reset_used_flags (x)
     case BARRIER:
       /* The chain of insns is not being copied.  */
       return;
-      
+
     default:
       break;
     }
@@ -2431,10 +2431,10 @@ try_split (pat, trial, last)
 	{
 	  int i;
 
-	  /* Avoid infinite loop if any insn of the result matches 
+	  /* Avoid infinite loop if any insn of the result matches
 	     the original pattern.  */
 	  for (i = 0; i < XVECLEN (seq, 0); i++)
-  	    if (GET_CODE (XVECEXP (seq, 0, i)) == INSN 
+  	    if (GET_CODE (XVECEXP (seq, 0, i)) == INSN
 		&& rtx_equal_p (PATTERN (XVECEXP (seq, 0, i)), pat))
   	      return trial;
 
@@ -3338,7 +3338,7 @@ force_next_line_note ()
 /* Place a note of KIND on insn INSN with DATUM as the datum. If a
    note of this type already exists, remove it first. */
 
-void 
+void
 set_unique_reg_note (insn, kind, datum)
      rtx insn;
      enum reg_note kind;
@@ -3347,7 +3347,7 @@ set_unique_reg_note (insn, kind, datum)
   rtx note = find_reg_note (insn, kind, NULL_RTX);
 
   /* First remove the note if there already is one.  */
-  if (note) 
+  if (note)
     remove_note (insn, note);
 
   REG_NOTES (insn) = gen_rtx_EXPR_LIST (kind, datum, REG_NOTES (insn));
@@ -3520,7 +3520,7 @@ pop_topmost_sequence ()
 /* After emitting to a sequence, restore previous saved state.
 
    To get the contents of the sequence just made, you must call
-   `gen_sequence' *before* calling here.  
+   `gen_sequence' *before* calling here.
 
    If the compiler might have deferred popping arguments while
    generating this sequence, and this sequence will not be immediately
@@ -3648,7 +3648,7 @@ init_emit ()
 
   regno_pointer_flag_length = LAST_VIRTUAL_REGISTER + 101;
 
-  regno_pointer_flag 
+  regno_pointer_flag
     = (char *) savealloc (regno_pointer_flag_length);
   bzero (regno_pointer_flag, regno_pointer_flag_length);
 
@@ -3656,7 +3656,7 @@ init_emit ()
     = (char *) savealloc (regno_pointer_flag_length);
   bzero (regno_pointer_align, regno_pointer_flag_length);
 
-  regno_reg_rtx 
+  regno_reg_rtx
     = (rtx *) savealloc (regno_pointer_flag_length * sizeof (rtx));
   bzero ((char *) regno_reg_rtx, regno_pointer_flag_length * sizeof (rtx));
 

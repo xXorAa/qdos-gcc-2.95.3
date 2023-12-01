@@ -24,7 +24,7 @@ Boston, MA 02111-1307, USA.  */
 #define TARGET_VERSION	fputs (" (ARM/ELF non-Linux)", stderr);
 #endif
 
-/* If you don't define HAVE_ATEXIT, and the object file format/OS/whatever 
+/* If you don't define HAVE_ATEXIT, and the object file format/OS/whatever
    does not support constructors/destructors, then gcc implements destructors
    by defining its own exit function, which calls the destructors.  This gcc
    exit function overrides the C library's exit function, and this can cause
@@ -63,7 +63,7 @@ Boston, MA 02111-1307, USA.  */
 
 /* A list of extra section function definitions.  */
 #define SUBTARGET_EXTRA_SECTION_FUNCTIONS	RDATA_SECTION_FUNCTION
-  
+
 #define RDATA_SECTION_ASM_OP	"\t.section .rodata"
 
 #define RDATA_SECTION_FUNCTION 					\
@@ -108,7 +108,7 @@ do {								\
 } while (0)
 
 /* Don't know how to order these.  UNALIGNED_WORD_ASM_OP is in
-   dwarf2.out. */ 
+   dwarf2.out. */
 #define UNALIGNED_WORD_ASM_OP ".4byte"
 
 #define ASM_OUTPUT_DWARF2_ADDR_CONST(FILE,ADDR)                  \
@@ -162,10 +162,10 @@ do {								\
 #ifndef CPP_APCS_PC_DEFAULT_SPEC
 #define CPP_APCS_PC_DEFAULT_SPEC	"-D__APCS_32__"
 #endif
-     
+
 #ifndef SUBTARGET_CPU_DEFAULT
 #define SUBTARGET_CPU_DEFAULT 		TARGET_CPU_arm7tdmi
 #endif
-     
+
 /* Now get the routine arm-elf definitions.  */
 #include "arm/elf.h"

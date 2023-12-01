@@ -34,7 +34,7 @@ Boston, MA 02111-1307, USA.  */
 static rtx find_addr_reg ();
 
 char *
-output_compare (operands, opcode, exchange_opcode, 
+output_compare (operands, opcode, exchange_opcode,
 		neg_opcode, neg_exchange_opcode)
      rtx *operands;
      char *opcode;
@@ -59,7 +59,7 @@ output_compare (operands, opcode, exchange_opcode,
     sprintf (buf,
 	     "cmp_br_delayed %s,%%0,%%1,1f\n\tnop\n\tjump %%l2\n\tnop\n1:",
 	     neg_opcode);
-  else 
+  else
     sprintf (buf, "cmp_br_delayed %s,%%0,%%1,%%l2\n\tnop", opcode);
   return buf;
 }
@@ -291,9 +291,9 @@ output_add_large_offset (target, reg, offset)
   rtx operands[3];
   int high, n, i;
   operands[0] = target, operands[1] = reg;
-    
-  for (high = offset, n = 0; 
-       (unsigned) (high + 0x2000) >= 0x4000; 
+
+  for (high = offset, n = 0;
+       (unsigned) (high + 0x2000) >= 0x4000;
        high >>= 1, n += 1)
     ;
   operands[2] = GEN_INT (high);
@@ -301,7 +301,7 @@ output_add_large_offset (target, reg, offset)
   i = n;
   while (i >= 3)
     output_asm_insn ("sll r2,r2,$3", operands), i -= 3;
-  if (i == 2) 
+  if (i == 2)
     output_asm_insn ("sll r2,r2,$2", operands);
   else if (i == 1)
     output_asm_insn ("sll r2,r2,$1", operands);

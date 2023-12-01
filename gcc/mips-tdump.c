@@ -452,7 +452,7 @@ glevel_to_string (g_level)
 
   return "??";
 }
-     
+
 
 /* Convert the type information to string format.  */
 
@@ -1114,10 +1114,10 @@ emit_aggregate (string, u, u2, which, fdp)
   unsigned int ifd = u.rndx.rfd;
   unsigned int index = u.rndx.index;
   const char *name;
-  
+
   if (ifd == ST_RFDESCAPE)
     ifd = u2.isym;
-  
+
   /* An ifd of -1 is an opaque type.  An escaped index of 0 is a
      struct return type of a procedure compiled without -g.  */
   if (ifd == 0xffffffff
@@ -1133,7 +1133,7 @@ emit_aggregate (string, u, u2, which, fdp)
 	fdp = &file_desc[rfile_desc[fdp->rfdBase + ifd]];
       name = &l_strings[fdp->issBase + l_symbols[index + fdp->isymBase].iss];
     }
-  
+
   sprintf (string,
 	   "%s %s { ifd = %u, index = %u }",
 	   which, name, ifd, index);
@@ -1153,15 +1153,15 @@ print_file_desc (fdp, number)
   int symi, pdi;
   int width = 20;
   char *used_base;
-  
-  str_base = l_strings + fdp->issBase;  
+
+  str_base = l_strings + fdp->issBase;
   aux_base = aux_symbols + fdp->iauxBase;
   used_base = aux_used + (aux_base - aux_symbols);
 
   printf ("\nFile #%d, \"%s\"\n\n",
 	  number,
 	  fdp->rss != issNil ? str_base + fdp->rss : "<unknown>");
-    
+
   printf ("    Name index  = %-10ld Readin      = %s\n",
 	  (long) fdp->rss, (fdp->fReadin) ? "Yes" : "No");
 
@@ -1231,7 +1231,7 @@ print_file_desc (fdp, number)
   if (want_scope && cur_scope != (scope_t *) 0)
     printf ("\n    Warning scope does not start at 0!\n");
 
-  /* 
+  /*
    * print the info about the symbol table.
    */
   printf ("\n    There are %lu local symbols, starting at %lu\n",
@@ -1284,7 +1284,7 @@ print_file_desc (fdp, number)
 	}
     }
 
-  /* 
+  /*
    * do the procedure descriptors.
    */
   printf ("\n    There are %lu procedure descriptor entries, ", (ulong) fdp->cpd);
@@ -1553,7 +1553,7 @@ main (argc, argv)
   for (i = 0; i < sym_hdr.ifdMax; i++)
     print_file_desc (&file_desc[i], i);
 
-  /* 
+  /*
    * Print the external symbols.
    */
   want_scope = 0;		/* scope info is meaning for extern symbols */

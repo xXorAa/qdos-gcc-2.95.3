@@ -57,7 +57,7 @@ not produce the same floating-point formats that the assembler accepts.
 If you have this problem, set the LANG environment variable to "C" or
 "En_US".
 
-				     
+
 			 AIX 3.2.5 XLC-1.3 problems
 
 XLC version 1.3.0.0 distributed with AIX 3.2.5 will miscompile jump.c when

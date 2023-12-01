@@ -29,7 +29,7 @@ if exist cp\lang-specs.h echo #include "cp/lang-specs.h">>specs.h
 if exist cp\lang-options.h echo #include "cp/lang-options.h">>options.h
 sed -f config/%2/config-nt.sed -f config/winnt/config-nt.sed cp\make-lang.in >> Makefile
 sed -f config/%2/config-nt.sed -f config/winnt/config-nt.sed cp\makefile.in > cp\Makefile
-set LANG=%LANG% c++.#	
+set LANG=%LANG% c++.#
 :no_cp
 
 if not exist ada\make-lang.in goto no_ada
@@ -37,7 +37,7 @@ if exist ada\lang-specs.h echo #include "ada/lang-specs.h">>specs.h
 if exist ada\lang-options.h echo #include "ada/lang-options.h">>options.h
 sed -f config/%2/config-nt.sed -f config/winnt/config-nt.sed ada\make-lang.in >> Makefile
 sed -f config/%2/config-nt.sed -f config/winnt/config-nt.sed ada\makefile.in > ada\Makefile
-set LANG=%LANG% ada.#	
+set LANG=%LANG% ada.#
 :no_ada
 
 if not exist f\make-lang.in goto no_f
@@ -45,7 +45,7 @@ if exist f\lang-specs.h echo #include "f/lang-specs.h">>specs.h
 if exist f\lang-options.h echo #include "f/lang-options.h">>options.h
 sed -f config/%2/config-nt.sed -f config/winnt/config-nt.sed f\make-lang.in >> Makefile
 sed -f config/%2/config-nt.sed -f config/winnt/config-nt.sed f\makefile.in > f\Makefile
-set LANG=%LANG% f.#	
+set LANG=%LANG% f.#
 :no_f
 
 echo lang.mostlyclean: %LANG% | sed "s/#/mostlyclean/g" >> Makefile

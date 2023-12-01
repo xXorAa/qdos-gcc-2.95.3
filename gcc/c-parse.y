@@ -202,11 +202,11 @@ char *language_string = "GNU C";
 
 
 %{
-/* Number of statements (loosely speaking) and compound statements 
+/* Number of statements (loosely speaking) and compound statements
    seen so far.  */
 static int stmt_count;
 static int compstmt_count;
-  
+
 /* Input file and line number of the end of the body of last simple_if;
    used by the stmt-rule immediately after simple_if returns.  */
 static char *if_stmt_file;
@@ -274,7 +274,7 @@ datadef:
 		{ if (pedantic)
 		    error ("ANSI C forbids data definition with no type or storage class");
 		  else if (!flag_traditional)
-		    warning ("data definition has no type or storage class"); 
+		    warning ("data definition has no type or storage class");
 
 		  current_declspecs = TREE_VALUE (declspec_stack);
 		  prefix_attributes = TREE_PURPOSE (declspec_stack);
@@ -310,7 +310,7 @@ fndef:
 	  old_style_parm_decls
 		{ store_parm_decls (); }
 	  compstmt_or_error
-		{ finish_function (0); 
+		{ finish_function (0);
 		  current_declspecs = TREE_VALUE (declspec_stack);
 		  prefix_attributes = TREE_PURPOSE (declspec_stack);
 		  declspec_stack = TREE_CHAIN (declspec_stack);
@@ -328,7 +328,7 @@ fndef:
 	  old_style_parm_decls
 		{ store_parm_decls (); }
 	  compstmt_or_error
-		{ finish_function (0); 
+		{ finish_function (0);
 		  current_declspecs = TREE_VALUE (declspec_stack);
 		  prefix_attributes = TREE_PURPOSE (declspec_stack);
 		  declspec_stack = TREE_CHAIN (declspec_stack);
@@ -346,7 +346,7 @@ fndef:
 	  old_style_parm_decls
 		{ store_parm_decls (); }
 	  compstmt_or_error
-		{ finish_function (0); 
+		{ finish_function (0);
 		  current_declspecs = TREE_VALUE (declspec_stack);
 		  prefix_attributes = TREE_PURPOSE (declspec_stack);
 		  declspec_stack = TREE_CHAIN (declspec_stack);
@@ -470,7 +470,7 @@ cast_expr:
 	| '(' typename ')' cast_expr  %prec UNARY
 		{ tree type = groktypename ($2);
 		  $$ = build_c_cast (type, $4); }
-	| '(' typename ')' '{' 
+	| '(' typename ')' '{'
 		{ start_init (NULL_TREE, NULL, 0);
 		  $2 = groktypename ($2);
 		  really_start_incremental_init ($2); }
@@ -788,7 +788,7 @@ datadecl:
 		  declspec_stack = TREE_CHAIN (declspec_stack);
 		  resume_momentary ($2); }
 	| declmods_no_prefix_attr setspecs notype_initdecls ';'
-		{ current_declspecs = TREE_VALUE (declspec_stack);	
+		{ current_declspecs = TREE_VALUE (declspec_stack);
 		  prefix_attributes = TREE_PURPOSE (declspec_stack);
 		  declspec_stack = TREE_CHAIN (declspec_stack);
 		  resume_momentary ($2); }
@@ -1012,7 +1012,7 @@ initdcl:
 	| declarator maybeasm maybe_attribute
 		{ tree d = start_decl ($1, current_declspecs, 0,
 				       $3, prefix_attributes);
-		  finish_decl (d, NULL_TREE, $2); 
+		  finish_decl (d, NULL_TREE, $2);
                 }
 	;
 
@@ -1039,7 +1039,7 @@ maybe_attribute:
 	| attributes
 		{ $$ = $1; }
 	;
- 
+
 attributes:
       attribute
 		{ $$ = $1; }
@@ -1058,7 +1058,7 @@ attribute_list:
 	| attribute_list ',' attrib
 		{ $$ = chainon ($1, $3); }
 	;
- 
+
 attrib:
     /* empty */
 		{ $$ = NULL_TREE; }
@@ -1324,7 +1324,7 @@ structsp:
 		{ $$ = start_struct (RECORD_TYPE, $2);
 		  /* Start scope of tag before parsing components.  */
 		}
-	  component_decl_list '}' maybe_attribute 
+	  component_decl_list '}' maybe_attribute
 		{ $$ = finish_struct ($<ttype>4, $5, chainon ($1, $7)); }
 	| struct_head '{' component_decl_list '}' maybe_attribute
 		{ $$ = finish_struct (start_struct (RECORD_TYPE, NULL_TREE),
@@ -1635,7 +1635,7 @@ simple_if:
 if_prefix:
 	  IF '(' expr ')'
 		{ emit_line_note ($<filename>-1, $<lineno>0);
-		  c_expand_start_cond (truthvalue_conversion ($3), 0, 
+		  c_expand_start_cond (truthvalue_conversion ($3), 0,
 				       compstmt_count);
 		  $<itype>$ = stmt_count;
 		  if_stmt_file = $<filename>-1;
@@ -1693,7 +1693,7 @@ stmt_or_label:
 stmt:
 	  compstmt
 		{ stmt_count++; }
-        | all_iter_stmt 
+        | all_iter_stmt
 	| expr ';'
 		{ stmt_count++;
 		  emit_line_note ($<filename>-1, $<lineno>0);
@@ -1782,7 +1782,7 @@ stmt:
 		{ $<lineno>7 = lineno;
 		  $<filename>$ = input_filename; }
 	  xexpr ')'
-		{ 
+		{
 		  /* Start the loop.  Doing this after parsing
 		     all the expressions ensures we will end the loop.  */
 		  expand_start_loop_continue_elsewhere (1);
@@ -1898,10 +1898,10 @@ all_iter_stmt:
 	;
 
 all_iter_stmt_simple:
-	  FOR '(' primary ')' 
+	  FOR '(' primary ')'
 	  {
 	    /* The value returned by this action is  */
-	    /*      1 if everything is OK */ 
+	    /*      1 if everything is OK */
 	    /*      0 in case of error or already bound iterator */
 
 	    $<itype>$ = 0;
@@ -1929,10 +1929,10 @@ all_iter_stmt_simple:
     for generality.  Fix it before turning it back on.
 
 all_iter_stmt_with_decl:
-	  FOR '(' ITERATOR pushlevel setspecs iterator_spec ')' 
+	  FOR '(' ITERATOR pushlevel setspecs iterator_spec ')'
 	  {
 */	    /* The value returned by this action is  */
-	    /*      1 if everything is OK */ 
+	    /*      1 if everything is OK */
 	    /*      0 in case of error or already bound iterator */
 /*
 	    iterator_for_loop_start ($6);
@@ -1946,7 +1946,7 @@ all_iter_stmt_with_decl:
 	    if (yychar == CONSTANT || yychar == STRING)
 	      pop_momentary_nofree ();
 	    else
-	      pop_momentary ();	    
+	      pop_momentary ();
 	  }
 */
 
@@ -2155,7 +2155,7 @@ parm:
 		{ $$ = build_tree_list (build_tree_list (current_declspecs,
 							 $3),
 					build_tree_list (prefix_attributes,
-							 $4)); 
+							 $4));
 		  current_declspecs = TREE_VALUE (declspec_stack);
 		  prefix_attributes = TREE_PURPOSE (declspec_stack);
 		  declspec_stack = TREE_CHAIN (declspec_stack);

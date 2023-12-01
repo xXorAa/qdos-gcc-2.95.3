@@ -106,7 +106,7 @@
   [(set (cc0)
 	(and:HI (match_operand:HI 0 "register_operand" "A,!A,A")
 		(match_operand:HI 1 "nonmemory_operand" "Z,A,I")))]
-  "" 
+  ""
   "*
 {
 	switch (which_alternative)
@@ -126,7 +126,7 @@
 ;;  [(set (cc0)
 ;;	(and:QI (match_operand:QI 0 "register_operand" "h")
 ;;		(match_operand:QI 1 "const_int_operand" "I")))]
-;;  "" 
+;;  ""
 ;;  "%b0&%H1"
 ;;  [(set_attr "type" "f3_alu_i")])
 
@@ -156,7 +156,7 @@
 }")
 
 (define_insn ""
-  [(set (cc0) 
+  [(set (cc0)
 	(compare (match_operand:HI 0 "general_operand" "Z*r*m*i")
 		 (match_operand:HI 1 "general_operand" "Z*r*m*i")))
    (clobber (match_scratch:QI 2 "=&A"))
@@ -219,7 +219,7 @@
     {
       output_asm_insn (\"a1=%U1\;a1l=%H1\", operands);
     }
-  
+
   return \"psw = 0\;a0 - a1\";
 }")
 
@@ -346,7 +346,7 @@
 {
   if (reload_in_progress)
     {
-      if (REG_P (operands[1]) && 
+      if (REG_P (operands[1]) &&
 	  (REGNO(operands[1]) == STACK_POINTER_REGNUM ||
 	   REGNO(operands[1]) == FRAME_POINTER_REGNUM) &&
 	  GET_CODE (operands[2]) == CONST_INT)
@@ -359,7 +359,7 @@
     }
 }")
 
-	
+
 (define_insn "match_addqi3"
   [(set (match_operand:QI 0 "register_operand" "=!a,!a,k,u,!k,!u,h,!a")
 	(plus:QI (match_operand:QI 1 "register_operand" "0,0,uk,uk,uk,uk,h,0")
@@ -424,7 +424,7 @@
    emit_move_insn (operands[0], hard_libcall_value(HFmode));
    DONE;
 }")
-		      
+
 
 ;;
 ;;  ....................
@@ -459,22 +459,22 @@
 	{
 	case 0:
 	  return \"\";
-	  
+
 	case 1:
 	  return \"*%0--\";
-	  
+
 	case -1:
 	  return \"*%0++\";
-	  
+
 	default:
 	  operands[2] = GEN_INT (-INTVAL (operands[2]));
-	  
+
 	  if (SHORT_IMMEDIATE(operands[2]))
 	    return \"set %3=%H2\;*%0++%3\";
 	  else
 	    return \"%3=%H2\;*%0++%3\";
 	}
-      
+
     case 1:
     case 2:
       if (!CONSTANT_P(operands[2]))
@@ -497,7 +497,7 @@
 {
   if (!dsp16xx_subhf3_libcall)
     dsp16xx_subhf3_libcall = gen_rtx_SYMBOL_REF (Pmode, SUBHF3_LIBCALL);
-  
+
   emit_library_call (dsp16xx_subhf3_libcall, 1, HFmode, 2,
 		     operands[1], HFmode,
 		     operands[2], HFmode);
@@ -520,7 +520,7 @@
 {
   if (!dsp16xx_neghf2_libcall)
     dsp16xx_neghf2_libcall = gen_rtx_SYMBOL_REF (Pmode, NEGHF2_LIBCALL);
-  
+
   emit_library_call (dsp16xx_neghf2_libcall, 1, HFmode, 1,
 		     operands[1], HFmode);
   emit_move_insn (operands[0], hard_libcall_value(HFmode));
@@ -586,7 +586,7 @@
 {
   if (!dsp16xx_mulhf3_libcall)
     dsp16xx_mulhf3_libcall = gen_rtx_SYMBOL_REF (Pmode, MULHF3_LIBCALL);
-  
+
   emit_library_call (dsp16xx_mulhf3_libcall, 1, HFmode, 2,
 		     operands[1], HFmode,
 		     operands[2], HFmode);
@@ -628,7 +628,7 @@
 {
   if (!dsp16xx_udivhi3_libcall)
     dsp16xx_udivhi3_libcall = gen_rtx_SYMBOL_REF (Pmode, UDIVHI3_LIBCALL);
-  
+
   emit_library_call (dsp16xx_udivhi3_libcall, 1, HImode, 2,
 		     operands[1], HImode,
 		     operands[2], HImode);
@@ -645,7 +645,7 @@
 {
   if (!dsp16xx_divqi3_libcall)
     dsp16xx_divqi3_libcall = gen_rtx_SYMBOL_REF (Pmode, DIVQI3_LIBCALL);
-  
+
   emit_library_call (dsp16xx_divqi3_libcall, 1, QImode, 2,
 		     operands[1], QImode,
 		     operands[2], QImode);
@@ -686,7 +686,7 @@
 {
   if (!dsp16xx_modhi3_libcall)
     dsp16xx_modhi3_libcall = gen_rtx_SYMBOL_REF (Pmode, MODHI3_LIBCALL);
-  
+
   emit_library_call (dsp16xx_modhi3_libcall, 1, HImode, 2,
 		     operands[1], HImode,
 		     operands[2], HImode);
@@ -703,7 +703,7 @@
 {
   if (!dsp16xx_umodhi3_libcall)
     dsp16xx_umodhi3_libcall = gen_rtx_SYMBOL_REF (Pmode, UMODHI3_LIBCALL);
-  
+
   emit_library_call (dsp16xx_umodhi3_libcall, 1, HImode, 2,
 		     operands[1], HImode,
 		     operands[2], HImode);
@@ -720,7 +720,7 @@
 {
   if (!dsp16xx_modqi3_libcall)
     dsp16xx_modqi3_libcall = gen_rtx_SYMBOL_REF (Pmode, MODQI3_LIBCALL);
-  
+
   emit_library_call (dsp16xx_modqi3_libcall, 1, QImode, 2,
 		     operands[1], QImode,
 		     operands[2], QImode);
@@ -737,7 +737,7 @@
 {
   if (!dsp16xx_umodqi3_libcall)
     dsp16xx_umodqi3_libcall = gen_rtx_SYMBOL_REF (Pmode, UMODQI3_LIBCALL);
-  
+
   emit_library_call (dsp16xx_umodqi3_libcall, 1, QImode, 2,
 		     operands[1], QImode,
 		     operands[2], QImode);
@@ -754,7 +754,7 @@
 {
   if (!dsp16xx_divhf3_libcall)
     dsp16xx_divhf3_libcall = gen_rtx_SYMBOL_REF (Pmode, DIVHF3_LIBCALL);
-  
+
   emit_library_call (dsp16xx_divhf3_libcall, 1, HFmode, 2,
 		     operands[1], HFmode,
 		     operands[2], HFmode);
@@ -1049,9 +1049,9 @@
   emit_move_insn (operands[0], addr_reg);
 
   /* Then generate the add insn */
-  emit_insn (gen_rtx (PARALLEL, VOIDmode, 
+  emit_insn (gen_rtx (PARALLEL, VOIDmode,
 		      gen_rtvec (2,
-				 gen_rtx (SET, VOIDmode, operands[0], 
+				 gen_rtx (SET, VOIDmode, operands[0],
 					  gen_rtx (PLUS, QImode, operands[0], offset)),
 				 gen_rtx (CLOBBER, VOIDmode, operands[2]))));
   DONE;
@@ -1216,7 +1216,7 @@
       emit_move_insn (operands[2], operand_subword (operands[1], 1, 0, HFmode));
       emit_move_insn (operand_subword (operands[0], 1, 0, HFmode), operands[2]);
     }
-  
+
   DONE;
 }")
 
@@ -1313,7 +1313,7 @@
 {
   if (!dsp16xx_floathihf2_libcall)
     dsp16xx_floathihf2_libcall = gen_rtx_SYMBOL_REF (Pmode, FLOATHIHF2_LIBCALL);
-  
+
   emit_library_call (dsp16xx_floathihf2_libcall, 1, HFmode, 1,
 		     operands[1], HImode);
   emit_move_insn (operands[0], hard_libcall_value(HFmode));
@@ -1328,7 +1328,7 @@
 {
   if (!dsp16xx_fixhfhi2_libcall)
     dsp16xx_fixhfhi2_libcall = gen_rtx_SYMBOL_REF (Pmode, FIXHFHI2_LIBCALL);
-  
+
   emit_library_call (dsp16xx_fixhfhi2_libcall, 1, HImode, 1,
 		     operands[1], HFmode);
   emit_move_insn (operands[0], hard_libcall_value(HImode));
@@ -1428,7 +1428,7 @@
       /* If we are shifting by a constant we can do it in 1 or more
 	 1600 core shift instructions. The core instructions can
 	 shift by 1, 4, 8, or 16. */
-      
+
       if (GET_CODE(operands[2]) == CONST_INT)
 	;
       else
@@ -1457,7 +1457,7 @@
 	if (GET_CODE(operands[2]) != MEM)
 	  {
 	    rtx stack_slot;
-	    
+
 	    stack_slot = assign_stack_temp (QImode, GET_MODE_SIZE(QImode), 0);
 	    stack_slot = change_address (stack_slot, VOIDmode, XEXP (stack_slot, 0));
 	    emit_move_insn (stack_slot, operands[2]);
@@ -1503,7 +1503,7 @@
       return \"\}\";
     }
 }")
-		   
+
 
 
 ;;
@@ -1553,9 +1553,9 @@
       /* If we are shifting by a constant we can do it in 1 or more
 	 1600 core shift instructions. The core instructions can
 	 shift by 1, 4, 8, or 16. */
-      
+
       if (GET_CODE(operands[2]) == CONST_INT)
-	emit_insn (gen_match_lshrhi3_nobmu (operands[0], operands[1], operands[2]));	
+	emit_insn (gen_match_lshrhi3_nobmu (operands[0], operands[1], operands[2]));
       else
 	{
 	  rtx label1 = gen_label_rtx ();
@@ -1563,7 +1563,7 @@
 #if 0
 	  if (!dsp16xx_lshrhi3_libcall)
 	    dsp16xx_lshrhi3_libcall = gen_rtx_SYMBOL_REF (Pmode, LSHRHI3_LIBCALL);
-	  
+
 	  emit_library_call (dsp16xx_lshrhi3_libcall, 1, HImode, 2,
 			     operands[1], HImode,
 			     operands[2], QImode);
@@ -1581,7 +1581,7 @@
 	  if (GET_CODE(operands[2]) != MEM)
 	    {
 	      rtx stack_slot;
-	    
+
 	      stack_slot = assign_stack_temp (QImode, GET_MODE_SIZE(QImode), 0);
 	      stack_slot = change_address (stack_slot, VOIDmode, XEXP (stack_slot, 0));
 	      emit_move_insn (stack_slot, operands[2]);
@@ -1695,7 +1695,7 @@
       /* If we are shifting by a constant we can do it in 1 or more
 	 1600 core shift instructions. The core instructions can
 	 shift by 1, 4, 8, or 16. */
-      
+
       if (GET_CODE(operands[2]) == CONST_INT)
 	;
       else
@@ -1723,7 +1723,7 @@
 	if (GET_CODE(operands[2]) != MEM)
 	  {
 	    rtx stack_slot;
-	    
+
 	    stack_slot = assign_stack_temp (QImode, GET_MODE_SIZE(QImode), 0);
 	    stack_slot = change_address (stack_slot, VOIDmode, XEXP (stack_slot, 0));
 	    emit_move_insn (stack_slot, operands[2]);
@@ -1783,7 +1783,7 @@
 		      (pc)))]
   ""
   "
-{ 
+{
    if (dsp16xx_compare_gen == gen_compare_reg)
      operands[1] = (*dsp16xx_compare_gen)(EQ, dsp16xx_compare_op0, dsp16xx_compare_op1);
    else
@@ -1798,7 +1798,7 @@
 		      (pc)))]
   ""
   "
-{ 
+{
    if (dsp16xx_compare_gen == gen_compare_reg)
      operands[1] = (*dsp16xx_compare_gen)(NE, dsp16xx_compare_op0, dsp16xx_compare_op1);
    else
@@ -1814,7 +1814,7 @@
 		      (pc)))]
   ""
   "
-{ 
+{
    if (dsp16xx_compare_gen == gen_compare_reg)
      operands[1] = (*dsp16xx_compare_gen)(GT, dsp16xx_compare_op0, dsp16xx_compare_op1);
    else
@@ -1830,7 +1830,7 @@
 		      (pc)))]
   ""
   "
-{ 
+{
    if (dsp16xx_compare_gen == gen_compare_reg)
      operands[1] = (*dsp16xx_compare_gen)(GE, dsp16xx_compare_op0, dsp16xx_compare_op1);
    else
@@ -1846,7 +1846,7 @@
 		      (pc)))]
   ""
   "
-{ 
+{
    if (dsp16xx_compare_gen == gen_compare_reg)
      operands[1] = (*dsp16xx_compare_gen)(LT, dsp16xx_compare_op0, dsp16xx_compare_op1);
    else
@@ -1862,7 +1862,7 @@
 		      (pc)))]
   ""
   "
-{ 
+{
    if (dsp16xx_compare_gen == gen_compare_reg)
      operands[1] = (*dsp16xx_compare_gen)(LE, dsp16xx_compare_op0, dsp16xx_compare_op1);
    else
@@ -1878,7 +1878,7 @@
 		      (pc)))]
   ""
   "
-{ 
+{
    if (dsp16xx_compare_gen == gen_compare_reg)
      operands[1] = (*dsp16xx_compare_gen)(GTU, dsp16xx_compare_op0, dsp16xx_compare_op1);
    else
@@ -1894,7 +1894,7 @@
 		      (pc)))]
   ""
   "
-{ 
+{
    if (dsp16xx_compare_gen == gen_compare_reg)
      operands[1] = (*dsp16xx_compare_gen)(GEU, dsp16xx_compare_op0, dsp16xx_compare_op1);
    else
@@ -1910,7 +1910,7 @@
 		      (pc)))]
   ""
   "
-{ 
+{
    if (dsp16xx_compare_gen == gen_compare_reg)
      operands[1] = (*dsp16xx_compare_gen)(LTU, dsp16xx_compare_op0, dsp16xx_compare_op1);
    else
@@ -1926,7 +1926,7 @@
 		      (pc)))]
   ""
   "
-{ 
+{
    if (dsp16xx_compare_gen == gen_compare_reg)
      operands[1] = (*dsp16xx_compare_gen)(LEU, dsp16xx_compare_op0, dsp16xx_compare_op1);
    else
@@ -1936,7 +1936,7 @@
 
 (define_insn ""
   [(set (pc)
-	(if_then_else (match_operator 1 "comparison_operator" 
+	(if_then_else (match_operator 1 "comparison_operator"
                                       [(cc0) (const_int 0)])
 		      (label_ref (match_operand 0 "" ""))
 		      (pc)))]
@@ -1946,7 +1946,7 @@
 
 (define_insn ""
   [(set (pc)
-	(if_then_else (match_operator 1 "comparison_operator" 
+	(if_then_else (match_operator 1 "comparison_operator"
                                       [(cc0) (const_int 0)])
 		      (label_ref (match_operand 0 "" ""))
 		      (pc)))]
@@ -1962,7 +1962,7 @@
 
 (define_insn ""
   [(set (pc)
-	(if_then_else (match_operator 1 "comparison_operator" 
+	(if_then_else (match_operator 1 "comparison_operator"
                                       [(cc0) (const_int 0)])
 	              (pc)
 		      (label_ref (match_operand 0 "" ""))))]
@@ -1972,7 +1972,7 @@
 
 (define_insn ""
   [(set (pc)
-	(if_then_else (match_operator 1 "comparison_operator" 
+	(if_then_else (match_operator 1 "comparison_operator"
                                       [(cc0) (const_int 0)])
 	              (pc)
 		      (label_ref (match_operand 0 "" ""))))]
@@ -2039,7 +2039,7 @@
   ""
   "*
 {
-    if (GET_CODE (operands[0]) == REG || 
+    if (GET_CODE (operands[0]) == REG ||
 	(GET_CODE(operands[0]) == SYMBOL_REF && !TARGET_NEAR_CALL))
 	return \"pt=%0\;call pt\";
     else

@@ -94,7 +94,7 @@ try (dir, base)
 /* Return a prefix for temporary file names or NULL if unable to find one.
    The current directory is chosen if all else fails so the program is
    exited if a temporary directory can't be found (mktemp fails).
-   The buffer for the result is obtained with xmalloc. 
+   The buffer for the result is obtained with xmalloc.
 
    This function is provided for backwards compatability only.  It use
    is not recommended.  */
@@ -119,7 +119,7 @@ choose_temp_base ()
   /* Try /usr/tmp, then /tmp.  */
   base = try (usrtmp, base);
   base = try (tmp, base);
- 
+
   /* If all else fails, use the current directory!  */
   if (base == 0)
     base = ".";
@@ -165,7 +165,7 @@ make_temp_file (suffix)
   /* Try /usr/tmp, then /tmp.  */
   base = try (usrtmp, base);
   base = try (tmp, base);
- 
+
   /* If all else fails, use the current directory!  */
   if (base == 0)
     base = ".";

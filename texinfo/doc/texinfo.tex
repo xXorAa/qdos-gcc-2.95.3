@@ -27,11 +27,11 @@
 % reports; you can get the latest version from:
 % ftp://ftp.cs.umb.edu/pub/tex/texinfo.tex
 % /home/gd/gnu/doc/texinfo.tex on the GNU machines.
-% 
+%
 % Send bug reports to bug-texinfo@gnu.org.
 % Please include a precise test case in each bug report,
 % including a complete document with which we can reproduce the problem.
-% 
+%
 % Texinfo macros (with @macro) are *not* supported by texinfo.tex.  You
 % have to run makeinfo -E to expand macros first; the texi2dvi script
 % does this.
@@ -130,7 +130,7 @@
 
 % For @cropmarks command.
 % Do @cropmarks to get crop marks.
-% 
+%
 \newif\ifcropmarks
 \let\cropmarks = \cropmarkstrue
 %
@@ -590,7 +590,7 @@ where each line of input produces a line of output.}
 }}
 
 % @enddots{} is an end-of-sentence ellipsis.
-% 
+%
 \def\enddots{%
   \hbox to 2em{%
     \hskip 0pt plus 0.25fil minus 0.25fil
@@ -1436,7 +1436,7 @@ where each line of input produces a line of output.}
 % @uref (abbreviation for `urlref') takes an optional second argument
 % specifying the text to display.  First (mandatory) arg is the url.
 % Perhaps eventually put in a hypertex \special here.
-% 
+%
 \def\uref#1{\urefxxx #1,,\finish}
 \def\urefxxx#1,#2,#3\finish{%
   \setbox0 = \hbox{\ignorespaces #2}%
@@ -2082,7 +2082,7 @@ July\or August\or September\or October\or November\or December\fi
 \multitablelinespace=0pt
 
 % Macros used to set up halign preamble:
-% 
+%
 \let\endsetuptable\relax
 \def\xendsetuptable{\endsetuptable}
 \let\columnfractions\relax
@@ -2160,15 +2160,15 @@ July\or August\or September\or October\or November\or December\fi
   % In order to keep entries from bumping into each other
   % we will add a \leftskip of \multitablecolspace to all columns after
   % the first one.
-  % 
+  %
   % If a template has been used, we will add \multitablecolspace
   % to the width of each template entry.
-  % 
+  %
   % If the user has set preamble in terms of percent of \hsize we will
   % use that dimension as the width of the column, and the \leftskip
   % will keep entries from bumping into each other.  Table will start at
   % left margin and final column will justify at right margin.
-  % 
+  %
   % Make sure we don't inherit \rightskip from the outer environment.
   \rightskip=0pt
   \ifnum\colcount=1
@@ -2674,7 +2674,7 @@ width0pt\relax} \fi
 \def\begindoublecolumns{\begingroup % ended by \enddoublecolumns
   % Grab any single-column material above us.
   \output = {\global\setbox\partialpage = \vbox{%
-    % 
+    %
     % Here is a possibility not foreseen in manmac: if we accumulate a
     % whole lot of material, we might end up calling this \output
     % routine twice in a row (see the doublecol-lose test, which is
@@ -4429,7 +4429,7 @@ width0pt\relax} \fi
 }
 
 % This is the macro invoked by entries in the aux file.
-% 
+%
 \def\xrdef#1{\begingroup
   % Reenable \ as an escape while reading the second argument.
   \catcode`\\ = 0
@@ -4655,7 +4655,7 @@ width0pt\relax} \fi
 
 % @image.  We use the macros from epsf.tex to support this.
 % If epsf.tex is not installed and @image is used, we complain.
-% 
+%
 % Check for and read epsf.tex up front.  If we read it only at @image
 % time, we might be inside a group, and then its definitions would get
 % undone and the next image would fail.

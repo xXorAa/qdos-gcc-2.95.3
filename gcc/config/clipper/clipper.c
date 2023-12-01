@@ -407,7 +407,7 @@ clipper_builtin_saveregs (arglist)
 
   emit_move_insn (gen_rtx (MEM, SImode, addr),
 		  copy_to_reg (virtual_incoming_args_rtx));
-		  
+
 
   /* now move addresses of the saved regs into the pointer array */
 
@@ -418,19 +418,19 @@ clipper_builtin_saveregs (arglist)
 			   gen_rtx (PLUS, Pmode, addr,
 				    GEN_INT (4))),
 		  scratch);
-		  
+
   emit_move_insn (scratch, f0_addr);
   emit_move_insn (gen_rtx (MEM, SImode,
 			   gen_rtx (PLUS, Pmode, addr,
 				    GEN_INT (8))),
 		  scratch);
-		  
+
   emit_move_insn (scratch, r1_addr);
   emit_move_insn (gen_rtx (MEM, SImode,
 			   gen_rtx (PLUS, Pmode, addr,
 				    GEN_INT (12))),
 		  scratch);
-		  
+
   emit_move_insn (scratch, f1_addr);
   emit_move_insn (gen_rtx (MEM, SImode,
 			   gen_rtx (PLUS, Pmode, addr,
@@ -451,13 +451,13 @@ clipper_builtin_saveregs (arglist)
 			 f0_addr, ptr_mode,
 			 GEN_INT (GET_MODE_SIZE (DFmode)),
 			 TYPE_MODE (sizetype),
-			 GEN_INT (MEMORY_USE_RW), 
+			 GEN_INT (MEMORY_USE_RW),
 			 TYPE_MODE (integer_type_node));
       emit_library_call (chkr_set_right_libfunc, 1, VOIDmode, 3,
 			 f1_addr, ptr_mode,
 			 GEN_INT (GET_MODE_SIZE (DFmode)),
 			 TYPE_MODE (sizetype),
-			 GEN_INT (MEMORY_USE_RW), 
+			 GEN_INT (MEMORY_USE_RW),
 			 TYPE_MODE (integer_type_node));
       emit_library_call (chkr_set_right_libfunc, 1, VOIDmode, 3,
 			 r0_addr, ptr_mode,

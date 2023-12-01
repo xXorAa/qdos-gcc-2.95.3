@@ -73,7 +73,7 @@ Boston, MA 02111-1307, USA.  */
    the GNU/Linux magical crtbegin.o file (see crtstuff.c) which
    provides part of the support for getting C++ file-scope static
    object constructed before entering `main'. */
-   
+
 #define STARTFILE_SPEC \
   "%{!shared: \
      %{pg:gcrt1.o%s} %{!pg:%{p:gcrt1.o%s} \
@@ -123,7 +123,7 @@ Boston, MA 02111-1307, USA.  */
 /* Output #ident as a .ident.  */
 #define ASM_OUTPUT_IDENT(FILE, NAME) \
   fprintf (FILE, "\t%s\t\"%s\"\n", IDENT_ASM_OP, NAME);
-  
+
 #ifdef IDENTIFY_WITH_IDENT
 #define ASM_IDENTIFY_GCC(FILE) /* nothing */
 #define ASM_IDENTIFY_LANGUAGE(FILE)			\
@@ -258,7 +258,7 @@ const_section ()							\
 
 #ifndef SUBTARGET_DEFAULT_APCS26
 /* On 32-bit machine it is always safe to assume we have the "new"
-   floating point system.  
+   floating point system.
    ?? Make this happen for all targets when NWFPE is better established.  */
 #undef  FP_DEFAULT
 #define FP_DEFAULT FP_SOFT3

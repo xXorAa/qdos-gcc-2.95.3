@@ -3,7 +3,7 @@
 # lcircle10 files already exist.
 
 # Don't override definition of prefix and/or libdir if they are
-# already defined in the environment. 
+# already defined in the environment.
 if test "z${prefix}" = "z" ; then
   prefix=/usr/local
 else

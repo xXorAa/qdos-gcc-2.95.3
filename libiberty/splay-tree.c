@@ -1,9 +1,9 @@
-/* A splay-tree datatype.  
+/* A splay-tree datatype.
    Copyright (C) 1998 Free Software Foundation, Inc.
    Contributed by Mark Mitchell (mark@markmitchell.com).
 
 This file is part of GNU CC.
-   
+
 GNU CC is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2, or (at your option)
@@ -35,11 +35,11 @@ Boston, MA 02111-1307, USA.  */
 #include "libiberty.h"
 #include "splay-tree.h"
 
-static void splay_tree_delete_helper    PARAMS((splay_tree, 
+static void splay_tree_delete_helper    PARAMS((splay_tree,
 						splay_tree_node));
 static void splay_tree_splay            PARAMS((splay_tree,
 						splay_tree_key));
-static splay_tree_node splay_tree_splay_helper     
+static splay_tree_node splay_tree_splay_helper
                                         PARAMS((splay_tree,
 						splay_tree_key,
 						splay_tree_node*,
@@ -52,7 +52,7 @@ static int splay_tree_foreach_helper    PARAMS((splay_tree,
 
 /* Deallocate NODE (a member of SP), and all its sub-trees.  */
 
-static void 
+static void
 splay_tree_delete_helper (sp, node)
      splay_tree sp;
      splay_tree_node node;
@@ -85,7 +85,7 @@ splay_tree_splay_helper (sp, key, node, parent, grandparent)
   splay_tree_node *next;
   splay_tree_node n;
   int comparison;
-  
+
   n = *node;
 
   if (!n)
@@ -99,7 +99,7 @@ splay_tree_splay_helper (sp, key, node, parent, grandparent)
   else if (comparison < 0)
     /* The target is to the left.  */
     next = &n->left;
-  else 
+  else
     /* The target is to the right.  */
     next = &n->right;
 
@@ -120,7 +120,7 @@ splay_tree_splay_helper (sp, key, node, parent, grandparent)
 
   /* First, handle the case where there is no grandparent (i.e.,
      *PARENT is the root of the tree.)  */
-  if (!grandparent) 
+  if (!grandparent)
     {
       if (n == (*parent)->left)
 	{
@@ -147,7 +147,7 @@ splay_tree_splay_helper (sp, key, node, parent, grandparent)
       p->left = n->right;
       n->right = p;
       *grandparent = n;
-      return n; 
+      return n;
     }
   else if  (n == (*parent)->right && *parent == (*grandparent)->right)
     {
@@ -163,7 +163,7 @@ splay_tree_splay_helper (sp, key, node, parent, grandparent)
 
   /* Finally, deal with the case where N is a left child, but *PARENT
      is a right child, or vice versa.  */
-  if (n == (*parent)->left) 
+  if (n == (*parent)->left)
     {
       (*parent)->left = n->right;
       n->right = *parent;
@@ -171,7 +171,7 @@ splay_tree_splay_helper (sp, key, node, parent, grandparent)
       n->left = *grandparent;
       *grandparent = n;
       return n;
-    } 
+    }
   else
     {
       (*parent)->right = n->left;
@@ -193,8 +193,8 @@ splay_tree_splay (sp, key)
   if (sp->root == 0)
     return;
 
-  splay_tree_splay_helper (sp, key, &sp->root, 
-			   /*grandparent=*/0, /*parent=*/0); 
+  splay_tree_splay_helper (sp, key, &sp->root,
+			   /*grandparent=*/0, /*parent=*/0);
 }
 
 /* Call FN, passing it the DATA, for every node below NODE, all of
@@ -229,7 +229,7 @@ splay_tree_foreach_helper (sp, node, fn, data)
    DELETE_KEY_FN to deallocate keys, and DELETE_VALUE_FN to deallocate
    values.  */
 
-splay_tree 
+splay_tree
 splay_tree_new (compare_fn, delete_key_fn, delete_value_fn)
      splay_tree_compare_fn compare_fn;
      splay_tree_delete_key_fn delete_key_fn;
@@ -246,7 +246,7 @@ splay_tree_new (compare_fn, delete_key_fn, delete_value_fn)
 
 /* Deallocate SP.  */
 
-void 
+void
 splay_tree_delete (sp)
      splay_tree sp;
 {
@@ -258,7 +258,7 @@ splay_tree_delete (sp)
    previous node with the indicated KEY exists, its data is replaced
    with the new value.  */
 
-void 
+void
 splay_tree_insert (sp, key, value)
      splay_tree sp;
      splay_tree_key key;
@@ -278,16 +278,16 @@ splay_tree_insert (sp, key, value)
       if (sp->delete_value)
 	(*sp->delete_value)(sp->root->value);
       sp->root->value = value;
-    } 
-  else 
+    }
+  else
     {
       /* Create a new node, and insert it at the root.  */
       splay_tree_node node;
-      
+
       node = (splay_tree_node) xmalloc (sizeof (struct splay_tree_node));
       node->key = key;
       node->value = value;
-      
+
       if (!sp->root)
 	node->left = node->right = 0;
       else if (comparison < 0)
@@ -307,7 +307,7 @@ splay_tree_insert (sp, key, value)
   }
 }
 
-/* Lookup KEY in SP, returning VALUE if present, and NULL 
+/* Lookup KEY in SP, returning VALUE if present, and NULL
    otherwise.  */
 
 splay_tree_node
@@ -348,7 +348,7 @@ splay_tree_compare_ints (k1, k2)
     return -1;
   else if ((int) k1 > (int) k2)
     return 1;
-  else 
+  else
     return 0;
 }
 
@@ -363,6 +363,6 @@ splay_tree_compare_pointers (k1, k2)
     return -1;
   else if ((char*) k1 > (char*) k2)
     return 1;
-  else 
+  else
     return 0;
 }

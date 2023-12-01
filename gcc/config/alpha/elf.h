@@ -185,7 +185,7 @@ do {									\
 /* Biggest alignment supported by the object file format of this
    machine.  Use this macro to limit the alignment which can be
    specified using the `__attribute__ ((aligned (N)))' construct.  If
-   not defined, the default value is `BIGGEST_ALIGNMENT'. 
+   not defined, the default value is `BIGGEST_ALIGNMENT'.
 
    This value is really 2^63.  Since gcc figures the alignment in bits,
    we could only potentially get to 2^60 on suitible hosts.  Due to other
@@ -502,13 +502,13 @@ do {									\
 /* Provide a STARTFILE_SPEC appropriate for ELF.  Here we add the
    (even more) magical crtbegin.o file which provides part of the
    support for getting C++ file-scope static object constructed before
-   entering `main'. 
+   entering `main'.
 
    Don't bother seeing crtstuff.c -- there is absolutely no hope of
    getting that file to understand multiple GPs.  GNU Libc provides a
    hand-coded version that is used on Linux; it could be copied here
    if there is ever a need. */
-   
+
 #undef	STARTFILE_SPEC
 #define STARTFILE_SPEC \
   "%{!shared: \

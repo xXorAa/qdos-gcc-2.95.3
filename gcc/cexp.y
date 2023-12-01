@@ -23,7 +23,7 @@ Boston, MA 02111-1307, USA.
  Adapted from expread.y of GDB by Paul Rubin, July 1986.  */
 
 /* Parse a C expression from text in a string  */
-   
+
 %{
 #include "config.h"
 
@@ -371,7 +371,7 @@ exp	:	exp '*' exp
 	;
 
 keywords :
-			{ $$ = 0; } 
+			{ $$ = 0; }
 	|	'(' keywords ')' keywords
 			{ struct arglist *temp;
 			  $$ = (struct arglist *) xmalloc (sizeof (struct arglist));
@@ -389,7 +389,7 @@ keywords :
 			{ $$ = (struct arglist *) xmalloc (sizeof (struct arglist));
 			  $$->name = $1.address;
 			  $$->length = $1.length;
-			  $$->next = $2; } 
+			  $$->next = $2; }
 	;
 %%
 
@@ -543,13 +543,13 @@ yylex ()
   switch (c) {
   case '\n':
     return 0;
-    
+
   case ' ':
   case '\t':
   case '\r':
     lexptr++;
     goto retry;
-    
+
   case 'L':
     /* Capital L may start a wide-string or wide-character constant.  */
     if (lexptr[1] == '\'')
@@ -721,7 +721,7 @@ yylex ()
 
     /* This is always a signed type.  */
     yylval.integer.signedp = SIGNED;
-    
+
     return CHAR;
 
     /* some of these chars are invalid in constant expressions;
@@ -812,7 +812,7 @@ yylex ()
     for (namelen = 0; is_idchar[tokstart[namelen]]; namelen++)
       ;
   }
-  
+
   lexptr += namelen;
   yylval.name.address = tokstart;
   yylval.name.length = namelen;
@@ -869,7 +869,7 @@ parse_escape (string_ptr, result_mask)
     case 0:
       (*string_ptr)--;
       return 0;
-      
+
     case '0':
     case '1':
     case '2':

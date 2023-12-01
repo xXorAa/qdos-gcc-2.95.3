@@ -44,7 +44,7 @@ static int insn_code_number;
 static int insn_index_number;
 
 /* Data structure for recording the patterns of insns that have CLOBBERs.
-   We use this to output a function that adds these CLOBBERs to a 
+   We use this to output a function that adds these CLOBBERs to a
    previously-allocated PARALLEL expression.  */
 
 struct clobber_pat
@@ -274,7 +274,7 @@ gen_exp (x)
 	abort ();
     }
   printf (")");
-}  
+}
 
 /* Generate the `gen_...' function for a DEFINE_INSN.  */
 
@@ -321,7 +321,7 @@ gen_insn (insn)
 		  rtx new = XEXP (XVECEXP (insn, 1, j), 0);
 
 		  /* OLD and NEW are the same if both are to be a SCRATCH
-		     of the same mode, 
+		     of the same mode,
 		     or if both are registers of the same mode and number.  */
 		  if (! (GET_MODE (old) == GET_MODE (new)
 			 && ((GET_CODE (old) == MATCH_SCRATCH
@@ -330,7 +330,7 @@ gen_insn (insn)
 				 && REGNO (old) == REGNO (new)))))
 		    break;
 		}
-      
+
 	      if (j == XVECLEN (insn, 1))
 		break;
 	    }
@@ -338,7 +338,7 @@ gen_insn (insn)
 	  if (p == 0)
 	    {
 	      p = (struct clobber_pat *) xmalloc (sizeof (struct clobber_pat));
-	  
+
 	      p->insns = 0;
 	      p->pattern = insn;
 	      p->first_clobber = i + 1;

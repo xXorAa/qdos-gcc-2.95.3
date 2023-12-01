@@ -39,7 +39,7 @@
 #   It is part of the translation machinery itself.
 
 #   It is meant to be executed only by GCC maintainers or installers.
-#   Such files do not need to be translated, 
+#   Such files do not need to be translated,
 #   as these people typically need to be able to read English anyway.
 
 #   It is not yet internationalized, because it contains many strings

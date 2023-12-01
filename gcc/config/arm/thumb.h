@@ -59,8 +59,8 @@ Boston, MA 02111-1307, USA.  */
 #define THUMB_FLAG_BACKTRACE    		0x0002
 #define THUMB_FLAG_LEAF_BACKTRACE		0x0004
 #define ARM_FLAG_THUMB				0x1000	/* same as in arm.h */
-#define THUMB_FLAG_CALLEE_SUPER_INTERWORKING	0x40000 
-#define THUMB_FLAG_CALLER_SUPER_INTERWORKING	0x80000 
+#define THUMB_FLAG_CALLEE_SUPER_INTERWORKING	0x40000
+#define THUMB_FLAG_CALLER_SUPER_INTERWORKING	0x80000
 
 
 /* Run-time compilation parameters selecting different hardware/software subsets.  */
@@ -716,7 +716,7 @@ int thumb_shiftable_const ();
 /* A C expression which can inhibit the returning of certain function values
    in registers, based on the type of value. */
 #define RETURN_IN_MEMORY(TYPE) thumb_return_in_memory (TYPE)
-     
+
 /* Define DEFAULT_PCC_STRUCT_RETURN to 1 if all structure and union return
    values must be in memory.  On the ARM, they need only do so if larger
    than a word, or if they contain elements offset from zero in the struct. */
@@ -759,7 +759,7 @@ int thumb_shiftable_const ();
    bottom bit is set.  Thus the processor will be in ARM mode when it
    reaches this code.  So we duplicate the ARM trampoline code and add
    a switch into Thumb mode as well.
-   
+
    On the ARM, (if r8 is the static chain regnum, and remembering that
    referencing pc adds an offset of 8) the trampoline looks like:
 	   ldr 		r8, [pc, #0]
@@ -982,7 +982,7 @@ int thumb_shiftable_const ();
       goto WIN;								\
     }									\
 }
-  
+
 #define GO_IF_MODE_DEPENDENT_ADDRESS(ADDR,LABEL)
 
 #define LEGITIMIZE_ADDRESS(X,OLDX,MODE,WIN)

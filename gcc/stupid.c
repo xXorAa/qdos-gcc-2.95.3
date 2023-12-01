@@ -87,7 +87,7 @@ static struct insn_chain **reg_where_dead_chain;
 /* Element N is suid of insn where life span of pseudo reg N begins.  */
 static int *reg_where_born_exact;
 
-/* Element N is 1 if the birth of pseudo reg N is due to a CLOBBER, 
+/* Element N is 1 if the birth of pseudo reg N is due to a CLOBBER,
    0 otherwise.  */
 static int *reg_where_born_clobber;
 
@@ -230,7 +230,7 @@ stupid_life_analysis (f, nregs, file)
 
   reg_where_dead_chain = (struct insn_chain **) xmalloc (nregs * sizeof (struct insn_chain *));
   bzero ((char *) reg_where_dead_chain, nregs * sizeof (struct insn_chain *));
- 
+
   reg_order = (int *) xmalloc (nregs * sizeof (int));
   bzero ((char *) reg_order, nregs * sizeof (int));
 
@@ -268,8 +268,8 @@ stupid_life_analysis (f, nregs, file)
      Also find where each hard register is live
      and record that info in after_insn_hard_regs.
      regs_live[I] is 1 if hard reg I is live
-     at the current point in the scan.  
-   
+     at the current point in the scan.
+
      Build reload_insn_chain while we're walking the insns.  */
 
   reload_insn_chain = 0;
@@ -347,7 +347,7 @@ stupid_life_analysis (f, nregs, file)
 	}
 
       if (GET_CODE (insn) != NOTE && GET_CODE (insn) != BARRIER)
-	{	  
+	{
 	  for (i = 0; i < FIRST_PSEUDO_REGISTER; i++)
 	    if (regs_live[i])
 	      SET_REGNO_REG_SET (chain->live_after, i);
@@ -379,19 +379,19 @@ stupid_life_analysis (f, nregs, file)
     {
       register int r = reg_order[i];
 
-      /* Some regnos disappear from the rtl.  Ignore them to avoid crash. 
+      /* Some regnos disappear from the rtl.  Ignore them to avoid crash.
 	 Also don't allocate registers that cross a setjmp, or live across
 	 a call if this function receives a nonlocal goto.
 	 Also ignore registers we didn't see during the scan.  */
       if (regno_reg_rtx[r] == 0 || regs_crosses_setjmp[r]
 	  || (reg_where_born_exact[r] == 0 && reg_where_dead[r] == 0)
-	  || (REG_N_CALLS_CROSSED (r) > 0 
+	  || (REG_N_CALLS_CROSSED (r) > 0
 	      && current_function_has_nonlocal_label))
 	continue;
 
       /* Now find the best hard-register class for this pseudo register */
       if (N_REG_CLASSES > 1)
-	reg_renumber[r] = stupid_find_reg (REG_N_CALLS_CROSSED (r), 
+	reg_renumber[r] = stupid_find_reg (REG_N_CALLS_CROSSED (r),
 					   reg_preferred_class (r),
 					   PSEUDO_REGNO_MODE (r),
 					   REG_WHERE_BORN (r),
@@ -537,7 +537,7 @@ stupid_find_reg (call_preserved, class, mode,
     for (i = FIRST_STACK_REG; i <= LAST_STACK_REG; i++)
       SET_HARD_REG_BIT (used, i);
 #endif
-  
+
   IOR_COMPL_HARD_REG_SET (used, reg_class_contents[(int) class]);
 
 #ifdef CLASS_CANNOT_CHANGE_SIZE

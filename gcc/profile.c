@@ -1,4 +1,4 @@
-/* Calculate branch probabilities, and basic block execution counts. 
+/* Calculate branch probabilities, and basic block execution counts.
    Copyright (C) 1990, 91-94, 96-98, 1999 Free Software Foundation, Inc.
    Contributed by James E. Wilson, UC Berkeley/Cygnus Support;
    based on some ideas from Dain Samples of UC Berkeley.
@@ -208,7 +208,7 @@ instrument_arcs (f, num_blocks, dump_file)
 	  /* Check to see if this arc is the only exit from its source block,
 	     or the only entrance to its target block.  In either case,
 	     we don't need to create a new block to instrument the arc.  */
-	  
+
 	  if (bb_graph[i].succ == arcptr && arcptr->succ_next == 0)
 	    {
 	      /* Instrument the source block.  */
@@ -221,19 +221,19 @@ instrument_arcs (f, num_blocks, dump_file)
 	    {
 	      /* Instrument the target block.  */
 	      output_arc_profiler (total_num_arcs_instrumented
-				   + num_instr_arcs++, 
+				   + num_instr_arcs++,
 				   PREV_INSN (bb_graph[ARC_TARGET (arcptr)].first_insn));
 	    }
 	  else if (arcptr->fall_through)
 	    {
 	      /* This is a fall-through; put the instrumentation code after
 		 the branch that ends this block.  */
-	      
+
 	      for (backptr = bb_graph[i].succ; backptr;
 		   backptr = backptr->succ_next)
 		if (backptr != arcptr)
 		  break;
-	      
+
 	      output_arc_profiler (total_num_arcs_instrumented
 				   + num_instr_arcs++,
 				   backptr->branch_insn);
@@ -253,7 +253,7 @@ instrument_arcs (f, num_blocks, dump_file)
 		  rtx new_label = gen_label_rtx ();
 		  rtx old_label, set_src;
 		  rtx after = arcptr->branch_insn;
-		  
+
 		  /* Simplejumps can't reach here.  */
 		  if (this_is_simplejump)
 		    abort ();
@@ -281,7 +281,7 @@ instrument_arcs (f, num_blocks, dump_file)
 		     but must be at least two to prevent the label from being
 		     deleted.  */
 		  LABEL_NUSES (old_label) += 2;
-		  
+
 		  /* Emit the insns for the new block in reverse order,
 		     since that is most convenient.  */
 
@@ -305,7 +305,7 @@ instrument_arcs (f, num_blocks, dump_file)
 		  emit_barrier_after (after);
 		  emit_jump_insn_after (gen_jump (old_label), after);
 		  JUMP_LABEL (NEXT_INSN (after)) = old_label;
-		  
+
 		  /* Instrument the source arc.  */
 		  output_arc_profiler (total_num_arcs_instrumented
 				       + num_instr_arcs++,
@@ -322,23 +322,23 @@ instrument_arcs (f, num_blocks, dump_file)
 		     after the table, by emitting a barrier, a label, a
 		     counting note, and a jump to the old label.  Put the
 		     new label in the table.  */
-		  
+
 		  rtx new_label = gen_label_rtx ();
 		  rtx old_lref, new_lref;
 		  int index;
-		  
+
 		  /* Must determine the old_label reference, do this
 		     by counting the arcs after this one, which will
 		     give the index of our label in the table.  */
-		  
+
 		  index = 0;
 		  for (backptr = arcptr->succ_next; backptr;
 		       backptr = backptr->succ_next)
 		    index++;
-		  
+
 		  old_lref = XVECEXP (PATTERN (arcptr->branch_insn),
 				      (code == ADDR_DIFF_VEC), index);
-		  
+
 		  /* Emit the insns for the new block in reverse order,
 		     since that is most convenient.  */
 		  emit_jump_insn_after (gen_jump (XEXP (old_lref, 0)),
@@ -354,7 +354,7 @@ instrument_arcs (f, num_blocks, dump_file)
 		  emit_label_after (new_label, arcptr->branch_insn);
 		  LABEL_NUSES (NEXT_INSN (arcptr->branch_insn))++;
 		  emit_barrier_after (arcptr->branch_insn);
-		  
+
 		  /* Fix up the table jump.  */
 		  new_lref = gen_rtx_LABEL_REF (Pmode, new_label);
 		  XVECEXP (PATTERN (arcptr->branch_insn),
@@ -370,7 +370,7 @@ instrument_arcs (f, num_blocks, dump_file)
 			 ARC_TARGET (arcptr));
 	    }
 	}
-  
+
   total_num_arcs_instrumented += num_instr_arcs;
   count_instrumented_arcs = total_num_arcs_instrumented;
 
@@ -390,7 +390,7 @@ output_gcov_string (string, delimiter)
      long delimiter;
 {
   long temp;
-			
+
   /* Write a delimiter to indicate that a file name follows.  */
   __write_long (delimiter, bb_file, 4);
 
@@ -552,7 +552,7 @@ branch_prob (f, dump_file)
 
 			block_separator_emitted = 1;
 		      }
-		    
+
 		    /* If this is a new source file, then output the file's
 		       name to the .bb file.  */
 		    if (! last_bb_file_name
@@ -882,7 +882,7 @@ branch_prob (f, dump_file)
 
 	    num_arcs++;
 	  }
-	  
+
 	/* This may not be a real insn, but that should not cause a problem.  */
 	bb_graph[i+1].first_insn = get_last_insn ();
       }
@@ -1007,7 +1007,7 @@ branch_prob (f, dump_file)
      arcs are put on the spanning tree in preference to high numbered arcs.
      Hence, most instrumented arcs are at the end.  Graph solving works much
      faster if we propagate numbers from the end to the start.
-     
+
      This takes an average of slightly more than 3 passes.  */
 
   changes = 1;
@@ -1065,7 +1065,7 @@ branch_prob (f, dump_file)
 		  arcptr->count_valid = 1;
 		  ARC_COUNT (arcptr) = total;
 		  binfo->succ_count--;
-		  
+
 		  bb_graph[ARC_TARGET (arcptr)].pred_count--;
 		  changes = 1;
 		}
@@ -1089,7 +1089,7 @@ branch_prob (f, dump_file)
 		  arcptr->count_valid = 1;
 		  ARC_COUNT (arcptr) = total;
 		  binfo->pred_count--;
-		  
+
 		  bb_graph[ARC_SOURCE (arcptr)].succ_count--;
 		  changes = 1;
 		}
@@ -1137,7 +1137,7 @@ branch_prob (f, dump_file)
 	      else
 		{
 		  rtx pat = PATTERN (arcptr->branch_insn);
-		  
+
 		  prob = (((double)ARC_COUNT (arcptr) * REG_BR_PROB_BASE)
 			  + (total >> 1)) / total;
 		  if (prob < 0 || prob > REG_BR_PROB_BASE)
@@ -1150,7 +1150,7 @@ branch_prob (f, dump_file)
 		      bad_counts = 1;
 		      prob = REG_BR_PROB_BASE / 2;
 		    }
-		  
+
 		  /* Match up probability with JUMP pattern.  */
 
 		  if (GET_CODE (pat) == SET
@@ -1170,7 +1170,7 @@ branch_prob (f, dump_file)
 			}
 		    }
 		}
-	      
+
 	      if (prob == -1)
 		num_never_executed++;
 	      else
@@ -1181,7 +1181,7 @@ branch_prob (f, dump_file)
 		  hist_br_prob[index]++;
 		}
 	      num_branches++;
-	      
+
 	      REG_NOTES (arcptr->branch_insn)
 		= gen_rtx_EXPR_LIST (REG_BR_PROB, GEN_INT (prob),
 				     REG_NOTES (arcptr->branch_insn));
@@ -1189,7 +1189,7 @@ branch_prob (f, dump_file)
 	}
 
       /* Add a REG_EXEC_COUNT note to the first instruction of this block.  */
-      if (! binfo->first_insn 
+      if (! binfo->first_insn
 	  || GET_RTX_CLASS (GET_CODE (binfo->first_insn)) != 'i')
 	{
 	  /* Block 0 is a fake block representing function entry, and does
@@ -1209,7 +1209,7 @@ branch_prob (f, dump_file)
 	    return_label_execution_count = total;
 	}
     }
-  
+
   /* This should never happen.  */
   if (bad_counts)
     warning ("Arc profiling: some arc counts were bad.");
@@ -1286,7 +1286,7 @@ find_spanning_tree (num_blocks)
   for (arcptr = bb_graph[0].succ; arcptr; arcptr = arcptr->succ_next)
     if (arcptr->fake)
       {
-	/* Adding this arc should never cause a cycle.  This is a fatal 
+	/* Adding this arc should never cause a cycle.  This is a fatal
 	   error if it would.  */
 	if (bb_graph[ARC_TARGET (arcptr)].on_tree && binfo->on_tree)
 	  abort();
@@ -1302,7 +1302,7 @@ find_spanning_tree (num_blocks)
   for (arcptr = binfo->pred; arcptr; arcptr = arcptr->pred_next)
     if (arcptr->fake)
       {
-	/* Adding this arc should never cause a cycle.  This is a fatal 
+	/* Adding this arc should never cause a cycle.  This is a fatal
 	   error if it would.  */
 	if (bb_graph[ARC_SOURCE (arcptr)].on_tree && binfo->on_tree)
 	  abort();
@@ -1315,7 +1315,7 @@ find_spanning_tree (num_blocks)
       }
   /* The only entrace to node zero is a fake arc.  */
   bb_graph[0].pred->on_tree = 1;
-  
+
   /* Arcs which are crowded at both the source and target should be put on
      the spanning tree if possible, except for fall_throuch arcs which never
      require adding a new block even if crowded, add arcs with the same source
@@ -1349,7 +1349,7 @@ find_spanning_tree (num_blocks)
     bb_graph[i].on_tree = 0;
 
   /* Now fill in the spanning tree until every basic block is on it.
-     Don't put the 0 to 1 fall through arc on the tree, since it is 
+     Don't put the 0 to 1 fall through arc on the tree, since it is
      always cheap to instrument, so start filling the tree from node 1.  */
 
   for (i = 1; i < num_blocks; i++)
@@ -1370,7 +1370,7 @@ fill_spanning_tree (block)
      int block;
 {
   struct adj_list *arcptr;
-  
+
   expand_spanning_tree (block);
 
   for (arcptr = bb_graph[block].succ; arcptr; arcptr = arcptr->succ_next)
@@ -1396,7 +1396,7 @@ expand_spanning_tree (block)
   for (arcptr = bb_graph[block].succ; arcptr; arcptr = arcptr->succ_next)
     if (arcptr->on_tree && ! bb_graph[ARC_TARGET (arcptr)].on_tree)
       expand_spanning_tree (ARC_TARGET (arcptr));
-    
+
   for (arcptr = bb_graph[block].pred;
        arcptr; arcptr = arcptr->pred_next)
     if (arcptr->on_tree && ! bb_graph[ARC_SOURCE (arcptr)].on_tree)
