@@ -3882,6 +3882,7 @@ for machine in $build $host $target; do
 		tmake_file="i386/t-cygwin i386/t-mingw32"
 		extra_objs=winnt.o
 		xmake_file=i386/x-cygwin
+		use_collect2=no
  		if test x$enable_threads = xyes; then
 			thread_file='win32'
 		fi
